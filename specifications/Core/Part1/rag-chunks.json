@@ -1,0 +1,1215 @@
+{
+  "Title": "Part 1 - Overview and Concepts",
+  "Chunks": [
+    {
+      "Id": "cb7b5462-6872-4211-9923-c8cb52293478",
+      "Header": "Document: Part 1 - Overview and Concepts\n---\n",
+      "Content": "1 Scope"
+    },
+    {
+      "Id": "687c20fb-ce32-4307-91fa-caa31e96ea31",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 1 Scope\n---\n",
+      "Content": "OPC Unified Architecture (OPC UA) is a platform-independent standard designed to facilitate seamless information exchange in industrial automation and other domains. It provides a comprehensive framework for modelling information, secure communication, and ensuring interoperability between diverse systems and devices.\nThis part of OPC 10000 introduces the fundamental concepts and provides a high-level overview of the OPC Unified Architecture. It covers key architectural principles, fundamental models such as the AddressSpace Model and the Security Model, and the roles of core OPC UA components like Clients and Servers. It is intended for developers, system integrators, and anyone needing a high-level understanding of OPC UA. This part of the specification focuses on providing a conceptual foundation and does not delve into detailed implementation specifics or protocol mappings, which are covered in other parts of the OPC 10000 series.\nThis part provides the foundational knowledge necessary to understand the subsequent parts of the OPC 10000 series, which delve into specific aspects of the architecture, such as security (Part 2), the AddressSpace model (Part 3), and Services (Part 4). Each of the other parts is briefly explained along with a suggested reading order."
+    },
+    {
+      "Id": "357e6ca3-6ffb-498d-b765-ed868c72b32f",
+      "Header": "Document: Part 1 - Overview and Concepts\n---\n",
+      "Content": "2 Terms, definitions, and abbreviated terms"
+    },
+    {
+      "Id": "95df98a3-0d85-4cca-a1b5-254edc15a9ba",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2 Terms, definitions, and abbreviated terms\n---\n",
+      "Content": "2.1 Terms and definitions"
+    },
+    {
+      "Id": "56181bc2-5026-4ef8-8329-b90fb9f12f38",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "For the purposes of this document, the following terms apply.\nISO and IEC maintain terminology databases for use in standardization at the following addresses:\nIEC Electropedia: available at[https://www.electropedia.org/](https://www.electropedia.org/)\nISO Online browsing platform: available at[https://www.iso.org/obp](https://www.iso.org/obp)\n2.1.1 AddressSpace"
+    },
+    {
+      "Id": "69b4e05d-6941-4728-a73c-f33b093a7ec3",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.1 AddressSpace\n---\n",
+      "Content": "collection of information that a Server makes visible to its Clients\nNote 1 to entry: See[OPC 10000-3](/\u00A7UAPart3) for a description of the contents and structure of the Server AddressSpace."
+    },
+    {
+      "Id": "c239f8c3-7148-45c6-b43d-15fd68595fa5",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.2 Aggregate"
+    },
+    {
+      "Id": "c719638c-cb06-4c66-bd4f-3443e2d9fc7f",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.2 Aggregate\n---\n",
+      "Content": "function that calculates derived values from Raw data\nNote 1 to entry: Raw data may be from a historian or buffered real time data. Common Aggregates include averages over a given time range, minimum over a time range and maximum over a time range."
+    },
+    {
+      "Id": "2c70f200-3ac9-4b50-9c02-6009c2c65437",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.3 Alarm"
+    },
+    {
+      "Id": "9147a483-8d13-43f5-a2d4-acaec0ca2bcd",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.3 Alarm\n---\n",
+      "Content": "type of Event associated with a state condition that typically requires acknowledgement\nNote 1 to entry: See[OPC 10000-9](/\u00A7UAPart9) for a description of Alarms."
+    },
+    {
+      "Id": "0881e5c4-0d47-4dfa-8d8a-5b7856a45c3c",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.4 Attribute"
+    },
+    {
+      "Id": "9c52bbc5-f8b1-41ad-917a-5abefb59271c",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.4 Attribute\n---\n",
+      "Content": "primitive characteristic of a Node\nNote 1 to entry: All Attributes are defined by OPC UA, and may not be defined by Clients or Servers. Attributes are the only elements in the AddressSpace permitted to have data values."
+    },
+    {
+      "Id": "52e6cba5-df78-46f3-aadb-daab3d6af930",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.5 Broker"
+    },
+    {
+      "Id": "a03eb34e-16a1-4121-8b20-9cb931c91568",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.5 Broker\n---\n",
+      "Content": "intermediary program module that routes NetworkMessages from Publishers to Subscribers\nNote 1 to entry: Brokers are building blocks of Message Oriented Middleware."
+    },
+    {
+      "Id": "cc99d68c-c220-457a-a06b-0ee4330a7b55",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.6 Certificate"
+    },
+    {
+      "Id": "773533df-f318-4851-91af-ef3423b7459a",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.6 Certificate\n---\n",
+      "Content": "digitally signed data structure that contains a public key and an identity\nNote 1 to entry: Certificates are used to identity for example Clients, Servers, users, and certificate authorities."
+    },
+    {
+      "Id": "8d856822-27ae-4d3e-8945-da42016108e8",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.7 Client"
+    },
+    {
+      "Id": "8bba05d3-03ec-478a-81b6-a2e80d5114a3",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.7 Client\n---\n",
+      "Content": "software application that sends Messages to OPC UA Servers conforming to the Services specified in this set of specifications"
+    },
+    {
+      "Id": "d0402ef0-7c80-4ce0-b526-c47e28b56b64",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.8 ClientServer"
+    },
+    {
+      "Id": "3491d467-cf04-4816-8fdc-df0ebf3a1b9c",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.8 ClientServer\n---\n",
+      "Content": "OPC UA variant of the client-server messaging pattern"
+    },
+    {
+      "Id": "66b9a49d-ba6a-45a0-b2e5-b2763513c1b7",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.9 Condition"
+    },
+    {
+      "Id": "e426e5a0-1547-484c-b917-e62b0d14ef48",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.9 Condition\n---\n",
+      "Content": "generic term that is an extension to an Event\nNote 1 to entry: A Condition represents the conditions of a system or one of its components and always exists in some state."
+    },
+    {
+      "Id": "2a7b8be8-850b-4c7b-8c5d-134da879ef68",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.10 Communication Stack"
+    },
+    {
+      "Id": "c42d0bfc-80ec-4644-90d0-568ea27a57a8",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.10 Communication Stack\n---\n",
+      "Content": "layered set of software modules between the application and the hardware that provides various functions to encode, encrypt and format a Message for sending, and to decode, decrypt and unpack a Message that was received"
+    },
+    {
+      "Id": "848dacaf-ff57-4332-b59d-4ac05f087679",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.11 Complex Data"
+    },
+    {
+      "Id": "1909b3cb-1689-40a8-b244-b6b28c693c9f",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.11 Complex Data\n---\n",
+      "Content": "data that is composed of elements of more than one primitive data type, such as a structure"
+    },
+    {
+      "Id": "5206d435-790d-44d7-831f-72956fed7681",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.12 DataSet"
+    },
+    {
+      "Id": "5e95e3eb-937c-46bd-a8ad-081a16a087aa",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.12 DataSet\n---\n",
+      "Content": "list of named data values\nNote 1 to entry: A DataSet typically consists of Event fields or Variable values"
+    },
+    {
+      "Id": "d7027096-0e89-4cf3-80f3-c4102465e1e5",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.13 DataSetMessage"
+    },
+    {
+      "Id": "14d0d5f3-2bf3-49d3-a5ed-57febcd7d844",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.13 DataSetMessage\n---\n",
+      "Content": "payload of a NetworkMessage created from a DataSet\nNote 1 to entry:  The DataSetMessage is an immutable payload of the NetworkMessage handed off to the Message Oriented Middleware(transport layer) for delivery by the Publisher. The Subscriber receives the DataSetMessage as the payload of a NetworkMessage from the Publisher with additional headers that may be supplied by the Message Oriented Middleware along the way."
+    },
+    {
+      "Id": "48109ca8-224d-40f1-8fcc-54d2445853c9",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.14 Discovery"
+    },
+    {
+      "Id": "cbcb8dc6-1465-433a-9f7b-3da066926fcd",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.14 Discovery\n---\n",
+      "Content": "process by which Client obtains information about Server s, including endpoint and security information"
+    },
+    {
+      "Id": "d1f0bc08-e271-4de9-b0f3-09183a9b1d7d",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.15 Event"
+    },
+    {
+      "Id": "edce4a5e-ce59-44c9-9b7a-a838739cdda4",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.15 Event\n---\n",
+      "Content": "generic term used to describe an occurrence of some significance within a system or system component"
+    },
+    {
+      "Id": "3daa0bc1-28ad-470e-a2e6-91421620d665",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.16 EventNotifier"
+    },
+    {
+      "Id": "7fbed8e5-227d-4fc3-85ea-e6860b198967",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.16 EventNotifier\n---\n",
+      "Content": "special Attribute of a Node that signifies that a Client may subscribe to that particular Node to receive Notifications of Event occurrences"
+    },
+    {
+      "Id": "5a2d9831-abcf-4709-ad97-6896243e4c0f",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.17 Information Model"
+    },
+    {
+      "Id": "c3ebeaf3-fc32-49ec-abd8-f0d20436d8cc",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.17 Information Model\n---\n",
+      "Content": "organizational framework that defines, characterizes, and relates information resources of a given system or set of systems.\nNote 1 to entry: The core AddressSpace model supports the representation of Information Models in the AddressSpace. See[OPC 10000-5](/\u00A7UAPart5) for a description of the base OPC UA Information Model."
+    },
+    {
+      "Id": "39f6363b-3ec0-4be7-8664-08d4f6266426",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.18 Message"
+    },
+    {
+      "Id": "a749da68-dadd-423c-9dc8-e2b5da390318",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.18 Message\n---\n",
+      "Content": "data unit conveyed between Client and Server that represents a specific Service request or response"
+    },
+    {
+      "Id": "dbaafd3c-c82a-4297-88a8-f5d5df0cde9b",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.19 Message Oriented Middleware"
+    },
+    {
+      "Id": "68d4f12b-7281-4f80-943f-9dd9f0a19311",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.19 Message Oriented Middleware\n---\n",
+      "Content": "infrastructure supporting sending and receiving NetworkMessages between distributed systems\nNote 1 to entry: An OPC UA Application may support different types of Message Oriented Middleware infrastructures and protocols like AMQP, MQTT, or UDP with IP multicast. Other types like DDS or XMPP can also be integrated into the OPC UA PubSub model."
+    },
+    {
+      "Id": "d632153b-dd88-487c-8e0c-91a2ea7787f8",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.20 Method"
+    },
+    {
+      "Id": "81d634e6-b0c0-461e-953f-eb39e858a64f",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.20 Method\n---\n",
+      "Content": "callable software function that is a component of an Object"
+    },
+    {
+      "Id": "89a2bdf0-4561-4311-a0e3-9cb4a2239079",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.21 MonitoredItem"
+    },
+    {
+      "Id": "39c89c49-74cd-40fd-aea5-d4f651f5f12d",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.21 MonitoredItem\n---\n",
+      "Content": "Client-defined entity in the Server used to monitor Attributes or EventNotifiers for new values or Event occurrences and that generates Notifications for them"
+    },
+    {
+      "Id": "efa9901c-5299-4385-824e-1e4f4ebb0b32",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.22 NetworkMessage"
+    },
+    {
+      "Id": "445282f0-563e-40a2-8381-fc5ca6f05a7e",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.22 NetworkMessage\n---\n",
+      "Content": "DataSetMessages and header to facilitate delivery, routing, security, and filtering\nNote 1 to entry: The Publisher hands off the NetworkMessage to the Message Oriented Middleware(transport layer) to deliver DataSetMessages to the Subscribers.\nNote 2 to entry: The term message is used with various connotations in the messaging world. The Publisher might like to think of the message as an immutable payload handed off to the Message Oriented Middleware for delivery. The Subscriber often thinks of the message as not only that immutable payload from the sender, but also various annotations supplied by the Message Oriented Middleware along the way. To avoid confusion the term DataSetMessage is used to mean the message as supplied by the Publisher for a DataSet and the term NetworkMessage is used to mean the DataSetMessage plus sections for annotation at the head and tail of the DataSetMessage."
+    },
+    {
+      "Id": "9c6ce3fc-d5f9-4c97-aab6-406b24faae9a",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.23 Node"
+    },
+    {
+      "Id": "4cf1c9aa-1eb2-48ea-8bba-f891546d48fe",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.23 Node\n---\n",
+      "Content": "fundamental component of an AddressSpace"
+    },
+    {
+      "Id": "eecc0fee-9385-4317-ad38-2dc922cdf7df",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.24 NodeClass"
+    },
+    {
+      "Id": "9189fb9d-3c89-4a82-91a3-b802fde725fc",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.24 NodeClass\n---\n",
+      "Content": "class of a Node in an AddressSpace\nNote 1 to entry: NodeClasses define the metadata for the components of the OPC UA object model. They also define constructs, such as Views, that are used to organize the AddressSpace."
+    },
+    {
+      "Id": "75648c30-4a96-46e4-a498-a86b2f6c7534",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.25 Notification"
+    },
+    {
+      "Id": "719b28f1-2242-4d05-9751-e676a44e1dbc",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.25 Notification\n---\n",
+      "Content": "generic term for data that announces the detection of an Event or of a changed Attribute value; Notifications are sent in NotificationMessages."
+    },
+    {
+      "Id": "e4062708-7459-4533-bf08-7d468edc71ff",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.26 NotificationMessage"
+    },
+    {
+      "Id": "db7db213-babb-4d3c-bb76-b17cee367a93",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.26 NotificationMessage\n---\n",
+      "Content": "Message published from a Subscription that contains one or more Notifications"
+    },
+    {
+      "Id": "d9a6d6c4-a7ab-40bd-9919-53b2a752b08b",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.27 Object"
+    },
+    {
+      "Id": "853282f9-ce78-46d4-8fdf-e032b8169e85",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.27 Object\n---\n",
+      "Content": "Node that represents a physical or abstract element of a system\nNote 1 to entry: Objects are modelled using the OPC UA Object Model. Systems, subsystems, and devices are examples of Objects. An Object may be defined as an instance of an ObjectType."
+    },
+    {
+      "Id": "a1a094f5-f7a7-4da8-b00c-b07f7489fe3e",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.28 Object Instance"
+    },
+    {
+      "Id": "c979a7e5-2a95-463d-be02-dea6feaeb88b",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.28 Object Instance\n---\n",
+      "Content": "synonym for Object\nNote 1 to entry: Not all Objects are defined by ObjectTypes."
+    },
+    {
+      "Id": "046800d4-cea9-47be-a52f-a997fa51f621",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.29 ObjectType"
+    },
+    {
+      "Id": "dfca38cf-f463-4bd5-927d-6b2575256463",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.29 ObjectType\n---\n",
+      "Content": "Node that represents the type definition for an Object"
+    },
+    {
+      "Id": "94dc978e-0f48-41ec-a040-75cba90f35b3",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.30 OPC UA Application"
+    },
+    {
+      "Id": "35baace2-d8a5-4ae5-8cb9-882ab6430190",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.30 OPC UA Application\n---\n",
+      "Content": "Client, which calls OPC UA Services, or a Server, which performs those Services, or an OPC UA Publisher or an OPC UA Subscriber."
+    },
+    {
+      "Id": "a406fffb-7f2a-46ce-b6ab-2e3dde4ccc6b",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.31 Profile"
+    },
+    {
+      "Id": "275512f9-a783-4c19-b531-3bc0fa1720dd",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.31 Profile\n---\n",
+      "Content": "specific set of capabilities to which a Server may claim conformance.\nNote 1 to entry: Each Server may claim conformance to more than one Profile\nNote 2 to entry: The set of capabilities are defined in[OPC 10000-7](/\u00A7UAPart7)"
+    },
+    {
+      "Id": "fbba8013-babd-4e47-9443-c781c04ccd31",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.32 Program"
+    },
+    {
+      "Id": "1620485c-6618-481b-8b67-9a4a473133a9",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.32 Program\n---\n",
+      "Content": "executable Object that, when invoked, immediately returns a response to indicate that execution has started, and then returns intermediate and final results through Subscriptions identified by the Client during invocation"
+    },
+    {
+      "Id": "e4f327fa-b7ba-4d17-b2ff-30e488da5bef",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.33 Publisher"
+    },
+    {
+      "Id": "a50f6417-3773-4bef-b720-f7d917798a10",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.33 Publisher\n---\n",
+      "Content": "entity sending NetworkMessages to a Message Oriented Middleware\nNote 1 to entry: A Publisher can be a native OPC UA Application or an application that only has knowledge about the Message Oriented Middleware and the rules for encoding the NetworkMessages and DataSetMessages."
+    },
+    {
+      "Id": "8c86f101-5e10-46bd-859f-1c4048365498",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.34 PubSub"
+    },
+    {
+      "Id": "ed831154-5bdd-4e64-bcb5-f62e16aa699b",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.34 PubSub\n---\n",
+      "Content": "OPC UA variant of the publish subscribe messaging pattern"
+    },
+    {
+      "Id": "3b999644-adaa-48a4-b60e-83bce0dee904",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.35 Reference"
+    },
+    {
+      "Id": "a39c6420-c9e1-4d07-90a9-2f4dbe234378",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.35 Reference\n---\n",
+      "Content": "explicit relationship (a named pointer) from one Node to another\nNote 1 to entry: The Node that contains the Reference is the source Node, and the referenced Node is the target Node. All References are defined by ReferenceTypes."
+    },
+    {
+      "Id": "c9318d71-d7cd-4b88-b9da-8c50f6c12d97",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.36 ReferenceType"
+    },
+    {
+      "Id": "06dbfe06-08a9-42c5-8218-ade868c3c909",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.36 ReferenceType\n---\n",
+      "Content": "Node that represents the type definition of a Reference\nNote 1 to entry: The ReferenceType specifies the semantics of a Reference. The name of a ReferenceType identifies how source Nodes are related to target Nodes and generally reflects an operation between the two, such as \u0022A contains B\u0022."
+    },
+    {
+      "Id": "bf68566f-33b4-44e3-8d39-8afeaba0d9ff",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.37 Secure Channel"
+    },
+    {
+      "Id": "47049dff-1c2d-499e-a37c-842d192cd6be",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.37 Secure Channel\n---\n",
+      "Content": "in OPC UA, a communication path established between an OPC UA Client and Server that have authenticated each other using certain OPC UA services and for which security parameters have been negotiated and applied"
+    },
+    {
+      "Id": "b6f89c29-445b-493f-ad1f-cc3e16fa2e02",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.38 Server"
+    },
+    {
+      "Id": "b7f6930a-c36d-4e58-8660-211b6e7c0781",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.38 Server\n---\n",
+      "Content": "software application that implements and exposes the Services specified in this set of specifications"
+    },
+    {
+      "Id": "57acd55f-0bc3-4644-871b-7d15a18a5ab6",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.39 Service"
+    },
+    {
+      "Id": "43b05b75-b39b-467b-b8c8-a35034316f7d",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.39 Service\n---\n",
+      "Content": "Client-callable operation in a Server\nNote 1 to entry: Services are defined in[OPC 10000-4](/\u00A7UAPart4). A Service is similar to a method call in a programming language or an operation in a Web services WSDL contract."
+    },
+    {
+      "Id": "f8257a98-8d00-4b65-9828-4c75697d07bd",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.40 Service Set"
+    },
+    {
+      "Id": "8f61330f-0cc1-4d59-ad82-faf5486d17b4",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.40 Service Set\n---\n",
+      "Content": "group of related Services"
+    },
+    {
+      "Id": "8140f873-4685-4c5b-a13d-2b41af357e71",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.41 Session"
+    },
+    {
+      "Id": "9f36efde-0cb6-47e4-aa1b-45a4c4f11002",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.41 Session\n---\n",
+      "Content": "logical long-running connection between a Client and a Server.\nNote 1 to entry: A Session maintains state information between Service calls from the Client to the Server."
+    },
+    {
+      "Id": "74f89f78-6934-4c58-9e32-d493ee48d7c1",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.42 Subscriber"
+    },
+    {
+      "Id": "eeb26f8a-3494-4596-9e53-b5a4da7031c9",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.42 Subscriber\n---\n",
+      "Content": "entity receiving DataSetMessages from a Message Oriented Middleware\nNote 1 to entry: A Subscriber can be a native OPC UA Application or an application that has just knowledge about the Message Oriented Middleware and the rules for decoding the NetworkMessages and DataSetMessages. A Subscription in the OPC UA ClientServer model has a different meaning than the Subscriber in the PubSub model."
+    },
+    {
+      "Id": "c2605b76-11da-4a3a-8674-371ca9384680",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.43 Subscription"
+    },
+    {
+      "Id": "d4ceb2b5-32a0-4f17-ae85-17d4044eb889",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.43 Subscription\n---\n",
+      "Content": "Client-defined endpoint in the Server, used to return Notifications to the Client\nNote 1 to entry: Subscription is a generic term that describes a set of Nodes selected by the Client(1) that the Server periodically monitors for the existence of some condition, and (2) for which the Server sends Notifications to the Client when the condition is detected."
+    },
+    {
+      "Id": "45c016c6-e399-45b1-8ba4-bc3a4f2af3b5",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.44 Underlying System"
+    },
+    {
+      "Id": "70072867-b50c-4380-971e-9cb1a387f9c2",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.44 Underlying System\n---\n",
+      "Content": "hardware or software platforms that exist as an independent entity. UA Applications are dependent on an entity\u0027s existence in order to perform UA services. However, the entity is not dependent on UA Applications.\nNote 1 to entry: Hardware and software platforms include physical hardware, firmware, operating system, networking, nonUA applications, as well as other UA Applications. A Distributed Control System, PLC/Device, and UA Server are examples of an Underlying System."
+    },
+    {
+      "Id": "7748302d-5d95-4e70-9120-b37771c53859",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.45 Variable"
+    },
+    {
+      "Id": "c6bce9f1-3563-4b8e-9690-1a1c6c425d09",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.45 Variable\n---\n",
+      "Content": "Node that contains a value"
+    },
+    {
+      "Id": "8f69f763-1cb8-421e-9c79-efdf82f52a61",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1 Terms and definitions\n---\n",
+      "Content": "2.1.46 View"
+    },
+    {
+      "Id": "621fbe5a-3734-4e2e-a245-b6f13a825fd0",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.1.46 View\n---\n",
+      "Content": "specific subset of the AddressSpace that is of interest to the Client."
+    },
+    {
+      "Id": "8f39026a-fd54-40ea-bf6f-e5d660ffadbc",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2 Terms, definitions, and abbreviated terms\n---\n",
+      "Content": "2.2 Abbreviated terms"
+    },
+    {
+      "Id": "7df59608-f1fe-4022-b761-44b142243cd4",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 2.2 Abbreviated terms\n---\n",
+      "Content": "A\u0026E Alarms and Events\nAMQP Advanced Message Queuing Protocol\nAPI Application Programming Interface\nCOM Component Object Model\nDA Data Access\nDCS Distributed Control System\nDDS Data Distribution Service\nHDA Historical Data Access\nHMI Human-Machine Interface\nJSON JavaScript Object Notation\nLDAP Lightweight Directory Access Protocol\nMES Manufacturing Execution System\nMQTT Message Queue Telemetry Transport\nOAuth2 Open Authorization\nOPC Open Platform Communications\nPLC Programmable Logic Controller\nSCADA Supervisory Control And Data Acquisition\nUA Unified Architecture\nUADP UA Datagram Protocol\nWSDL Web Services Definition Language\nXML Extensible Markup Language\nXMPP Extensible Messaging and Presence Protocol"
+    },
+    {
+      "Id": "289314bd-8b80-4ce4-9c1d-583b3355349a",
+      "Header": "Document: Part 1 - Overview and Concepts\n---\n",
+      "Content": "3 Structure of the OPC UA series"
+    },
+    {
+      "Id": "b602a899-20c4-4fc1-ab0f-e4a57e4d830d",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 3 Structure of the OPC UA series\n---\n",
+      "Content": "3.1 Specification organization"
+    },
+    {
+      "Id": "58f40622-5b8f-4fb0-a2f4-ab9628ce88a4",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 3.1 Specification organization\n---\n",
+      "Content": "The OPC UA specification is organized as a multi-part series to provide a modular and extensible framework. This structure allows for focused development and maintenance of specific aspects of the technology, while ensuring overall coherence. The parts are broadly categorized into core concepts, information models, services, mappings, profiles, and domain-specific applications. Parts 1 through 5 describe core concepts of OPC UA, therefore, readers are encouraged to read Parts 1 through 5 of the specification before reading the other Parts."
+    },
+    {
+      "Id": "b948baa1-90d7-4d2a-b06d-b8ea99ee83f5",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 3 Structure of the OPC UA series\n---\n",
+      "Content": "3.2 Specification parts"
+    },
+    {
+      "Id": "f8651403-0daf-44c7-9683-89c33a166cc8",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 3.2 Specification parts\n---\n",
+      "Content": "At the time of publication of this document, the OPC 10000 series is composed of the following parts:\nPart 1 (OPC 10000-1) - Overview and Concepts\nPart 1 (this part) presents the concepts and overview of OPC UA.\nPart 2 ([OPC 10000-2](/\u00A7UAPart2)) - Security Model\nPart 2 describes the model for securing interactions between OPC UA Applications.\nPart 3 ([OPC 10000-3](/\u00A7UAPart3)) - Address Space Model\nPart 3 describes the contents and structure of the Server\u0027s AddressSpace.\nPart 4 ([OPC 10000-4](/\u00A7UAPart4)) - Services\nPart 4 specifies the Services provided by Servers.\nPart 5 ([OPC 10000-5](/\u00A7UAPart5)) - Information Model\nPart 5 specifies the types and their relationships defined for Servers.\nPart 6 ([OPC 10000-6](/\u00A7UAPart6)) - Mappings\nPart 6 specifies the mappings to transport protocols and data encodings supported by OPC UA.\nPart 7 ([OPC 10000-7](/\u00A7UAPart7)) - Profiles\nPart 7 specifies the Profiles that are available for OPC UA Applications. These Profiles provide groupings of functionality that can be used for conformance level certification. OPC UA Applications will be tested against the Profiles.\nPart 8 ([OPC 10000-8](/\u00A7UAPart8)) - Data Access\nPart 8 specifies the use of OPC UA for data access.\nPart 9 ("
+    },
+    {
+      "Id": "08afded1-6a77-4b3b-bcc8-2f76a597af12",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 3.2 Specification parts\n---\n",
+      "Content": "Part 9 ([OPC 10000-9](/\u00A7UAPart9)) - Alarms and Conditions\nPart 9 specifies use of OPC UA support for access to Alarms and Conditions. The base system includes support for simple Events; this specification extends that support to include support for Alarms and Conditions.\nPart 10 ([OPC 10000-10](/\u00A7UAPart10)) - Programs\nPart 10 specifies OPC UA support for access to Programs.\nPart 11 ([OPC 10000-11](/\u00A7UAPart11)) - Historical Access\nPart 11 specifies use of OPC UA for historical access. This access includes both historical data and historical Events.\nPart 12 ([OPC 10000-12](/\u00A7UAPart12)) - Discovery and Global Services\nPart 12 specifies how Discovery Servers operate in different scenarios and describes how UA Clients and Servers should interact with them. It also defines Information Models for Certificate management, key credential management, and authorization services.\nPart 13 ([OPC 10000-13](/\u00A7UAPart13)) - Aggregates\nPart 13 specifies how to compute and return aggregates like minimum, maximum, average etc. Aggregates can be used with current and historical data.\nPart 14 ([OPC 10000-14](/\u00A7UAPart14)) - PubSub\nPart 14 specifies the OPC Unified Architecture (OPC UA) PubSub communication model. The PubSub communication model defines an OPC UA publish subscribe pattern in addition to the ClientServer pattern defined by the Services in[OPC 10000-4](/\u00A7UAPart4).\nPart 15 ("
+    },
+    {
+      "Id": "4252e9fa-ee23-4824-9a88-64b4c5c1a7ea",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 3.2 Specification parts\n---\n",
+      "Content": "Part 15 ([OPC 10000-15](/\u00A7)) - Safety\nPart 15 extends OPC UA to fulfil the requirements of functional safety as defined in the[IEC 61508](/\u00A7IEC61508) series of standards and in[IEC 61784-3:2017](/\u00A7IEC61784).\nPart 16 ([OPC 10000-16](/\u00A7)) - State Machines\nPart 16 specifies the basic infrastructure to model state machines.\nPart 17 ([OPC 10000-17](/\u00A7)) - Alias Names\nPart 17 specifies a manner of configuring and exposing an alternate well-defined name for any OPC UA Node in a Server or system.\nPart 18 ([OPC 10000-18](/\u00A7)) - Role-Based Security\nPart 18 specifies the basic infrastructure to model role-based access control (RBAC)\nPart 19 ([OPC 10000-19](/\u00A7)) - Dictionary References\nPart 19 specifies the basic infrastructure to reference from an OPC UA Information Model to external dictionaries like IEC Common Data Dictionary or ECLASS.\nPart 20 ([OPC 10000-20](/\u00A7)) - File Transfer\nPart 20 specifies the basic infrastructure to model file transfers and file systems.\nPart 21 ([OPC 10000-21](/\u00A7)) - Device Onboarding\nPart 21 specifies the life cycle of Devices and Composites and mechanisms to verify their authenticity, set up their security and maintain their configuration.\nPart 22 ([OPC 10000-22](/\u00A7)) - Base Network Model"
+    },
+    {
+      "Id": "55034b5f-4be3-47b9-a4ab-b9192b31e7f1",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 3.2 Specification parts\n---\n",
+      "Content": "Part 22 specifies an OPC UA Information Model for a basic set of network related components to be used in more specific Information Models.\nPart 23 ([OPC 10000-23](/\u00A7)) - Common ReferenceTypes\nPart 23 specifies common types of references between Nodes.\nPart 24 ([OPC 10000-24](/\u00A7)) - Scheduler\nPart 24 specifies an OPC UA information model to expose and configure the dates and times specific actions are executed by the OPC UA Server.\nPart 25 ([OPC 10000-25](/\u00A7UAPart25)) - Object Serialization\nPart 25 specifies an OPC UA information model to configure and expose a merged compact representation of the selected subtree of a root Node.\nPart 26 ([OPC 10000-26](/\u00A7UAPart26)) - LogObject\nPart 26 specifies an OPC UA information model for a set of Objects and Events that can be used to collect diagnostic information in a system."
+    },
+    {
+      "Id": "967f6dd0-7d00-4f83-9544-f2edf79efbdd",
+      "Header": "Document: Part 1 - Overview and Concepts\n---\n",
+      "Content": "4 Overview"
+    },
+    {
+      "Id": "21af6374-ce23-4fc3-be63-c2506af684cd",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4 Overview\n---\n",
+      "Content": "4.1 Scope"
+    },
+    {
+      "Id": "053f5446-773c-4173-97ed-5c11742cc00f",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.1 Scope\n---\n",
+      "Content": "OPC UA is applicable to components in all industrial domains, such as industrial sensors and actuators, control systems, Manufacturing Execution Systems and Enterprise Resource Planning Systems, including the Industrial Internet of Things (IIoT), Machine To Machine (M2M) and others. It is designed to enable seamless information exchange and to support command and control functionalities for diverse industrial processes, spanning from device-level communication to enterprise-wide and cloud integration.\nOPC UA defines a common infrastructure model to facilitate this information exchange. OPC UA specifies the following:\nthe information model to represent structure, behaviour and semantics;\nthe message model to interact between applications;\nthe communication model to transfer the data between end-points;\nthe conformance model to guarantee interoperability between systems."
+    },
+    {
+      "Id": "f0ef87a5-131a-4f03-b8ee-f8c6c966b2f0",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4 Overview\n---\n",
+      "Content": "4.2 General"
+    },
+    {
+      "Id": "d738595d-4c7b-4bfa-b3e5-34f6d65776ce",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.2 General\n---\n",
+      "Content": "OPC UA is a platform-independent standard that enables various systems and devices to communicate securely and reliably. It employs mechanisms for authentication, encryption, and integrity checks to ensure the identity of OPC UA Applications as well as identification of users and protect against attacks.\nUsing the ClientServer model, OPC UA defines sets of Services that Servers provide, and it utilizes both OPC UA-defined and vendor-defined data types, along with flexible object models, to facilitate interoperability and dynamic information discovery by Clients. Supporting a variety of communication protocols and data encodings, such as TCP, HTTPS, WebSockets, XML/text, UA Binary, and JSON, OPC UA allows for trade-offs between portability and efficiency to suit different application requirements. Servers can provide access to both current and historical data, as well as Alarms and Events to notify Clients of important changes.\nIn addition to the ClientServer model, OPC UA also supports information transfer from Publishers to Subscribers using the PubSub model."
+    },
+    {
+      "Id": "b82beeba-167e-4b17-91e1-66f01fead790",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4 Overview\n---\n",
+      "Content": "4.3 Design goals"
+    },
+    {
+      "Id": "877ee3db-ba49-4edf-af82-aceb37530254",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.3 Design goals\n---\n",
+      "Content": "OPC UA provides a consistent, integrated AddressSpace and service model. This allows a single Server to integrate data, Alarms and Events, and history into its AddressSpace, and to provide access to them using an integrated set of Services. These Services also include an integrated security model.\nOPC UA also allows Servers to provide Clients with type definitions for the Objects accessed from the AddressSpace. This allows Information Models to be used to describe the contents of the AddressSpace. OPC UA allows data to be exposed in many different formats, including binary structures and XML or JSON documents. The format of the data may be defined by OPC, other standard organizations or vendors. Through the AddressSpace, Clients can query the Server for the metadata that describes the format for the data. In many cases, Clients with no pre-programmed knowledge of the data formats will be able to determine the formats at runtime and properly utilize the data.\nOPC UA adds support for many relationships between Nodes instead of being limited to just a single hierarchy. In this way, a Server may present data in a variety of hierarchies tailored to the way a set of Clients would typically like to view the data. This flexibility, combined with support for type definitions, makes OPC UA applicable to a wide array of problem domains. As illustrated in[Figure 1](/\u00A7_Ref402707464), OPC UA is not targeted at just the SCADA, PLC and DCS interface, but also as a way to provide greater interoperability between higher level functions."
+    },
+    {
+      "Id": "3470ab55-7bb5-4cfa-9006-364cd39af674",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.3 Design goals\nCaption: Figure 1 - OPC UA target applications\n---\n",
+      "Content": "This image appears to be a diagrammatic representation of an industrial control system (ICS) architecture. It illustrates various components within an OPC Unified Architecture (OPC UA) framework for industrial automation and data integration. Here\u0027s a breakdown of what is visible in the figure: 1. At the top, there are two main categories \u0022Corporate Enterprise\u0022 and \u0022Manufacturing \u0026 Production.\u0022 These likely represent the different functional areas within an organization that require control and automation. 2. Under \u0022Corporate Enterprise,\u0022 we can see elements such as \u0022OPC UA Broker,\u0022 which is a software component that enables the interoperability of devices and applications using the OPC UA standard, and \u0022HMI (Human-Machine Interface),\u0022 which is an interface for operators to control and monitor the industrial processes. 3. The \u0022Manufacturing \u0026 Production\u0022 area shows \u0022OPC UA Server,\u0022 which is a server that provides data and services to the OPC UA clients, and \u0022DCS (Distributed Control System).\u0022 A DCS typically controls and monitors multiple process units in an industrial plant. 4. Between these two areas, there\u0027s a flow of data or signals indicated by arrows labeled \u0022OPC UA,\u0022 suggesting that data is being exchanged between the corporate enterprise and the manufacturing \u0026 production areas. 5. Below the corporate enterprise, we see \u0022PLC (Programmable Logic Controller),\u0022 which is used to control industrial processes like factory machinery and equipment. 6. The bottom part of the diagram includes various components such as \u0022OPC UA Server,\u0022 \u0022Control,\u0022 and \u0022Batch,\u0022 indicating different aspects of industrial operations, possibly referencing the control logic for automating processes in batches. 7. There are also some acronyms or abbreviations that represent companies or software solutions related to industrial automation:- OSIsoft PI System: A platform used for industrial data collection and management."
+    },
+    {
+      "Id": "43fc52b4-ead4-4386-ad09-cbf4ddad9b29",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.3 Design goals\nCaption: Figure 1 - OPC UA target applications\n---\n",
+      "Content": "- Wonderware: A company known for its industrial automation and process control systems.- Rockwell Automation: Another industrial control system (ICS) provider. The specific details of the connections between these components are not clearly visible, but it is clear that the diagram is intended to show how different systems within an organization can be integrated and controlled using OPC UA standards for industrial automation and data integration."
+    },
+    {
+      "Id": "c1e385c4-4251-4a8e-a745-4867c43bb0ab",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.3 Design goals\n---\n",
+      "Content": "Figure 1 - OPC UA target applications\nOPC UA is designed to provide robustness of published data. A major feature of all OPC servers is the ability to publish data and Event Notifications. OPC UA provides mechanisms for Clients to quickly detect and recover from communication failures associated with these transfers without having to wait for long timeouts provided by the underlying protocols.\nOPC UA is designed to support a wide range of Servers, from plant floor PLCs to enterprise Servers. These Servers are characterized by a broad scope of size, performance, execution platforms and functional capabilities. Therefore, OPC UA defines a comprehensive set of capabilities, and Servers may implement a subset of these capabilities. To promote interoperability, OPC UA defines subsets, referred to as Profiles, to which Servers may claim conformance. Clients can then discover the Profiles of a Server, and tailor their interactions with that Server based on the Profiles. Profiles are defined in[OPC 10000-7](/\u00A7UAPart7).\nThe OPC UA is layered to isolate the core design from the underlying computing technology and network transport. This allows OPC UA to be mapped to future technologies as necessary, without negating the basic design. Mappings and data encodings are described in[OPC 10000-6](/\u00A7UAPart6). Several data encodings are defined:\nXML/text,\nUA Binary,\nJSON.\nIn addition, several protocols are defined:\nOPC UA TCP,\nHTTPS,\nWebSockets.\nOPC UA Applications that support multiple transports and encodings will allow the end users to make decisions about trade-offs between performance and compatibility at the time of deployment, rather than having these trade-offs determined by the OPC vendor at the time of product definition."
+    },
+    {
+      "Id": "668a4fc0-a5b9-4e63-85ac-445e87f25579",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.3 Design goals\n---\n",
+      "Content": "OPC UA is designed as the migration path for OPC clients and servers that are based on Microsoft COM technology (OPC Classic). Care has been taken in the design of OPC UA so that existing data exposed by OPC COM servers (DA, HDA and A\u0026E) can easily be mapped and exposed via OPC UA. Vendors may choose migrating their products natively to OPC UA or use external wrappers to convert from OPC COM to OPC UA and vice-versa. Each of the specifications of OPC Classic developed by OPC Foundation defined its own address space model and its own set of Services. OPC UA unifies the previous models into a single integrated address space with a single set of Services.\nOPC UA PubSub opens new application fields for OPC UA. The following are some example uses for PubSub:\nConfigurable peer to peer communication between controllers and between controllers and HMIs. The peers are not directly connected and do not even need to know about the existence of each other. The data exchange often requires a fixed time-window; it may be point-to-point or a multi-point connection.\nAsynchronous workflows. For example, an order processing application can place an order on a message queue or an enterprise service bus. From there it can be processed by one or more workers.\nLogging to multiple systems; for example, sensors or actuators can write logs to a monitoring system, an HMI, an archive application for later querying, and so on.\nServers representing services or devices can stream data to applications hosted in the cloud. For example, backend servers, big data analytics for system optimization and predictive maintenance.\nPubSub is not bound to a particular messaging system. Rather it can be mapped to various different systems as illustrated with two examples:\nPubSub"
+    },
+    {
+      "Id": "124a4ca9-92ad-4909-87d2-2161f0d62046",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.3 Design goals\n---\n",
+      "Content": "PubSub with UDP may be well-suited in production environments for frequent transmissions of small amounts of data. It also allows data exchange in one-to-one and one-to-many configurations.\nThe use of established messaging protocols (e.g. the ISO/IEC AMQP 1.0 protocol or the MQTT 5.0 protocol) with JSON data encoding supports the cloud integration path and readily allows handling of the information in modern stream and batch analytics systems."
+    },
+    {
+      "Id": "bb40e8c6-ed2e-4317-b598-b0df66cbf77a",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4 Overview\n---\n",
+      "Content": "4.4 Integrated models and services"
+    },
+    {
+      "Id": "4b9db39e-8f57-40b2-8755-c3e39155c05d",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4 Integrated models and services\n---\n",
+      "Content": "4.4.1 Security model"
+    },
+    {
+      "Id": "9e97a5e8-1f3a-4b99-9e10-98b55d505762",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4.1 Security model\n---\n",
+      "Content": "4.4.1.1 General"
+    },
+    {
+      "Id": "683f100d-8262-44d9-b7da-2646c82240df",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4.1.1 General\n---\n",
+      "Content": "OPC UA security is concerned with the authentication of Clients and Servers, the authentication of users, the integrity and confidentiality of their communications, and the verifiability of claims of functionality. It does not specify the circumstances under which various security mechanisms are required. That specification is crucial, but it is made by the designers of the system at a given site and may be specified by other standards.\nRather, OPC UA provides a security model, described in[OPC 10000-2](/\u00A7UAPart2), in which security measures can be selected and configured to meet the security needs of a given installation. This model includes security mechanisms and parameters. In some cases, the mechanism for exchanging security parameters is defined, but the way that applications use these parameters is not. This framework also defines a minimum set of security Profiles that all OPC UA Applications support, a subset of which can be enabled in each installation. Profiles are defined in[OPC 10000-7](/\u00A7UAPart7)."
+    },
+    {
+      "Id": "f7c2479b-f4a2-46b3-a1ba-cedcbdc29d7d",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4.1 Security model\n---\n",
+      "Content": "4.4.1.2 Discovery and Session establishment"
+    },
+    {
+      "Id": "3f8f23d7-5367-470d-a2a5-2f1b2e5fbc1a",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4.1.2 Discovery and Session establishment\n---\n",
+      "Content": "Application level security relies on a secure communication channel that is active for the duration of the application Session and ensures the integrity of all Messages that are exchanged. This means users need to be authenticated only once, when the application Session is established. The mechanisms for discovering Servers and establishing secure communication channels and application Sessions are described in[OPC 10000-4](/\u00A7UAPart4) and[OPC 10000-6](/\u00A7UAPart6). Additional information about the Discovery process is described in[OPC 10000-12](/\u00A7UAPart12).\nWhen a Session is established, the Client and Server applications negotiate a secure communications channel. Digital ([X.509](/\u00A7X509)) Certificates are utilized to identify the Client and Server. The Server further authenticates the user and authorizes subsequent requests to access Objects in the Server."
+    },
+    {
+      "Id": "6a4141a6-9617-4355-a6cf-1f85fe59c7cf",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4.1 Security model\n---\n",
+      "Content": "4.4.1.3 Auditing"
+    },
+    {
+      "Id": "e9e78324-02b9-4b13-ace0-5e8da2f46384",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4.1.3 Auditing\n---\n",
+      "Content": "OPC UA includes support for security audit trails with traceability between Client and Server audit logs. If a security-related problem is detected at the Server, the associated Client audit log entry can be located and examined. OPC UA also provides the capability for Servers to generate Event Notifications that report auditable Events to Clients capable of processing and logging them. OPC UA defines security audit parameters that can be included in audit log entries and in audit Event Notifications.[OPC 10000-5](/\u00A7UAPart5) defines the data types for these parameters. Not all Servers and Clients provide all of the auditing features. Profiles, found in[OPC 10000-7](/\u00A7UAPart7), indicate which features are supported."
+    },
+    {
+      "Id": "d42e92cb-967d-46da-ad7c-58626ae62ae5",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4.1 Security model\n---\n",
+      "Content": "4.4.1.4 Transport security"
+    },
+    {
+      "Id": "96557e0f-9629-471a-8073-9e4a33cb63c5",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4.1.4 Transport security\n---\n",
+      "Content": "OPC UA security complements the security infrastructure provided by most web service capable platforms.\nTransport level security can be used to encrypt and sign Messages. Encryption and signatures protect against disclosure of information and protect the integrity of Messages. Encryption capabilities are provided by the underlying communications technology used to exchange Messages between OPC UA Applications.[OPC 10000-7](/\u00A7UAPart7) defines the encryption and signature algorithms to be used for a given Profile."
+    },
+    {
+      "Id": "fd2a19b7-c2cf-4d72-9426-8bc0d9a1a8bf",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4 Integrated models and services\n---\n",
+      "Content": "4.4.2 Integrated AddressSpace model"
+    },
+    {
+      "Id": "bf8b8b84-654e-408f-bcd4-69c3febc0b8c",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4.2 Integrated AddressSpace model\n---\n",
+      "Content": "The set of Objects and related information that the Server makes available to Clients is referred to as its AddressSpace. The OPC UA AddressSpace represents its contents as a set of Nodes connected by References.\nPrimitive characteristics of Nodes are described by Attributes. Attributes are the only elements of a Server that have data values. Data types that define attribute values may be simple or complex.\nNodes in the AddressSpace are typed according to their use and their meaning. NodeClasses define the metadata for the OPC UA AddressSpace.[OPC 10000-3](/\u00A7UAPart3) defines the OPC UA NodeClasses.\nThe Base NodeClass defines Attributes common to all Node s, allowing identification, classification, and naming. Each NodeClass inherits these Attributes and may additionally define its own Attributes.\nTo promote interoperability of Clients and Servers, the OPC UA AddressSpace is structured hierarchically with the top levels the same for all Servers. Although Nodes in the AddressSpace are typically accessible via the hierarchy, they may have References to each other, allowing the AddressSpace to represent an interrelated network of Node s. The model of the AddressSpace is defined in[OPC 10000-3](/\u00A7UAPart3).\nServers may subset the AddressSpace into Views to simplify Client access. Subclause[5.3.4.3](/\u00A7_Ref136776602) describes AddressSpace Views in more detail."
+    },
+    {
+      "Id": "38fb432b-bc16-4502-817e-2359091565a8",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4 Integrated models and services\n---\n",
+      "Content": "4.4.3 Integrated object model"
+    },
+    {
+      "Id": "ea97282d-e16a-4847-85ae-fbaeb117fa7d",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4.3 Integrated object model\n---\n",
+      "Content": "The OPC UA Object Model provides a consistent, integrated set of NodeClasses for representing Objects in the AddressSpace. This model represents Objects in terms of their Variables, Events and Methods, and their relationships with other Objects.[OPC 10000-3](/\u00A7UAPart3) describes this model.\nThe OPC UA object model allows Servers to provide type definitions for Objects and their components. Type definitions may be subclassed. They also may be common or they may be system-specific. ObjectTypes may be defined by standards organizations, vendors, or end-users.\nThis model allows data, Alarms and Events, and their history to be integrated into a single Server. For example, Servers are able to represent a temperature transmitter as an Object that is composed of a temperature value, a set of alarm parameters, and a corresponding set of alarm limits."
+    },
+    {
+      "Id": "39e23b3b-39ac-489a-b41c-123161952b55",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4 Integrated models and services\n---\n",
+      "Content": "4.4.4 Integrated services"
+    },
+    {
+      "Id": "0ce01671-0fe8-4935-bbd3-07366167493b",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.4.4 Integrated services\n---\n",
+      "Content": "The interface between Clients and Servers is defined as a set of Services. These Services are organized into logical groupings called Service Sets. Service Sets are discussed in clause[6](/\u00A7_Ref115187897) and specified in[OPC 10000-4](/\u00A7UAPart4).\nOPC UA Services provide two capabilities to Clients. They allow Clients to issue requests to Servers and receive responses from them. They also allow Clients to subscribe to Servers for Notifications. Notifications are used by the Server to report occurrences such as Alarms, data value changes, Events, and Program execution results.\nOPC UA Messages may be encoded as text (XML or JSON) or in binary format for efficiency purposes. They may be transferred using multiple underlying transports, for example TCP or HTTP. Servers may provide different encodings and transports as defined by[OPC 10000-6](/\u00A7UAPart6)."
+    },
+    {
+      "Id": "7517f7c9-c771-459c-9cc8-2c13026f7e27",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4 Overview\n---\n",
+      "Content": "4.5 Sessions"
+    },
+    {
+      "Id": "26422067-c7df-4c32-93ca-bbfdaa475fc7",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 4.5 Sessions\n---\n",
+      "Content": "OPC UA ClientServer interaction requires a stateful model. The state information is maintained inside an application Session. Examples of state-information are Subscriptions, user credentials and continuation points for operations that span multiple requests.\nSessions are defined as logical connections between Clients and Servers. Servers may limit the number of concurrent Sessions based on resource availability, licensing restrictions, or other constraints. Each Session is independent of the underlying communications protocols. Failures of these protocols do not automatically cause the Session to terminate. Sessions terminate based on Client or Server request, or based on inactivity of the Client. The inactivity time interval is negotiated during Session establishment."
+    },
+    {
+      "Id": "70cf0174-5fdf-428e-9244-091f5d9e5d27",
+      "Header": "Document: Part 1 - Overview and Concepts\n---\n",
+      "Content": "5 Systems concepts"
+    },
+    {
+      "Id": "7b03a5d5-bbc9-42ed-a33d-ffdbe5a33b96",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5 Systems concepts\n---\n",
+      "Content": "5.1 ClientServer overview"
+    },
+    {
+      "Id": "b99f34c5-70c8-48fb-b674-413d230a9b33",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.1 ClientServer overview\n---\n",
+      "Content": "The OPC UA systems architecture models Clients and Servers as interacting partners. Each system may contain multiple Clients and Servers. Each Client may interact concurrently with one or more Servers, and each Server may interact concurrently with one or more Clients. This model enables Clients to access data, invoke Services, and receive Events from Servers. An application can embody both Server and Client functionalities, allowing it to exchange information with other Servers and Clients as described in[5.3.7](/\u00A7_Ref79199669).\nClients and Servers are described in[5.2](/\u00A7_Ref443921572) and[5.3](/\u00A7_Ref443921603).[Figure 2](/\u00A7_Ref69099230) illustrates the architecture that includes a combined Server and Client."
+    },
+    {
+      "Id": "6e801a54-f9c9-4ced-86b0-3188cde3c49c",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.1 ClientServer overview\nCaption: Figure 2 - OPC UA system architecture\n---\n",
+      "Content": "The image you\u0027ve shared appears to be a flowchart or conceptual diagram related to an OPC UA (Open Platform Communications Unified Architecture) system. This is a standard for industrial automation and interoperability. In the figure: 1. **Client**: The diagram starts with a client, which initiates the communication process by sending a request. 2. **Server**: There are two servers depicted. One appears to be an OPC UA server, indicated by the acronym \u0022OPC UA\u0022, and the other is labeled as a \u0022Published Server,\u0022 likely representing another type of server that interacts with the OPC UA system. 3. **OPC UA**: This term refers to the Open Platform Communications Unified Architecture, which is a standard for industrial automation and data exchange. 4. **Request/response**: The arrows indicate the flow of communication between the client and the servers. The first step shows the client sending a request, which is then processed by an unspecified server (the OPC UA server or the Published Server). 5. **Data transfer**: It\u0027s not clear from this image if actual data is being represented, but it seems that the communication involves exchanging some form of information or data between the client and the servers. 6. **OPC UA system architecture**: The figure is labeled as \u0022Figure 2 - OPC UA system architecture,\u0022 suggesting that this diagram illustrates the structure or flow of an OPC UA system. 7. **OPC UA client/server**: There are two servers depicted, one of which is specifically marked as an \u0022OPC UA\u0022 server, indicating that it adheres to the OPC UA standard. 8. **Published Server**: This server seems to be part of the system but does not fully comply with the OPC UA standard and may have additional functionality or serve a different purpose."
+    },
+    {
+      "Id": "7bdbdb0c-1992-4064-9dcf-b06eb67874dd",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.1 ClientServer overview\nCaption: Figure 2 - OPC UA system architecture\n---\n",
+      "Content": "9. **User Interface**: At the bottom right, there is a representation of a user interface, which suggests that this figure might also include how a human interacts with the system through the user interface. 10. **OPC UA request/response messages**: The flowchart elements suggest that the OPC UA client and server are exchanging requests and responses according to the OPC UA protocol, which is standardized for industrial automation communication. Please note that without additional context or details from the document, this explanation is based solely on the visible elements of the figure and their typical meanings within an IT and industrial control system context."
+    },
+    {
+      "Id": "d5646136-38b1-4f4b-b28e-ea566dd62c85",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.1 ClientServer overview\n---\n",
+      "Content": "Figure 2 - OPC UA system architecture"
+    },
+    {
+      "Id": "97aa579c-746f-498f-8cdb-e555167e5ccb",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5 Systems concepts\n---\n",
+      "Content": "5.2 OPC UA Clients"
+    },
+    {
+      "Id": "37cffa1f-0214-473d-8e48-04d651b8f8d7",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.2 OPC UA Clients\n---\n",
+      "Content": "The OPC UA Client architecture models the Client endpoint of ClientServer interactions.[Figure 3](/\u00A7_Ref69096485) illustrates the major elements of a typical Client and how they relate to each other."
+    },
+    {
+      "Id": "80ba9e69-effd-4e38-8954-0adfe8e2786e",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.2 OPC UA Clients\nCaption: Figure 3 - OPC UA Client architecture\n---\n",
+      "Content": "The image appears to be a diagram from a technical document related to OPC Unified Architecture (OPC UA), which is a communications standard for process automation systems. The diagram illustrates the architecture of an OPC UA client application. It shows a flowchart with various components and their interactions, as well as a box labeled \u0022OPC UA Client\u0022 at the top right corner. Here are the visible elements in the diagram: 1. **OPC UA Client**: This is likely the primary focus of the figure, representing the software that uses the OPC UA standard to communicate with servers or other devices on a network. 2. **OPC UA Server**: Indicated by dashed lines connected to the client, suggesting that it sends information to and receives information from the server. 3. **Communication**: The arrows between the client and the server represent the exchange of data over a network using the OPC UA protocol. 4. **OPC UA Client UI (User Interface)**: This component is responsible for the user\u0027s interaction with the OPC UA client application, allowing them to perform various tasks such as configuring the connection, browsing the OPC UA server\u0027s namespace, and handling data transfer. 5. **OPC UA Client Axis (Axis)**: The horizontal axis at the bottom of the diagram represents different aspects or features of the client application, although their exact meaning is not clear from the image alone. 6. **OPC UA Server Endpoint**: This is where the OPC UA server makes itself available for communication with clients using a specific endpoint URL. 7. **OPC UA Client Discovery Service**: The service seems to be responsible for discovering and configuring the connection to the OPC UA server. It\u0027s likely used for finding available servers on the network and establishing connections to them."
+    },
+    {
+      "Id": "d43ff438-7344-43d5-b68d-e293a1497a16",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.2 OPC UA Clients\nCaption: Figure 3 - OPC UA Client architecture\n---\n",
+      "Content": "8. **OPC UA Server Configuration**: This is probably a configuration tool or interface that allows the user to set up the OPC UA server, including parameters such as security, discovery settings, and other relevant options. 9. **OPC UA Transport Mechanisms**: These likely represent different methods or protocols used for transporting data between the client and server over the network. 10. **OPC UA Security**: This aspect of the client application is responsible for ensuring secure communication with the server, which may include encryption and authentication mechanisms. The diagram uses a lot of abbreviations and technical terms that are specific to the OPC UA standard, so it\u0027s intended for individuals familiar with industrial automation and control systems."
+    },
+    {
+      "Id": "4844b697-0bd4-4040-aff8-8cbc45b52e98",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.2 OPC UA Clients\n---\n",
+      "Content": "Figure 3 - OPC UA Client architecture\nThe Client Application utilizes a Client API to initiate OPC UA Service requests and receive responses from Servers. The Communication Stack handles the conversion of Client API calls into messages and manages the underlying communication with the Server. The Services defined for OPC UA are described in clause[6](/\u00A7_Ref115187897), and specified in[OPC 10000-4](/\u00A7UAPart4).\nNote that the \u0022 Client API\u0022 is an internal interface that isolates the Client application code from an OPC UA Communication Stack. The OPC UA Communication Stack converts Client API calls into Messages and sends them through the underlying communications entity to the Server at the request of the Client application. The OPC UA Communication Stack also receives response and NotificationMessages from the underlying communications entity and delivers them to the Client application through the Client API."
+    },
+    {
+      "Id": "faf55f24-c2ba-493f-a348-28bb5f077eca",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5 Systems concepts\n---\n",
+      "Content": "5.3 OPC UA Servers"
+    },
+    {
+      "Id": "c0e626ee-3018-4dbe-8f61-5488e47b3414",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3 OPC UA Servers\n---\n",
+      "Content": "5.3.1 General"
+    },
+    {
+      "Id": "684608a0-3da9-40e2-b29e-17dcca375c76",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.1 General\n---\n",
+      "Content": "The OPC UA Server architecture models the Server endpoint of client/server interactions.[Figure 4](/\u00A7_Ref69878697) illustrates the major elements of the Server and how they relate to each other."
+    },
+    {
+      "Id": "d28d1d64-eb9f-4a97-976d-b5e2a9c9de3a",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.1 General\nCaption: Figure 4 - OPC UA Server architecture\n---\n",
+      "Content": "This image depicts a schematic diagram of an OPC UA (Open Platform Communications Unified Architecture) server architecture. The diagram includes several components and their relationships, which are fundamental to understanding how OPC UA works. Here\u0027s a breakdown of the elements in the diagram: 1. **OPC UA Server**: This is the central element that is hosting and managing the system. It provides the interface for communication between the user and the devices or systems being monitored. 2. **Clients**: These are applications or systems that connect to the OPC UA server to interact with the connected devices. There can be multiple clients, each with a unique identifier (NodeID), which allows them to communicate independently with the server. 3. **OPC UA Endpoint**: Each client connects to an endpoint, represented by a circle with dashed lines around it. This is where the communication between the server and the client takes place. 4. **OPC UA Namespace**: This represents the logical structure of the data that is being shared between the clients and the server. It allows for organization and separation of different groups of data within the system. 5. **OPC UA Objects**: These are the individual pieces of information or data points that are being monitored or controlled. They are organized hierarchically within the namespace, with properties (like values or status) associated with each object. 6. **Server Application, Address Space, and Objects**: This is where the server application is running, which serves as the host for the OPC UA server. It has an address space that contains objects relevant to the server\u0027s operation, and these objects are further categorized into groups based on their function or purpose. 7. **Data Flow Arrows**: These arrows indicate the flow of data from the server to the clients and vice versa. They represent how information is exchanged between the two entities."
+    },
+    {
+      "Id": "79633ba4-291c-4222-9f0d-e35bff36a21e",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.1 General\nCaption: Figure 4 - OPC UA Server architecture\n---\n",
+      "Content": "8. **Monitoring and Control**: This is a representation of the capabilities that an OPC UA server provides, allowing for both monitoring (reading values or status) and control (sending commands or changing settings) of the connected devices. The diagram is quite technical in nature, with acronyms like \u0022OPC UA\u0022 and terms such as \u0022NodeID,\u0022 \u0022Address Space,\u0022 and \u0022Endpoint\u0022 being specific to industrial automation and control systems. It\u0027s a high-level overview that would be understood by someone familiar with the OPC UA standard or working in an industrial control system environment."
+    },
+    {
+      "Id": "4c6c70ef-626b-4c23-aac3-2fb108e3d240",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.1 General\n---\n",
+      "Content": "Figure 4 - OPC UA Server architecture"
+    },
+    {
+      "Id": "c3cabaab-845a-4471-8986-795832d0a240",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3 OPC UA Servers\n---\n",
+      "Content": "5.3.2 Real objects"
+    },
+    {
+      "Id": "37b9f6e5-c971-4b6c-a7db-a9633719bec4",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.2 Real objects\n---\n",
+      "Content": "Real objects are physical or software objects that are accessible by the Server application or that it maintains internally. Examples include physical devices (e.g. sensors, actuators, motors) and diagnostics counters."
+    },
+    {
+      "Id": "55ad0eaf-3741-45df-8549-98c22c5e5b1b",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3 OPC UA Servers\n---\n",
+      "Content": "5.3.3 Server application"
+    },
+    {
+      "Id": "95c78a87-357a-45e9-aa93-83ebef986f2e",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.3 Server application\n---\n",
+      "Content": "The Server application is the code that implements the function of the Server. It uses the Server API to send and receive OPC UA Messages from Clients. Note that the \u0022 Server API\u0022 is an internal interface that isolates the Server application code from an OPC UA Communication Stack."
+    },
+    {
+      "Id": "6cbf33d9-cce7-4838-97c1-c5d33602d440",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3 OPC UA Servers\n---\n",
+      "Content": "5.3.4 OPC UA AddressSpace"
+    },
+    {
+      "Id": "310f36eb-1fdb-4ff3-8c51-36c8db456097",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.4 OPC UA AddressSpace\n---\n",
+      "Content": "5.3.4.1 AddressSpace Nodes"
+    },
+    {
+      "Id": "0730220d-4795-46bf-9d82-c9283ded013c",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.4.1 AddressSpace Nodes\n---\n",
+      "Content": "The AddressSpace is modelled as a set of Nodes accessible by Clients using OPC UA Services(interfaces and methods). Nodes in the AddressSpace are used to represent real objects, their definitions and their References to each other."
+    },
+    {
+      "Id": "93cb228d-c2ac-44cf-8d39-5b737900c844",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.4 OPC UA AddressSpace\n---\n",
+      "Content": "5.3.4.2 AddressSpace organization"
+    },
+    {
+      "Id": "999af282-2e8d-4423-a27b-370faed4d653",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.4.2 AddressSpace organization\n---\n",
+      "Content": "[OPC 10000-3](/\u00A7UAPart3) contains the details of the meta model \u0022building blocks\u0022 used to create an AddressSpace out of interconnected Nodes in a consistent manner. Servers are free to organize their Nodes within the AddressSpace as they choose. The use of References between Nodes permits Servers to organize the AddressSpace into hierarchies, a full mesh network of Node s, or any possible mix.\n[OPC 10000-5](/\u00A7UAPart5) defines OPC UA Nodes and References and their expected organization in the AddressSpace. Some Profiles will not require that all of the UA Nodes be implemented."
+    },
+    {
+      "Id": "3347efad-ff68-4036-9b91-aee7952c557e",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.4 OPC UA AddressSpace\n---\n",
+      "Content": "5.3.4.3 AddressSpace Views"
+    },
+    {
+      "Id": "61169ab4-106e-431f-b44d-1ccbc34d8ad6",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.4.3 AddressSpace Views\n---\n",
+      "Content": "A View is a subset of the AddressSpace. Views are used to restrict the Nodes that the Server makes visible to the Client, thus restricting the size of the AddressSpace for the Service requests submitted by the Client. The default View is the entire AddressSpace. Servers may optionally define other Views. Views hide some of the Nodes or References in the AddressSpace. Views are visible via the AddressSpace and Clients are able to browse Views to determine their structure. Views are often hierarchies, which are easier for Clients to navigate and represent in a tree."
+    },
+    {
+      "Id": "4d28450d-ebf1-4188-8169-f797d499dd41",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.4 OPC UA AddressSpace\n---\n",
+      "Content": "5.3.4.4 for information models"
+    },
+    {
+      "Id": "94b49347-27a8-4fb3-8b25-5c491c1cf5fc",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.4.4 for information models\n---\n",
+      "Content": "The OPC UA AddressSpace supports Information Models. This support is provided through:\nNode References that allow Objects in the AddressSpace to be related to each other.\nObjectType Nodes that provide semantic information for real Objects(type definitions).\nObjectType Nodes to support subclassing of type definitions.\nData type definitions exposed in the AddressSpace that allow industry specific data types to be used.\nIndustry groups can define how their specific information models are to be represented in Server AddressSpace."
+    },
+    {
+      "Id": "872f77aa-5d84-4106-83e4-ca2af11c395e",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3 OPC UA Servers\n---\n",
+      "Content": "5.3.5 Subscription entities"
+    },
+    {
+      "Id": "66961453-78e9-492d-a205-dd21e219880e",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.5 Subscription entities\n---\n",
+      "Content": "5.3.5.1 MonitoredItems"
+    },
+    {
+      "Id": "efcbd782-b99a-4ae1-bf8b-391cdd3dd9f2",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.5.1 MonitoredItems\n---\n",
+      "Content": "MonitoredItems are entities in the Server created by the Client that monitor AddressSpace Nodes and, indirectly, their real-world counterparts. When they detect a data change or an event/alarm occurrence, they generate a Notification that is transferred to the Client by a Subscription."
+    },
+    {
+      "Id": "524801ec-4ddd-484a-8ed6-fda49b03298f",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.5 Subscription entities\n---\n",
+      "Content": "5.3.5.2 Subscriptions"
+    },
+    {
+      "Id": "de97be9e-3b99-4609-921a-9d7784c8f56c",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.5.2 Subscriptions\n---\n",
+      "Content": "A Subscription is an endpoint in the Server that publishes Notifications to Clients. Clients control the rate at which publishing occurs by sending Publish Messages."
+    },
+    {
+      "Id": "8b890d7f-7e48-4b21-aa1c-3e0cb87a9569",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3 OPC UA Servers\n---\n",
+      "Content": "5.3.6 OPC UA Service interface"
+    },
+    {
+      "Id": "e4e2a0df-149e-485e-aa13-c9ce5afc32ac",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.6 OPC UA Service interface\n---\n",
+      "Content": "5.3.6.1 General"
+    },
+    {
+      "Id": "37d8ed34-5407-439b-adcb-f389ae5d4e92",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.6.1 General\n---\n",
+      "Content": "The Services defined for OPC UA are described in clause[6](/\u00A7_Ref115187993), and specified in[OPC 10000-4](/\u00A7UAPart4)."
+    },
+    {
+      "Id": "729475e8-481f-44c9-9609-3712cea0115a",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.6 OPC UA Service interface\n---\n",
+      "Content": "5.3.6.2 Request/response Services"
+    },
+    {
+      "Id": "99965507-bb62-408c-9ee3-bfdce21f93d6",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.6.2 Request/response Services\n---\n",
+      "Content": "Request/response Services are Services invoked by the Client through the OPC UA Service Interface to perform a specific task on one or more Nodes in the AddressSpace and to return a response."
+    },
+    {
+      "Id": "4d107cb0-7fbd-4847-b72c-e97f0f965c69",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.6 OPC UA Service interface\n---\n",
+      "Content": "5.3.6.3 Subscription Services"
+    },
+    {
+      "Id": "35740522-7a91-43e1-9374-6355f3d9a872",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.6.3 Subscription Services\n---\n",
+      "Content": "The Publish Service is invoked through the OPC UA Service Interface for the purpose of periodically sending Notifications to Clients. Notifications include Events, Alarms, data changes and Program outputs."
+    },
+    {
+      "Id": "e6e7b8bf-1ed7-4e9e-bb9e-da1ba5bd1fa9",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3 OPC UA Servers\n---\n",
+      "Content": "5.3.7 Server to Server interactions"
+    },
+    {
+      "Id": "7aa9d3cc-8372-415a-9262-b94e3c9405c6",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.7 Server to Server interactions\n---\n",
+      "Content": "Server to Server interactions in the ClientServer model are interactions in which one Server acts as a Client of another Server. Server to Server interactions allow for the development of servers that:\nexchange information with each other on a peer-to-peer basis, this could include redundancy or remote Servers that are used for maintaining system wide type definitions (see[Figure 5](/\u00A7_Ref69805203)),\nare chained in a layered architecture of Servers to provide:\naggregation of data from lower-layer Servers,\nhigher-layer data constructs to Clients, and\nconcentrator interfaces to Clients for single points of access to multiple underlying Servers.\n\n[Figure 5](/\u00A7_Ref69805203) illustrates interactions between Servers."
+    },
+    {
+      "Id": "0fe7f23b-2ae8-4d0e-9e8f-d9d1e8859b25",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.7 Server to Server interactions\nCaption: Figure 5 - Peer-to-peer interactions between Servers\n---\n",
+      "Content": "This image shows a diagram representing the structure of an OPC (Open Platform Communications) network with an OPC Unified Architecture (OPC UA) server interacting with another server. At the top left corner of the image, there is text that reads \u0022Network,\u0022 indicating that this diagram is part of a discussion or explanation about networking within the context of OPC and OPC UA. The diagram consists of three main components: an OPC Unified Architecture (OPC UA) server, a client, and a communication interface. The OPC UA server acts as the central hub for the network, allowing it to exchange data with other servers through an OPC UA server-to-server connection. The OPC UA server is depicted at the top right corner of the diagram and has connections extending outward towards two clients, one on each end of the communication interface. These connections are represented by arrows that indicate the flow of data between the servers. On the left side of the diagram, there\u0027s a representation of the OPC UA server with various modules or components connected to it. Each module or component is labeled with acronyms like \u0022OPC Server,\u0022 \u0022OPC Client,\u0022 and \u0022OPC Service.\u0022 These labels suggest that they represent different services or functions that are part of the OPC UA server, such as a server interface or a client connection. On the right side of the diagram, there is an OPC UA client connected to the server through the communication interface. The presence of this client implies that there may be multiple clients on the network communicating with the OPC UA server. Overall, the image provides a simplified representation of how OPC Unified Architecture servers can communicate and exchange data with other servers in a peer-to-peer manner within an industrial automation or control system environment."
+    },
+    {
+      "Id": "a8048966-dfb2-4cb8-af29-42d2186b9285",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.7 Server to Server interactions\n---\n",
+      "Content": "Figure 5 - Peer-to-peer interactions between Servers\nSimilar peer-to-peer interactions can also be accomplished using the OPC UA PubSub model where each peer Application is both a Publisher and a Subscriber.\n[Figure 6](/\u00A7_Ref69782711) extends the previous example and illustrates the chaining of Servers together for vertical access to data in an enterprise."
+    },
+    {
+      "Id": "929851d2-785e-4a99-b368-7b19605c1044",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.7 Server to Server interactions\nCaption: Figure 6 - Chained Server example\n---\n",
+      "Content": "The image you\u0027ve provided appears to be a diagram illustrating a system architecture or network layout related to OPC (OLE Personal Computer) and OPC UA (OPC Unified Architecture), which are standards for industrial automation and interoperability. The diagram is broken down into two main sections: \u0022Server to Server interactions\u0022 on the top, and \u0022Enterprise Network\u0022 on the bottom. Within these sections, there are various elements that represent different components of a network: 1. On the left side of the diagram under \u0022Server to Server interactions,\u0022 we can see a representation of a server or control system that is connected to another server or device (OPC UA Server). This indicates a connection between two systems for real-time process control, data exchange, and communication. 2. The middle section shows an OPC UA Client and an Enterprise Network. This part of the diagram suggests that the client is communicating with different servers and services over the network. 3. On the right side of the diagram under \u0022Enterprise Network,\u0022 we see additional server representations, such as an OPC Server for process control and an enterprise network. The network appears to include various layers or tiers, including a layer for data transmission (represented by a series of horizontal lines) and a layer for operator interface (as indicated by the text \u0022OPC UA Client\u0022). 4. There are also terms like \u0022Control Server,\u0022 \u0022OPC UA Client,\u0022 \u0022Enterprise Network,\u0022 \u0022Operations Network,\u0022 \u0022Safety System,\u0022 and \u0022Floor Server\u0022 which are labels for different parts of the network or system. 5. The diagram includes various connectors and lines that indicate how data is transferred between different components of the system, emphasizing the real-time and bi-directional nature of data exchange in an OPC UA environment."
+    },
+    {
+      "Id": "8510d670-3e5d-48dc-8bf1-52494c863ad6",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.7 Server to Server interactions\nCaption: Figure 6 - Chained Server example\n---\n",
+      "Content": "6. The layers are interconnected by dashed lines, showing the flow of information between different servers and systems. The diagram seems to serve as an educational or explanatory tool to illustrate how OPC UA works within an industrial control system or enterprise network, with a focus on server-to-server interactions and the use of OPC standards for data exchange and control."
+    },
+    {
+      "Id": "c421d5b8-9113-479b-ae21-ccd157e9edd5",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.3.7 Server to Server interactions\n---\n",
+      "Content": "Figure 6 - Chained Server example"
+    },
+    {
+      "Id": "c89e63da-a931-40f9-a863-93197e38fc30",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5 Systems concepts\n---\n",
+      "Content": "5.4 Redundancy"
+    },
+    {
+      "Id": "0937592a-5b79-4593-bf18-9ee45d1a532b",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.4 Redundancy\n---\n",
+      "Content": "OPC UA provides the data structures and services by which Redundancy may be achieved in a standardized manner.  Redundancy may be used for high availability, fault tolerance and load balancing.[OPC 10000-4](/\u00A7UAPart4) formally defines Client, Server and Network Redundancy.  Whether and what Redundancy is supported by an OPC UA Application is defined by its Profiles. Profiles are described in[OPC 10000-7](/\u00A7UAPart7).\nRequired Client and Server behaviours are associated with two distinct modes of Server Redundancy, transparent and non-transparent. The Client and Server responsibilities when using either transparent or non-transparent redundancy are defined in[OPC 10000-4](/\u00A7UAPart4).\nServers that support non-transparent redundancy can also support client-controlled load balancing. The health of a Server including its ability to Service requests is collectively defined as ServiceLevel. See[OPC 10000-5](/\u00A7UAPart5) for a formal definition of ServiceLevel.[OPC 10000-4](/\u00A7UAPart4) defines four distinct ServiceLevel sub-ranges and example usage."
+    },
+    {
+      "Id": "f9a1cea6-f071-4f8d-be70-6fc7e1f3e512",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5 Systems concepts\n---\n",
+      "Content": "5.5 Publish-Subscribe"
+    },
+    {
+      "Id": "9f7f9ab7-567a-4231-87b6-309e77f92ca4",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.5 Publish-Subscribe\n---\n",
+      "Content": "The Publish-Subscribe ( PubSub) communication model in OPC UA offers an alternative to the ClientServer model, enabling efficient and/or decoupled communication. With PubSub, OPC UA Applications do not directly exchange requests and responses. Instead, Publishers send messages to a Message Oriented Middleware, without knowledge of what, if any, Subscribers there may be. Similarly, Subscribers express interest in specific types of data, and process messages that contain this data, without knowledge of what Publishers there are.\nMessage Oriented Middleware is software or hardware infrastructure supporting sending and receiving messages between distributed systems. It depends on the Message Oriented Middleware how this distribution is implemented.\nTo cover a large number of use cases, OPC UA PubSub supports two largely different Message Oriented Middleware variants. These are:\nA broker-less form, where the Message Oriented Middleware is the network infrastructure that is able to route datagram-based messages. Subscribers and Publishers use datagram protocols like UDP multicast.\nA broker-based form, where the Message Oriented Middleware is a Broker. Subscribers and Publishers use standard messaging protocols like AMQP or MQTT to communicate with the Broker. All messages are published to specific queues (e.g. topics, nodes) that the Broker exposes and Subscribers can listen to these queues. The Broker may translate messages from the formal messaging protocol of the Publisher to the formal messaging protocol of the Subscriber.\nPubSub is used to communicate messages between different system components without these components having to know each other\u0027s identity.\nA Publisher is pre-configured with what data to send. There is no connection establishment between Publisher and Subscriber.\nThe knowledge about who Subscribers are and the forwarding of published data to the Subscribers is off-loaded to the Message Oriented Middleware. The Publisher does not know or even care if there is one or many"
+    },
+    {
+      "Id": "8d9f3a7e-b18a-4628-b5dd-06101ef376a9",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.5 Publish-Subscribe\n---\n",
+      "Content": "Subscribers. Effort and resource requirements for the Publisher are predictable and do not depend on the number of Subscribers.\n[OPC 10000-14](/\u00A7UAPart14) describes the details of the OPC UA PubSub model."
+    },
+    {
+      "Id": "46598529-2419-4b07-8f08-2d09f74a748a",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5 Systems concepts\n---\n",
+      "Content": "5.6 Synergy of models"
+    },
+    {
+      "Id": "20ab70d2-7b6b-4f58-9695-a0872715ecae",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.6 Synergy of models\n---\n",
+      "Content": "OPC UA PubSub and ClientServer models are complementary and can be combined and used synergistically. The OPC UA Information Model is the foundation for both. A typical scenario involves using ClientServer interactions for configuration, control, and on-demand data access, while PubSub is used for efficient, high-speed dissemination of real-time data. For instance, a Client application might use ClientServer to configure a Server and set up PubSub connections. Subsequently, the Server/Publisher publishes real-time data updates using PubSub, and the Client/Subscriber subscribes to this data stream for continuous monitoring.\nOPC PubSub can easily be integrated into Servers and Clients. Quite typically, a Publisher will be a Server(the owner of information) and a Subscriber is often a Client. Above all, the PubSub Information Model for configuration promotes the configuration of Publishers and Subscribers using the OPC UA ClientServer model.\n[Figure 7](/\u00A7_Ref471458833) depicts a single OPC UA Application that acts as both a Server and a Publisher."
+    },
+    {
+      "Id": "2fada512-2b27-44c5-9555-6e71b51a1256",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.6 Synergy of models\nCaption: Figure 7 - Integrated ClientServer and PubSub models\n---\n",
+      "Content": "The image appears to be a slide from a presentation explaining the \u0022Synergy of Models\u0022 in the context of OPC and OPC UA, which are standards for industrial interoperability. It is labeled as Figure 7: Integrated ClientServer and PubSub models. In the figure, there is a conceptual architecture diagram that outlines how the OPC and OPC UA standards might integrate with each other to provide a comprehensive solution for industrial data integration. The left side of the image represents an \u0022OPC Client/Server\u0022 model, while the right side shows a \u0022PubSub\u0022 model. On the left side: 1. There is a representation of an OPC Client/Server, which typically consists of an OPC UA Server and one or more OPC Clients that connect to the server using the Unified Automation Protocol (UAP). 2. An \u0022OPC UA Session\u0022 is shown within the client, indicating that the client has established a communication session with the server. 3. A message box labeled \u0022PubSub message\u0022 indicates that the OPC UA Server also supports a publish-subscribe model of messaging, which is used to broadcast data without requiring explicit client request for the data. 4. An \u0022OPC UA Subscriber\u0022 is depicted connected to this session, receiving the messages published by the server. 5. A \u0022OPC UA Publisher\u0022 on the right side represents the device or system that publishes information to the server and other subscribers through the publish-subscribe mechanism. On the right side: 1. There is a representation of a \u0022PubSub model,\u0022 which includes a \u0022Publisher\u0022 and one or more \u0022Subscribers.\u0022 The publisher sends messages to a central message broker, such as an OPC UA Server. 2. An \u0022OPC UA Writer\u0022 is shown sending data to the server via the publish-subscribe mechanism."
+    },
+    {
+      "Id": "5165f272-e458-43ca-bb8a-8dfefd378b0d",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.6 Synergy of models\nCaption: Figure 7 - Integrated ClientServer and PubSub models\n---\n",
+      "Content": "3. A \u0022OPC UA Reader\u0022 is depicted receiving the published data from the message broker or server. 4. There are multiple addresses and session IDs, indicating that there can be multiple readers and writers communicating with the server using this model. 5. An arrow labeled \u0022UAP Session\u0022 connects the OPC UA Server to the message broker, showing how the publish-subscribe mechanism is integrated into the OPC UA framework. The diagram includes a flow of data from the publisher through the message broker or server and finally to the subscribers or clients. The connections and interactions between the components are visualized by arrows pointing between them. This architecture suggests that the OPC UA standards can provide a scalable and flexible solution for industrial automation systems, allowing different types of communication models to coexist within the same framework."
+    },
+    {
+      "Id": "cc6ad3fb-6023-4529-8efc-6bee6b9b8f25",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.6 Synergy of models\n---\n",
+      "Content": "Figure 7 - Integrated ClientServer and PubSub models\nNevertheless, the PubSub communication does not require such a role dependency. I.e., Clients can be Publishers and Servers can be Subscribers. In fact, there is no necessity for Publishers or Subscribers to be either a Server or a Client to participate in PubSub communications."
+    },
+    {
+      "Id": "67a3fbba-459a-47e6-9773-318e5528b469",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5 Systems concepts\n---\n",
+      "Content": "5.7 Global Services"
+    },
+    {
+      "Id": "c44eaa3b-4751-4b4b-aa07-dc6dbcf9f06c",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7 Global Services\n---\n",
+      "Content": "5.7.1 General"
+    },
+    {
+      "Id": "9ec2e95d-2004-4228-9270-2bf03b166024",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7.1 General\n---\n",
+      "Content": "OPC Unified Architecture is highly decentralized and is mostly concerned with the standardization of the independent interactions between UA Applications(i.e. between Clients and Servers and between Publishers and Subscribers). However, as the number of Applications in a given system grows, there are advantages to having some information centralized and interactions that are uniform among all Applications in a system. For example, if a system consists of one Server and one or more Clients, it is reasonable for the Server to be configured with the usernames and passwords of all users that can access the Server. If instead a system has hundreds of Servers, then it becomes unmanageable for each Server to independently store and maintain the usernames and passwords for all users of the system. For scenarios like this, the Unified Architecture includes certain centralized, global components to provide consistency and alleviate administration burden.\nIdeally all Applications should work with all the defined global services when they are present in a system, but Applications that wish to utilize a particular global service need to be designed and built to do so. Keep in mind that the use of the global services in a system is always optional, so Applications should not be written to require their presence."
+    },
+    {
+      "Id": "2d431ee8-33ed-43b6-9d16-20a6be3d792b",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7 Global Services\n---\n",
+      "Content": "5.7.2 Discovery Services"
+    },
+    {
+      "Id": "9285e509-a527-42c2-b15f-c1bd5a85a478",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7.2 Discovery Services\n---\n",
+      "Content": "Discovery Services enable OPC UA Applications to locate other OPC UA Applications. For example, a Client application can use a Local Discovery Server(LDS) to find Servers on the local network. In a larger, more complex network, a Global Discovery Server(GDS) might be used to discover Servers across different network segments. The Client sends a Discovery request, and the Discovery Server responds with a list of available Servers and their connection details.\nOPC UA defines three levels of dedicated Discovery Servers:\nLocal Discover Servery(LDS)\nLocal Discovery Server with multicast extension (LDS-ME)\nGlobal Discovery Server(GDS)\n[OPC 10000-12](/\u00A7UAPart12) describes how to use the Discovery services with dedicated Discovery Servers."
+    },
+    {
+      "Id": "eb836543-a37b-4d88-a218-89a5fa4e3765",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7 Global Services\n---\n",
+      "Content": "5.7.3 Certificate management"
+    },
+    {
+      "Id": "6fa2e09a-492a-4bf6-b888-d66f31b77abb",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7.3 Certificate management\n---\n",
+      "Content": "OPC UA Applications rely on Digital ([X.509](/\u00A7X509)) Certificates as the basis for trust. In systems it is highly desirable to assign and manage the Certificates used by the Applications centrally as they all need periodic maintenance (e.g., updates to trust lists and revocation lists, Certificate renewals, etc.).[OPC 10000-12](/\u00A7UAPart12) describes the centralize Certificate management services."
+    },
+    {
+      "Id": "df00a693-379a-49af-94bb-7681bfb73b04",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7 Global Services\n---\n",
+      "Content": "5.7.4 KeyCredential management"
+    },
+    {
+      "Id": "fc1885ad-4903-476c-be5b-1d02a9e48344",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7.4 KeyCredential management\n---\n",
+      "Content": "Some OPC UA Applications may need to access external entities (e.g. authorization services, Brokers, etc.) that require an identifier and a secret (called a \u0022key credential\u0022) to be presented for access. The assignment and management of key credentials can be centralized using the services described in[OPC 10000-12](/\u00A7UAPart12)."
+    },
+    {
+      "Id": "5be2b66c-c9c3-41b2-8e89-7e3cf5e40a1a",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7 Global Services\n---\n",
+      "Content": "5.7.5 Authorization services"
+    },
+    {
+      "Id": "ccd8f811-8869-4af5-a495-47e2ac4fd88a",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7.5 Authorization services\n---\n",
+      "Content": "The authorization services described in[OPC 10000-12](/\u00A7UAPart12) allows OPC UA Applications to delegate the user authentication, user management and the assignment of users to roles (see[OPC 10000-18](/\u00A7))"
+    },
+    {
+      "Id": "6b5111cd-0344-4e3e-8732-52b07ffd39d9",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7 Global Services\n---\n",
+      "Content": "5.7.6 Device Onboarding"
+    },
+    {
+      "Id": "c9d4e5db-54c2-4128-93b7-e20a7e075d8b",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7.6 Device Onboarding\n---\n",
+      "Content": "Historically, devices with network connectivity have been allowed to communicate as soon as they are plugged into the network. For enhanced security, many networks will now require that physical network devices be uniquely identified and authorized to communicate on the network before any additional network based provisioning can be done. For example, the assignment of a Certificate using the Certificate management services as described in[5.7.3](/\u00A7_Ref156394254).\n[OPC 10000-21](/\u00A7) Applications can be installed, updated, and provisioned with Certificates over the network."
+    },
+    {
+      "Id": "27eddeae-140d-42d4-9e7d-f8d5edb4074b",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7 Global Services\n---\n",
+      "Content": "5.7.7 Alias Names"
+    },
+    {
+      "Id": "f5b1bab5-fe84-4122-90f0-1308a247081e",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7.7 Alias Names\n---\n",
+      "Content": "In large systems unique well-known names are often assigned to a piece of equipment, a measurement, or a control artifact. Such user-assigned names are often referred to as \u0022Tag Names\u0022. When a Node in a Server represents an entity with an assigned Tag Name, the Tag Name is often used as the Name or Description attribute for that Node, but short of browsing all Nodes in all Servers, there is no easy way to find a Node with a particular Name or Description.[OPC 10000-17](/\u00A7) Node in a Server and a centralized way to look up that Node by its alias name."
+    },
+    {
+      "Id": "30ffe693-e4cc-4b1d-b7b2-334bcef7ffa3",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7 Global Services\n---\n",
+      "Content": "5.7.8 Security Key Service (SKS)"
+    },
+    {
+      "Id": "680f30cf-cbe2-42aa-a972-0dfc7f76520c",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 5.7.8 Security Key Service (SKS)\n---\n",
+      "Content": "OPC UA Publishers and Subscribers utilize a security key service (SKS) to secure the messages sent between them. The SKS is responsible for managing the keys used to publish or consume the secured messages. The SKS may be implemented directly by a Publisher, or it may be centralized where a single SKS is used by a group of Publishers and Subscribers in a system. The SKS is described in[OPC 10000-14](/\u00A7UAPart14)."
+    },
+    {
+      "Id": "b1d7c7d6-933e-42c7-968d-ab165d6152d5",
+      "Header": "Document: Part 1 - Overview and Concepts\n---\n",
+      "Content": "6 Client/Server Service Sets"
+    },
+    {
+      "Id": "c192909b-7a27-4f3e-b3f7-dd33fd947d95",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6 Client/Server Service Sets\n---\n",
+      "Content": "6.1 General"
+    },
+    {
+      "Id": "8b5a62ce-9fb9-4431-a808-f5a29947cd8e",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.1 General\n---\n",
+      "Content": "OPC UA Services are organized into logical groupings called Service Sets. Each Service Se t defines a collection of related Services that enable Clients to access specific aspects of a Server\u0027s functionality. The Service Sets and their Services are specified in[OPC 10000-4](/\u00A7UAPart4). These Service Sets are fundamental to the ClientServer interaction model, providing Clients with the means to discover Servers, establish secure communication, access and manipulate data, subscribe to events, and perform other operations. The availability of specific Service Sets and the Services within them depends on the Profiles supported by the Server. Profiles are described in[OPC 10000-7](/\u00A7UAPart7)."
+    },
+    {
+      "Id": "1797079d-8716-4fa3-8a87-4551fb7b00b7",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6 Client/Server Service Sets\n---\n",
+      "Content": "6.2 Discovery Service Set"
+    },
+    {
+      "Id": "46455f4d-d22c-4883-8e12-7f5e4a6642f1",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.2 Discovery Service Set\n---\n",
+      "Content": "This Service Set defines Services used to discover Servers that are available in a system. It also provides a manner in which clients can read the security configuration required for connection to the Server. The Discovery Services are implemented by individual Servers and by dedicated Discovery Servers.  Well known dedicated Discovery Servers provide a way for Clients to discover all registered Servers.[OPC 10000-12](/\u00A7UAPart12) describes how to use the Discovery Services with dedicated Discovery Servers."
+    },
+    {
+      "Id": "edafed44-7d31-4435-96c9-19a85677a0b0",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6 Client/Server Service Sets\n---\n",
+      "Content": "6.3 SecureChannel Service Set"
+    },
+    {
+      "Id": "e4ada1b6-6200-4445-a44d-80a23b096a26",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.3 SecureChannel Service Set\n---\n",
+      "Content": "This Service Set defines Services used to open a communication channel that ensures the confidentiality and integrity of all Messages exchanged with the Server. The base concepts for UA security are defined in[OPC 10000-2](/\u00A7UAPart2).\nThe SecureChannel Services are unlike other Services because they are typically not implemented by the OPC UA Application directly. Instead, they are provided by the communication stack that the OPC UA Application is built on. OPC UA Applications simply need to verify that a SecureChannel is active whenever it receives a Message.[OPC 10000-6](/\u00A7UAPart6) describes how the SecureChannel Services are implemented with different types of communication stacks.\nA SecureChannel is a long-running logical connection between a single Client and a single Server. This channel maintains a set of keys that are known only to the Client and Server and that are used to authenticate and encrypt Messages sent across the network. The SecureChannel Services allow the Client and Server to securely negotiate the keys to use.\nThe exact algorithms used to authenticate and encrypt Messages are described in the security policies for a Server. These policies are exposed via the Discovery Service Set. A Client selects the appropriate endpoint that supports the desired security policy by the Server when it creates a SecureChannel.\nWhen a Client and Server are communicating via a SecureChannel they verify that all incoming Messages have been signed and/or encrypted according to the security policy. A UA application is expected to ignore any Message that does not conform to the security policy for the channel.\nA SecureChannel is separate from the UA Application Session; however, a single UA Application Session may only be accessed via a single SecureChannel. This implies that the UA application is able to determine what SecureChannel is associated with each Message. A communication stack that provides a SecureChannel"
+    },
+    {
+      "Id": "482cbc9d-5afd-4972-80c4-72dd4013ea3a",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.3 SecureChannel Service Set\n---\n",
+      "Content": "SecureChannel mechanism but that does not allow the application to know what SecureChannel was used for a given Message cannot be used to implement the SecureChannel Service Set.\nThe relationship between the UA Application Session and the SecureChannel is illustrated in[Figure 8](/\u00A7_Ref130140149). The UA applications use the communication stack to exchange Messages. First, the SecureChannel Services are used to establish a SecureChannel between the two communication stacks, allowing them to exchange Messages in a secure way. Second, the UA applications use the Session Service Set to establish a UA application Session."
+    },
+    {
+      "Id": "7abe13a8-b1b9-4669-a020-34b005b2cddf",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.3 SecureChannel Service Set\nCaption: Figure 8 - SecureChannel and Session Services\n---\n",
+      "Content": "The image shows an educational diagram illustrating a conceptual architecture of secure communication services in the context of OPC Unified Automation (OPC UA), which is a standard for industrial interoperability. quite complex but it\u0027s divided into different modules and it looks like a high-level overview of how secure communication might be implemented or structured within an OPC UA framework. Key elements visible in the diagram include: 1. **OPC UA Server**: This is likely where data is being served or processed by the OPC UA system. 2. **Opc Ua Session Services**: These services handle session management, which includes establishing and managing secure connections between clients and the server. 3. **SecureChannel Application**: There\u0027s a process block that represents an application that is utilizing the secure communication services to interact with the OPC UA Server. It suggests that the application initiates a session and interacts with the server through this service layer. 4. **Session Services Application**: Another process block shows an application that is part of the Session Services, which manages sessions for secure communication. 5. **OPC Ua Secure Channel Stack**: This seems to represent the layers or stacks within the secure communication protocols used by OPC UA. These might include encryption and other security-related technologies or protocols. 6. **Communication Stack**: The stack includes several elements, likely representing the sequence of operations or protocols that take place during a secure session between an application and the server. 7. **Session Services Application**: Another instance of the Session Services Application block is also present in this diagram. 8. **Application Specific Data**: This might represent the data being transferred between the applications, which could be industrial process control data or any other type of data that OPC UA can handle."
+    },
+    {
+      "Id": "ea57688c-8a2d-43c5-ad28-47c11b24ba0f",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.3 SecureChannel Service Set\nCaption: Figure 8 - SecureChannel and Session Services\n---\n",
+      "Content": "The arrows and dashed lines indicate the flow or the relationships between different components, possibly showing how secure communication is established, maintained, and secured. The exact nature of the diagram would require a detailed understanding of the OPC UA standard and its implementation to fully interpret."
+    },
+    {
+      "Id": "80f062e2-bdd9-4df0-bf94-58b510c165dd",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.3 SecureChannel Service Set\n---\n",
+      "Content": "Figure 8 - SecureChannel and Session Services"
+    },
+    {
+      "Id": "2af2e278-4c49-4e71-9931-8e27c7816e7d",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6 Client/Server Service Sets\n---\n",
+      "Content": "6.4 Session ServiceSet"
+    },
+    {
+      "Id": "3e1892f3-0d75-46ec-bfd5-a6a27aed1ab0",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.4 Session ServiceSet\n---\n",
+      "Content": "This Service Set defines Services used to establish an application-layer connection in the context of a Session on behalf of a specific user."
+    },
+    {
+      "Id": "7f6a5876-d647-4c1f-a4bb-628b761ce068",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6 Client/Server Service Sets\n---\n",
+      "Content": "6.5 NodeManagement Service Set"
+    },
+    {
+      "Id": "c07f645e-cc9a-4938-b301-4594cde42aa5",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.5 NodeManagement Service Set\n---\n",
+      "Content": "The NodeManagement Service Set allows Clients to add, modify, and delete Nodes in the AddressSpace. These Services provide an interface for the configuration of Servers."
+    },
+    {
+      "Id": "cc4d757d-6cfd-4eee-a261-27e87e9a5410",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6 Client/Server Service Sets\n---\n",
+      "Content": "6.6 View ServiceSet"
+    },
+    {
+      "Id": "b221286f-c9de-4214-864c-77b539790d2a",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.6 View ServiceSet\n---\n",
+      "Content": "Views are publicly defined, Server-created subsets of the AddressSpace. The entire AddressSpace is the default View, and therefore, the View Services are capable of operating on the entire AddressSpace. Future versions of this specification may also define Services to create Client defined Views.\nThe View Service Set allows Clients to discover Nodes in a View by browsing. Browsing allows Clients to navigate up and down the hierarchy, or to follow References between Nodes contained in the View. In this manner, browsing also allows Clients to discover the structure of the View."
+    },
+    {
+      "Id": "1d223a0c-d860-44b5-837f-a74dfd14fb19",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6 Client/Server Service Sets\n---\n",
+      "Content": "6.7 Attribute Service Set"
+    },
+    {
+      "Id": "9969cf7b-5e65-486d-aea8-a28e70bf671f",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.7 Attribute Service Set\n---\n",
+      "Content": "The Attribute Service Set is used to read and write Attribute values. Attributes are primitive characteristics of Nodes that are defined by OPC UA. They may not be defined by Clients or Servers. Attributes are the only elements in the AddressSpace permitted to have data values. A special Attribute, the Value Attribute is used to define the value of Variables."
+    },
+    {
+      "Id": "70c25a51-d35f-404b-9823-ab9247f39c9d",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6 Client/Server Service Sets\n---\n",
+      "Content": "6.8 Method Service Set"
+    },
+    {
+      "Id": "85712fbd-2fcf-46ab-808a-bdd26d178f2d",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.8 Method Service Set\n---\n",
+      "Content": "Methods represent the function calls of Objects. They are defined in[OPC 10000-4](/\u00A7UAPart4). Methods are invoked and return after completion, whether successful or unsuccessful. Execution times for Methods may vary, depending on the function they are performing.\nThe Method Service Set defines the means to invoke Methods. A Method is always a component of an Object. Discovery is provided through the browse Services. Clients discover the Methods supported by a Server by browsing for the owning Objects that identify their supported Methods.\nBecause Methods may control some aspect of plant operations, method invocation may depend on environmental or other conditions. This may be especially true when attempting to re-invoke a Method immediately after it has completed execution. Conditions that are required to invoke the Method may not yet have returned to the state that permits the Method to start again. In addition, some Methods may be capable of supporting concurrent invocations, while others may have a single invocation executing at a given time."
+    },
+    {
+      "Id": "923092cb-99d7-4d29-80a3-3485f3d75325",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6 Client/Server Service Sets\n---\n",
+      "Content": "6.9 MonitoredItem Service Set"
+    },
+    {
+      "Id": "9aee21fa-643b-4fd0-a85a-bdb8ff5ccc81",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.9 MonitoredItem Service Set\n---\n",
+      "Content": "The MonitoredItem Service Set is used by the Client to create and maintain MonitoredItems. MonitoredItems monitor Variables, Attributes and EventNotifiers. They generate Notifications when they detect certain conditions. They monitor Variables for a change in value or status; Attributes for a change in value; and EventNotifiers for newly generated Alarm and Event reports.\nEach MonitoredItem identifies the item to monitor and the Subscription to use to periodically publish Notifications to the Client(see[6.10](/\u00A7_Ref106091688)). Each MonitoredItem also specifies the rate at which the item is to be monitored (sampled) and, for Variables and EventNotifiers, the filter criteria used to determine when a Notification is to be generated. Filter criteria for Attributes are specified by their Attribute definitions in[OPC 10000-4](/\u00A7UAPart4).\nThe sample rate defined for a MonitoredItem may be faster than the publishing rate of the Subscription. For this reason, the MonitoredItem may be configured to either queue all Notifications or to queue only the latest Notification for transfer by the Subscription. In this latter case, the queue size is one.\nMonitoredItem Services also define a monitoring mode. The monitoring mode is configured to disable sampling and reporting, to enable sampling only, or to enable both sampling and reporting. When sampling is enabled, the Server samples the item. In addition, each sample is evaluated to determine if a Notification should be generated. If so, the Notification is queued. If reporting is enabled, the queue is made available to the Subscription for transfer.\nFinally, MonitoredItems can be configured to trigger the reporting of other MonitoredItems. In this case, the monitoring mode of the items to report is typically set to sampling only, and when the triggering item generates a Notification, any queued Notifications"
+    },
+    {
+      "Id": "7c493a25-4b1b-4802-85ae-14f4d9c0a910",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.9 MonitoredItem Service Set\n---\n",
+      "Content": "Notification, any queued Notifications of the items to report are made available to the Subscription for transfer."
+    },
+    {
+      "Id": "7c4c31a4-31c6-466d-8693-3480b076632a",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6 Client/Server Service Sets\n---\n",
+      "Content": "6.10 Subscription Service Set"
+    },
+    {
+      "Id": "2c4a7480-b0fb-4ae9-8236-41e2f0babec2",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.10 Subscription Service Set\n---\n",
+      "Content": "The Subscription Service Set is used by the Client to create and maintain Subscriptions. Subscriptions are entities that periodically publish NotificationMessages for the MonitoredItem assigned to them (see[6.9](/\u00A7_Ref134708132)). The NotificationMessage contains a common header followed by a series of Notifications. The format of Notifications is specific to the type of item being monitored (i.e. Variables, Attributes, and EventNotifiers).\nOnce created, the existence of a Subscription is independent of the Client\u0027s Session with the Server. This allows one Client to create a Subscription, and a second, possibly a redundant Client, to receive NotificationMessages from it.\nTo protect against non-use by Clients, Subscriptions have a configured lifetime that Clients periodically renew. If any Client fails to renew the lifetime, the lifetime expires and the Subscription is closed by the Server. When a Subscription is closed, all MonitoredItems assigned to the Subscription are deleted.\nSubscriptions include features that support detection and recovery of lost Messages. Each NotificationMessage contains a sequence number that allows Clients to detect missed Messages. When there are no Notifications to send within the keep-alive time interval, the Server sends a keep-alive Message that contains the sequence number of the next NotificationMessage sent. If a Client fails to receive a Message after the keep-alive interval has expired, or if it determines that it has missed a Message, it can request the Server to resend one or more Messages.\n\n\nBibliography\nIEC 61508 (all parts), Functional safety of electrical/electronic/programmable electronic safety-related systems\n[https://www.iec.ch/functionalsafety/standards/](https://www.iec.ch/functionalsafety/standards/)"
+    },
+    {
+      "Id": "30a637e5-4664-4504-be41-364b9212e47b",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.10 Subscription Service Set\n---\n",
+      "Content": "IEC 61784-3:2017, Industrial communication networks - Profiles - Part 3: Functional safety fieldbuses - General rules and profile definitions\nhttps://webstore.iec.ch/publication/61165/\n\u0022 https://webstore.iec.ch/publication/61165/\nOPC 10000-2, OPC Unified Architecture - Part 2: Security Model\n[http://www.opcfoundation.org/UA/Part2/](http://www.opcfoundation.org/UA/Part2/)\nOPC 10000-3, OPC Unified Architecture - Part 3: Address Space Model\n[http://www.opcfoundation.org/UA/Part3/](http://ww3/opcfoundation.org/UA/Part3/)\nOPC 10000-4, OPC Unified Architecture - Part 4: Services\n[http://www.opcfoundation.org/UA/Part4/](http://www.opcfoundation.org/UA/Part4/)\nOPC 10000-5, OPC Unified Architecture - Part 5: Information Model\n[http://www.opcfoundation.org/UA/Part5/](http://www.opcfoundation.org/UA/Part5/)\nOPC 10000-6, OPC Unified Architecture - Part 6: Mappings\n[http://www.opcfoundation.org/UA/Part6/](http://www.opcfoundation.org/UA/Part6/)\nOPC 10000-7, OPC Unified Architecture - Part 7: Profiles\n[http://www.opcfoundation.org/UA/Part7/](http://www.opcfoundation.org/UA/Part7/)\nOPC 10000-8, OPC Unified Architecture - Part 8: Data Access"
+    },
+    {
+      "Id": "e7e508e9-ba9b-4b12-977a-cc6c9bca16fa",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.10 Subscription Service Set\n---\n",
+      "Content": "[http://www.opcfoundation.org/UA/Part8/](http://www.opcfoundation.org/UA/Part8/)\nOPC 10000-9, OPC Unified Architecture - Part 9: Alarms and Conditions\n[http://www.opcfoundation.org/UA/Part9/](http://www.opcfoundation.org/UA/Part9/)\nOPC 10000-10, OPC Unified Architecture - Part 10: Programs\n[http://www.opcfoundation.org/UA/Part10/](http://www.opcfoundation.org/UA/Part10/)\nOPC 10000-11, OPC Unified Architecture - Part 11: Historical Access\n[http://www.opcfoundation.org/UA/Part11/](http://www.opcfoundation.org/UA/Part11/)\nOPC 10000-12, OPC Unified Architecture - Part 12: Discovery and Global Services\n[http://www.opcfoundation.org/UA/Part12/](http://www.opcfoundation.org/UA/Part12/)\nOPC 10000-13, OPC Unified Architecture - Part 13: Aggregates\n[http://www.opcfoundation.org/UA/Part13/](http://www.opcfoundation.org/UA/Part13/)\nOPC 10000-14, OPC Unified Architecture - Part 14: PubSub\n[http://www.opcfoundation.org/UA/Part14/](http://www.opcfoundation.org/UA/Part14/)\nOPC 10000-15, OPC Unified Architecture - Part 15: Safety\n[http://www.opcfoundation.org/UA/Part15/](http://www.opcfoundation.org/UA/Part15/)"
+    },
+    {
+      "Id": "2024924a-03e5-4959-a1b1-1c48720839bb",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.10 Subscription Service Set\n---\n",
+      "Content": "OPC 10000-16, OPC Unified Architecture - Part 16: State Machines\n[http://www.opcfoundation.org/UA/Part16/](http://www.opcfoundation.org/UA/Part16/)\nOPC 10000-17, OPC Unified Architecture - Part 17: Alias Names\n[http://www.opcfoundation.org/UA/Part17/](http://www.opcfoundation.org/UA/Part17/)\nOPC 10000-18, OPC Unified Architecture - Part 18: User Authorization\n[http://www.opcfoundation.org/UA/Part18/](http://www.opcfoundation.org/UA/Part18/)\nOPC 10000-19, OPC Unified Architecture - Part 19: Dictionary References\n[http://www.opcfoundation.org/UA/Part19/](http://www.opcfoundation.org/UA/Part19/)\nOPC 10000-20, OPC Unified Architecture - Part 20: File Transfer\n[http://www.opcfoundation.org/UA/Part20/](http://www.opcfoundation.org/UA/Part20/)\nOPC 10000-21, OPC Unified Architecture - Part 21: Device Onboarding\n[http://www.opcfoundation.org/UA/Part21/](http://www.opcfoundation.org/UA/Part21/)\nOPC 10000-22, OPC Unified Architecture - Part 22: Base Network Model\n[http://www.opcfoundation.org/UA/Part22/](http://www.opcfoundation.org/UA/Part22/)\nOPC 10000-23, OPC Unified Architecture - Part 23: Common ReferenceTypes"
+    },
+    {
+      "Id": "74f1eef1-b600-4dd5-9721-9983c426bce0",
+      "Header": "Document: Part 1 - Overview and Concepts\nSection: 6.10 Subscription Service Set\n---\n",
+      "Content": "[http://www.opcfoundation.org/UA/Part23/](http://www.opcfoundation.org/UA/Part23/)\nOPC 10000-24, OPC Unified Architecture - Part 24: Scheduler\n[http://www.opcfoundation.org/UA/Part24/](http://www.opcfoundation.org/UA/Part24/)\nOPC 10000-25, OPC Unified Architecture - Part 24: Scheduler\n[](http://www.opcfoundation.org/UA/Part25/) http://www.opcfoundation.org/UA/Part24/\nOPC 10000-26, OPC Unified Architecture - Part 24: Scheduler\n[](http://www.opcfoundation.org/UA/Part26/) http://www.opcfoundation.org/UA/Part24/\nX.509, X.509 Information technology - Open Systems Interconnection - The Directory: Public-key and attribute certificate frameworks\n[https://www.itu.int/rec/T-REC-X.509](https://www.itu.int/rec/T-REC-X.509)\n___________"
+    }
+  ]
+}

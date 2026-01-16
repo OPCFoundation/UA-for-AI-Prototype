@@ -1,0 +1,1000 @@
+{
+  "Title": "Part 13 - Aggregates",
+  "Chunks": [
+    {
+      "Id": "f6b6f972-cbeb-4309-9ab5-26c6181eff3b",
+      "Header": "Document: Part 13 - Aggregates\n---\n",
+      "Content": "1 Scope"
+    },
+    {
+      "Id": "66ade1ef-8bbb-458b-b5ca-9219d5b5f675",
+      "Header": "Document: Part 13 - Aggregates\nSection: 1 Scope\n---\n",
+      "Content": "This specification is part of the overall OPC Unified Architecture specification series and defines the information model associated with Aggregates."
+    },
+    {
+      "Id": "85becb56-f5df-4196-91f4-a9755f7f6da8",
+      "Header": "Document: Part 13 - Aggregates\n---\n",
+      "Content": "2 Normative references"
+    },
+    {
+      "Id": "45d1b09b-ee5b-4561-820f-d521b8772c0c",
+      "Header": "Document: Part 13 - Aggregates\nSection: 2 Normative references\n---\n",
+      "Content": "The following documents, in whole or in part, are normatively referenced in this document and are indispensable for its application. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments and errata) applies.\nOPC 10000-1, OPC Unified Architecture - Part 1: Overview and Concepts\n[http://www.opcfoundation.org/UA/Part1/](http://www.opcfoundation.org/UA/Part1/)\nOPC 10000-3, OPC Unified Architecture - Part 3: Address Space Model\n[http://www.opcfoundation.org/UA/Part3/](http://www.opcfoundation.org/UA/Part3/)\nOPC 10000-4, OPC Unified Architecture - Part 4: Services\n[http://www.opcfoundation.org/UA/Part4/](http://www.opcfoundation.org/UA/Part4/)\nOPC 10000-5, OPC Unified Architecture - Part 5: Information Model\n[http://www.opcfoundation.org/UA/Part5/](http://www.opcfoundation.org/UA/Part5/)\nOPC 10000-8, OPC Unified Architecture - Part 8: Data Access\n[http://www.opcfoundation.org/UA/Part8/](http://www.opcfoundation.org/UA/Part8/)\nOPC 10000-11, OPC Unified Architecture - Part 11: Historical Access\n[http://www.opcfoundation.org/UA/Part11/](http://www.opcfoundation.org/UA/Part11/)"
+    },
+    {
+      "Id": "a4d1812d-a17f-4d88-803c-24a282ddae72",
+      "Header": "Document: Part 13 - Aggregates\n---\n",
+      "Content": "3 Terms, definitions, and abbreviated terms"
+    },
+    {
+      "Id": "d509d2d8-1608-4b69-8a9c-89c0abf1b454",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3 Terms, definitions, and abbreviated terms\n---\n",
+      "Content": "3.1 Terms and definitions"
+    },
+    {
+      "Id": "6c3eab12-cdf5-4cc2-8dc0-cc2ba71c49a3",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "For the purposes of this document, the terms and definitions given in[OPC 10000-1](/\u00A7UAPart1),[OPC 10000-3](/\u00A7UAPart3),[OPC 10000-4](/\u00A7UAPart4), and[OPC 10000-11](/\u00A7UAPart11) as well as the following apply.\n3.1.1 ProcessingInterval"
+    },
+    {
+      "Id": "dfc4c1e3-db16-407b-ac91-e8c23cc13a29",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1.1 ProcessingInterval\n---\n",
+      "Content": "timespan for which derived values are produced based on a specified Aggregate\nNote 1 to entry: The total time domain specified for ReadProcessed is divided by the ProcessingInterval. For example, performing a 10-minute Average over the time range 12:00 to 12:30 would result in a set of three intervals of ProcessingInterval length, with each interval having a start time of 12:00, 12:10 and 12:20 respectively. The rules used to determine the interval Bounds are discussed in[5.4.2.2](/\u00A7_Ref255885268)."
+    },
+    {
+      "Id": "11f56804-3bbc-4a2b-a24b-5b019b79ceae",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.2 Interpolated data"
+    },
+    {
+      "Id": "90b69ae8-4c1b-4494-b66a-4e4e1fbba180",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1.2 Interpolated data\n---\n",
+      "Content": "data that is calculated from data samples\nNote 1 to entry: Data samples may be historical data or buffered real time data. An interpolated value is calculated from the data points on either side of the requested timestamp."
+    },
+    {
+      "Id": "b14037d2-a4c1-4969-b1e1-d20d3f8ec00b",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.3 EffectiveEndTime"
+    },
+    {
+      "Id": "c68e05e6-522d-40e9-9513-e59507128c40",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1.3 EffectiveEndTime\n---\n",
+      "Content": "time immediately before endTime\nNote 1 to entry: All Aggregate calculations include the startTime but exclude the endTime. However, it is sometimes necessary to return an Interpolated End Bound as the value for an Interval with a timestamp that is in the interval. Servers are expected to use the time immediately before endTime where the time resolution of the Server determines the exact value (do not confuse this with hardware or operating system time resolution). For example, if the endTime is 12:01:00, the time resolution is 1 second, then the EffectiveEndTime is 12:00:59. See[5.4.2.4](/\u00A7_Ref318145685).\nIf time is flowing backwards, Servers are expected to use the time immediately after endTime where the time resolution of the Server determines the exact value."
+    },
+    {
+      "Id": "31e4c471-7139-4666-8c21-4f7d9f987e6b",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.4 Extrapolated data"
+    },
+    {
+      "Id": "93357ec2-606b-4452-92a5-ebb596d710fc",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1.4 Extrapolated data\n---\n",
+      "Content": "data constructed from a discrete data set but is outside of the discrete data set\nNote 1 to entry: It is similar to the process of interpolation, which constructs new points between known points, but its result is subject to greater uncertainty. Extrapolated data is used in cases where the requested time period falls farther into the future than the data available in the underlying system. See example in[Table 1](/\u00A7_Ref233528264)."
+    },
+    {
+      "Id": "1489ad0e-6930-4a82-b2e4-3a0a2cb96753",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.5 SlopedInterpolation"
+    },
+    {
+      "Id": "94107f4d-619c-4a65-bb1f-a664eeb915c5",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1.5 SlopedInterpolation\n---\n",
+      "Content": "simple linear interpolation\nNote 1 to entry: Compare to curve fitting using linear polynomials. See example in[Table 1](/\u00A7_Ref233528264)."
+    },
+    {
+      "Id": "7d2a375f-bab6-49dc-bea4-d602b4da817a",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.6 SteppedInterpolation"
+    },
+    {
+      "Id": "019c5cf3-c2f3-4939-aae3-42a9cbe061c5",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1.6 SteppedInterpolation\n---\n",
+      "Content": "Interpolation holding the last data point constant or interpolating the value based on a horizontal line fit\nNote 1 to entry: Consider the following Table 1 of raw and Interpolated/ Extrapolated values:\nTable 1- Interpolation examples\nTimestamp\nRaw Value\nSloped Interpolation\nStepped Interpolation\n12:00:00\n10\n\n\n12:00:05\n\n15\n10\n12:00:08\n\n18\n10\n12:00:10\n20\n\n\n12:00:15\n\n25\n20\n12:00:20\n30\n\n\n\n\nSlopedExtrapolation\nSteppedExtrapolation\n12:00:25\n\n35\n30\n12:00:27\n\n37\n30"
+    },
+    {
+      "Id": "9f857633-b728-4414-bd0c-ef5c6b4e67e6",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.7 bounding values"
+    },
+    {
+      "Id": "cfb85f45-8260-4329-87b3-5c4e647ef7e6",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1.7 bounding values\n---\n",
+      "Content": "values at the startTime and endTime needed for Aggregates to compute the result\nNote 1 to entry: If Raw data does not exist at the startTime and endTime a value shall be estimated. There are two ways to determine Bounding Values for an interval. One way (called Interpolated Bounding Values) uses the first non-Bad data points found before and after the timestamp to estimate the bound. The other (called Simple Bounding Values) uses the data points immediately before and after the boundary timestamps to estimate the bound even if these points are Bad. Subclauses[3.1.8](/\u00A7_Ref364944818) and[3.1.9](/\u00A7_Ref364944831) describe the two different approaches in more detail.\nIn all cases the TreatUncertainAsBad(see[4.2.1.2](/\u00A7_Ref246227644)) flag is used to determine whether Uncertain values are Bad or non-Bad.\nIf a Raw value was not found and a non-Bad bounding value exists the Aggregate Bits (see[5.3.3](/\u00A7_Ref271578020)) are set to \u0027Interpolated\u0027.\nWhen calculating bounding values, the value portion of Raw data that has Bad status is set to null. This means the value portion is not used in any calculation and a null is returned if the raw value is returned. The status portion is determined by the rules specified by the bound or Aggregate.\nThe Interpolated Bounding Values approach (see[3.1.8](/\u00A7_Ref364944818)) is the same as what is used in Classic OPC Historical Data Access (HDA) and is important for applications such as advanced process control where having useful values at all times is important. The Simple Bounding Values"
+    },
+    {
+      "Id": "86052492-1276-464c-8fcf-8724f6601528",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1.7 bounding values\n---\n",
+      "Content": "Simple Bounding Values approach (see[3.1.9](/\u00A7_Ref364944831)) is new in this standard and is important for applications which shall produce regulatory reports and cannot use estimated values in place of Bad data."
+    },
+    {
+      "Id": "e984a5c3-d8c5-4eb3-b47a-4ddc2aef1a3e",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.8 interpolated bounding values"
+    },
+    {
+      "Id": "5a4cb289-0c0a-4208-8567-19fb92f84ff7",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1.8 interpolated bounding values\n---\n",
+      "Content": "bounding values determined by a calculation using the nearest Good value\nNote 1 to entry: Interpolated Bounding Values using SlopedInterpolation are calculated as follows:\nif a non-Bad Raw value exists at the timestamp then it is the bounding value;\nfind the first non-Bad Raw value before the timestamp;\nfind the first non-Bad Raw value after the timestamp;\ndraw a line between before value and after value;\nuse point where the line crosses the timestamp as an estimate of the bounding value.\nThe calculation can be expressed with the following formula:\nVbound = (Tbound - Tbefore)x( Vafter - Vbefore)/( Tafter - Tbefore) \u002B Vbefore\nwhere Vx is a value at \u0027x\u0027 and Tx is the timestamp associated with Vx.\nIf no non-Bad values exist before the timestamp the StatusCode is Bad_NoData. The StatusCode is Uncertain_DataSubNormal if any Bad values exist between the before value and after value. If either the before value or the after value are Uncertain the StatusCode is Uncertain_DataSubNormal. If the after value does not exist the before value shall be extrapolated using SlopedExtrapolation or SteppedExtrapolation.\nThe period of time that is searched to discover the Good values before and after the timestamp is Server dependent, but if a Good value is not found within some reasonable time range then the Server will assume it does not exist. The Server as a minimum should search a time range which is at least the size of the ProcessingInterval.\nInterpolated Bounding Values using SlopedExtrapolation are calculated as follows:\nfind the first non-Bad Raw value before timestamp;\nfind the second non-Bad Raw value before timestamp;\ndraw a line between these two values;"
+    },
+    {
+      "Id": "5e67620d-e0a3-4d12-8b5f-e29ef4dcaf2a",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1.8 interpolated bounding values\n---\n",
+      "Content": "extend the line to where it crosses the timestamp;\nuse the point where the line crosses the timestamp as an estimate of the bounding value.\nThe formula is the same as the one used for SlopedInterpolation.\nThe StatusCode is always Uncertain_DataSubNormal. If only one non-Bad raw value can be found before the timestamp then SteppedExtrapolation is used to estimate the bounding value.\nInterpolated Bounding Values using SteppedInterpolation are calculated as follows:\nif a non-Bad Raw value exists at the timestamp then it is the bounding value;\nfind the first non-Bad Raw value before timestamp;\nuse the value as an estimate of the bounding value.\nThe StatusCode is Uncertain_DataSubNormal if any Bad values exist between the before value and the timestamp. If no non-Bad Raw data exists before the timestamp then the StatusCode is Bad_NoData. If the value before the timestamp is Uncertain the StatusCode is Uncertain_DataSubNormal. The value after the timestamp is not needed when using SteppedInterpolation; however, if the timestamp is after the end of the data then the bounding value is treated as extrapolated and the StatusCode is Uncertain_DataSubNormal.\nSteppedExtrapolation is a term that describes SteppedInterpolation when a timestamp is after the last value in the history collection."
+    },
+    {
+      "Id": "020046dc-70c4-48e8-be05-947c31ef0945",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.9 simple bounding values"
+    },
+    {
+      "Id": "43bc8098-cbba-4bd0-871f-41f48d383722",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1.9 simple bounding values\n---\n",
+      "Content": "bounding values determined by a calculation using the nearest value\nNote 1 to entry: Simple Bounding Values using SlopedInterpolation are calculated as follows:\nif any Raw value exists at the timestamp then it is the bounding value;\nfind the first Raw value before timestamp;\nfind the first Raw value after timestamp;\nif the value after the timestamp is Bad then the before value is the bounding value;\ndraw a line between before value and after value;\nuse point where the line crosses the timestamp as an estimate of the bounding value.\nThe formula is the same as the one used for SlopedInterpolation in Clause[3.1.5](/\u00A7_Ref364945019).\nIf a Raw value at the timestamp is Bad the StatusCode is Bad_NoData. If the value before the timestamp is Bad the StatusCode is Bad_NoData. If the value before the timestamp is Uncertain the StatusCode is Uncertain_DataSubNormal. If the value after the timestamp is Bad or Uncertain the StatusCode is Uncertain_DataSubNormal.\nSimple Bounding Values using SteppedInterpolation are calculated as follows:\nif any Raw value exists at the timestamp then it is the bounding value;\nfind the first Raw value before timestamp;\nif the value before timestamp is non-Bad then it is the bounding value.\nIf a Raw value at the timestamp is Bad the StatusCode is Bad_NoData. If the value before the timestamp is Bad the StatusCode is Bad_NoData. If the value before the timestamp is Uncertain the StatusCode is Uncertain_DataSubNormal.\nIf either bounding time of an interval is beyond the last data point then the Server may use extrapolation or return an error.  If extrapolation is used by the server the type [ SteppedExtrapolation or SloppedExtrapolation"
+    },
+    {
+      "Id": "6b7cfcef-a034-4046-ae2f-7b5ff8fa9534",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.1.9 simple bounding values\n---\n",
+      "Content": "] of extrapolation is server specific.\nIn some Historians, the last Raw value does not necessarily indicate the end of the data. Based on the Historian\u0027s knowledge of the data collection mechanism, i.e. frequency of data updates and latency, the Historian may extend the last value to a time known by the Historian to be covered. When calculating Simple Bounding Values the Historian will act as if there is another Raw value at this timestamp.\nIn the same way, if the earliest time of an interval starts before the first data point in history and the latest time is after the first data point in history, then the interval will be treated as if the interval extends from the first data point in history to the latest time of the interval and the StatusCode of the interval will have the Partial bit set (see[5.3.3.2](/\u00A7_Ref318145896)).\nThe period of time that is searched to discover the values before and after the timestamp is Server dependent, but if a value is not found within some reasonable time range then the Server will assume it does not exist. The Server as a minimum should search a time range which is at least the size of the ProcessingInterval."
+    },
+    {
+      "Id": "0e223dff-b91d-4e11-b561-821d6c4dce5a",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3 Terms, definitions, and abbreviated terms\n---\n",
+      "Content": "3.2 Abbreviated terms"
+    },
+    {
+      "Id": "f7d69e09-91f7-4656-9cd1-7e261c7e49d0",
+      "Header": "Document: Part 13 - Aggregates\nSection: 3.2 Abbreviated terms\n---\n",
+      "Content": "DA Data Access\nHA Historical Access (access to historical data or events)\nHDA Historical Data Access\nUA Unified Architecture"
+    },
+    {
+      "Id": "21d295cd-23e0-43fd-b5dc-59f04f3ef07c",
+      "Header": "Document: Part 13 - Aggregates\n---\n",
+      "Content": "4 Aggregate information model"
+    },
+    {
+      "Id": "5e7d7f06-a3c2-44e3-a414-9aeda038e8b3",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4 Aggregate information model\n---\n",
+      "Content": "4.1 General"
+    },
+    {
+      "Id": "976a2c74-f170-46b6-88d5-83896c2b0d9b",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.1 General\n---\n",
+      "Content": "[OPC 10000-3](/\u00A7UAPart3) and[OPC 10000-5](/\u00A7UAPart5) standards define the representation of Aggregate historical or buffered real time data in the OPC Unified Architecture. This includes the definition of Aggregates used in processed data retrieval and in historical retrieval. This definition includes both standard Reference types and Object types."
+    },
+    {
+      "Id": "875ea747-49ad-4ef2-a4d2-ccb3364a7f65",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4 Aggregate information model\n---\n",
+      "Content": "4.2 Aggregate Objects"
+    },
+    {
+      "Id": "e5ae26b4-b6c2-4572-8c1f-636f45322dbe",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2 Aggregate Objects\n---\n",
+      "Content": "4.2.1 General"
+    },
+    {
+      "Id": "627863f8-a065-4b94-a8e5-c8fb37702e9b",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2.1 General\n---\n",
+      "Content": "4.2.1.1 Overview"
+    },
+    {
+      "Id": "3d5eefba-8a0e-422c-80a7-aa1957a46da7",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2.1.1 Overview\n---\n",
+      "Content": "OPC UA Servers can support several different functionalities and capabilities. The following standard Objects are used to expose these capabilities in a common fashion, and there are several standard defined concepts that can be extended by vendors."
+    },
+    {
+      "Id": "4d966ce7-ae2d-421d-9f6b-8107afc82543",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2.1 General\n---\n",
+      "Content": "4.2.1.2 AggregateConfigurationType"
+    },
+    {
+      "Id": "08ca3aa6-0883-4890-919d-9d10db327137",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2.1.2 AggregateConfigurationType\n---\n",
+      "Content": "The AggregateConfigurationType defines the general characteristics of a Node that defines the Aggregate configuration of any Variable or Property. AggregateConfiguration Object represents the browse entry point for information on how the Server treats Aggregate specific functionality such as handling Uncertain data. It is formally defined in[Table 2](/\u00A7_Ref233528274).\nTable 2- AggregateConfigurationType Definition\nAttribute\nValue\nBrowseName\nAggregateConfigurationType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nTreatUncertainAsBad\nBoolean\nPropertyType\nMandatory\nHasProperty\nVariable\nPercentDataBad\nByte\nPropertyType\nMandatory\nHasProperty\nVariable\nPercentDataGood\nByte\nPropertyType\nMandatory\nHasProperty\nVariable\nUseSlopedExtrapolation\nBoolean\nPropertyType\nMandatory\nConformance Units\nAggregate Master Configuration\n\nThe TreatUncertainAsBad Variable indicates how the Server treats data returned with a StatusCode severity Uncertain with respect to Aggregate calculations. A value of True indicates the Server considers the severity equivalent to Bad, a value of False indicates the Server considers the severity equivalent to Good, unless the Aggregate definition says otherwise. The default value is True. Note that the value is still treated as Uncertain when the StatusCode for the result is calculated.\nThe PercentDataBad Variable indicates the minimum percentage of Bad data in a given interval required for the StatusCode for the given interval for processed data request to be set to Bad. ( Uncertain is treated as defined above.) Refer to"
+    },
+    {
+      "Id": "e6025b87-2433-427e-8e19-bd44438df6be",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2.1.2 AggregateConfigurationType\n---\n",
+      "Content": "Refer to[5.4.3](/\u00A7_Ref143529325) for details on using this Variable when assigning StatusCodes. For details on which Aggregates use the PercentDataBad Variable, see the definition of each Aggregate. The default value is 100.\nThe PercentDataGood Variable indicates the minimum percentage of Good data in a given interval required for the StatusCode for the given interval for the processed data requests to be set to Good. Refer to[5.4.3](/\u00A7_Ref143529325) for details on using this Variable when assigning StatusCodes. For details on which Aggregates use the PercentDataGood Variable, see the definition of each Aggregate. The default value is 100.\nThe following calculations are used to detemine the StatusCode which will be used to calculate the value of the aggregate.  Refer to 5.4.3 for details on using these Variables when assigning StatusCodes. The PercentDataGood and PercentDataBad shall follow the following relationship PercentDataGood \u2265 (100 - PercentDataBad). If they are equal the result of the PercentDataGood calculation is used. If the values entered for PercentDataGood and PercentDataBad do not result in a valid calculation (e.g. Bad = 80; Good = 0) the result will have a StatusCode of Bad_AggregateInvalidInputs  The StatusCode Bad_AggregateInvalidInputs  will be returned if the value of PercentDataGood or PercentDataBad exceed 100.\nThe UseSlopedExtrapolation Variable indicates how the Server interpolates data when no boundary value exists (i.e. extrapolating into the future from the last known value). A value of False indicates that the Server will use a SteppedExtrapolation"
+    },
+    {
+      "Id": "2422bfcf-1639-4784-a333-a114d67e9177",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2.1.2 AggregateConfigurationType\n---\n",
+      "Content": "format, and hold the last known value constant. A value of True indicates the Server will project the value using UseSlopedExtrapolation mode. The default value is False. For SimpleBounds this value is ignored."
+    },
+    {
+      "Id": "66b3a09c-a8ee-49ea-a91e-783cbddd333a",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2 Aggregate Objects\n---\n",
+      "Content": "4.2.2 AggregateFunction Object"
+    },
+    {
+      "Id": "d0c67504-c535-4f29-9173-31541fd958fa",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2.2 AggregateFunction Object\n---\n",
+      "Content": "4.2.2.1 General"
+    },
+    {
+      "Id": "273bc233-0076-439a-89d7-9443c6de8753",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2.2.1 General\n---\n",
+      "Content": "This Object is used as the browse entry point for information about the Aggregates supported by a Server. The content of this Object is already defined by its type definition. All Instances of the FolderType use the standard BrowseName of \u0027AggregateFunctions\u0027. The HasComponent Reference is used to relate a ServerCapabilities Object and/or any HistoryServerCapabilitiesType Object to an AggregateFunction Object.  AggregateFunctions is formally defined in[Table 3](/\u00A7_Ref389485703).\nTable 3- Aggregate Functions Definition\nAttribute\nValue\nBrowseName\nAggregateFunctions\nReferences\nNode\nClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasTypeDefinition\nObject\nType\nFolderType\nDefined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nHistorical Access Aggregates\n\nEach ServerCapabilities and HistoryServerCapabilitiesType Object shall reference an AggregateFunction Object. In addition, each HistoricalConfiguration Object belonging to a HistoricalDataNode may reference an AggregateFunction Object using the HasComponent Reference."
+    },
+    {
+      "Id": "015f5c89-05a8-4f24-82fd-fa1b665e1895",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2.2 AggregateFunction Object\n---\n",
+      "Content": "4.2.2.2 AggregateFunctionType"
+    },
+    {
+      "Id": "59243b88-8692-433f-aca9-46307d613ee3",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2.2.2 AggregateFunctionType\n---\n",
+      "Content": "This ObjectType defines an Aggregate supported by a UA Server. This Object is formally defined in[Table 4](/\u00A7_Ref134948705).\nTable 4- AggregateFunctionType Definition\nAttribute\nValue\nBrowseName\nAggregateFunctionType\nIsAbstract\nFalse\nReferences\nNode\nClass\nBrowseName\nDataType\nTypeDefinition\nMod.Rule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nHistorical Access Aggregates\n\nFor the AggregateFunctionType, the Description Attribute(inherited from the Base NodeClass), is mandatory. The Description Attribute provides a localized description of the Aggregate.\n[Table 5](/\u00A7_Ref112552315) specifies the BrowseName and Description Attributes for the standard Aggregate Objects. The description is the localized \u0022en\u0022 text. For other locales it shall be translated.\nTable 5- Standard AggregateType Nodes\nBrowseName\nDescription\n\nInterpolation Aggregate\nInterpolative\nAt the beginning of each interval, retrieve the calculated value from the data points on either side of the requested timestamp.\nAverage\nRetrieve the average value of the data over the interval.\nTimeAverage\nRetrieve the time weighted average data over the interval using Interpolated Bounding Values.\nTimeAverage2\nRetrieve the time weighted average data over the interval using Simple Bounding Values.\nTotal\nRetrieve the total (time integral) of the data over the interval using Interpolated Bounding Values.\nTotal2\nRetrieve the total (time integral) of the data over the interval using Simple Bounding Values.\nMinimum\nRetrieve the minimum raw value in the interval with the timestamp of the start of the interval.\nMaximum"
+    },
+    {
+      "Id": "b2f03c48-be3a-42d7-b86c-7ac6a7ef224c",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2.2.2 AggregateFunctionType\n---\n",
+      "Content": "Maximum\nRetrieve the maximum raw value in the interval with the timestamp of the start of the interval.\nMinimumActualTime\nRetrieve the minimum value in the interval and the timestamp of the minimum value.\nMaximumActualTime\nRetrieve the maximum value in the interval and the timestamp of the maximum value.\nRange\nRetrieve the difference between the minimum and maximum value over the interval.\nMinimum2\nRetrieve the minimum value in the interval including the Simple Bounding Values.\nMaximum2\nRetrieve the maximum value in the interval including the Simple Bounding Values.\nMinimumActualTime2\nRetrieve the minimum value with the actual timestamp including the Simple Bounding Values.\nMaximumActualTime2\nRetrieve the maximum value with the actual timestamp including the Simple Bounding Values.\nRange2\nRetrieve the difference between the Minimum2 and Maximum2 value over the interval.\nCount\nRetrieve the number of raw values over the interval.\nDurationInStateZero\nRetrieve the time a Boolean or numeric was in a zero state using Simple Bounding Values.\nDurationInStateNonZero\nRetrieve the time a Boolean or numeric was in a non-zero state using Simple Bounding Values.\nNumberOfTransitions\nRetrieve the number of changes between zero and non-zero that a Boolean or numeric value experienced in the interval.\nStart\nRetrieve the value at the beginning of the interval.\nEnd\nRetrieve the value at the end of the interval.\nDelta\nRetrieve the difference between the Start and End value in the interval.\nStartBound\nRetrieve the value at the beginning of the interval using Simple Bounding Values.\nEndBound\nRetrieve the value at the end of the interval using Simple Bounding Values.\nDeltaBounds\nRetrieve the difference between the StartBound and EndBound value in the interval using Simple Bounding Values.\nDurationGood"
+    },
+    {
+      "Id": "283ef0a4-b681-4b86-9091-07b77d7ff536",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.2.2.2 AggregateFunctionType\n---\n",
+      "Content": ".\nDurationGood\nRetrieve the total duration of time in the interval during which the data is Good.\nDurationBad\nRetrieve the total duration of time in the interval during which the data is Bad.\nPercentGood\nRetrieve the percentage of data (0 to 100) in the interval which has Good StatusCode.\nPercentBad\nRetrieve the percentage of data (0 to 100) in the interval which has Bad StatusCode.\nWorstQuality\nRetrieve the worst StatusCode of data in the interval.\nWorstQuality2\nRetrieve the worst StatusCode of data in the interval including the Simple Bounding Values.\nAnnotationCount\nRetrieve the number of Annotations in the interval (applies to Historical Aggregates only).\nStandardDeviationSample\nRetrieve the standard deviation for the interval for a sample of the population (n-1).\nVarianceSample\nRetrieve the variance for the interval as calculated by the StandardDeviationSample.\nStandardDeviation Population\nRetrieve the standard deviation for the interval for a complete population (n) which includes Simple Bounding Values.\nVariancePopulation\nRetrieve the variance for the interval as calculated by the StandardDeviationPopulation which includes Simple Bounding Values."
+    },
+    {
+      "Id": "d46a400c-bb0b-4ba7-ade4-51c7ed918618",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4 Aggregate information model\n---\n",
+      "Content": "4.3 MonitoredItem AggregateFilter"
+    },
+    {
+      "Id": "00f5aac0-fe67-4185-bee4-bee0071ac265",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.3 MonitoredItem AggregateFilter\n---\n",
+      "Content": "4.3.1 MonitoredItem AggregateFilter Defaults"
+    },
+    {
+      "Id": "df1bfde7-4c3c-44af-9509-b78cf4c7e4bd",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.3.1 MonitoredItem AggregateFilter Defaults\n---\n",
+      "Content": "The default values used for MonitoredItem Aggregates are the same as those used for historical Aggregates. They are defined in[4.2.1.2](/\u00A7_Ref246227644). For additional information on MonitoredItem AggregateFilter see[OPC 10000-4](/\u00A7UAPart4)."
+    },
+    {
+      "Id": "e920fa5e-247d-4964-9eb5-203b22285ff7",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.3 MonitoredItem AggregateFilter\n---\n",
+      "Content": "4.3.2 MonitoredItem Aggregates and Bounding Values"
+    },
+    {
+      "Id": "47aeb979-b907-4c82-be7d-b186f4797564",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.3.2 MonitoredItem Aggregates and Bounding Values\n---\n",
+      "Content": "When calculating MonitoredItem Aggregates that require the use of Bounding Values, the bounds may not be known. The calculation is done in the same manner as a historical read with the Partial Bit set. The historian may wait some amount of time (normally no more than one processing interval) before calculating the interval to allow for any latency in data collection and reduce the use of the Partial Bit.\nA historical read done after data collection and the data from the MonitoredItem over the same interval may not be the same."
+    },
+    {
+      "Id": "a6d4767a-862d-4375-84bc-f8bfdc6b4fc3",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4 Aggregate information model\n---\n",
+      "Content": "4.4 Exposing Supported Functions and Capabilities"
+    },
+    {
+      "Id": "373028b4-4deb-4180-a647-6b881ca1300e",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.4 Exposing Supported Functions and Capabilities\n---\n",
+      "Content": "[Figure 1](/\u00A7_Ref252869469) outlines a possible representation of Aggregate information in the AddressSpace. In this example, although the Server at the highest level may support Aggregate functionality for Interpolative, Total, Average, and others, DataVariable X only supports Interpolative, Total and Average, while DataVariable Y supports Average, a vendor defined Aggregate and other (unstated) Aggregates."
+    },
+    {
+      "Id": "cec7493e-4d4c-4981-bdc2-5a55b11f820a",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.4 Exposing Supported Functions and Capabilities\nCaption: Figure 1 - Representation of Aggregate Configuration information in the AddressSpace\n---\n",
+      "Content": "The image shows a flowchart diagram that represents an abstract conceptual model of \u0022Aggregates\u0022 within a system that uses Open Platform Communications (OPC) and OPC UA protocols for industrial interoperability. This model likely relates to the configuration of functions and capabilities within this framework. The diagram consists of several nodes or components connected by arrows, suggesting a flow or process. At the top left, there is a main node labeled \u0022OPC,\u0022 which indicates the starting point or root of the structure. From the OPC node, three child nodes emerge: \u0022Aggregates,\u0022 \u0022Operations,\u0022 and \u0022Configurations.\u0022 These represent the core components that are part of the aggregation functionality within this system. The \u0022Aggregates\u0022 node has two child nodes: \u0022NodeSet\u0022 and \u0022Aggregate Configurations.\u0022 This indicates that there is a relationship between nodesets and aggregate configurations in the model. A \u0022NodeSet\u0022 typically represents a collection of related objects or items within a system, while an \u0022Aggregate Configuration\u0022 pertains to the configuration settings for these aggregates. The \u0022Operations\u0022 node is connected to a child node labeled \u0022Aggregate Operations,\u0022 which implies that each aggregate can have associated operations. These operations are likely to be the actions that can be performed on an aggregate within the system. Below the \u0022Aggregate Configurations\u0022 node, there\u0027s another child node titled \u0022Aggregate Functions.\u0022 This suggests that aggregates can have functions associated with them, which may represent the capabilities or features of the aggregates. The \u0022Configurations\u0022 node is connected to a subnode labeled \u0022Aggregate Functions,\u0022 which mirrors the concept from the \u0022Aggregate Operations\u0022 node. The presence of both operations and functions in separate nodes could imply that they are distinct entities, with functions being more specific than operations."
+    },
+    {
+      "Id": "058d6b1d-e4e3-4c24-829a-31941e627734",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.4 Exposing Supported Functions and Capabilities\nCaption: Figure 1 - Representation of Aggregate Configuration information in the AddressSpace\n---\n",
+      "Content": "On the right side of the diagram, there is a subnode within the \u0022Operations\u0022 node called \u0022HA configurations,\u0022 which may refer to high availability configurations for the aggregates\u0027 operations. This ensures that the system can handle failures and maintain service availability. Additionally, there are two nodes representing different types of configurations: \u0022Aggregate Configurations\u0022 and \u0022Configuration Data.\u0022 The configuration data likely pertains to specific details or settings within the aggregate configuration. The diagram does not provide information on what each node represents in terms of functions, operations, and data, but it is a logical representation meant to guide understanding of how these concepts are organized within this system."
+    },
+    {
+      "Id": "d11e6c39-5862-4f10-941f-1bb17a636285",
+      "Header": "Document: Part 13 - Aggregates\nSection: 4.4 Exposing Supported Functions and Capabilities\n---\n",
+      "Content": "Figure 1 - Representation of Aggregate Configuration information in the AddressSpace"
+    },
+    {
+      "Id": "359fe6be-8290-4f34-b59f-d6221a8f4c15",
+      "Header": "Document: Part 13 - Aggregates\n---\n",
+      "Content": "5 Aggregate specific usage of Services"
+    },
+    {
+      "Id": "26ee7410-e337-4fb1-8b29-58b717f32d0f",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5 Aggregate specific usage of Services\n---\n",
+      "Content": "5.1 General"
+    },
+    {
+      "Id": "3d01971e-905c-4767-a6ad-72a446a0504c",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.1 General\n---\n",
+      "Content": "[OPC 10000-4](/\u00A7UAPart4) specifies all Services needed for OPC UA Aggregates. In particular:\nThe Browse Service Set or Query Service Set to detect Aggregates and their configuration.\nThe HistoryRead Service of the Attribute Service Set to read the aggregated history of the HistoricalNode s.\nThe CreateMonitoredItems Service allows specifying a filter for each MonitoredItem to read aggregated data."
+    },
+    {
+      "Id": "4bda5d0b-cfcf-4936-a21f-cd914ba07282",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5 Aggregate specific usage of Services\n---\n",
+      "Content": "5.2 Aggregate data handling"
+    },
+    {
+      "Id": "50291d91-805f-48f0-bb4f-bb61904f24e5",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.2 Aggregate data handling\n---\n",
+      "Content": "5.2.1 Overview"
+    },
+    {
+      "Id": "154b106a-ce53-4128-b844-e4c1324b1ffc",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.2.1 Overview\n---\n",
+      "Content": "The HistoryRead service defined in[OPC 10000-4](/\u00A7UAPart4) can perform several different functions. The historyReadDetails parameter is an Extensible Parameter that specifies which function to perform. The ReadProcessedDetails structure is used to read aggregated data for HistoricalDataNodes.\nThe CreateMonitoredItems Service allows specifying a filter for each MonitoredItem. The MonitoringFilter is an extensible parameter whose structure depends on the type of item being monitored. The AggregateFilter structure is used to obtain aggregated data for a subscription."
+    },
+    {
+      "Id": "1e683e66-9dc0-42da-a9bd-b4b36dd41bec",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.2 Aggregate data handling\n---\n",
+      "Content": "5.2.2 ReadProcessedDetails structure overview"
+    },
+    {
+      "Id": "dfddfdf0-09b8-4164-b824-ecd603a4a214",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.2.2 ReadProcessedDetails structure overview\n---\n",
+      "Content": "ReadProcessedDetails structure is formally detailed in[OPC 10000-11](/\u00A7UAPart11).[Table 6](/\u00A7_Ref112552313) outlines the components of the ReadProcessedDetails structure for the purposes of discussion in this document.\nTable 6- ReadProcessedDetails\nName\nDescription\nReadProcessedDetails\nSpecifies the details used to perform a \u0022processed\u0022 history read.\nstartTime\nBeginning of period to read.\nendTime\nEnd of period to read.\nprocessingInterval\nInterval between returned Aggregate values.\naggregateType[]\nThe NodeIds of the AggregateFunction Objects. AggregateFunction Objects indicate the list of Aggregates to be used when retrieving processed history.\naggregateConfiguration\nAggregate configuration structure.\nuseServerDefaults\nIf True the Server\u0027s default values are used and any values specified for the other parameters are ignored.\ntreatUncertainAsBad\nSee[4.2.1.2](/\u00A7_Ref246227644).\npercentDataBad\nSee[4.2.1.2](/\u00A7_Ref246227644).\npercentDataGood\nSee[4.2.1.2](/\u00A7_Ref246227644).\nuseSlopedExtrapolation\nSee[4.2.1.2](/\u00A7_Ref246227644)."
+    },
+    {
+      "Id": "ced24857-7a14-4bcb-a54c-b48f81243c53",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.2 Aggregate data handling\n---\n",
+      "Content": "5.2.3 AggregateFilter structure overview"
+    },
+    {
+      "Id": "052aa729-a87d-4c00-83e4-72790821328f",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.2.3 AggregateFilter structure overview\n---\n",
+      "Content": "The AggregateFilter defines the Aggregate function that should be used to calculate the values to be returned. The AggregateFilte r is formally defined in[OPC 10000-4](/\u00A7UAPart4).[Table 7](/\u00A7_Ref165187582) outlines the components of the AggregateFilter structure for the purposes of discussion in this document.\nTable 7- AggregateFilter structure\nName\nDescription\nAggregateFilter\n\nstartTime\nBeginning of period to calculate the Aggregate the first time.\naggregateType\nThe NodeIds of the AggregateFunction Objects that indicates the list of Aggregates to be used when retrieving processed data.\nprocessingInterval\nThe period to be used to compute the Aggregate.\naggregateConfiguration\nThis parameter allows Clients to override the Aggregate configuration settings supplied by an AggregateConfiguration Object on a per monitored item basis.\nuseServerDefaults\nIf True the Server\u0027s default values are used and any values specified for the other parameters are ignored.\ntreatUncertainAsBad\nSee[4.2.1.2](/\u00A7_Ref246227644).\npercentDataBad\nSee[4.2.1.2](/\u00A7_Ref246227644).\npercentDataGood\nSee[4.2.1.2](/\u00A7_Ref246227644).\nuseSlopedExtrapolation\nSee[4.2.1.2](/\u00A7_Ref246227644)."
+    },
+    {
+      "Id": "0ff7b5ef-0c16-4a90-ac95-c48f553c321a",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5 Aggregate specific usage of Services\n---\n",
+      "Content": "5.3 Aggregates StatusCodes"
+    },
+    {
+      "Id": "6ae19038-144d-4850-bfdb-daace1e7d101",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.3 Aggregates StatusCodes\n---\n",
+      "Content": "5.3.1 Overview"
+    },
+    {
+      "Id": "e16ad7cd-2f89-4a29-9dc0-92a314ce1e1c",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.3.1 Overview\n---\n",
+      "Content": "Subclause 5.3 defines additional codes and rules that apply to the StatusCode when used for Aggregates.\nThe general structure of the StatusCode is specified in[OPC 10000-4](/\u00A7UAPart4). It includes a set of common operational result codes which also apply to Aggregates."
+    },
+    {
+      "Id": "cfada353-9798-49f5-b03c-475177071620",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.3 Aggregates StatusCodes\n---\n",
+      "Content": "5.3.2 Operation level result codes"
+    },
+    {
+      "Id": "30a37f99-2786-4a89-b8f4-eabc26caf3e2",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.3.2 Operation level result codes\n---\n",
+      "Content": "In OPC UA Aggregates the StatusCode is used to indicate the conditions under which a value or Event was stored, and thereby can be used as an indicator of its usability. Due to the nature of aggregated data, additional information beyond the basic quality and call result code needs to be conveyed to the client. For example, whether or not the result was Interpolated, were all data inputs to a calculation of Good quality, etc.\nIn the following,[Table 8](/\u00A7_Ref128988066) contains codes with Bad severity indicating a failure;[Table 9](/\u00A7_Ref128988101) contains codes with Uncertain severity indicating that the value has been retrieved under sub-normal conditions. It is important to note, that these are the codes that are specific for OPC UA Aggregates and that they supplement the codes that apply to all types of data; they are therefore defined in[OPC 10000-4](/\u00A7UAPart4),[OPC 10000-8](/\u00A7UAPart8) and[OPC 10000-11](/\u00A7UAPart11).\nTable 8- Bad operation level result codes\nSymbolic Id\nDescription\nBad_AggregateListMismatch\nThe requested number of Aggregates does not match the requested number of NodeIds. When multiple Aggregates are requested, a corresponding NodeId is required for each AggregateFunction.\nBad_AggregateNotSupported\nThe requested AggregateFunction is not supported by the Server for the specified Node.\nBad_AggregateInvalidInputs\nThe Aggregate value could not be derived due to invalid data inputs, errors attempting to perform data conversions or similar situations.\n\nTable 9- Uncertain operation level result codes\nSymbolic Id\nDescription\nUncertain_DataSubNormal"
+    },
+    {
+      "Id": "2b466c51-2106-4b6b-bdbc-d5cb1b21ea12",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.3.2 Operation level result codes\n---\n",
+      "Content": "The value is derived from raw values and has less than the required number of Good values."
+    },
+    {
+      "Id": "9d7a806a-2700-4e75-a1a5-1eb23dcf3e4d",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.3 Aggregates StatusCodes\n---\n",
+      "Content": "5.3.3 Aggregate Information Bits"
+    },
+    {
+      "Id": "2b79a04a-8322-450c-a04f-efc18e8db834",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.3.3 Aggregate Information Bits\n---\n",
+      "Content": "5.3.3.1 General"
+    },
+    {
+      "Id": "44189c47-50a0-4503-8e2e-fd528c941c7e",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.3.3.1 General\n---\n",
+      "Content": "These bits are set only when obtaining Aggregate data. They indicate where the data value came from and provide information that affects how the client uses the data value.[Table 10](/\u00A7_Ref128288255) lists the bit settings which indicate the data location (i.e. is the value stored in the underlying data repository, or is the value the result of data aggregation). These bits are mutually exclusive.\nTable 10- Data location\nStatusCode\nDescription\nRaw\nA Raw data value.\nCalculated\nA data value which was calculated.\nInterpolated\nA data value which was interpolated.\n\nIn the case where Interpolated data is requested, and there is an actual raw value for that timestamp, the Server should set the \u0027Raw\u0027 bit in the StatusCode of that value.\n[Table 11](/\u00A7_Ref128288381) lists the bit settings which indicate additional important information about the data values returned.\nTable 11- Additional information\nStatusCode\nDescription\nPartial\nA calculated value that is not based on a complete interval. See[5.3.3.2](/\u00A7_Ref318146097).\nExtra Data\nIf a Server chooses to set this bit, it indicates that a Raw data value supersedes other data at the same timestamp.\nMultiple Values\nMultiple values match the Aggregate criteria (i.e. multiple minimum values or multiple worst quality at different timestamps within the same ProcessingInterval).\n\nThe conditions under which these information bits are set depend on how the data has been requested and state of the underlying data repository."
+    },
+    {
+      "Id": "5aa1db98-08ae-4ebc-a752-10b7c73f5597",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.3.3 Aggregate Information Bits\n---\n",
+      "Content": "5.3.3.2 Partial Information bit"
+    },
+    {
+      "Id": "123995a2-7590-4772-810c-af0004c1188a",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.3.3.2 Partial Information bit\n---\n",
+      "Content": "Partial bit is used to indicate that the interval is not a complete interval and that a client may receive a different value for the Aggregate if it re-fetches the interval with the same parameters.\nThe Partial bit will be set in the following examples:\nAssume for these examples the first stored point in the collection is 1:01:10 and the last stored point in the collection is 1:31:20. Older data may exist but is unavailable or offline at the time of the query. Newer data may be available but has not yet been stored in the history collection.\nThe interval that overlaps the beginning of the history collection. If the start time is 1:00:00 and end time is 1:10:00 and the interval is 2 minutes then the first interval would have a Partial bit set since it has no data for the first 70 seconds. The Partial bit will always be set for the first interval with data if the start time of the interval is before the first data value of the data collection. For intervals prior to the interval with a Partial bit, these intervals will be flagged Bad_NoData.\nThe interval that overlaps the latest point stored in the history collection. The last point in the collection is 1:31:20 and the historian was not shut down and is still running. A 6-minute interval that started at 1:30:00 would have the Partial bit set because the historian is expecting data, but just has not yet received anything. The Partial bit will always be set for the last interval with data if the end time of the interval is after the last data value stored in the data collection. Intervals entirely after the interval with a Partial bit will be flagged Bad_NoData. For those Aggregates with extrapolation, the Partial bit may be set. See the Aggregate"
+    },
+    {
+      "Id": "12490eb0-5cb6-40ef-825d-ffee4f2c9e50",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.3.3.2 Partial Information bit\n---\n",
+      "Content": "Aggregate specific characteristics for more details.\nIf the start/end time does not result in an even interval and there is additional data beyond the end time then the last interval will have a Partial bit. If the start time is 1:00:00 and end time is 1:20:00 and the interval is 6 minutes then the last interval is just 2 minutes long and will have the Partial bit set. Extrapolation does not apply in this case.\nThe Partial bit may be set with the Calculated bit when the Calculated bit is always set for the specific Aggregate."
+    },
+    {
+      "Id": "3980bd87-ce25-499d-ab57-4b23a1ac7c78",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5 Aggregate specific usage of Services\n---\n",
+      "Content": "5.4 Aggregate details"
+    },
+    {
+      "Id": "70e89933-6653-4371-bc3f-955a920b6fb4",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4 Aggregate details\n---\n",
+      "Content": "5.4.1 General"
+    },
+    {
+      "Id": "e9ecdbb3-7bb0-4e6f-9f16-6db1166ae992",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.1 General\n---\n",
+      "Content": "The purpose of subclause 5.4  is to detail the requirements and behaviour for OPC UA Servers supporting Aggregates. The intent is to standardize the Aggregates so users can reliably predict the results of an Aggregate computation and understand its meaning. If users require custom functionality in the Aggregates, those Aggregates should be written as custom vendor defined Aggregates.\nThe standard Aggregates shall be as consistent as possible, meaning that each Aggregate\u0027s behaviour shall be similar to every other Aggregate\u0027s behaviour where input parameters, Raw data, and boundary conditions are similar. Where possible, the Aggregates should deal with input and preconditions in a similar manner.\nSubclause 5.4 is divided up into two parts. Subclause 5.4.2 deals with Aggregate characteristics and behaviour that are common to all Aggregates. Subclause 5.4.3 deals with the characteristics and behaviour of Aggregates that are aggregate-specific."
+    },
+    {
+      "Id": "c9759a5a-ea55-46a9-9ad7-b2c8209edb4d",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4 Aggregate details\n---\n",
+      "Content": "5.4.2 Common characteristics"
+    },
+    {
+      "Id": "6ede96d4-0fe2-4f97-b3f4-4292f54c53cd",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.2 Common characteristics\n---\n",
+      "Content": "5.4.2.1 Description"
+    },
+    {
+      "Id": "eeadd0b0-c7e2-4306-a1aa-151273e3b84c",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.2.1 Description\n---\n",
+      "Content": "Subclause 5.4.2 deals with Aggregate characteristics and behaviour that are common to all Aggregates."
+    },
+    {
+      "Id": "c8d13476-3767-4621-a634-3365c98fed2a",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.2 Common characteristics\n---\n",
+      "Content": "5.4.2.2 Generating intervals"
+    },
+    {
+      "Id": "35213b7e-b856-4986-adec-bf86d2a9a065",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.2.2 Generating intervals\n---\n",
+      "Content": "To read Historical Aggregates, OPC clients shall specify three time parameters:\nstartTime (Start)\nendTime (End)\nProcessingInterval(Int)\nThe OPC Server shall use these three parameters to generate a sequence of time intervals and then calculate an Aggregate for each interval. Subclause 5.4.2.2 specifies, given the three parameters, which time intervals are generated.[Table 12](/\u00A7_Ref144879490) provides information on the intervals for each Start and End time combination. The range is defined to be |End - Start|.\nAll Aggregates return a timestamp of the start of the interval unless otherwise noted for the particular Aggregate.\nTable 12- History Aggregate interval information\nStart/End Time\nInterval\nResulting intervals\nStart = End\nInt = Anything\nNo intervals. Returns a Bad_InvalidArgument StatusCode, regardless of whether there is data at the specified time or not.\nStart \u003C End\nInt = 0 or Int \u2265 Range\nOne interval, starting at Start and ending at End. Includes Start, excludes End, i.e.,[Start, End).\nStart \u003C End\nInt \u2260 0, Int \u003C Range, Int divides Range evenly.\nRange/Int intervals. Intervals are[Start, Start \u002B Int), [Start \u002B Int, Start \u002B 2 x Int),..., [End - Int, End).\nStart \u003C End\nInt \u2260 0, Int \u003C Range, Int does not divide Range evenly.\nRange/Int intervals. Intervals are[Start, Start \u002B Int), [Start \u002B Int, Start \u002B 2 x Int),..., [Start \u002B ( Range/Int- 1) x Int, Start \u002B Range/Int x Int), [Start \u002B Range/Int x Int, End)."
+    },
+    {
+      "Id": "0f6fd168-9281-487b-b799-3f3e4decf0bc",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.2.2 Generating intervals\n---\n",
+      "Content": "Int, End).\nIn other words, the last interval contains the \u0022rest\u0022 that remains in the range after taking away Range/Int intervals of size Int.\nStart \u003E End\nInt = 0 or Int \u2265 Range\nOne interval, starting at Start and ending at End. Includes Start, excludes End, i.e.,[ Start, End). a\nStart \u003E End\nInt \u2260 0, Int \u003C Range, Int divides Range evenly.\nRange/Int intervals. Intervals are[Start, Start- Int), [Start- Int, Start - 2 x Int),..., [End \u002B Int, End). a\nStart \u003E End\nInt \u2260 0, Int \u003C Range, Int does not divide Range evenly.\nRange/Int intervals. Intervals are[Start, Start - Int), [Start -Int,Start - 2 x Int),...,[Start - ( Range/Int- 1) x Int , Start - Range/Int x Int), [Start - Range/Int x Int , End).\nIn other words, the last interval contains the \u0022rest\u0022 that remains in the range after taking away Range/Int intervals of size Int starting at Start. a\na In this case time is running backwards on the intervals.\n\nThe calculation of all Aggregates when time flows backwards is the same as when time flows forwards with the exception that the \u0027early time\u0027 is excluded from the interval and the \u0027late time\u0027 is included. In most cases this means the value will be the same except the timestamps are shifted by one ProcessingInterval. E.g. when time flows forward the value at T = n is the same as the value at T = n \u002B 1 when time flows backward.\nNote that when determining Aggregates with MonitoredItem"
+    },
+    {
+      "Id": "3cc0b737-7d91-4efe-a057-70916f8f3669",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.2.2 Generating intervals\n---\n",
+      "Content": "with MonitoredItem, the interval is simply the ProcessingInterval parameter as defined in the AggregateFilter structure. See[OPC 10000-4](/\u00A7UAPart4) for more details."
+    },
+    {
+      "Id": "5946a116-ef91-4b14-a4eb-90788870730f",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.2 Common characteristics\n---\n",
+      "Content": "5.4.2.3 Data types"
+    },
+    {
+      "Id": "0462e0c6-0167-414a-b69b-8c584edeb512",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.2.3 Data types\n---\n",
+      "Content": "[Table 13](/\u00A7_Ref270541636) outlines the valid DataType for each Aggregate. Some Aggregates are intended for numeric data types - i.e. integers or real/floating point numbers. Dates, strings, arrays, etc. are not supported. Other Aggregates are intended for digital data types - i.e. Boolean or enumerations. In addition some Aggregates may return results with a different DataType than those used to calculate the Aggregate.[Table 13](/\u00A7_Ref270541636) also outlines the data type returned for each Aggregate.\nTable 13- Standard History Aggregate Data Type information\nBrowseName\nValid Data Type\nResult Data Type\n\nInterpolation Aggregate\n\nInterpolative\nNumeric\nRaw Data Type\n\nData Averaging Aggregates\n\nAverage\nNumeric\nDouble\nTimeAverage\nNumeric\nDouble\nTimeAverage2\nNumeric\nDouble\nTotal\nNumeric\nDouble\nTotal2\nNumeric\nDouble\n\nData Variation Aggregates\n\nMinimum\nNumeric\nRaw data type\nMaximum\nNumeric\nRaw data type\nMinimumActualTime\nNumeric\nRaw data type\nMaximumActualTime\nNumeric\nRaw data type\nRange\nNumeric\nRaw data type\nMinimum2\nNumeric\nRaw data type\nMaximum2\nNumeric\nRaw data type\nMinimumActualTime2\nNumeric\nRaw data type\nMaximumActualTime2\nNumeric\nRaw data type\nRange2\nNumeric\nRaw data type\n\nCounting Aggregates\n\nAnnotationCount\nAll\nInteger\nCount\nAll\nInteger\nDurationInStateZero\nNumeric or Boolean\nDuration\nDurationInStateNonZero\nNumeric or Boolean\nDuration\nNumberOfTransitions\nNumeric or Boolean\nInteger\n\nTime Aggregates\n\nStart\nAll\nRaw data type\nEnd\nAll"
+    },
+    {
+      "Id": "ebbb5e77-0e18-41cb-a64b-261c44cf948f",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.2.3 Data types\n---\n",
+      "Content": "End\nAll\nRaw data type\nDelta\nNumeric\nRaw data type\nStartBound\nAll\nRaw data type\nEndBound\nAll\nRaw data type\nDeltaBounds\nNumeric\nRaw data type\n\nData Quality Aggregates\n\nDurationGood\nAll\nDuration\nDurationBad\nAll\nDuration\nPercentGood\nAll\nDouble\nPercentBad\nAll\nDouble\nWorstQuality\nAll\nStatusCode\nWorstQuality2\nAll\nStatusCode\n\nStatistical Aggregates\n\nStandardDeviationSample\nNumeric\nDouble\nVarianceSample\nNumeric\nDouble\nStandardDeviationPopulation\nNumeric\nDouble\nVariancePopulation\nNumeric\nDouble"
+    },
+    {
+      "Id": "49d2f837-7c58-4f82-9668-73e4f39cd9cf",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.2 Common characteristics\n---\n",
+      "Content": "5.4.2.4 Time calculation issues"
+    },
+    {
+      "Id": "50bb8942-adbc-4f86-906c-b8cf1b08a9e2",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.2.4 Time calculation issues\n---\n",
+      "Content": "The following issues may come up when calculating Aggregates that include time as part of the calculation.\nAll Aggregate calculations include the startTime but exclude the endTime. However, it is sometimes necessary to return an Interpolated End Bound as the value for an Interval with a timestamp that is in the Interval. Servers are expected to use the time immediately before endTime where the time resolution of the Server determines the exact value (do not confuse this with hardware or operating system time resolution). For example, if the endTime is 12:01:00, the time resolution is 1 second, then the EffectiveEndTime is 12:00:59. If the Server time resolution is 1 millisecond the EffectiveEndTime is 12:00:59.999.\nIf time is flowing backwards, Servers are expected to use the time immediately after endTime where the time resolution of the Server determines the exact value.\nIf there is one data point in the Interval and it falls on the StartTime the time duration used in calculations is one unit of the time resolution of the Server."
+    },
+    {
+      "Id": "0175549b-e695-4400-b626-4f2464fa71db",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4 Aggregate details\n---\n",
+      "Content": "5.4.3 Specific aggregated data handling"
+    },
+    {
+      "Id": "56fd7b37-a478-4d5c-b8c6-5a61b6364397",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.1 General"
+    },
+    {
+      "Id": "8c5c3726-69ab-4a14-bf23-56f12eb5d9d1",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.1 General\n---\n",
+      "Content": "When accessing aggregated data using the HistoryRead or the CreateMonitoredItems Service, the following rules are used to handle specific Aggregate use cases.\nIf ProcessingInterva l is 0, the Server shall create one Aggregate value for the entire time range. This allows Aggregates over large periods of time. A value with a timestamp equal to endTime will be excluded from that Aggregate, just as it would be excluded from an interval with that ending time. If the ProcessingInterval of 0 is passed in the MonitoredItemFilter it shall be revised to a suitable non-zero value.\nThe timestamp returned with the Aggregate shall be the time at the beginning of the interval, except where the Aggregate specifies a different timestamp.\nIf a requested timestamp is set to anything but the source timestamp the operation shall return the Bad_TimestampToReturnInvalid StatusCode. If a requested timestamp is not supported in any other way for a HistoricalDataNode, the operation shall return the Bad_TimestampNotSupported StatusCode. For MonitoredItem the Server shall not return past data if a requested timestamp is not supported by the history collection."
+    },
+    {
+      "Id": "f12182c7-02f4-4162-a483-b607fc55d43f",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.2 StatusCode calculation"
+    },
+    {
+      "Id": "ff038b23-fa6e-4cba-95f4-b02206f4442d",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.2 StatusCode calculation\n---\n",
+      "Content": "5.4.3.2.1 General"
+    },
+    {
+      "Id": "6a2f8729-f84e-4bea-a7cc-81eeacd5b7be",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.2.1 General\n---\n",
+      "Content": "StatusCodes for an Aggregate value shall take into account the values used to calculate them. In addition, the configuration parameters PercentDataGood and PercentDataBad allow the client to control how this calculation is done if supported by the Server.\nIf an Aggregate operates on raw values (e.g. Average) the calculation is done by counting values. If an Aggregate operates on raw values but can also return a Bounding Value then the Bounding Values are included in the count when computing the StatusCode. If an Aggregate does any sort of a time weighted calculation (e.g. TimeAverage or TimeAverage2) then the StatusCode calculation shall also be time weighted.\nFor purposes of calculating time weighted StatusCodes each interval shall be divided into regions of Good or Bad data. Creating these regions requires that the bounding values be calculated for each interval and the type of bounding value depends on the Aggregate.\nUse the following to determine the StatusCode of a given aggregate. If TreatUncertainAsBad = False then Uncertain regions are included with the Good regions when calculating the above ratios, if the TreatUncertainAsBad = True then the Uncertain regions are included as Bad regions. If no Bad regions are in the interval then the StatusCode for the interval is Good. For any intervals containing regions where the StatusCodes are Bad, the total duration of all Bad regions is calculated and divided by the width of the interval. The resulting ratio is multiplied by 100 and compared to the PercentDataBad parameter. The StatusCode for the interval is Bad if the ratio is greater than or equal to the PercentDataBad parameter. For any interval which is not Bad, the total duration of all Good regions is then calculated and divided by the width of the interval. The resulting ratio is multiplied by 100 and compared to the PercentDataGood parameter. The StatusCode"
+    },
+    {
+      "Id": "e731d2fe-6513-4eb8-ae2d-c8858ec6c4aa",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.2.1 General\n---\n",
+      "Content": "parameter. The StatusCode for the interval is Good if the ratio is greater than or equal to the PercentDataGood parameter. If for an interval neither ratio applies then that interval is Uncertain_DataSubNormal.\nIf there is no data in the interval and the interval is inside the range [start of data, end of data] and the Aggregate return data type is raw data type then the StatusCodes for the interval will be Bad_NoData unless an alternate status code is defined for a specific Aggregate.\nThe width of an interval is the ProcessingInterval unless it is a partial interval (i.e. has the Partial bit set). In these cases, the width is the time used when calculating the partial interval.\nSubclauses[5.4.3.2.2](/\u00A7_Ref389486121) and[5.4.3.2.3](/\u00A7_Ref389486138) include diagrams that illustrate a request and data series. The colour of the time axis indicates the status for different regions. Red indicates Bad, green indicates Good and orange indicates Uncertain. These examples assume TreatUncertainAsBad = False."
+    },
+    {
+      "Id": "c708df2b-1cad-4f75-b3a4-05ee5234dbba",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.2 StatusCode calculation\n---\n",
+      "Content": "5.4.3.2.2 Sloped Interpolation and Simple Bounding Values"
+    },
+    {
+      "Id": "9861aeed-ec9f-45fa-be90-5b9e47eb099d",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.2.2 Sloped Interpolation and Simple Bounding Values\n---\n",
+      "Content": "Figure 2 illustrates a data series for Variable with Stepped = False and an Aggregate that uses Simple Bounding Values. The request being processed has a Start Time that falls before the first point in the series and an End Time that does not fall on an integer multiple of the ProcessingInterval."
+    },
+    {
+      "Id": "73b90e2d-8c64-4ebd-8ecf-a0a8722d62d5",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.2.2 Sloped Interpolation and Simple Bounding Values\nCaption: Figure 2 - Variable with Stepped = False and Simple Bounding Values\n---\n",
+      "Content": "This image appears to be a screenshot of a computer screen displaying a graphical user interface (GUI) related to a technical field, possibly an engineering or scientific application. The figure is titled \u0022Figure 2 - Variable with Stepped = False and Simple Bounding Values,\u0022 indicating that it shows a variable with stepped interpolation and simple bounding values enabled. TDM is not mentioned here as the acronym OPC (OLE for Process Control) and UA (Unified Automation) are often used in industry to describe data exchange standards for industrial automation and control systems, which are not directly related to \u0022sloped interpolation\u0022 or \u0022simple bounding values\u0022 as described in the caption. The GUI displays a 2D plot with several vertical lines representing different measurements or data points. Each line has a label indicating its position on the vertical axis, such as \u00220,\u0022 \u00221,\u0022 and \u00223.\u0022 There are annotations overlaid on the lines, indicating that each line has been modified by some operation related to interpolation or scaling. The labels \u0022OPC\u0022 and \u0022UA\u0022 at the top left of the image are likely referring to the OPC (OLE for Process Control) Foundation, a group that develops specifications for industrial data exchange standards, and its successor, the OPC Unified Architecture (OPC UA), which is an industry-standard interface between devices and control software. The content of this image is quite technical and would be better understood within the context of automation engineering or process control system design, where such interfaces are crucial for ensuring data exchange between different systems in industrial settings."
+    },
+    {
+      "Id": "cfddc4ed-254f-4b26-9a63-5fdeb75bf725",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.2.2 Sloped Interpolation and Simple Bounding Values\n---\n",
+      "Content": "Figure 2 - Variable with Stepped = False and Simple Bounding Values\nThe first interval has four regions:\nthe period before the first data point;\nthe period between the first and second where SlopedInterpolation can be used;\nthe period between the second and third point where SteppedInterpolation is used;\nthe period after the Bad point where no data exists.\nA region is Uncertain if a region ends in a Bad or Uncertain value and SlopedInterpolation is used. The end point has no effect on the region if SteppedInterpolation is used.\nThe second interval has three regions:\nthe period before the first Good data point where no data exists;\nthe period between the first and second where SlopedInterpolation can be used;\nthe period between the second point and the bound calculated with SlopedInterpolation.\nThe third interval has three regions:\nthe period between the simple bound and the first data point;\nthe period between the first point and an interpolated point that falls on the end time;\nthe period after the end time which is ignored.\nThis is a partial region and the data after the end time is not used, however, if sloped interpolation is used and the point after the endpoint is Uncertain then the region between the last point and the end time will be Uncertain."
+    },
+    {
+      "Id": "a3a61c10-54ad-493d-8cae-cd94ee68704f",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.2 StatusCode calculation\n---\n",
+      "Content": "5.4.3.2.3 Stepped Interpolation and Interpolated Bounding Values"
+    },
+    {
+      "Id": "a1f6b47c-1125-41f3-8f47-2ce32ba1e519",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.2.3 Stepped Interpolation and Interpolated Bounding Values\n---\n",
+      "Content": "Figure 3 illustrates a data series for Variable with Stepped = True and an Aggregate that uses Interpolated Bounding Values. The request being processed has a Start Time that falls before the first point in the series and an End Time that does not fall on an integer multiple of the ProcessingInterval."
+    },
+    {
+      "Id": "4852cfc5-a009-4600-a9bb-583e4a9cd65e",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.2.3 Stepped Interpolation and Interpolated Bounding Values\nCaption: Figure 3 - Variable with Stepped = True and Interpolated Bounding Values\n---\n",
+      "Content": "The image appears to be a screenshot of a chart from a software interface related to process control, specifically in the context of Operational Performance and Condition Monitoring (OPC) and OPC Unified Architecture (UA). It\u0027s a graphical representation with a legend at the top left, which includes various icons or labels such as \u0022Stepped,\u0022 \u0022Time,\u0022 \u0022Start Point,\u0022 \u0022Stop Point,\u0022 \u0022Bounding Boxes,\u0022 and other annotations. The main part of the chart shows multiple vertical lines representing time steps along an x-axis that reads \u0022Time.\u0022 The y-axis is labeled \u0022OPC UA,\u0022 but it\u0027s not clear what the values represent without additional context. There are also horizontal bars with various colors, which could be indicators of different performance metrics or statuses. Each bar has a number (from 1 to 5) at the top, possibly indicating the severity level of an issue or event detected by the system. Additional lines and markings, such as \u0022Interpolated Bounding Values\u0022 and \u0022OPC,\u0022 suggest that this chart is used for analyzing and visualizing data collected from a process control system with OPC UA capabilities. The specific details of what each symbol or line represents would require further context within the software interface where this image was taken."
+    },
+    {
+      "Id": "62211951-468c-4245-9f0b-772154c35bca",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.2.3 Stepped Interpolation and Interpolated Bounding Values\n---\n",
+      "Content": "Figure 3 - Variable with Stepped = True and Interpolated Bounding Values\nThe first interval has three regions:\nthe period before the first data point;\nthe period between the first and second where SteppedInterpolation is used;\nthe period between the second and the interpolated end bound.\nThe Bad point is ignored because of the interpolated end bound but this does create Uncertain regions. If SlopedInterpolation was used the Uncertain region would start at the second point. In this case, it only starts when the first Bad value is ignored.\nThe second interval has three regions:\nthe period between the start bound and the first data point;\nthe period between the first and second where SteppedInterpolation is used;\nthe period between the second and the interpolated end bound.\nThe third interval has three regions:\nthe period between the interpolated bound and the first data point;\nthe period between the first point and an interpolated point that falls on the end time;\nthe period after the end time which is ignored.\nThis is a partial region and the data after the end time is not used."
+    },
+    {
+      "Id": "313928bd-a0f5-483b-9d0c-7322844e765c",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.3 Description"
+    },
+    {
+      "Id": "592f3a35-e87b-47c3-9feb-289b1a37c0f0",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.3 Description\n---\n",
+      "Content": "Subclause[5.4.3.3](/\u00A7_Ref389486359) deals with Aggregate specific characteristics and behaviour that is specific to a particular Aggregate.\nEach subclause has a table which formally expresses the Aggregate behaviour (including any exceptions). The meaning of each of the fields in the table is described in[Table 14](/\u00A7_Ref282496834).\nDescription of[Table 14](/\u00A7_Ref282496834):\nThe first column is the common name for the item.\nThe second column includes a description of the item and a list of the valid selections with for the item including a description of each selection.\nThe second part of the table describes how the status associated with the Aggregate calculation is computed.\nThe last part of the table lists what behaviour is expected from the Aggregate for some common special cases. These behaviours require text descriptions so there is no list of valid selections.\nTable 14- Aggregate table description\nAggregate Characteristics\nType\nThe type of Aggregate.\n\u003CInterpolated | Calculated | Raw\u003E\n\nInterpolated: See definition for Interpolated.\nCalculated: Computed from defined calculation.\nRaw: Selects a raw value from within an interval.\nData Type\nThe data type of the result.\n\u003CDouble | Int32 | Same as Source\u003E\nUse Bounds\nHow the Aggregate deals with bounds.\n\u003CNone | Interpolated | Simple\u003E\n\nNone: Bounds do not apply to the Aggregate.\nInterpolated: Uses Interpolated Bounds.\nSimple: Uses Simple Bounds.\nTimestamp\nWhat is the time stamp of the resulting Aggregate value:\n\u003C startTime | endTime | Raw\u003E\n\nstartTime: The time at the start of the interval.\nendTime"
+    },
+    {
+      "Id": "415eef5b-fdb1-4112-8eaa-7ff326f3946e",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.3 Description\n---\n",
+      "Content": "endTime:  The time at the end of the interval.\nRaw: The time associated with a value in the interval.\n\nStatusCode Calculations\nCalculation Method\nHow the status code is calculated:\n\u003CPercentValues | PercentTime | Custom\u003E\n\nPercentValues: Based on percentage of value counts.\nPercentTime: Based on percentage of time interval.\nCustom: Specific to the Aggregate(description included).\nPartial\nFor partial intervals does the Aggregate set this bit\n\u003CSet Sometimes | Not Set\u003E\n\nIt may also describe any special cases for setting this bit\nCalculated\nDescribes the usage of the calculated bit.\n\u003CSet Always | Set Sometimes | Not Set\u003E\n\nSet Always: The bit is always set.\nSet Sometimes: The bit is sometimes set (describes when).\nNot Set: The bit is never set.\nInterpolated\nDescribes the usage of the interpolated bit.\n\u003CSet Always | Set Sometimes | Not Set\u003E\n\nSet Always: The bit is always set.\nSet Sometimes: The bit is sometimes set (describes when).\nNot Set: The bit is never set.\nRaw\nDescribes the usage of the Raw bit.\n\u003CSet Always | Set Sometimes | Not Set\u003E\n\nSet Always: The bit is always set.\nSet Sometimes: The bit is sometimes set (describes when).\nNot Set: The bit is never set.\nMulti Value\nDescribes the usage of the multi value bit.\n\u003CSet Sometimes | Not Set\u003E\n\nSet Sometimes: The bit is used (see[OPC 10000-11](/\u00A7UAPart11)).\nNot Set: The bit is never set.\n\nStatusCode Common Special Cases\nBefore Start of Data"
+    },
+    {
+      "Id": "2b854af7-b627-46d4-93dd-65776a2a85b3",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.3 Description\n---\n",
+      "Content": "Before Start of Data\nIf the entire interval is before the start of data.\nAfter End of Data\nIf the entire interval is after the end of data (as determined by the Historian).\nStart Bound  Not Found\nIf the starting bound is not found for the earliest interval and it is not partial, then what, if any, special processing should be done.\nEnd Bound Not Found\nIf the ending bound is not found for the latest interval and it is not partial, then what, if any, special processing should be done.\nBound Bad\nIf the Bounding value is Bad, then what, if any, special processing should be done.\nBound Uncertain\nIf the Bounding value is uncertain, then what, if any, special processing should be done."
+    },
+    {
+      "Id": "22799bc7-478e-4b45-9f9f-d1181f36c624",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.4 Interpolative"
+    },
+    {
+      "Id": "e3ba485b-9ec5-4724-bdc6-c96e6b36e59b",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.4 Interpolative\n---\n",
+      "Content": "The Interpolative Aggregate defined in[Table 15](/\u00A7_Ref389486450) returns the Interpolated Bounding Value(see[3.1.8](/\u00A7_Ref364944818)) for the startTime of each interval.\nWhen searching for Good values before or after the bounding value, the time period searched is Server specific, but the Server should search a time range which is at least the size of the ProcessingInterval.\nTable 15- Interpolative Aggregate summary\nInterpolated Aggregate Characteristics\nType\nInterpolated\nData Type\nSame as Source\nUse Bounds\nInterpolated\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nGood if no Bad values skipped and Good values are used, Uncertain if Bad values skipped or if Uncertain values are used. If no starting value then Bad_ NoData. See description of Interpolated Bounds (see[3.1.8](/\u00A7_Ref364944818)) for more details\nPartial bit\nNot Set\nCalculated bit\nNot Set\nInterpolated bit\nSet Sometimes\nAlways set except for when the Raw bit is set\nRaw bit\nSet Sometimes\nIf a value exists with the exact time of interval Start\nMulti Value bit\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nReturn Bad_NoData\nAfter End of Data\nReturn extrapolated value (see[3.1.8](/\u00A7_Ref364944818)) (sloped or stepped according to settings)\nStatus code is Uncertain_DataSubNormal.\nStart Bound  Not Found\nBad_NoData.\nEnd Bound  Not Found\nSee \u0022After End of Data\u0022\nBound Bad\nDoes not return a Bad bound except as noted above\nBound Uncertain\nReturned"
+    },
+    {
+      "Id": "53b89127-a976-485a-a931-dcedf8a849db",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.4 Interpolative\n---\n",
+      "Content": "Bound Uncertain\nReturned Uncertain_DataSubNormal if any Bad value(s) was/were skipped to calculate the bounding value."
+    },
+    {
+      "Id": "898ce920-9f63-4138-b240-d89d1d988fa8",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.5 Average"
+    },
+    {
+      "Id": "68bf6624-fff2-42b7-8dca-81489cfecbeb",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.5 Average\n---\n",
+      "Content": "The Average Aggregate defined in[Table 16](/\u00A7_Ref389486477) adds up the values of all Good Raw data for each interval, and divides the sum by the number of Good values. If any non-Good values are ignored in the computation, the Aggregate StatusCode will be determined using the StatusCode Calculation (see[5.3](/\u00A7_Ref364945480)). This Aggregate is not time based so the PercentGood/PercentBad applies to the number of values in the interval.\nTable 16- Average Aggregate summary\nAverage Aggregate Characteristics\nType\nCalculated\nData Type\nDouble\nUse Bounds\nNone\nTimestamp\nStartTime\n\n\nStatusCode Calculations\nCalculation Method\nPercentValues\nPartial\nNot Set\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nBounds not used\nNo End Bound\nBounds not used\nBound Bad\nBounds not used\nBound Uncertain\nBounds not used"
+    },
+    {
+      "Id": "357ec2e2-5284-46d0-9a49-37a21d28457b",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.6 TimeAverage"
+    },
+    {
+      "Id": "8211bef1-4251-4447-95dd-76a0bf4e1103",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.6 TimeAverage\n---\n",
+      "Content": "The TimeAverage Aggregate defined in[Table 17](/\u00A7_Ref389486524) uses Interpolated Bounding Values(see[3.1.8](/\u00A7_Ref364944818)) to find the value of a point at the beginning and end of an interval. Starting at the starting bounding value a straight line is drawn between each value in the interval ending at the ending bounding value (see examples for illustrations). The area under the lines is divided by the length of the ProcessingInterval to yield the average. Note that this calculation always uses a sloped line between points; TimeAverage2 uses a stepped or sloped line depending on the value of the Stepped Property for the Variable.\nIf one or more Bad Values exist in the interval then they are omitted from the calculation and the StatusCode is set to Uncertain_DataSubNormal. Sloped lines are drawn between the Good values when calculating the area.\nThe time resolution used in this calculation is Server specific.\nTable 17- TimeAverage Aggregate summary\nTimeAverage Aggregate Characteristics\nType\nCalculated\nData Type\nDouble\nUse Bounds\nInterpolated\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nGood if no Bad values skipped and Good values are used, Uncertain if Bad values are skipped or if Uncertain values are used\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nValue extrapolated, Uncertain status\nNo Start Bound\nCalculate Partial Interval\nNo End Bound\nExtrapolate data, Uncertain status\nBound Bad\nNA\nBound Uncertain\nNA"
+    },
+    {
+      "Id": "83316b86-9082-439e-958c-50e7c265e9e6",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.7 TimeAverage2"
+    },
+    {
+      "Id": "11a10db7-433b-4724-8c57-20c3b7b72c0d",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.7 TimeAverage2\n---\n",
+      "Content": "The TimeAverage2 Aggregate defined in[Table 18](/\u00A7_Ref389486697) uses Simple Bounding Values(see[3.1.9](/\u00A7_Ref364944831)) to find the value of a point at the beginning and end of an interval. Starting at the starting bounding value a straight line is drawn between each value in the interval ending at the ending bounding value (see examples for illustrations). The area under the lines is divided by the length of the ProcessingInterval to yield the average. Note that this calculation uses a stepped or sloped line depending on what the value of the Stepped Property for the Variable; TimeAverage always uses a sloped line between points.\nThe time resolution used in this calculation is Server specific.\nIf any non-Good data exists in the interval, this data is omitted from the calculation and the time interval is reduced by the duration of the non-Good data; i.e. if a value was Bad for 1 minute in a 5-minute interval then the TimeAverage2 would be the area under the 4-minute period of Good values divided by 4 minutes. If a sub-interval ends at a Bad value then only the Good starting value is used to calculate the area of sub-interval preceding the Bad value.\nThe Aggregate StatusCode will be determined using the StatusCode Calculation (see[5.3](/\u00A7_Ref364945198)).\nTable 18- TimeAverage2 Aggregate summary\nTimeAverage2 Aggregate Characteristics\nType\nCalculated\nData Type\nDouble\nUse Bounds\nSimple\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nPercentTime\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set"
+    },
+    {
+      "Id": "e03f3d1e-9330-4ec8-8cae-1c68e8dae6e0",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.7 TimeAverage2\n---\n",
+      "Content": "Multi Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nBound is Bad_NoData and treated as any other Bad value in the interval\nNo End Bound\nBound is Bad_NoData and treated as any other Bad value in the interval\nBound Bad\nTreated as any other Bad value in the interval\nBound Uncertain\nTreated as any other Uncertain value in the interval"
+    },
+    {
+      "Id": "f31d3e78-a055-4749-968c-00a0cf909394",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.8 Total"
+    },
+    {
+      "Id": "27f48868-3ead-416b-9332-c511d6f7950a",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.8 Total\n---\n",
+      "Content": "The Total Aggregate defined in[Table 19](/\u00A7_Ref389486720) performs the following calculation for each interval:\nTotal = TimeAverage x ProcessingInterval(seconds)\nwhere: TimeAverage is the result from the TimeAverage Aggregate, using the ProcessingInterval supplied to the Total call.\nThe resulting units would be normalized to seconds, i.e. [TimeAverage Units] x seconds.\nThe Aggregate StatusCode will be determined using the StatusCode Calculation (see[5.3](/\u00A7_Ref364945209)).\nNote that this calculation always uses a SlopedInterpolation between points; Total2 uses a Stepped Attribute or SlopedInterpolation depending on the value of the Stepped Attribute for the Variable.\nTable 19- Total Aggregate summary\nTotal Aggregate Characteristics\nType\nCalculated\nData Type\nDouble\nUse Bounds\nInterpolated\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nGood if no Bad values are skipped and Good values are used, Uncertain if Bad values are skipped or if Uncertain values are used\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nValue extrapolated, Uncertain status\nNo Start Bound\nCalculate Partial Interval\nNo End Bound\nExtrapolate data, Uncertain status\nBound Bad\nNA\nBound Uncertain\nNA"
+    },
+    {
+      "Id": "76c9bf79-3a69-450e-93fc-94187e33de6a",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.9 Total2"
+    },
+    {
+      "Id": "5a77069b-5db1-476f-96da-997f66908fe1",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.9 Total2\n---\n",
+      "Content": "The Total2 Aggregate defined in[Table 20](/\u00A7_Ref389486742) performs the following calculation for each interval:\nTotal2 = TimeAverage2 x ProcessingInterval of Good data (seconds)\nwhere TimeAverage2 Aggregate, using the ProcessingInterval supplied to the Total2 call.\nThe interval of Good data is the sum of all sub-intervals where non-Bad data exists; i.e. if a value was Bad for 1 minute in a 5-minute interval then the interval of Good data would be the 4-minute period.\nThe resulting units would be normalized to seconds, i.e. [TimeAverage2\nThe Aggregate StatusCode will be determined using the StatusCode Calculation (see[5.3](/\u00A7_Ref364945219)).\nTable 20- Total2 Aggregate summary\nTotal2 Aggregate Characteristics\nType\nCalculated\nData Type\nDouble\nUse Bounds\nSimple\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nPercentTime\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nValue for Bound is Bad_NoData and is treated like any other Bad quality value in the calculation (ignored)\nNo End Bound\nValue for Bound is Bad_NoData and is treated like any other Bad quality value in the calculation (ignored)\nBound Bad\nValue is treated like any other Bad quality value in the calculation (ignored)\nBound Uncertain\nValue is treated like any other non-Good quality value in the calculation (ignored)"
+    },
+    {
+      "Id": "641c2c09-0173-47a9-a04b-91bc05cb0e53",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.10 Minimum"
+    },
+    {
+      "Id": "e6e5f4aa-c331-40e4-be81-c728b6cba361",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.10 Minimum\n---\n",
+      "Content": "The Minimum Aggregate defined in[Table 21](/\u00A7_Ref389486767) retrieves the minimum Good raw value within the interval, and returns that value with the timestamp at the start of the interval. Note that if the same minimum exists at more than one timestamp the MultipleValues bit is set.\nUnless otherwise indicated, StatusCodes are Good, Calculated. If the minimum value is on the start time the status code will be Good, Raw.  If only Bad quality values are available then the status is returned as Bad_NoData.\nThe timestamp of the Aggregate will always be the start of the interval for every ProcessingInterval.\nTable 21- Minimum Aggregate summary\nMinimum Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nNone\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nIf no Bad values then the Status is Good. If Bad values exist then the Status is Uncertain_SubNormal. If an Uncertain value is less than the minimum Good value the Status is Uncertain_SubNormal.\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Sometimes\nIf the Minimum value is not on the StartTime of the interval or if the Status was set to Uncertain_SubNormal because of non-Good values in the interval\nInterpolated\nNot Set\nRaw\nSet Sometimes\nIf Minimum value is on the StartTime of the interval\nMulti Value\nSet Sometimes\nIf multiple Good values exist with the Minimum value\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNot Applicable\nNo End Bound\nNot Applicable\nBound Bad\nNot Applicable\nBound Uncertain\nNot Applicable"
+    },
+    {
+      "Id": "b615d6de-4521-423e-9463-c616be5cafbf",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.11 Maximum"
+    },
+    {
+      "Id": "9c4f77da-273d-4d66-8a95-bc8db1c7bcdd",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.11 Maximum\n---\n",
+      "Content": "The Maximum Aggregate defined in[Table 22](/\u00A7_Ref389486784) retrieves the maximum Good raw value within the interval, and returns that value with the timestamp at the start of the interval. Note that if the same maximum exists at more than one timestamp the MultipleValues bit is set.\nUnless otherwise indicated, StatusCodes are Good, Calculated. If the maximum value is on the interval start time the status code will be Good, Raw. If only Bad quality values are available then the status is returned as Bad_NoData.\nThe timestamp of the Aggregate will always be the start of the interval for every ProcessingInterval.\nTable 22- Maximum Aggregate summary\nMaximum Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nNone\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nIf no Bad values then the Status is Good. If Bad values exist then the Status is Uncertain_SubNormal. If an Uncertain value is greater than the maximum Good value the Status is Uncertain_SubNormal\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Sometimes\nIf the Maximum value is not on the startTime of the interval or if the Status was set to Uncertain_SubNormal because of non-Good values in the interval\nInterpolated\nNot Set\nRaw\nSet Sometimes\nIf Maximum value is on the startTime of the interval\nMulti Value\nSet Sometimes\nIf multiple Good values exist with the Maximum value\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNot Applicable\nNo End Bound\nNot Applicable\nBound Bad\nNot Applicable\nBound Uncertain\nNot Applicable"
+    },
+    {
+      "Id": "ccfc9e52-d5ba-483e-8427-7d954e2c5676",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.12 MinimumActualTime"
+    },
+    {
+      "Id": "5f702dd8-9c61-4629-8a92-a8b4b81edf57",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.12 MinimumActualTime\n---\n",
+      "Content": "The MinimumActualTime Aggregate defined in[Table 23](/\u00A7_Ref389486807) retrieves the minimum Good raw value within the interval, and returns that value with the timestamp at which that value occurs. Note that if the same minimum exists at more than one timestamp, the oldest one is retrieved and the Aggregate Bits are set to MultipleValues.\nTable 23- MinimumActualTime Aggregate summary\nMinimumActualTime Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nNone\nTimestamp\nTime of Minimum\n\nStatusCode Calculations\nCalculation Method\nCustom\nIf no Bad values then the Status is Good. If Bad values exist then the Status is Uncertain_SubNormal. If an Uncertain value is less than the minimum Good value the Status is Uncertain_SubNormal\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Sometimes\nIf the Status was set to Uncertain_SubNormal because of non-Good values in the interval\nInterpolated\nNot Set\nRaw\nSet Sometimes\nIf a Good minimum value is returned\nMulti Value\nSet Sometimes\nIf multiple Good values exist with the Minimum value\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNot Applicable\nNo End Bound\nNot Applicable\nBound Bad\nNot Applicable\nBound Uncertain\nNot Applicable"
+    },
+    {
+      "Id": "201d4d9d-6534-42eb-bbb4-f77c5d7c60d3",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.13 MaximumActualTime"
+    },
+    {
+      "Id": "d49a11a7-54b2-4b12-95f8-205865f58ae7",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.13 MaximumActualTime\n---\n",
+      "Content": "The MaximumActualTime Aggregate defined in[Table 24](/\u00A7_Ref389486852) is the same as the MinimumActualTime Aggregate, except that the value is the maximum raw value within the interval. Note that if the same maximum exists at more than one timestamp, the oldest one is retrieved and the Aggregate Bits are set to MultipleValues.\nTable 24- MaximumActualTime Aggregate summary\nMaximumActualTime Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nNone\nTimestamp\nTime of Maximum\n\nStatusCode Calculations\nCalculation Method\nCustom\nIf no Bad values then the Status is Good. If Bad values exist then the Status is Uncertain_SubNormal. If an Uncertain value is greater than the maximum Good value the Status is Uncertain_SubNormal\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Sometimes\nIf the Status was set to Uncertain_SubNormal because of non-Good values in the interval\nInterpolated\nNot Set\nRaw\nSet Sometimes\nIf a Good maximum value is returned\nMulti Value\nSet Sometimes\nIf multiple Good values exist with the maximum value\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNot Applicable\nNo End Bound\nNot Applicable\nBound Bad\nNot Applicable\nBound Uncertain\nNot Applicable"
+    },
+    {
+      "Id": "7f9a7791-aa2c-4d14-9a54-c281b2f545bf",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.14 Range"
+    },
+    {
+      "Id": "278b78fd-3478-4b06-89e5-9aa74dc888f0",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.14 Range\n---\n",
+      "Content": "The Range Aggregate defined in[Table 25](/\u00A7_Ref389486885) finds the difference between the maximum and minimum Good raw values in the interval. If only one Good value exists in the interval, the range is zero. Note that the range is always zero or positive. If non-Good values are ignored when finding the minimum or maximum values or if Bad values exist then the status is Uncertain_DataSubNormal.\nTable 25- Range Aggregate summary\nRange Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nNone\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nIf no Bad values then the Status is Good. If Bad values exist then the Status is Uncertain_SubNormal. If an Uncertain value is greater than the maximum or less than the minimum Good value the Status is Uncertain_SubNormal\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNot Applicable\nNo End Bound\nNot Applicable\nBound Bad\nNot Applicable\nBound Uncertain\nNot Applicable"
+    },
+    {
+      "Id": "7716a903-3052-4886-be9e-9c121d0f9ba6",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.15 Minimum2"
+    },
+    {
+      "Id": "cc436e7e-fdd1-46b3-bc09-d639c1f24220",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.15 Minimum2\n---\n",
+      "Content": "The Minimum2 Aggregate defined in[Table 26](/\u00A7_Ref389486901) retrieves the minimum Good value for each interval as defined for Minimum except that Simple Bounding Values are included. The Simple Bounding Values for the interval are found according to the definition of Simple Bounding Values(see[3.1.9](/\u00A7_Ref364944831)). Any Bad values are ignored in the computation. The Aggregate StatusCode will be determined using the StatusCode Calculation (see[5.3](/\u00A7_Ref364945480)) for time based Aggregates. If a bounding value is returned then the status will indicate, Raw, Calculated or Interpolated.\nIf TreatUncertainAsBad is false and an Uncertain raw value is the minimum then that Uncertain value is used. Uncertain values are ignored otherwise.\nIf sloped interpolation is used and the End bound is the minimum value then End bound is used as the Minimum with the timestamp set to the startTime of the interval. The End bound is ignored in all other cases.\nTable 26- Minimum2 Aggregate summary\nMinimum2 Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nSimple\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nPercentTime\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet SometimesSet unless the StartBound is the Minimum\nInterpolated\nSet Sometimes\nIf an Interpolated bound is the Minimum\nRaw\nSet Sometimes\nIf a raw value is the Minimum.\nMulti Value\nSet Sometimes\nIf more than one Good values exist with the same\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound"
+    },
+    {
+      "Id": "8117d4aa-f030-4597-bfa5-560dc8d8a091",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.15 Minimum2\n---\n",
+      "Content": "No Start Bound\nTreat the beginning value as Bad_NoData and compute the Aggregate\nNo End Bound\nTreat the ending value as Bad_NoData and compute the Aggregate\nBound Bad\nUse as value and compute the Aggregate as defined\nBound Uncertain\nUse as value and compute the Aggregate as defined"
+    },
+    {
+      "Id": "01d75f58-bd4a-47eb-833a-d5ed7e77758a",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.16 Maximum2"
+    },
+    {
+      "Id": "dd5d4eee-4fd9-4c90-9569-954d2ec4dbee",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.16 Maximum2\n---\n",
+      "Content": "The Maximum2 Aggregate defined in[Table 27](/\u00A7_Ref389486915) retrieves the maximum Good value for each interval as defined for Maximum except that Simple Bounding Values are included. The Simple Bounding Values for the interval are found according to the definition of Simple Bounding Values(see[3.1.9](/\u00A7_Ref364944831)). Any Bad values are ignored in the computation. The Aggregate StatusCode will be determined using the StatusCode Calculation (see[5.3](/\u00A7_Ref364945480)) for time based Aggregates. If a bounding value is returned then the status will indicate, Raw, Calculated or Interpolated.\nIf TreatUncertainAsBad is false and an Uncertain raw value is the maximum then that Uncertain value is used. Uncertain values are ignored otherwise.\nIf sloped interpolation is used and the End bound is the maximum value then End bound is used as the maximum with the timestamp set to the startTime of the interval. The End bound is ignored in all other cases.\nTable 27- Maximum2 Aggregate summary\nMaximum2 Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nSimple\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nPercentTime\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Sometimes\nSet unless the StartBound is the Maximum\nInterpolated\nSet Sometimes\nIf an Interpolated bound is the Maximum\nRaw\nSet Sometimes\nIf a raw value is the Maximum.\nMulti Value\nSet Sometimes\nIf more than one Good values exist with the same\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound"
+    },
+    {
+      "Id": "1e3fc86e-e2ea-43bc-b2bc-37d543d94595",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.16 Maximum2\n---\n",
+      "Content": "No Start Bound\nTreat the beginning value as Bad_NoData and compute the Aggregate\nNo End Bound\nTreat the ending value as Bad_NoData and compute the Aggregate\nBound Bad\nUse as value and compute the Aggregate as defined\nBound Uncertain\nUse as value and compute the Aggregate as defined"
+    },
+    {
+      "Id": "f2ca03d7-a5c6-4954-8c30-ed4aea76f962",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.17 MinimumActualTime2"
+    },
+    {
+      "Id": "99362ef5-569f-47e8-9941-81d727795b9a",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.17 MinimumActualTime2\n---\n",
+      "Content": "The MinimumActualTime2 Aggregate defined in[Table 28](/\u00A7_Ref389486934) retrieves the minimum Good value for each interval as defined for MinimumActualTime except that Simple Bounding Values are included. The Simple Bounding Values for the interval are found according to the definition of Simple Bounding Values(see[3.1.9](/\u00A7_Ref364944831)). Any Bad values are ignored in the computation. The Aggregate StatusCode will be determined using the StatusCode Calculation (see[5.3](/\u00A7_Ref364945480)) for time based Aggregates. If a bounding value is returned then the status will indicate, Raw, Calculated or Interpolated.\nIf TreatUncertainAsBad is false and an Uncertain raw value is the minimum then that Uncertain value is used. Uncertain values are ignored otherwise.\nIf sloped interpolation is used and the End bound is the minimum value then End bound is used as the minimum with the timestamp set to the EffectiveEndTime of the interval. The End bound is ignored in all other cases.\nTable 28- MinimumActualTime2 Aggregate summary\nMinumumActualTime2 Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nSimple\nTimestamp\nTime of minimum\n\nStatusCode Calculations\nCalculation Method\nPercentTime\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nNot Set\nInterpolated\nSet Sometimes\nIf an Interpolated bound is the Minimum\nRaw\nSet Sometimes\nIf a raw value is the Minimum\nMulti Value\nSet Sometimes\nIf more than one Good values exist with the same value\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData"
+    },
+    {
+      "Id": "9323963c-fa5f-4890-a698-0e559e782f4f",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.17 MinimumActualTime2\n---\n",
+      "Content": "Bad_NoData\nNo Start Bound\nTreat the beginning value as Bad_NoData and compute the Aggregate\nNo End Bound\nTreat the ending value as Bad_NoData and compute the Aggregate\nBound Bad\nUse as value and compute the Aggregate as defined\nBound Uncertain\nUse as value and compute the Aggregate as defined"
+    },
+    {
+      "Id": "b2773657-ae75-47b2-9bd0-eb04d700532b",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.18 MaximumActualTime2"
+    },
+    {
+      "Id": "73ec0653-1c63-45f7-b33e-61db52d051fe",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.18 MaximumActualTime2\n---\n",
+      "Content": "The MaximumActualTime2 Aggregate defined in[Table 29](/\u00A7_Ref389486951) retrieves the maximum Good value for each interval as defined for MaximumActualTime except that Simple Bounding Values are included. The Simple Bounding Values for the interva l are found according to the definition of Simple Bounding Values(see[3.1.9](/\u00A7_Ref364944831)). Any Bad values are ignored in the computation. The Aggregate StatusCode will be determined using the StatusCode Calculation (see[5.3](/\u00A7_Ref364945480)) for time based Aggregates. If a bounding value is returned then the status will indicate, Raw, Calculated or Interpolated.\nIf TreatUncertainAsBad is false and an Uncertain raw value is the maximum then that Uncertain value is used. Uncertain values are ignored otherwise.\nIf sloped interpolation is used and the End bound is the maximum value then End bound is used as the maximum with the timestamp set to the EffectiveEndTime of the interval. The End bound is ignored in all other cases.\nTable 29- MaximumActualTime2 Aggregate summary\nMaximumActualTime2 Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nSimple\nTimestamp\nTime of maximum\n\nStatusCode Calculations\nCalculation Method\nPercentTime\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nNot Set\nInterpolated\nSet Sometimes\nIf an Interpolated bound is the Maximum\nRaw\nSet Sometimes\nIf a raw value is the Maximum\nMulti Value\nSet Sometimes\nIf more than one value is equal to the Maximum\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData"
+    },
+    {
+      "Id": "00702667-2425-4384-ada2-252b554e9e56",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.18 MaximumActualTime2\n---\n",
+      "Content": "Bad_NoData\nNo Start Bound\nTreat the beginning value as Bad_NoData and compute the Aggregate\nNo End Bound\nTreat the ending value as Bad_NoData and compute the Aggregate\nBound Bad\nUse as value and compute the Aggregate as defined\nBound Uncertain\nUse as value and compute the Aggregate as defined"
+    },
+    {
+      "Id": "2411ac81-60ac-453d-a3a5-3466bbbd9a93",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.19 Range2"
+    },
+    {
+      "Id": "83f1109c-58ac-40c4-8c74-c5c81098b237",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.19 Range2\n---\n",
+      "Content": "The Range2 Aggregate defined in[Table 30](/\u00A7_Ref389487001) finds the difference between the maximum and minimum values in the interval as returned by the Minimum2 and Maximum2 Aggregates. Note that the range is always zero or positive.\nTable 30- Range2 Aggregate summary\nRange2 Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nSimple (used in Minimum2 and Maximum2 calculations)\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nIf Minimum2 or Maximum2 are Bad then the status is Bad_NoData. If Minimum2 or Maximum2 are Uncertain then the status is Uncertain_DataSubNormal. Good otherwise\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nHandled by Minimum2 and Maximum2\nNo End Bound\nHandled by Minimum2 and Maximum2\nBound Bad\nHandled by Minimum2 and Maximum2\nBound Uncertain\nHandled by Minimum2 and Maximum2"
+    },
+    {
+      "Id": "186a620f-408c-4d83-872f-115b8de005bd",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.20 AnnotationCount"
+    },
+    {
+      "Id": "95ead5de-29d5-4d27-b667-baee9c1934f4",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.20 AnnotationCount\n---\n",
+      "Content": "The AnnotationCount Aggregate defined in[Table 31](/\u00A7_Ref389487039) returns a count of all Annotations in the interval.\nThe StatusCodes are Good, Calculated.\nTable 31- AnnotationCount Aggregate summary\nAnnotationCount Aggregate Characteristics\nType\nCalculated\nData Type\nInt32 (negative values are not allowed)\nUse Bounds\nNone\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nGood unless the interval is before the start of data or after the end of data\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nDoes not apply\nNo End Bound\nDoes not apply\nBound Bad\nDoes not apply\nBound Uncertain\nDoes not apply"
+    },
+    {
+      "Id": "ac60035d-0916-44d1-a806-3db7a52b5d46",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.21 Count"
+    },
+    {
+      "Id": "c5d95bab-a0fb-4438-8fe0-feab0155f205",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.21 Count\n---\n",
+      "Content": "The Count Aggregate defined in[Table 32](/\u00A7_Ref389487070) retrieves a count of all the raw values within an interval. If one or more raw values are non-Good, they are not included in the count, and the Aggregate StatusCode is determined using the StatusCode Calculation (see[5.4.3](/\u00A7_Ref143529325)) for non-time based Aggregates. If no Good data exists for an interval, the count is zero.\nUnless otherwise indicated, StatusCodes are Good, Calculated.\nTable 32- Count Aggregate summary\nCount Aggregate Characteristics\nType\nCalculated\nData Type\nInt32 (negative values are not allowed)\nUse Bounds\nNone\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nPercentValues\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nDoes not apply\nNo End Bound\nDoes not apply\nBound Bad\nDoes not apply\nBound Uncertain\nDoes not apply"
+    },
+    {
+      "Id": "ef674010-b65c-4d6b-a7ef-a3e8b4c396d5",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.22 DurationInStateZero"
+    },
+    {
+      "Id": "6b4a087a-3071-4d7f-a1b4-17fc74a6f876",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.22 DurationInStateZero\n---\n",
+      "Content": "The DurationInStateZero Aggregate defined in[Table 33](/\u00A7_Ref389487122) returns the time Duration during the interval that the Variable was in the zero state. The Simple Bounding Values for the interval are used to determine initial value (start time \u003C end time) or ending value (if start time \u003E end time). If one or more raw values are non-Good, they are not included in the Duration, and the Aggregate StatusCode is determined using the StatusCode Calculation (see[5.3](/\u00A7_Ref364945480)) for time based Aggregates. Duration is in milliseconds. Unless otherwise indicated, StatusCodes are Good, Calculated.\nTable 33- DurationInStateZero Aggregate summary\nDurationInStateZero Aggregate Characteristics\nType\nCalculated\nData Type\nDuration\nUse Bounds\nSimple\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nPercentTime\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nTreat the beginning value as Bad_NoData and compute the Aggregate\nNo End Bound\nTreat the ending value as Bad_NoData and compute the Aggregate\nBound Bad\nUse as value and compute the Aggregate as defined\nBound Uncertain\nUse as value and compute the Aggregate as defined"
+    },
+    {
+      "Id": "5790bb78-61ba-4ebf-b024-cfe3ee6dd87c",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.23 DurationInStateNonZero"
+    },
+    {
+      "Id": "c99cb3e9-2bb4-43ef-b316-a1d49a599fdc",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.23 DurationInStateNonZero\n---\n",
+      "Content": "The DurationInStateNonZero Aggregate defined in[Table 34](/\u00A7_Ref389487141) returns the time Duration during the interval that the Variable was in the one state. The Simple Bounding Values for the interval are used to determine initial value (start time \u003C end time) or ending value (if start time \u003E end time). If one or more raw values are non-Good, they are not included in the Duration, and the Aggregate StatusCode is determined using the StatusCode Calculation (see[5.3](/\u00A7_Ref364945480)) for time based Aggregates.\nDuration is in milliseconds. Unless otherwise indicated, StatusCodes are Good, Calculated.\nTable 34- DurationInStateNonZero Aggregate summary\nDurationInStateNonZero Aggregate Characteristics\nType\nCalculated\nData Type\nDuration\nUse Bounds\nSimple\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nPercentTime\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nTreat the beginning value as Bad_NoData and compute the Aggregate\nNo End Bound\nTreat the ending value as Bad_NoData and compute the Aggregate\nBound Bad\nUse as value and compute the Aggregate as defined\nBound Uncertain\nUse as value and compute the Aggregate as defined"
+    },
+    {
+      "Id": "e4e9e0ba-3bd0-4b15-8bc2-5541126da507",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.24 NumberOfTransitions"
+    },
+    {
+      "Id": "537894a8-3b60-48b0-a371-afecf3d766f3",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.24 NumberOfTransitions\n---\n",
+      "Content": "The NumberOfTransitions Aggregate defined in[Table 35](/\u00A7_Ref389487163) returns a count of the number of transition the Variable had during the interval. If one or more raw values are Bad, they are not included in the count, and the Aggregate StatusCode is determined using the StatusCode Calculation (see[5.3](/\u00A7_Ref364945480)) for non-time based Aggregates.\nThe earliest transition shall be calculated by comparing the earliest non-Bad value in the interval to the previous non-Bad value. A transition occurred if no previous non-Bad value exists or if the earliest non-Bad value is different. The endTime is not considered part of the interval, so a transition occurring at the endTime is not included.\nUnless otherwise indicated, StatusCodes are Good, Calculated.\nTable 35- NumberOfTransitions Aggregate summary\nNumberOfTransitions Aggregate Characteristics\nType\nCalculated\nData Type\nInt32 (negative values are not allowed)\nUse Bounds\nCustom, a non-Bad value prior to the interval is used\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nPercentValues\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nTreat the beginning value as Bad_NoData and compute the Aggregate\nNo End Bound\nTreat the ending value as Bad_NoData and compute the Aggregate\nBound Bad\nUse as value and compute the Aggregate as defined\nBound Uncertain\nUse as value and compute the Aggregate as defined"
+    },
+    {
+      "Id": "18cb52ec-4ad3-4af8-957b-c92f6ea08f08",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.25 Start"
+    },
+    {
+      "Id": "5b7a7545-7884-4a21-a70f-996d83aadfff",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.25 Start\n---\n",
+      "Content": "The Start Aggregate defined in[Table 36](/\u00A7_Ref389487525) retrieves the earliest raw value within the interval, and returns that value and status with the timestamp at which that value occurs. If no values are in the interval then the StatusCode is Bad_NoData.\nTable 36- Start Aggregate summary\nStart Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nNone\nTimestamp\nTime of Raw Value\n\nStatusCode Calculations\nCalculation Method\nCustom\nThe raw value status is returned\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nNot Set\nInterpolated\nNot Set\nRaw\nAlways\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nDoes not apply\nNo End Bound\nDoes not apply\nBound Bad\nDoes not apply\nBound Uncertain\nDoes not apply"
+    },
+    {
+      "Id": "657cdb49-ee49-4af8-a32f-55971fa3efa0",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.26 End"
+    },
+    {
+      "Id": "d906973e-b096-433b-9bf4-dd69f7dccc11",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.26 End\n---\n",
+      "Content": "The End Aggregate defined in[Table 37](/\u00A7_Ref389487540) retrieves the latest raw value within the interval, and returns that value and status with the timestamp at which that value occurs. If no values are in the interval then the StatusCode is Bad_NoData.\nTable 37- End Aggregate summary\nEnd Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nNone\nTimestamp\nTime of Raw Value\n\nStatusCode Calculations\nCalculation Method\nCustom\nThe raw value status is returned\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nNot Set\nInterpolated\nNot Set\nRaw\nAlways\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nDoes not apply\nNo End Bound\nDoes not apply\nBound Bad\nDoes not apply\nBound Uncertain\nDoes not apply"
+    },
+    {
+      "Id": "67eeaabb-b5d8-443b-a0ca-872061862324",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.27 Delta"
+    },
+    {
+      "Id": "a9df7d80-3fa5-4a02-9d35-4a37380ea587",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.27 Delta\n---\n",
+      "Content": "The Delta Aggregate defined in[Table 38](/\u00A7_Ref389487554) retrieves the difference between the earliest and latest Good raw values in the interval. The Aggregate is negative if the latest value is less than the earliest value. The status is Uncertain_DataSubNormal if non-Good values are skipped while looking for the first or last values. The status is Good otherwise. The status is Bad_NoData if no Good raw values exist.\nTable 38- Delta Aggregate summary\nDelta Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nNone\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nUncertain_DataSubNormal if non-Good values are skipped while looking for the first or last values\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\n\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nDoes not apply\nNo End Bound\nDoes not apply\nBound Bad\nDoes not apply\nBound Uncertain\nDoes not apply"
+    },
+    {
+      "Id": "37887fa5-af63-4656-8087-a6d8bb5e113f",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.28 StartBound"
+    },
+    {
+      "Id": "b00c3eb1-2ce5-4d9f-9edd-01ef01dc72b1",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.28 StartBound\n---\n",
+      "Content": "The StartBound Aggregate defined in[Table 39](/\u00A7_Ref389487576) returns the value and status at the StartTime for the interval by calculating the Simple Bounding Values for the interval (see[3.1.9](/\u00A7_Ref364944831)).\nTable 39- StartBound Aggregate summary\nStartBound Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nSimple\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nThe status of the start bound.\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nNot Set\nInterpolated\nSet Sometimes\nIf the bound is interpolated\nRaw\nSet Sometimes\nIf a value exists at the start time\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nBad_NoData\nNo End Bound\nDoes not apply\nBound Bad\nSame as bound\nBound Uncertain\nSame as bound"
+    },
+    {
+      "Id": "f21a3890-67e1-42fa-9641-357d73a4b534",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.29 EndBound"
+    },
+    {
+      "Id": "ed5ec930-d440-47e6-b7a8-abcb13f44518",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.29 EndBound\n---\n",
+      "Content": "The EndBound Aggregate defined in[Table 40](/\u00A7_Ref389487593) returns the value and status at the EndTime for the interval by calculating the Simple Bounding Values for the interval (see[3.1.9](/\u00A7_Ref364944831)).\nThe timestamp returned is always the start of the interval and Calculated bit is set.\nTable 40- EndBound Aggregate summary\nEndBound Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nSimple\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nThe status of the end bound.\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nDoes not apply\nNo End Bound\nBad_NoData\nBound Bad\nSame as bound\nBound Uncertain\nSame as bound"
+    },
+    {
+      "Id": "6e81dcf2-107e-4f25-a264-a99703a2d18c",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.30 DeltaBounds"
+    },
+    {
+      "Id": "70dcf0b3-22cb-4761-b3d9-47e474e23f38",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.30 DeltaBounds\n---\n",
+      "Content": "The DeltaBounds Aggregate defined in[Table 41](/\u00A7_Ref389487615) returns the difference between the StartBound and the EndBound Aggregates with the exception that both the start and end shall be Good. If the end value is less than the start value, the result will be negative. If the end value is the same as the start value the result will be zero. If the end value is greater than the start value, the result will be positive. If one or both values are Bad the return status will be Bad_NoData. If one or both values are Uncertain the status will be Uncertain_DataSubNormal.\nTable 41- DeltaBounds Aggregate summary\nDeltaBounds Aggregate Characteristics\nType\nCalculated\nData Type\nSame as Source\nUse Bounds\nSimple\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nGood if both bounds are Good\nUncertain_DataSubNormal if either bound is uncertain\nBad_NoData if either bound is Bad\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nBad_NoData\nNo End Bound\nBad_NoData\nBound Bad\nBad_NoData\nBound Uncertain\nUncertain_DataSubNormal"
+    },
+    {
+      "Id": "9d174765-b583-40ae-9c1b-3e2217418569",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.31 DurationGood"
+    },
+    {
+      "Id": "25621733-f89a-461c-8300-c9aeaa182288",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.31 DurationGood\n---\n",
+      "Content": "The DurationGood Aggregate defined in[Table 42](/\u00A7_Ref389487797) divides the interval into regions of Good and non-Good data. Each region starts with a data point in the interval. If that data point is Good the region is Good. The Aggregate is the sum of the duration of all Good regions expressed in milliseconds.\nThe status of the first region is determined by finding the first data point at or before the start of the interval. If no value exists, the first region is Bad.\nEach Aggregate is returned with timestamp of the start of the interval. StatusCodes are Good, Calculated.\nTable 42- DurationGood Aggregate summary\nDurationGood Aggregate Characteristics\nType\nCalculated\nData Type\nDuration\nUse Bounds\nUses status of bounding value\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nStatusCode is always Good, Calculated\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNo special handing required\nNo End Bound\nNo special handing required\nBound Bad\nNo special handing required\nBound Uncertain\nNo special handing required"
+    },
+    {
+      "Id": "032b14be-b778-4263-b0bc-52cda183d598",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.32 DurationBad"
+    },
+    {
+      "Id": "728c07dc-3d17-40b2-acde-c9f6b20d4290",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.32 DurationBad\n---\n",
+      "Content": "The DurationBad Aggregate defined in[Table 43](/\u00A7_Ref389487815) divides the interval into regions of Bad and non-Bad data. Each region starts with a data point in the interval. If that data point is Bad the region is Bad. The Aggregate is the sum of the duration of all Bad regions expressed in milliseconds.\nThe status of the first region is determined by finding the first data point at or before the start of the interval. If no value exists, the first region is Bad.\nEach Aggregate is returned with timestamp of the start of the interval. StatusCodes are Good, Calculated.\nTable 43- DurationBad Aggregate summary\nDurationBad Aggregate Characteristics\nType\nCalculated\nData Type\nDuration\nUse Bounds\nUses status of bounding value\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nStatusCode is always Good, Calculated\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNo special handing required\nNo End Bound\nNo special handing required\nBound Bad\nNo special handing required\nBound Uncertain\nNo special handing required"
+    },
+    {
+      "Id": "7b3f3e7a-53e8-424c-b852-5bd5591f7ffb",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.33 PercentGood"
+    },
+    {
+      "Id": "c87e21dc-9fe5-406e-aefc-cfb64cc468ac",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.33 PercentGood\n---\n",
+      "Content": "The PercentGood Aggregate defined in[Table 44](/\u00A7_Ref389487841) performs the following calculation:\nPercentGood = DurationGood / ProcessingInterval x 100\nwhere:\nDurationGood is the result from the DurationGood Aggregate, calculated using the ProcessingInterval supplied to PercentGood call.\nProcessingInterval is the duration of interval.\nIf the last interval is a partial interval then the duration of the partial interval is used in the calculation. Each Aggregate is returned with timestamp of the start of the interval. StatusCodes are Good, Calculated.\nTable 44- PercentGood Aggregate summary\nPercentGood Aggregate Characteristics\nType\nCalculated\nData Type\nDouble (percent)\nUse Bounds\nSimple (used in DurationGood calculation)\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nAlways Good\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNo special handing required\nNo End Bound\nNo special handing required\nBound Bad\nNo special handing required\nBound Uncertain\nNo special handing required"
+    },
+    {
+      "Id": "de9049a5-2b1c-42c7-85bc-fc4ec53338f9",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.34 PercentBad"
+    },
+    {
+      "Id": "641ead04-10da-4434-81f6-41992e1122dd",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.34 PercentBad\n---\n",
+      "Content": "The PercentBad Aggregate defined in[Table 45](/\u00A7_Ref389487861) performs the following calculation:\nPercentBad = DurationBad / ProcessingInterval x 100\nwhere:\nDurationBad is the result from the DurationBad Aggregate, calculated using the ProcessingInterval supplied to PercentBad call.\nProcessingInterval is the duration of interval.\nIf the last interval is a partial interval then the duration of the partial interval is used in the calculation. Each Aggregate is returned with timestamp of the start of the interval. StatusCodes are Good, Calculated.\nTable 45- PercentBad Aggregate summary\nPercentBad Aggregate Characteristics\nType\nCalculated\nData Type\nDouble (percent)\nUse Bounds\nSimple (used in DurationBad calculation)\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nAlways Good.\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNo special handing required\nNo End Bound\nNo special handing required\nBound Bad\nNo special handing required\nBound Uncertain\nNo special handing required"
+    },
+    {
+      "Id": "4213c73e-c153-4402-b854-bf167732017c",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.35 WorstQuality"
+    },
+    {
+      "Id": "45632aa1-c004-429a-a770-cea8e5d94b09",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.35 WorstQuality\n---\n",
+      "Content": "The WorstQuality Aggregate defined in[Table 46](/\u00A7_Ref389487882) returns the worst status of the raw values in the interval where a Bad status is worse than Uncertain, which is worse than Good. No distinction is made between the specific reasons for the status. The server shall ignore the TreatUncertainAsBad for this aggregate.\nIf multiple values exist with the worst quality the MultipleValues bit is set. If multiple values exist with the worst quality but different StatusCodes then the StatusCode of the first value is returned.\nThis Aggregate returns the worst StatusCode as the value of the Aggregate.\nThe timestamp is always the start of the interval. The StatusCodes are Good, Calculated.\nTable 46- WorstQuality Aggregate summary\nWorstQuality Aggregate Characteristics\nType\nCalculated\nData Type\nStatusCode\nUse Bounds\nNone\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nAlways Good\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nUsed\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNo special handing required\nNo End Bound\nNo special handing required\nBound Bad\nNo special handing required\nBound Uncertain\nNo special handing required"
+    },
+    {
+      "Id": "5cba490a-2450-439a-bff1-6f2dba763d9b",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.36 WorstQuality2"
+    },
+    {
+      "Id": "6a29893c-c0b9-47da-a6b8-daa62088bcef",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.36 WorstQuality2\n---\n",
+      "Content": "The WorstQuality2 Aggregate defined in[Table 47](/\u00A7_Ref389487900) returns the worst status of the raw values in the interval where a Bad status is worse than Uncertain, which is worse than Good. No distinction is made between the specific reasons for the status. The server shall ignore the TreatUncertainAsBad for this aggregate.\nThe start bound calculated using Simple Bounding Values(see[3.1.9](/\u00A7_Ref364944831)) is always included when determining the worst quality.\nIf multiple values exist with the worst quality the MultipleValues bit is set. If multiple values exist with the worst quality but different StatusCodes then the StatusCode of the first value is returned.\nThis Aggregate returns the worst StatusCode as the value of the Aggregate.\nThe timestamp is always the start of the interval. The StatusCodes are Good, Calculated.\nTable 47- WorstQuality2 Aggregate summary\nWorstQuality2 Aggregate Characteristics\nType\nCalculated\nData Type\nStatusCode\nUse Bounds\nSimple\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nAlways Good\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nUsed\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNo special handing required\nNo End Bound\nNo special handing required\nBound Bad\nNo special handing required\nBound Uncertain\nNo special handing required"
+    },
+    {
+      "Id": "18e31f94-946b-4d86-a3f1-b3a9cab2d96b",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.37 StandardDeviationSample"
+    },
+    {
+      "Id": "141697bb-a4c3-41e6-8b32-7be475535727",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.37 StandardDeviationSample\n---\n",
+      "Content": "The StandardDeviationSample Aggregate defined in[Table 48](/\u00A7_Ref389487918) uses the formula:\nThe image you\u0027ve provided appears to be a digital representation of a scientific chart from a document or presentation slide. This particular chart is titled \u0022StandardDeviationSample\u0022 and seems to relate to \u0022OPC UA,\u0022 which stands for OPC Unified Architecture, a standard for industrial automation and interoperability. The chart features a graph with one line that represents the standard deviation of a dataset over time. The x-axis (horizontal) is labeled \u0022x\u0022 but does not have specific numerical values, suggesting that it represents some form of continuous variable like time or another independent variable. The y-axis (vertical) is labeled \u0022\u03C3,\u0022 which stands for the Greek letter sigma and commonly denotes the standard deviation in statistics. On the graph, there\u0027s a vertical dashed line with a label \u0022\u03C3_avg\u0022 at the x-coordinate of 1, indicating the average value of the dataset over time. The line itself shows fluctuations that correspond to the standard deviation of the data points at each time or index point on the x-axis. Below the graph, there\u0027s a formula written in mathematical notation: \u03C3_avg = \u221A(\u2211[(x_i - x_avg)^2 / n) This equation represents the calculation for the sample average of the data points (\u03C3_avg), where \u0022x_i\u0022 represents each individual data point, \u0022x_avg\u0022 is the average value, and \u0022n\u0022 is the number of data points. The \u221A symbol denotes the square root function."
+    },
+    {
+      "Id": "639c5c71-0f93-41d3-8cce-aca026446804",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.37 StandardDeviationSample\n---\n",
+      "Content": "The style of the image suggests it could be a screenshot from a presentation slide or a digital document that discusses statistical analysis in the context of industrial automation or measurement data analysis. However, without additional context from the rest of the document or presentation, the specific details about the dataset and its significance to OPC UA are not clear.\nwhere X is each Good raw value in the interval, Avg(X) is the average of the Good raw values, and n is the number of Good raw values in the interval.\nFor every interval where n = 1, a value of 0 is returned.\nIf any non-Good values were ignored, the Aggregate quality is uncertain/subnormal.\nAll interval Aggregates return timestamp of the start of the interval. Unless otherwise indicated, qualities are Good, Calculated.\nThis calculation is for a sample population where the calculation is done on a subset of the full set  of data. Use StandardDeviationPopulation to calculate the standard deviation of a full set of data (see[5.4.3.39](/\u00A7_Ref389488047)). An example would be when the underlying data is sampled from the data source versus stored on an exception basis.\nTable 48- StandardDeviationSample Aggregate summary\nStandardDeviationSample Aggregate Characteristics\nType\nCalculated\nData Type\nDouble\nUse Bounds\nNone\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nAlways Good\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNo special handing required\nNo End Bound\nNo special handing required"
+    },
+    {
+      "Id": "e725611a-0dd7-4f4d-98cc-75ca0364b36f",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.37 StandardDeviationSample\n---\n",
+      "Content": "No special handing required\nBound Bad\nNo special handing required\nBound Uncertain\nNo special handing required\nConformance Units\nAggregates StandardDeviationSample"
+    },
+    {
+      "Id": "20548e76-ee89-46d9-8289-604d30290644",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.38 VarianceSample"
+    },
+    {
+      "Id": "f5072ba3-d1b0-430b-850e-458e25f1a0b9",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.38 VarianceSample\n---\n",
+      "Content": "The VarianceSample Aggregate defined in[Table 49](/\u00A7_Ref389488178) retrieves the square of the standard deviation. Its behaviour is the same as the StandardDeviationSample Aggregate. Unless otherwise indicated, qualities are Good, Calculated.\nThis calculation is for a sample population where the calculation is done on a subset of the full population. Use VariancePopulation to calculate the variance of a full set of data ([5.4.3.40](/\u00A7_Ref318147103)).\nTable 49- VarianceSample Aggregate summary\nVarianceSample Aggregate Characteristics\nType\nCalculated\nData Type\nDouble\nUse Bounds\nNone\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nAlways Good\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNo special handing required\nNo End Bound\nNo special handing required\nBound Bad\nNo special handing required\nBound Uncertain\nNo special handing required"
+    },
+    {
+      "Id": "a63a8b20-d7df-4aed-a43d-da68275467b9",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.39 StandardDeviationPopulation"
+    },
+    {
+      "Id": "67e99480-dce2-48ee-a58f-fe25850d55a3",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.39 StandardDeviationPopulation\n---\n",
+      "Content": "The StandardDeviationPopulation Aggregate defined in[Table 50](/\u00A7_Ref389488216) uses the formula:\nThe image shows a mathematical expression representing a formula for calculating the population standard deviation in statistics. It appears to be a screenshot from a software application, possibly a spreadsheet or an equation editor. The expression includes several symbols and numbers:- \u03C3\u00B2_pop (the squared population standard deviation)- \u2211 (summation symbol, indicating the sum of all values in a series)- (x - x\u0304)\u00B2 (the variance term, which represents the square of the difference between each individual value (x) and the sample mean (x\u0304))- \u03BD (n\u00FAmero de dados ou n), representing the total number of observations or data points in the dataset In addition to the mathematical expression, there is a visual representation of a histogram at the bottom right corner of the image. This histogram shows the distribution of data points, with bars indicating the frequency of each value within the dataset. The histogram has a grid on the y-axis representing frequency and a bar for each observed value on the x-axis. On the right side of the histogram, there\u0027s a small text \u0022OPC and OPC UA,\u0022 which could refer to specific standards or protocols related to industrial interoperability that are relevant in this context. However, without additional information, it is not clear what these acronyms stand for. The background of the image has a gradient from dark to light grey, providing a neutral backdrop for the mathematical expression and histogram. The style of the document suggests it might be part of an academic paper or textbook related to statistics or data analysis, specifically focusing on standard deviation calculations in population data."
+    },
+    {
+      "Id": "f1a39483-113e-4c65-b580-3b9f9266ed84",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.39 StandardDeviationPopulation\n---\n",
+      "Content": "where X is each Good raw value in the interval, Avg(X) is the average of the Good raw values, and n is the number of Good raw values in the interval.\nFor every interval where n = 1, a value of 0 is returned.\nIf any non-Good values were ignored, the Aggregate quality is uncertain/subnormal.\nAll interval Aggregates return timestamp of the start of the interval. Unless otherwise indicated, qualities are Good, Calculated.\nThis calculation is for a full population where the calculation is done on the full set of data. Use StandardDeviationSample to calculate the standard deviation of a subset of the full population ([5.4.3.37](/\u00A7_Ref318147126)). An example would be when the underlying data is collected on an exception basis versus sampled from the data source.\nTable 50- StandardDeviationPopulation Aggregate summary\nStandardDeviationPopulation Aggregate Characteristics\nType\nCalculated\nData Type\nDouble\nUse Bounds\nNone\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nAlways Good\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNo special handing required\nNo End Bound\nNo special handing required\nBound Bad\nNo special handing required\nBound Uncertain\nNo special handing required"
+    },
+    {
+      "Id": "282be12c-68ec-4504-bc26-44558c250eaf",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3 Specific aggregated data handling\n---\n",
+      "Content": "5.4.3.40 VariancePopulation"
+    },
+    {
+      "Id": "7f5b1638-a9c1-455e-8e62-ab5d3138fe12",
+      "Header": "Document: Part 13 - Aggregates\nSection: 5.4.3.40 VariancePopulation\n---\n",
+      "Content": "The VariancePopulation Aggregate defined in[Table 51](/\u00A7_Ref389488374) retrieves the square of the standard deviation. Its behaviour is the same as the StandardDeviationPopulation Aggregate. Unless otherwise indicated, qualities are Good, Calculated.\nThis calculation is for a full population where the calculation is done on the full set of data. Use VarianceSample to calculate the variance of a subset of the full population ([5.4.3.38](/\u00A7_Ref318147154)).\nTable 51- VariancePopulation Aggregate summary\nVariancePopulation Aggregate Characteristics\nType\nCalculated\nData Type\nDouble\nUse Bounds\nNone\nTimestamp\nStartTime\n\nStatusCode Calculations\nCalculation Method\nCustom\nAlways Good\nPartial\nSet Sometimes\nIf an interval is not a complete interval\nCalculated\nSet Always\nInterpolated\nNot Set\nRaw\nNot Set\nMulti Value\nNot Set\n\nStatusCode Common Special Cases\nBefore Start of Data\nBad_NoData\nAfter End of Data\nBad_NoData\nNo Start Bound\nNo special handing required\nNo End Bound\nNo special handing required\nBound Bad\nNo special handing required\nBound Uncertain\nNo special handing required"
+    },
+    {
+      "Id": "54ce0890-8cc1-4da1-85c8-8e56f1917682",
+      "Header": "Document: Part 13 - Aggregates\n---\n",
+      "Content": "Annex\u00A0A(informative)\nA.1 Aggregate Examples"
+    },
+    {
+      "Id": "f889e26b-c449-401c-b443-e5e7a280fa64",
+      "Header": "Document: Part 13 - Aggregates\nSection: A.1 Aggregate Examples\n---\n",
+      "Content": "A.1.1 Aggregate Examples CSV"
+    },
+    {
+      "Id": "865f4d17-8a5c-4a62-8d91-e3c96c6da475",
+      "Header": "Document: Part 13 - Aggregates\nSection: A.1.1 Aggregate Examples CSV\n---\n",
+      "Content": "The Aggregate examples are produced programatically with the resulting output as a CSV file.\nThe CSV file released with this version of the standard can be found here:\n[http://www.opcfoundation.org/UA/schemas/1.05/AggregateExamples.csv](http://www.opcfoundation.org/UA/schemas/1.05/AggregateExamples.csv)\nNOTE The latest CSV that is compatible with this version of the standard can be found here:\nhttp://www.opcfoundation.org/UA/schemas/AggregateExamples.csv\n\u0022 http://www.opcfoundation.org/UA/schemas/AggregateExamples.csv\n________"
+    }
+  ]
+}

@@ -1,0 +1,615 @@
+{
+  "Title": "Part 16 - State Machines",
+  "Chunks": [
+    {
+      "Id": "f93343b3-5979-4ce8-8c33-14f44cf3e983",
+      "Header": "Document: Part 16 - State Machines\n---\n",
+      "Content": "1 Scope"
+    },
+    {
+      "Id": "0478aa41-1f07-45da-a081-8dd8e2912898",
+      "Header": "Document: Part 16 - State Machines\nSection: 1 Scope\n---\n",
+      "Content": "This part of the OPC Unified Architecture defines an Information Model. The Information Model describes the basic infrastructure to model state machines."
+    },
+    {
+      "Id": "13acbec5-6053-4be2-9611-5c4d7c7f1571",
+      "Header": "Document: Part 16 - State Machines\n---\n",
+      "Content": "2 Normative references"
+    },
+    {
+      "Id": "4faea9eb-dac2-420b-a725-4496b429b998",
+      "Header": "Document: Part 16 - State Machines\nSection: 2 Normative references\n---\n",
+      "Content": "The following documents, in whole or in part, are normatively referenced in this document and are indispensable for its application. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments and errata) applies.\nOPC 10000-1, OPC Unified Architecture - Part 1: Concepts\n[http://www.opcfoundation.org/UA/Part1/](http://www.opcfoundation.org/UA/Part1/)\nOPC 10000-3, OPC Unified Architecture - Part 3: Address Space Model\n[http://www.opcfoundation.org/UA/Part3/](http://www.opcfoundation.org/UA/Part3/)\nOPC 10000-4, OPC Unified Architecture - Part 4: Services\n[http://www.opcfoundation.org/UA/Part4/](http://www.opcfoundation.org/UA/Part4/)\nOPC 10000-5, OPC Unified Architecture - Part 5: Information Model\n[http://www.opcfoundation.org/UA/Part5/](http://www.opcfoundation.org/UA/Part5/)\nOPC 10000-6, OPC Unified Architecture - Part 6: Mappings\n[http://www.opcfoundation.org/UA/Part6/](http://www.opcfoundation.org/UA/Part6/)\nOPC 10000-7, OPC Unified Architecture - Part 7: Profiles\n[http://www.opcfoundation.org/UA/Part7/](http://www.opcfoundation.org/UA/Part7/)\nOPC 10000-9, OPC Unified Architecture - Part 9: Alarms and conditions"
+    },
+    {
+      "Id": "a4a60702-9a59-4872-9883-8980f23531c1",
+      "Header": "Document: Part 16 - State Machines\nSection: 2 Normative references\n---\n",
+      "Content": "[http://www.opcfoundation.org/UA/Part9/](http://www.opcfoundation.org/UA/Part9/)\nOPC 10000-10, OPC Unified Architecture - Part 10: Programs\n[http://www.opcfoundation.org/UA/Part10/](http://www.opcfoundation.org/UA/Part10/)"
+    },
+    {
+      "Id": "ce90f324-5958-4a22-a47a-39e6ce00f8ae",
+      "Header": "Document: Part 16 - State Machines\n---\n",
+      "Content": "3 Terms, definitions, abbreviated terms and conventions"
+    },
+    {
+      "Id": "1acc7c50-2605-4c4e-aa24-2d8adb411293",
+      "Header": "Document: Part 16 - State Machines\nSection: 3 Terms, definitions, abbreviated terms and conventions\n---\n",
+      "Content": "3.1 Terms and definitions"
+    },
+    {
+      "Id": "2eb4c752-8084-4d37-be56-0b16d3b78426",
+      "Header": "Document: Part 16 - State Machines\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "For the purposes of this document, the terms and definitions given in[OPC 10000-1](/\u00A7UAPart1),[OPC 10000-3](/\u00A7UAPart3), and[OPC 10000-5](/\u00A7UAPart5) apply."
+    },
+    {
+      "Id": "78c64035-c590-4270-88d3-a2be53288a04",
+      "Header": "Document: Part 16 - State Machines\n---\n",
+      "Content": "4 State Machine Model"
+    },
+    {
+      "Id": "b6dfd3b2-9444-4cd8-b9cc-b2097165d9d9",
+      "Header": "Document: Part 16 - State Machines\nSection: 4 State Machine Model\n---\n",
+      "Content": "4.1 General"
+    },
+    {
+      "Id": "74de156d-232e-497c-af1d-6a98a8ea8b6f",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.1 General\n---\n",
+      "Content": "This document describes the basic infrastructure to model state machines. It defines ObjectTypes, VariableTypes and ReferenceTypes and explains how they should be used.\nThis document is an integral part of this standard, that is, the types defined in this document shall be used as defined. However, it is not required but strongly recommended that a Server uses these types to expose its state machines. The defined types may be subtyped to refine their behaviour.\nWhen a Server exposes its state machine using the types defined in this document, it might only provide a simplified view on its internal state machine, hiding for example substates or putting several internal states into one exposed state.\nThe scope of the state machines described in this document is to provide an appropriate foundation for state machines needed for[OPC 10000-9](/\u00A7UAPart9) and[OPC 10000-10](/\u00A7UAPart10). It does not provide more complex functionality of a state machine like parallel states, forks and joins, history states, choices and junctions, etc. However, the base state machine defined in this document can be extended to support such concepts.\nThe following clauses describe examples of state machines, define state machines in the context of this document and define the representation of state machines in OPC UA. Finally, some examples of state machines, represented in OPC UA, are given."
+    },
+    {
+      "Id": "b11564ec-5c2b-4970-889a-b1d6012b0409",
+      "Header": "Document: Part 16 - State Machines\nSection: 4 State Machine Model\n---\n",
+      "Content": "4.2 Examples of finite state machines"
+    },
+    {
+      "Id": "c5366315-01e4-4d52-9b43-948576386fa6",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.2 Examples of finite state machines\n---\n",
+      "Content": "4.2.1 Simple state machine"
+    },
+    {
+      "Id": "3ffa75ef-37ea-4bf4-ba11-6875a66ca8b6",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.2.1 Simple state machine\n---\n",
+      "Content": "The following example provides an overview of the base features that the state machines defined in this specification will support. In the following, a more complex example is given, that also supports sub-state machines.\n[Figure 1](/\u00A7_Ref114466674) gives an overview over a simple state machine. It contains the three states \u0022State1\u0022, \u0022State2\u0022 and \u0022State3\u0022. There are transitions from \u0022State1\u0022 to \u0022State2\u0022, \u0022State2\u0022 to \u0022State2\u0022, etc. Some of the transitions provide additional information with regard to what causes (or triggers) the transition, for example the call of \u0022Method1\u0022 for the transition from \u0022State1\u0022 to \u0022State2\u0022. The effect (or action) of the transition can also be specified, for example the generation of an Event of the \u0022EventType1\u0022 in the same transition. The notation used to identify the cause is simply listing it on the transition, the effect is prefixed with a \u0022/\u0022. More than one cause or effect are separated by a \u0022,\u0022. Not every transition has to have a cause or effect, for example the transition between \u0022State2\u0022 and \u0022State3\u0022."
+    },
+    {
+      "Id": "2d2b0587-36bd-4e0d-8738-389cfe278e13",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.2.1 Simple state machine\nCaption: Figure 1 - Example of a simple state machine\n---\n",
+      "Content": "[image002.png](images/image002.png)"
+    },
+    {
+      "Id": "d180b56f-85cc-4a3d-aa82-44c39acbc07f",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.2.1 Simple state machine\n---\n",
+      "Content": "Figure 1 - Example of a simple state machine\nFor simplicity, the state machines described in this specification will only support causes in form of specifying Methods that have to be called and effects in form of EventTypes of Events that are generated. However, the defined infrastructure allows extending this to support additional different causes and effects."
+    },
+    {
+      "Id": "94a22a3b-e6e4-4a51-816d-8565d85dcd16",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.2 Examples of finite state machines\n---\n",
+      "Content": "4.2.2 State machine containing substates"
+    },
+    {
+      "Id": "9b610ba4-fa52-4371-ba0c-2afc8d4a19c2",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.2.2 State machine containing substates\n---\n",
+      "Content": "[Figure 2](/\u00A7_Ref33077681) shows an example of a state machine where \u0022State6\u0022 is a sub-state-machine. This means, that when the overall state machine is in State6, this state can be distinguished to be in the sub-states \u0022State7\u0022 or \u0022State8\u0022. Sub-state-machines can be nested, that is, \u0022State7\u0022 could be another sub-state-machine."
+    },
+    {
+      "Id": "b702c911-fd46-4bb8-954e-43996d5a2659",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.2.2 State machine containing substates\nCaption: Figure 2 - Example of a state machine having a sub-machine\n---\n",
+      "Content": "[image003.png](images/image003.png)"
+    },
+    {
+      "Id": "69d92cfb-db8e-427c-a7a6-e1afa99f86eb",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.2.2 State machine containing substates\n---\n",
+      "Content": "Figure 2 - Example of a state machine having a sub-machine"
+    },
+    {
+      "Id": "cf475dc0-72cf-4196-ac20-74717ba2e73a",
+      "Header": "Document: Part 16 - State Machines\nSection: 4 State Machine Model\n---\n",
+      "Content": "4.3 Definition of state machine"
+    },
+    {
+      "Id": "e3d4ec19-9444-439a-9660-48d32f284c78",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.3 Definition of state machine\n---\n",
+      "Content": "The infrastructure of state machines defined in this specification only deals with the basics of state machines needed to support[OPC 10000-9](/\u00A7UAPart9) and[OPC 10000-10](/\u00A7UAPart10). The intention is to keep the base simple but extensible.\nFor the state machines defined in this specification we assume that state machines are typed and instances of a type have their states and semantics specified by the type. For some types, this means that the states and transitions are fixed. For other types the states and transitions may be dynamic or unknown. A state machine where all the states are specified explicitly by the type is called a finite state machine.\nTherefore, we distinguish between StateMachineType and StateMachine and their subtypes like FiniteStateMachineType. The StateMachineType specifies a description of the state machine, that is, its states, transitions, etc., whereas the StateMachine is an instance of the StateMachineType and only contains the current state.\nEach StateMachine contains information about the current state. If the StateMachineType has SubStateMachines, the StateMachine also contains information about the current state of the SubStateMachines. StateMachines which have their states completely defined by the type are instances of a FiniteStateMachineType.\nEach FiniteStateMachineType has one or more States. For simplicity, we do not distinguish between different States like the start or the end states.\nEach State can have one or more SubStateMachines.\nEach FiniteStateMachineType may have one or more Transitions. A Transition is directed and points from one State to another State.\nEach Transition can have one or more Causes. A Cause leads a FiniteStateMachine to change its current State from the source of the Transition to its target. In this specification we only specify Method calls to be Causes of Transitions. Transitions"
+    },
+    {
+      "Id": "33c5d8e0-dc60-44d7-9374-957ea7236742",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.3 Definition of state machine\n---\n",
+      "Content": "Transitions. Transitions do not have to have a Cause. A Transition can always be caused by some server-internal logic that is not exposed in the AddressSpace.\nEach Transition can have one or more Effects. An Effect occurs if the Transition is used to change the State of a StateMachine. In this specification we only specify the generation of Events to be Effects of a Transition. A Transition is not required to expose any Effects in the AddressSpace.\nAlthough this specification only specifies simple concepts for state machines, the provided infrastructure is extensible. If needed, special States can be defined as well as additional Causes or Effects."
+    },
+    {
+      "Id": "0ffbaabd-6a9a-4822-b736-aafed1a1885b",
+      "Header": "Document: Part 16 - State Machines\nSection: 4 State Machine Model\n---\n",
+      "Content": "4.4 Representation of state machines in the AddressSpace"
+    },
+    {
+      "Id": "b2e57e22-e4f8-42d6-a35a-315715e12ed3",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.1 Overview"
+    },
+    {
+      "Id": "2266c6f8-7296-4d4b-91d6-e72d04c467e6",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.1 Overview\n---\n",
+      "Content": "The types defined in this specification are illustrated in[Figure 3](/\u00A7_Ref33077716). The MyFiniteStateMachineType is a minimal example which illustrates how these Types can be used to describe a StateMachine. See[OPC 10000-9](/\u00A7UAPart9) and[OPC 10000-10](/\u00A7UAPart10) for additional examples of StateMachines."
+    },
+    {
+      "Id": "07ee4a5e-6b7a-4632-8ab0-bbb5ca741d0b",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.1 Overview\nCaption: Figure 3 - The StateMachine Information Model\n---\n",
+      "Content": "[image004.png](images/image004.png)"
+    },
+    {
+      "Id": "c138a883-b00c-42ad-9e55-8d44fd3f53d2",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.1 Overview\n---\n",
+      "Content": "Figure 3 - The StateMachine Information Model"
+    },
+    {
+      "Id": "831de96e-8237-49c8-8098-19b038674c03",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.2 StateMachineType"
+    },
+    {
+      "Id": "3fe29967-dedc-400d-adb6-39cfd2c94719",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.2 StateMachineType\n---\n",
+      "Content": "The StateMachineType is the base ObjectType for all StateMachineTypes. It defines a single Variable which represents the current state of the machine. An instance of this ObjectType shall generate an Event whenever a significant state change occurs. The Server decides which state changes are significant. Servers shall use the GeneratesEvent ReferenceType to indicate which Event(s) could be produced by the StateMachine.\nSubtypes may add Methods which affect the state of the machine. The Executable Attribute is used to indicate whether the Method is valid given the current state of the machine. The generation of AuditEvents for Methods is defined in[OPC 10000-4](/\u00A7UAPart4). A StateMachine may not be active. In this case, the CurrentState and LastTransition Variables shall have a status equal to Bad_StateNotActive(see[Table 19](/\u00A7_Ref33078422)).\nSubtypes may add components which are instances of StateMachineTypes. These components are considered to be sub-states of the StateMachine. SubStateMachines are only active when the parent machine is in an appropriate state.\nEvents produced by SubStateMachines may be suppressed by the parent machine. In some cases, the parent machine will produce a single Event that reflects changes in multiple SubStateMachines.\nFiniteStateMachineType is a subtype of StateMachineType that provides a mechanism to explicitly define the states and transitions. A Server should use this mechanism if it knows what the possible states are and the state machine is not trivial. The FiniteStateMachineType is defined in[4.4.6](/\u00A7_Ref33078720).\nThe StateMachineType is formally defined in[Table 1](/\u00A7_Ref17727931).\nTable 1- StateMachineType definition\nAttribute\nValue\nBrowseName\nStateMachineType\nIsAbstract\nFalse\nReferences\nNodeClass"
+    },
+    {
+      "Id": "ed0f94f3-4476-4d37-8e1b-fb6220d5fba0",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.2 StateMachineType\n---\n",
+      "Content": "References\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasSubtype\nObjectType\nFiniteStateMachineType\nDefined in[4.4.6](/\u00A7_Ref33078906)\nHasComponent\nVariable\nCurrentState\nLocalizedText\nStateVariableType\nMandatory\nHasComponent\nVariable\nLastTransition\nLocalizedText\nTransitionVariableType\nOptional\nConformance Units\nBase Info State Machine Instance\n\nCurrentState stores the current state of an instance of the StateMachineType. CurrentState provides a human readable name for the current state which may not be suitable for use in application control logic. Applications should use the Id Property of CurrentState if they need a unique identifier for the state.\nLastTransition stores the last transition which occurred in an instance of the StateMachineType. LastTransition provides a human readable name for the last transition which may not be suitable for use in application control logic. Applications should use the Id Property of LastTransition if they need a unique identifier for the transition."
+    },
+    {
+      "Id": "e4ac0b11-30c0-458e-89c5-f175908b065a",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.3 StateVariableType"
+    },
+    {
+      "Id": "651f9389-570d-4803-8ca0-d57e9202efe6",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.3 StateVariableType\n---\n",
+      "Content": "The StateVariableType is the base VariableType for Variables that store the current state of a StateMachine as a human readable name.\nThe StateVariableType is formally defined in[Table 2](/\u00A7_Ref33077859).\nTable 2- StateVariableType definition\nAttribute\nValue\nBrowseName\nStateVariableType\nDataType\nLocalizedText\nValueRank\n\u22121 (\u22121 = Scalar)\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the BaseDataVariableType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasSubtype\nVariableType\nFiniteStateVariableType\nDefined in[4.4.7](/\u00A7_Ref33078936)\nHasProperty\nVariable\nId\nBaseDataType\nPropertyType\nMandatory\nHasProperty\nVariable\nName\nQualifiedName\nPropertyType\nOptional\nHasProperty\nVariable\nNumber\nUInt32\nPropertyType\nOptional\nHasProperty\nVariable\nEffectiveDisplayName\nLocalizedText\nPropertyType\nOptional\nHasProperty\nVariable\nContinuationOptions\nDescriptionNodeIdDataType[]\nPropertyType\nOptional\nHasProperty\nVariable\nExtendedInformation\nLocalizedText\nPropertyType\nOptional\nHasProperty\nVariable\nVendorCode\nString\nPropertyType\nOptional\nConformance Units\nBase Info State Machine Instance\n\nId is a name which uniquely identifies the current state within the StateMachineType. A subtype may restrict the DataType.\nName is a QualifiedName which uniquely identifies the current state within the StateMachineType.\nNumber is an integer which uniquely identifies the current state within the StateMachineType.\nEffectiveDisplayName contains a human readable name for the current state of the state machine after taking the state of any SubStateMachines"
+    },
+    {
+      "Id": "88f6db62-54ee-48e4-8ed2-01d956d1a9c7",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.3 StateVariableType\n---\n",
+      "Content": "SubStateMachines in account. There is no rule specified for which state or sub-state should be used. It is up to the Server and will depend on the semantics of the StateMachineType.\nContinuationOptions is an array of options that indicate possible next steps or actions that can be taken from the current state. Each option is represented as a description and a NodeId. The description is a human-readable description of the action, and the optional NodeId represents a Node that is involved in the continuation (e.g., a Method that can be invoked to transition to a new state).\nExtendedInformation provides additional, more detailed information about the current state or the available continuation options. The exact nature of this information depends on the specific implementation and use case.\nVendorCode is an additional, vendor-specific identifier. It can be used to provide vendor-specific information about the current state or the available continuation options.\nStateMachines produce Events which may include the current state of a StateMachine. In that case Servers shall provide the Name, Number and EffectiveDisplayName of the StateVariableType in the Event, even if they are not provided on the instances in the AddressSpace."
+    },
+    {
+      "Id": "64f453ae-d195-45f0-945b-c9b00ee0399a",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.4 DescriptionNodeIdDataType"
+    },
+    {
+      "Id": "7ff856a1-975c-4a6f-b207-12bd934d8bb4",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.4 DescriptionNodeIdDataType\n---\n",
+      "Content": "This structure contains the description and optionally a NodeId. It is used to provide a human-readable description of something plus optionally the NodeId in case the something is represented in the AddressSpace. The structure is defined in[Table 3](/\u00A7_Ref169162623).\nTable 3- DescriptionNodeIdDataType Structure\nName\nType\nDescription\nDescriptionNodeIdDataType\nstructure\n\nDescription\n0:LocalizedText\nThe human-readable description of something.\nNodeId\n0:NodeId\nOptionally provided NodeId, in case the referenced something is represented as Node in the AddressSpace.\n\nIts representation in the AddressSpace is defined in[Table 4](/\u00A7_Ref76309315).\nTable 4- DescriptionNodeIdDataType Definition\nAttribute\nValue\nBrowseName\nDescriptionNodeIdDataType\nIsAbstract\nFalse\nDescription\nA human-readable description of something plus optionally the NodeId in case the something is represented in the AddressSpace\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of Structure defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nBase Info State Machine DescriptionNodeIdDataType"
+    },
+    {
+      "Id": "10fa8e36-0b12-44b0-a749-bd6ab1dcf29f",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.5 TransitionVariableType"
+    },
+    {
+      "Id": "6a4a8f06-0df2-4dfe-b903-4dc781b599f1",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.5 TransitionVariableType\n---\n",
+      "Content": "The TransitionVariableType is the base VariableType for Variables that store a Transition that occurred within a StateMachine as a human readable name.\nThe SourceTimestamp for the value specifies when the Transition occurred. This value may also be exposed with the TransitionTime Property.\nThe TransitionVariableType is formally defined in[Table 5](/\u00A7_Ref33077888).\nTable 5- TransitionVariableType definition\nAttribute\nValue\nBrowseName\nTransitionVariableType\nDataType\nLocalizedText\nValueRank\n\u22121 (\u22121 = Scalar)\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the BaseDataVariableType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasSubtype\nVariableType\nFiniteTransitionVariableType\nDefined in[4.4.8](/\u00A7_Ref33078981)\nHasProperty\nVariable\nId\nBaseDataType\nPropertyType\nMandatory\nHasProperty\nVariable\nName\nQualifiedName\nPropertyType\nOptional\nHasProperty\nVariable\nNumber\nUInt32\nPropertyType\nOptional\nHasProperty\nVariable\nTransitionTime\nUtcTime\nPropertyType\nOptional\nHasProperty\nVariable\nEffectiveTransitionTime\nUtcTime\nPropertyType\nOptional\nConformance Units\nBase Info State Machine Instance\n\nId is a name which uniquely identifies a Transition within the StateMachineType. A subtype may restrict the DataType.\nName is a QualifiedName which uniquely identifies a transition within the StateMachineType.\nNumber is an integer which uniquely identifies a transition within the StateMachineType.\nTransitionTime specifies when the transition occurred.\nEffectiveTransitionTime"
+    },
+    {
+      "Id": "0fa9c72e-6e7a-4654-b67f-4ebd488bf94c",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.5 TransitionVariableType\n---\n",
+      "Content": ".\nEffectiveTransitionTime specifies the time when the current state or one of its substates was entered. If, for example, a StateA is active and - while active - switches several times between its substates SubA and SubB, then the TransitionTime stays at the point in time where StateA became active whereas the EffectiveTransitionTime changes with each change of a substate."
+    },
+    {
+      "Id": "e0bf3c1d-6555-4ca0-84a7-fc5aa1e1a4f0",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.6 FiniteStateMachineType"
+    },
+    {
+      "Id": "0f505fe9-f621-4f01-8ff9-99c18b9ee616",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.6 FiniteStateMachineType\n---\n",
+      "Content": "The FiniteStateMachineType is the base ObjectType for StateMachines that explicitly define the possible States and Transitions. Once the States and Transitions are defined subtypes shall not add new States and Transitions(see[4.4.19](/\u00A7_Ref33081822)). Subtypes may add causes or effects.\nThe States of the machine are represented with instances of the StateType ObjectType. Each State shall have a BrowseName which is unique within the StateMachine and shall have a StateNumber which shall also be unique across all States defined in the StateMachine. Be aware that States in a SubStateMachine may have the same StateNumber or BrowseName as States in the parent machine. A concrete subtype of FiniteStateMachineType shall define at least one State.\nA StateMachine may define one State which is an instance of the InitialStateType. This State is the State that the machine goes into when it is activated.\nThe Transitions that may occur are represented with instances of the TransitionType. Each Transition shall have a BrowseName which is unique within the StateMachine and may have a TransitionNumber which shall also be unique across all Transitions defined in the StateMachine.\nThe initial State for a Transition is a StateType Object which is the target of a FromState Reference. The final State for a Transition is a StateType Object which is the target of a ToState Reference. The FromState and ToState References shall always be specified.\nA Transition may produce an Event. The Event is indicated by a HasEffect Reference to a subtype of BaseEventType. The StateMachineType shall have GeneratesEvent References to the targets of a HasEffect Reference for each of its Transitions.\nA FiniteStateMachineType may define Methods that cause a transition to occur. These Methods are targets of HasCause References for each of the Transitions that may be triggered by the Method. The Executable Attribute for a Method"
+    },
+    {
+      "Id": "03ed1b93-70e5-4b2f-83ee-1d66236fd0fa",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.6 FiniteStateMachineType\n---\n",
+      "Content": "Executable Attribute for a Method is used to indicate whether the current State of the machine allows the Method to be called.\nA FiniteStateMachineType may have sub-state-machines which are represented as instances of StateMachineType ObjectTypes. Each State shall have a HasSubStateMachine Reference to the StateMachineType Object which represents the child States. The SubStateMachine is not active if the parent State is not active. In this case the CurrentState and LastTransition Variables of the SubStateMachine shall have a status equal to Bad_StateNotActive(see[Table 19](/\u00A7_Ref33078422)).\nThe FiniteStateMachineType is formally defined in[Table 6](/\u00A7_Ref33077969).\nTable 6- FiniteStateMachineType definition\nAttribute\nValue\nBrowseName\nFiniteStateMachineType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the StateMachineType defined in[4.4.2](/\u00A7_Ref33079031)\nHasComponent\nVariable\nCurrentState\nLocalizedText\nFiniteStateVariableType\nMandatory\nHasComponent\nVariable\nLastTransition\nLocalizedText\nFiniteTransitionVariableType\nOptional\nHasComponent\nVariable\nAvailableStates\nNodeId[]\nBaseDataVariableType\nOptional\nHasComponent\nVariable\nAvailableTransitions\nNodeId[]\nBaseDataVariableType\nOptional\nConformance Units\nBase Info Finite State Machine Instance\nBase Info Available States and Transitions\n\nIn some Servers an instance of a StateMachine may restrict the States and / or Transitions that are available. These restrictions may result from the internal design of the instance. For example, the StateMachine for an instrument\u0027s limit alarm which only supports Hi and HiHi and can not produce a Low or LowLow. An instance of a StateMachine may also dynamically change the available States"
+    },
+    {
+      "Id": "eeaf2be2-de51-4716-9791-65c77e97a862",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.6 FiniteStateMachineType\n---\n",
+      "Content": "States and/or Transitions based on its operating mode. For example, when a piece of equipment is in a maintenance mode the available States may be limited to some subset of the States available during normal operation.\nThe AvailableStates Variable provides a NodeId list of the States that are present in the StateMachine instance. The list may change during operation of the Server.\nThe AvailableTransitions Variable provides a NodeId list of the Transitions that are present in the StateMachine instance. The list may change during operation of the Server.\nAn example of a FiniteStateMachine type is shown in[Figure 4](/\u00A7_Ref33079069)."
+    },
+    {
+      "Id": "adaeb43c-81ad-4e72-b3d2-8164b2727857",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.6 FiniteStateMachineType\nCaption: Figure 4 - Example of a FiniteStateMachine type\n---\n",
+      "Content": "[image005.png](images/image005.png)"
+    },
+    {
+      "Id": "059fe004-e335-4f1d-b1c1-e9ca57e47209",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.6 FiniteStateMachineType\n---\n",
+      "Content": "Figure 4 - Example of a FiniteStateMachine type\nAn example instance of the type is shown in[Figure 5](/\u00A7_Ref33078004). In this example the States{7,8,9} and the Transitions{G,H,I,J} are not available in this instance."
+    },
+    {
+      "Id": "1d5cce6d-0e56-44f9-9f6a-070e45275574",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.6 FiniteStateMachineType\nCaption: Figure 5 - Example of a FiniteStateMachine instance\n---\n",
+      "Content": "[image006.png](images/image006.png)"
+    },
+    {
+      "Id": "faa46360-5e5f-43ae-a668-eb9ab45da395",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.6 FiniteStateMachineType\n---\n",
+      "Content": "Figure 5 - Example of a FiniteStateMachine instance"
+    },
+    {
+      "Id": "6d27290e-129c-454b-9b15-b365d506ce3a",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.7 FiniteStateVariableType"
+    },
+    {
+      "Id": "19121a32-eda8-429f-baf6-2ef938211e33",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.7 FiniteStateVariableType\n---\n",
+      "Content": "The FiniteStateVariableType is a subtype of StateVariableType and is used to store the current state of a Finite StateMachine as a human readable name.\nThe FiniteStateVariableType is formally defined in[Table 7](/\u00A7_Ref33078097).\nTable 7- FiniteStateVariableType definition\nAttribute\nValue\nBrowseName\nFiniteStateVariableType\nDataType\nLocalizedText\nValueRank\n\u22121 (\u22121 = Scalar)\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the StateVariableType defined[4.4.3](/\u00A7_Ref33079118)\nHasProperty\nVariable\nId\nNodeId\nPropertyType\nMandatory\nConformance Units\nBase Info Finite State Machine Instance\n\nId is inherited from the StateVariableType and overridden to reflect the required DataType. This value shall be the NodeId of one of the State Objects of the FiniteStateMachineType. If the FiniteStateMachine is subtyped, it shall be the NodeId of the State defined on the supertype, i.e., where the State is defined the first time in the type hierarchy.\nThe Name Property is inherited from StateVariableType. Its Value shall be the BrowseName of one of the State Objects of the FiniteStateMachineType.\nThe Number Property is inherited from StateVariableType. Its Value shall be the StateNumber for one of the State Objects of the FiniteStateMachineType."
+    },
+    {
+      "Id": "c1701be9-f973-4f14-9f4e-ce5077b3c8ab",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.8 FiniteTransitionVariableType"
+    },
+    {
+      "Id": "da05ec13-e5e8-447a-9429-62f6a7683dd0",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.8 FiniteTransitionVariableType\n---\n",
+      "Content": "The FiniteTransitionVariableType is a subtype of TransitionVariableType and is used to store a Transition that occurred within a FiniteStateMachine as a human readable name.\nThe FiniteTransitionVariableType is formally defined in[Table 8](/\u00A7_Ref33078134).\nTable 8- FiniteTransitionVariableType definition\nAttribute\nValue\nBrowseName\nFiniteTransitionVariableType\nDataType\nLocalizedText\nValueRank\n\u22121 (\u22121 = Scalar)\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the TransitionVariableType defined in[4.4.5](/\u00A7_Ref33079141)\nHasProperty\nVariable\nId\nNodeId\nPropertyType\nMandatory\nConformance Units\nBase Info Finite State Machine Instance\n\nId is inherited from the TransitionVariableType and overridden to reflect the required DataType. This value shall be the NodeId of one of the Transition Objects of the FiniteStateMachineType. If the FiniteStateMachine is subtyped, it shall be the NodeId of the Transition defined on the supertype, i.e., where the Transition is defined the first time in the type hierarchy.\nThe Name Property is inherited from the TransitionVariableType. Its Value shall be the BrowseName of one of the Transition Objects of the FiniteStateMachineType.\nThe Number Property is inherited from the TransitionVariableType. Its Value shall be the TransitionNumber for one of the Transition Objects of the FiniteStateMachineType."
+    },
+    {
+      "Id": "f5cca3e7-a7f6-44c2-87cd-cf01e8e60378",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.9 StateType"
+    },
+    {
+      "Id": "a3257524-a1f7-414a-b72a-a446ae401259",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.9 StateType\n---\n",
+      "Content": "States of a FiniteStateMachine are represented as Objects of the StateType. Each Object of the StateType or one of its subtypes shall be referenced from the ObjectType FiniteStateMachineType or one of its subtypes using a HasComponent Reference or a subtype of HasComponent and shall not have a ModellingRule as they are not applied on the instances.\nThe StateType is formally defined in[Table 9](/\u00A7_Ref33078163).\nTable 9- StateType definition\nAttribute\nValue\nBrowseName\nStateType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nStateNumber\nUInt32\nPropertyType\nMandatory\nHasSubtype\nObjectType\nInitialStateType\nDefined in[4.4.10](/\u00A7_Ref33079186)\nHasSubtype\nObjectType\nChoiceStateType\nDefined in[4.6.2](/\u00A7_Ref33079242)\nConformance Units\nBase Info Finite State Machine Instance"
+    },
+    {
+      "Id": "3a15699b-5939-45ae-a067-b4034d3bbb5b",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.10 InitialStateType"
+    },
+    {
+      "Id": "751d8880-2879-41af-981f-76a89271e19e",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.10 InitialStateType\n---\n",
+      "Content": "The InitialStateType is a subtype of the StateType and is formally defined in[Table 10](/\u00A7_Ref33079318). An Object of the InitialStateType represents the State that a FiniteStateMachine enters when it is activated. Each FiniteStateMachine can have at most one State of type InitialStateType, but a FiniteStateMachine does not have to have a State of this type.\nA SubStateMachine goes into its initial state whenever the parent state is entered. However, a state machine may define a transition that goes directly to a state of the SubStateMachine. In this case the SubStateMachine goes into that State instead of the initial State. The two scenarios are illustrated in[Figure 6](/\u00A7_Ref33079550). The transition from \u0022State5\u0022 to \u0022State6\u0022 causes the SubStateMachine to go into the initial State(\u0022State7\u0022), however, the transition from \u0022State4\u0022 to \u0022State8\u0022 causes the parent machine to go to \u0022State6\u0022 and the SubStateMachine will go to \u0022State8\u0022."
+    },
+    {
+      "Id": "56a8017c-cfd4-4c1d-8bf5-ba6d68337af6",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.10 InitialStateType\nCaption: Figure 6 - Example of an initial State in a sub-machine\n---\n",
+      "Content": "[image007.png](images/image007.png)"
+    },
+    {
+      "Id": "283c9988-6ac8-492b-a30a-75e3d14c92f9",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.10 InitialStateType\n---\n",
+      "Content": "Figure 6 - Example of an initial State in a sub-machine\nIf no initial state for a SubStateMachine exists and the State having the SubStateMachine is entered directly, then the State of the SubStateMachine is server-specific.\nTable 10- InitialStateType definition\nAttribute\nValue\nBrowseName\nInitialStateType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the StateType defined in[4.4.9](/\u00A7_Ref33076422)\nConformance Units\nBase Info Finite State Machine Instance"
+    },
+    {
+      "Id": "f177a090-1d1d-48c7-8ef3-ec06ba0f58f5",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.11 TransitionType"
+    },
+    {
+      "Id": "af10d0d1-5e82-453d-8e6a-57894e8a765e",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.11 TransitionType\n---\n",
+      "Content": "Transitions of a FiniteStateMachine are represented as Objects of the ObjectType TransitionType formally defined in[Table 11](/\u00A7_Ref98238438). Each Object of the TransitionType or one of its subtypes shall be referenced from the ObjectType FiniteStateMachineType or one of its subtypes using a HasComponent Reference or a subtype of HasComponent and shall not have a ModellingRule as they are not applied on the instances.\nEach valid Transition shall have exactly one FromState Reference and exactly one ToState Reference, each pointing to an Object of the ObjectType StateType.\nEach Transition can have one or more HasCause References pointing to the cause that triggers the Transition.\nEach Transition can have one or more HasEffect References pointing to the effects that occur when the Transition was triggered.\nTable 11- TransitionType definition\nAttribute\nValue\nBrowseName\nTransitionType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nTransitionNumber\nUInt32\nPropertyType\nMandatory\nConformance Units\nBase Info Finite State Machine Instance"
+    },
+    {
+      "Id": "1b74ed36-f2a9-4b4f-8020-0965b6f710c0",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.12 FromState"
+    },
+    {
+      "Id": "568674e3-900b-4186-a558-5263db2c11b9",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.12 FromState\n---\n",
+      "Content": "The FromState ReferenceType is a concrete ReferenceType and can be used directly. It is a subtype of NonHierarchicalReferences.\nThe semantic of this ReferenceType is to point from a Transition to the starting State the Transition connects.\nThe SourceNode of this ReferenceType shall be an Object of the ObjectType TransitionType or one of its subtypes. The TargetNode of this ReferenceType shall be an Object of the ObjectType StateType or one of its subtypes.\nThe representation of the FromState ReferenceType in the AddressSpace is specified in[Table 12](/\u00A7_Ref33078212).\nTable 12- FromState ReferenceType\nAttributes\nValue\nBrowseName\nFromState\nInverseName\nToTransition\nSymmetric\nFalse\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nComment\n\n\n\n\nConformance Units\nBase Info Finite State Machine Instance"
+    },
+    {
+      "Id": "5e78fd91-154a-4791-9ca9-56a28913c4a8",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.13 ToState"
+    },
+    {
+      "Id": "969ac95b-ceeb-404e-b1cf-063b2796724d",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.13 ToState\n---\n",
+      "Content": "The ToState ReferenceType is a concrete ReferenceType and can be used directly. It is a subtype of NonHierarchicalReferences.\nThe semantic of this ReferenceType is to point from a Transition to the ending State the Transition connects.\nThe SourceNode of this ReferenceType shall be an Object of the ObjectType TransitionType or one of its subtypes. The TargetNode of this ReferenceType shall be an Object of the ObjectType StateType or one of its subtypes.\nReferences of this ReferenceType may be only exposed uni-directional. Sometimes this is required, for example, if a Transition points to a State of a sub-machine.\nThe representation of the ToState ReferenceType in the AddressSpace is specified in[Table 13](/\u00A7_Ref33078236).\nTable 13- ToState ReferenceType\nAttributes\nValue\nBrowseName\nToState\nInverseName\nFromTransition\nSymmetric\nFalse\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nComment\n\n\n\n\nConformance Units\nBase Info Finite State Machine Instance"
+    },
+    {
+      "Id": "9bd921f7-d3b7-478e-8ae2-cc154ac17051",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.14 HasCause"
+    },
+    {
+      "Id": "e5647f0c-e379-46df-a5d4-7dbace89ef22",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.14 HasCause\n---\n",
+      "Content": "The HasCause ReferenceType is a concrete ReferenceType and can be used directly. It is a subtype of NonHierarchicalReferences.\nThe semantic of this ReferenceType is to point from a Transition to something that causes the Transition. In this specification we only define Methods as Causes. However, the ReferenceType is not restricted to point to Methods. The referenced Methods can, but do not have to point to a Method of the StateMachineType. For example, it is allowed to point to a server-wide restart Method leading the state machine to go into its initial state.\nThe SourceNode of this ReferenceType shall be an Object of the ObjectType TransitionType or one of its subtypes. The TargetNode can be of any NodeClass.\nThe representation of the HasCause ReferenceType in the AddressSpace is specified in[Table 14](/\u00A7_Ref33078257).\nTable 14- HasCause ReferenceType\nAttributes\nValue\nBrowseName\nHasCause\nInverseName\nMayBeCausedBy\nSymmetric\nFalse\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nComment\n\n\n\n\nConformance Units\nBase Info Finite State Machine Instance"
+    },
+    {
+      "Id": "104c0c83-532b-40e9-95e3-1b8b39df52c6",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.15 HasEffect"
+    },
+    {
+      "Id": "a2534056-1c78-4b40-9ba5-47da258722fa",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.15 HasEffect\n---\n",
+      "Content": "The HasEffect ReferenceType is a concrete ReferenceType and can be used directly. It is a subtype of NonHierarchicalReferences.\nThe semantic of this ReferenceType is to point from a Transition to something that will be effected when the Transition is triggered. In this specification we only define EventTypes as Effects. However, the ReferenceType is not restricted to point to EventTypes.\nThe SourceNode of this ReferenceType shall be an Object of the ObjectType TransitionType or one of its subtypes. The TargetNode can be of any NodeClass.\nIf the TargetNode is an EventType, each time the Transition is triggered (either by a Client or internally in the Server) an Event of that EventType or a subtype shall be generated.\nThe representation of the HasEffect ReferenceType in the AddressSpace is specified in[Table 15](/\u00A7_Ref33078273).\nTable 15- HasEffect ReferenceType\nAttributes\nValue\nBrowseName\nHasEffect\nInverseName\nMayBeEffectedBy\nSymmetric\nFalse\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nComment\n\n\n\n\nConformance Units\nBase Info Finite State Machine Instance"
+    },
+    {
+      "Id": "29b69fda-c508-4424-9dbf-341d0bf6e939",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.16 HasSubStateMachine"
+    },
+    {
+      "Id": "edb1e8ff-ff1f-4fb4-a514-f35928fe668e",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.16 HasSubStateMachine\n---\n",
+      "Content": "The HasSubStateMachine ReferenceType is a concrete ReferenceType and can be used directly. It is a subtype of NonHierarchicalReferences.\nThe semantic of this ReferenceType is to point from a State to an instance of a StateMachineType which represents the sub-states for the State.\nThe SourceNode of this ReferenceType shall be an Object of the ObjectType StateType. The TargetNode shall be an Object of the ObjectType StateMachineType or one of its subtypes. Each Object can be the TargetNode of at most one HasSubStateMachine Reference.\nThe SourceNode(the state) and the TargetNode(the SubStateMachine) shall belong to the same StateMachine. Therefore, the SourceNode shall be referenced from the ObjectType FiniteStateMachineType or one of its subtypes and the TargetNode shall be referenced from the same ObjectType, both using a HasComponent Reference or a subtype of HasComponent.\nThe representation of the HasSubStateMachine ReferenceType in the AddressSpace is specified in[Table 16](/\u00A7_Ref33078293).\nTable 16- HasSubStateMachine ReferenceType\nAttributes\nValue\nBrowseName\nHasSubStateMachine\nInverseName\nSubStateMachineOf\nSymmetric\nFalse\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nComment\n\n\n\n\nConformance Units\nBase Info Finite State Machine Instance"
+    },
+    {
+      "Id": "39d1bb08-62ee-4207-b308-4aabd92ed3d7",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.17 TransitionEventType"
+    },
+    {
+      "Id": "c8a5443c-9c54-497f-a16d-ab133e793e81",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.17 TransitionEventType\n---\n",
+      "Content": "The TransitionEventType is a subtype of the BaseEventType. It can be used to generate an Event identifying that a Transition of a StateMachine was triggered. It is formally defined in[Table 17](/\u00A7_Ref33078308).\nTable 17- TransitionEventType\nAttribute\nValue\nBrowseName\nTransitionEventType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the base BaseEventType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasComponent\nVariable\nTransition\nLocalizedText\nTransitionVariableType\nMandatory\nHasComponent\nVariable\nFromState\nLocalizedText\nStateVariableType\nMandatory\nHasComponent\nVariable\nToState\nLocalizedText\nStateVariableType\nMandatory\nConformance Units\nBase Info Finite State Machine Instance\n\nThe TransitionEventType inherits the Properties of the BaseEventType.\nThe inherited Property SourceNode shall be filled with the NodeId of the StateMachine instance where the Transition occurs. If the Transition occurs in a SubStateMachine, then the NodeId of the SubStateMachine has to be used. If the Transition occurs between a StateMachine and a SubStateMachine, then the NodeId of the StateMachine has to be used, independent of the direction of the Transition.\nTransition identifies the Transition that triggered the Event.\nFromState identifies the State before the Transition.\nToState identifies the State after the Transition."
+    },
+    {
+      "Id": "4ead23b3-32c4-4649-9311-f4ea381edcb1",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.18 AuditUpdateStateEventType"
+    },
+    {
+      "Id": "21e8ecd1-b540-454a-bdac-eb1fa27f72ed",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.18 AuditUpdateStateEventType\n---\n",
+      "Content": "The AuditUpdateStateEventType is a subtype of the AuditUpdateMethodEventType. It can be used to generate an Event identifying that a Transition of a StateMachine was triggered. It is formally defined in[Table 18](/\u00A7_Ref33078332).\nTable 18- AuditUpdateStateEventType\nAttribute\nValue\nBrowseName\nAuditUpdateStateEventType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the AuditUpdateMethodEventType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nOldStateId\nBaseDataType\nPropertyType\nMandatory\nHasProperty\nVariable\nNewStateId\nBaseDataType\nPropertyType\nMandatory\nConformance Units\nAuditing UpdateStates\n\nThe AuditUpdateStateEventType inherits the Properties of the AuditUpdateMethodEventType.\nThe inherited Property SourceNode shall be filled with the NodeId of the StateMachine instance where the State changed. If the State changed in a SubStateMachine, then the NodeId of the SubStateMachine has to be used.\nThe SourceName for Events of this type should be the effect that generated the event (e.g. the name of a Method). If the effect was generated by a Method call, the SourceName should be the name of the Method prefixed with \u0022Method/\u0022.\nOldStateId reflects the Id of the state prior the change.\nNewStateId reflects the new Id of the state after the change."
+    },
+    {
+      "Id": "89f7784f-1d65-4787-982a-970719ad4858",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.19 Special Restrictions on subtyping StateMachines"
+    },
+    {
+      "Id": "34a7e4f0-72d5-4795-970e-8fd3c254b556",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.19 Special Restrictions on subtyping StateMachines\n---\n",
+      "Content": "In general, all rules on subtyping apply for StateMachine types as well. Some additional rules apply for StateMachine types.\nStates and Transitions are not instantiated, this information is only provided on the ObjectType. They have no ModellingRule, and thus, also the inheritance of States and Transitions is not defined. Therefore, the following rules apply for subtyping StateMachines. Each State and Transition defined on the supertype shall be available on the subtype as well. That is, for each State defined on the supertype another Node of the same ObjectType having the same BrowseName and the same StateNumber shall be defined on the subtype. For each Transition defined on the supertype another Node of the same ObjectType having the same BrowseName and the same TransitionNumber shall be defined on the subtype. All references defining the StateMachine( HasCause, HasEffect, FromState, ToState, HasSubStateMachine, HasGuard) shall be replicated in the subtype as well. If InstanceDeclarations are referenced (e.g., Methods used to trigger Transitions) either the InstanceDeclaration of the supertype is referenced or the InstanceDeclaration is overridden, and in the latter case the overridden InstanceDeclaration of the subtype shall be referenced.\nIf a StateMachine type is not abstract, subtypes of it shall not change the behaviour of it. That means, that in this case a subtype shall not add States and it shall not add Transitions between its States. However, a subtype may add SubStateMachines, it may add Transitions from the States to the States of the SubStateMachine, and it may add Causes and Effects to a Transition. In addition, a subtype of a StateMachine type shall not remove States or Transitions."
+    },
+    {
+      "Id": "6e551c26-2437-4e74-8ccf-9c62c67be074",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4 Representation of state machines in the AddressSpace\n---\n",
+      "Content": "4.4.20 Specific StatusCodes for StateMachines"
+    },
+    {
+      "Id": "e3e38007-908b-46b0-8c23-7aff3fee8e3f",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.4.20 Specific StatusCodes for StateMachines\n---\n",
+      "Content": "In[Table 19](/\u00A7_Ref33078422) specific StatusCodes used for StateMachines are defined.\nTable 19- Specific StatusCodes for StateMachines\nSymbolic Id\nDescription\nBad_ StateNotActive\nThe accessed state is not active."
+    },
+    {
+      "Id": "5c02fd74-f152-4767-9377-c642b5217eae",
+      "Header": "Document: Part 16 - State Machines\nSection: 4 State Machine Model\n---\n",
+      "Content": "4.5 Examples of StateMachines in the AddressSpace"
+    },
+    {
+      "Id": "8506d4c8-474b-4f6d-94c6-694ee29077f7",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5 Examples of StateMachines in the AddressSpace\n---\n",
+      "Content": "4.5.1 StateMachineType using inheritance"
+    },
+    {
+      "Id": "ac7d4666-6fcb-4941-82bf-63c5cf7bc38c",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.1 StateMachineType using inheritance\nCaption: Figure 7 - Example of a StateMachineType using inheritance\n---\n",
+      "Content": "[image008.png](images/image008.png)"
+    },
+    {
+      "Id": "b5e44a6a-0e66-4934-929e-4bb7903086c5",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.1 StateMachineType using inheritance\n---\n",
+      "Content": "Figure 7 - Example of a StateMachineType using inheritance\nIn[Figure 7](/\u00A7_Ref33079898) an example of a StateMachine is given using the Notation defined in[OPC 10000-3](/\u00A7UAPart3). First, a new StateMachineType is defined, called \u0022MyStateMachineType\u0022, inheriting from the base FiniteStateMachineType. It contains two States, \u0022State1\u0022 and \u0022State2\u0022 and a Transition\u0022Transition1\u0022 between them. The Transition points to a Method\u0022MyMethod\u0022 as the Cause of the Transition and an EventType\u0022EventType1\u0022 as the Effect of the Transition.\nInstances of \u0022MyStateMachineType\u0022 can be created, for example \u0022MyStateMachine\u0022. It has a Variable\u0022CurrentState\u0022 representing the current State. The \u0022MyStateMachine\u0022 Object only includes the Nodes which expose information specific to the instance."
+    },
+    {
+      "Id": "e3c7fceb-c522-48e0-9151-8ceec3aef771",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5 Examples of StateMachines in the AddressSpace\n---\n",
+      "Content": "4.5.2 StateMachineType with a SubStateMachine using inheritance"
+    },
+    {
+      "Id": "5743ef22-329d-4711-a318-d24e5caba0da",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.2 StateMachineType with a SubStateMachine using inheritance\nCaption: Figure 8 - Example of a StateMachineType with a SubStateMachine using inheritance\n---\n",
+      "Content": "[image009.png](images/image009.png)"
+    },
+    {
+      "Id": "2640919d-f57c-4635-abbf-ded4befd3331",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.2 StateMachineType with a SubStateMachine using inheritance\n---\n",
+      "Content": "Figure 8 - Example of a StateMachineType with a SubStateMachine using inheritance\n[Figure 8](/\u00A7_Ref33079935) gives an example of a StateMachineType having a SubStateMachine for its \u0022State1\u0022. For simplicity no effects and causes are shown, as well as type information for the States or ModellingRules.\nThe \u0022MyStateMachineType\u0022 contains an Object\u0022MySubMachine\u0022 of type \u0022AnotherStateMachineType\u0022 representing a SubStateMachine. The \u0022State1\u0022 references this Object with a HasSubStateMachine Reference, thus it is a SubStateMachine of \u0022State1\u0022. Since \u0022MySubMachine\u0022 is an Object of type \u0022AnotherStateMachineType\u0022 it has a Variable representing the current State. Since it is used as an InstanceDeclaration, no value is assigned to this Variable.\nAn Object of \u0022MyStateMachineType\u0022, called \u0022MyStateMachine\u0022 has Variables for the current State, but also has an Object\u0022MySubMachine\u0022 and a Variable representing the current state of the SubStateMachine. Since the SubStateMachine is only used when \u0022MyStateMachine\u0022 is in \u0022State1\u0022, a client would receive a Bad_StateNotActive StatusCode when reading the SubStateMachine CurrentState Variable if \u0022MyStateMachine\u0022 is in a different State."
+    },
+    {
+      "Id": "31112ae0-e6c6-4d9a-b895-cf26b667dae4",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5 Examples of StateMachines in the AddressSpace\n---\n",
+      "Content": "4.5.3 StateMachineType using containment"
+    },
+    {
+      "Id": "07e60b3d-cdfd-4a1f-8764-f49c244c8aa4",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.3 StateMachineType using containment\nCaption: Figure 9 - Example of a StateMachineType using containment\n---\n",
+      "Content": "[image010.png](images/image010.png)"
+    },
+    {
+      "Id": "bab67a76-9bd6-48ef-91b8-e7f46c965401",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.3 StateMachineType using containment\n---\n",
+      "Content": "Figure 9 - Example of a StateMachineType using containment\n[Figure 9](/\u00A7_Ref33079965) gives an example of an ObjectType not only representing a StateMachine but also having some other functionality. The ObjectType\u0022MyObjectType\u0022 has an Object\u0022MyComponent\u0022 representing this other functionality. But it also contains a StateMachine\u0022MyStateMachine\u0022 of the type \u0022MyStateMachineType\u0022. Objects of \u0022MyObjectType\u0022 also contain such an Object representing the StateMachine and a Variable containing the current state of the StateMachine, as shown in the Figure."
+    },
+    {
+      "Id": "e8720163-adf1-4196-8244-f34faf6c2acb",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5 Examples of StateMachines in the AddressSpace\n---\n",
+      "Content": "4.5.4 Example of a StateMachine having Transition to SubStateMachine"
+    },
+    {
+      "Id": "a54ede6c-3bc9-4c2e-9a8d-f13159bd6dc0",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.4 Example of a StateMachine having Transition to SubStateMachine\n---\n",
+      "Content": "The StateMachines shown so far only had Transitions between States on the same level, that is, on the same StateMachine. Of cause, it is possible and often required to have Transitions between States of the StateMachine and States of its SubStateMachine.\nBecause a SubStateMachine can be defined by another StateMachineType and this type can be used in several places, it is not possible to add a bi-directional Reference from one of the shared States of the SubStateMachine to another StateMachine. In this case it is suitable to expose the FromState or ToState References uni-directional, that is, only pointing from the Transition to the State and not being able to browse to the other direction. If a Transition points from a State of a SubStateMachine to a State of another sub-machine, both, the FromState and the ToState Reference, are handled uni-directional.\nA Client shall be able to handle the information of a StateMachine if the ToState and FromState References are only exposed as forward References and the inverse References are omitted.\n[Figure 10](/\u00A7_Ref33079995) gives an example of a state machine having a transition from a sub-state to a state."
+    },
+    {
+      "Id": "d05bec9f-89d5-40cd-b2b6-4b63fd25a709",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.4 Example of a StateMachine having Transition to SubStateMachine\nCaption: Figure 10 - Example of a StateMachine with Transitions from sub-states\n---\n",
+      "Content": "[image011.png](images/image011.png)"
+    },
+    {
+      "Id": "28f82794-6d49-4677-bbd7-04db61f2f4f1",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.4 Example of a StateMachine having Transition to SubStateMachine\n---\n",
+      "Content": "Figure 10 - Example of a StateMachine with Transitions from sub-states\nIn[Figure 11](/\u00A7_Ref33080060) the representation of this example as StateMachineType in the AddressSpace is given. The \u0022Transition1\u0022, part of the definition of \u0022MyStateMachineType\u0022, points to the \u0022StateX\u0022 of the StateMachineType\u0022AnotherStateMachineType\u0022. The Reference is only exposed as forward Reference and the inverse Reference is omitted. Thus, there is no Reference from the \u0022StateX\u0022 of \u0022AnotherStateMachineType\u0022 to any part of \u0022MyStateMachineType\u0022 and \u0022AnotherStateMachineType\u0022 can be used in other places as well."
+    },
+    {
+      "Id": "e897e5aa-4f3b-49ed-8308-82e026d67fe2",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.4 Example of a StateMachine having Transition to SubStateMachine\nCaption: Figure 11 - Example of a StateMachineType having Transition to SubStateMachine\n---\n",
+      "Content": "[image012.png](images/image012.png)"
+    },
+    {
+      "Id": "0f94f9bf-9e4b-412f-a549-37eceab99167",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.4 Example of a StateMachine having Transition to SubStateMachine\n---\n",
+      "Content": "Figure 11 - Example of a StateMachineType having Transition to SubStateMachine"
+    },
+    {
+      "Id": "3df2b09d-91d2-4481-892a-ca3118efe897",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5 Examples of StateMachines in the AddressSpace\n---\n",
+      "Content": "4.5.5 Example of a StateMachine adding a SubStateMachine on a Subtype"
+    },
+    {
+      "Id": "fe7c99d3-18e2-41de-a01e-bcbbf7dfef18",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.5 Example of a StateMachine adding a SubStateMachine on a Subtype\n---\n",
+      "Content": "When a subtype of FiniteStateMachineType having States extends the StateMachine, it is not allowed to add additional States, but instead SubStateMachines can be added to existing States.\nThe example in[Figure 12](/\u00A7_Ref57733924) shows a very simple StateMachine with two States."
+    },
+    {
+      "Id": "62aa4ef7-69af-4b99-af29-ffecc39931f2",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.5 Example of a StateMachine adding a SubStateMachine on a Subtype\nCaption: Figure 12 - Example of a StateMachine with two States\n---\n",
+      "Content": "[image013.png](images/image013.png)"
+    },
+    {
+      "Id": "805b76e8-6161-4dd8-a3bf-a9ce3956d432",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.5 Example of a StateMachine adding a SubStateMachine on a Subtype\n---\n",
+      "Content": "Figure 12 - Example of a StateMachine with two States\nIn[Figure 13](/\u00A7_Ref57733993) the StateMachine of[Figure 12](/\u00A7_Ref57733924) is extended by adding two substates to \u0022State1\u0022."
+    },
+    {
+      "Id": "6c8f9686-8c82-4494-99a9-afd0ef3f6d9f",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.5 Example of a StateMachine adding a SubStateMachine on a Subtype\nCaption: Figure 13 - Example of a StateMachine extended with two Substates\n---\n",
+      "Content": "[image014.png](images/image014.png)"
+    },
+    {
+      "Id": "919a9646-a654-4a6b-8b4d-f30c81190adf",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.5 Example of a StateMachine adding a SubStateMachine on a Subtype\n---\n",
+      "Content": "Figure 13 - Example of a StateMachine extended with two Substates\nIn[Figure 14](/\u00A7_Ref60828021) the StateMachine of[Figure 13](/\u00A7_Ref57733993) is extended by adding two substates to \u0022State2\u0022, and an effect on the Transition between \u0022State1\u0022 and \u0022State2\u0022."
+    },
+    {
+      "Id": "436dc7da-94dc-4494-ae6b-02e5d59e9150",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.5 Example of a StateMachine adding a SubStateMachine on a Subtype\nCaption: Figure 14 - Example of a StateMachine extended with another two Substates\n---\n",
+      "Content": "[image015.png](images/image015.png)"
+    },
+    {
+      "Id": "4c34fafb-1132-4d66-adcd-f3fa6e5067a9",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.5 Example of a StateMachine adding a SubStateMachine on a Subtype\n---\n",
+      "Content": "Figure 14 - Example of a StateMachine extended with another two Substates\nIn[Figure 15](/\u00A7_Ref57811973) the representation of this example as StateMachineType in the AddressSpace is given. The \u0022MyStateMachineType\u0022 defines the StateMachine of[Figure 12](/\u00A7_Ref57733924), and the \u0022MySubStateMachineType\u0022 is a subtype and extends the StateMachine with a SubStateMachine as defined in[Figure 13](/\u00A7_Ref57733993). The \u0022MySubSubStateMachineType\u0022 is another subtype as defined in[Figure 14](/\u00A7_Ref60828021).\nThe States and Transitions of \u0022MyStateMachineType\u0022 are replicated to \u0022MySubStateMachineType\u0022 and \u0022MySubSubStateMachineType\u0022. Since \u0022Method1\u0022 is not overridden, the \u0022Transition1\u0022 of all three types is referencing the Method of \u0022MyStateMachineType\u0022. In \u0022MySubStateMachineType\u0022, a SubStateMachine for \u0022State1\u0022 was added, and in \u0022MySubSubStateMachineType\u0022 a SubStateMachine for \u0022State2\u0022. In addition, \u0022MySubSubStateMachineType\u0022 adds an effect to \u0022Transition1\u0022."
+    },
+    {
+      "Id": "4f1cbae2-8ae3-43d6-ab5c-1c8d7feb80d8",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.5 Example of a StateMachine adding a SubStateMachine on a Subtype\nCaption: Figure 15 - Example of a StateMachineType adding SubStateMachines in Subtypes\n---\n",
+      "Content": "[image016.png](images/image016.png)"
+    },
+    {
+      "Id": "d69683f6-dc84-481f-9084-90fa4b4eaf98",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.5.5 Example of a StateMachine adding a SubStateMachine on a Subtype\n---\n",
+      "Content": "Figure 15 - Example of a StateMachineType adding SubStateMachines in Subtypes"
+    },
+    {
+      "Id": "b7e64351-23d0-4492-adb5-49ccd3df7a5f",
+      "Header": "Document: Part 16 - State Machines\nSection: 4 State Machine Model\n---\n",
+      "Content": "4.6 StateMachine Extensions for ChoiceStates and Guards"
+    },
+    {
+      "Id": "cdbec964-e403-4b64-a0b4-c7c3deae9667",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6 StateMachine Extensions for ChoiceStates and Guards\n---\n",
+      "Content": "4.6.1 Overview"
+    },
+    {
+      "Id": "91e81e60-2019-4391-881d-221fd4205d3b",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6.1 Overview\n---\n",
+      "Content": "This section describes extensions to the StateMachine model allowing choices and guards on StateMachines."
+    },
+    {
+      "Id": "108de5e1-6adb-44b9-ad42-d25c85fabb5b",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6 StateMachine Extensions for ChoiceStates and Guards\n---\n",
+      "Content": "4.6.2 ChoiceStateType"
+    },
+    {
+      "Id": "c0ef257f-cc52-4bc5-8c99-3f0f63296604",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6.2 ChoiceStateType\n---\n",
+      "Content": "The ChoiceStateType is a subtype of the StateType and is formally defined in[Table 20](/\u00A7_Ref51189834). An Object of the ChoiceStateType represents a pseudo state that is directly exited when it is entered. The Guards defined on the Transitions from the ChoiceState determine which Transition is used. The Guards shall be defined in a way that at least one Guard is true and a Transition can be determined. If this is not the case, the StateMachine is non-well formed. To avoid this, the specific ElseGuardVariableType can be used, which is only \u0022true\u0022 if all other Guards on a ChoiceState are \u0022false\u0022. If several Guards are \u0022true\u0022, only one of those Transitions is used. The algorithm to determine the Transition is server-specific.\nA sample StateMachine using a ChoiceState is given in[Figure 16](/\u00A7_Ref33080668). It provides a simplified representation of a robot. When the StateMachine is in the S1_Initial state, calling the Load() Method loads a program to the robot and triggers the Transition into the ChoiceState(CS). In the ChoiceState the Guards are validated and in case the robot is on the correct position for the loaded program (validated by the guard OnPath = True) the State S3_Ready is entered. In case the robot is not in the correct position (Else) the S2_Loaded State is entered. In that State, the Prepare() Method puts the robot in the correct position, and triggers the Transition to S3_Ready. If the robot is ready, it can be started. While it is running, it can be stopped. If the program is finished, the robot goes back to either the loaded or ready state, depending on its position, using the ChoiceState, again."
+    },
+    {
+      "Id": "238861cd-8674-4e2d-8fdb-6ff5ed920dbd",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6.2 ChoiceStateType\nCaption: Figure 16 - Example of a ChoiceState\n---\n",
+      "Content": "[image017.png](images/image017.png)"
+    },
+    {
+      "Id": "ae0295ab-43ce-491c-b849-b84ec15551dd",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6.2 ChoiceStateType\n---\n",
+      "Content": "Figure 16 - Example of a ChoiceState\nAs the ChoiceState is directly exited after it is entered there shall be no trigger (using the HasCause ReferenceType or a subtype) defined on any leaving Transition( Transitions referencing the ChoiceState with the FromState Reference or a subtype).\nTable 20- ChoiceStateType\nAttribute\nValue\nBrowseName\nChoiceStateType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the State Type defined in[4.4.9](/\u00A7_Ref33076422)\nConformance Units\nBase Info Choice States"
+    },
+    {
+      "Id": "d61ed9ff-a6fd-45fd-a42d-ed2420ee7d64",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6 StateMachine Extensions for ChoiceStates and Guards\n---\n",
+      "Content": "4.6.3 HasGuard"
+    },
+    {
+      "Id": "3efc66f2-e19c-4f59-8e14-2ce789d13bab",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6.3 HasGuard\n---\n",
+      "Content": "The HasGuard ReferenceType is a concrete ReferenceType and can be used directly. It is a subtype of HasComponent.\nThe semantic of this ReferenceType is to point from a Transition to a Guard. The Guard indicates if the Transition can be used or not (see GuardVariableType). A Transition can only be used, if the Guard is \u0022True\u0022. A Transition can point to several Guards. In that case, all Guards need to be \u0022True\u0022 before the Transition can be used. If there is no Guard, the Transition can always be used (considered as if all Guards are \u0022True\u0022).\nThe SourceNode of this ReferenceType shall be an Object of the ObjectType TransitionType or one of its subtypes. The TargetNode shall be a Variable of the VariableType GuardVariableType or one of its subtypes.\nThe representation of the HasGuard ReferenceType in the AddressSpace is specified in[Table 21](/\u00A7_Ref33078513).\nTable 21- HasGuard ReferenceType\nAttribute\nValue\nBrowseName\nHasGuard\nInverseName\nGuardOf\nSymmetric\nFalse\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the HasComponent ReferenceType defined in\nConformance Units\nBase Info Choice States"
+    },
+    {
+      "Id": "ffed1890-fe6e-4d80-a904-42c052d7e9b4",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6 StateMachine Extensions for ChoiceStates and Guards\n---\n",
+      "Content": "4.6.4 GuardVariableType"
+    },
+    {
+      "Id": "45c7b67e-bffd-4551-a5d4-627e7d2ae4f4",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6.4 GuardVariableType\n---\n",
+      "Content": "The GuardVariableType provides the information of a Guard of a Transition in a StateMachine. A Guard indicates, if the Transition can be used or not. The Guard defines a semantic that can be evaluated to \u0022True\u0022 or \u0022False\u0022. Only if the semantic is \u0022True\u0022, the Transition connected via a HasGuard Reference can be used. The value of the GuardVariableType provides the semantic of the Guard in a human-readable way, that can be used to display the StateMachine.\nThis base GuardVariableType does not define a machine-readable semantic of the Guard. The calculation, if the Guard is \u0022True\u0022 or \u0022False\u0022 is server-specific. Subtypes of this VariableType do define concrete machine-readable semantics.\nThe GuardVariableType is formally defined in[Table 22](/\u00A7_Ref33078526).\nTable 22- GuardVariableType definition\nAttribute\nValue\nBrowseName\nGuardVariableType\nDataType\nLocalizedText\nValueRank\n\u22121 (\u22121 = Scalar)\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the BaseDataVariableType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasSubtype\nVariableType\nElseGuardVariableType\nDefined in[4.6.6](/\u00A7_Ref535594246)\nHasSubtype\nVariableType\nExpressionGuardVariableType\nDefined in[4.6.5](/\u00A7_Ref535594261)\nConformance Units\nBase Info Choice States"
+    },
+    {
+      "Id": "41642f7f-e9be-484a-a566-de476b15b898",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6 StateMachine Extensions for ChoiceStates and Guards\n---\n",
+      "Content": "4.6.5 ExpressionGuardVariableType"
+    },
+    {
+      "Id": "38b0f1d1-03fd-49cc-ae48-f4e826c5d41e",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6.5 ExpressionGuardVariableType\n---\n",
+      "Content": "The ExpressionGuardVariableType provides, in addition to the human-readable semantic from its GuardVariableType, a machine interpretable representation on the semantic.\nThe ExpressionGuardVariableType is formally defined in[Table 23](/\u00A7_Ref33078561).\nTable 23- ExpressionGuardVariableType definition\nAttribute\nValue\nBrowseName\nExpressionGuardVariableType\nDataType\nLocalizedText\nValueRank\n\u22121 (\u22121 = Scalar)\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the GuardVariableType defined in[4.6.4](/\u00A7_Ref535591767)\nHasProperty\nVariable\nExpression\nContentFilter\nPropertyType\nMandatory\nConformance Units\nBase Info Choice States\n\nThe mandatory Property Expression provides a ContentFilter, that shall be evaluated on the Object the StateMachine belongs to. This is a machine-readable semantic of the Guard. If the ContentFilter evaluates to \u0022True\u0022, the Guard is \u0022True\u0022, otherwise the Guard is \u0022False\u0022.\nThe ContentFilter for ExpressionGuardVariableType is restricted to basic operators (see[OPC 10000-4](/\u00A7UAPart4) for details).\nThe ContentFilter can reference any Variables defined on the StateMachineType and are validated on the instance of the StateMachine. If the definition of the Variable is not owned directly by the StateMachine but for example some other type, the StateMachine instance shall reference that Variable."
+    },
+    {
+      "Id": "665f2b23-f8a3-4cef-abec-b59ee2481281",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6 StateMachine Extensions for ChoiceStates and Guards\n---\n",
+      "Content": "4.6.6 ElseGuardVariableType"
+    },
+    {
+      "Id": "af3a2fd2-3344-4393-a255-447270564ed5",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.6.6 ElseGuardVariableType\n---\n",
+      "Content": "The ElseGuardVariableType is a specialization of the GuardVariableType defining a concrete semantic for the Guard. The value of the Guard should always be {\u0022en\u0022, \u0022Else\u0022} or a translation of this. The ElseGuardVariableType shall only be used on pseudo states like the ChoiceStateType. That means, that it shall only be referenced from Transitions having such a StateType as SourceNode. The ElseGuardVariableType shall only be used once for each State. That means, that each State shall at most have one Transition(referenced as SourceNode) referencing an ElseGuardVariableType. The ElseGuardVariableType shall be the only Guard of a Transition. That means, if a Transition references an instance of an ElseGuardVariableType, it shall not reference any other Guards.\nThe semantic of the ElseGuardVariableType is, that if a pseudo state is reached and no other Transition exists on the State where all its Guards are validated to \u0022True\u0022, this Guards validates to \u0022True\u0022 and thus its Transition is used.\nThe ElseGuardVariableType is formally defined in[Table 24](/\u00A7_Ref33078599).\nTable 24- ElseGuardVariableType definition\nAttribute\nValue\nBrowseName\nElseGuardVariableType\nDataType\nLocalizedText\nValueRank\n\u22121 (\u22121 = Scalar)\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the GuardVariableType defined in[4.6.4](/\u00A7_Ref535591767)\nConformance Units\nBase Info Choice States"
+    },
+    {
+      "Id": "60421b83-8f91-49ca-ae70-9b1f7135f5fc",
+      "Header": "Document: Part 16 - State Machines\nSection: 4 State Machine Model\n---\n",
+      "Content": "4.7 Example of a StateMachine using a ChoiceState and Guards"
+    },
+    {
+      "Id": "2d1a49be-f09f-4c15-acdf-1270bfa0a2b6",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.7 Example of a StateMachine using a ChoiceState and Guards\n---\n",
+      "Content": "Taking the sample StateMachine of[Figure 16](/\u00A7_Ref33080668) its representation in the OPC UA AddressSpace is shown in[Figure 17](/\u00A7_Ref33080537) as RobotStateMachineType. The Transition T2 between the ChoiceState and S2_Loaded has the Guard \u0022Else\u0022 of ElseGuardVariableType and the Transition T3 between the ChoiceState and S3_Ready has the Guard\u0022OnPathTrue\u0022 having an \u0022Expression\u0022 Property(not shown in the figure). The ContentFilter of the Expression references to the ProgramLoaded Variable of the RobotStateMachineType. When the ChoiceState is entered on an instance of the RobotStateMachineType like MyStateMachine in[Figure 17](/\u00A7_Ref33080537), the concrete Variable of the instance is used to evaluate the ContentFilter. The value of the Expression is in the sample an array with one entry, using the FilterOperator Equal_0 and the filterOperands are the SimpleOperand OnPath and the Literal value \u0022True\u0022."
+    },
+    {
+      "Id": "83a71f91-9392-4b92-aea4-3caa31f14672",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.7 Example of a StateMachine using a ChoiceState and Guards\nCaption: Figure 17 - Example of a StateMachine using ChoiceState and Guards\n---\n",
+      "Content": "[image018.png](images/image018.png)"
+    },
+    {
+      "Id": "70a420f3-4f21-40ce-9926-d6d51549581a",
+      "Header": "Document: Part 16 - State Machines\nSection: 4.7 Example of a StateMachine using a ChoiceState and Guards\n---\n",
+      "Content": "Figure 17 - Example of a StateMachine using ChoiceState and Guards\n__________"
+    }
+  ]
+}

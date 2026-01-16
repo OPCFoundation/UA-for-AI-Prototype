@@ -1,0 +1,560 @@
+{
+  "Title": "Part 23 - Common ReferenceTypes",
+  "Chunks": [
+    {
+      "Id": "4f4a545e-08f8-4612-8c29-8f1a3b6e7a8a",
+      "Header": "Document: Part 23 - Common ReferenceTypes\n---\n",
+      "Content": "1 Scope"
+    },
+    {
+      "Id": "df0ebb7f-965f-4006-b12e-0fd47a905c23",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 1 Scope\n---\n",
+      "Content": "This part of the OPC Unified Architecture defines an Information Model. The Information Model defines common ReferenceTypes."
+    },
+    {
+      "Id": "588698db-b9cf-4806-a445-ee43872bfb62",
+      "Header": "Document: Part 23 - Common ReferenceTypes\n---\n",
+      "Content": "2 Normative references"
+    },
+    {
+      "Id": "8b08c9cc-d3e5-443b-9333-dd5962f592e6",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 2 Normative references\n---\n",
+      "Content": "The following referenced documents are indispensable for the application of this OPC UA part. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments and errata) applies.\nOPC 10000-1, OPC Unified Architecture - Part 1: Overview and Concepts\n[http://www.opcfoundation.org/UA/Part1/](http://www.opcfoundation.org/UA/Part1/)\nOPC 10000-3, OPC Unified Architecture - Part 3: Address Space Model\n[http://www.opcfoundation.org/UA/Part3/](http://www.opcfoundation.org/UA/Part3/)\nOPC 10000-5, OPC Unified Architecture - Part 5: Information Model\n[http://www.opcfoundation.org/UA/Part5/](http://www.opcfoundation.org/UA/Part5/)"
+    },
+    {
+      "Id": "b5985525-b784-48ab-b7ed-e9bf44c6bdaa",
+      "Header": "Document: Part 23 - Common ReferenceTypes\n---\n",
+      "Content": "3 Terms, definitions, abbreviated terms, and conventions"
+    },
+    {
+      "Id": "e276f13c-72d9-42db-9308-20528098e508",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 3 Terms, definitions, abbreviated terms, and conventions\n---\n",
+      "Content": "3.1 Terms and definitions"
+    },
+    {
+      "Id": "dfe5f47d-2b3e-473d-9e6a-edd43fe87451",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "For the purposes of this document, the terms and definitions given in OPC 10000-1, OPC 10000-3, and OPC 10000-5 apply.\nAll used terms are italicized in this document."
+    },
+    {
+      "Id": "a1a24106-1f7e-4e7f-b0f6-ca52915e0352",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 3 Terms, definitions, abbreviated terms, and conventions\n---\n",
+      "Content": "3.2 Abbreviated terms"
+    },
+    {
+      "Id": "5545d070-4fd3-43ea-9c7b-f5a415c08347",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 3.2 Abbreviated terms\n---\n",
+      "Content": "CPU Central Processing Unit\nIO Input/Output\nIP Internet Protocol\nPC Personal Computer\nPCI Peripheral Component Interconnect\nPHY Physical Layer\nPLC Programmable Logic Controller\nRFID Radio Frequency Identification"
+    },
+    {
+      "Id": "169b49ce-8ff0-4255-b649-aaa5c4db1961",
+      "Header": "Document: Part 23 - Common ReferenceTypes\n---\n",
+      "Content": "4 OPC UA ReferenceTypes"
+    },
+    {
+      "Id": "bd5051d2-a0c8-422a-9a7d-17b884a2efd8",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.1 Overview"
+    },
+    {
+      "Id": "cc50cf6d-ea1f-4643-9be4-a95a71d1a4eb",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.1 Overview\n---\n",
+      "Content": "The following[Figure 1](/\u00A7_Ref66181310) gives an overview of the ReferenceTypes defined in the following subsections."
+    },
+    {
+      "Id": "cd17a3e7-9696-4926-953c-eb9301b9013c",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.1 Overview\nCaption: Figure 1 - Overview of ReferenceTypes\n---\n",
+      "Content": "[image004.png](images/image004.png)"
+    },
+    {
+      "Id": "f613cfff-54f9-40bf-b1c6-53fbc5838a60",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.1 Overview\n---\n",
+      "Content": "Figure 1 - Overview of ReferenceTypes"
+    },
+    {
+      "Id": "1e931e3a-87e5-4ce2-8e33-b5ae1d6f90ce",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.2 IsExecutableOn"
+    },
+    {
+      "Id": "f1ff5f72-90c4-4b2e-a424-69488d0658b2",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.2 IsExecutableOn\n---\n",
+      "Content": "4.2.1 Overview"
+    },
+    {
+      "Id": "551fc9bd-4e01-4702-90ee-83636a8ec534",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.2.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose the relation between a software component and its execution environment. For example, it can be used to expose which firmware (including its version) is available on a field device."
+    },
+    {
+      "Id": "59ca24d7-79c6-4b28-b8fa-42f8779c449c",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.2 IsExecutableOn\n---\n",
+      "Content": "4.2.2 Definition"
+    },
+    {
+      "Id": "e51f08bc-89b5-4846-8d1a-297a75d59d54",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.2.2 Definition\n---\n",
+      "Content": "The IsExecutableOn is a concrete ReferenceType and can be used directly. It is a subtype of NonHierarchicalReferences.\nThe semantic of this ReferenceType is to relate a software component to its execution environment that the software needs to run (e.g. Hardware component, Task or Thread). The relationship shows that the execution environment the reference points to, is able to execute the software component. This does not imply that the software component is currently being executed or running. To show that the software is running in an environment, IsExecutingOn should be used.\nThe SourceNode of References of this ReferenceType shall be an Object or ObjectType representing a software component.\nThe TargetNode of References of this ReferenceType shall be an Object or ObjectType representing an execution environment for a software component, which might be a piece of hardware (e.g. Device) or some other environment like a task, thread or software execution framework.\nIsExecutableOn is formally defined in[Table 1](/\u00A7_Ref16854066).\nTable 1- IsExecutableOn Definition\nAttributes\nValue\nBrowseName\nIsExecutableOn\nInverseName\nCanExecute\nSymmetric\nFALSE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of NonHierarchicalReferences defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nBase Info IsExecutableOn"
+    },
+    {
+      "Id": "7bfd4f21-cb16-480d-819f-fc2aa307b069",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.3 IsExecutingOn"
+    },
+    {
+      "Id": "0656a103-49ee-4226-b2fa-bc7ca5582330",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.3 IsExecutingOn\n---\n",
+      "Content": "4.3.1 Overview"
+    },
+    {
+      "Id": "a21f2573-700c-4352-af00-9257181663a2",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.3.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose the relation between a software component and its execution environment it is currently executing on. References of this ReferenceType might be very dynamic and need to disappear as soon, as the software component is not being executed anymore. For example, it can be used to expose that a PLC program is currently running on a specific task of a PLC."
+    },
+    {
+      "Id": "1d9ef1c6-9729-411e-ae0f-842f5ef92585",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.3 IsExecutingOn\n---\n",
+      "Content": "4.3.2 Definition"
+    },
+    {
+      "Id": "de718a59-6822-4cc0-8fd7-991d12d594e5",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.3.2 Definition\n---\n",
+      "Content": "The IsExecutingOn is a concrete ReferenceType and can be used directly. It is a subtype of Utilizes.\nThe semantic of this ReferenceType is to relate a software component to its execution environment it is currently executing on (e.g. Hardware component, Task or Thread). References of this ReferenceType shall only be used when the software component is currently executed / running.\nThe SourceNode of References of this ReferenceType shall be an Object or ObjectType representing a software component.\nThe TargetNode of References of this ReferenceType shall be an Object or ObjectType representing an execution environment for a software component, which might be a piece of hardware (e.g. Device) or some other environment like a task, thread or software execution framework.\nIsExecutingOn is formally defined in[Table 2](/\u00A7_Ref65671227).\nTable 2- IsExecutingOn Definition\nAttributes\nValue\nBrowseName\nIsExecutingOn\nInverseName\nExecutes\nSymmetric\nFALSE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of Utilizes defined in[4.5](/\u00A7_Ref74311914)\nConformance Units\nBase Info IsExecutingOn"
+    },
+    {
+      "Id": "812e666b-b546-437b-b3f6-8ec7b4ac9c01",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.4 Controls"
+    },
+    {
+      "Id": "10f8a45f-96ee-4aff-ab79-84d9392f333b",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.4 Controls\n---\n",
+      "Content": "4.4.1 Overview"
+    },
+    {
+      "Id": "9e4a7923-0f3b-4a91-aec3-4c2d717fa39e",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.4.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose the relation between an object controlling other objects and the controlled objects. For example, it can be used to relate a PLC to the field devices or machine-modules controlled by the PLC or a software component to the hardware components controlled by the software component."
+    },
+    {
+      "Id": "35b2950f-c3d7-4b60-bd8c-fda2fc7a2a7c",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.4 Controls\n---\n",
+      "Content": "4.4.2 Definition"
+    },
+    {
+      "Id": "1d6c7d76-f455-4ee6-b4ac-e33bb365783c",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.4.2 Definition\n---\n",
+      "Content": "The Controls is a concrete ReferenceType and can be used directly. It is a subtype of HierarchicalReferences.\nThe semantic of this ReferenceType is to relate the controlling component to the components controlled by the controlling component.\nThe SourceNode of References of this ReferenceType shall be an Object or ObjectType representing the controlling component, as for example a PLC or a software component.\nThe TargetNode of References of this ReferenceType shall be an Object representing a component that is controlled by the TargetNode.\nControls is formally defined in[Table 3](/\u00A7_Ref56421582).\nTable 3- Controls Definition\nAttributes\nValue\nBrowseName\nControls\nInverseName\nIsControlledBy\nSymmetric\nFALSE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of HierarchicalReferences defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nBase Info Controls"
+    },
+    {
+      "Id": "1d8bb28b-8d35-4243-8bb7-76551815ccbf",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.5 Utilizes"
+    },
+    {
+      "Id": "805325c2-784f-49da-8b6d-79b9949bbf8d",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.5 Utilizes\n---\n",
+      "Content": "4.5.1 Overview"
+    },
+    {
+      "Id": "01dea061-7bec-4ac0-87a4-18e16e88788d",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.5.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose the relation between a component to other components, that the component needs in order to work. In contrast to the Requires ReferenceType, this non-hierarchical ReferenceType allows loops, e.g. both components need each other in order to work. In that case, there would be two References, the first one pointing from one component to the other, and the second one vice versa. For example, a fan in a PC needs the power supply in order to work and the power supply needs the cooling from the fan, that it is not overheating. An example of a non-looping usage is that a robot utilizes a vision system in order to get the position where to grab something."
+    },
+    {
+      "Id": "032e0eb2-20cb-4a9f-aa86-46d4a4f4d542",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.5 Utilizes\n---\n",
+      "Content": "4.5.2 Definition"
+    },
+    {
+      "Id": "bfc45699-1143-46a9-bf9b-a16e158348e2",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.5.2 Definition\n---\n",
+      "Content": "The Utilizes is a concrete ReferenceType and can be used directly. It is a subtype of NonHierarchicalReferences.\nThe semantic of this ReferenceType is to relate a component to other components that are needed by the component in order to work.\nThe SourceNode of References of this ReferenceType shall be an Object or ObjectType representing a component that utilizes the TargetNode in order to work.\nThe TargetNode of References of this ReferenceType shall be an Object or ObjectType representing the required component.\nRequires is formally defined in[Table 4](/\u00A7_Ref56421591).\nTable 4- Utilizes Definition\nAttributes\nValue\nBrowseName\nUtilizes\nInverseName\nIsUtilizedBy\nSymmetric\nFALSE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of NonHierarchicalReferences defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nBase Info Utilizes"
+    },
+    {
+      "Id": "913ada64-19d8-49ed-bcea-113afb78dab9",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.6 Requires"
+    },
+    {
+      "Id": "1c9fb555-7c6c-4395-a206-f6480569f806",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.6 Requires\n---\n",
+      "Content": "4.6.1 Overview"
+    },
+    {
+      "Id": "c5836fbd-ccfe-4dd6-85d9-d76c7b66b3db",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.6.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose the relation between a component to other components, that the component requires in order to work. In contrast to the HasComponent ReferenceType, the related components are not considered to be subcomponents of the component. In contrast to the Utilizes ReferenceType, this hierarchical ReferenceType exposes a non-looping hierarchy of dependencies.\nFor example, it can be used to relate an axis of a motion device to its required powertrains or a software component to other software components required to execute the software component, like for example libraries."
+    },
+    {
+      "Id": "32c4174c-abeb-44e9-844c-6829aac413d9",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.6 Requires\n---\n",
+      "Content": "4.6.2 Definition"
+    },
+    {
+      "Id": "0786f2e5-eb53-4ff3-812a-8860a86ec6f1",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.6.2 Definition\n---\n",
+      "Content": "The Requires is a concrete ReferenceType and can be used directly. It is a subtype of HierarchicalReferences.\nThe semantic of this ReferenceType is to relate a component to other components it requires in order to work.\nThe SourceNode of References of this ReferenceType shall be an Object or ObjectType representing a component that requires the TargetNode in order to work.\nThe TargetNode of References of this ReferenceType shall be an Object representing the required component used by the SourceNode.\nRequires References shall not lead to loops, that is, starting from Node\u0022A\u0022 and only following References of ReferenceType Requires or subtypes it shall never be possible to return to \u0022A\u0022. But it is allowed that following the References there may be more than one path leading to another Node\u0022B\u0022.\nRequires is formally defined in[Table 5](/\u00A7_Ref74312079).\nTable 5- Requires Definition\nAttributes\nValue\nBrowseName\nRequires\nInverseName\nIsRequiredBy\nSymmetric\nFALSE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of HierarchicalReferences defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nBase Info Requires"
+    },
+    {
+      "Id": "1d337cb9-7de2-4401-917d-4a340af30c78",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.7 IsPhysicallyConnectedTo"
+    },
+    {
+      "Id": "8c063382-7abb-4c3a-bb5f-ffd4d38a1009",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.7 IsPhysicallyConnectedTo\n---\n",
+      "Content": "4.7.1 Overview"
+    },
+    {
+      "Id": "f377b8a2-3791-4a56-9b8c-7a7a1af9a567",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.7.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose the relation between two hardware components which are mounted or mechanically linked or connected to each other, without one component being a subcomponent of the other component. If one component is considered to be a subcomponent, the HasAttachedComponent ReferenceType should be used. For example, it can be used to relate a motor to a gear."
+    },
+    {
+      "Id": "00968dbc-3a64-459d-a90e-87b69410b5dc",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.7 IsPhysicallyConnectedTo\n---\n",
+      "Content": "4.7.2 Definition"
+    },
+    {
+      "Id": "89e3ff47-8e0e-4698-aee4-d3bfda2294b9",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.7.2 Definition\n---\n",
+      "Content": "The IsPhysicallyConnectedTo is a concrete ReferenceType and can be used directly. It is a subtype of NonHierarchicalReferences. It is a symmetric Reference, that is, it provides the same semantic in both directions.\nThe semantic of this ReferenceType is to connect two hard components that are physically connected, without one being a subcomponent of the other.\nThe SourceNode of References of this type shall be an Object or ObjectType representing a piece of hardware.\nThe TargetNode of this ReferenceType shall be an Object representing a piece of hardware.\nIsPhysicallyConnectedTo is formally defined in[Table 6](/\u00A7_Ref56421598).\nTable 6- IsPhysicallyConnectedTo Definition\nAttributes\nValue\nBrowseName\nIsPhysicallyConnectedTo\nInverseName\n-\nSymmetric\nTRUE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of NonHierarchicalReferences defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nBase Info IsPhysicallyConnectedTo"
+    },
+    {
+      "Id": "358c0525-08fb-40e9-b56f-a23c05743b52",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.8 RepresentsSameEntityAs"
+    },
+    {
+      "Id": "a25fc32e-99e5-4fae-87d3-2df54a38f51a",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.8 RepresentsSameEntityAs\n---\n",
+      "Content": "4.8.1 Overview"
+    },
+    {
+      "Id": "0ee6737f-1e40-4fe8-9866-65a0fce65fe7",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.8.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose that two different Nodes in the AddressSpace representing the same entity in the real world. Both Nodes might represent different aspects of the same entity in the same world, or model the same aspect in different ways, for example defined in different companion specifications. For example, an ethernet port of a network module might be represented as an Object of an ObjectType defined by one companion specification focusing on the PROFINET relevant information for such a port and by another Object providing a more generic Ethernet and IP focused view on the port defined by an ObjectType in another companion specification. Both Objects may have distinguished information, but also provide some common information like the IP address, potentially in different data formats.\nIf a Server exposes more than two Nodes representing the same entity, it is recommended that all of the Nodes reference each other. A Client should not rely on all Nodes being mutually referenced to each other; i.e., the Client should browse each of the Nodes checking for additional RepresentsSameEntityAs References."
+    },
+    {
+      "Id": "e8bfeebb-182f-44c4-a3ee-a8b733186377",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.8 RepresentsSameEntityAs\n---\n",
+      "Content": "4.8.2 Definition"
+    },
+    {
+      "Id": "1f99c5a3-d75b-4af1-a2af-80c98fafb6c9",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.8.2 Definition\n---\n",
+      "Content": "The RepresentsSameEntityAs is a concrete ReferenceType and can be used directly. It is a subtype of NonHierarchicalReferences. It is a symmetric Reference, that is, it provides the same semantic in both directions.\nThe semantic of this ReferenceType is to relate two Nodes that represent the same entity in the real world.\nThe SourceNode of References of this ReferenceType can be of any NodeClass.\nThe TargetNode of References of this ReferenceType can be of any NodeClass.\nBoth, SourceNode and TargetNode shall represent the same entity in the real world.\nRepresentsSameEntityAs is formally defined in[Table 7](/\u00A7_Ref74312091).\nTable 7- RepresentsSameEntityAs Definition\nAttributes\nValue\nBrowseName\nRepresentsSameEntityAs\nInverseName\n-\nSymmetric\nTRUE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of NonHierarchicalReferences defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nBase Info RepresentsSameEntityAs"
+    },
+    {
+      "Id": "78855df4-2289-4787-b0f3-d93c8f7881a5",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.9 RepresentsSameHardwareAs"
+    },
+    {
+      "Id": "04abccfe-1e72-49c6-876e-1249ce302554",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.9 RepresentsSameHardwareAs\n---\n",
+      "Content": "4.9.1 Overview"
+    },
+    {
+      "Id": "4ede1902-528c-4d5b-b9a5-a7cf1bec8a5f",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.9.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose that two different Nodes in the AddressSpace representing the same hardware. It refines the RepresentsSameEntityAs ReferenceType and defines that the same entity in the real world shall be a piece of hardware. For example, it can be used to relate an Object representing a RFID reader based on the AutoID companion specification [1] with an Object representing the same RFID reader based on the IO-Link companion specification [2].\nNote: The example given above is special since both specification use OPC UA Part 100 Devices [3] as base. In this case, the preferred modelling approach is provided in an annex of Part 100, where a composition approach is used."
+    },
+    {
+      "Id": "62d09755-874b-471a-be38-664a8225ff0c",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.9 RepresentsSameHardwareAs\n---\n",
+      "Content": "4.9.2 Definition"
+    },
+    {
+      "Id": "bc06d9c7-3eb6-440f-b4a3-11fb7f4655a2",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.9.2 Definition\n---\n",
+      "Content": "The RepresentsSameHardwareAs is a concrete ReferenceType and can be used directly. It is a subtype of HierarchicalReferences. It is a symmetric Reference, that is, it provides the same semantic in both directions\nThe semantic of this ReferenceType is to relate two Nodes that represent the same hardware.\nThe SourceNode of References of this ReferenceType can be of any NodeClass.\nThe TargetNode of References of this ReferenceType can be of any NodeClass.\nBoth, SourceNode and TargetNode shall represent the same entity in the real world.\nRepresentsSameHardwareAs is formally defined in[Table 8](/\u00A7_Ref74312103).\nTable 8- RepresentsSameHardwareAs Definition\nAttributes\nValue\nBrowseName\nRepresentsSameHardwareAs\nInverseName\n-\nSymmetric\nTRUE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of RepresentsSameEntityAs defined in[4.8](/\u00A7_Ref74311957)\nConformance Units\nBase Info RepresentsSameHardwareAs"
+    },
+    {
+      "Id": "adbd6bca-809f-40b2-9a6b-a8c758cd02ac",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.10 RepresentsSameFunctionalityAs"
+    },
+    {
+      "Id": "d0940334-8cf2-492c-8c3e-8cddc6157d57",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.10 RepresentsSameFunctionalityAs\n---\n",
+      "Content": "4.10.1 Overview"
+    },
+    {
+      "Id": "7d5b63cb-8167-45b6-8785-faabf7ed4108",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.10.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose that two different Nodes in the AddressSpace representing the same functionality. It refines the RepresentsSameEntityAs ReferenceType and defines that the same entity in the real world shall be a functionality. For example, the functionality to move an axis might be provided by an Object representing a function block of a PLC with that functionality, but also be an Object representing the functionality of a drive. The ReferenceType can be used to related both Objects."
+    },
+    {
+      "Id": "d853ae8e-6fe3-4563-a2c5-c325c64014b1",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.10 RepresentsSameFunctionalityAs\n---\n",
+      "Content": "4.10.2 Definition"
+    },
+    {
+      "Id": "03b49eee-9280-490f-ac12-4e2781739966",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.10.2 Definition\n---\n",
+      "Content": "The RepresentsSameFunctionalityAs is a concrete ReferenceType and can be used directly. It is a subtype of HierarchicalReferences. It is a symmetric Reference, that is, it provides the same semantic in both directions.\nThe semantic of this ReferenceType is to relate two Nodes that represent the same functionality.\nThe SourceNode of References of this ReferenceType can be of any NodeClass.\nThe TargetNode of References of this ReferenceType can be of any NodeClass.\nBoth, SourceNode and TargetNode shall represent the same functionality.\nRepresentsSameFunctionalityAs is formally defined in[Table 9](/\u00A7_Ref74312135).\nTable 9- RepresentsSameFunctionalityAs Definition\nAttributes\nValue\nBrowseName\nRepresentsSameFunctionalityAs\nInverseName\n-\nSymmetric\nTRUE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of RepresentsSameEntityAs defined in[4.8](/\u00A7_Ref74311963)\nConformance Units\nBase Info RepresentsSameFunctionalityAs"
+    },
+    {
+      "Id": "a85e6a0e-9833-404b-ad6a-6b5f2a03c0f7",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.11 IsHostedBy"
+    },
+    {
+      "Id": "a3963453-2dbb-48b9-92c6-c2249b24d4ca",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.11 IsHostedBy\n---\n",
+      "Content": "4.11.1 Overview"
+    },
+    {
+      "Id": "c8f604cd-51b6-4032-8e0a-74d2e1faeef3",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.11.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose the relation between an Object representing some functionality and an Object representing some environment (e.g. hard- or software) which is necessary to execute and run the functionality. This implies that a malfunction in a referred environment or a missing related environment results in a non-functional functionality. A functionality Object might relate to several environment Objects, in that case all environment Objects are necessary to execute and run the functionality. An environment Object might be referenced by several functionality Objects.\nFor example, the functionality to move an axis is hosted by the drive moving the axis. Another example is some analog input functionality, which is related to the IO-module and the related firmware."
+    },
+    {
+      "Id": "203958c8-9b8d-4b61-9b4a-5ada0f915f0f",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.11 IsHostedBy\n---\n",
+      "Content": "4.11.2 Definition"
+    },
+    {
+      "Id": "cbc91456-cb0a-4388-84be-064fb9a7752c",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.11.2 Definition\n---\n",
+      "Content": "The IsHostedBy is a concrete ReferenceType and can be used directly. It is a subtype of Utilizes.\nThe semantic of this ReferenceType is to relate functionality represented by an OPC UA Node to the hard- and software needed to provide the functionality.\nThe SourceNode of References of this ReferenceType shall be an Object or ObjectType representing some functionality.\nThe TargetNode of References of this ReferenceType shall be an Object or ObjectType representing some hard- or software.\nIsHostedBy is formally defined in[Table 10](/\u00A7_Ref74312145).\nTable 10- IsHostedBy Definition\nAttributes\nValue\nBrowseName\nIsHostedBy\nInverseName\nHosts\nSymmetric\nFALSE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of Utilizes defined in[4.5](/\u00A7_Ref74311975)\nConformance Units\nBase Info IsHostedBy"
+    },
+    {
+      "Id": "82f98ece-9c8b-453c-87f0-11b3b99db397",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.12 HasPhysicalComponent"
+    },
+    {
+      "Id": "97c62b08-4e59-47b0-99fa-b762fe19b6d8",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.12 HasPhysicalComponent\n---\n",
+      "Content": "4.12.1 Overview"
+    },
+    {
+      "Id": "d2cc082a-0162-4009-8fc2-4c837b3b08d3",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.12.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose the relation between a hardware component and its subcomponent. An example for this reference is a modular IO-Station which is composed out of a device head and multiple IO-Modules or it can be used to relate a PC to a PCI board plugged inside the PC."
+    },
+    {
+      "Id": "a546cb88-4c69-4e71-9b49-84653c1ac127",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.12 HasPhysicalComponent\n---\n",
+      "Content": "4.12.2 Definition"
+    },
+    {
+      "Id": "2f614a8e-ae45-4e49-bb56-3915f43f45d2",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.12.2 Definition\n---\n",
+      "Content": "The HasPhysicalComponent is a concrete ReferenceType and can be used directly. It is a subtype of HasComponent.\nThe semantic of this ReferenceType is to relate a hardware component to its subcomponent, which is also a hardware component.\nThe SourceNode of References of this ReferenceType shall be an Object or ObjectType representing a piece of hardware.\nThe TargetNode of References of this ReferenceType shall be an Object representing a piece of hardware that is a component of the SourceNode.\nHasPhysicalComponent is formally defined in[Table 11](/\u00A7_Ref65675424).\nTable 11- HasPhysicalComponent Definition\nAttributes\nValue\nBrowseName\nHasPhysicalComponent\nInverseName\nPhysicalComponentOf\nSymmetric\nFALSE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of HasComponent defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nBase Info HasPhysicalComponent"
+    },
+    {
+      "Id": "8b824e70-7156-4c10-b6a5-206ab06f833a",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.13 HasContainedComponent"
+    },
+    {
+      "Id": "3660e289-5be0-47aa-a423-f0a2d24e8b14",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.13 HasContainedComponent\n---\n",
+      "Content": "4.13.1 Overview"
+    },
+    {
+      "Id": "a5915bfa-9e81-466c-a450-ed8de94b789f",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.13.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose the relation between a hardware component and its subcomponent. It indicates that the subcomponent is inside the component. To gain access to the subcomponent typically removing a part of the component (e.g. a hatch) is necessary. For example, it can be used to relate a PC to a PCI board plugged inside the PC. The PCI board is accessible after removing the PC housing. It can also be used to relate a PLC to its CPU, which is hard wired to the PLC, or a network module to its Ethernet PHYs."
+    },
+    {
+      "Id": "600c1321-64e8-418d-94c7-3880aba42983",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.13 HasContainedComponent\n---\n",
+      "Content": "4.13.2 Definition"
+    },
+    {
+      "Id": "39cfe734-4c67-4b99-8844-a46e204d596c",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.13.2 Definition\n---\n",
+      "Content": "The HasContainedComponent is a concrete ReferenceType and can be used directly. It is a subtype of HasPhysicalComponent.\nThe semantic of this ReferenceType is to relate a hardware component to its subcomponent that is inside the component.\nThe SourceNode of References of this ReferenceType shall be an Object or ObjectType representing a piece of hardware.\nThe TargetNode of References of this ReferenceType shall be an Object representing a piece of hardware that is a component of the SourceNode.\nHasContainedComponent is formally defined in[Table 12](/\u00A7_Ref65675432).\nTable 12- HasContainedComponent Definition\nAttributes\nValue\nBrowseName\nHasContainedComponent\nInverseName\nContainedComponentOf\nSymmetric\nFALSE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of HasPhysicalComponent defined in[4.12](/\u00A7_Ref74311996)\nConformance Units\nBase Info HasContainedComponent"
+    },
+    {
+      "Id": "f1aef109-4425-46ba-bd4e-d7dc6834eeac",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4 OPC UA ReferenceTypes\n---\n",
+      "Content": "4.14 HasAttachedComponent"
+    },
+    {
+      "Id": "33eb37ae-5471-4ec0-87d8-9bea2a057380",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.14 HasAttachedComponent\n---\n",
+      "Content": "4.14.1 Overview"
+    },
+    {
+      "Id": "c3c25e3c-0cb7-4341-9ea5-90ba0de8233f",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.14.1 Overview\n---\n",
+      "Content": "This ReferenceType can be used to expose the relation between a hardware component and its subcomponent. It indicates that the subcomponent is attached to the component. That implies that the subcomponent is located in direct contact or direct vicinity of the component and is visible from the outside of the component without removing parts of the component (like a hatch). For example, it can be used to relate a drive device or a modular IO-station which is composed out of a device head and multiple IO-modules attached to the head to such an IO-module like a fieldbus interface module. Another example is a laptop having a removable battery attached to it."
+    },
+    {
+      "Id": "4d88c226-dedb-45d1-91b9-7f565f54dc6f",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.14 HasAttachedComponent\n---\n",
+      "Content": "4.14.2 Definition"
+    },
+    {
+      "Id": "9192cfcf-a7e9-4c32-a3b1-87515f5a81b1",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 4.14.2 Definition\n---\n",
+      "Content": "The HasAttachedComponent is a concrete ReferenceType and can be used directly. It is a subtype of HasPhysicalComponent.\nThe semantic of this ReferenceType is to relate a hardware component to its subcomponent that is attached to the component.\nThe SourceNode of References of this ReferenceType shall be an Object or ObjectType representing a piece of hardware.\nThe TargetNode of References of this ReferenceType shall be an Object representing a piece of hardware that is a component of the SourceNode.\nHasAttachedComponent is formally defined in[Table 13](/\u00A7_Ref74312156).\nTable 13- HasAttachedComponent Definition\nAttributes\nValue\nBrowseName\nHasAttachedComponent\nInverseName\nAttachedComponentOf\nSymmetric\nFALSE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of HasPhysicalComponent defined in[4.12](/\u00A7_Ref74312007)\nConformance Units\nBase Info HasAttachedComponent"
+    },
+    {
+      "Id": "a7bb124c-9668-4c7a-ab73-636f992cc0ab",
+      "Header": "Document: Part 23 - Common ReferenceTypes\n---\n",
+      "Content": "5 Reference Description"
+    },
+    {
+      "Id": "6ec3476d-c462-4010-8855-725013202d25",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5 Reference Description\n---\n",
+      "Content": "5.1 Overview"
+    },
+    {
+      "Id": "0963ca16-a0b5-4426-874e-d4f7ea6090bf",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.1 Overview\n---\n",
+      "Content": "OPC UA relates Nodes using References. This concept is intentionally a simple construct, where the only information of a Reference is the SourceNode, the TargetNode, the ReferenceType and for asymmetric ReferenceTypes the direction (forward or inverse).\nSometimes, it is desirable to add more information to such a Reference. The concept of a ReferenceDescription keeps the simple Reference unchanged, and creates a Variable which is used to add more information about the Reference. Such a Variable can be referenced from the SourceNode and / or the TargetNode of such a Reference. Potentially, it can also be referenced by other Nodes to provide additional information (see also[5.2](/\u00A7_Ref63920887)). As Nodes can have several References, each ReferenceDescription Variable contains the unique definition of one Reference. An example is given in[Figure 2](/\u00A7_Ref63861017). ObjectA references ObjectB and ObjectC, each using the ReferenceType SomeReferenceType. Both References are described by a ReferenceDescription, that is, the Variables SomeReferenceType1 and SomeReferenceType2. The Values of those Variables uniquely identify the References by providing SourceNode, TargetNode, ReferenceType and direction. In the example, both ReferenceDescriptions have a Property with additional information, one called AdditionalInformationABC and the other AdditionalInformationXYZ."
+    },
+    {
+      "Id": "00f53794-214b-4eda-a2fa-4d131e2de43b",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.1 Overview\nCaption: Figure 2 - Example of ReferenceDescriptions\n---\n",
+      "Content": "[image005.png](images/image005.png)"
+    },
+    {
+      "Id": "a36d2c3a-0b53-4fec-b1a8-6fb20fe6651e",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.1 Overview\n---\n",
+      "Content": "Figure 2 - Example of ReferenceDescriptions\nThe following rules apply for using a ReferenceDescription.\nA ReferenceDescription Variable shall be of VariableType ReferenceDescriptionVariableType(see[5.3.1](/\u00A7_Ref133821199)) or a subtype.\nThe ReferenceDescription Variable shall exist only in addition to the Reference it describes.\nThe Server shall expose the Reference in the direction described in the ReferenceDescription, i.e. if it is described as inverse, the inverse Path shall be browsable.\nThe SourceNode defined in the Value shall reference the ReferenceDescription Variable using the HasReferenceDescription ReferenceType(see[5.4.1](/\u00A7_Ref63921056)) or a subtype. The TargetNode and potentially other Nodes might reference the ReferenceDescription Variable using the HasReferenceDescription ReferenceType.\nThe BrowseName of a ReferenceDescription Variable should be the BrowseName of the ReferenceType, or in case of ambiguities, prefixed with the BrowseName of the ReferenceType followed by a suffix making the BrowseName unique in that context. In case of an inverse Reference( IsForward set to FALSE), the BrowseName should be prefixed with the BrowseName of the ReferenceType, followed by \u0022Inverse\u0022, and potentially followed by a suffix making the BrowseName unique in that context. Clients shall not make assumptions about the BrowseName and therefore should use for the ReferenceType and/or VariableType to receive ReferenceDescription Variables, not the BrowseName.\nFor each unique Reference( SourceNode, ReferenceType, IsForward, TargetNode) there shall be at most one ReferenceDescription Variable. The same Reference might be exposed two times by switching SourceNode and TargetNode and, in case of asymmetric References, inverting IsForward. In case of symmetric References, the IsForward is always set to TRUE."
+    },
+    {
+      "Id": "9a93eb11-a3e9-4518-9586-d24d07f60eb7",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5 Reference Description\n---\n",
+      "Content": "5.2 Reference Refinement"
+    },
+    {
+      "Id": "ba579739-6689-4e73-b98b-96b0d0be53f2",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.2 Reference Refinement\n---\n",
+      "Content": "Sometimes, a high-level Reference might be refined by more fine granular References, including a more detailed path. For example, DeviceA controls DeviceB (see[Figure 3](/\u00A7_Ref63596543), A)). This might be refined, exposing what network equipment is used for the communication (see[Figure 3](/\u00A7_Ref63596543), B)), and further refined by exposing, which ports are used (see[Figure 3](/\u00A7_Ref63596543), C)). Alternatively, it might directly be refined with ports and switches (see[Figure 3](/\u00A7_Ref63596543), D))."
+    },
+    {
+      "Id": "c89fc88e-caca-4820-b7ce-da34d31447bd",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.2 Reference Refinement\nCaption: Figure 3 - Examples of Reference Refinements\n---\n",
+      "Content": "[image006.png](images/image006.png)"
+    },
+    {
+      "Id": "545e5fdb-c226-4c23-8259-3b3431a29107",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.2 Reference Refinement\n---\n",
+      "Content": "Figure 3 - Examples of Reference Refinements\nWithout providing Reference refinement, there may be multiple paths possible (e.g., several switches, see[Figure 4](/\u00A7_Ref63596841)), and thus it is not clear which path the high-level Reference is using at any given instance in time."
+    },
+    {
+      "Id": "b31a404c-cabf-4690-95ff-fce4c661d3a4",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.2 Reference Refinement\nCaption: Figure 4 - Example of Reference Refinements with multiple path options\n---\n",
+      "Content": "[image007.png](images/image007.png)"
+    },
+    {
+      "Id": "7d7ad263-61ed-402e-80f9-c9d13fe500a1",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.2 Reference Refinement\n---\n",
+      "Content": "Figure 4 - Example of Reference Refinements with multiple path options\nTherefore, the Property ReferenceRefinement is defined for the ReferenceDescriptionVariableType(see[5.3.1](/\u00A7_Ref133821199)) allowing to make the refined References explicit. In[Figure 5](/\u00A7_Ref63597320), an example is given. The ReferenceDescription Variable containing the refinement can be referenced by any Node in the refinement path using the HasReferenceDescription ReferenceType to expose the information (see[Figure 5](/\u00A7_Ref63597320))."
+    },
+    {
+      "Id": "9576c714-627d-48f5-b1a9-73774bb346c7",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.2 Reference Refinement\nCaption: Figure 5 - Example of how to use Reference Refinements\n---\n",
+      "Content": "[image008.png](images/image008.png)"
+    },
+    {
+      "Id": "9e9eec78-068a-48a8-9127-ff171bb5f11e",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.2 Reference Refinement\n---\n",
+      "Content": "Figure 5 - Example of how to use Reference Refinements\nWhen multiple levels are addressed, each ReferenceDescription Variable only contains one level, as shown in[Figure 6](/\u00A7_Ref63598188). The \u0022Controls\u0022 Variable only contains the first level, via the Switch. The \u0022ConnectedTo1\u0022 and \u0022ConnectedTo2\u0022 Variables further refine the References used in the first refinement level. Both contain multiple hops in one refinement. In the example, the Nodes used in the refinement of \u0022ConnectsTo1\u0022 do reference the ReferenceDescription Variable, whereas for \u0022ConnectsTo2\u0022 they do not. Both options are allowed."
+    },
+    {
+      "Id": "7ee26227-5d2b-48fe-a9f8-78285cd2434f",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.2 Reference Refinement\nCaption: Figure 6 - Example of how to use Reference Refinements with two Levels and Multiple Hops\n---\n",
+      "Content": "[image009.png](images/image009.png)"
+    },
+    {
+      "Id": "fafdf906-13b9-4ff7-bf5b-ac73e8c4737a",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.2 Reference Refinement\n---\n",
+      "Content": "Figure 6 - Example of how to use Reference Refinements with two Levels and Multiple Hops\nNote that the ReferenceRefinement intentionally only defines one refinement path (of potentially many possible paths between the Nodes). If the path used changes, the ReferenceRefinement needs to change."
+    },
+    {
+      "Id": "017fda0c-5838-40ff-bed2-3c609130b249",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5 Reference Description\n---\n",
+      "Content": "5.3 OPC UA VariableTypes"
+    },
+    {
+      "Id": "b07cd2d4-0b63-45af-b859-7f9515bef2fc",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.3 OPC UA VariableTypes\n---\n",
+      "Content": "5.3.1 ReferenceDescriptionVariableType"
+    },
+    {
+      "Id": "dd129822-5ff6-4bea-8b1d-d6cb4cd5b1f4",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.3.1 ReferenceDescriptionVariableType\n---\n",
+      "Content": "The ReferenceDescriptionVariableType is a subtype of the BaseDataVariableType. It is used as container to expose additional information of a Reference. The Value contains the description of the Reference the Variable represents.\nThe Reference as defined in the Value shall be exposed in the OPC UA Server containing the Variable. The IsForward field in the Value indicates the browsable direction of the Reference. It is not required that the opposite direction is browsable.  The VariableType is formally defined in[Table 14](/\u00A7_Ref134949602).\nTable 14- ReferenceDescriptionVariableType Definition\nAttribute\nValue\nBrowseName\nReferenceDescriptionVariableType\nIsAbstract\nFALSE\nValueRank\n\u22121 (\u22121 = Scalar)\nDataType\nReferenceDescriptionDataType\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the BaseDataVariableType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nReferenceRefinement\nReferenceListEntryDataType[]\nPropertyType\nO\nConformance Units\nBase Info ReferenceDescription\n\nThe optional Property ReferenceRefinement contains an array of References refining the original Reference represented by an instance of ReferenceDescriptionVariableType. Each entry in the array contains the ReferenceType, direction and TargetNode. The SourceNode of the first entry in the array is the SourceNode of the Value of the instance of ReferenceDescriptionVariableType. The SourceNode of all other entries is the TargetNode of the previous entry. The TargetNode of the last entry shall be the TargetNode of the instance of ReferenceDescriptionVariableType."
+    },
+    {
+      "Id": "62bad61e-a1e0-432b-8652-eee1f59c93ec",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5 Reference Description\n---\n",
+      "Content": "5.4 OPC UA ReferenceTypes"
+    },
+    {
+      "Id": "a012d96e-0629-4970-b16c-b36e5d6a8276",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.4 OPC UA ReferenceTypes\n---\n",
+      "Content": "5.4.1 HasReferenceDescription"
+    },
+    {
+      "Id": "a6dfda96-21b2-4b38-8a6c-39c307547413",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.4.1 HasReferenceDescription\n---\n",
+      "Content": "The HasReferenceDescription is a concrete ReferenceType and can be used directly. It is a subtype of HasChild.\nThe semantic of this ReferenceType is to link to a ReferenceDescription either from a Node directly participating in the Reference that is described in the ReferenceDescription(as SourceNode or TargetNode), or from a Node somehow related to the Reference that is described (e.g. in the refinement of the Reference(being part of the refinement path)).\nThe SourceNode of References of this type can be of any NodeClass.\nThe TargetNode of this ReferenceType shall be a Variable of VariableType ReferenceDescriptionVariableType or one of its subtypes.\nThe HasReferenceDescription is formally defined in[Table 15](/\u00A7_Ref80773101).\nTable 15- HasReferenceDescription Definition\nAttributes\nValue\nBrowseName\nHasReferenceDescription\nInverseName\nReferenceDescriptionOf\nSymmetric\nFALSE\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of HasChild defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nBase Info ReferenceDescription"
+    },
+    {
+      "Id": "580dcb39-40a5-432c-a8ae-6e8ce0cc9423",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5 Reference Description\n---\n",
+      "Content": "5.5 OPC UA DataTypes"
+    },
+    {
+      "Id": "d77bdc55-b736-4588-a7d2-f82aedf92e2a",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.5 OPC UA DataTypes\n---\n",
+      "Content": "5.5.1 ReferenceDescriptionDataType"
+    },
+    {
+      "Id": "e04d05fa-9d20-43ee-98b4-0abf972296cf",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.5.1 ReferenceDescriptionDataType\n---\n",
+      "Content": "This structure contains the description of a Reference. The structure is defined in[Table 16](/\u00A7_Ref80773123).\nTable 16- ReferenceDescriptionDataType Structure\nName\nType\nDescription\nReferenceDescriptionDataType\nstructure\n\nSourceNode\nNodeId\nThe SourceNode of the Reference.\nReferenceType\nNodeId\nThe ReferenceType of the Reference.\nIsForward\nBoolean\nThe direction of the Reference. If TRUE in forward direction, if FALSE in inverse direction. For symmetric References it shall always be set to TRUE.\nTargetNode\nExpandedNodeId\nThe TargetNode of the Reference.\n\nIts representation in the AddressSpace is defined in[Table 17](/\u00A7_Ref80773139).\nTable 17- ReferenceDescriptionDataType Definition\nAttribute\nValue\nBrowseName\nReferenceDescriptionDataType\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of Structure defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nBase Info ReferenceDescription"
+    },
+    {
+      "Id": "39ae164b-db92-431a-b295-382e42966ab8",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.5 OPC UA DataTypes\n---\n",
+      "Content": "5.5.2 ReferenceListEntryDataType"
+    },
+    {
+      "Id": "0bb1186d-6bb1-483b-80c8-fa10d466e411",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: 5.5.2 ReferenceListEntryDataType\n---\n",
+      "Content": "This structure contains the description of a Reference without SourceNode. It can be used to list a path of References without repeating the SourceNode, like in the ReferenceRefinement Property in[5.3.1](/\u00A7_Ref133821199). The structure is defined in[Table 18](/\u00A7_Ref109726409).\n\nTable 18- ReferenceListEntryDataType Structure\nName\nType\nDescription\nReferenceListEntryDataType\nstructure\n\nReferenceType\nNodeId\nThe Node Id of the ReferenceType used as Reference.\nIsForward\nBoolean\nThe direction of the Reference, if TRUE in forward direction, if FALSE, in inverse direction. For symmetric references it shall always be set to TRUE.\nTargetNode\nExpandedNodeId\nThe TargetNode of the Reference.\n\nIts representation in the AddressSpace is defined in[Table 19](/\u00A7_Ref46498488).\nTable 19- ReferenceListEntryDataType Definition\nAttribute\nValue\nBrowseName\nReferenceListEntryDataType\nIsAbstract\nFALSE\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of Structure defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nBase Info ReferenceDescription"
+    },
+    {
+      "Id": "5b508a7b-532f-493d-8097-ad170b11d098",
+      "Header": "Document: Part 23 - Common ReferenceTypes\n---\n",
+      "Content": "Annex\u00A0A(Informative)ReferenceDescription Design Decisions\nA.1 Overview"
+    },
+    {
+      "Id": "fd8e3b67-ef25-4762-ad4e-bb2bfba6d03c",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: A.1 Overview\n---\n",
+      "Content": "The ReferenceDescription defined in[0](/\u00A7_Ref80775070) keeps the simple construct of a Reference and adds a Variable to provide additional information. This approach allows to handle the References natively without the need to access the additional information. An alternative approach is described in the next section."
+    },
+    {
+      "Id": "b34ae749-854a-42b7-86ce-9ee80b1e3a93",
+      "Header": "Document: Part 23 - Common ReferenceTypes\n---\n",
+      "Content": "A.2 Alternative Approach: Intermediate Object"
+    },
+    {
+      "Id": "ec76e8b4-3dc3-4ea5-ab26-c2e9a697d6bd",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: A.2 Alternative Approach: Intermediate Object\n---\n",
+      "Content": "One modelling construct to add information to References, is to provide an intermediate Object as proxy with additional information (see[Figure A.1](/\u00A7_Ref80774979)). The approach often makes sense. For example, to provide information about the physical cable connecting two devices represented as Nodes, another Node is added representing the cable, and both device Nodes are connected to the cable Node. The disadvantage of the approach is, that a Client cannot natively follow the Reference to the target directly, but always gets to the intermediate Object first and from there to the original target.  Therefore, the ReferenceDescription uses an approach, where the Reference directly connects both Nodes without the need to deal with an intermediate Object."
+    },
+    {
+      "Id": "996222cc-afe0-44aa-a24f-4b09fdcafd47",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: A.2 Alternative Approach: Intermediate Object\nCaption: Figure A. 1 - Refinement of References by Proxy Object\n---\n",
+      "Content": "[image010.png](images/image010.png)"
+    },
+    {
+      "Id": "3e046728-e487-49d8-afd6-6df517e64bd8",
+      "Header": "Document: Part 23 - Common ReferenceTypes\nSection: A.2 Alternative Approach: Intermediate Object\n---\n",
+      "Content": "Figure A. 1 - Refinement of References by Proxy Object\n\n\nBibliography\n[1] OPC 30010, OPC UA for AutoId Devices\n[2] OPC 30120, OPC UA for IO-Link Devices and IO-Link Masters\n[3] OPC 10000-100, OPC Unified Architecture - Part 100: Devices\n\n_____________"
+    }
+  ]
+}

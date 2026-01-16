@@ -1,0 +1,405 @@
+{
+  "Title": "Part 18 - Role-Based Security",
+  "Chunks": [
+    {
+      "Id": "c6a89881-b113-4cef-b81a-be1bf25a3c8a",
+      "Header": "Document: Part 18 - Role-Based Security\n---\n",
+      "Content": "1 Scope"
+    },
+    {
+      "Id": "ae650ec5-67cc-4b02-a245-1be5946c0553",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 1 Scope\n---\n",
+      "Content": "This part of the OPC Unified Architecture defines an Information Model. The Information Model describes the basic infrastructure to model role-based security."
+    },
+    {
+      "Id": "fac445b4-3295-4d78-9684-45e3b7a1f6d8",
+      "Header": "Document: Part 18 - Role-Based Security\n---\n",
+      "Content": "2 Normative references"
+    },
+    {
+      "Id": "38d87883-333b-4786-98f8-01f2394c63c5",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 2 Normative references\n---\n",
+      "Content": "The following documents, in whole or in part, are normatively referenced in this document and are indispensable for its application. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments and errata) applies.\nOPC 10000-1, OPC Unified Architecture - Part 1: Concepts\n[http://www.opcfoundation.org/UA/Part1/](http://www.opcfoundation.org/UA/Part1/)\nOPC 10000-3, OPC Unified Architecture - Part 3: Address Space Model\n[http://www.opcfoundation.org/UA/Part3/](http://www.opcfoundation.org/UA/Part3/)\nOPC 10000-4, OPC Unified Architecture - Part 4: Services\n[http://www.opcfoundation.org/UA/Part4/](http://www.opcfoundation.org/UA/Part4/)\nOPC 10000-5, OPC Unified Architecture - Part 5: Information Model\n[http://www.opcfoundation.org/UA/Part5/](http://www.opcfoundation.org/UA/Part5/)\nOPC 10000-6, OPC Unified Architecture - Part 6: Mappings\n[http://www.opcfoundation.org/UA/Part6/](http://www.opcfoundation.org/UA/Part6/)\nOPC 10000-7, OPC Unified Architecture - Part 7: Profiles\n[http://www.opcfoundation.org/UA/Part7/](http://www.opcfoundation.org/UA/Part7/)\nOPC 10000-8, OPC Unified Architecture - Part 8: Data Access"
+    },
+    {
+      "Id": "d2b137b7-cf2c-45fe-85e4-3fecff0b6d96",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 2 Normative references\n---\n",
+      "Content": "[http://www.opcfoundation.org/UA/Part8/](http://www.opcfoundation.org/UA/Part8/)\nOPC 10000-12, OPC Unified Architecture - Part 12: Discovery and Global Services\n[http://www.opcfoundation.org/UA/Part12/](http://www.opcfoundation.org/UA/Part12/)"
+    },
+    {
+      "Id": "0ecf3088-3030-4082-8d08-965dff7f8610",
+      "Header": "Document: Part 18 - Role-Based Security\n---\n",
+      "Content": "3 Terms, definitions, abbreviated terms and conventions"
+    },
+    {
+      "Id": "0d808ec7-4360-450c-90a4-0f9159b38918",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 3 Terms, definitions, abbreviated terms and conventions\n---\n",
+      "Content": "3.1 Terms and definitions"
+    },
+    {
+      "Id": "1c94a88d-39e0-472c-bbeb-d2f970e1f635",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "For the purposes of this document, the terms and definitions given in[OPC 10000-1](/\u00A7UAPart1),[OPC 10000-3](/\u00A7UAPart3) and[OPC 10000-5](/\u00A7UAPart5) apply."
+    },
+    {
+      "Id": "3712b200-17fa-4074-9348-84f18d2e049e",
+      "Header": "Document: Part 18 - Role-Based Security\n---\n",
+      "Content": "4 Role Model"
+    },
+    {
+      "Id": "4dff8f4e-9250-438b-bc99-ba817fd2bab4",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4 Role Model\n---\n",
+      "Content": "4.1 General"
+    },
+    {
+      "Id": "65d2acbf-2137-4bde-8a77-7b78450fa1cc",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.1 General\n---\n",
+      "Content": "OPC UA defines a standard approach for implementing role-based security. Servers may choose to implement part or all of the mechanisms defined here. The OPC UA approach assigns Permissions to Roles for each Node in the AddressSpace. Clients are then granted Roles when they create a Session based on the information provided by the Client.\nRoles are used to separate authentication (determining who a Client is with a user token and Client application identity) from authorization ( Permissions determining what the Client is allowed to do). By separating these tasks Servers can allow centralized services to manage user identities and credentials while the Server only manages the Permissions for Roles on its Nodes.\n[OPC 10000-3](/\u00A7UAPart3) defines the possible Permissions and the representation as Node Attributes.\n[Figure 1](/\u00A7_Ref497335317) depicts the ObjectTypes, Objects and their components used to represent the Role management."
+    },
+    {
+      "Id": "c8965e16-370a-4e92-b233-ddbd31fa42e7",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.1 General\nCaption: Figure 1 - Role management overview\n---\n",
+      "Content": "[image004.png](images/image004.png)"
+    },
+    {
+      "Id": "b5136028-a71a-453b-aab2-273a1642dc87",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.1 General\n---\n",
+      "Content": "Figure 1 - Role management overview"
+    },
+    {
+      "Id": "bfea4b50-bca0-48f7-9780-c13226ad7085",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4 Role Model\n---\n",
+      "Content": "4.2 RoleSetType"
+    },
+    {
+      "Id": "d1ccd64b-7446-464f-8558-66dc1dfe3e27",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.2 RoleSetType\n---\n",
+      "Content": "4.2.1 RoleSetType definition"
+    },
+    {
+      "Id": "dc9b5b27-a6d8-48ba-9d29-ca4224fe15f4",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.2.1 RoleSetType definition\n---\n",
+      "Content": "The RoleSet Object defined in[OPC 10000-5](/\u00A7UAPart5) is a RoleSetType which is formally defined in[Table 1](/\u00A7_Ref17727931).\nTable 1- RoleSetType definition\nAttribute\nValue\nBrowseName\nRoleSetType\nIsAbstract\nFalse\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasComponent\nObject\n\u003CRoleName\u003E\n\nRoleType\nOptionalPlaceholder\nHasComponent\nMethod\nAddRole\nDefined in[4.2.2](/\u00A7_Ref468968238).\nMandatory\nHasComponent\nMethod\nRemoveRole\nDefined in[4.2.3](/\u00A7_Ref468968256).\nMandatory\nConformance Units\nBase Info ServerType\n\nThe AddRole Method allows configuration Clients to add a new Role to the Server.\nThe RemoveRole Method allows configuration Clients to remove a Role from the Server."
+    },
+    {
+      "Id": "cd7c773a-657d-45f3-acd9-1083971cc102",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.2 RoleSetType\n---\n",
+      "Content": "4.2.2 AddRole Method"
+    },
+    {
+      "Id": "7a932d3e-acc1-497b-bb53-e19ae0337d3c",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.2.2 AddRole Method\n---\n",
+      "Content": "This Method is used to add a Role to the RoleSet Object defined in[4.3](/\u00A7_Ref211330056).\nThe combination of the NamespaceUri and RoleName parameters are used to construct the BrowseName for the new Node. The BrowseName shall be unique within the RoleSet Object.\nIf the optional Properties EndpointsExclude and ApplicationsExclude are available on the Role Object created with this Method, the initial values of the EndpointsExclude and ApplicationsExclude Properties shall be TRUE.\nThe Client shall use an encrypted channel and shall provide user credentials with administrator rights like SecurityAdmin Role when invoking this Method on the Server.\n[OPC 10000-3](/\u00A7UAPart3) defines well-known Roles. If this Method is to be used to add a well-known Role, the name of the Role from[OPC 10000-3](/\u00A7UAPart3) shall be used together with the OPC UA namespace URI. The Server shall use the NodeIds for the well-known Roles in this case. The NodeIds for the well-known Roles are defined in[OPC 10000-6](/\u00A7UAPart6).\nSignature\nAddRole\n[in] String RoleName,\n[in] String NamespaceUri,\n[out] NodeId RoleNodeId\n);\n\nArgument\nDescription\nRoleName\nThe name of the Role.\nNamespaceUri\nThe NamespaceUri qualifies the RoleName. If this value is null or empty then the resulting BrowseName will be qualified by the Server\u0027s NamespaceUri.\nRoleNodeId\nThe NodeId assigned by the Server to the new Node.\n\nMethod Result Codes\nResultCode\nDescription\nBad_InvalidArgument\nThe RoleName or NamespaceUri is not valid.\nThe text associated with the error shall indicate the exact problem.\nBad_NotSupported"
+    },
+    {
+      "Id": "4cb7ca43-bc3d-4909-8201-bd9341f84c62",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.2.2 AddRole Method\n---\n",
+      "Content": "Bad_NotSupported\nThe Server does not allow more Roles to be added.\nBad_UserAccessDenied\nThe caller does not have the necessary Permissions.\nBad_SecurityModeInsufficient\nThe SecureChannel is not encrypted.\nBad_AlreadyExists\nThe Role already exists in the Server.\nBad_ResourceUnavailable\nThe Server does not have enough resources to add the role.\n\nThe AddRole Method representation in the AddressSpace is formally defined in[Table 2](/\u00A7_Ref211325856).\nTable 2- AddRole Method AddressSpace definition\nAttribute\nValue\nBrowseName\nAddRole\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\n0:HasProperty\nVariable\n0:OutputArguments\n0:Argument[]\n0:PropertyType\nM\nConformanceUnits\nSecurity Role Server Management"
+    },
+    {
+      "Id": "4ab84ec6-f4d5-4203-b195-6985d4a8622a",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.2 RoleSetType\n---\n",
+      "Content": "4.2.3 RemoveRole Method"
+    },
+    {
+      "Id": "fe77f988-6c24-4c9c-9de5-1552fb6eff4d",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.2.3 RemoveRole Method\n---\n",
+      "Content": "This Method is used to remove a Role from the RoleSet Object.\nThe RoleNodeId is the NodeId of the Role Object to remove.\nThe Server may prohibit the removal of some Roles because they are necessary for the Server to function.\nIf a Role is removed all Permissions associated with the Role shall be deleted. Ideally these changes should take effect immediately; however, some lag may occur.\nThe Client shall use an encrypted channel and shall provide user credentials with administrator rights like SecurityAdmin Role when invoking this Method on the Server.\nSignature\nRemoveRole\n[in] NodeId RoleNodeId\n);\n\nArgument\nDescription\nRoleNodeId\nThe NodeId of the Role Object.\n\nMethod Result Codes\nResultCode\nDescription\nBad_NodeIdUnknown\nThe specified Role Object does not exist.\nBad_NotSupported\nThe Server does not allow the Role Object to be removed.\nBad_UserAccessDenied\nThe caller does not have the necessary Permissions.\nBad_SecurityModeInsufficient\nThe SecureChannel is not encrypted.\nBad_RequestNotAllowed\nThe specified Role Object cannot be removed.\n\nThe RemoveRole Method representation in the AddressSpace is formally defined in[Table 3](/\u00A7_Ref211325870).\nTable 3- RemoveRole Method AddressSpace definition\nAttribute\nValue\nBrowseName\nRemoveRole\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\nConformanceUnits\nSecurity Role Server Management"
+    },
+    {
+      "Id": "e002eb30-ced2-40a7-a062-48c7b58324cb",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4 Role Model\n---\n",
+      "Content": "4.3 RoleSet"
+    },
+    {
+      "Id": "1a60ef78-97e6-4735-bd0e-a846a72df4c5",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.3 RoleSet\n---\n",
+      "Content": "The RoleSet Object defined in[Table 4](/\u00A7_Ref51333312) is used to publish all Roles supported by the Server.\nTable 4- RoleSet definition\nAttribute\nValue\nBrowseName\nRoleSet\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nComponentOf the ServerCapabilities Object defined in[OPC 10000-5](/\u00A7UAPart5)\nHasTypeDefinition\nObjectType\nRoleSetType\n\n\n\nHasComponent\nObject\nAnonymous\n\nRoleType\n\nHasComponent\nObject\nAuthenticatedUser\n\nRoleType\n\nHasComponent\nObject\nTrustedApplication\n\nRoleType\n\nHasComponent\nObject\nObserver\n\nRoleType\n\nHasComponent\nObject\nOperator\n\nRoleType\n\nHasComponent\nObject\nEngineer\n\nRoleType\n\nHasComponent\nObject\nSupervisor\n\nRoleType\n\nHasComponent\nObject\nConfigureAdmin\n\nRoleType\n\nHasComponent\nObject\nSecurityAdmin\n\nRoleType\n\nConformance Units\nSecurity Role Server Base 2\n\nServers should support the well-known Roles which are defined in[OPC 10000-3](/\u00A7UAPart3).\nThe default Identities for the Anonymous Role shall be Identities with the criteriaType IdentityCriteriaType.Anonymous and the criteriaType IdentityCriteriaType.AuthenticatedUser. The Anonymous Role is the default Role which is always assigned to all Sessions. The Anonymous Role is the default Role which is always assigned to all Sessions.\nThe default Identities for the AuthenticatedUser Role shall be an identity with the criteriaType IdentityCriteriaType.AuthenticatedUser.\nThe default Identities for the TrustedApplication Role shall be an identity with the criteriaType IdentityCriteriaType.TrustedApplication.\nA Server"
+    },
+    {
+      "Id": "22aa8522-40f1-4e56-bda0-12b54f9529ff",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.3 RoleSet\n---\n",
+      "Content": ".\nA Server shall not allow changes to the Roles Anonymous, AuthenticatedUser and TrustedApplication.\nA Server shall not allow the deletion of the well-known Roles Anonymous and AuthenticatedUser TrustedApplication.\nThe additional definition for the conformance units of the instances is defined in[Table 5](/\u00A7_Ref65609805).\nTable 5- RoleSet Additional Conformance Units\nBrowsePath\nConformance Units\nConfigureAdmin\nSecurity Role Well Known\nSecurityAdmin\nSecurity Role Well Known\nAnonymous\nSecurity Role Well Known Group 2\nAuthenticatedUser\nSecurity Role Well Known Group 2\nTrustedApplication\nSecurity Role TrustedApplication\nObserver\nSecurity Role Well Known Group 3\nOperator\nSecurity Role Well Known Group 3\nEngineer\nSecurity Role Well Known Group 3\nSupervisor\nSecurity Role Well Known Group 3"
+    },
+    {
+      "Id": "eb4a41f9-a1a9-4a24-b408-009566659686",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4 Role Model\n---\n",
+      "Content": "4.4 RoleType"
+    },
+    {
+      "Id": "7f12561b-9eeb-4e62-8914-0d6b8d31da09",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4 RoleType\n---\n",
+      "Content": "4.4.1 RoleType definition"
+    },
+    {
+      "Id": "7dba5475-fb5a-462d-b432-4031eeeb8497",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.1 RoleType definition\n---\n",
+      "Content": "Each Role Object has the Properties and Methods defined by the RoleType which is formally defined in[Table 6](/\u00A7_Ref33101027).\nTable 6- RoleType definition\nAttribute\nValue\nBrowseName\nRoleType\nIsAbstract\nFalse\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of BaseObjectType\n\n\n\n\n\n\nHasProperty\nVariable\nIdentities\nIdentityMapping\nRuleType []\nPropertyType\nMandatory\nHasProperty\nVariable\nApplicationsExclude\nBoolean\nPropertyType\nOptional\nHasProperty\nVariable\nApplications\nString []\nPropertyType\nOptional\nHasProperty\nVariable\nEndpointsExclude\nBoolean\nPropertyType\nOptional\nHasProperty\nVariable\nEndpoints\nEndpointType []\nPropertyType\nOptional\nHasProperty\nVariable\nCustomConfiguration\nBoolean\nPropertyType\nOptional\nHasComponent\nMethod\nAddIdentity\nDefined in[4.4.5](/\u00A7_Ref63178920).\nOptional\nHasComponent\nMethod\nRemoveIdentity\nDefined in[4.4.6](/\u00A7_Ref450710556).\nOptional\nHasComponent\nMethod\nAddApplication\nDefined in[4.4.7](/\u00A7_Ref63178931).\nOptional\nHasComponent\nMethod\nRemoveApplication\nDefined in[4.4.8](/\u00A7_Ref63178942).\nOptional\nHasComponent\nMethod\nAddEndpoint\nDefined in[4.4.9](/\u00A7_Ref63178952).\nOptional\nHasComponent\nMethod\nRemoveEndpoint\nDefined in[4.4.10](/\u00A7_Ref63178964).\nOptional\nConformance Units\nBase Info ServerType\n\nThe Properties and Methods of the RoleType"
+    },
+    {
+      "Id": "ae22ed7b-dbd9-4bf5-99c0-af43722c419a",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.1 RoleType definition\n---\n",
+      "Content": "Methods of the RoleType contain sensitive security related information and shall only be browseable, readable, writeable and callable by authorized administrators through an encrypted channel.\nThe configuration of the Roles is done through Method calls. The only exceptions are the ApplicationsExclude and EndpointsExclude Properties. The two Properties are configured with the Write Service. All other Properties are configured with the corresponding Method calls. The CurrentWrite bit of the AccessLevel Attribute for the Properties Identities, Applications and Endpoints shall be FALSE.\nIf the configuration of a Role is changed, the Role assignment to active Session shall be re-evaluated and applied.\nThe Identities Property specifies the currently configured rules for mapping a UserIdentityToken to the Role. If no user identity is configured for the Role, the Identities Property value is an empty array. If this Property is an empty array and CustomConfiguration is not TRUE, then the Role cannot be granted to any Session.\nThe Role shall only be granted to the Session if all of the following conditions are true:\nThe UserIdentityToken complies with Identities.\nThe Applications Property is not configured or the Client Certificate complies with the Applications settings.\nThe Endpoints Property is not configured or the Endpoint used complies with the Endpoints settings.\nThe ApplicationsExclude Property defines the Applications Property as an include list or exclude list.\nIf the ApplicationsExclude Property is not provided or has a value of FALSE then only ApplicationInstance Certificates included in the Applications Property shall be included in this Role. All other ApplicationInstance Certificates shall not be included in this Role.\nIf the ApplicationsExclude Property has a value of TRUE then all ApplicationInstance Certificates included in the Applications Property shall be excluded from this Role. All other ApplicationInstance Certificates shall be included in this Role.\nThe default value of the ApplicationsExclude Property shall be TRUE if the Applications Property"
+    },
+    {
+      "Id": "d7d6894f-49aa-45dd-8e96-99d7df64bcef",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.1 RoleType definition\n---\n",
+      "Content": "Applications Property has an empty array.\nThe Applications Property specifies the ApplicationInstance Certificates of Clients which shall be included or excluded from this Role. Each element in the array is an ApplicationUri from a Client Certificate which is trusted by the Server. If Applications has entries in the array, the Role shall only be granted if the Session uses a signed or signed and encrypted communication channel.\nThe EndpointsExclude Property defines the Endpoints Property as an include list or exclude list.\nIf the EndpointsExclude Property is not provided or has a value of FALSE then only Endpoints included in the Endpoints Property shall be included in this Role. All other Endpoints shall not be included in this Role.\nIf the EndpointsExclude Property has a value of TRUE then all Endpoints included in the Endpoints Property shall be excluded from this Role. All other Endpoints shall be included in this Role.\nThe default value of the EndpointsExclude Property shall be TRUE if the Endpoints Property has an empty array.\nThe Endpoints Property specifies the Endpoints which shall be included or excluded from this Role. Each element in the array is an EndpointType that contains an Endpoint description. The EndpointUrl and the other Endpoint settings are compared with the configured Endpoint that is used by the SecureChannel for the Session. The EndpointType DataType is defined in[4.4.2](/\u00A7_Ref34993326). Fields that have default values as defined in the EndpointType DataType are ignored during the comparison.\nThe CustomConfiguration Property indicates that the configuration of the Role and the assignment of the Role to Sessions is vendor specific. Roles are required to support the RolePermissions Attribute. If a Server want to support RolePermissions but is not able to support the standard Role functionality, it can indicate this with the CustomConfiguration Property. If CustomConfiguration is TRUE, the Server may hide the configuration options completely or the Server"
+    },
+    {
+      "Id": "6113715e-ef8b-4a51-abdb-41314db327c5",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.1 RoleType definition\n---\n",
+      "Content": "Server may provide additional vendor specific configuration options.\nThe AddIdentity Method adds a rule used to map a UserIdentityToken to the Role. If the Server does not allow changes to the mapping rules, then the Method shall not be present. A Server should prevent certain rules from being added to particular Roles. For example, a Server should refuse to allow an ANONYMOUS_5 (see[4.4.2](/\u00A7_Ref450708202)) mapping rule to be added to Roles with administrator privileges.\nThe RemoveIdentity Method removes a mapping rule used to map a UserIdentityToken to the Role. If the Server does not allow changes to the mapping rules, then the Method shall not be present.\nThe AddApplication Method adds an ApplicationInstance Certificate to the list of Applications. If the Server does not enforce application restrictions or does not allow changes to the mapping rules for the Role the Method shall not be present.\nThe RemoveApplication Method removes an ApplicationInstance Certificate from the list of Applications. If the Server does not enforce application restrictions or does not allow changes to the mapping rules for the Role the Method shall not be present."
+    },
+    {
+      "Id": "10ae17da-9478-4cef-a6b7-c8b17aafd470",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4 RoleType\n---\n",
+      "Content": "4.4.2 EndpointType"
+    },
+    {
+      "Id": "a1b6b9a4-5c05-4944-a3cc-b4c9e42ce13c",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.2 EndpointType\n---\n",
+      "Content": "This structure describes an Endpoint. The EndpointType is formally defined in[Table 7](/\u00A7_Ref494879919).\nTable 7- EndpointType Structure\nName\nType\nDescription\nEndpointType\nstructure\n\nendpointUrl\nString\nThe URL for the Endpoint.\nsecurityMode\nMessageSecurityMode\nThe type of message security.\nThe type MessageSecurityMode type is defined in[OPC 10000-4](/\u00A7UAPart4).\nThe default value is MessageSecurityMode Invalid. The field is ignored for comparison if the default value is set.\nsecurityPolicyUri\nString\nThe URI of the SecurityPolicy.\nThe default value is an empty or null String. The field is ignored for comparison if the default value is set.\ntransportProfileUri\nString\nThe URI of the Transport Profile.\nThe default value is an empty or null String. The field is ignored for comparison if the default value is set.\n\nThe EndpointType Structure representation in the AddressSpace is defined in[Table 8](/\u00A7_Ref494369053).\nTable 8- EndpointType definition\nAttributes\nValue\nBrowseName\nEndpointType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nIsAbstract\nDescription\nSubtype of Structure defined in[OPC 10000-5](/\u00A7UAPart5).\nConformance Units\nBase Info ServerType"
+    },
+    {
+      "Id": "04f92cfe-5d1c-4fb9-980e-202232909352",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4 RoleType\n---\n",
+      "Content": "4.4.3 IdentityMappingRuleType"
+    },
+    {
+      "Id": "73d9564e-43a5-4f1a-bbc1-8249b969323f",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.3 IdentityMappingRuleType\n---\n",
+      "Content": "The IdentityMappingRuleType structure defines a single rule for selecting a UserIdentityToken. The structure is described in[Table 9](/\u00A7_Ref33101056).\nTable 9- IdentityMappingRuleType\nName\nType\nDescription\nIdentityMappingRuleType\nStructure\nSpecifies a rule used to map a UserIdentityToken to a Role.\ncriteriaType\nEnumeration\nIdentityCriteriaType\nThe type of criteria contained in the identity mapping rule. The IdentityCriteriaType is defined in[4.4.4](/\u00A7_Ref51329642).\ncriteria\nString\nThe criteria which the UserIdentityToken must meet for a Session to be mapped to the Role. The meaning of the criteria depends on the criteriaType. The criteria shall be null or an empty string for Anonymous, AuthenticatedUser and TrustedApplication.\n\nIf the criteriaType is UserName, the criteria is a name of a user known to the Server. For example, the user could be the name of a local operating system account or a user managed by the server as defined in[5.2](/\u00A7_Ref76546594).\nIf the criteriaType is Thumbprint, the criteria is a thumbprint of a user Certificate. For this criteria, the thumbprint shall be encoded as a hexadecimal string with upper case characters and without spaces.\nIf the criteriaType is Role, the criteria is a name of a restriction found in the Access Token. For example, the Role\u0022subscriber\u0022 may only be allowed to access PubSub related Nodes. If the issuedTokenType of the Access Token is \u0022http://opcfoundation.org/UA/UserToken#JWT\u0022, the criteria contains one of the entries in the roles array of the JWT IssuedIdentityToken. If \u0022iss\u0022 is present in the JWT IssuedIdentityToken"
+    },
+    {
+      "Id": "a322562f-68c7-4857-b146-08be18983cb2",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.3 IdentityMappingRuleType\n---\n",
+      "Content": "IssuedIdentityToken, the criteria is prepended by the value of \u0022iss\u0022 followed by a \u0027/\u0027 (slash).\nIf the criteriaType is GroupId, the criteria is a generic text identifier for a user group specific to the Authorization Service. For example, an Authorization Service providing access to an Active Directory may add one or more Windows Security Groups to the Access Token.[OPC 10000-6](/\u00A7UAPart6) provides details on how groups are added to Access Tokens. If the issuedTokenType of the Access Token is \u0022http://opcfoundation.org/UA/UserToken#JWT\u0022, the criteria contain one of the entries in the groups array of the JWT IssuedIdentityToken. If \u0022iss\u0022 is present in the JWT IssuedIdentityToken, the criteria is prepended by the value of \u0022iss\u0022 followed by a \u0027/\u0027 (slash).\nIf the criteriaType is Anonymous, the criteria shall be null or an empty string. The criteriaType applies if no user credentials have been provided.\nIf the criteriaType is AuthenticatedUser, the criteria shall be null or an empty string. The criteriaType applies if any valid user credentials have been provided.\nIf the criteriaType is TrustedApplication, the criteria shall be null or an empty string. The criteriaType applies for any Client application with a trusted ApplicationInstance Certificate. The Client Certificate shall be trusted by the Server and the Session shall use at least a signed communication channel.\nIf the criteriaType is Application, the criteria is the ApplicationUri from the Client Certificate used for the Session. The Client Certificate shall be trusted by the Server and the Session shall use at least a signed communication channel. This criteria type is used if a Role should be granted to a Session for Application Authentication with Anonymous UserIdentityToken. If a Role should be granted to a Session"
+    },
+    {
+      "Id": "9ecd8910-41ba-494f-ba96-3e6d76ed8b7f",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.3 IdentityMappingRuleType\n---\n",
+      "Content": "Session for Application Authentication combined with User Authentication, the Applications Property on the RoleType is combined with the Identities Property on the RoleType as defined in[4.4.1](/\u00A7_Ref34992230).\nIf the criteriaType is X509Subject, the criteria is the X509 subject name of a Certificate of a user which is trusted by the Server or the X509 subject name of an issuer of the user Certificate. The format of the subject name criteria consists of a sequence of name value pairs separated by a \u0027/\u0027. The name shall be one of entries in[Table 10](/\u00A7_Ref65678415) and shall be followed by a \u0027=\u0027 and then followed by the value, which is always enclosed in double quotes (\u0027\u0022\u0027). The order shall be by the order shown in[Table 10](/\u00A7_Ref65678415) with the lowest number first. Every value from[Table 10](/\u00A7_Ref65678415) present in the Certificate shall be included in the criteria, others must not be included. The value may be any printable character except for \u0027\u0022\u0027. For example: CN=\u0022User Name\u0022/O=\u0022Company\u0022.[Table 10](/\u00A7_Ref65678415) contains all subject name attributes where support is required by X509 and some commonly used attributes where support is optional. Additional fields may be added in the future. If one name is used multiple times in the certificate, the name is also repeated in the criteria. The entries with the same name are entered in the order they appear in the Certificate. All names listed in[Table 10](/\u00A7_Ref65678415) that are included in the X509 subject name shall match the content of the criteria String. Names not included in[Table 10](/\u00A7_Ref65678415) are ignored."
+    },
+    {
+      "Id": "813d5fcb-4f8e-467c-b469-8ea2370eb874",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.3 IdentityMappingRuleType\n---\n",
+      "Content": "are ignored.\nTable 10- Order for subject name criteria\nOrder\nName\nValue\n1\nCN\nCommon Name\n2\nO\nOrganization\n3\nOU\nOrganization Unit\n4\nDC\nDomain Component\n5\nL\nLocality\n6\nS\nState\n7\nC\nCountry\n8\ndnQualifier\nDistinguished name qualifier\n9\nserialNumber\nSerial number\n\nThe IdentityMappingRuleType Structure representation in the AddressSpace is defined in[Table 11](/\u00A7_Ref497331616).\nTable 11- IdentityMappingRuleType definition\nAttributes\nValue\nBrowseName\nIdentityMappingRuleType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nIsAbstract\nDescription\nSubtype of Structure defined in[OPC 10000-5](/\u00A7UAPart5).\nConformance Units\nBase Info ServerType"
+    },
+    {
+      "Id": "31382a89-1d27-4df3-aac8-8861f2b1af05",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4 RoleType\n---\n",
+      "Content": "4.4.4 IdentityCriteriaType"
+    },
+    {
+      "Id": "a7fa3f3e-0f89-434a-b1af-37047dffef78",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.4 IdentityCriteriaType\n---\n",
+      "Content": "The IdentityCriteriaType Enumeration is defined in[Table 12](/\u00A7_Ref16854259).\nTable 12- IdentityCriteriaType Values\nName\nValue\nDescription\nUserName\n1\nThe rule specifies a UserName from a UserNameIdentityToken.\nThumbprint\n2\nThe rule specifies the Thumbprint of a user Certificate.\nRole\n3\nThe rule is a Role specified in an Access Token.\nGroupId\n4\nThe rule is a user group specified in the Access Token.\nAnonymous\n5\nThe rule specifies Anonymous UserIdentityToken.\nAuthenticatedUser\n6\nThe rule specifies any non Anonymous UserIdentityToken.\nApplication\n7\nThe rule specifies an application identity.\nX509Subject\n8\nThe rule specifies the X509 subject name of a user Certificate or the issuerof the user Certificate.\nTrustedApplication\n9\nThe rule specifies any trusted application that has been authenticated with a trusted ApplicationInstance Certificate(see[OPC 10000-4](/\u00A7UAPart4)) and uses at a signed or signed and encrypted communication channel.\n\nIts representation in the AddressSpace is defined in[Table 13](/\u00A7_Ref16854453).\nTable 13- IdentityCriteriaType Definition\nAttribute\nValue\nBrowseName\nIdentityCriteriaType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the Enumeration type defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nEnumValues\nEnumValueType []\nPropertyType\n\nConformance Units\nBase Info ServerType"
+    },
+    {
+      "Id": "8524d52c-2c18-41c3-bc02-c567f9c0b826",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4 RoleType\n---\n",
+      "Content": "4.4.5 AddIdentity Method"
+    },
+    {
+      "Id": "76ea11e6-3fcb-4040-9b95-355731ea8a9a",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.5 AddIdentity Method\n---\n",
+      "Content": "This Method is used to add an identity mapping rule to a Role.\nThe Client shall use an encrypted channel and shall provide user credentials with administrator rights like SecurityAdmin Role when invoking this Method on the Server.\nSignature\nAddIdentity\n[in] IdentityMappingRuleType Rule\n);\n\nArgument\nDescription\nRule\nThe rule to add.\n\nMethod Result Codes\nResultCode\nDescription\nBad_InvalidArgument\nThe rule is not valid.\nBad_RequestNotAllowed\nThe rule cannot be added to the Role because of Server imposed restrictions.\nBad_NotSupported\nThe rule is not supported by the Server.\nBad_AlreadyExists\nAn equivalent rule already exists.\nBad_ResourceUnavailable\nThe Server does not have enough resources to add the identity mapping.\nBad_UserAccessDenied\nThe session user is not allowed to configure the object.\nBad_SecurityModeInsufficient\nThe SecureChannel is not encrypted.\n\nThe AddIdentity Method representation in the AddressSpace is formally defined in[Table 14](/\u00A7_Ref83321408).\nTable 14- AddIdentity Method AddressSpace definition\nAttribute\nValue\nBrowseName\nAddIdentity\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\nConformanceUnits\nSecurity Role Server IdentityManagement"
+    },
+    {
+      "Id": "cfb6b011-3637-4410-a73a-dd265ae48a84",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4 RoleType\n---\n",
+      "Content": "4.4.6 RemoveIdentity Method"
+    },
+    {
+      "Id": "9ba89de4-fbc6-487c-8fb5-2df7d77421f4",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.6 RemoveIdentity Method\n---\n",
+      "Content": "This Method is used to remove an identity mapping rule from a Role.\nThe Client shall use an encrypted channel and shall provide user credentials with administrator rights like SecurityAdmin Role when invoking this Method on the Server.\nSignature\nRemoveIdentity\n[in] IdentityMappingRuleType Rule\n);\n\nArgument\nDescription\nRule\nThe Rule to remove.\n\nMethod Result Codes\nResultCode\nDescription\nBad_NotFound\nThe rule does not exist.\nBad_UserAccessDenied\nThe session user is not allowed to configure the object.\nBad_SecurityModeInsufficient\nThe SecureChannel is not encrypted.\n\nThe RemoveIdentity Method representation in the AddressSpace is formally defined in[Table 15](/\u00A7_Ref211325382).\nTable 15- RemoveIdentity Method AddressSpace definition\nAttribute\nValue\nBrowseName\nRemoveIdentity\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\nConformanceUnits\nSecurity Role Server IdentityManagement"
+    },
+    {
+      "Id": "598ecab7-e04b-4e1c-b101-c9e7930a5108",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4 RoleType\n---\n",
+      "Content": "4.4.7 AddApplication Method"
+    },
+    {
+      "Id": "b9e854a9-e1f9-48e8-a124-d55d94cb80f3",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.7 AddApplication Method\n---\n",
+      "Content": "This Method is used to add an application mapping rule to a Role.\nThe Client shall use an encrypted channel and shall provide user credentials with administrator rights like SecurityAdmin Role when invoking this Method on the Server.\nSignature\nAddApplication\n[in] String ApplicationUri\n);\n\nArgument\nDescription\nApplicationUri\nThe ApplicationUri for the application.\n\nMethod Result Codes\nResultCode\nDescription\nBad_InvalidArgument\nThe ApplicationUri is not valid.\nBad_RequestNotAllowed\nThe mapping cannot be added to the Role because of Server imposed restrictions.\nBad_AlreadyExists\nThe ApplicationUri is already assigned to the Role.\nBad_UserAccessDenied\nThe session user is not allowed to configure the object.\nBad_SecurityModeInsufficient\nThe SecureChannel is not encrypted.\nBad_ResourceUnavailable\nThe Server does not have enough resources to add the application.\n\nThe AddApplication Method representation in the AddressSpace is formally defined in[Table 16](/\u00A7_Ref211326591).\nTable 16- AddApplication Method AddressSpace definition\nAttribute\nValue\nBrowseName\nAddApplication\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\nConformanceUnits\nSecurity Role Server Restrict Applications"
+    },
+    {
+      "Id": "b83ab4b5-c50e-49d1-aade-420e58b6f6a3",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4 RoleType\n---\n",
+      "Content": "4.4.8 RemoveApplication Method"
+    },
+    {
+      "Id": "7de69907-b3cb-423d-8a30-267ee7cd5212",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.8 RemoveApplication Method\n---\n",
+      "Content": "This Method is used to remove an application mapping rule from a Role.\nThe Client shall use an encrypted channel and shall provide user credentials with administrator rights like SecurityAdmin Role when invoking this Method on the Server.\nSignature\nRemoveApplication\n[in] String ApplicationUri\n);\n\nArgument\nDescription\nApplicationUri\nThe ApplicationUri for the application.\n\nMethod Result Codes\nResultCode\nDescription\nBad_NotFound\nThe ApplicationUri is not assigned to the Role.\nBad_UserAccessDenied\nThe session user is not allowed to configure the object.\nBad_SecurityModeInsufficient\nThe SecureChannel is not encrypted.\n\nThe RemoveApplication Method representation in the AddressSpace is formally defined in[Table 17](/\u00A7_Ref211326605).\nTable 17- RemoveApplication Method AddressSpace definition\nAttribute\nValue\nBrowseName\nRemoveApplication\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\nConformanceUnits\nSecurity Role Server Restrict Applications"
+    },
+    {
+      "Id": "2d4cf3a5-339b-4997-bda5-7403d27ea3b7",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4 RoleType\n---\n",
+      "Content": "4.4.9 AddEndpoint Method"
+    },
+    {
+      "Id": "2f248825-c90d-4cfb-8578-30bddb8a0414",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.9 AddEndpoint Method\n---\n",
+      "Content": "This Method is used to add an endpoint mapping rule to a Role.\nThe Client shall use an encrypted channel and shall provide user credentials with administrator rights like SecurityAdmin Role when invoking this Method on the Server.\nSignature\nAddEndpoint\n[in] EndpointType Endpoint\n);\n\nArgument\nDescription\nEndpoint\nThe Endpoint to add.\n\nMethod Result Codes\nResultCode\nDescription\nBad_InvalidArgument\nThe EndpointUrl is not valid.\nBad_RequestNotAllowed\nThe mapping cannot be added to the Role because of Server imposed restrictions.\nBad_AlreadyExists\nThe Endpoint with the passed settings is already assigned to the Role.\nBad_UserAccessDenied\nThe session user is not allowed to configure the object.\nBad_ResourceUnavailable\nThe Server does not have enough resources to add the endpoint.\n\nThe AddEndpoint Method representation in the AddressSpace is formally defined in[Table 18](/\u00A7_Ref211327189).\nTable 18- AddEndpoint Method AddressSpace definition\nAttribute\nValue\nBrowseName\nAddEndpoint\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\nConformanceUnits\nSecurity Role Server Restrict Endpoints"
+    },
+    {
+      "Id": "21265b5a-f90f-447f-8072-33da9fbe2413",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4 RoleType\n---\n",
+      "Content": "4.4.10 RemoveEndpoint Method"
+    },
+    {
+      "Id": "2fcba7e6-fc42-4708-9b03-9c7d8ad9c1f9",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.4.10 RemoveEndpoint Method\n---\n",
+      "Content": "This Method is used to remove an endpoint mapping rule from a Role.\nThe Client shall use an encrypted channel and shall provide user credentials with administrator rights like SecurityAdmin Role when invoking this Method on the Server.\nSignature\nRemoveEndpoint\n[in] EndpointType Endpoint\n);\n\nArgument\nDescription\nEndpoint\nThe Endpoint to remove.\n\nMethod Result Codes\nResultCode\nDescription\nBad_NotFound\nThe EndpointUrl is not assigned to the Role.\nBad_UserAccessDenied\nThe session user is not allowed to configure the object.\nBad_SecurityModeInsufficient\nThe SecureChannel is not encrypted.\n\nThe RemoveEndpoint Method representation in the AddressSpace is formally defined in[Table 19](/\u00A7_Ref211327172).\nTable 19- RemoveEndpoint Method AddressSpace definition\nAttribute\nValue\nBrowseName\nRemoveEndpoint\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\nConformanceUnits\nSecurity Role Server Restrict Endpoints"
+    },
+    {
+      "Id": "6f581248-4edd-4bf3-ada1-e74e20009d15",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4 Role Model\n---\n",
+      "Content": "4.5 RoleMappingRuleChangedAuditEventType"
+    },
+    {
+      "Id": "67acc2d5-0a65-44a2-9116-41462d8d4dd2",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 4.5 RoleMappingRuleChangedAuditEventType\n---\n",
+      "Content": "This Event is raised when a mapping rule for a Role is changed.\nThis is the result of calling any of the add or remove Methods defined on the RoleType.\nIt shall be raised when the AddIdentity, RemoveIdentity, AddApplication, RemoveApplication, AddEndpoint or RemoveEndpoint Method causes an update to a Role.\nIts representation in the AddressSpace is formally defined in[Table 20](/\u00A7_Ref33101081).\nTable 20- RoleMappingRuleChangedAuditEventType definition\nAttribute\nValue\nBrowseName\nRoleMappingRuleChangedAuditEventType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the AuditUpdateMethodEventType defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nSecurity Role Server Base Eventing\n\nThis EventType inherits all Properties of the AuditUpdateMethodEventType. Their semantics are defined in."
+    },
+    {
+      "Id": "710d5cc1-7171-4ef2-b6ed-ec79c6be35a3",
+      "Header": "Document: Part 18 - Role-Based Security\n---\n",
+      "Content": "5 User Management Model"
+    },
+    {
+      "Id": "2a1b211a-fd35-4094-8888-723d82cd5886",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5 User Management Model\n---\n",
+      "Content": "5.1 General"
+    },
+    {
+      "Id": "32e19592-5d30-4d70-9387-9f26f5ca999d",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.1 General\n---\n",
+      "Content": "The IdentityCriteriaType UserName requires a local verification of user name and password to be able to assign the corresponding role. Such users can be managed by the operating sytem or by the OPC UA Server.\nThe chapter defines a standard API for the management of a user list in the OPC UA Server.\n[Figure 2](/\u00A7_Ref76545989) depicts the ObjectTypes, Objects and their components used to represent the user management. The ServerConfiguration Object is defined in[OPC 10000-12](/\u00A7UAPart12)."
+    },
+    {
+      "Id": "f6dbb069-5b26-427d-aacd-2d5ddd0da420",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.1 General\nCaption: Figure 2 - User management overview\n---\n",
+      "Content": "[image005.png](images/image005.png)"
+    },
+    {
+      "Id": "39f26258-0884-47f3-b030-5fed0dd16488",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.1 General\n---\n",
+      "Content": "Figure 2 - User management overview"
+    },
+    {
+      "Id": "e804d345-76d1-440b-8baf-09fcc1547fd6",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5 User Management Model\n---\n",
+      "Content": "5.2 UserManagementType"
+    },
+    {
+      "Id": "0e01036a-feb1-411f-8757-06b173689a93",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2 UserManagementType\n---\n",
+      "Content": "5.2.1 UserManagementType definition"
+    },
+    {
+      "Id": "95d94926-c0b2-400a-a055-105c2d974dd5",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2.1 UserManagementType definition\n---\n",
+      "Content": "The UserManagement Object defined in[5.3](/\u00A7_Ref76547889) is a UserManagementType which is formally defined in[Table 21](/\u00A7_Ref76547914).\nTable 21- UserManagementType definition\nAttribute\nValue\nBrowseName\nUserManagementType\nIsAbstract\nFalse\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nUsers\nUserManagementDataType[]\nPropertyType\nMandatory\nHasProperty\nVariable\nPasswordLength\nRange\nPropertyType\nMandatory\nHasProperty\nVariable\nPasswordOptions\nPasswordOptionsMask\nPropertyType\nMandatory\nHasProperty\nVariable\nPasswordRestrictions\nLocalizedText\nPropertyType\nOptional\nHasComponent\nMethod\nAddUser\nDefined in[5.2.5](/\u00A7_Ref76552596).\nMandatory\nHasComponent\nMethod\nModifyUser\nDefined in[5.2.6](/\u00A7_Ref84570505).\nMandatory\nHasComponent\nMethod\nRemoveUser\nDefined in[5.2.7](/\u00A7_Ref76552601).\nMandatory\nHasComponent\nMethod\nChangePassword\nDefined in[5.2.8](/\u00A7_Ref76552607).\nMandatory\nConformance Units\nSecurity User Management Server\n\nThe Property Users and the Methods AddUser, ModifyUser and RemoveUser contain sensitive security related information and shall only be readable and callable by authorized administrators through an encrypted channel.\nThe the ChangePassword Method requires an encrypted channel and can be called by the Session user if the user token type for the Session is USERNAME.\nThe Users Property"
+    },
+    {
+      "Id": "5812215b-9433-4025-8e91-b5129ecf10f8",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2.1 UserManagementType definition\n---\n",
+      "Content": "The Users Property specifies the currently configured users and their settings as array of UserManagementDataType Structure defined in[5.2.4](/\u00A7_Ref84569145).\nThe Property PasswordLength defines the minimum and maximum length requirement for setting the password. A value of 0 for low indicates no limit for minimum and 0 for high indicates no limit for maximum password length. The Range DataType is defined in[OPC 10000-8](/\u00A7UAPart8).\nThe Property PasswordOptions defines the password features and requirements for setting a password in a bit mask defined by the PasswordOptionsMask DataType. If the Server does not define any special requirements nor does not support enhanced features for the password management, all bits in the bit mask are set to false.\nThe Property PasswordRestrictions allows a Server to provide additional explanations about the rules applied to new passwords accepted by the Server."
+    },
+    {
+      "Id": "949c6173-53a5-4cef-97dd-b30cc5f9436e",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2 UserManagementType\n---\n",
+      "Content": "5.2.2 PasswordOptionsMask"
+    },
+    {
+      "Id": "8c514e9f-430e-4532-8c85-ee0a79b3a047",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2.2 PasswordOptionsMask\n---\n",
+      "Content": "The DataType PasswordOptionsMask is formally defined in[Table 22](/\u00A7_Ref469331429).\nTable 22- PasswordOptionsMask values\nValue\nBit No.\nDescription\nSupportInitialPasswordChange\n0\nIndicates if the server supports the feature to require a password change after the creation of the user.\nSupportDisableUser\n1\nIndicates if the server supports to disable a user.\nSupportDisableDeleteForUser\n2\nIndicates if the server supports the configuration NoDelete for a user.\nSupportNoChangeForUser\n3\nIndicates if the server supports the configuration NoChangeByUser for a user.\nSupportDescriptionForUser\n4\nIndicates if the server supports to management of a description for the user.\nRequiresUpperCaseCharacters\n5\nIndicates if an upper case ASCII character is required in a password.\nRequiresLowerCaseCharacters\n6\nIndicates if a lower case ASCII character is required in a password.\nRequiresDigitCharacters\n7\nIndicates if a digit ASCII character is required in a password.\nRequiresSpecialCharacters\n8\nIndicates if a special character is required in a password.\n\nThe PasswordOptionsMask representation in the AddressSpace is defined in[Table 23](/\u00A7_Ref469331441).\nTable 23- PasswordOptionsMask definition\nAttribute\nValue\nBrowseName\nPasswordOptionsMask\nIsAbstract\nFalse\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOthers\nSubtype of UInt32 defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nOptionSetValues\nLocalizedText []\nPropertyType\n\nConformance Units\nSecurity User Management Server"
+    },
+    {
+      "Id": "845cad06-f159-4b33-80b2-7b770ba6bea2",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2 UserManagementType\n---\n",
+      "Content": "5.2.3 UserConfigurationMask"
+    },
+    {
+      "Id": "9157566d-1eba-4f04-88e9-a3b8dc1b7dff",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2.3 UserConfigurationMask\n---\n",
+      "Content": "The DataType UserConfigurationMask is formally defined in[Table 24](/\u00A7_Ref497331617).\nTable 24- UserConfigurationMask values\nValue\nBit No.\nDescription\nNoDelete\n0\nThe user cannot be deleted.\nDisabled\n1\nThe user is disabled.\nFor ActivateSession, a disabled user behaves like a user that does not exist.\nNoChangeByUser\n2\nThe user cannot change the password.\nMustChangePassword\n3\nThe user must change the password to get the assigned roles.\nThe Method ChangePasssword is used to set a new password. The Method and the behaviour of ActivateSession are defined in[5.2.8](/\u00A7_Ref76552607).\nThe MustChangePassword bit set is invalid if the NoChangeByUser bit is set.\n\nThe UserConfigurationMask representation in the AddressSpace is defined in[Table 25](/\u00A7_Ref497331618).\nTable 25- UserConfigurationMask definition\nAttribute\nValue\nBrowseName\nUserConfigurationMask\nIsAbstract\nFalse\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOthers\nSubtype of UInt32 defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nOptionSetValues\nLocalizedText []\nPropertyType\n\nConformance Units\nSecurity User Management Server"
+    },
+    {
+      "Id": "91afd49e-77eb-42fd-83b7-f831878ab28a",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2 UserManagementType\n---\n",
+      "Content": "5.2.4 UserManagementDataType"
+    },
+    {
+      "Id": "e512a159-59e6-49c3-ad63-3efc34e0ed91",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2.4 UserManagementDataType\n---\n",
+      "Content": "This Structure DataType is used to provide the metadata for a field in a DataSet. The UserManagementDataType is formally defined in[Table 26](/\u00A7_Ref433696014).\nTable 26- UserManagementDataType structure\nName\nType\nDescription\nUserManagementDataType\nStructure\n\nuserName\nString\nName of the user.\nuserConfiguration\nUserConfigurationMask\nThe configuration mask for the user.\ndescription\nString\nA description for the user.\n\nIts representation in the AddressSpace is defined in[Table 27](/\u00A7_Ref399178532).\nTable 27- DataSetMetaDataType definition\nAttributes\nValue\nBrowseName\nUserManagementDataType\nIsAbstract\nFalse\nSubtype of Structure defined in[OPC 10000-5](/\u00A7UAPart5).\nConformance Units\nSecurity User Management Server"
+    },
+    {
+      "Id": "becbb5dd-80fe-4250-adc0-429e95db10f3",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2 UserManagementType\n---\n",
+      "Content": "5.2.5 AddUser Method"
+    },
+    {
+      "Id": "d0112a11-1bc6-4d72-ace3-9cdc78f6e3b2",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2.5 AddUser Method\n---\n",
+      "Content": "This Method is used to add a user to the user management of the Server.\nThe Client shall use an encrypted channel and shall provide user credentials with administrator rights like SecurityAdmin Role when invoking this Method on the Server.\nSignature\nAddUser\n[in] String UserName,\n[in] String Password,\n[in] UserConfigurationMask UserConfiguration,\n[in] String Description\n);\n\nArgument\nDescription\nUserName\nThe name of the user to add.\nPassword\nThe password for the user.\nUserConfiguration\nThe configuration mask for the user.\nDescription\nA description for the user.\n\nMethod Result Codes\nResultCode\nDescription\nBad_AlreadyExists\nThe user does already exist.\nBad_OutOfRange\nThe password is outside the valid range of accepted length and characters.\nBad_NotSupported\nThe UserConfiguration has flags set that are not supported by the Server. See PasswordOptions for flags supported by the Server.\nBad_ConfigurationError\nThe UserConfiguration has invalid combinations of flags set.\nBad_UserAccessDenied\nThe caller does not have the necessary Permissions.\nBad_SecurityModeInsufficient\nThe communication channel is not using encryption.\nBad_ResourceUnavailable\nThe Server does not have enough resources to add the user.\n\nThe AddUser Method representation in the AddressSpace is formally defined in[Table 28](/\u00A7_Ref211329049).\nTable 28- AddUser Method AddressSpace definition\nAttribute\nValue\nBrowseName\nAddUser\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\nConformanceUnits\nSecurity User Management Server"
+    },
+    {
+      "Id": "c4c16870-2b6e-4c8c-bc2e-5fb552777a4e",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2 UserManagementType\n---\n",
+      "Content": "5.2.6 ModifyUser Method"
+    },
+    {
+      "Id": "32206f07-17a2-407f-9c29-d43abf175994",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2.6 ModifyUser Method\n---\n",
+      "Content": "This Method is used to modify a user in the user management of the Server.\nIf the UserConfiguration bit Disabled is changed to TRUE, all Sessions and Subscriptions associated with the disabled user shall be closed by the Server. If the user of the Session used to call the Method is to be disabled, the Method shall fail with Bad_InvalidSelfReference.\nThe Client shall use an encrypted channel and shall provide user credentials with administrator rights like SecurityAdmin Role when invoking this Method on the Server.\nSignature\nModifyUser\n[in] String UserName,\n[in] Boolean ModifyPassword,\n[in] String Password,\n[in] Boolean ModifyUserConfiguration,\n[in] UserConfigurationMask UserConfiguration,\n[in] Boolean ModifyDescription,\n[in] String Description\n);\n\nArgument\nDescription\nUserName\nThe name of the user to modify.\nModifyPassword\nFlag indicating if the password should be changed.\nPassword\nThe password for the user. The password is set to a null or empty string if ModifyPassword is false. The argument is ignored if ModifyPassword is false.\nModifyUserConfiguration\nFlag indicating if the user configuration should be changed.\nUserConfiguration\nThe configuration mask for the user. The argument is ignored if ModifyUserConfiguration is false.\nModifyDescription\nFlag indicating if the user description should be changed.\nDescription\nA description for the user. The argument is ignored if ModifyDescription is false.\n\nMethod Result Codes\nResultCode\nDescription\nBad_NotFound\nThe user was not found in the user management.\nBad_OutOfRange\nThe password is outside the valid range of accepted length and characters.\nBad_NotSupported\nThe UserConfiguration has flags set that are not supported by the Server. See PasswordOptions for flags supported by the Server.\nBad_ConfigurationError\nThe UserConfiguration"
+    },
+    {
+      "Id": "60d28b82-aeb7-4156-b50a-36cbd4a9083f",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2.6 ModifyUser Method\n---\n",
+      "Content": "The UserConfiguration has invalid combinations of flags set.\nBad_UserAccessDenied\nThe caller does not have the necessary Permissions.\nBad_SecurityModeInsufficient\nThe communication channel is not using encryption.\nBad_InvalidSelfReference\nThe user to be disabled is the user of the Session calling the Method.\n\nThe ModifyUser Method representation in the AddressSpace is formally defined in[Table 29](/\u00A7_Ref211329050).\nTable 29- ModifyUser Method AddressSpace definition\nAttribute\nValue\nBrowseName\nModifyUser\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\nConformanceUnits\nSecurity User Management Server"
+    },
+    {
+      "Id": "fe486183-bb43-4b1a-a138-1039f2305596",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2 UserManagementType\n---\n",
+      "Content": "5.2.7 RemoveUser Method"
+    },
+    {
+      "Id": "415eb6ab-91de-4dc4-a5d2-7ea3d8af840e",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2.7 RemoveUser Method\n---\n",
+      "Content": "This Method is used to remove a user from the user management of the Server.\nAll Sessions and Subscriptions associated with the removed user shall be closed by the Server.\nThe Client shall use an encrypted channel and shall provide user credentials with administrator rights like SecurityAdmin Role when invoking this Method on the Server.\nIf the user of the Session used to call the Method is to be removed, the Method shall fail with Bad_InvalidSelfReference.\nSignature\nRemoveUser\n[in] String UserName\n);\n\nArgument\nDescription\nUserName\nThe name of the user to remove.\n\nMethod Result Codes\nResultCode\nDescription\nBad_NotFound\nThe specified user does not exist.\nBad_UserAccessDenied\nThe caller does not have the necessary Permissions.\nBad_NotSupported\nThe user cannot be deleted due to NoDelete user configuration mask setting.\nBad_SecurityModeInsufficient\nThe communication channel is not using encryption.\nBad_InvalidSelfReference\nThe user to remove is the user of the Session calling the Method.\n\nThe RemoveUser Method representation in the AddressSpace is formally defined in[Table 30](/\u00A7_Ref211329054).\nTable 30- RemoveUser Method AddressSpace definition\nAttribute\nValue\nBrowseName\nRemoveUser\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\nConformanceUnits\nSecurity User Management Server"
+    },
+    {
+      "Id": "1bbbe786-00ee-451d-ba37-c13202b138e4",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2 UserManagementType\n---\n",
+      "Content": "5.2.8 ChangePassword Method"
+    },
+    {
+      "Id": "72950357-3f2d-4b41-be83-f0dc7c093995",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2.8 ChangePassword Method\n---\n",
+      "Content": "This Method is used to change the password of the user for the Session used to call the Method. The Method shall fail with Bad_InvalidState if the user token type for the Session is not USERNAME.\nThe bit MustChangePassword in the UserConfigurationMask defined in[5.2.3](/\u00A7_Ref146107056) indicates if the Server requires that the user changes the password.\nIf the user that is used to activate a Session is required to change the password, the Service ActivateSession shall return Good_PasswordChangeRequired and the activated Session shall have only the Role Anonymous. In this state, the Session shall be allowed to call ChangePassword for the user that activated the Session. After a successful call of ChangePassword, the Client is required to call ActivateSession with the user and the new password to apply the change and to get the Roles configured for the user. The successful change of the password sets the MustChangePassword for the user to FALSE.\nEven if the Method is not browseable through a hierarchy for the Session user, it shall be accessible and callable by the Session user with the well defined NodeIds for the UserManagement Object and the ChangePassword Method.\nThis Method affects security and shall only be browseable and callable through an encrypted channel. It shall be callable by the Session user if the user token type for the Session is USERNAME, even if the Role for the user is Anonymous.\nSignature\nChangePassword\n[in] String OldPassword,\n[in] String NewPassword\n);\n\nArgument\nDescription\nOldPassword\nThe old password for the Session user.\nNewPassword\nThe new password for the Session user. It is recommended that the user interface for entering the new password requires to enter the password twice to avoid typos.\nThe Server"
+    },
+    {
+      "Id": "3f18f666-63b7-4ab1-8e8f-90ee0f6b7a2d",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.2.8 ChangePassword Method\n---\n",
+      "Content": "The Server can apply additional restrictions to the accepted password in addition to the one indicated by PasswordOptionMask.\n\nMethod Result Codes\nResultCode\nDescription\nBad_IdentityTokenInvalid\nThe old password is not valid.\nBad_OutOfRange\nThe new password is outside the valid range of accepted length and characters.\nBad_InvalidState\nThe caller is not authenticated with a USERNAME user token.\nBad_NotSupported\nThe password cannot be changed due to NoChangeByUser user configuration mask setting.\nBad_SecurityModeInsufficient\nThe communication channel is not using encryption.\nBad_AlreadyExists\nThe new password matches the old password.\n\nThe ChangePassword Method representation in the AddressSpace is formally defined in[Table 31](/\u00A7_Ref211329066).\nTable 31- ChangePassword Method AddressSpace definition\nAttribute\nValue\nBrowseName\nChangePassword\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\nConformanceUnits\nSecurity User Management Server"
+    },
+    {
+      "Id": "4f662ae5-990e-44aa-8519-63a614a75b64",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5 User Management Model\n---\n",
+      "Content": "5.3 UserManagement"
+    },
+    {
+      "Id": "890b4518-b2c1-48ef-8d7b-64a4c88a7a89",
+      "Header": "Document: Part 18 - Role-Based Security\nSection: 5.3 UserManagement\n---\n",
+      "Content": "The UserManagement Object defined in[Table 32](/\u00A7_Ref76548086) is used to manage users known to the Server.\nTable 32- UserManagement definition\nAttribute\nValue\nBrowseName\nUserManagement\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nComponentOf the ServerConfiguration Object defined in[OPC 10000-12](/\u00A7UAPart12)\nHasTypeDefinition\nObjectType\nUserManagementType\n\n\n\nConformance Units\nSecurity User Management Server\n\n\n______________"
+    }
+  ]
+}

@@ -1,0 +1,1100 @@
+{
+  "Title": "Part 21 - Device Onboarding",
+  "Chunks": [
+    {
+      "Id": "26e0ee2c-8c7c-4ce6-adf5-92d607a03959",
+      "Header": "Document: Part 21 - Device Onboarding\n---\n",
+      "Content": "1 Scope"
+    },
+    {
+      "Id": "02ff3ba4-6019-4df4-bf39-5d98f5e8db57",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 1 Scope\n---\n",
+      "Content": "This part defines the life cycle of Devices and Composites and mechanisms to verify their authenticity, set up their security and maintain their configuration."
+    },
+    {
+      "Id": "6fc89248-424f-4a9f-a06b-7635c433602f",
+      "Header": "Document: Part 21 - Device Onboarding\n---\n",
+      "Content": "2 Normative references"
+    },
+    {
+      "Id": "4dec1962-32c9-4ccb-bae7-587c77b6c938",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 2 Normative references\n---\n",
+      "Content": "The following documents, in whole or in part, are normatively referenced in this document and are indispensable for its application. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments and errata) applies.\nOPC 10000-1, OPC Unified Architecture - Part 1: Overview and Concepts\n[http://www.opcfoundation.org/UA/Part1/](http://www.opcfoundation.org/UA/Part1/)\nOPC 10000-2, OPC Unified Architecture - Part 2: Security Model\n[http://www.opcfoundation.org/UA/Part2/](http://www.opcfoundation.org/UA/Part2/)\nOPC 10000-3, OPC Unified Architecture - Part 3: Address Space Model\n[http://www.opcfoundation.org/UA/Part3/](http://www.opcfoundation.org/UA/Part3/)\nOPC 10000-4, OPC Unified Architecture - Part 4: Services\n[http://www.opcfoundation.org/UA/Part4/](http://www.opcfoundation.org/UA/Part4/)\nOPC 10000-5, OPC Unified Architecture - Part 5: Information Model\n[http://www.opcfoundation.org/UA/Part5/](http://www.opcfoundation.org/UA/Part5/)\nOPC 10000-6, OPC Unified Architecture - Part 6: Mappings\n[http://www.opcfoundation.org/UA/Part6/](http://www.opcfoundation.org/UA/Part6/)\nOPC 10000-7, OPC Unified Architecture - Part 7: Profiles"
+    },
+    {
+      "Id": "3afeb31d-03ac-4073-9f26-e9a8a01a378d",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 2 Normative references\n---\n",
+      "Content": "[http://www.opcfoundation.org/UA/Part7/](http://www.opcfoundation.org/UA/Part7/)\nOPC 10000-9, OPC Unified Architecture - Part 9: Alarms and Conditions\n[http://www.opcfoundation.org/UA/Part9/](http://www.opcfoundation.org/UA/Part9/)\nOPC 10000-12, OPC Unified Architecture - Part 12: Discovery and Global Services\n[http://www.opcfoundation.org/UA/Part12/](http://www.opcfoundation.org/UA/Part12/)\nOPC 10000-14, OPC UA Specification: Part 14 - PubSub\n[http://www.opcfoundation.org/UA/Part14/](http://www.opcfoundation.org/UA/Part14/)\nOPC 10000-22, OPC UA Specification: Part 22 - Base Network Model\n[http://www.opcfoundation.org/UA/Part22](http://www.opcfoundation.org/UA/Part22)/\nOPC 10000-100, OPC UA Specification: Part 100 - Devices\n[http://www.opcfoundation.org/UA/Part100/](http://www.opcfoundation.org/UA/Part100/)\nISO/IEC 11889, Information technology \u2014 Trusted platform module library\n[https://www.iso.org/standard/66510.html](https://www.iso.org/standard/66510.html)\n802.1AR, Secure Device Identity\n[https://1.ieee802.org/security/802-1ar/](https://1.ieee802.org/security/802-1ar/)\nRFC 3161, Internet X.509 Public Key Infrastructure Time-Stamp Protocol (TSP)"
+    },
+    {
+      "Id": "f5399999-e7e6-4ba0-8d4e-d3d3e15eeb04",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 2 Normative references\n---\n",
+      "Content": "[https://tools.ietf.org/html/rfc3161](https://tools.ietf.org/html/rfc3161)\nRFC 5280, Internet X.509 Public Key Infrastructure Certificate\n[https://tools.ietf.org/html/rfc5280](https://tools.ietf.org/html/rfc5280)\nRFC 7515, JSON Web Signature (JWS)\n[https://tools.ietf.org/html/rfc7515](https://tools.ietf.org/html/rfc7515)\nRFC 7518, JSON Web Algorithms (JWA)\n[https://tools.ietf.org/html/rfc7518](https://tools.ietf.org/html/rfc7518)\nRFC 2045, Multipurpose Internet Mail Extensions (MIME) Part One\n[https://tools.ietf.org/html/rfc2045](https://tools.ietf.org/html/rfc2045)\nRFC 4648, The Base16, Base32, and Base64 Data Encodings\n[https://tools.ietf.org/html/rfc4648](https://tools.ietf.org/html/rfc4648)\nDIN 91406, Automatic identification of physical objects and information on physical objects in IT systems\n[https://www.en-standard.eu/din-spec-91406-automatische-identifikation-von-physischen-objekten-und-informationen-zum-physischen-objekt-in-it-systemen-insbesondere-iot-systemen-text-deutsch-und-englisch/](https://www.en-standard.eu/din-spec-91406-automatische-identifikation-von-physischen-objekten-und-informationen-zum-physischen-objekt-in-it-systemen-insbesondere-iot-systemen-text-deutsch-und-englisch/)"
+    },
+    {
+      "Id": "f1dcce2c-7484-4ec3-a26e-bd803f53b4d1",
+      "Header": "Document: Part 21 - Device Onboarding\n---\n",
+      "Content": "3 Terms, definitions, and conventions"
+    },
+    {
+      "Id": "c6fcad2e-84f0-4cff-95af-d4a538e26055",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3 Terms, definitions, and conventions\n---\n",
+      "Content": "3.1 Terms and definitions"
+    },
+    {
+      "Id": "e220c71b-10a1-4123-9e89-ee473e964015",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "For the purposes of this document the following terms and definitions as well as the terms and definitions given in[OPC 10000-1](/\u00A7UAPart1),[OPC 10000-2](/\u00A7UAPart2),[OPC 10000-3](/\u00A7UAPart3),[OPC 10000-4](/\u00A7UAPart4),[OPC 10000-6](/\u00A7UAPart6),[OPC 10000-9](/\u00A7UAPart9) and[OPC 10000-100](/\u00A7UAPart100) apply.\n3.1.1 Application"
+    },
+    {
+      "Id": "e97b8f53-9188-4214-a396-c4d765e97e5b",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.1 Application\n---\n",
+      "Content": "a program that runs on a Device and communicates with other Applications on the network.\nNote 1 to entry: Each Application has an identifier that is unique within the network.\nNote 2 to entry: An OPC UA Application is an Application that supports OPC UA."
+    },
+    {
+      "Id": "048364a7-a023-4433-9082-8214cce585b7",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.2 ApplicationUri"
+    },
+    {
+      "Id": "74567fcf-8706-43ee-b385-b78a858906c7",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.2 ApplicationUri\n---\n",
+      "Content": "a globally unique identifier for an OPC UA Application running on a particular Device.\nNote 3 to entry: The Application Instance Certificate has the ApplicationUri in the subjectAltName field."
+    },
+    {
+      "Id": "bda9d6ec-93c8-4f28-bdb5-cf05cdd16fd6",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.3 Composite"
+    },
+    {
+      "Id": "33775c6c-494f-4ca9-821b-2ff55475c9d8",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.3 Composite\n---\n",
+      "Content": "a collection of Devices or Composites assembled into a single unit.\nNote 1 to entry: Each Composite has a globally unique identifier.\nNote 2 to entry: A Composite may act as a single Device when connected to a network.\nNote 3 to entry: A Composite may appear as multiple Devices when connected to a network."
+    },
+    {
+      "Id": "6f486b5a-88b2-4f18-80c9-af359e76ab46",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.4 CompositeBuilder"
+    },
+    {
+      "Id": "cca06666-f551-4f06-bacc-3b716fe8eb2e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.4 CompositeBuilder\n---\n",
+      "Content": "an organization that creates Composites."
+    },
+    {
+      "Id": "19fe3481-7d96-487f-b82a-92a06517095e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.5 CompositeInstanceUri"
+    },
+    {
+      "Id": "47cab695-cdba-4f1b-9f76-3e529ef210d6",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.5 CompositeInstanceUri\n---\n",
+      "Content": "a globally unique resource identifier assigned by a builder to a Composite.."
+    },
+    {
+      "Id": "b76b2eb2-d56a-4d4e-815a-c34a97592c41",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.6 DCA Client"
+    },
+    {
+      "Id": "8becfe4e-6fc9-4fd2-a8ca-bf6d9817c747",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.6 DCA Client\n---\n",
+      "Content": "a DCA which is a Client and supports PullManagement."
+    },
+    {
+      "Id": "58336d22-0cba-4ef1-86a5-aa03517e075e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.7 DCA Server"
+    },
+    {
+      "Id": "c5e649b1-a6b7-44fa-828d-de9d9cee32d3",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.7 DCA Server\n---\n",
+      "Content": "a DCA which is a Server and supports PushManagement."
+    },
+    {
+      "Id": "c5b236ee-beba-4bca-85d2-abd6bf0dd110",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.8 Device"
+    },
+    {
+      "Id": "31adf873-5c12-45ff-a856-71555cb4c6bd",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.8 Device\n---\n",
+      "Content": "As defined in[OPC 10000-100](/\u00A7UAPart100).\nNote 1 to entry: For this document a Device also executes one or more OPC UA Applications.\nNote 2 to entry: a generic computer or mobile device may be a Device if it has a DeviceIdentity Certificate"
+    },
+    {
+      "Id": "bb6b099e-7696-44ad-8e89-7c30899edf0c",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.9 Device Configuration Application (DCA)"
+    },
+    {
+      "Id": "e352c0d2-5e07-4864-baef-e6f632f40dce",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.9 Device Configuration Application (DCA)\n---\n",
+      "Content": "a Client or Server installed on a Device used to configure other applications installed on the same Device.\nNote 1 to entry: a DCA which is a Client uses PullManagement(see[7.2](/\u00A7_Ref99376121)) to interact with the Registrar.\nNote 2 to entry: the Registrar uses PushManagement(see[7.3](/\u00A7_Ref99376253)) to interact with a DCA which is a Server."
+    },
+    {
+      "Id": "39602612-3737-4ee5-9f9a-4ad1d5ffa2ef",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.10 DeviceIdentity Certificate"
+    },
+    {
+      "Id": "39a8e6d6-893b-452d-8989-90b490e32b21",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.10 DeviceIdentity Certificate\n---\n",
+      "Content": "a Certificate issued to a Device that identifies the Device.\nNote 1 to entry: All DeviceIdentity Certificates have the ProductInstanceUri as a subjectAltName.\nNote 2 to entry: All DeviceIdentity Certificates are IDevID or LDevID Certificates as defined by[802.1AR](/\u00A7IEEE8021AR).\nNote 3 to entry: The ProductInstanceUri is the ApplicationUri when the DeviceIdentity Certificate is used to create a SecureChannel."
+    },
+    {
+      "Id": "6e10b32f-2c96-4b31-b0d8-cac090ae4c62",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.11 Distributor"
+    },
+    {
+      "Id": "c741d30a-b363-40c1-8953-adfd12895d4c",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.11 Distributor\n---\n",
+      "Content": "an organization that re-sells Devices and/or Composites.\nNote 1 to entry: A Distributor may enhance Devices and Composites by adding customized products or services."
+    },
+    {
+      "Id": "0a96ca29-f390-415a-8983-13da41abf8a4",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.12 Manufacturer"
+    },
+    {
+      "Id": "288b293a-18e5-4152-86e9-9769a64defec",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.12 Manufacturer\n---\n",
+      "Content": "an organization that creates Devices."
+    },
+    {
+      "Id": "87ff5c6c-8a10-4d65-96e2-fe340e36eed6",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.13 OwnerOperator"
+    },
+    {
+      "Id": "2d8bdc26-48d5-4ea8-a7a6-5aa828deba2d",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.13 OwnerOperator\n---\n",
+      "Content": "an organization deploying and operating a system that comprises of Devices, Composites or other computers connected via a network."
+    },
+    {
+      "Id": "9018209d-a448-4c96-828c-be3bd37f088d",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.14 Privilege"
+    },
+    {
+      "Id": "198045dc-7205-4b0a-91a9-d8fcaea60ff2",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.14 Privilege\n---\n",
+      "Content": "a named set of permissions or access rights which are needed to perform a task."
+    },
+    {
+      "Id": "4cd0ad37-7b96-49cd-bcab-7a27278d67ae",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.15 ProductInstanceUri"
+    },
+    {
+      "Id": "e9553ae4-41b1-4f4f-abb3-681c1daad49e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.15 ProductInstanceUri\n---\n",
+      "Content": "a globally unique resource identifier assigned by the manufacturer to a Device."
+    },
+    {
+      "Id": "214c738d-c84a-4a1d-be5c-dbf03b5a3acf",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.16 Registrar"
+    },
+    {
+      "Id": "dc450a6d-0b12-4c5b-aa67-97fe04202815",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.16 Registrar\n---\n",
+      "Content": "an OPC UA Application that registers and authenticates Devices added to the network."
+    },
+    {
+      "Id": "72d39799-e899-453a-95af-6eb6b71ee2d2",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.17 SystemIntegrator"
+    },
+    {
+      "Id": "e6965be9-6854-4add-b81c-4445bb0f081b",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.17 SystemIntegrator\n---\n",
+      "Content": "an organization that installs and configures a system for an OwnerOperator that comprises of Devices, Composites or other computers connected via a network."
+    },
+    {
+      "Id": "bf0f9fec-d785-4e32-b435-2cafe3375f39",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.18 SecureElement"
+    },
+    {
+      "Id": "ddf2795c-cdc3-4236-b7ed-dbb6555644e6",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.18 SecureElement\n---\n",
+      "Content": "a hardware component that protects Private Keys from unauthorized access and disclosure."
+    },
+    {
+      "Id": "2f485fa8-4962-4212-aa81-7524fceba74e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.19 Ticket"
+    },
+    {
+      "Id": "071fad4d-80cf-46ce-a457-bbd97b055eee",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.1.19 Ticket\n---\n",
+      "Content": "a document that identifies a Device or Composite and has a DigitalSignature."
+    },
+    {
+      "Id": "34275482-bf75-4204-8238-066761738b26",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3 Terms, definitions, and conventions\n---\n",
+      "Content": "3.2 Abbreviations and symbols"
+    },
+    {
+      "Id": "e6960e7a-1839-4ef9-99e1-60ec31190db9",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 3.2 Abbreviations and symbols\n---\n",
+      "Content": "API Application Programming Interface\nASN.1 Abstract Syntax Notation #1\nCA Certificate Authority\nCRL Certificate Revocation List\nDCA Device Configuration Application\nDER ASN.1 Distinguished Encoding Rules\nDHCP Dynamic Host Configuration Protocol\nDNS Domain Name System\nERP Enterprise Resource Planning\nGDS Global Discovery Server\nIDevID Initial Device Identifier\nLDevID Locally Significant Device Identifier\nLDS Local Discovery Server\nmDNS Multicast Domain Name System\nNAT Network Address Translation\nPKCS Public Key Cryptography Standards\nTLS Transport Layer Security\nTPM Trusted Platform Module\nUA Unified Architecture\nURI Uniform Resource Identifier\nURN Uniform Resource Name"
+    },
+    {
+      "Id": "b4897304-257e-4416-8019-525c35f9c614",
+      "Header": "Document: Part 21 - Device Onboarding\n---\n",
+      "Content": "4 Onboarding Model"
+    },
+    {
+      "Id": "e2182c33-f2a8-4b83-bbef-a75f66360f9d",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4 Onboarding Model\n---\n",
+      "Content": "4.1 Device Lifecycle"
+    },
+    {
+      "Id": "1e8002f4-826e-4bf1-8e74-62d187591f35",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.1 Device Lifecycle\n---\n",
+      "Content": "The Onboarding model is designed to allow the configuration of a Device to be managed over the complete lifecycle of the Device from manufacture to decommissioning. The entire lifecycle approach is needed because Devices, unlike PC-class computers, are often shipped with automation software pre-installed and are connected directly to sensitive networks. This requires a process to authenticate Devices before they are given access to a sensitive network.\nThe complete life cycle of a Device is shown in[Figure 1](/\u00A7_Ref2246750)."
+    },
+    {
+      "Id": "5235231a-ab5c-4f35-ba63-60719f760450",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.1 Device Lifecycle\nCaption: Figure 1 - The Lifecycle of a Device\n---\n",
+      "Content": "This image is a flowchart diagram titled \u0022The Lifecycle of a Device,\u0022 which represents the process of device onboarding in an organizational context. The diagram uses a combination of rectangles and arrows to illustrate the steps involved in device lifecycle management from creation to decommissioning, with a focus on device onboarding. At the top left, there is a rectangle labeled \u0022Manufacturer\u0022 connected to another rectangle labeled \u0022Distribution,\u0022 indicating the first step in the lifecycle which is the manufacturing of the device. From distribution, a product flows to \u0022Deployment\u0022 where it is integrated into the target environment. After deployment, the device enters the operational phase as part of the \u0022Device Onboarding\u0022 process. The onboarding process involves several activities such as configuration, integration, and commissioning. Once the device has been set up and is in operation, it becomes part of the \u0022Distribution\u0022 network, which could be an internal IT system or a specific protocol like OPC (OLE for Process Control) and OPC UA (Unified Automation), signifying that the device can communicate with other systems. The diagram includes additional text and labels such as \u0022Component manufacturer,\u0022 \u0022Distributor,\u0022 \u0022Decommissioning,\u0022 and \u0022Operator.\u0022 The arrows indicate the flow of a device through these stages: from the manufacturer, to distribution, deployment, onboarding, operation, and finally decommissioning. The image is designed in a way that suggests a structured approach to managing devices throughout their lifespan within an organization, including the critical step of integrating new devices into the system and ensuring they are properly configured and tested before being put into service."
+    },
+    {
+      "Id": "c9ee5394-fee8-47f0-ae3a-0f442d88fb35",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.1 Device Lifecycle\n---\n",
+      "Content": "Figure 1 - The Lifecycle of a Device\nThe actors in the Device lifecycle are described in[Table 1](/\u00A7_Ref17497465).\nTable 1- The Actors in the Device Lifecycle\nActor\nDescription\nDevice\nA computer that is able to communicate via a network. A Device has a unique identifier and may have one or more Applications(see[3.1.4](/\u00A7_Ref100261757))\nComposite\nA collection of Devices or Composites assembled into a single unit. Each Composite has a unique identifier and may appear as a single Device on a network or it may appear as multiple Devices(see[3.1.3](/\u00A7_Ref100261510)).\nApplication\nA program that runs on a Device. Each Application has a unique identifier and communicates with other Applications on the network (see[3.1.1](/\u00A7_Ref100261616)).\nOwnerOperator\nAn organization deploying and operating a system that comprises of Devices, Composites or other computers connected via a network (see[3.1.13](/\u00A7_Ref100261695)).\nManufacturer\nAn organization that creates Devices(see[3.1.12](/\u00A7_Ref100261720)).\nCompositeBuilder\nAn organization that creates Composites(see[3.1.4](/\u00A7_Ref100261757)).\nDistributor\nAn organization that re-sells Devices and/or Composites. A Distributor enhances Devices and Composites by adding customized products or services before resale (see[3.1.11](/\u00A7_Ref100261777)).\nSystemIntegrator\nAn organization that installs and configures a system for an OwnerOperator that comprises of Devices, Composites or other computers connected via a network (see"
+    },
+    {
+      "Id": "912184e0-4682-4365-aa25-366053fa8534",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.1 Device Lifecycle\n---\n",
+      "Content": "[3.1.17](/\u00A7_Ref100261808)).\nRegistrarAdmin\nA user authorized to change the configuration of the Registrar.\nSoftwareUpdateAdmin\nA user authorized to update the firmware running on a Device.\nSecurityAdmin\nA user authorized to make changes to security configuration for Clients and Servers running on the network.\n\nThe stages in the lifecycle for a single Device are described in[Table 2](/\u00A7_Ref17505968). This information model defines mechanisms to automate some of the tasks necessary for each stage.\nTable 2- The Stages in the Device Lifecycle\nStage\nDescription\nDevice Manufacture\nA Device is created and a DeviceIdentity Certificate is assigned. This Certificate is provided when the Device is transferred to other actors. During Device Manufacture, Applications may be installed on the Device. A Ticket describing the Device is created and signed by the Manufacturer.\nComposite Assembly\nA Composite is created from Devices and a unique identity is assigned to the Composite. This identity is provided when the Composite is transferred to other actors. During Composite Assembly, Applications may be installed on the Devices contained in the Composite. A Ticket describing the Composite is created and signed by the CompositeBuilder.\nDistribution\nThe Device or Composite is stored until it is delivered to a CompositeBuilder, SystemIntegrator, OwnerOperator or another Distributor.\nOnboarding\nThe SystemIntegrator connects a Device to the network and verifies that the identity reported by the Device matches the identity in a Ticket provided by the Manufacturer or CompositeBuilder.\nApplication Setup\nThe SystemIntegrator configures the Applications running on the Device or Composite so they can communicate with other Applications running in the system. This process includes distributing TrustLists and issuing Certificates.\nConfiguration\nThe OwnerOperator performs tasks that are not done while the Device"
+    },
+    {
+      "Id": "39d05100-35ee-447c-ab74-f4c6be1a4892",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.1 Device Lifecycle\n---\n",
+      "Content": "Device is in full operation, such as updating firmware, installing new Applications, or changing Application configuration.\nOperation\nThe Device does the tasks it was deployed to do.\nDecommissioning\nThe Device has all access revoked and, if the Device is still functional, then it is reset to the default factory settings.\n\nThe commonly understood concept of \u0022Commissioning\u0022 is represented by the Onboarding, Application Setup and Configuration stages.\nThe stages in the Device lifecycle map onto workflows that are defined in this specification. The workflows are described in[4.2](/\u00A7_Ref94564828)."
+    },
+    {
+      "Id": "7600affd-d95b-407e-a0b5-e43f68524d3d",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4 Onboarding Model\n---\n",
+      "Content": "4.2 Concepts"
+    },
+    {
+      "Id": "ebe3b45c-aaf9-4dfc-a6f3-3ccf3c1d5d0b",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2 Concepts\n---\n",
+      "Content": "4.2.1 Secure Elements"
+    },
+    {
+      "Id": "3bdabb07-025d-4f64-abb6-1ef546c9b7aa",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2.1 Secure Elements\n---\n",
+      "Content": "SecureElements are a hardware-based storage for cryptographic secrets that protect them against authorized access and disclosure. The mechanisms defined for Device authentication depend on PrivateKeys that are stored in SecureElements. PrivateKeys stored on Devices without SecureElements can be stolen and reused on counterfeit Devices.\nOwnerOperators may provision Devices without SecureElements if they have other ways to ensure their authenticity."
+    },
+    {
+      "Id": "328374cb-429e-4177-b43c-0b4561e28a43",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2 Concepts\n---\n",
+      "Content": "4.2.2 Firmware and Applications"
+    },
+    {
+      "Id": "509a0141-0a9d-4985-9474-a24396610cda",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2.2 Firmware and Applications\n---\n",
+      "Content": "Every Device has multiple layers of hardware and software that are installed and managed at different stages in the lifecycle by different actors. The layers are shown in[Figure 2](/\u00A7_Ref94586542)."
+    },
+    {
+      "Id": "64cec89e-f677-46d3-b073-81fedcdcc6f3",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2.2 Firmware and Applications\nCaption: Figure 2 - Device Hardware and Software Layers\n---\n",
+      "Content": "The image you\u0027ve provided appears to be from a presentation slide related to device onboarding, specifically discussing the \u0022Device Hardware and Software Layers\u0022 within the context of OPC (Open Platform Communications) and OPC UA (Unified Automation). The slide is organized into four layers: Device Configuration, Security Configuration, Application Configure, and User Applications. Each layer is represented as a separate horizontal block, with arrows pointing downward from left to right to indicate the flow or hierarchy of these components. 1. **Device Configuration**: This layer includes components such as DAC (Data Acquisition Server), DAS (Data Acquisition System), and DAQ (Data Acquisition Software). There are also mentions of configuration files like \u0022DAC.cfg\u0022 and device-specific configurations. 2. **Security Configuration**: The security configuration layer is represented with elements like SSL/TLS, User Authentication, Access Control, and Encryption. It also mentions the use of digital certificates for secure communication between devices. 3. **Application Configure**: This layer contains references to device configurations such as DAC.cfg and OPC. The \u0022OPC\u0022 acronym is likely referring to the OPC standard mentioned in the caption, which stands for Open Platform Communications. It\u0027s a framework of software standards for secure and reliable communication between computers and industrial automation devices. 4. **User Applications**: This layer consists of various software applications that interface with the devices or systems at the lower layers. Examples given are \u0022OPC UI,\u0022 \u0022OPC UA,\u0022 and \u0022OPC Connect.\u0022 These applications typically use OPC protocols to communicate with the devices and display real-time data, control settings, etc., in a user-friendly manner. 5. **Data Acquisition Server (DAS)**: This is mentioned as part of the Device Configuration layer, but it\u0027s also related to the User Applications layer because it provides data acquisition services."
+    },
+    {
+      "Id": "02daaf0a-5068-4e3e-abf3-41d80f1af751",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2.2 Firmware and Applications\nCaption: Figure 2 - Device Hardware and Software Layers\n---\n",
+      "Content": "6. **OPC UI and OPC UA**: These are user interface components that interact with the device using the OPC standard. \u0022OPC UI\u0022 could refer to a graphical user interface for managing devices, while \u0022OPC UA\u0022 might be a specific implementation or feature of an OPC system. 7. **Data Acquisition Software (DAS)**: This is part of the Device Configuration layer and is responsible for acquiring data from the devices and making it available to the applications. The arrows at the bottom of the slide indicate that the User Applications interact with the lower layers, which include device configuration, security configuration, and application configurations. The entire structure suggests a hierarchical model where user applications build upon securely configured devices through a series of interconnected components, each with its own role in the system\u0027s operation."
+    },
+    {
+      "Id": "6ea2fac1-6e3a-483d-a84d-10eea60cceae",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2.2 Firmware and Applications\n---\n",
+      "Content": "Figure 2 - Device Hardware and Software Layers\nA Device has firmware that is generally not changed during normal operation. Firmware updates may be provided by the Manufacturer to correct software bugs or patch security flaws. A Device should have a mechanism to ensure the integrity of the system, including the firmware, during the boot process. A Device should have a way to update firmware after onboarding in the OwnerOperator\u0027s system.\nA Device should have SecureElement storage used for security sensitive elements such as Private Keys. This storage cannot be backed up nor is it affect by a firmware update. The Private Key of DeviceIdentity Certificates(IDevID and LDevID) shall be placed in this storage.\nA Device shall have a Device Configuration Application(DCA) which is used for Device authentication and setup of other Applications on the Device.\nA Device may have storage used for Applications and their configuration. A Device should have a mechanism to back up and restore configurations. A Device may support multiple Applications which have their own configuration and security configuration.\nA Device has storage for the Application security configuration that does not need to be in the protected storage. This storage is separate from the storage for Applications and configurations. Certificates, Trust Lists, administrator credentials are examples of information that is part of the security configuration. The Device shall have mechanisms to ensure that only authorized actors are able to alter the security configuration or access sensitive data such as the PrivateKeys. If a Device supports multiple Applications, the set of authorized actors may be different for each Application."
+    },
+    {
+      "Id": "6a4f9a5c-5cc9-46d5-b107-a730f0410d93",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2 Concepts\n---\n",
+      "Content": "4.2.3 Transfer of Physical Control"
+    },
+    {
+      "Id": "47b838dd-97a1-4fd0-95e0-26bbcf52bc86",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2.3 Transfer of Physical Control\n---\n",
+      "Content": "Implicit in the Device lifecycle is the notion that Devices and Composites will be physically delivered to different actors. The transfers of physical control that may occur are shown in[Figure 3](/\u00A7_Ref94586543)."
+    },
+    {
+      "Id": "ce968902-d578-4def-903c-7f2d51d8c0c3",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2.3 Transfer of Physical Control\nCaption: Figure 3 - Possible Transfers of Physical Control\n---\n",
+      "Content": "The image shows a diagram with various elements related to the concept of physical control transfer in a device onboarding context. It features a central process labeled \u0022Transfer of Physical Control\u0022 and is accompanied by descriptions of different aspects that might be involved in such a process. Here\u0027s a breakdown of the visible elements: 1. The central process is connected to three components:- \u0022Composite Builder\u0022 at the top left- \u0022Distributor\u0022 in the middle- \u0022Integrator\u0022 on the right side 2. From the Composite Builder, there are two paths indicated by arrows pointing to the Distributor and Integrator, suggesting that it is the starting point for control transfer. 3. The Distributor connects to both the OPC and OPC UA standards, which are industrial interoperability standards used for real-time communication in automation systems. 4. There\u0027s a dashed line connecting from the Integrator back to the Composite Builder, indicating a feedback loop or a closed system where control can be returned. 5. The text boxes contain terms like \u0022Manufacturer,\u0022 \u0022Distributor,\u0022 and \u0022Owner/operator.\u0022 These likely represent different parties involved in the process of physical control transfer, such as the entity that manufactures the device (the manufacturer), the intermediary through which the control is distributed (the distributor), and the end-user who operates or controls the device (the owner/operator). 6. The diagram does not contain any direct representation of charts or data but seems to be a conceptual model rather than an actual chart or graph. The overall theme suggests that the figure is part of a technical discussion or guide on how physical control in a device can be transferred through various intermediaries and standards, such as OPC (OLE for Process Control) and OPC UA (Unified Automation)."
+    },
+    {
+      "Id": "82e11fea-5bc3-4a39-8447-9ce12039a9ac",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2.3 Transfer of Physical Control\n---\n",
+      "Content": "Figure 3 - Possible Transfers of Physical Control\nIn many cases, the Distributor belongs to the same organization as the Manufacturer or CompositeBuilder. Similarly, the Integrator and the OwnerOperator may be the same organization.\nWhen a transfer of physical control occurs, the supplier ships the equipment (a Device or Composite) and an electronic Ticket(see[6](/\u00A7_Ref25765793)) that describes the equipment. The receiver may use the Ticket to authenticate the origin of the equipment using the mechanisms defined in this standard or save it so it can be provided when the equipment is transferred to another actor.\nWhile an actor has physical control, the actor may Install, Provision, Configure or Operate(see[Table 2](/\u00A7_Ref17505968)) the equipment. For example, if an actor (e.g., a CompositeBuilder) makes changes to a Device and then transfers this Device to another actor (e.g., an OwnerOperator) then those changes may restrict what the new owner is able to do, i.e., CompositeBuilder may install an Application used for maintenance that the OwnerOperator cannot access.\nThe workflows (see[4.3](/\u00A7_Ref94586426)) describe this process in more detail."
+    },
+    {
+      "Id": "8a25271c-be66-415c-89bf-8d54e1560ea1",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2 Concepts\n---\n",
+      "Content": "4.2.4 Trust on First Use (TOFU)"
+    },
+    {
+      "Id": "465753c9-c68f-4b9b-8a41-3f2e6835cb7c",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2.4 Trust on First Use (TOFU)\n---\n",
+      "Content": "The onboarding process defined in this document describes how an OwnerOperator can authenticate Devices added to the network. This document does not define any mechanisms to allow Devices to authenticate the network it is connected to. This implies that a Device connected to a network will allow itself to be configured via any network that it is connected to. This behaviour is called \u0022Trust on First Use\u0022 or TOFU.\nWhen first connected to a network the DCA will be in an initial state where it will either attempt to discover a network service that it can get its configuration ( PullManagement, see[7.2](/\u00A7_Ref99376121)) or wait for another application to provide its configuration ( PushManagement, see[7.3](/\u00A7_Ref99376253)).\nOnce the onboarding process completes the DCA is supplied with credentials that authorize Applications that are allowed to make changes to its security configuration. Devices should have a mechanism to return the DCA to an initial state which discards all configuration, including all credentials and TrustLists that were assigned in a previous onboarding process.\nThe new state allows the TOFU onboarding process to start again. Note the initial state is not the same as a factory reset which typically deletes all software installed on the Device. The reset mechanism should require proof of physical possession of the Device to ensure it cannot be exploited remotely.\nThe TOFU model exposes the Device to malicious actors that are running on the network. This means the network used for configuration has to be protected to make it harder for a malicious actor to gain access to the network. OwnerOperators should also have network services designed to detect and eliminate malicious applications that attempt to interfere with the onboarding process.\nDevices may have other ways to assign the credentials provided by the onboarding process in order to avoid the risks associated with TOFU."
+    },
+    {
+      "Id": "162698e4-8bd4-4251-b3f2-df02d13e5703",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2.4 Trust on First Use (TOFU)\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "d44b0628-62c0-4b9a-b24a-807a284230b7",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2 Concepts\n---\n",
+      "Content": "4.2.5 SoftwareUpdateManager"
+    },
+    {
+      "Id": "5ea53a4a-fee4-4dd7-aeec-ab76921ea502",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2.5 SoftwareUpdateManager\n---\n",
+      "Content": "The SoftwareUpdateManager is a system component that provides updates to firmware or software running on a Device. The SoftwareUpdateManager may implement the standard model defined in[OPC 10000-100](/\u00A7UAPart100), however, it often will be specific to the Manufacturer. This document defines APIs that allow any SoftwareUpdateManager to coordinate with the components defined in this document.\nThe SoftwareUpdateManager is an important part of the onboarding process because it is necessary to ensure that Devices with out-of-date firmware are not allowed on the network. The interactions between the SoftwareUpdateManager and the other components are described in clause[7](/\u00A7_Ref94586663). The SoftwareUpdateManager may not be present in systems where the OwnerOperator has other mechanisms in place to ensure the Devices have up to date firmware."
+    },
+    {
+      "Id": "c6616f6d-e904-4cd7-bbc0-832ef24ec1c6",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2 Concepts\n---\n",
+      "Content": "4.2.6 Roles and Privileges"
+    },
+    {
+      "Id": "1f524950-0823-4686-85bd-56a57038a890",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.2.6 Roles and Privileges\n---\n",
+      "Content": "Registrars and DCA Servers need to restrict access to many of the features they provide. These restrictions are described either by referring to well-known Roles which a Session must have access to or by referring to named Privileges which are assigned to Sessions using mechanisms other than the well-known Roles. Privileges are needed because not all restrictions can be expressed simply by granting Role permissions on Nodes. For example, authenticated Devices are granted the ability to update only their own information which means the decision on granting access can depend on the values of the arguments passed to a Method call rather than the permissions on the Method Node. The well-known Roles used in this document are listed in[Table 3](/\u00A7_Ref100125122).\nTable 3- Well-known Roles for Onboarding\nName\nDescription\nRegistrarAdmin\nThe Role grants rights to manage the Tickets known the Registrar and approve Devices when automatic authentication was not possible.\nSoftwareUpdateAdmin\nThe Role grants rights to set the software status for a Device.\nSecurityAdmin\nThe Role grants the right to changes the security configuration of a Registrar or a DCA Server. For the DCA Server this includes the right to set the location of the Registrar or to force the Server to restart the authentication process.\n\nThe Privileges used in this document are listed in[Table 4](/\u00A7_Ref100125140).\nTable 4- Privileges for Onboarding\nName\nDescription\nDeviceSelfAdmin\nThe Device has rights to modify its own registration.\nDCA\nThe Client is a DCA that has rights to request Certificates and TrustLists for Applications that it has been granted rights to.\nFor a detailed description of Roles, see[OPC 10000-3](/\u00A7UAPart3)."
+    },
+    {
+      "Id": "c6781877-b7b4-4f60-853d-73debaa43c36",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4 Onboarding Model\n---\n",
+      "Content": "4.3 Device Workflows"
+    },
+    {
+      "Id": "9b7d879b-617e-4738-9011-35099af2f4ff",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.3 Device Workflows\n---\n",
+      "Content": "4.3.1 Distribution"
+    },
+    {
+      "Id": "0cc0c965-db64-4060-b564-99904ee182f4",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.3.1 Distribution\n---\n",
+      "Content": "Distribution is the process of transferring physical control of Devices and Composites from one organization to another. This transfer of physical control is accompanied by the electronic transfer of Tickets as described in[6.2](/\u00A7_Ref33994164)."
+    },
+    {
+      "Id": "efe93d04-16b8-4d83-9d12-71f76526614a",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.3 Device Workflows\n---\n",
+      "Content": "4.3.2 Onboarding"
+    },
+    {
+      "Id": "976d3baf-14ed-44cd-a912-0632fb6e7093",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.3.2 Onboarding\n---\n",
+      "Content": "Onboarding is the process where a Device or Composite is connected to the network managed by an organization. When this happens the authenticity of the Device is verified via interactions with a Registrar running on the network.\nEvery Device has a Device Configuration Application(DCA) which interacts with the Registrar using the interactions described in PullManagement([7.2](/\u00A7_Ref99376121)) or PushManagement([7.3](/\u00A7_Ref99376253)). These interactions are secured with a DeviceIdentity Certificate.\nAfter authentication completes, the DCA is issued a Certificate by the Registrar that allows the DCA to configure other Applications running on the Device. The Registrar is responsible for determining if a DCA is authorized to request Certificates on behalf a specific Application. For example, the DCA rights may be limited to Applications with the same hostname as the DCA.\nDuring Onboarding, the Device may need to have software updated before the process can complete. The DCA uses the software update model described in[OPC 10000-100](/\u00A7UAPart100) to manage the software update process."
+    },
+    {
+      "Id": "1982bdbf-9105-4363-b424-675c24dce966",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.3 Device Workflows\n---\n",
+      "Content": "4.3.3 Application Setup"
+    },
+    {
+      "Id": "a6fa607c-bddd-468a-b96f-d18028426b5f",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.3.3 Application Setup\n---\n",
+      "Content": "Application Setup is the process of issuing an Application Instance Certificate and a TrustList to one or more Applications running on a Device that will allow the Applications to communicate with other OPC UA Applications running on the network. These mechanisms are provided by the CertificateManager Information Model and are described in[OPC 10000-12](/\u00A7UAPart12).\nDuring the Onboarding step, the DCA is issued a Certificate that allows it to request or accept Certificates on behalf of any Application running on the Device. If the DCA is a Client it can connect to CertificateManager and request the additional Certificates and TrustLists without the need for additional approvals. If the DCA is a Server the CertificateManager can locate Applications within the DCA AddressSpace and provide Certificates and TrustLists to them.\nSome Applications on a Device could have access rights that prevent the Integrator or OwnerOperator from changing the setup for the Application. This could occur if Applications are used for maintenance or protect intellectual property."
+    },
+    {
+      "Id": "feb96943-e8d0-441b-9ff5-96f219acdfe0",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.3 Device Workflows\n---\n",
+      "Content": "4.3.4 Configuration"
+    },
+    {
+      "Id": "a9a16ff1-50da-4277-a415-b29fbcfe1a28",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.3.4 Configuration\n---\n",
+      "Content": "Configuration occurs when the Applications running on the Device are installed, modified, backed up or restored. Configuration is also the mode that allows a new Device to be dropped in as a replacement for an existing Device that is no longer functioning.\nSome Devices may allow individual Applications to be configured while other Applications continue in Operation state described in[4.3.5](/\u00A7_Ref94586591)."
+    },
+    {
+      "Id": "7d4fa6b2-89fb-46f1-901c-7eb1c71cecb7",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.3 Device Workflows\n---\n",
+      "Content": "4.3.5 Operation"
+    },
+    {
+      "Id": "050d7f5b-4ff0-44ce-95c4-9d45b7a36ab5",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.3.5 Operation\n---\n",
+      "Content": "Operation occurs when one or more Applications on a Device are running normally performing whatever task it was deployed to do. In this stage it is possible to update the TrustList and/or renew the Application Instance Certificate using the CertificateManager PushManagement or PullManagement described in[OPC 10000-12](/\u00A7UAPart12). Some Devices may allow the Application configuration to be changed while in this stage."
+    },
+    {
+      "Id": "11a01451-5bfb-4bed-8e8f-77a08e56348b",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.3 Device Workflows\n---\n",
+      "Content": "4.3.6 Decommissioning"
+    },
+    {
+      "Id": "68036c25-3fd3-470a-bf8a-f128017c6044",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 4.3.6 Decommissioning\n---\n",
+      "Content": "Decommissioning is the final state for the Device where it is reset to an initial state to ensure that all sensitive data is deleted. Any permissions granted to the Device on the OwnerOperator network are revoked.\nThe DeviceIdentity Certificates and their associated PrivateKeys are not affected by a reset.\nA Device that was Decommissioned by mistake can be Onboarded again as described in[4.3.2](/\u00A7_Ref103335274).\nIn some cases, the OwnerOperator may wish to prevent the Device from being used again by removing/destroying the SecureElement or some other method to physically disable the Device."
+    },
+    {
+      "Id": "a9a4ce1d-7de2-46be-b1d0-94be1aa3ba71",
+      "Header": "Document: Part 21 - Device Onboarding\n---\n",
+      "Content": "5 Identities"
+    },
+    {
+      "Id": "ac85c482-e963-4a3d-9999-c882da5a3405",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 5 Identities\n---\n",
+      "Content": "5.1 Device Identity"
+    },
+    {
+      "Id": "7e073d21-3337-4c4e-afcd-0c764d69424e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 5.1 Device Identity\n---\n",
+      "Content": "Every Device shall have an \u0022Initial Device Identifier\u0022 (IDevID) Certificate(see[802.1AR](/\u00A7IEEE8021AR)) that is used to prove the origin of the Device. This identity shall include a Private Key and an X.509v3 Certificate.\nIDevID Certificate should have the ProductInstanceUri(see[5.2](/\u00A7_Ref38287970)) as a uniformResourceIdentifier in the subjectAltName field (see[RFC 5280](/\u00A7RFC5280)). If the IDevID Certificate does not have the ProductInstanceUri the Device shall have an LDevID (Locally Significant Device Identifier) Certificate with the ProductInstanceUri in the subjectAltName.\nIf an LDevID Certificate is used it should be installed by the Manufacturer and signed by the Manufacturer CA. If the LDevID Certificate is signed by another organization, such as a Distributor, then this implies the other organization is trusted as an authority capable of assuring the origin of the Device.\nThe LDevID Certificate may use the same keypair as the IDevID Certificate. The Private Key should be placed in SecureElement storage on the Device.\nThe ProductInstanceUri should also be affixed to the Device in a form that allows electronic reading (e.g. RFID, QR code, bar code, et. al.).\nThe IDevID and LDevID Certificates shall conform to[802.1AR](/\u00A7IEEE8021AR). The term DeviceIdentity Certificate is used to describe IDevID and LDevID Certificates that meet the requirements of this document.\nThe mechanisms for creating, installing, securing and revoking the IDevID and LDevID Certificates depend on the Manufacturer, however, Devices should provide a SecureElement storage (for an example, see"
+    },
+    {
+      "Id": "0e9e26bb-4cd9-4f40-88b2-268405d80469",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 5.1 Device Identity\n---\n",
+      "Content": "[ISO/IEC 11889](/\u00A7ISOIEC11889)) to ensure the associated Private Keys cannot be copied off the Device.\nThe IDevID and LDevID Certificates may have expiry dates that should be far in the future ([802.1AR](/\u00A7IEEE8021AR) recommends the GeneralizedTime value 99991231235959Z in the notAfter field). The Manufacturer is responsible for creating the Certificate Authority used to issue the Certificates. Properly verifying the Certificates requires that the CA Certificate be acquired out-of-band via a mechanism that allows the receiver to authenticate the origin of the CA Certificate(see[6](/\u00A7_Ref25765793)).\nAny long-lived Certificate shall only be used for Device authentication during Onboarding stage (see[Table 2](/\u00A7_Ref17505968)).\nNote that even if the IDevID or LDevID Certificate does not expire the CA Certificate could expire. When this happens, it is no longer possible to completely verify a DeviceIdentity Certificate. OwnerOperators need to be cautious and develop strategies to protect against risks created by these unverifiable Devices. Manufacturers should develop strategies to ensure these Certificates are verifiable for the expected lifetime of the Device.\nThe Ticket mechanism described in[6](/\u00A7_Ref17650428) includes the option to extend the validity period by adding Signatures created by trusted Certificate Authorities that have not expired."
+    },
+    {
+      "Id": "bab6d62a-6c21-4274-b1af-fe68a1b491d6",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 5 Identities\n---\n",
+      "Content": "5.2 ProductInstanceUri"
+    },
+    {
+      "Id": "2f08130a-48fc-4b3c-91f7-fa236a5e3a98",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 5.2 ProductInstanceUri\n---\n",
+      "Content": "ProductInstanceUri is a globally unique resource identifier assigned by the Manufacturer to a Device. This is often stamped on the outside of a physical component and may be used for traceability and warranty purposes. The identifier shall be a valid URI that meets the following requirements:\nHave a length which does not exceed the limits imposed by the labelling technology chosen by the manufacturer;\nTruly globally unique with a structure that enforces it.\nOther standards, such as[DIN 91406](/\u00A7DIN91406), define specific syntaxes that could meet these requirements.\nExamples of ProductInstanceUris:\nurn:some-company.com:5ff40f78-9210-494f-8206-c2c082f0609c\nurn:some-company.com:model-xyz:snr-16273849"
+    },
+    {
+      "Id": "daf6cdc2-8f2a-4b30-9acd-42eeccf05ef4",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 5 Identities\n---\n",
+      "Content": "5.3 Composite Identity"
+    },
+    {
+      "Id": "a7883525-693a-4eb9-9fe1-9dd0cc0b75d2",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 5.3 Composite Identity\n---\n",
+      "Content": "A Composite is a piece of equipment that contains a network of Devices. All of these Devices are internal to the Composite and can be accessed by other Devices within the Composite. Some of these Devices are also visible on an external network and have one or more Applications that need to be provisioned. Composites are an abstraction on a network and can only be physically accessed via one or more of the externally visible Devices.\nA Machine is a common example of a Composite.\nA Device which is visible on an external network may have an LDevID Certificate(see[802.1AR](/\u00A7IEEE8021AR)) created by the CompositeBuilder that can be used to prove the Device belongs to the Composite.\nThe CompositeInstanceUri is an identifier for the Composite assigned by the CompositeBuilder. All Devices in the same Composite shall have the same CompositeInstanceUri. The CompositeInstanceUri follows the same rules as ProductInstanceUri(see[5.2](/\u00A7_Ref38304676)).\nThe subjectAltName is an array of alternate names for the Device. Each entry in the subjectAltName has a datatype and a value. An IDevID and LDevID shall have at least one URI name which is the ProductInstanceUri. LDevIDs created for a Composite shall have at least two URI names, the ProductInstanceUri and the CompositeInstanceUri. If a Device is in a Composite that is contained by another Composite, then only the outermost CompositeInstanceUri is present.\nNote that the subjectAltName is a generic field that contains names used for purposes outside the scope of this specification. The URI names with the CompositeInstanceUri and ProductInstanceUri are identified by finding a Ticket that contains the values. URI names that cannot be matched to a Ticket are ignored.\nComposites may contain other Composites and Devices. The contained Composite"
+    },
+    {
+      "Id": "df4d04bc-5fc2-42c3-9154-cf56d7816e67",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 5.3 Composite Identity\n---\n",
+      "Content": "Devices. The contained Composite may be externally visible outside of the container Composite. In these scenarios, the CompositeBuilder may treat the contained Composites as Devices and add additional LDevID Certificates that identify the Devices as a component of the container Composite.\nThe additional LDevID Certificate has the Device ProductInstanceUri and the CompositeInstanceUri for the containing Composite.\nThe CompositeBuilder is responsible for installing and setup all Devices so they can interact with each other before the Composite is delivered.\nWhen a Composite is connected to an external network it may be necessary to install and re-provision some of the Applications on each externally visible Device. This requires that additional Trust Lists be provided and new Certificates be issued to the Applications. CompositeBuilders may limit access to Applications running on the Devices and/or prevent management Applications on the external network from installing new Applications.\nEach Client or Server on a network has a unique ApplicationUri. An ApplicationUri chosen by the CompositeBuilder may not be appropriate when the Composite is connected to the external network. For this reason, all externally visible Applications shall create their default ApplicationUri derived from the Device ProductInstanceUri which is specified in the subjectAltName field of the DeviceIdentity Certificate."
+    },
+    {
+      "Id": "bd68fbfb-0c57-4f4e-b1a9-b099ab7a3312",
+      "Header": "Document: Part 21 - Device Onboarding\n---\n",
+      "Content": "6 Ticket Semantics"
+    },
+    {
+      "Id": "674306e7-6f92-4e4e-9540-4e16cb55ae56",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6 Ticket Semantics\n---\n",
+      "Content": "6.1 Tickets"
+    },
+    {
+      "Id": "7d0d17e7-1d56-4fd7-aa30-4797d69db2f9",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6.1 Tickets\n---\n",
+      "Content": "The Device lifecycle shown in[Figure 1](/\u00A7_Ref2246750) implies information needs to flow between businesses when there is a transfer of physical control over a Device(see[4.2.3](/\u00A7_Ref94586636)). How this information is transmitted is out of scope but it could be email, a block chain ledger, cloud based webservice, a file on a USB stick or some other mechanism. This specification defines the format of a document that contains information that needs to be provided with a Device. A Ticket is the term used for a document that describes one or more Devices and has a Digital Signature that can be used to verify that the contents of the document have not been altered and that they confirm the origin of the Device.\nTickets are long lived documents which means the signing Certificate should be issued by a widely trusted root Certificate Authority that is likely to be in business even if the Manufacturer or CompositeBuilder has gone out of business. Tickets allow additional Signatures to be added at any time by an entity in the chain of physical control. The current owner of a Device validates the Ticket by choosing a Signature created by an authority it trusts.\nFor example, a CompositeBuilder re-signs the Tickets for the Devices to associate the CompositeInstanceUri with the Device Ticket(see[8.1](/\u00A7_Ref51594798)). Customers of the CompositeBuilder will not need a relationship with the Manufacturer of the Device to validate the Ticket.\nDeviceIdentity Certificates are typically signed with a chain ending in a root CA owned by the Manufacturer or CompositeBuilder. Tickets are typically signed with a Certificate issued to the Manufacturer by a well-known root CA. Issuer Certificates for Certificates used to sign Tickets shall have the cRLDistributionPoints or authorityInfoAccess extensions defined (see[RFC 5280](/\u00A7RFC5280))."
+    },
+    {
+      "Id": "430be7e3-5b09-4f89-8a92-e4eeabb4ba96",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6.1 Tickets\n---\n",
+      "Content": ")."
+    },
+    {
+      "Id": "e2bafe85-afdc-4ad7-9875-40695d5a73db",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6 Ticket Semantics\n---\n",
+      "Content": "6.2 Ticket Distribution"
+    },
+    {
+      "Id": "a2d13f98-6d4d-4c71-bf52-d1de8c23bb37",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6.2 Ticket Distribution\n---\n",
+      "Content": "When physical control over Devices and/or Composites is transferred from one organization to another there needs to be a physical transfer of goods and an electronic transfer of the Tickets associated with the Devices and Composites. The Tickets allow the new user to verify the authenticity of the Devices and Composites they received by using the handshake defined in[7](/\u00A7_Ref94586663).\nWhen transferring Devices, the sender provides a DeviceIdentityTicket(see[8.2.1](/\u00A7_Ref39651213)) for each Device. When transferring Composites, the sender provides a CompositeIdentityTicket(see[8.2.4](/\u00A7_Ref18575515)) for each Composite and a DeviceIdentityTicket for each externally visible Device in the Composite. The DeviceIdentityTickets and CompositeIdentityTickets should be created and signed by the original Manufacturer and/or CompositeBuilder, however, a trusted intermediary, such as a Distributor, could create the Tickets or add additional Signatures to the existing Tickets.\nProperly verifying the origin of Devices requires that OwnerOperators and other downstream users of Devices have access to the Tickets and the CA that issued the signing Certificates. This usually requires a network connection that allows the revocation status to be checked. The Tickets are used to build a list of Devices and Composites which are allowed on the network. The ProductInstanceUri and CompositeInstanceUri are used to correlate a Device with a Ticket. A Ticket can be verified before the Devices are connected to the network or done when a new Device is detected.\nWhen an OwnerOperator initially receives a Ticket, it may wish to validate them immediately and add a Signature with their own Certificate. A Signature shall only be applied to a Ticket that has been validated. This allows the Device"
+    },
+    {
+      "Id": "b69e58d6-98b1-46c9-a128-3d55c76cc34c",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6.2 Ticket Distribution\n---\n",
+      "Content": "This allows the Device to be stored until it is needed without any further need for access to an external system to check revocation lists. The OwnerOperator can also manage the issue of expiring Certificates by periodically re-validating and adding a new Signature before the previous Certificate that created the previous Signature expires. The re-signed Tickets should be stored in systems controlled by the OwnerOperator.\nAutomatic validation of Devices requires a service, called a Registrar, running on the network. The Registrar is able to communicate with new Devices and see if they match a Ticket known to the Registrar. The mechanism for providing the Tickets to the Registrar depends on the Registrar. A completely automated solution would integrate the Registrar with the corporate ERP system. This would allow the Registrar to receive the Tickets as part of the purchasing process. When such integration is not available, the Tickets could be uploaded manually by the technician installing the Devices or they could be read from the Device itself. If a Ticket is provided with the Device, the RegistrarAdmin shall provide the Registrar with the CAs that can sign Tickets which are trusted."
+    },
+    {
+      "Id": "c0bcc71a-4277-466f-9c35-000154a765b7",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6 Ticket Semantics\n---\n",
+      "Content": "6.3 Authentication"
+    },
+    {
+      "Id": "d3bd8ec3-bff7-49e1-85a6-9d9c3bafee9e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6.3 Authentication\n---\n",
+      "Content": "When a CompositeBuilder or Integrator receives a shipment of Devices it needs to connect them to their network and verify their authenticity. This process is automated by the use of a Registrar that detects new Devices added to the network, inspects their DeviceIdentity Certificates and finds the corresponding DeviceIdentityTicket. If a match was found the Device is accepted and can be provisioned for use on the network. See[7](/\u00A7_Ref45035977) for a complete description of this process.\nThere are two modes of operation that a Device can use depending on whether it is a Client or a Server. Clients use PullManagement which is defined in[7.2](/\u00A7_Ref99376121). Servers use PushManagement which is described in[7.3](/\u00A7_Ref99376253). Devices which are a Client and a Server may use either model.\nThe authentication process requires secure communication using OPC UA. A Device shall have a Client or Server installed on the Device which is used for Device Onboarding, application setup and configuration. This Application is called the \u0022Device Configuration Application\u0022 or DCA. When a Device is first connected the DCA is configured to use any of its DeviceIdentity Certificates as its Application Instance Certificate. Note that DeviceIdentity Certificates will not have a DNS name or IP address because these values are not known when the DeviceIdentity Certificate is created. Therefore, the Registrar shall suppress host name validation errors when communicating with a DCA. The Registrar should verify that the DCA is running on a network designated by the RegistrarAdmin as a source for new Devices.\nOnce the Device has been authenticated by the Registrar, it is provided with an Application Instance Certificate, called a DCA Certificate, that is used for any subsequent communication. The DCA Certificate will have a shorter lifespan and a CA which is managed by the OwnerOperator"
+    },
+    {
+      "Id": "2d4be3b7-1c85-4e90-8bd8-db3d6ed90c67",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6.3 Authentication\n---\n",
+      "Content": "OwnerOperator. This Certificate allows all Applications running on the Device to automatically be onboarded and configured without human intervention.\nWhen a Device is first deployed it may have out of date firmware that needs to be upgraded before it can participate in the network. The SoftwareUpdateManager may use the software update model ( PushManagement only) in[OPC 10000-100](/\u00A7UAPart100) or it may rely on proprietary mechanisms that are specific to the Device. The Device will not get access to the network until the SoftwareUpdateManager indicates that the Device is up to date and whether a software update was applied. Once the firmware is updated, the Registrar can issue an Application Instance Certificate to the DCA.\nApplication Instance Certificates issued to a DCA shall not be used for communication with any application other than the Registrar, SoftwareUpdateManager, CertificateManager or a configuration application that acts on behalf of those agents. The CertificateManager shall restrict the Applications that a DCA is permitted to manage. A simple restriction would limit Certificate Requests to the host names/IP addresses that appear in the DCA Certificates. More complex rules could exist for complex Devices. OwnerOperators may choose to create a special VLAN (Virtual LAN) that is only used for communication using the DCA Certificates.\nThe registration process here also applies to externally visible Devices that are contained in a Composite. In these cases, the CompositeBuilder provides the list of Devices.\nWhen a Device is first connected to the network it may not have a properly synchronized clock (e.g., a battery backed clock set by the manufacturer). This means it will not be possible for the Device to check the validity period of the Certificates used to establish secure communication with the Registrar. In these situations, the Device"
+    },
+    {
+      "Id": "22b1f240-8574-4820-a142-4ff6b6049d61",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6.3 Authentication\n---\n",
+      "Content": "Device should use a time synchronization protocol such as NTP to update the system clock at boot. If a time synchronization server is not available the Device may ignore the validity period for the Certificates provided by the Registrar."
+    },
+    {
+      "Id": "44d79591-ca04-45d7-b750-c8a0485279cb",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6 Ticket Semantics\n---\n",
+      "Content": "6.4 Acquiring and Validating Tickets"
+    },
+    {
+      "Id": "a27eeea4-b9bc-44f3-999e-692ca608813d",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6.4 Acquiring and Validating Tickets\n---\n",
+      "Content": "Device authentication depends on a process for creating, distributing and validating Tickets which contain information needed to determine if any given Device is allowed to be connected to the OwnerOperator\u0027s network.\nThere are two strategies for validating Tickets that depend on how the Tickets are acquired. The recommended approach is to rely on an out-of-band mechanism which provides the Tickets for the Devices and Composites that will be delivered to the facility before the Devices are connected to the network. This could be done automatically if the Registrar is integrated with the ERP. It can also be a manual process where a digital file is delivered to an RegistrarAdmin that uploads it to Registrar. When a new Device is detected on the network the matching Ticket is found which confirms that the Device is authorized.\nThe second strategy uses a Ticket that is distributed with the Device or Composite. This Ticket could be stored on the Device or on physical media that was delivered with the Device. When a Device is connected to the network the Ticket is either manually uploaded to the Registrar by the technician installing the Device or is read from the Device during the authentication process. For this strategy to be secure the Certificates used to sign the Tickets are provided to the Registrar in advance by the RegistrarAdmin. A Device is authorized to be on the network if the Ticket is valid, it matches the Device and is signed by a trusted Ticket authority.\nThe steps to validate a Ticket are as follows:\nVerify that a signing Certificate is valid and trusted;\nVerify the Signature is valid;\n\nTickets that are not valid shall not be used.\nTickets may have multiple signatures added by different actors in the supply chain. The Registrar only needs to find one Signature created by a trusted authority. This assumes that actors in the supply chain only add a Signature if at least one of the existing Signatures is valid and created by an authority the actor trusts. Registrars"
+    },
+    {
+      "Id": "08f17984-45d2-4986-bc8f-262181ca9e6c",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 6.4 Acquiring and Validating Tickets\n---\n",
+      "Content": "Registrars shall not trust authorities unless they are confident that the authority is properly validating Tickets before adding a Signature.\nA signing Certificate is trusted if it is valid and the Certificate is recorded as a trusted Ticket signing Certificate with the Registrar or if the issuer is a trusted root CertificateAuthority. The latter criteria is only allowed if the Ticket was provided out of band.\nThe process of verifying a Certificate is described completely in[OPC 10000-4](/\u00A7UAPart4), however, checks that are specific to Application Instance Certificates do not apply (e.g. the HostName and ApplicationUri checks).\nTrusted root CertificateAuthorities used to issue Ticket signing Certificates are companies that maintain Internet accessible online revocation status checks. For example, companies that provide C ertificates for code/document signing could be a root CertificateAuthority for Ticket signing. Each OwnerOperator is responsible for maintaining a list of trusted root CertificateAuthorities which are accepted by the organization."
+    },
+    {
+      "Id": "52e79348-16c5-400e-a302-71d00352a7ae",
+      "Header": "Document: Part 21 - Device Onboarding\n---\n",
+      "Content": "7 Device Authentication"
+    },
+    {
+      "Id": "b4357226-06ef-40ec-815e-4676643164a7",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7 Device Authentication\n---\n",
+      "Content": "7.1 Overview"
+    },
+    {
+      "Id": "073a647f-533c-4f10-860e-502c38dbad24",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.1 Overview\n---\n",
+      "Content": "Registrars shall not accept Devices they do not trust. The steps to determine trust are:\nRead all DeviceIdentity Certificates from the Device;\nLocate a Ticket that has a ProductInstanceUri that matches one or more DeviceIdentity Certificates;\nValidate the Ticket if it has not already been validated (see[6.4](/\u00A7_Ref45026545));\nSelect and Validate DeviceIdentity Certificate that matches the Ticket;\nEstablish a secure connection to the Device using the selected DeviceIdentity Certificate.\nIssue a DCA Application Instance Certificate to the Device that indicates that it has been authenticated.\n\nThe initial communication between the Registrar and the Device is secured with a DeviceIdentity Certificate. When using PushManagement([7.3](/\u00A7_Ref99376253)), the Registrar is a Client that calls GetEndpoints via connection without security on the Device Configuration Application(DCA). The DCA shall provide at least one EndpointDescription for each DeviceIdentity Certificate. The Registrar chooses a DeviceIdentity Certificate, establishes a secure connection using an EndpointDescription that uses that Certificate. This provides proof that the Device possesses the PrivateKey associated with the Certificate. The Registrar uses the SecureChannel to provide an Application Instance Certificate to the DCA which will allow the DCA to be used to provision the other Applications running on the Device. This Certificate is called the DCA Certificate.\nWhen using PullManagement([7.2](/\u00A7_Ref99376121)) the DCA connects to the Registrar without security and calls the ProvideIdentities Method. The Registrar chooses a valid DeviceIdentity Certificate and returns it in the response along with a ApplicationId which is used to request new Certificates. The DCA reconnects using a new SecureChannel with the selected Certificate which provides proof that the Device possesses the PrivateKey associated with the Certificate. The DCA uses the SecureChannel"
+    },
+    {
+      "Id": "b06fc1ec-2dd4-4d19-acfe-d19a7b5fef67",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.1 Overview\n---\n",
+      "Content": "SecureChannel to request a new Application Instance Certificate which will allow the DCA to provision the other Applications running on the Device. The DCA Application Instance Certificate cannot be used for any action other than configuring the DCA or other Applications managed by that DCA (for example, the host name/IP address of the Application being configured has the same host name/IP addresses assigned to the Device where the DCA is running).\nRegistrar first looks for a Certificate that has a ProductInstanceUri as a value in the subjectAltName of the Certificate. The Registrar first searches the set of pre-validated Tickets that were provided out-of-band for a match. If that fails it either calls the RequestTickets Method on the DCA (see PushManagement in[7.3](/\u00A7_Ref99376253)), or returns a code from ProvideIdentities Method that tells the DCA to call the ProvideTickets Method(see pull management in[7.2](/\u00A7_Ref99376121)).\nIf the matching DeviceIdentityTicket is referenced by a Composite Ticket(see CompositeIdentityTicketType in[8.2.4](/\u00A7_Ref18575515)) then the Registrar looks for a Certificate that has both the CompositeInstanceUri and the ProductInstanceUri as values in the subjectAltName.\nA Device that is part of a Composite should provide the Composite Tickets in the RequestTickets or ProvideTickets Method.\nPartial matches to DeviceIdentityTickets in CompositeIdentityTickets are rejected (i.e. Certificates with the ProductInstanceUri but no CompositeInstanceUri).\nIf more than one Certificate had a matching Ticket the Registrar may choose any one of them. The one selected is logged.\nIf the matching Ticket came from the Device, the Registrar validates the Ticket(see[6.4](/\u00A7_Ref45026545)).\nOnce the Registrar has found a valid"
+    },
+    {
+      "Id": "6cf70866-a4a2-4271-bfb4-bb60212d27ca",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.1 Overview\n---\n",
+      "Content": "Registrar has found a valid Ticket that matches a DeviceIdentity Certificate, it can use the CertificateAuthority in the Ticket to validate the selected Certificate using the process described in[OPC 10000-4](/\u00A7UAPart4) for Application Instance Certificates. The revocation status check may be online if the Manufacturer or CompositeBuilder adds the cRLDistributionPoints or authorityInfoAccess extensions (see[RFC 5280](/\u00A7RFC5280)) to the DeviceIdentity Certificates. If those extensions do not exist then the revocation check may be skipped. Skipped revocation checks shall be logged. If the Ticket is signed by a trusted Ticket signing authority and the timestamp is valid then expired CA Certificates may be ignored since the lifetime of a Device is usually longer than the lifetime of a CA Certificate.\nThe Registrar, and the storage it needs, is a critical part of the authentication process and needs to be protected from access by malicious actors."
+    },
+    {
+      "Id": "dd7d2192-2d77-4b70-8a38-74289f192a8e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7 Device Authentication\n---\n",
+      "Content": "7.2 Pull Management"
+    },
+    {
+      "Id": "52cb0a46-126e-404b-8aca-2ef9b3cf6d23",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.2 Pull Management\n---\n",
+      "Content": "Clients may use pull management which is illustrated in[Figure 4](/\u00A7_Ref45040284)."
+    },
+    {
+      "Id": "5c850b6b-55c8-4220-91fc-51f89c7e3715",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.2 Pull Management\nCaption: Figure 4 - Device Authentication using Pull Management\n---\n",
+      "Content": "The image appears to be a flowchart or process diagram that outlines a device onboarding process within an organization using Pull Management, which seems to involve OPC and OPC UA standards for industrial interoperability. The chart is somewhat complex with numerous steps and decision points, which suggests a structured and possibly automated workflow. The visible elements in the image include: 1. A title \u0022Device Onboarding.\u0022 2. A subtitle \u0022Pull Management.\u0022 3. A section heading \u0022OPC UA\u0022 followed by an acronym \u0022OPC Unified Automation.\u0022 4. A flowchart with various steps, decision points, and flow arrows connecting them. The flowchart contains elements such as \u0022Software Install,\u0022 \u0022Credentials Entered,\u0022 \u0022Configuration Manager,\u0022 \u0022Certificate Authority (CA),\u0022 and \u0022Device Registered.\u0022 5. Several decision points are represented by diamonds, which are typical in flowcharts to represent conditional logic. 6. The bottom part of the image shows a software interface with various buttons, indicating that this is likely a screenshot from a computer or application that the user is interacting with during the onboarding process. 7. There\u0027s also text in the lower right corner that seems to be cut off and includes \u0022...device connected to the network. Please press to update device software. Update and Apply.\u0022 This suggests that the user may be prompted to update the software on a connected device. The chart is likely used by IT professionals, system administrators, or other technical staff to understand the process for bringing new devices into an organization\u0027s network using Pull Management principles."
+    },
+    {
+      "Id": "e3ca3548-2359-4a10-9fe5-5cd77adc5e6e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.2 Pull Management\n---\n",
+      "Content": "Figure 4 - Device Authentication using Pull Management\nSee[7](/\u00A7_Ref45035977) for a complete description of the Device authentication process.\nThe sequence begins when the Device discovers the location of the Registrar via mDNS (see[OPC 10000-12](/\u00A7UAPart12)), the SetRegistrarEndpoints Method is called ( Servers only) or the Endpoints are provided via a Device specific mechanism. The sequence automatically repeats until the Device receives its DCA Certificate and no software update is required. Any errors occur the sequence restarts from the beginning. Note that step requires that the DCA trust any Registrar it finds since it does not have a valid TrustList(see[4.2.4](/\u00A7_Ref99366278)).\nIf multiple Registrars are on the network, the DCA shall attempt to connect to each one until it finds one that accepts it and allows it to request a DCA Certificate and a TrustList. Once configured, the DCA shall not attempt to connect to Registrars that are not in the TrustList. Devices that support pull management shall have a way for a person with physical access to the Device to reset the DCA TrustList and restart the Device authentication process.\nThe OwnerOperator should have a strategy to detect and remove rogue Registrars since the DCA always trusts the first Registrar that provides an Application Instance Certificate.\nOnce connected to a Registrar the Device provides all of its DeviceIdentity Certificates to the Registrar which then attempts to locate a valid Ticket that matches one of the Certificates. If a Composite Ticket that matches the Device ProductInstanceUri exists then only DeviceIdentity Certificates with the CompositeInstanceUri are considered by the Registrar.\nIf no Ticket is found the Registrar asks the Device to provide any Tickets that it has by returning a Bad_TicketRequired error."
+    },
+    {
+      "Id": "6c7406dd-edca-44e8-a6eb-e4812d286076",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.2 Pull Management\n---\n",
+      "Content": "error.\nIf a valid Ticket is found the Registrar returns a DeviceIdentity Certificate and ApplicationId which the Device is expected to used to request the DCA Certificate and the DCA TrustList.\nThe Registrar also uses the Ticket to determine if a software update is required before it provides a Certificate to a Device. If one is required it returns a Endpoint to the SoftwareUpdateManager that the Device is expected to use.\nWhen the Device connects to SoftwareUpdateManager it provides the current version number of the software that is installed. If it is the required version, the SoftwareUpdateManager calls the UpdateSoftwareStatus Method. Otherwise, the Device downloads the update, applies it and then connects to SoftwareUpdateManager again and provides the new version number. The process repeats until the required software version is installed.\nThe complete process for requesting a Certificate and a TrustList are described in[OPC 10000-12](/\u00A7UAPart12). Note that the DCA does not call RegisterApplication on the CertificateManager since the Registrar does that on behalf of the DCA when it finds a valid Ticket for the Device. Note that the Methods exposed by the Registrar rather than the CertificateManager. The expectation is the Registrar and the CertificateManager share a common backend so Certificates and Applications created via the Registrar will be known to the CertificateManager. In some cases, the Registrar and the CertificateManager will be the same Server.\nThe GetManagers call returns the Endpoints for the CertificateManager which the DCA is expected to use.\nThe DCA shall not connect to an untrusted Registrar once it has a TrustList.\nThe process for requesting Application Instance Certificates is shown in[Figure 5](/\u00A7_Ref99367428)."
+    },
+    {
+      "Id": "b7527a1e-ec8b-4b49-a346-40ae98e5ab61",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.2 Pull Management\nCaption: Figure 5 - Requesting Certificates using Pull Management\n---\n",
+      "Content": "This image appears to be a screenshot of a computer interface, specifically related to Docker and container management. The section title \u0022Pull Management\u0022 suggests that it is discussing how to manage the retrieval and updating of container images from a Docker registry using Docker\u0027s pull management feature. The text within the document discusses how to request certificates for device onboarding using Pull Management. It mentions OPC (Open Platform Communications) and OPC UA (OPC Unified Architecture), which are standards for industrial automation and interoperability. Below the text is a command-line interface (CLI) with various options related to Docker Registry operations, such as: 1. \u0060docker login\u0060 - This command is used to log in to a Docker registry. It requires a username and password, which are not visible due to privacy concerns. 2. \u0060docker pull\u0060 - This command is used to download a specific Docker image from a Docker registry. 3. \u0060--certificate-path\u0060 - An option that specifies the path to the SSL/TLS certificate file. 4. \u0060--insecure\u0060 - An option that disables TLS certificate validation when pulling images, which is not recommended for security reasons as it trusts any SSL certificate presented by the registry. 5. \u0060--cap-add \u003Ccapability\u003E\u0060 - An option to add a specific capability to the Docker daemon. In this case, it\u0027s being used to enable the use of insecure registries. 6. \u0060--tlsverify\u0060 - An option that sets tlsverify to true, meaning that the Docker daemon will verify the authenticity and integrity of the registry over TLS/SSL. 7. \u0060--tls-insecure\u0060 - An option that disables TLS certificate validation when connecting to a registry over HTTPS."
+    },
+    {
+      "Id": "f4baed86-2cd5-4bf8-a6e6-c01fea840f86",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.2 Pull Management\nCaption: Figure 5 - Requesting Certificates using Pull Management\n---\n",
+      "Content": "8. \u0060--tlscacfile\u0060 - An option that specifies the path to a CA (Certificate Authority) bundle file, which is used for SSL/TLS verification. 9. \u0060--tls-insecure\u0060 - Another occurrence of this option, which seems redundant and might be an error in the document or screenshot. 10. \u0060--tls-client-ca\u0060 - An option that specifies a CA bundle to verify client certificates presented by the registry when authenticating. The overall context suggests that this image is part of a guide on how to manage secure Docker container pulls, particularly when using registries that require or prefer secure connections, including those that leverage SSL/TLS for authentication and integrity checks."
+    },
+    {
+      "Id": "a6c51427-ca62-4c05-b7ce-bb20c696efa9",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.2 Pull Management\n---\n",
+      "Content": "Figure 5 - Requesting Certificates using Pull Management\nThe DCA registers all Applications it intends to manage with the Registrar which verifies that the DCA is authorized to manage the Applications and provides ApplicationIds needed to request Certificates from the CertificateManager. This authorization process is specific to the Registrar implementation and can include communication with an external authorization service or manual approval by a RegistrarAdmin."
+    },
+    {
+      "Id": "aa826606-8265-44f3-85a6-725513899ccc",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7 Device Authentication\n---\n",
+      "Content": "7.3 Push Management"
+    },
+    {
+      "Id": "ecc53a99-b388-4806-8be3-e201e5c504a3",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.3 Push Management\n---\n",
+      "Content": "Servers may use PushManagement which is illustrated in[Figure 6](/\u00A7_Ref45040285)."
+    },
+    {
+      "Id": "4bdb9079-a9a5-4921-a90a-4ec6c75bc552",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.3 Push Management\nCaption: Figure 6 - Device Authentication using Push Management\n---\n",
+      "Content": "The image you\u0027ve provided appears to be a flowchart or diagram related to IT management and software updates, with a focus on \u0022Device Authentication using Push Management.\u0022 It includes steps and decision points that outline a process for updating devices within an organization. Here\u0027s what is visible in the figure: 1. The title at the top of the image: \u0022DEVICE ONBOARDING\u0022 followed by \u0022PART 21 - DEVICE MANAGEMENT.\u0022 2. Section 7.3 titled \u0022PUSH MANAGEMENT,\u0022 with a subtitle that says \u0022Device Authentication using Push Management.\u0022 3. A flowchart or diagram that seems to illustrate the process:- It starts with an \u0022INITIALIZATION OF DEVICE\u0022 at the top.- From there, it branches into two paths:- If a device is not authenticated, the device is directed to a \u0022REGISTER\u0022 step.- If the device is already authenticated, it moves on to a \u0022UPDATE\u0022 process which includes \u0022DOWNLOAD,\u0022 \u0022APPLY,\u0022 and a decision point asking if the update was successful. 4. Several key terms are highlighted in the image:- \u0022Software Update\u0022 at the end of the flowchart indicates where updates are applied.- \u0022Device Authentication\u0022 is an important aspect, with references to OPC (Open Platform Communications) and OPC UA (Unified Automation Language), which are industry standards for industrial automation and interoperability.- \u0022Push Management\u0022 suggests that the process involves pushing updates or changes from a central location to the device rather than pulling them. 5. At the bottom, there\u0027s a note saying \u0022APPLY Update,\u0022 followed by an action \u0022DOWNLOAD,\u0022 suggesting that after a successful update, the next step is to download the update. 6. The diagram also includes text fields with placeholder data:- \u0022Device ID\u0022 for identifying individual devices within the system."
+    },
+    {
+      "Id": "3558e4c9-da5c-499e-be80-66c3347d405c",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.3 Push Management\nCaption: Figure 6 - Device Authentication using Push Management\n---\n",
+      "Content": "- \u0022Push Authentication\u0022 indicating where authentication for the push process occurs.- \u0022Download\u0022 with a value of 1, which could represent the number of downloads that are successful or required. The style of the image is reminiscent of technical documentation or an instructional guide related to IT system administration. The specific details and how this process works in a real-world context would be explained further in accompanying text outside the scope of this description."
+    },
+    {
+      "Id": "b5c7e7b1-3890-4500-818e-d16c0fc21d82",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.3 Push Management\n---\n",
+      "Content": "Figure 6 - Device Authentication using Push Management\nSee[7](/\u00A7_Ref45035977) for a complete description of the authentication process.\nEach of the DeviceIdentity Certificates is returned in EndpointDescriptions returned by GetEndpoints. The Registrar looks for a pre-validated Ticket that matches the Certificate in one of the Endpoints. If none found it chooses any one and establishes a SecureChannel and calls RequestTickets. The Registrar needs to validate the Tickets returned by the Device which requires access to the Certificate that created one of the Signatures and the ability to check its revocation status.\nIf the Registrar finds an EndpointDescription that matches a valid Ticket it will create a new SecureChannel using that EndpointDescription. It provides the DCA Certificate and TrustList to the Device. Once a Device has a DCA TrustList and all software updates have been applied, it will not accept connections from untrusted Registrars. In this state, the DCA shall only return EndpointDescriptions that use the DCA Certificate when GetEndpoints is called.\nThe Registrar may then pass control to the SoftwareUpdateManager which is responsible for checking if the Device software is up to date and uploading a new image if required. Once complete the SoftwareUpdateManager or an agent acting on its behalf calls UpdateSoftwareStatus Method on the Registrar.\nOnce the Device has updated software the CertificateManager will be able to push Application Instance Certificates and TrustLists for all Applications exposed via an ApplicationConfiguration Object(see[9.3.6](/\u00A7_Ref107507569)) in the DCA AddressSpace. This process is shown in[Figure 7](/\u00A7_Ref100005144)."
+    },
+    {
+      "Id": "386444ce-3233-430b-ae02-4578cab89fc0",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.3 Push Management\nCaption: Figure 7 - Updating Certificates using Push Management\n---\n",
+      "Content": "The image shows a screenshot of a graphical user interface (GUI) that appears to be from a software application related to device onboarding and pushing updates using Push Management. The title \u0022Figure 7 - Updating Certificates using Push Management\u0022 suggests that the figure is part of an instruction or documentation for managing certificates through push management techniques. In the image, there are several elements visible: 1. A header at the top with a red bar indicating the section (7.3) and the title \u0022Push Management.\u0022 2. The text \u0022DCA Manager\u0022 is displayed on the left side of the interface, which likely refers to an application or service responsible for managing devices. 3. On the right side, there are several items listed under the DCA Manager header:- \u0022Server\u0022 followed by a sub-item \u0022Server Certificate.\u0022- \u0022OPC Server\u0022 followed by \u0022OPC Server Certificate.\u0022- \u0022OPC UA Server\u0022 followed by \u0022OPC UA Server Certificate.\u0022 4. Beneath the \u0022DCA Manager,\u0022 there is a section titled \u0022Device,\u0022 with the text \u0022Device Push Certificate\u0022 indicating that there will be a certificate associated with each device being managed or pushed. 5. At the bottom of the image, there are bullet points listing actions:- \u0022Get Certificate.\u0022- \u0022Push Certificate.\u0022- \u0022Revoke Certificate.\u0022 6. The text \u0022OPC UA\u0022 is visible in the lower right corner, likely referring to the OPC Unified Architecture standard for industrial automation and process control systems. 7. The interface appears to be from a command-line or terminal application, as indicated by the presence of the command prompt in the bottom left corner. 8. The text \u0022Enter Key\u0022 is visible, suggesting that some sort of input or authentication is required to proceed with the actions listed."
+    },
+    {
+      "Id": "dd7c10e7-851e-4ff8-bb87-e8961878d37e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.3 Push Management\nCaption: Figure 7 - Updating Certificates using Push Management\n---\n",
+      "Content": "The image captures only part of the interface, and the context suggests that it\u0027s related to industrial automation systems, specifically dealing with certificates for OPC servers and devices within a Push Management system, which might be used for secure communications in an industrial setting."
+    },
+    {
+      "Id": "d78861ee-69c2-4494-86be-7216ccdf7ac3",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.3 Push Management\n---\n",
+      "Content": "Figure 7 - Updating Certificates using Push Management\nIf multiple Registrars are on the network, the DCA shall accept the first one to provide an Application Instance Certificate and a TrustList. Once configured, the DCA shall reject connections from Registrars that are not in the TrustList. The OwnerOperator should have a strategy to detect and remove rogue Registrars since the DCA always trusts the first Registrar that provides a Certificate.\nSome Devices with limited resources may only support a single Server which acts as both the DCA and the operational Application. DCAs report this requirement to the Registrar by setting the IsSingleton Property to TRUE on the ProvisionableDevice Object(see[9.3.2](/\u00A7_Ref90057728)). Registrar that shall provide a normal Application Instance Certificate to the DCA that cannot be used to configure other Applications."
+    },
+    {
+      "Id": "7f8ca603-4cd8-44db-838b-c288e16acd1e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7 Device Authentication\n---\n",
+      "Content": "7.4 Alternate Authentication Models"
+    },
+    {
+      "Id": "ba88d716-baf3-4f1e-a873-fdef8c2eea56",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.4 Alternate Authentication Models\n---\n",
+      "Content": "There are different standards for Device Authentication which do not meet the complete set of requirements described in this specification. However, an OwnerOperator may have reasons to use one of these other mechanisms (i.e. they have the infrastructure and wish to reuse it).\nIn some cases, the OwnerOperator have a complete solution that manages the entire life cycle of the Certificates installed on the Device. In these cases, the onboarding mechanisms described in this specification are not used and it is responsibility of the alternate mechanism to issue and renew Application Instance Certificates to all Applications running on the Device and to maintain their Trust Lists.\nIn other cases, the alternate mechanism will only authenticate the Device and install a single Certificate. In these cases, the mechanism described in this specification takes over and manages the life cycle of Application Instance Certificates and the Trust Lists. This pull management version of this case is illustrated in[Figure 8](/\u00A7_Ref99382478)."
+    },
+    {
+      "Id": "cd63a79d-12a5-474a-bf8e-5e1c28f72e47",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.4 Alternate Authentication Models\nCaption: Figure 8 - Alternate Authentication Models with Pull Management\n---\n",
+      "Content": "The image appears to be a screenshot of a presentation slide related to \u0022Device Onboarding\u0022 and includes a flowchart that outlines an alternative authentication model with pull management for security systems. The focus is on the concept of \u0022OPC\u0022 (Open Platform Communications), which is a standard for interoperability in industrial automation and control systems. The title of the slide states \u0022Authorization Service: Certificate Management.\u0022 Below this, there are two columns labeled \u0022Device Update\u0022 and \u0022Certificate Management,\u0022 each containing a list of tasks or steps related to device management and certificate handling. These steps seem to be part of a security process for securing devices on a network. The left column is titled \u0022Device Update\u0022 and includes items such as \u0022Check software version,\u0022 \u0022Update software,\u0022 and \u0022Check software authorization.\u0022 The right column, labeled \u0022Certificate Management,\u0022 contains actions like \u0022Install certificate,\u0022 \u0022Update certificate,\u0022 and \u0022Check certificate validity.\u0022 There are also icons representing different stages or types of devices in the system. These icons include a computer, a smartphone or tablet, and a physical device with what appears to be an OPC interface, indicating that these icons represent different levels of security and the need for pull management at each level. At the top of the slide, there is a header that reads \u0022Authorization Service,\u0022 and below it, there is a statement about the purpose of the service: \u0022The authorization service manages the devices\u0027 certificates.\u0022 Additional elements in the image include a logo or icon for OPC, indicating its relevance to the discussion, and there are also icons for software updates and software versions. The slide seems to be part of an educational or instructional presentation on how to manage device authentication and security using an alternate authentication model with pull management."
+    },
+    {
+      "Id": "3908ff22-85dd-4fb7-8077-09759a7992e0",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 7.4 Alternate Authentication Models\n---\n",
+      "Content": "Figure 8 - Alternate Authentication Models with Pull Management\nIn this case, it is responsibility of the Authentication Service to verify the authenticity of the Device and supply a Certificate to the DCA that is trusted by the Registrar, SoftwareUpdateManager and CertificateManager. This Certificate shall also contain a ProductInstanceUri(see[5.2](/\u00A7_Ref38304676)) which uniquely identifies the Device.\nIf a software update check is required the DCA needs the Endpoint for the SoftwareUpdateManager. If the Authentication Service cannot supply this Endpoint, the DCA can get it from the Registrar which may be discovered with mDNS and then calling the GetManagers Method. Once any software update is completed, the DCA calls RegisterManagedApplications on the Registrar to get permission to request Certificates and TrustLists on behalf of those Applications.\nThe location of the CertificateManager is returned by the GetManagers Method. The DCA can use the mechanisms defined in[OPC 10000-12](/\u00A7UAPart12) to request the Certificates and TrustLists for all of the Applications which it is authorized to manage.\nThe Authentication Service may also provide a DCA Certificate to a Server which would then annouce its presence via mDNS. The Registrar would then follow the process described in[7.3](/\u00A7_Ref99376253) to discover the Applications managed by the DCA and providing their Certificates and TrustLists."
+    },
+    {
+      "Id": "2d0bb269-c0b5-4b66-b414-e51659133d3b",
+      "Header": "Document: Part 21 - Device Onboarding\n---\n",
+      "Content": "8 Ticket Syntax"
+    },
+    {
+      "Id": "2886c5ae-5b12-415e-bf3e-285bc2210102",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8 Ticket Syntax\n---\n",
+      "Content": "8.1 Signed Ticket Encoding"
+    },
+    {
+      "Id": "b30d41e9-ba35-41e0-b5ce-32eea5258ad4",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.1 Signed Ticket Encoding\n---\n",
+      "Content": "All Tickets(see[8.2.3](/\u00A7_Ref100126215) and[8.2.4](/\u00A7_Ref18575515)) are encoded as JSON documents. These JSON documents secured with digital signature applied to the general serialization described by[RFC 7515](/\u00A7RFC7515). The structure of an[RFC 7515](/\u00A7RFC7515) document is as follows.\n\n{\n\u0022payload\u0022:\u0022 BASE64URL(UTF8(JSON encoded Ticket))\n\u0022signatures\u0022:[\n{\u0022protected\u0022:\u0022 BASE64URL(UTF8(JSON encoded protected header))\n\u0022header\u0022: JSON encoded header\n\u0022signature\u0022:\u0022 BASE64URL(JWS Signature)\n...\n{\u0022protected\u0022:\u0022 BASE64URL(UTF8(JSON encoded protected header))\n\u0022header\u0022: JSON encoded header\n\u0022signature\u0022:\u0022 BASE64URL(JWS Signature)\n}\nAppendix A.6 in[RFC 7515](/\u00A7RFC7515) provides an example of a document encoding using this structure.\nThe BASE64URL transform which allows binary data (e.g., UTF8 encoded text) to be represented as ASCII.\nThe Ticket is encoded as a JSON object using the reversible JSON encoding defined in[OPC 10000-6](/\u00A7UAPart6). This JSON object is converted to UTF8 byte array and then BASE64URL before being added to the document.\nThe protected header specifies the signing Certificate and other information needed to verify the Signature. The required fields are defined in[Table 5](/\u00A7_Ref51593927).\nThe unprotected header is generally not used; however, it could be used for additional vendor specific information such as a[RFC 3161](/\u00A7RFC3161) timestamp or other anti-forgery or validation metadata.\nA Signature"
+    },
+    {
+      "Id": "09fad08c-4569-485f-bc96-c6da40cce52c",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.1 Signed Ticket Encoding\n---\n",
+      "Content": "A Signature is computed on the following byte array:\n\u003Cprotected header\u003E.\u003Cpayload\u003E\nTickets may have additional signatures added by any actor in the supply chain. For example, a CompositeBuilder shall add Signatures to all Tickets for Devices incorporated into the Composite. The protected header shall have the CompositeInstanceUri.\nThe Certificate and algorithms used to create the payload Signature are the same as the Certificate and algorithms used to create the[RFC 7515](/\u00A7RFC7515) Signature. The[RFC 7515](/\u00A7RFC7515) header provides the information needed to calculate the size of payload Signature.\nTable 5- RFC 7515 Header Fields\nHeader Field\nType\nDescription\nalg\nString\nThe cryptographic algorithm used to sign the Ticket.\nThe possible values are defined by[RFC 7518](/\u00A7RFC7518).\nThe default when using RSA public keys is \u0022RS256\u0022.\nx5c\nString []\nThe signing Certificate and all of its issuers.\nEach array element is base64 encoded (see[RFC 4648](/\u00A7RFC4648)) DER encoding.\nThe first element is the signing Certificate.\ncty\nString\nThe type of Ticket contained in the payload.\nThis is media type defined by[RFC 2045](/\u00A7RFC2045) with the leading \u0022application/\u0022 omitted.\nThe subtype is \u0022opc-ticket\u002Bjson\u0022.\nThe type parameter is the name from BrowseName of the Structure.\nFor example, the value for a DeviceIdentityTicketType is:\nopc-ticket\u002Bjson;type=DeviceIdentityTicketType\nopc-uri\nString\nThe CompositeInstanceUri if the Signature was created by a CompositeBuilder who has incorporated the Device into a Composite."
+    },
+    {
+      "Id": "cc85af27-1317-4ea0-9099-315475215b90",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8 Ticket Syntax\n---\n",
+      "Content": "8.2 Ticket Types"
+    },
+    {
+      "Id": "45697bef-2ec6-47aa-9a75-48bad8b36285",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2 Ticket Types\n---\n",
+      "Content": "8.2.1 EncodedTicket"
+    },
+    {
+      "Id": "7735671c-2f45-4830-94d5-8981c4484a13",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2.1 EncodedTicket\n---\n",
+      "Content": "The EncodedTicket is a simple DataType representing a JSON encoded Ticket.\nIts representation in the AddressSpace is defined in[Table 8](/\u00A7_Ref42881538).\nTable 6- EncodedTicket Definition\nAttribute\nValue\nBrowseName\n0:EncodedTicket\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0: String DataType defined in[OPC 10000-5](/\u00A7UAPart5).\n\nConformance Units\nOnboarding Ticket Reader"
+    },
+    {
+      "Id": "bf13771f-7375-4c70-a71e-992de52462c1",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2 Ticket Types\n---\n",
+      "Content": "8.2.2 BaseTicketType"
+    },
+    {
+      "Id": "d5b32e4f-a307-41de-bea0-182089f861bd",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2.2 BaseTicketType\n---\n",
+      "Content": "The BaseTicketType is an abstract base class for a Ticket.\nThe fields of this DataType are defined in[Table 7](/\u00A7_Ref50210437).\nTable 7- BaseTicketType Structure\nName\nType\nDescription\nBaseTicketType\n0:Structure\nSubtype of the Structure DataType defined in[OPC 10000-5](/\u00A7UAPart5).\nmanufacturerName\n0:String\nThe name of the Manufacturer for the Device.\nmodelName\n0:String\nThe model name assigned by the Manufacturer.\nNot specified if no model name was assigned or known.\nmodelVersion\n0:String\nThe model version assigned by the Manufacturer.\nNot specified if no model version was assigned or known.\nhardwareRevision\n0:String\nThe hardware revision assigned by the Manufacturer.\nNot specified if no hardware revision was assigned or known.\nsoftwareRevision\n0:String\nThe software revision assigned by the Manufacturer.\nMay not be the same as the current version of software installed on the Device.\nNot specified if no software revision was assigned or known.\nserialNumber\n0:String\nThe serial number assigned by the Manufacturer.\nNot specified if no serial number was assigned or known.\nmanufactureDate\n0:DateTime\nWhen the Device was manufactured.\nDateTime.MinValue if the date is not known.\nauthorities\n2:CertificateAuthorityType []\nA list of CAs need to validate DeviceIdentity Certificates on the Device that were installed when the Ticket was created.\n\nIts representation in the AddressSpace is defined in[Table 8](/\u00A7_Ref42881538).\nTable 8- BaseTicketType Definition\nAttribute\nValue\nBrowseName\n2:BaseTicketType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther"
+    },
+    {
+      "Id": "a9448db6-41c3-4028-b938-3eb87438e6f0",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2.2 BaseTicketType\n---\n",
+      "Content": "TypeDefinition\nOther\nSubtype of the Structure DataType defined in[OPC 10000-5](/\u00A7UAPart5).\n\nConformance Units\nOnboarding Ticket Reader"
+    },
+    {
+      "Id": "983e7b27-4777-4c3c-a99a-0c0a6beeb01b",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2 Ticket Types\n---\n",
+      "Content": "8.2.3 DeviceIdentityTicketType"
+    },
+    {
+      "Id": "dcfb1e0e-061a-4852-818f-e82768157fb9",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2.3 DeviceIdentityTicketType\n---\n",
+      "Content": "The DeviceIdentityTicketType describes a single Device produced by a Manufacturer.\nThe fields of this DataType are defined in[Table 9](/\u00A7_Ref17645817).\nTable 9- DeviceIdentityTicketType Structure\nName\nType\nDescription\nDeviceIdentityTicketType\n0:Structure\nSubtype of the 2: BaseTicketType DataType defined in[8.2.1](/\u00A7_Ref50203772).\nproductInstanceUri\n0:UriString\nThe ProductInstanceUri for the Device.\n\nIts representation in the AddressSpace is defined in[Table 10](/\u00A7_Ref50203857).\nTable 10- DeviceIdentityTicketType Definition\nAttribute\nValue\nBrowseName\n2:DeviceIdentityTicketType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the BaseTicketType DataType defined in[8.2.1](/\u00A7_Ref50203772).\n\nConformance Units\nOnboarding Ticket Reader"
+    },
+    {
+      "Id": "3f2e1bee-0e3b-4eb6-9049-02df77f956dd",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2 Ticket Types\n---\n",
+      "Content": "8.2.4 CompositeIdentityTicketType"
+    },
+    {
+      "Id": "1b1d619a-65e7-4a92-b1f0-84b6ed2783d5",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2.4 CompositeIdentityTicketType\n---\n",
+      "Content": "The CompositeIdentityTicketType describes a single Composite produced by a CompositeBuilder.\nThe fields of this DataType are defined in[Table 11](/\u00A7_Ref25757941).\nTable 11- CompositeIdentityTicketType Structure\nName\nType\nDescription\nCompositeIdentityTicketType\n0:Structure\nSubtype of the 2: BaseTicketType DataType defined in[8.2.2](/\u00A7_Ref102548443).\ncompositeInstanceUri\n0:UriString\nThe ProductInstanceUri assigned to the Composite.\nThis value appears in LDevID Certificates assigned to Devices by the CompositeBuilder(see[5.3](/\u00A7_Ref26042653)).\ndevices\n0:UriString []\nA list of ProductInstanceUris for the Devices in the Composite that are externally visible.\ncomposites\n0:UriString []\nA list of CompositeInstanceUris for the sub-components in the Composite that are externally visible.\n\nIts representation in the AddressSpace is defined in[Table 12](/\u00A7_Ref50203987).\nTable 12- CompositeIdentityTicketType Definition\nAttribute\nValue\nBrowseName\n2:CompositeIdentityTicketType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the BaseTicketType DataType defined in[8.2.2](/\u00A7_Ref102548443).\n\nConformance Units\nOnboarding Ticket Reader"
+    },
+    {
+      "Id": "a79ed567-d1c0-4dc3-9928-05a8fd5ec1e6",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2 Ticket Types\n---\n",
+      "Content": "8.2.5 TicketListType"
+    },
+    {
+      "Id": "c03c6694-48fa-4141-b319-30abfa1fbeb6",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2.5 TicketListType\n---\n",
+      "Content": "The TicketListType describes a list of Device s and Composites which are part of a shipment from one organization to another.\nThe fields of this DataType are defined in[Table 13](/\u00A7_Ref25933406).\nTable 13- TicketListType Structure\nName\nType\nDescription\nTicketListType\n0:Structure\nSubtype of the 0: Structure DataType defined in[OPC 10000-5](/\u00A7UAPart5).\ndevices\n0:EncodedTicket []\nA list of signed DeviceIdentityTickets.\nThe format is described in[8.1](/\u00A7_Ref51594798).\ncomposites\n0:EncodedTicket []\nA list of signed CompositeIdentityTickets.\nThe format is described in[8.1](/\u00A7_Ref51594798).\n\nIts representation in the AddressSpace is defined in[Table 14](/\u00A7_Ref50204152).\nTable 14- TicketListType Definition\nAttribute\nValue\nBrowseName\n2:TicketListType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the Structure DataType defined in[OPC 10000-5](/\u00A7UAPart5).\n\nConformance Units\nOnboarding Ticket Reader"
+    },
+    {
+      "Id": "2109d5b3-3767-418a-9330-39e585208029",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2 Ticket Types\n---\n",
+      "Content": "8.2.6 CertificateAuthorityType"
+    },
+    {
+      "Id": "689869f1-8610-49b9-8586-405b1b085eb1",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 8.2.6 CertificateAuthorityType\n---\n",
+      "Content": "The CertificateAuthorityType describes a Certificate Authority(CA) used to issue Certificates to Devices, Composites or to organizations that create Tickets.\nThe fields of this DataType are defined in[Table 15](/\u00A7_Ref50210438).\nTable 15- CertificateAuthorityType Structure\nName\nType\nDescription\nCertificateAuthorityType\n0:Structure\nSubtype of the 0: Structure DataType defined in[OPC 10000-5](/\u00A7UAPart5).\nauthorityCertificate\n0:ByteString\nThe DER encoded Certificate used to issue Certificates.\nissuerCertificates\n0:ByteString []\nThe DER encoded form of the Issuer for the authorityCertificate.\nIt should include the entire chain.\n\nIts representation in the AddressSpace is defined in[Table 16](/\u00A7_Ref50204056).\nTable 16- CertificateAuthorityType Definition\nAttribute\nValue\nBrowseName\n2:CertificateAuthorityType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:S tructure DataType defined in[OPC 10000-5](/\u00A7UAPart5).\n\nConformance Units\nOnboarding Ticket Reader"
+    },
+    {
+      "Id": "183c3bf8-a758-442d-a150-3b0ba886f888",
+      "Header": "Document: Part 21 - Device Onboarding\n---\n",
+      "Content": "9 Information Model"
+    },
+    {
+      "Id": "9f39dd9a-8810-43c9-a344-f3cb300a183b",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9 Information Model\n---\n",
+      "Content": "9.1 Overview"
+    },
+    {
+      "Id": "d54e049d-775b-40fd-8689-f4b733482189",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.1 Overview\n---\n",
+      "Content": "The workflows described in[4.3](/\u00A7_Ref94586426) define interactions between OPC UA Applications. Implementing these workflows requires an OPC UA Information Model. This section builds on existing Information Models and defines the additional types and instances needed to completely implement the workflows. Clause[9.2](/\u00A7_Ref100130657) defines the Information Model implemented in a Registrar that provides support for PullManagement defined in[7.2](/\u00A7_Ref99376121). Clause[9.3](/\u00A7_Ref90041974) defines the Information Model implemented in a DCA Server that provides support for PushManagement defined in[7.3](/\u00A7_Ref99376253)."
+    },
+    {
+      "Id": "10fb0e76-dc08-4e9c-a231-3000d91e8a0e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9 Information Model\n---\n",
+      "Content": "9.2 Registrar"
+    },
+    {
+      "Id": "881da85e-0e03-4147-8c6e-f9f5e9e4b784",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.1 Overview"
+    },
+    {
+      "Id": "6f9a7592-0564-4d4a-bcba-af9938be0113",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.1 Overview\n---\n",
+      "Content": "The Registrar described in[7](/\u00A7_Ref94586663) is a Server that implements the Information Model shown in[Figure 9](/\u00A7_Ref26044246). This Information Model allows new Devices to use pull management described in[7.2](/\u00A7_Ref99376121) to authenticate themselves. It also allows Endpoints for new Devices to be manually registered for PushManagement when no multicast discovery mechanism is available."
+    },
+    {
+      "Id": "519549a8-16a7-45d0-a49b-00dc9ac64098",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.1 Overview\nCaption: Figure 9 - Registrar Address Space for Onboarding Workflow\n---\n",
+      "Content": "The image depicts an organizational chart related to an \u0022Onboarding Workflow\u0022 with various components that likely represent different steps or actions within the process of bringing a device onto a network using OPC UA standards. The acronym \u0022OPC UA\u0022 stands for Open Platform Communications Unified Architecture, which is a communication framework used in industrial automation and the Internet of Things (IoT) to provide secure and reliable interoperability between different devices and systems. The chart shows several objects labeled with their names, such as \u0022Devices,\u0022 \u0022Server,\u0022 \u0022User,\u0022 \u0022Onboarding Workflow,\u0022 \u0022OPC UA Registration Type,\u0022 and \u0022OPC UA Address Space.\u0022 These labels suggest that the chart is outlining how devices are registered within an OPC UA address space during the onboarding process. The arrows in the chart indicate the flow of information or actions between different components, such as a device registering with a server, and a user providing their credentials for authorization. The numbers next to the arrows might represent specific steps or stages in the workflow. On the left side of the image, there is a \u0022Device\u0022 labeled with two types: OPC UA Device and Address Space. This could be indicating that devices are categorized based on their ability to communicate using OPC UA protocols and their associated address space within the network. The \u0022User\u0022 section shows three objects: User Registration, Authorization Type, and Credentials. This suggests a process where users must register, select an authorization type, and provide credentials to access the device or system. The \u0022OPC UA Registration Type\u0022 is connected to the devices and includes two types of registration: OPC UA Registration Type and OPC UA Address Space. This implies that there are different methods or types for registering a device within the OPC UA framework, including specifying an address space."
+    },
+    {
+      "Id": "7b8077ed-2e8e-413f-bdb8-01192313241f",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.1 Overview\nCaption: Figure 9 - Registrar Address Space for Onboarding Workflow\n---\n",
+      "Content": "The \u0022OPC UA Address Space\u0022 is connected to both the devices and the \u0022User\u0022 section, emphasizing its importance in the onboarding process. The address space refers to the logical allocation of network addresses for various nodes within a network, which is a crucial part of device discovery, communication, and management in an OPC UA environment. Overall, the chart provides a high-level overview of the structure and processes involved in registering devices and users within an OPC UA framework for onboarding purposes. It illustrates how different components interact with each other to facilitate the successful integration of new devices into an industrial automation system."
+    },
+    {
+      "Id": "f535cf12-49df-4e2b-bb02-dd6d5e4b50cc",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.1 Overview\n---\n",
+      "Content": "Figure 9 - Registrar Address Space for Onboarding Workflow"
+    },
+    {
+      "Id": "49db988e-343c-4143-86c3-2561450b8a66",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.2 DeviceRegistrarType"
+    },
+    {
+      "Id": "52e450e3-e1fb-429b-95e8-4628de2249d0",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.2 DeviceRegistrarType\n---\n",
+      "Content": "The DeviceRegistrarType O bjectType represents an entity that provides the services needed when authenticating Devices on a network. The ObjectType is defined in[Table 17](/\u00A7_Ref25960558).\nTable 17- DeviceRegistrarType Definition\nAttribute\nValue\nBrowseName\n2:DeviceRegistrarType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the 0: BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5).\n0:HasComponent\nMethod\n2:ProvideIdentities\nDefined in[9.2.3](/\u00A7_Ref90051406).\nMandatory\n0:HasComponent\nMethod\n2:UpdateSoftwareStatus\nDefined in[9.2.4](/\u00A7_Ref90051429).\nMandatory\n0:HasComponent\nMethod\n2:RegisterDeviceEndpoint\nDefined in[9.2.5](/\u00A7_Ref90051421).\nMandatory\n0:HasComponent\nMethod\n2:GetManagers\nDefined in[9.2.6](/\u00A7_Ref100130901).\nMandatory\n0:HasComponent\nMethod\n2:RegisterManagedApplication\nDefined in[9.2.8](/\u00A7_Ref100284799).\nMandatory\n0:HasComponent\nObject\n2:Administration\n\n2:DeviceRegistrarAdminType\nOptional\n\nConformance Units\n[Onboarding Registrar PullManagement](https://profiles.opcfoundation.org/conformanceunit/4437)\n\nThe ProvideIdentities Method allows a Device to request that it be authenticated so it can have access to the network.\nThe UpdateSoftwareStatus Method is used by the SoftwareUpdateManager to tell the Registrar"
+    },
+    {
+      "Id": "00785921-7eb0-451d-8032-3c15deb84cc1",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.2 DeviceRegistrarType\n---\n",
+      "Content": "to tell the Registrar that the Device has up to date software.\nThe RegisterDeviceEndpoint Method allows an administration Client to provide the location of a Device on the network that needs to be authenticated. The expectation is calling this Method would start a background task register the Device using PullManagement. If an administration Client needs to register many Devices it can call the RegisterDeviceEndpoint Method multiple times in a single Call request.\nThe GetManagers Method returns the location of the SoftwareUpdateManager and CertificateManager which an authenticated DCA needs to use to complete the onboarding process.\nThe RegisterManagedApplication Method allows the DCA to register Applications that it needs to manage with the Registrar.\nThe Administration Object allows an administration Client to manage Tickets and Certificates received out of band that are needed for the automated registration process."
+    },
+    {
+      "Id": "1082be1f-09d7-4496-b48f-4a5b2e1583d9",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.3 ProvideIdentities"
+    },
+    {
+      "Id": "ec320131-0b91-4e35-8cae-f7ed4bfe26c6",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.3 ProvideIdentities\n---\n",
+      "Content": "The ProvideIdentities Method allows a Device to request that it be authenticated so it can have access to the network. It is called by a Device using PullManagement to provide the Registrar with its DeviceIdentity Certificates. The Registrar follows the process described in[7](/\u00A7_Ref45035977) to select and validate one of the Certificates.\nThis Method shall be called from an authenticated SecureChannel.\nSignature\nProvideIdentities\n[in] 0:ByteString [] identities,\n[in] 0:ByteString [] issuers,\n[in] 0:EncodedTicket [] tickets,\n[out] 0:ByteString selectedIdentity,\n[out] 2:BaseTicketType matchingTicket,\n[out] 0:NodeId applicationId,\n[out] 2:ManagerDescription softwareUpdateManager\n);\n\nArgument\nDescription\nidentities\nThe DER encoded DeviceIdentity Certificates issued to the Device.\nThe first Certificates shall be the IDevID Certificates.\nissuers\nThe DER encoded Certificates needed to verify the DeviceIdentity Certificates.\nCertificates that cannot be verified are ignored.\ntickets\nThe signed Tickets stored on the Device.\nThis argument may be null. If the Registrar returns a Bad_TicketRequired error this Method needs to called again with any available Tickets.\nTickets that cannot be verified are ignored.\nselectedIdentity\nThe DER encoded DeviceIdentity Certificate that the DCA needs to use to complete the registration process.\nmatchingTicket\nThe Ticket describing the Device which the Registrar accepted.\napplicationId\nThe identifier assigned by the CertificateManager to the Device.\nThis identifier is needed to request Certificates from the CertificateManager.\nsoftwareUpdateManager\nThe Endpoint for the SoftwareUpdateManager which the caller contacts to complete the onboarding process.\nSet to NULL if a software update is not required or not supported."
+    },
+    {
+      "Id": "e0385adc-a048-4492-afd6-05ff74581b9a",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.3 ProvideIdentities\n---\n",
+      "Content": "Method Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_CertificateInvalid\nNone of the identity Certificates can be verified.\nBad_TicketRequired\nThe Device has to provide a Ticket before it can be accepted.\nBad_NotFound\nNo valid Ticket was found.\n\n[Table 18](/\u00A7_Ref26026723) specifies the AddressSpace representation for the ProvideIdentities Method.\nTable 18- ProvideIdentities Method AddressSpace Definition\nAttribute\nValue\nBrowseName\n2:ProvideIdentities\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\n0:InputArguments\n0:Argument []\n0:PropertyType\nMandatory\nHasProperty\nVariable\n0:OutputArguments\n0:Argument []\n0:PropertyType\nMandatory"
+    },
+    {
+      "Id": "27ce2b2b-33fb-40bf-9d99-de92bbead021",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.4 UpdateSoftwareStatus"
+    },
+    {
+      "Id": "7386d6c2-e8bb-4427-8133-00e716511fd7",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.4 UpdateSoftwareStatus\n---\n",
+      "Content": "The UpdateSoftwareStatus Method allows a Client to provide the firmware status for a Device on the network.\nThe Client may be the SoftwareUpdateManager(see[4.2.5](/\u00A7_Ref98272866)) or other administrative application that allows a human to provide information about a manual process.\nThis Method shall be called from an authenticated SecureChannel and from a Session that has access to the SoftwareUpdateAdmin Role(see[4.2.6](/\u00A7_Ref99387278)).\nSignature\nUpdateSoftwareStatus\n[in] 0:String productInstanceUri,\n[in] 0:Boolean status,\n[in] 0:String softwareRevision\n);\n\nArgument\nDescription\nproductInstanceUri\nThe unique identifier for the Device.\nstatus\nThe status of the software.\nIf TRUE the firmware is up to date, otherwise, an update is required before the Device can be used on the network.\nsoftwareRevision\nThe version of the software which is running on the Device(status=TRUE) or needs to be installed on the Device(status=FALSE).\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_UserAccessDenied\nThe Session does not have the permissions needed to call the Method.\nBad_NotFound\nThe productInstanceUri does not refer to a known Device.\n\n[Table 19](/\u00A7_Ref90057532) specifies the AddressSpace representation for the UpdateSoftwareStatus Method.\nTable 19- UpdateSoftwareStatus Method AddressSpace Definition\nAttribute\nValue\nBrowseName\n2:UpdateSoftwareStatus\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument []\n0:PropertyType\nMandatory"
+    },
+    {
+      "Id": "a838a269-4f6e-4606-be37-aa7b8fcac634",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.5 RegisterDeviceEndpoint"
+    },
+    {
+      "Id": "4c25ae36-153d-4115-b94d-84b49a483e89",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.5 RegisterDeviceEndpoint\n---\n",
+      "Content": "The RegisterDeviceEndpoint Method allows a Client to provide the location of a Device on the network that needs to be authenticated.\nThe Client may be an engineering tool or other administrative application that allows a human to provide information that cannot be discovered automatically.\nOnce the Registrar knows the location of a Device it schedules a task that uses PushManagement to complete the onboarding process.\nThis Method shall be called from an authenticated SecureChannel and from a Session that has access to the RegistrarAdmin Role(see[4.2.6](/\u00A7_Ref99387278)).\nSignature\nRegisterDeviceEndpoint\n[in] 0:ApplicationDescription application\n);\n\nArgument\nDescription\napplication\nThe Server which allows a Device to be authenticated via the Push Model.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_UserAccessDenied\nThe Session does not have the permissions needed to call the Method.\n\n[Table 20](/\u00A7_Ref26043394) specifies the AddressSpace representation for the RegisterDeviceEndpoint Method.\nTable 20- RegisterDeviceEndpoint Method AddressSpace Definition\nAttribute\nValue\nBrowseName\n2:RegisterDeviceEndpoint\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument []\n0:PropertyType\nMandatory"
+    },
+    {
+      "Id": "51502fba-8ce2-4e56-9cde-a50dc0e3673b",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.6 GetManagers"
+    },
+    {
+      "Id": "c1e355eb-0a88-4577-8a6a-26dd093cc61d",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.6 GetManagers\n---\n",
+      "Content": "The GetManagers Method allows a Registrar to provide the location of other managers on a network which are needed to support onboarding of Devices. The managers have network Endpoints that may support non-OPC UA protocols. The DCA has knowledge of what managers it can use and what protocol they use.\nThe response is a list of ManagerDescriptions that includes a URI which defines the purpose of the manager and a flag indicating whether the DCA is required to interact with the manager to complete the onboarding process.\nEach ManagerDescription has 1 or more URLs which are network Endpoints accessible to the DCA.\nThis Method shall be called from an authenticated SecureChannel and from a Session that has access to the DCA Privilege (see[4.2.6](/\u00A7_Ref99387278)).\nSignature\nGetManagers\n[out] 2:ManagerDescription [] managers\n);\n\nArgument\nDescription\nmanagers\nThe managers which the DCA has access to.\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_UserAccessDenied\nThe Session does not have the permissions needed to call the Method.\n\n[Table 21](/\u00A7_Ref100004205) specifies the AddressSpace representation for the GetManagers Method.\nTable 21- GetManagers Method AddressSpace Definition\nAttribute\nValue\nBrowseName\n2:GetManagers\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\n0:HasProperty\nVariable\n0:OutputArguments\n0:Argument []\n0:PropertyType\nMandatory"
+    },
+    {
+      "Id": "efbaf0eb-55b4-4621-b8b0-14904c03ba83",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.7 ManagerDescription"
+    },
+    {
+      "Id": "ee51bd5a-2da4-4af4-aeb5-817c398d6a29",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.7 ManagerDescription\n---\n",
+      "Content": "The ManagerDescription provides metadata and the location of a manager on the network such as a SoftwareUpdateManager or a CertificateManager.\nThe following purposeUris are defined by this specification:\nhttp://opcfoundation.org/UA/Onboarding/CertificateManager\nhttp://opcfoundation.org/UA/Onboarding/SoftwareUpdateManager\nOther purposes may be defined by the Registrar.\nThe fields of this DataType are defined in[Table 7](/\u00A7_Ref50210437).\nTable 22- ManagerDescription Structure\nName\nType\nDescription\nManagerDescription\n0:Structure\nSubtype of the Structure DataType defined in[OPC 10000-5](/\u00A7UAPart5).\nname\n0:LocalizedText\nA human readable name for the manager.\nisRequired\n0:Boolean\nIf TRUE then interaction with this manager is required to complete the onboarding process.\npurposeUri\n0:UriString\nA unique identifier for the purpose of the manager.\nprotocolUri\n0:UriString\nA unique identifier for the communication protocol used by the manager endpoints. If not specified the protocol is OPC UA.\nendpointUrls\n0:String []\nA list of network endpoints.\n\nIts representation in the AddressSpace is defined in[Table 23](/\u00A7_Ref100287823).\nTable 23- ManagerDescription Definition\nAttribute\nValue\nBrowseName\n2:ManagerDescription\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the Structure DataType defined in[OPC 10000-5](/\u00A7UAPart5).\n\nConformance Units\n[Onboarding Registrar PullManagement](https://profiles.opcfoundation.org/conformanceunit/4437)"
+    },
+    {
+      "Id": "7dd379bd-6d2c-4c40-858c-79d94245e7ec",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.8 RegisterManagedApplication"
+    },
+    {
+      "Id": "24b36cf3-ddf0-47df-88c0-79b6a71acd44",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.8 RegisterManagedApplication\n---\n",
+      "Content": "The RegisterManagedApplication Method allows a DCA using pull management to register an application that it manages. The Registrar creates whatever records are needed in the CertificateManager and returns the ApplicationIds which are needed to request Certificates and TrustLists for the Application.\nThe ProtocolUri is only specified when the Application does not support OPC UA. It indicates what protocol the Application supports.\nThe Registrar shall have some mechanism to verify that a DCA is authorized to manage Application(e.g. DNS name check, pre-populated permission list, human review, et. al.). If the DCA is not authorized the Registrar returns Bad_RequestNotAllowed.\nThis Method shall be called from an authenticated SecureChannel and from a Session that has access to the DCA Privilege (see[4.2.6](/\u00A7_Ref99387278)).\nSignature\nRegisterManagedApplication\n[in] 3:ApplicationRecordDataType application,\n[in] 0:UriString protocolUri,\n[out] 0:NodeId applicationId\n);\n\nArgument\nDescription\napplication\nThe application to register.\nprotocolUri\nThe URI identifying the protocol supported by a non- OPC UA Application.\napplicationId\nThe applicationId assigned to the application.\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_UserAccessDenied\nThe caller does not have the rights to call the Method.\nBad_RequestNotAllowed\nThe caller is not allowed to manage the specified Application.\n\n[Table 24](/\u00A7_Ref100002904) specifies the AddressSpace representation for the RegisterManagedApplication Method.\nTable 24- RegisterManagedApplication Method AddressSpace Definition\nAttribute\nValue\nBrowseName\n2:RegisterManagedApplication\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\n0:HasProperty\nVariable\n0:InputArguments"
+    },
+    {
+      "Id": "291cbdaf-5df5-409a-8da7-645711cc53e6",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.8 RegisterManagedApplication\n---\n",
+      "Content": "0:InputArguments\n0:Argument []\n0:PropertyType\nMandatory\n0:HasProperty\nVariable\n0:OutputArguments\n0:Argument []\n0:PropertyType\nMandatory"
+    },
+    {
+      "Id": "8adfa357-bddf-4da4-84c2-2d22b8e27511",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.9 DeviceRegistrar"
+    },
+    {
+      "Id": "df5f1aa9-2250-4a8b-9663-3b2cc9355e97",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.9 DeviceRegistrar\n---\n",
+      "Content": "The DeviceRegistrar Object is a well-known Object that is present in the AddressSpace of a Server that is a Registrar. It is formally defined in.\nTable 25- DeviceRegistrar Definition\nAttribute\nValue\nBrowseName\n2:DeviceRegistrar\nTypeDefinition\n2:DeviceRegistrarType defined in[9.2.2](/\u00A7_Ref90056367).\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nOrganizedBy the Objects Object defined in[OPC 10000-5](/\u00A7UAPart5).\n\nConformance Units\n[Onboarding Registrar PullManagement](https://profiles.opcfoundation.org/conformanceunit/4437)"
+    },
+    {
+      "Id": "ea835e05-4565-4420-9583-6911f05ecabf",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.10 DeviceRegistrarAdminType"
+    },
+    {
+      "Id": "35123150-0e61-48d6-819e-6eb743d4ec95",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.10 DeviceRegistrarAdminType\n---\n",
+      "Content": "The DeviceRegistrarAdminType O bjectType that provides an interface to manage the TrustLists and Tickets used by the Registrar when authenticating Devices on a network. The ObjectType is defined in[Table 26](/\u00A7_Ref50226697)\nTable 26- DeviceRegistrarAdminType Definition\nAttribute\nValue\nBrowseName\n2:DeviceRegistrarAdminType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5).\n0:HasComponent\nMethod\n2:RegisterTickets\nDefined in[9.2.11](/\u00A7_Ref90051368).\nMandatory\n0:HasComponent\nMethod\n2:UnregisterTickets\nDefined in[9.2.12](/\u00A7_Ref90051380).\nMandatory\n0:HasComponent\nObject\n2:TicketAuthorities\n\n0:TrustListType\nMandatory\n0:HasComponent\nObject\n2:DeviceIdentityAuthorities\n\n0:TrustListType\nMandatory\n\nConformance Units\nOnboarding Registrar Administration\n\nThe RegisterTickets Method allows an administration Client to provide a list of Tickets for Devices and Composites that it is expecting to install on the network. Any Device which matches one of these Tickets will be accepted automatically.\nThe UnregisterTickets Method allows an administration Client to remove Tickets for Devices and Composites that it previously provided. Removing Tickets does not affect Devices that were previously accepted using the Tickets.\nThe TicketAuthorities Object allows an administration Client to manage the Certificates for authorities that sign Tickets. If a Device provides a Ticket, it is accepted automatically if and only if the signing Certificate is in this list.\nThe DeviceIdentityAuthorities Object allows an"
+    },
+    {
+      "Id": "ae44fbee-fb99-4d09-97e1-aa830e9b2a42",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.10 DeviceRegistrarAdminType\n---\n",
+      "Content": "allows an RegistrarAdmin manage the trusted DeviceIdentity Certificates. This list can contain individual DeviceIdentity Certificates that have a valid Ticket or it can contain the issuers for DeviceIdentity Certificates that are provided out of band."
+    },
+    {
+      "Id": "d4a6820c-36dc-4f8b-b595-3df8a180acf2",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.11 RegisterTickets"
+    },
+    {
+      "Id": "9658af56-fe29-44df-84aa-7e3ffccf47d7",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.11 RegisterTickets\n---\n",
+      "Content": "The RegisterTickets Method allows an administration Client to provide a list of Tickets for Devices and Composites that it is expecting to install on the network. Any Device which can be correlated with one of these Tickets will be accepted automatically.\nThis Method validates each Ticket. Invalid Tickets are rejected. Validation errors are returned in the results output argument.\nThis Method shall be called from a Session that has access to the RegistrarAdmin Role(see[4.2.6](/\u00A7_Ref99387278)).\nSignature\nRegisterTickets\n[in] 0:EncodedTicket [] tickets,\n[out] 0:StatusCode [] results\n);\n\nArgument\nDescription\ntickets\nThe signed Tickets which should be treated as trusted.\nresults\nThe result of the Ticket validation process described in[6.4](/\u00A7_Ref45026545).\nIf validation fails the returned value is Bad_TicketInvalid.\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_UserAccessDenied\nThe Client is not authorized to update the set of known Tickets.\n\n[Table 27](/\u00A7_Ref77364044) specifies the AddressSpace representation for the RegisterTickets Method.\nTable 27- RegisterTickets Method AddressSpace Definition\nAttribute\nValue\nBrowseName\n2:RegisterTickets\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument []\n0:PropertyType\nMandatory\n0:HasProperty\nVariable\n0:OutputArguments\n0:Argument []\n0:PropertyType\nMandatory"
+    },
+    {
+      "Id": "b7870f24-e4ef-4bef-82b1-b368b927cd2c",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.12 UnregisterTickets"
+    },
+    {
+      "Id": "3c1a9dfe-793e-4ac9-b2eb-54d87d6bb9c1",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.12 UnregisterTickets\n---\n",
+      "Content": "The UnregisterTickets Method allows a RegistrarAdmin to remove Tickets for Devices and Composites that it previously provided. Removing Tickets does not affect Devices that were previously accepted using the Tickets.\nIf the Ticket does not exist an error is returned in the results output argument.\nIf an error processing a Ticket occurs the error for that Ticket is returned in the results argument. If a Ticket does not exist the error is Bad_NotFound.\nThis Method shall be called from a Session that has access to the RegistrarAdmin Role(see[4.2.6](/\u00A7_Ref99387278)).\nSignature\nUnregisterTickets\n[in] 0:EncodedTicket [] tickets,\n[out] 0:StatusCode [] results\n);\n\nArgument\nDescription\ntickets\nThe signed Tickets which should no longer be treated as trusted.\nresults\nIndicates whether a previously registered Ticket was found.\nIf not found the returned value is Bad_NotFound.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_UserAccessDenied\nThe Client is not authorized to update the set of known Tickets.\n\n[Table 28](/\u00A7_Ref90057493) specifies the AddressSpace representation for the UnregisterTickets Method.\nTable 28- UnregisterTickets Method AddressSpace Definition\nAttribute\nValue\nBrowseName\n2:UnregisterTickets\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument []\n0:PropertyType\nMandatory\n0:HasProperty\nVariable\n0:OutputArguments\n0:Argument []\n0:PropertyType\nMandatory"
+    },
+    {
+      "Id": "20b6b9ec-bb53-4f07-bbbe-1d26672bb0a4",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.13 DeviceRegistrationAuditEventType"
+    },
+    {
+      "Id": "115074b5-a878-4640-85ca-c1ebabd9d23f",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.13 DeviceRegistrationAuditEventType\n---\n",
+      "Content": "This abstract Event is a base type for events raised when a change affecting Device registration occurs.\nThis Event and its subtypes are security related and Servers shall only report them to Sessions with access to the SecurityAdmin Role.\nIts representation in the AddressSpace is formally defined in.\nTable 29- DeviceRegistrationAuditEventType Definition\nAttribute\nValue\nBrowseName\n2:DeviceRegistrationAuditEventType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the 0:AuditEventType defined in[OPC 10000-5](/\u00A7UAPart5).\n0:HasProperty\nVariable\n2:ProductInstanceUri\n0:UriString\n0:PropertyType\nMandatory\n0:HasSubtype\nObjectType\n2:DeviceIdentityAcceptedAuditEventType\nDefined in[9.2.14](/\u00A7_Ref98270558).\n\n0:HasSubtype\nObjectType\n2:DeviceSoftwareUpdatedAuditEventType\nDefined in[9.2.15](/\u00A7_Ref98270570).\n\n\nConformance Units\n[Onboarding Registrar PullManagement](https://profiles.opcfoundation.org/conformanceunit/4437)\n\nThis EventType inherits all Properties of the AuditEventType. Their semantic is defined in[OPC 10000-5](/\u00A7UAPart5).\nThe ProductInstanceUri Property specifies the identity for the Device that was affected by the change."
+    },
+    {
+      "Id": "960a7568-1f9b-4878-95cb-920cb2fc0fa3",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.14 DeviceIdentityAcceptedAuditEventType"
+    },
+    {
+      "Id": "fa696151-4af4-478c-9259-ecdc57a6c507",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.14 DeviceIdentityAcceptedAuditEventType\n---\n",
+      "Content": "This abstract Event is raised when the Registrar accepts a DeviceIdentity. This occurs when the Registrar finds a matching validated Ticket and is able to validate a DeviceIdentity Certificate.\nThis Event and it subtypes are security related and Servers shall only report them to Sessions with access to the SecurityAdmin Role.\nIts representation in the AddressSpace is formally defined in[Table 30](/\u00A7_Ref98273645).\nTable 30- DeviceIdentityAcceptedAuditEventType Definition\nAttribute\nValue\nBrowseName\n2:DeviceIdentityAcceptedAuditEventType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the 2: DeviceRegistrationAuditEventType defined in[9.2.13](/\u00A7_Ref481338684)\n0:HasProperty\nVariable\n2:Certificate\n0:ByteString\n0:PropertyType\nMandatory\n0:HasProperty\nVariable\n2:Ticket\n0:EncodedTicket\n0:PropertyType\nMandatory\n0:HasProperty\nVariable\n2:Composite\n0:EncodedTicket\n0:PropertyType\nMandatory\n\nConformance Units\n[Onboarding Registrar PullManagement](https://profiles.opcfoundation.org/conformanceunit/4437)\n\nThis EventType inherits all Properties of the AuditEventType. Their semantic is defined in[OPC 10000-5](/\u00A7UAPart5).\nThe Certificate Property is the DER encoded form of the DeviceIdentity Certificate that was validated.\nThe Ticket Property is the signed Ticket(see[8.1](/\u00A7_Ref51594798)) that matches the DeviceIdentity Certificate.\nThe Composite Property is the signed Ticket(see[8.1](/\u00A7_Ref51594798)) for the Composite that contains the Device"
+    },
+    {
+      "Id": "2b1fb9db-6ca2-4092-a6b3-637d78ca37ce",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.14 DeviceIdentityAcceptedAuditEventType\n---\n",
+      "Content": "Device."
+    },
+    {
+      "Id": "32f84818-272d-47cd-a063-c05982f17497",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2 Registrar\n---\n",
+      "Content": "9.2.15 DeviceSoftwareUpdatedAuditEventType"
+    },
+    {
+      "Id": "bf56dccd-5c13-4bc3-8878-732815c0a97e",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.2.15 DeviceSoftwareUpdatedAuditEventType\n---\n",
+      "Content": "This abstract Event is raised when the Registrar receives the Device software status has changed.\nThis Event and it subtypes are security related and Servers shall only report them to Sessions with access to the SecurityAdmin Role.\nIts representation in the AddressSpace is formally defined in[Table 31](/\u00A7_Ref98273646).\nTable 31- DeviceSoftwareUpdatedAuditEventType Definition\nAttribute\nValue\nBrowseName\n2:DeviceSoftwareUpdatedAuditEventType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the 2: DeviceRegistrationAuditEventType defined in[9.2.13](/\u00A7_Ref481338684).\n0:HasProperty\nVariable\n2:Status\n0:Boolean\n0:PropertyType\nMandatory\n0:HasProperty\nVariable\n2:SoftwareRevision\n0:String\n0:PropertyType\nMandatory\n\nConformance Units\n[Onboarding Registrar PullManagement](https://profiles.opcfoundation.org/conformanceunit/4437)\n\nThis EventType inherits all Properties of the AuditEventType. Their semantic is defined in[OPC 10000-5](/\u00A7UAPart5).\nThe Status Property is the TRUE if the Device firmware is up to date.\nThe SoftwareRevision Property is the version of the firmware that was installed (if Status=TRUE) or needs to be installed (Status=FALSE)."
+    },
+    {
+      "Id": "4c318493-f55d-48f1-9c0d-716298cc0cf5",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9 Information Model\n---\n",
+      "Content": "9.3 Device Configuration Application (DCA)"
+    },
+    {
+      "Id": "92037e47-36a7-4d07-8103-07c6b7935a29",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3 Device Configuration Application (DCA)\n---\n",
+      "Content": "9.3.1 Overview"
+    },
+    {
+      "Id": "4f143c10-e951-4b2b-8123-188d784cd5b7",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3.1 Overview\n---\n",
+      "Content": "Devices that support PushManagement described in[7.3](/\u00A7_Ref99376253) have a Server that implements the Information Model shown in[Figure 10](/\u00A7_Ref90049507). This Information Model allows Registrars to authenticate Devices on the network. It also allows the location of the Registrars to be manually provided if the Device needs to use PullManagement and no multicast discovery capabilities are available."
+    },
+    {
+      "Id": "c51c889c-6699-46e5-9461-4c72866fc91c",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3.1 Overview\nCaption: Figure 10 - Device Address Space for Onboarding Workflows\n---\n",
+      "Content": "This image appears to be a flowchart related to a process called \u0022Device Address Space for Onboarding Workflows.\u0022 The chart outlines various steps and components involved in onboarding devices into an OPC (OLE for Process Control) environment. At the top of the diagram, there\u0027s a title that says \u0022OPC and OPC UA,\u0022 which refers to the Open Platform Communications unified architecture, a set of standards for industrial automation. The chart is divided into several sections with titles such as \u0022QS Server,\u0022 \u0022Resources,\u0022 \u0022Device,\u0022 and \u0022Application.\u0022 Each section contains sub-titles or steps that detail the process. For instance, under \u0022Device Address Space,\u0022 we see \u0022Application 2,\u0022 \u0022Configuration,\u0022 and \u0022Certificates.\u0022 The flowchart also includes boxes with various acronyms like \u0022QS Server,\u0022 \u0022OPC UA,\u0022 \u0022OPC,\u0022 and \u0022OPC Foundation.\u0022 These abbreviations likely refer to specific software, systems, or organizations related to the OPC standard. Arrows between the boxes indicate the sequence of operations or data flow within the onboarding process. The chart seems to be a visual guide for managing the addressing and configuration of devices in an OPC environment."
+    },
+    {
+      "Id": "a392a71a-8882-4593-8688-35fc38676a27",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3.1 Overview\n---\n",
+      "Content": "Figure 10 - Device Address Space for Onboarding Workflows\nThe ProvisionableDevice Object shall be organized by the Resources Object(see[OPC 10000-22](/\u00A7UAPart22)) used to provision the Device the Server is running on. It is an instance of the ProvisionableDeviceType ObjectType which defines Methods used by the Registrar when it authenticates a Device.\nThe DefaultApplicationGroup Object is a well-known CertificateGroup that stores the Application Instance Certificate and TrustList for the DCA provided by the Registrar. This group is initially empty when the Device is first connected to the network. It is updated by the Registrar when the Device Authentication process completes.\nThe Applications that may be configured via the Server are components of the ProvisionableDevice Object. They are instances of ApplicationConfigurationType. The Server itself is configured via the ServerConfiguration Object. Some DCAs may choose to have CertificateGroups for individual Applications organized by the CertificateGroups Folder in the ServerConfiguration Object. In these cases, DCAs shall add a Reference from the ServerConfiguration CertificateGroups Folder to the CertificateGroup Object under the Application."
+    },
+    {
+      "Id": "bacaec47-2d0d-4fde-b387-b3de20c460f9",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3 Device Configuration Application (DCA)\n---\n",
+      "Content": "9.3.2 ProvisionableDevice"
+    },
+    {
+      "Id": "262d7e02-10fa-4644-a38e-13c7bda7cba9",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3.2 ProvisionableDevice\n---\n",
+      "Content": "This Object is an instance of ProvisionableDeviceType. It is the well-known Resource which is used to authenticate a Device using PushManagement.\nIt is a target of an Organizes Reference from the Resources Object defined in[OPC 10000-22](/\u00A7UAPart22).\nIt It is defined in[Table 32](/\u00A7_Ref475267851).\nTable 32- ProvisionableDevice Object Definition\nAttribute\nValue\nBrowseName\n0:ProvisionableDevice\nTypeDefinition\n0:ProvisionableDeviceType defined in[9.3.3](/\u00A7_Ref107507582).\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nOrganizedBy the Resources Object defined in[OPC 10000-22](/\u00A7UAPart22).\n\nConformance Units\nOnboarding Server PushManagement"
+    },
+    {
+      "Id": "b9b822e6-3f3f-4a10-b393-df42c54a5878",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3 Device Configuration Application (DCA)\n---\n",
+      "Content": "9.3.3 ProvisionableDeviceType"
+    },
+    {
+      "Id": "52324a1c-2a3a-429c-bbeb-6aa994e22bc0",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3.3 ProvisionableDeviceType\n---\n",
+      "Content": "The ProvisionableDeviceType ObjectType defines Objects that support PushManagement described in[7.3](/\u00A7_Ref99376253). The ObjectType is defined in[Table 33](/\u00A7_Ref26047050).\nTable 33- ProvisionableDeviceType Definition\nAttribute\nValue\nBrowseName\n0:ProvisionableDeviceType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5).\n0:HasProperty\nVariable\n0:IsSingleton\n0:Boolean\n0:PropertyType\nMandatory\n0:HasComponent\nMethod\n0:RequestTickets\nDefined in[9.3.4](/\u00A7_Ref90050499).\nMandatory\n0:HasComponent\nMethod\n0:SetRegistrarEndpoints\nDefined in[9.3.5](/\u00A7_Ref90050527).\nOptional\n0:HasComponent\nObject\n0:\u003CApplicationName\u003E\n\n0:ApplicationConfigurationType\nOptionalPlaceholder\nConformance Units\nOnboarding Server PushManagement\n\nThe IsSingleton Property indicates whether the DCA and the operational Server are the same. If TRUE, it tells Registrar that the DCA Certificate shall have rights associated with a Application Instance Certificate(i.e., it cannot be used to access the security configuration for different Applications). A ProvisionableDevice shall not have any ApplicationConfiguration components if IsSingleton is TRUE.\nThe RequestTickets Method allows the Registrar to request the list of Tickets stored on the Device.\nThe SetRegistrarEndpoints Method allows a configuration Client to provide the location of one or more Registrars which the Device can use to authenticate itself via PullManagement."
+    },
+    {
+      "Id": "7618445b-dddc-4fe5-ba11-3bd5529308e1",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3 Device Configuration Application (DCA)\n---\n",
+      "Content": "9.3.4 RequestTickets"
+    },
+    {
+      "Id": "6a308974-d8b8-4536-9599-f0eaf4ff289d",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3.4 RequestTickets\n---\n",
+      "Content": "The RequestTickets Method allows a Client to request the list of Tickets stored on the Device. It is called by a Client using PushManagement to authenticate a Device. The Registrar follows the process described in[7](/\u00A7_Ref45035977) to select and validate one of the Tickets.\nSignature\nRequestTickets\n[out] 0:EncodedTicket [] tickets\n);\n\nArgument\nDescription\ntickets\nThe signed Tickets stored on the Device.\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\n\n\n\n[Table 34](/\u00A7_Ref90057242) specifies the AddressSpace representation for the RequestTickets Method.\nTable 34- RequestTickets Method AddressSpace Definition\nAttribute\nValue\nBrowseName\n0:RequestTickets\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\n0:HasProperty\nVariable\n0:OutputArguments\n0:Argument []\n0:PropertyType\nMandatory"
+    },
+    {
+      "Id": "9ed9558e-e115-4261-aaf1-a0d9cec586e3",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3 Device Configuration Application (DCA)\n---\n",
+      "Content": "9.3.5 SetRegistrarEndpoints"
+    },
+    {
+      "Id": "9a69af84-9c6a-4929-a0ce-2375765470e2",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3.5 SetRegistrarEndpoints\n---\n",
+      "Content": "The SetRegistrarEndpoints Method allows a Client to provide the location of one or more Registrars which the Device can use to authenticate itself via PullManagement.\nThe Client may be an engineering tool or other administrative application that allows a human to provide information that cannot be discovered automatically.\nThis Method shall be called from a Session that has access to the SecurityAdmin Role(see[4.2.6](/\u00A7_Ref99387278)).\nSignature\nSetRegistrarEndpoints\n[in] 0:ApplicationDescription [] registrars\n);\n\nArgument\nDescription\nregistrars\nThe Servers which allow a Device to be authenticated via PullManagement.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_UserAccessDenied\nThe Session does not have rights to call the Method.\n\n[Table 35](/\u00A7_Ref90057424) specifies the AddressSpace representation for the SetRegistrarEndpoints Method.\nTable 35- SetRegistrarEndpoints Method AddressSpace Definition\nAttribute\nValue\nBrowseName\n0:SetRegistrarEndpoints\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument []\n0:PropertyType\nMandatory"
+    },
+    {
+      "Id": "125a0ec7-45f9-47a7-9976-b89ca77f9260",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3 Device Configuration Application (DCA)\n---\n",
+      "Content": "9.3.6 ApplicationConfigurationType"
+    },
+    {
+      "Id": "2587c7ed-d5be-46f3-8860-feb63096eb23",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3.6 ApplicationConfigurationType\n---\n",
+      "Content": "The ApplicationConfigurationType ObjectType defines an API which represents the configuration of an Client or Server running on a Device. Its values are defined in[Table 36](/\u00A7_Ref486851769). A DCA Server will add the Objects that represent the Applications it manages to the ProvisionableDevice Object(see[Figure 10](/\u00A7_Ref90049507)).\nTable 36- ApplicationConfigurationType Definition\nAttribute\nValue\nBrowseName\n0:ApplicationConfigurationType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nType\nDefinition\nModelling Rule\nSubtype of the ServerConfigurationType defined in[OPC 10000-12](/\u00A7UAPart12).\n0:HasProperty\nVariable\n0:Enabled\n0:Boolean\n0:PropertyType\nMandatory\n0:HasProperty\nVariable\n0:ProductUri\n0:UriString\n0:PropertyType\nMandatory\n0:HasProperty\nVariable\n0:ApplicationUri\n0:UriString\n0:PropertyType\nMandatory\n0:HasProperty\nVariable\n0:ApplicationType\n0:ApplicationType\n0:PropertyType\nMandatory\n\nConformance Units\nOnboarding Server PushManagement\n\nThe Enabled Property indicates whether the Application is enabled. If FALSE the Application will not run. If TRUE the Application runs.\nThe ProductUri Property is the unique identifier for the product. Applications running on different Devices with the same ProductUri are based on the same software.\nThe ApplicationUri Property is the unique identifier for the Application which is not the same as the ProductInstanceUri which identifiers the Device that is executing the Application.\nThe ApplicationType Property specifies whether the Application is a Client, a Server or both. A DCA allows the LDS running on the Device"
+    },
+    {
+      "Id": "d9f1d4d3-caf5-4974-9685-8292441d3531",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 9.3.6 ApplicationConfigurationType\n---\n",
+      "Content": "Device to be configured would expose an ApplicationConfiguration Object for it with ApplicationType set to DiscoveryServer. Applications which do not support OPC UA specify an ApplicationType of Client.\nThe Application may require software updates. In this case, the software update model described in[OPC 10000-100](/\u00A7UAPart100) specifies an instance of the SoftwareUpdateType that may be added to the ApplicationConfiguration instance."
+    },
+    {
+      "Id": "4ebf3d72-997f-43cc-a2f6-8cf9e674441c",
+      "Header": "Document: Part 21 - Device Onboarding\n---\n",
+      "Content": "10 Namespaces"
+    },
+    {
+      "Id": "b9a6b387-2901-4be7-872f-f20aa0d5dcfb",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 10 Namespaces\n---\n",
+      "Content": "10.1 Namespace Metadata"
+    },
+    {
+      "Id": "95096430-72f1-45af-8d0b-bdd87b46d794",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 10.1 Namespace Metadata\n---\n",
+      "Content": "[Table 37](/\u00A7_Ref16863029) defines the namespace metadata for this document. The Object is used to provide version information for the namespace and an indication about static Nodes. Static Nodes are identical for all Attributes in all Servers, including the Value Attribute. See[OPC 10000-5](/\u00A7UAPart5) for more details.\nThe information is provided as Object of type NamespaceMetadataType. This Object is a component of the Namespaces Object that is part of the Server Object. The NamespaceMetadataType ObjectType and its Properties are defined in[OPC 10000-5](/\u00A7UAPart5).\nThe version information is also provided as part of the ModelTableEntry in the UANodeSet XML file. The UANodeSet XML schema is defined in[OPC 10000-6](/\u00A7UAPart6).\nTable 37- NamespaceMetadata Object for this Document\nAttribute\nValue\nBrowseName\n2:[http://opcfoundation.org/UA/Onboarding](http://opcfoundation.org/UA/Onboarding)/\nProperty\nDataType\nValue\n0:NamespaceUri\n0:String\nhttp://opcfoundation.org/UA/Onboarding/\n0:NamespaceVersion\n0:String\n1.05.02\n0:NamespacePublicationDate\n0:DateTime\n2022-10-01\n0:IsNamespaceSubset\n0:Boolean\nFalse\n0:StaticNodeIdTypes\n0:IdType []\n0\n0:StaticNumericNodeIdRange\n0:NumericRange []\n\n0:StaticStringNodeIdPattern\n0:String"
+    },
+    {
+      "Id": "c1f86dcd-3a12-44cf-9560-b4b16eb04b4b",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 10 Namespaces\n---\n",
+      "Content": "10.2 Handling of OPC UA Namespaces"
+    },
+    {
+      "Id": "5515fa5b-b338-4853-992e-bca67c567ba1",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: 10.2 Handling of OPC UA Namespaces\n---\n",
+      "Content": "Namespaces are used by OPC UA to create unique identifiers across different naming authorities. The Attributes NodeId and BrowseName are identifiers. A Node in the UA AddressSpace is unambiguously identified using a NodeId. Unlike NodeIds, the BrowseName cannot be used to unambiguously identify a Node. Different Nodes may have the same BrowseName. They are used to build a browse path between two Nodes or to define a standard Property.\nServers may often choose to use the same namespace for the NodeId and the BrowseName. However, if they want to provide a standard Property, its BrowseName shall have the namespace of the standards body although the namespace of the NodeId reflects something else, for example the EngineeringUnits Property. All NodeIds of Nodes not defined in this document shall not use the standard namespaces.\n[Table 38](/\u00A7_Ref16577438) provides a list of namespaces and their index used for BrowseNames in this document. The default namespace of this document is not listed since all BrowseNames without prefix use this default namespace.\nTable 38- Namespaces used in this document\nNamespaceURI\nNamespace Index\nExample\nhttp://opcfoundation.org/UA/\n0\n0:EngineeringUnits\nhttp://opcfoundation.org/UA/Onboarding/\n2\n2:Registrar\nhttp://opcfoundation.org/UA/GDS/\n3\n3:ApplicationRecordDataType"
+    },
+    {
+      "Id": "53069d84-54df-4260-8a8c-3243b8ae407f",
+      "Header": "Document: Part 21 - Device Onboarding\n---\n",
+      "Content": "Annex\u00A0A(normative)Namespaces and Identifiers\nA.1 Namespace and Identifiers for the Onboarding Information Model"
+    },
+    {
+      "Id": "fbfc4efe-6941-43d4-af0d-95f783622881",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: A.1 Namespace and Identifiers for the Onboarding Information Model\n---\n",
+      "Content": "This document defines Nodes which are part of the base OPC UA Specification. The numeric identifiers for these Nodes are part of the complete list of identifiers defined in[OPC 10000-6](/\u00A7UAPart6).\nIn addition, this document defines Nodes which are only used by Registrars.\nThe NamespaceUri for any Device Onboarding specific NodeIds is:\nhttp://opcfoundation.org/UA/Onboarding/\nThe CSV released with this version of the standards can be found here:\n[http://www.opcfoundation.org/UA/schemas/1.05/Opc.Ua.Onboarding.NodeIds.csv](http://www.opcfoundation.org/UA/schemas/1.05/Opc.Ua.Onboarding.NodeIds.csv)\nNOTE The latest CSV that is compatible with this version of the standard can be found here:\n[http://www.opcfoundation.org/UA/schemas/Opc.Ua.Onboarding.NodeIds.csv](http://www.opcfoundation.org/UA/schemas/Opc.Ua.Onboarding.NodeIds.csv)\nA computer processible version of the Information Model defined in the Onboarding namespace is also provided. It follows the XML Information Model schema syntax defined in[OPC 10000-6](/\u00A7UAPart6).\nThe Information Model Schema for this version of the document (including any revisions, amendments or errata) can be found here:\nhttp://www.opcfoundation.org/UA/schemas/1.05/Opc.Ua.Onboarding.NodeSet2.xml\n\u0022 http://www.opcfoundation.org/UA/schemas/1.05/Opc.Ua.Onboarding.NodeSet2.xml\nNOTE    The latest Information Model schema that is compatible with this version of the document can be found here:"
+    },
+    {
+      "Id": "1428642d-cf54-42ca-9640-3ee75011f6e8",
+      "Header": "Document: Part 21 - Device Onboarding\nSection: A.1 Namespace and Identifiers for the Onboarding Information Model\n---\n",
+      "Content": "[http://www.opcfoundation.org/UA/schemas/Opc.Ua.Onboarding.NodeSet2.xml](http://www.opcfoundation.org/UA/schemas/Opc.Ua.Onboarding.NodeSet2.xml)"
+    }
+  ]
+}
