@@ -1,0 +1,1081 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UADocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://opcfoundation.org/UA/schemas/UADocument.xsd">
+  <License>
+    <Paragraphs>
+      <Paragraph Style="MAIN-TITLE" IsCentered="true">
+        <Spans>
+          <Span IsBold="true"></Span>
+          <Span IsBold="true" FieldCode="">OPC Foundation</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH" IsCentered="true">
+        <Spans>
+          <Span>____________</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="MAIN-TITLE" IsCentered="true">
+        <Spans />
+      </Paragraph>
+      <Paragraph Style="MAIN-TITLE" IsCentered="true">
+        <Spans>
+          <Span IsBold="true">UNIFIED ARCHITECTURE –</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="ForwordIntroduction" IsCentered="true">
+        <Spans>
+          <Span IsBold="true">FOREWORD</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>This specification is the specification for developers of OPC UA applications. The specification is a result of an analysis and design process to develop a standard interface to facilitate the development of applications by multiple vendors that shall inter-operate seamlessly together. </Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span IsBold="true">Copyright © 2006-2022, OPC Foundation, Inc.</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="ForwordIntroduction" IsCentered="true">
+        <Spans>
+          <Span IsBold="true">AGREEMENT OF USE</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>COPYRIGHT RESTRICTIONS</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>Any unauthorized use of this specification may violate copyright laws, trademark laws, and communications regulations and statutes. This document contains information which is protected by copyright. All Rights Reserved. No part of this work covered by copyright herein may be reproduced or used in any form or by any means--graphic, electronic, or mechanical, including photocopying, recording, taping, or information storage and retrieval systems--without permission of the copyright owner.</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>OPC Foundation members and non-members are prohibited from copying and redistributing this specification. All copies must be obtained on an individual basis, directly from the OPC Foundation Web site </Span>
+          <Span FieldCode="http://www.opcfoundation.org/" FieldType="Hyperlink">http://www.opcfoundation.org</Span>
+          <Span>.</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>PATENTS</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>The attention of adopters is directed to the possibility that compliance with or adoption of OPC specifications may require use of an invention covered by patent rights. OPC shall not be responsible for identifying patents for which a license may be required by any OPC specification, or for conducting legal inquiries into the legal validity or scope of those patents that are brought to its attention. OPC specifications are prospective and advisory only. Prospective users are responsible for protecting themselves against liability for infringement of patents.</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>WARRANTY AND LIABILITY DISCLAIMERS</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>WHILE THIS PUBLICATION IS BELIEVED TO BE ACCURATE, IT IS PROVIDED "AS IS" AND MAY CONTAIN ERRORS OR MISPRINTS. THE OPC FOUDATION MAKES NO WARRANTY OF ANY KIND, EXPRESSED OR IMPLIED, WITH REGARD TO THIS PUBLICATION, INCLUDING BUT NOT LIMITED TO ANY WARRANTY OF TITLE OR OWNERSHIP, IMPLIED WARRANTY OF MERCHANTABILITY OR WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE OR USE. IN NO EVENT SHALL THE OPC FOUNDATION BE LIABLE FOR ERRORS CONTAINED HEREIN OR FOR DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, RELIANCE OR COVER DAMAGES, INCLUDING LOSS OF PROFITS, REVENUE, DATA OR USE, INCURRED BY ANY USER OR ANY THIRD PARTY IN CONNECTION WITH THE FURNISHING, PERFORMANCE, OR USE OF THIS MATERIAL, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>The entire risk as to the quality and performance of software developed using this specification is borne by you. </Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>RESTRICTED RIGHTS LEGEND</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>This Specification is provided with Restricted Rights. Use, duplication or disclosure by the U.S. government is subject to restrictions as set forth in (a) this Agreement pursuant to DFARs 227.7202-3(a); (b) subparagraph (c)(1)(i) of the Rights in Technical Data and Computer Software clause at DFARs 252.227-7013; or (c) the Commercial Computer Software Restricted Rights clause at FAR 52.227-19 subdivision (c)(1) and (2), as applicable. Contractor / manufacturer are the OPC Foundation,. 16101 N. 82nd Street, Suite 3B, Scottsdale, AZ, 85260-1830</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>COMPLIANCE</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>The OPC Foundation shall at all times be the sole entity that may authorize developers, suppliers and sellers of hardware and software to use certification marks, trademarks or other special designations to indicate compliance with these materials. Products developed using this specification may claim compliance or conformance with this specification if and only if the software satisfactorily meets the certification requirements set by the OPC Foundation. Products that do not meet these requirements may claim only that the product was based on this specification and must not claim compliance or conformance with this specification. </Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>Trademarks</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>Most computer and software brand names have trademarks or registered trademarks. The individual trademarks have not been listed here.</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>GENERAL PROVISIONS</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>Should any provision of this Agreement be held to be void, invalid, unenforceable or illegal by a court, the validity and enforceability of the other provisions shall not be affected thereby. </Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>This Agreement shall be governed by and construed under the laws of the State of Minnesota, excluding its choice or law rules.</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>This Agreement embodies the entire understanding between the parties with respect to, and supersedes any prior understanding or agreement (oral or written) relating to, this specification. </Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>ISSUE REPORTING</Span>
+        </Spans>
+      </Paragraph>
+      <Paragraph Style="PARAGRAPH">
+        <Spans>
+          <Span>The OPC Foundation strives to maintain the highest quality standards for its published specifications; hence they undergo constant review and refinement. Readers are encouraged to report any issues and view any existing errata here: </Span>
+          <Span FieldCode="http://www.opcfoundation.org/errata" FieldType="Hyperlink">http://www.opcfoundation.org/errata</Span>
+          <Span>.</Span>
+        </Spans>
+      </Paragraph>
+    </Paragraphs>
+  </License>
+  <Paragraphs>
+    <Paragraph Style="Heading1" Number="1">
+      <Spans>
+        <Span IsBold="true">Scope</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>This document specifies value and structure of </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> in the OPC Unified Architecture.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>The actual </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> are maintained in an online database and accessible via </Span>
+        <Span FieldCode="https://profiles.opcfoundation.org/" FieldType="Hyperlink">https://profiles.opcfoundation.org/</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>OPC UA </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> are used to segregate features with regard to testing of OPC UA products and the nature of the testing (tool based or lab based). This includes the testing performed by the OPC Foundation provided OPC UA CTT (a self-test tool) and by the OPC Foundation provided independent certification test labs. This could equally as well refer to test tools provided by another organization or a test lab provided by another organization. What is important is the concept of automated tool based testing versus lab based testing. The scope of this standard includes defining functionality that can only be tested in a lab and defining the grouping of functionality that is to be used when testing OPC UA products either in a lab or using automated tools. The definition of actual </Span>
+        <Span IsItalic="true">TestCases</Span>
+        <Span> is not within the scope of this document, but the general categories of TestCases are within the scope of this document.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>Most OPC UA applications will conform to several, but not all of the </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="Heading1" Number="2">
+      <Spans>
+        <Span IsBold="true">Normative references</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>The following documents, in whole or in part, are normatively referenced in this document and are indispensable for its application. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document applies.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span Bookmarks="UAPart1">OPC 10000-1</Span>
+        <Span IsItalic="true">, </Span>
+        <Span IsItalic="true" FieldCode="">OPC Unified Architecture - Part 1: Overview and Concepts</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="ReferenceDocuments">
+      <Spans>
+        <Span FieldCode="">http://www.opcfoundation.org/UA/Part1/</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="ReferenceDocumentsLeader">
+      <Spans>
+        <Span Bookmarks="UAPart2">OPC 10000-2, </Span>
+        <Span IsItalic="true" FieldCode="">OPC Unified Architecture - Part 2: Security Model</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="ReferenceDocuments">
+      <Spans>
+        <Span FieldCode="">http://www.opcfoundation.org/UA/Part2/</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="ReferenceDocumentsLeader">
+      <Spans>
+        <Span Bookmarks="UAPart3">OPC 10000-3, </Span>
+        <Span IsItalic="true" FieldCode="">OPC Unified Architecture - Part 3: Address Space Model</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="ReferenceDocuments">
+      <Spans>
+        <Span FieldCode="">http://www.opcfoundation.org/UA/Part3/</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="ReferenceDocumentsLeader">
+      <Spans>
+        <Span Bookmarks="UAPart4">OPC 10000-4, </Span>
+        <Span IsItalic="true" FieldCode="">OPC Unified Architecture - Part 4: Services</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="ReferenceDocuments">
+      <Spans>
+        <Span FieldCode="">http://www.opcfoundation.org/UA/Part4/</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="ReferenceDocuments">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>Test Specifications</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span Bookmarks="CompliancePart8">Compliance Part 8 UA Server, </Span>
+        <Span IsItalic="true">OPC Test Lab Specification: Part 8 – UA Server</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="ReferenceDocuments">
+      <Spans>
+        <Span FieldCode="">http://www.opcfoundation.org/Test/Part8/</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span Bookmarks="CompliancePart9">Compliance Part 9 UA Client, </Span>
+        <Span IsItalic="true">OPC Test Lab Specification: Part 9 – UA Client</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="ReferenceDocuments">
+      <Spans>
+        <Span FieldCode="">http://www.opcfoundation.org/Test/Part9/</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph>
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="Heading1" Number="3">
+      <Spans>
+        <Span IsBold="true">Terms, definitions, and abbreviations</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="Heading2" Number="3.1">
+      <Spans>
+        <Span IsBold="true">Terms and definitions</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>For the purposes of this document, the terms and definitions given in </Span>
+        <Span FieldCode="UAPart1" FieldType="Ref">OPC 10000-1</Span>
+        <Span>, </Span>
+        <Span FieldCode="UAPart2" FieldType="Ref">OPC 10000-2</Span>
+        <Span>, and </Span>
+        <Span FieldCode="UAPart3" FieldType="Ref">OPC 10000-3</Span>
+        <Span>, and </Span>
+        <Span FieldCode="UAPart4" FieldType="Ref">OPC 10000-4</Span>
+        <Span> as well as the following apply. An overview of the terms defined in this standard and their interaction can be viewed in </Span>
+        <Span FieldCode="_Ref202340467" FieldType="Ref">Figure 1</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-number3" Number="3.1.1">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="TERM">
+      <Spans>
+        <Span IsBold="true">application</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-definition">
+      <Spans>
+        <Span>a software program that executes or implements some aspect of OPC UA</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-note">
+      <Spans>
+        <Span>Note </Span>
+        <Span FieldCode="note" FieldType="Sequence">1</Span>
+        <Span> to entry: The application could run on any machine and perform any function. The application could be software or it could be a hardware application, the only requirement is that it implements OPC UA.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-number3" Number="3.1.2">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="TERM">
+      <Spans>
+        <Span IsBold="true">Application Profile</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-definition">
+      <Spans>
+        <Span>a </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> that defines all features necessary to build a functional OPC UA application</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-note">
+      <Spans>
+        <Span>Note </Span>
+        <Span FieldCode="note" FieldType="Sequence">1</Span>
+        <Span> to entry: An </Span>
+        <Span IsItalic="true">Application Profile</Span>
+        <Span> in particular adds definitions of the transport and security requirements. </Span>
+        <Span IsItalic="true">Application Profiles</Span>
+        <Span> are organized in the “Application Profiles” </Span>
+        <Span IsItalic="true">ProfileCategory</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-number3" Number="3.1.3">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="TERM">
+      <Spans>
+        <Span IsBold="true">ConformanceUnit</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-definition">
+      <Spans>
+        <Span>a specific set of OPC UA features that can be tested as a single entity</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-note">
+      <Spans>
+        <Span>Note </Span>
+        <Span FieldCode="note" FieldType="Sequence">1</Span>
+        <Span> to entry: A ConformanceUnit can cover a group of services, portions of services or information models.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-number3" Number="3.1.4">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="TERM">
+      <Spans>
+        <Span IsBold="true">ConformanceGroup</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-definition">
+      <Spans>
+        <Span>a group of ConformanceUnits that is given a name</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-note">
+      <Spans>
+        <Span>Note </Span>
+        <Span FieldCode="note" FieldType="Sequence">1</Span>
+        <Span> to entry: This grouping is only to assist in organizing ConformanceUnits. Typical ConformanceGroups include groups for each of the service sets in OPC UA and each of the Information Model standards.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-number3" Number="3.1.5">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="TERM">
+      <Spans>
+        <Span IsBold="true">Facet</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-definition">
+      <Spans>
+        <Span>a Profile dedicated to a specific feature that a </Span>
+        <Span IsItalic="true">Server</Span>
+        <Span> or </Span>
+        <Span IsItalic="true">Client</Span>
+        <Span> may require</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-note">
+      <Spans>
+        <Span>Note </Span>
+        <Span FieldCode="note" FieldType="Sequence">1</Span>
+        <Span> to entry: </Span>
+        <Span IsItalic="true">Facets</Span>
+        <Span> are typically combined to form higher-level </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span>. The use of the term </Span>
+        <Span IsItalic="true">Facet</Span>
+        <Span> in the title of a </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> indicates that the given </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> is not a standalone </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-number3" Number="3.1.6">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="TERM">
+      <Spans>
+        <Span IsBold="true">ProfileCategory</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-definition">
+      <Spans>
+        <Span>arranges Profiles into application classes, such as </Span>
+        <Span IsItalic="true">Server</Span>
+        <Span> or </Span>
+        <Span IsItalic="true">Client</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-note">
+      <Spans>
+        <Span>Note </Span>
+        <Span FieldCode="note" FieldType="Sequence">1</Span>
+        <Span> to entry: These categories help determine what a given </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> is used for. For additional details see </Span>
+        <Span FieldCode="_Ref272937126" FieldType="Ref">0</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-number3" Number="3.1.7">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="TERM">
+      <Spans>
+        <Span IsBold="true">TestCase</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-definition">
+      <Spans>
+        <Span>a technical description of a set of steps required to test a particular function or information model</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-note">
+      <Spans>
+        <Span>Note </Span>
+        <Span FieldCode="note" FieldType="Sequence">1</Span>
+        <Span> to entry: </Span>
+        <Span IsItalic="true">TestCases</Span>
+        <Span> provide sufficient details to allow a developer to implement them in code. </Span>
+        <Span IsItalic="true">TestCases</Span>
+        <Span> also provide a detailed summary of the expected result(s) from the execution of the implemented code and any precondition(s) that must be established before the </Span>
+        <Span IsItalic="true">TestCase</Span>
+        <Span> can be executed.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-number3" Number="3.1.8">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="TERM">
+      <Spans>
+        <Span IsBold="true">TestLab</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-definition">
+      <Spans>
+        <Span>a facility that is designated to provide testing services</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-note">
+      <Spans>
+        <Span>Note </Span>
+        <Span FieldCode="note" FieldType="Sequence">1</Span>
+        <Span> to entry: These services include but are not limited to personal that directly perform testing, automated testing and a formal repeatable process. The OPC Foundation has provided detailed standard describing OPC UA </Span>
+        <Span IsItalic="true">TestLabs</Span>
+        <Span> and the testing they are to provided (see </Span>
+        <Span FieldCode="CompliancePart8" FieldType="Ref">Compliance Part 8 UA Server</Span>
+        <Span>, </Span>
+        <Span FieldCode="CompliancePart9" FieldType="Ref">Compliance Part 9 UA Client</Span>
+        <Span>).</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TERM-note">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="Heading2" Number="3.2">
+      <Spans>
+        <Span IsBold="true">Abbreviations</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPHCompressed">
+      <Spans>
+        <Span>DA</Span>
+        <Span>→Data Access</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPHCompressed">
+      <Spans>
+        <Span>CTT</Span>
+        <Span>→Compliance Test Tool</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPHCompressed">
+      <Spans>
+        <Span>HA</Span>
+        <Span>→Historical Access</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPHCompressed">
+      <Spans>
+        <Span>HMI</Span>
+        <Span>→Human Machine Interface</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="Heading1" Number="4">
+      <Spans>
+        <Span IsBold="true">Profile Model</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="Heading2" Number="4.1">
+      <Spans>
+        <Span IsBold="true">General</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>The OPC Unified architecture multipart standard describes a number of </Span>
+        <Span IsItalic="true">Services</Span>
+        <Span> and a variety of information models. These </Span>
+        <Span IsItalic="true">Services</Span>
+        <Span> and information models can be referred to as features of a </Span>
+        <Span IsItalic="true">Server</Span>
+        <Span> or </Span>
+        <Span IsItalic="true">Client</Span>
+        <Span>. </Span>
+        <Span IsItalic="true">Servers</Span>
+        <Span> and </Span>
+        <Span IsItalic="true">Clients</Span>
+        <Span> need to be able to describe which features they support and wish to have certified. This document provides a grouping of these features. The individual features are grouped into </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span> which are further grouped into </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span>. </Span>
+        <Span FieldCode="_Ref202340467" FieldType="Ref">Figure 1</Span>
+        <Span> provides an overview of the interactions between </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span>, </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span> and </Span>
+        <Span IsItalic="true">TestCases</Span>
+        <Span>. The large arrows indicate the components that are used to construct the parent. For example a </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> is constructed from </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> and </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span>. The figure also illustrates a feature of the OPC UA Compliance Test Tool (CTT), in that it will test if a requested </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> passes all </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span>. It will also test all other </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span> and report any other </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> that pass conformance testing. The individual </Span>
+        <Span IsItalic="true">TestCases </Span>
+        <Span>are defined in separate documents see </Span>
+        <Span FieldCode="CompliancePart8" FieldType="Ref">Compliance Part 8 UA Server</Span>
+        <Span> and </Span>
+        <Span FieldCode="CompliancePart9" FieldType="Ref">Compliance Part 9 UA Client</Span>
+        <Span>. The </Span>
+        <Span IsItalic="true">TestCases</Span>
+        <Span> are related back to the appropriate </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span> defined in this standard. This relationship is also displayed by the OPC UA Compliance Test Tool.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span ImageName="image004.png"></Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="FIGURE-title" IsCentered="true">
+      <Spans>
+        <Span IsBold="true" Bookmarks="_Ref202340467">Figure </Span>
+        <Span IsBold="true" FieldCode="Figure" FieldType="Sequence" Bookmarks="_Ref202340467">1</Span>
+        <Span IsBold="true"> – Profile – ConformanceUnit – TestCases</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="spacer">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="Heading2" Number="4.2">
+      <Spans>
+        <Span IsBold="true">Conformance Units and Conformance Groups</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>Each </Span>
+        <Span IsItalic="true">ConformanceUnit</Span>
+        <Span IsBold="true" IsItalic="true"> </Span>
+        <Span>represents a specific set of features (e.g. a group of services, portions of services or information models) that can be tested as a single entity. </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span> are the building blocks of a </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span>. Each </Span>
+        <Span IsItalic="true">ConformanceUnit </Span>
+        <Span>can also be used as a test category. For each </Span>
+        <Span IsItalic="true">ConformanceUnit,</Span>
+        <Span> there would be a number of TestCases that test the functionality described by the </Span>
+        <Span IsItalic="true">ConformanceUnit.</Span>
+        <Span> The description of a </Span>
+        <Span IsItalic="true">ConformanceUnit</Span>
+        <Span> is intended to provide enough information to illustrate the required functionality, but in many cases to obtain a complete understanding of the </Span>
+        <Span IsItalic="true">ConformanceUnit </Span>
+        <Span>the reader may be required to also examine the appropriate part of OPC UA. Additional Information regarding testing of a </Span>
+        <Span IsItalic="true">ConformanceUnit</Span>
+        <Span> are provided in the </Span>
+        <Span FieldCode="CompliancePart8" FieldType="Ref">Compliance Part 8 UA Server</Span>
+        <Span> or </Span>
+        <Span FieldCode="CompliancePart9" FieldType="Ref">Compliance Part 9 UA Client</Span>
+        <Span> test standards.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>The same features do not appear in more than one </Span>
+        <Span IsItalic="true">ConformanceUnit</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>For improved clarity, the large list of </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span> is arranged into named </Span>
+        <Span IsItalic="true">ConformanceGroups</Span>
+        <Span>. These groups reflect different OPC UA aspects like the </Span>
+        <Span IsItalic="true">Service Sets</Span>
+        <Span>, security, transport, and </Span>
+        <Span IsItalic="true">Information Models</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span IsItalic="true">ConformanceGroups</Span>
+        <Span> have no impact on testing; they are used only for organizational reasons. These groups and the </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span> that they describe are available at </Span>
+        <Span FieldCode="https://profiles.opcfoundation.org/conformanceunit/" FieldType="Hyperlink">https://profiles.opcfoundation.org/conformanceunit/</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="spacer">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="Heading2" Number="4.3">
+      <Spans>
+        <Span IsBold="true">Profiles</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>A </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> is a named aggregation of </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span> and other </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span>. To support a </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span>, an application has to support the </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span> and all aggregated </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span>. The definition of </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> is an ongoing activity, in that it is expected that new </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> will be added in the future.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>Multiple </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> may include the same </Span>
+        <Span IsItalic="true">ConformanceUnit</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>Testing of a </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> consists of testing the individual </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span> that comprise the </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> are named based on naming conventions (see </Span>
+        <Span FieldCode="_Ref272320955" FieldType="Ref">4.5</Span>
+        <Span> for details).</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="spacer">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="Heading2" Number="4.4">
+      <Spans>
+        <Span IsBold="true" Bookmarks="_Ref272937126">Profile Categories</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> are grouped into categories to help vendors and end users understand the applicability of a </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span FieldCode="_Ref98919472" FieldType="Ref">Table 1</Span>
+        <Span> contains the list of currently defined </Span>
+        <Span IsItalic="true">ProfileCategories</Span>
+        <Span>.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-title" IsCentered="true">
+      <Spans>
+        <Span IsBold="true" Bookmarks="_Ref98919472">Table </Span>
+        <Span IsBold="true" FieldCode="Table" FieldType="Sequence" Bookmarks="_Ref98919472">1</Span>
+        <Span IsBold="true"> – Profile Categories</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-col-heading" CellMask="15" IsCentered="true">
+      <Spans>
+        <Span IsBold="true">Category</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-col-heading" CellMask="28" IsCentered="true">
+      <Spans>
+        <Span IsBold="true">Description</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="14">
+      <Spans>
+        <Span>Application Profiles</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="28">
+      <Spans>
+        <Span>Application level </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> represent a collection of </Span>
+        <Span IsItalic="true">Facets</Span>
+        <Span> necessary to build a functional OPC UA Application.They specifically include Transport Profiles and generally also Security Profiles.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="14">
+      <Spans>
+        <Span>Server</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="28">
+      <Spans>
+        <Span>Profiles of this category specify functions of an OPC UA Server. The URI of such Profiles can be exposed in the Server capabilities.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="14">
+      <Spans>
+        <Span>Client</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="28">
+      <Spans>
+        <Span>Profiles of this category specify functions of an OPC UA Client.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="14">
+      <Spans>
+        <Span>Publisher</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="28">
+      <Spans>
+        <Span>Profiles of this category specify functions of an OPC UA Publisher.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="14">
+      <Spans>
+        <Span>Subscriber</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="28">
+      <Spans>
+        <Span>Profiles of this category specify functions of an OPC UA Subscriber.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="14">
+      <Spans>
+        <Span>Transport</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="28">
+      <Spans>
+        <Span>Profiles of this category specify specific protocol mappings. The URI of such Profiles has to be part of an Endpoint Description.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="14">
+      <Spans>
+        <Span>Security</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="28">
+      <Spans>
+        <Span>Profiles of this category specify security related functions. Security policies are part of this category. The URI of Client-Server security policies has to be part of an Endpoint Description returned from the GetEndpoints Service.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="14">
+      <Spans>
+        <Span>Global Directory Service</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="TABLE-cell" CellMask="60">
+      <Spans>
+        <Span>Profiles of this category specify functions for global discovery and certificate management.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="spacer">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="spacer">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="Heading2" Number="4.5">
+      <Spans>
+        <Span IsBold="true" Bookmarks="_Ref272320955">Profile conformance</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>An OPC UA application shall implement all mandatory </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span> in a </Span>
+        <Span IsItalic="true">Profile </Span>
+        <Span>in order to be compliant with the </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span>. Some </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> contain optional </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span>. Optional means that an application has the option to not support the </Span>
+        <Span IsItalic="true">ConformanceUnit</Span>
+        <Span>. However, if supported, the application shall pass all tests associated with the </Span>
+        <Span IsItalic="true">ConformanceUnit</Span>
+        <Span>. If an OPC UA application desires to be listed as supporting the optional </Span>
+        <Span IsItalic="true">ConformanceUnit</Span>
+        <Span> then it shall include any required information model items in the configuration provided for certification testing. The test result that is generated by the certification testing lists all optional </Span>
+        <Span IsItalic="true">ConformanceUnits</Span>
+        <Span> and whether they are supported or not by the tested OPC UA application. </Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> may also include other </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span>. If a </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> is included it means that it is mandatory and the same conformance rules apply to it.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="spacer">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="Heading2" Number="4.6">
+      <Spans>
+        <Span IsBold="true">Conventions for Profile definitions</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> have the following naming conventions: </Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH" ListType="Bullet">
+      <Spans>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> intended for specific application types have the application type in their titles. Currently defined application types are Server, Client, Publisher, Subscriber, and GDS.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH" ListType="Bullet">
+      <Spans>
+        <Span>The term Facet in the title of a </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> indicates that this </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> concerns a specific feature of OPC UA. Such </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> are expected to be combined with </Span>
+        <Span IsItalic="true">Application</Span>
+        <Span> </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> to define the complete functionality of an OPC UA application.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="spacer">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="Heading2" Number="4.7">
+      <Spans>
+        <Span IsBold="true">Profile versioning</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>Versioning of </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> is accomplished with a naming convention. Whenever a profile is revised, the year of the new revision is added to the name. Example:</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH" CellMask="15">
+      <Spans>
+        <Span IsBold="true">Version 1</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH" CellMask="28">
+      <Spans>
+        <Span IsBold="true">Core Server Facet</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH" CellMask="14">
+      <Spans>
+        <Span>Version 2</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH" CellMask="28">
+      <Spans>
+        <Span>Core 2017 Server Facet</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH" CellMask="14">
+      <Spans>
+        <Span>Version 3</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH" CellMask="60">
+      <Spans>
+        <Span>Core 2022 Server Facet</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="spacer">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="Heading2" Number="4.8">
+      <Spans>
+        <Span IsBold="true">Applications</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>A vendor that is developing an OPC UA application, shall review the list of available </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span>. From this list the vendor shall select the </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> that include the functionality required by the application. Conformance to a single </Span>
+        <Span IsItalic="true">Profile</Span>
+        <Span> may not yield a complete application. In most cases multiple </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> are needed to yield a useful application. All UA applications shall support at least one </Span>
+        <Span IsItalic="true">Application Profile.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>For example an HMI </Span>
+        <Span IsItalic="true">Client</Span>
+        <Span> application may choose to support the Minimum UA Client 2022 Profile, the “Data Access Client Facet”, the “DataChange Subscriber Client Facet” and the “Attribute Write Client Facet”. This list of </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> would allow the </Span>
+        <Span IsItalic="true">Client</Span>
+        <Span> to communicate with an OPC UA </Span>
+        <Span IsItalic="true">Server</Span>
+        <Span> using UA-TCP/UA Security/UA Binary. It would be able to subscribe for data, write to data and would support the DA data model.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span IsItalic="true">Clients</Span>
+        <Span> should take into account the types of </Span>
+        <Span IsItalic="true">Servers</Span>
+        <Span> and </Span>
+        <Span IsItalic="true">Server</Span>
+        <Span> </Span>
+        <Span IsItalic="true">Profiles</Span>
+        <Span> that they are targeted to support. Some </Span>
+        <Span IsItalic="true">Servers</Span>
+        <Span> might not support </Span>
+        <Span IsItalic="true">Subscriptions</Span>
+        <Span> and </Span>
+        <Span IsItalic="true">Clients</Span>
+        <Span> should be able to fall back to the Read </Span>
+        <Span IsItalic="true">Service.</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>A special case is a generic </Span>
+        <Span IsItalic="true">Client</Span>
+        <Span> that is designed to communicate with a large number of </Span>
+        <Span IsItalic="true">Servers</Span>
+        <Span> and therefore able to perform a broad range of functionality. ”Standard UA </Span>
+        <Span IsItalic="true">Client</Span>
+        <Span> </Span>
+        <Span IsItalic="true">Profile”</Span>
+        <Span> has been defined for this kind of </Span>
+        <Span IsItalic="true">Clients</Span>
+        <Span>. </Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH">
+      <Spans>
+        <Span>Many </Span>
+        <Span IsItalic="true">Clients</Span>
+        <Span>, however, will be specialized and do not need all of the functionality in the ”Standard UA Client Profile”</Span>
+        <Span IsItalic="true"> </Span>
+        <Span>and thus would only support the limited set of functionality they require. A trend </Span>
+        <Span IsItalic="true">Client</Span>
+        <Span>, for example, would only need functionality to subscribe to or read data. </Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="PARAGRAPH" IsCentered="true">
+      <Spans>
+        <Span>____________</Span>
+      </Spans>
+    </Paragraph>
+    <Paragraph Style="spacer">
+      <Spans />
+    </Paragraph>
+    <Paragraph Style="spacer">
+      <Spans />
+    </Paragraph>
+  </Paragraphs>
+  <Images>
+    <Image Name="image001.png">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</Image>
+    <Image Name="image002.png">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</Image>
+    <Image Name="image003.png">iVBORw0KGgoAAAANSUhEUgAAAAEAAARlCAMAAABP4V3kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJUExURX9/f39/f39/f0YzmAMAAAACdFJOU5+/25T18AAAAAlwSFlzAAAOwwAADsMBx2+oZAAAABxJREFUSEvtwoEJAAAIwKDV/0d3RyBaLQDAR80BmSMIyHAfBGAAAAAASUVORK5CYII=</Image>
+    <Image Name="image004.png">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LZz36X777fuv0tLSFTou9yAARBfRBUB0AdFNzAeAd+yxYw9Yd/1Nl32RKMF9ev0j4XOV4JaXl5/lfVB/k3sPAKKL6AIguoguoptQpk+fflndd47/WELa0YL7xNqV4XPss2+ff+o8EVwARBfRBUB0m4muhAEyk9kVR3aq6EbeY5s6UnLV1iO/vDc0rfSQzTk5Oe9RVQISIi7eeyoUCnVJFi9enN+tW7ftHiGXqVOnLqusrNytq14XRBcgzUS3tra2QAN2ILPxPpgqOuP9pQ/L4cOHvqe82Y6M5JbPmL6lf//ct3ReCC4kit/97ndXvP3222u7In/5y182rFu3rnHt2rUhlxdeeOEdb/26rnpdPNndHdEFSCPRBUgUSiEYPmLYH3/+4G0dno5RetghDZ7kHoXkQiJ55513nvTEpjHUwY/GxsY2LXfXR/u9PccPerz22muhDz74IJSsR2vPpRMe3RFdAEQXYJepU6fceu4PTvu0o/NyhdIW8vL6v+WJLrmCkHaiu/vuu4duv/32ZlL38MMPh3bbbbfQk08+2Wz59ddfr3SB0Jdffhnq3r176He/+114/X/8x3+Err322tBXX33V7PeWHs8//3z4ONu3b29x29dffz3cVztmoh/qm87xiy++QHQB0o0xY8b8tLKych7XAroC3nv9uCPKSzclQnK/jupOJaoLaSm6Z599dujMM89sJqZadsghh4QuuuiiZsvnzp3btMyVzdaIrvYzNm7cuJPouuvdY9i2v/3tb3eKIPu3jbbO/elfHtRGUKQ62rFa6guiC5BEioqKriorKzuNawGZTn19/YghQwf+6+XX1ye0mgRRXUhX0VX0dvjw4eEorT1GjBgR+v3vfx/+6S53I6ru7/GK7tatW8MSLWHVYLIzzjgjtOuuuzaJ7scffxxatGhRs/UNDQ07jK5793ClBS234yqV4dBDDw23oeVXX31103F/9KMfhQVe56b1L7/8clP0WuelZbNnzw799a9/DfdZz4cOHRreTm0roqvtFdG139W+fupYF154YbNro+to7aqdX//618kQXkQXIIiKioqFBQUFt3EtIMMlt9eQIYPffHzNA0kpnUZUF9JRdJXzKnmT8Olh8iiJGzlyZOiVV15pEj83+toW0bVIseRVx9VxJI3Wpp5LTrds2RKW4iVLloS8z6twX+z4dkzrt8RVx/r7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u7FFUkHyvu4PosvfReqydOnSrLVr1y59+umnIQ68Ry9EFwDRBUQ3YfJ0xJGlobLyaTG56cdXdugxly5bEnpy3aq4tv3jK8+ErvjhsqZ+Hj1vTujGW69IGQFHdMHl8ssvzw+FQl+FfI/GxsZQ0CPa8tZuk0oP9feDDz6Ia9vrr79+EKILgOgCopsweXrosbub4d34Q4tOrG62bMPGxztUcnUMtdvSthLsbt26heX23p/dHN5H0qtl4ycUhCUY0YVU4oQTTjjek6hGv5yeddZZoYsuumgnaT3qqKNCzz33XOihhx4KLV++PLxev1988cXh31977bXwNukku+rvtddeG1efEV0ARBcQ3aTm6EpCJaOx0wiebzGiGi3twUR39aN3xUxDkNRKaIP6omiw1knIo/UtVv/iSclozzmmmuh2Zi5kV+O8884r8a5345YtW5pkbuvWraFdd901/L7/6quvg72SWC1/7733whFQPY/IX5Pcbty4MbyNu1+0KKpfLINEM2iboH1jtdtS1Fn9veaaa6IeC9EFQHQBUlJ0JXWKsirCqjSCxWefElr/3K92SjXQ8iOOnLbTNtp34KAB4WMoIqt10fqhffMH5kVdf8FF5+y0v9s3cflVFzaL+n7dt9Ko/Y/nHH+9dmVYsu0c/cdJBdGV3C5ZsuSblZWV88aMGfNT74N9En9PiUepC94/YV899dRTTTK3du3a0AknnBA6/vjjQ2vWrGmSvbvuuit0yCGHhCXWjeK2RnQ//vjjcCRY26v93//+903tL1q0KLR69eqm52pL273//vvh53/+85/DkWYtO/PMM8PC7T6s31p/5513ho+lh47ntmtRZ/VR6/RP6NChQ5u2idVHRBcA0QVEN2VEV1KnDzGJoCKuVfMrwttL/LT+T68+G34uSbS0B22jfZT+ICSI2kYpCNHydNVOt267BEZso6Ft3b5Z2sMJtcc6bXYL7JsrskHnqOd2jm6kWb8rpWLCwYWh8QcXJDy625LoSm699b1MbnfffffPdK3FggULpvH3lBzR9eTwKzdNQTIpkZXYSihtuSQySG7jFV1FiqdOnRqWR6U/PPzww+FtJdna9+677w4//9vf/haWzeHDhzdLidA6pRjoGDqmRZf1uO6668LPJasSXh3H+j537txmqQluH63dxYsXh4W6pT4iugCILiC6KSG6Er+g3FpFRxWdNQm0tARXWrVcP+PN0bV2Wkqh8KcySDqD0iQkoDsENXbfTI6jnaPacdu09RL4eHKOEyG6JrcVFRULPZF50MTWD6KbPNH1pPYrRWpNBCWYkj6lJ7jSqt8V4fWnK8QruhJni6RaWoCE2qLEekhKvfdGOD942LBhIUupkGRLVt19JeQmwia5dg4S1ueff76pzWiia+dl6yXbsfqI6AIguoDopoToWiqBv/SYIrPaxyK2EkVte899NwWWA0uE6Jqw6niKvOp37Ss5NSmNp28tnaMiv26kWMfqjBzdeOXWL7rUbU08Et2///3vX0n2JJWKcCqiaRKo35UyYJFPW94W0dU2kleJrCGB1PvTtje51ntAKQNuHu2UKVOa7WttqX/W/6BHa0RX28bq49VXXz24M16nhQsXliC6gOgCILrNJFDr/KXHJhxc0CwKqqiq8nC1zFIFVA7szXfjF12T0vMvPLvFAWOuQNsx1SelMujYbvQ1Wt9sffRzLGx2jsoPtjZMet1IcaLYd78+n0yfPv3MESNGrNKAp3gE1+jbt++L3gf7WkgsnjxukMBJaPVVvaKuVk3B8luVFqCopltNoS2iK4lUOoGOo+1c3PQGRZT1Pm1oaGgmusq79e8nAW8pL7i1ohurj4ceeuiGznidsrOzX9BPRBcQXQBEt0kCFSH1lyMz7Ot/V1YV/dTX/m6b8ZYXk5DqmG9GqcwgaZWoWtqAlUVz+xGUZhDUNxNqS1GI9xyVMqForw2wS7TsKqJbU1NzSFlZ2Xf1QR2R3biE19vndEWxILGcddZZ81RbTEKrNABFTSV59tDX/5JY5bBKgtsjuko1UO5rrGoL6oNFVHVMN53ijjvuCKyoYFUiXn311cB2WxLd3XbbrWn92WefHe6jv/+277nnnju/s14r73rk8xkDiC4Aohum9qTjAqVRaQASUpPAoK/yJY9haY2R6xtUVUE5tTYILNrAOB3XhNZf+cAGvlmfWupbtHOUVDc/x6DBc93iTrXoqBxdfVBLeiNfwcaUXnJ0k4NNGLFu3bqd0gjcaKqqEihFwCmz1WrRlTRrnVUxsPxXCbC7r9YrhUECatva4DNFeW1fybnJt2TWBNXa0jI9l7xKnG2d8n3d83RFWH3UcX/3u98F9rGzcnQBEF0ARDdq7VrLXVXOqqUAWG6thNByV4Xk06156w5Yi1WSS/IYrmbgieiOmrtf58y6FRa07ZVX75hE4uvc241N1RHcwWgt9c3OUakI0c7xyqsvCv+ufW0b9c/tT2dUXViyZEn2zJkzT4wmvYhuckXXIptBEVeJol9eo4muyWy0NAITVst9VfRWAm0pCza4zLbVMuXear3Kj9m+FvW1EmISY6Vf2HJ3cJrSG3Ruila7662POj8tN9kN6qNFixFdAEQXEN2kim6syKTluFpagQ3ucr/SP3PJqU3Lg7ax/FsN+jJ5jCW7irLaTGjWno7vr7CgtAM7lgRZ26gGrptb21Lf4jlH/XSPZdvEqgmc7Dq6nvRmeVKxwMnlbUR0ky+6EsKgqXDdySGClrm/u9UOoj1sG39urpbpZ6xlOpbl5gY9LGfX3cdtS/sH9VHP3TaD+ojoAiC6AEkX3Xim/FXkM9Z2VgUh2ja2Plod3VhTFcfax/rlbuPvQ0t9i/ccLTc4KHc3lWZGM+klHzH5osuj5QeiC4DoAqKbVNGF1KWtUwADoovoAiC6AIguILqA6CK6AIguAKILiC5EEd0vPRqhZRBdAEQXEF1EFxBdAABAdAHRBUQXAAAQXQBEFxBdAABAdAEQXUB0AQAA0QVAdAHRBQAARBcA0QVEFwAAEF1AdAHRRXQBABBdAEQXEF0AAEB0ARBdQHQBAADRBUB0AdEFAABEFwDRBUQXAAAQXQBEFxBdAABAdAHRBUQXAAAQXQBEFxBdAABAdAEQXUB0AQAA0QVAdAHRBQAARBcA0QVEFwAAEF0ARBcQXQAAQHQB0QVEFwAAEF0ARBcQXQAAQHQBEF1AdAEAANEFQHQB0QUAAEQXANEFRBcAABBdQHQRXUB0AQAA0QVEFxBdAABAdAEQXUB0AQAA0QVAdAHRBQAARBcA0QVEFwAAEF0ARBcQXQAAQHQB0QVEl78LAABEFwDRBUQXAAAQXQBEFxBdAABAdAEQXUB0AQAA0QXoCNF9492N0MVBdAEAgIsAmSa65+fk9N027qADN0HXpnv37l8gugAAiC5AxrBkyZKshQsXlgDU1tZO5G8CAADRBQAAAABAdAEAAAAAEF0AAAAAAEQXAAAAAADRBQAAAABAdAEAAAAA0QUAAAAAQHQBAAAAABBdAAAAAABEFwAAAAAA0QUAAAAAQHQBAAAAANEFAAAAAEB0AQAAAAAQXQAAAAAARBcAAAAAANEFAAAAAEB0AQAAAADRBQAAAABIK/5/8fGRPAdPbzIAAAAASUVORK5CYII=</Image>
+  </Images>
+</UADocument>

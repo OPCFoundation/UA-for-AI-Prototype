@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".\\\\clean-generated-doc-files.ps1\" -WhatIf)",
+      "Bash(powershell:*)"
+    ]
+  }
+}
