@@ -54,10 +54,18 @@ Features:
 - Vector embedding and indexing
 - RAG-based question answering
 
+### MCP Server (`Opc.Ua.McpServer/`)
+
+An MCP (Model Context Protocol) server that exposes OPC UA specification knowledge to AI assistants like Claude Code. See the [Opc.Ua.McpServer README](Opc.Ua.McpServer/README.md) for setup and Claude integration instructions.
+
+Tools:
+- `specificationQuery` - Answer questions about OPC UA specifications using RAG
+
 ### Demo Code
 
 - `HMI25-demo.py` - Demo code from Hannovermesse 2025, shown at the OPC Foundation Cloud conference
 - `run-publisher.sh` / `run-subscriber.sh` - Shell scripts for running OPC UA PubSub components
+- `Invoke-McpQuery.ps1` - PowerShell MCP client for querying specifications interactively
 
 ## Prerequisites
 

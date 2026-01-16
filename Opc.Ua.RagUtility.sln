@@ -4,6 +4,8 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opc.Ua.RagUtility", "Opc.Ua.RagUtility/Opc.Ua.RagUtility.csproj", "{43467013-3318-8844-BB1D-E129784EBBD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opc.Ua.McpServer", "Opc.Ua.McpServer/Opc.Ua.McpServer.csproj", "{8A5C4E2F-1B3D-4F6A-9E7C-2D8B5F0A3C1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,6 +16,10 @@ Global
 		{43467013-3318-8844-BB1D-E129784EBBD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43467013-3318-8844-BB1D-E129784EBBD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43467013-3318-8844-BB1D-E129784EBBD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A5C4E2F-1B3D-4F6A-9E7C-2D8B5F0A3C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A5C4E2F-1B3D-4F6A-9E7C-2D8B5F0A3C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A5C4E2F-1B3D-4F6A-9E7C-2D8B5F0A3C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A5C4E2F-1B3D-4F6A-9E7C-2D8B5F0A3C1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
