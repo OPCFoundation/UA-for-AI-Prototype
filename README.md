@@ -73,7 +73,17 @@ Tools:
 
 - `HMI25-demo.py` - Demo code from Hannovermesse 2025, shown at the OPC Foundation Cloud conference
 - `run-publisher.sh` / `run-subscriber.sh` - Shell scripts for running OPC UA PubSub components
-- `Invoke-McpQuery.ps1` - PowerShell MCP client for querying specifications interactively
+- `do-mcp-query.ps1` - PowerShell MCP client for querying specifications interactively
+
+The 'general-queries.txt' contains a set of default queries for do-mcp-query.ps1.
+
+```
+.\do-mcp-query.ps1 -InputFile general-queries.txt
+```
+Notes when building queries:
+* Extremely general queries (i.e. what is Part 8) don't work well;
+* The AI can be pendantic (i.e. asking for components of a type will return only targets of HasComponent);
+* If a spec does not have much general prose (Object Serialization) then generic questions like 'How to serialize an Object?' do not work. This could be addressed with FAQs for specifications tha can be added to the model.
 
 ## Prerequisites
 

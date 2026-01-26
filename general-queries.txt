@@ -1,0 +1,28 @@
+What is an AddressSpace
+What is the difference between ClientServer and PubSub
+Describe the 2 ways to subscribe to data
+What is a Certificate Authority
+How is communication secured with ClientServer
+What security threats is OPC UA designed to address
+What are modelling rules
+How is a MonitoredItem used
+What are the properties of ServerType
+What data encodings are supported by OPC UA
+How to determine the units like 'meters/sec' associated with a Variable value
+What state machines are in a an alarm object
+Describe the Program state model
+How can a client discover the how historical data is archived for a Variable
+What is a global discovery server and why is it used?
+What is the StartBound aggregate
+What is UADP?
+How to represent a finite state machine?
+What are the categories associated with an Alias used?
+What are the available identity mapping rules?
+How to associate an ISO/IEC 11179-6 identifier with a variable?
+How to represent a file system in OPC UA?
+What is contained in a device ticket?
+What are the Network Interface Types?
+What is the RepresentsSameEntityAs referenceType?
+What is a CalendarType?
+What is a Serilization Entity?
+What is a Log Object?
