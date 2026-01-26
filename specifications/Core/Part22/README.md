@@ -148,19 +148,23 @@ Figure 2 - Overview of Base Network Model
 
 This OPC UA Interface defines the basis of an IETF network interface. The *IIetfBaseNetworkInterfaceType* is formally defined in [Table 1](/§\_Ref33705915) .  
 
- **Table 1\- IIetfBaseNetworkInterfaceType definition**   
+Table 1 - IIetfBaseNetworkInterfaceType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IIetfBaseNetworkInterfaceType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseInterfaceType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|AdminStatus|InterfaceAdminStatus|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|OperStatus|InterfaceOperStatus|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|PhysAddress|String|BaseDataVariableType|Optional|
 |HasComponent|Variable|Speed|UInt64|AnalogUnitType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |BNM Ethernet Base Info|
   
 
@@ -176,22 +180,12 @@ This OPC UA Interface defines the basis of an IETF network interface. The *IIetf
 
 The component *Variables* of the *IIetfBaseNetworkInterfaceType* have the *Attribute* values defined in [Table 2](/§\_Ref46415184) .  
 
- **Table 2\- IIetfBaseNetworkInterfaceType Attribute values for child Nodes**   
+Table 2 - IIetfBaseNetworkInterfaceType Attribute values for child Nodes  
 
 | **Source Path** | **Value Attribute** | **Description Attribute** |
 |---|---|---|
-|Speed|
-|---|
-|EngineeringUnits|
+Speed|EngineeringUnits||NamespaceUri: http://www.opcfoundation.org/UA/units/un/cefact<br>UnitId: 4337968DisplayName: bit/sDescription: bit per second|\-|
   
-
-  
-
-NamespaceUri: http://www.opcfoundation.org/UA/units/un/cefact  
-
-UnitId: 4337968DisplayName: bit/sDescription: bit per second  
-
-\-  
 
   
 
@@ -199,18 +193,22 @@ UnitId: 4337968DisplayName: bit/sDescription: bit per second
 
 This OPC UA Interface defines capabilities of an Ethernet-based port. The *IIeeeBaseEthernetPortType* is formally defined in [Table 3](/§\_Ref33706004) .  
 
- **Table 3\- IIeeeBaseEthernetPortType definition**   
+Table 3 - IIeeeBaseEthernetPortType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IIeeeBaseEthernetPortType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseInterfaceType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|Speed|UInt64|AnalogUnitType|Mandatory|
 |HasComponent|Variable|Duplex|Duplex|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|MaxFrameLength|UInt16|BaseDataVariableType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |BNM Ethernet Base Info|
   
 
@@ -224,22 +222,12 @@ This OPC UA Interface defines capabilities of an Ethernet-based port. The *IIeee
 
 The component *Variables* of the *IIeeeBaseEthernetPortType* have the *Attribute* values defined in [Table 4](/§\_Ref26531010) .  
 
- **Table 4\- IIeeeBaseEthernetPortType Attribute values for child Nodes**   
+Table 4 - IIeeeBaseEthernetPortType Attribute values for child Nodes  
 
 | **Source Path** | **Value Attribute** | **Description Attribute** |
 |---|---|---|
-|Speed|
-|---|
-|EngineeringUnits|
+Speed|EngineeringUnits||NamespaceUri: http://www.opcfoundation.org/UA/units/un/cefact<br>UnitId: 4534832DisplayName: Mbit/sDescription: megabit per second|\-|
   
-
-  
-
-NamespaceUri: http://www.opcfoundation.org/UA/units/un/cefact  
-
-UnitId: 4534832DisplayName: Mbit/sDescription: megabit per second  
-
-\-  
 
   
 
@@ -247,16 +235,20 @@ UnitId: 4534832DisplayName: Mbit/sDescription: megabit per second
 
 This OPC UA Interface defines the auto negotiation status of an Ethernet-based port. The *IIeeeAutoNegotiationStatusType* is formally defined in [Table 5](/§\_Ref42159370) .  
 
- **Table 5\- IIeeeAutoNegotiationStatusType definition**   
+Table 5 - IIeeeAutoNegotiationStatusType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IIeeeAutoNegotiationStatusType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseInterfaceType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|NegotiationStatus|NegotiationStatus|BaseDataVariableType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |BNM AutoNeg|
   
 
@@ -268,16 +260,20 @@ This OPC UA Interface defines the auto negotiation status of an Ethernet-based p
 
 This OPC UA Interface defines if an Ethernet-based port is VLAN Tag capable. The *IBaseEthernetCapabilitiesType* is formally defined in [Table 6](/§\_Ref42159374) .  
 
- **Table 6\- IBaseEthernetCapabilitiesType definition**   
+Table 6 - IBaseEthernetCapabilitiesType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IBaseEthernetCapabilitiesType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseInterfaceType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|VlanTagCapable|Boolean|BaseDataVariableType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |BNM VLAN Capabilities|
   
 
@@ -289,16 +285,20 @@ When *VlanTagCapable* is true, the network interface supports the ability to tag
 
 This OPC UA Interface specifies a VLAN Id to be associated with a network interface. The IVlanIdType is formally defined in [Table 7](/§\_Ref82761869) .  
 
- **Table 7\- IVlanIdType definition**   
+Table 7 - IVlanIdType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IVlanIdType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Subtype of the BaseInterfaceType defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|VlanId|UInt16|BaseDataVariableType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |BNM IETF Interface Vlan Info|
   
 
@@ -310,18 +310,22 @@ This OPC UA Interface specifies a VLAN Id to be associated with a network interf
 
 This OPC UA Interface defines the content of an SrClass. The *ISrClassType* is formally defined in [Table 8](/§\_Ref42159402) .  
 
- **Table 8\- ISrClassType definition**   
+Table 8 - ISrClassType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ISrClassType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseInterfaceType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|Id|Byte|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|Priority|Byte|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|Vid|UInt16|BaseDataVariableType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Base Info|
   
 
@@ -337,20 +341,24 @@ This OPC UA Interface defines the content of an SrClass. The *ISrClassType* is f
 
 The *IIeeeBaseTsnStreamType* **contains *Variables* which are common for both TSN talkers and TSN listeners. They represent the configuration properties and diagnostic values like reservation status and failure codes of a TSN stream.** *IIeeeBaseTsnStreamType* is formally defined [Table 9](/§\_Ref46138946) .  
 
- **Table 9\- IIeeeBaseTsnStreamType definition**   
+Table 9 - IIeeeBaseTsnStreamType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IIeeeBaseTsnStreamType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseInterfaceType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|StreamId|Byte[8]|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|StreamName|String|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|State|TsnStreamState|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|AccumulatedLatency|UInt32|BaseDataVariableType|Optional|
 |HasComponent|Variable|SrClassId|Byte|BaseDataVariableType|Optional|
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Base Info|
   
 
@@ -372,18 +380,22 @@ Note: In the distributed configuration model the StreamId is typically generated
 
 This OPC UA Interface is used to represent the traffic specification of a TSN stream. The *IIeeeBaseTsnTrafficSpecificationType* is formally defined in [Table 10](/§\_Ref42159454) .  
 
- **Table 10\- IIeeeBaseTsnTrafficSpecificationType definition**   
+Table 10 - IIeeeBaseTsnTrafficSpecificationType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IIeeeBaseTsnTrafficSpecificationType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseInterfaceType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|MaxIntervalFrames|UInt16|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|MaxFrameSize|UInt32|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|Interval|UnsignedRationalNumber|BaseDataVariableType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Config|
   
 
@@ -401,19 +413,23 @@ The *MaxIntervalFrames* of *DataType* UInt16 Variable specifies the maximum numb
 
 This OPC UA Interface is used to represent the status of a TSN stream. The *IIeeeBaseTsnStatusStreamType* is formally defined in [Table 11](/§\_Ref42159505) .  
 
- **Table 11\- IIeeeBaseTsnStatusStreamType definition**   
+Table 11 - IIeeeBaseTsnStatusStreamType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IIeeeBaseTsnStatusStreamType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseInterfaceType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|TalkerStatus|TsnTalkerStatus|BaseDataVariableType|Optional|
 |HasComponent|Variable|ListenerStatus|TsnListenerStatus|BaseDataVariableType|Optional|
 |HasComponent|Variable|FailureCode|TsnFailureCode|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|FailureSystemIdentifier|Byte[][8]|BaseDataVariableType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Base Info|
   
 
@@ -431,17 +447,21 @@ This OPC UA Interface is used to represent the status of a TSN stream. The *IIee
 
 This OPC UA Interface is used to represent an interface configuration which is part of a TSN stream (on the end-device). The *IIeeeTsnInterfaceConfigurationType* is formally defined in [Table 12](/§\_Ref42159518) .  
 
- **Table 12\- IIeeeTsnInterfaceConfigurationType definition**   
+Table 12 - IIeeeTsnInterfaceConfigurationType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IIeeeTsnInterfaceConfigurationType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseInterfaceType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|MacAddress|String|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|InterfaceName|String|BaseDataVariableType|Optional|
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Config|
   
 
@@ -455,16 +475,20 @@ This OPC UA Interface is used to represent an interface configuration which is p
 
 This OPC UA Interface is used to represent a talker (sender) interface configuration of a TSN stream. The *IIeeeTsnInterfaceConfigurationTalkerType* is formally defined in [Table 13](/§\_Ref42159525) .  
 
- **Table 13\- IIeeeTsnInterfaceConfigurationTalkerType definition**   
+Table 13 - IIeeeTsnInterfaceConfigurationTalkerType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IIeeeTsnInterfaceConfigurationTalkerType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *IIeeeTsnInterfaceConfigurationType* defined in [5.2.10](/§\_Ref46240172)|
 |HasComponent|Variable|TimeAwareOffset|UInt32|BaseDataVariableType|Optional|
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Config|
   
 
@@ -476,16 +500,20 @@ This OPC UA Interface is used to represent a talker (sender) interface configura
 
 This OPC UA Interface is used to represent a listener (receiver) interface configuration of a TSN stream. The *IIeeeTsnInterfaceConfigurationListenerType* is formally defined in [Table 14](/§\_Ref42159547) .  
 
- **Table 14\- IIeeeTsnInterfaceConfigurationListenerType definition**   
+Table 14 - IIeeeTsnInterfaceConfigurationListenerType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IIeeeTsnInterfaceConfigurationListenerType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *IIeeeTsnInterfaceConfigurationType* defined in [5.2.10](/§\_Ref46240172)|
 |HasComponent|Variable|ReceiveOffset|UInt32|BaseDataVariableType|Optional|
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Config|
   
 
@@ -497,17 +525,21 @@ This OPC UA Interface is used to represent a listener (receiver) interface confi
 
 This OPC UA Interface is used to represent a MAC address based stream identification of a TSN stream. The *IIeeeTsnMacAddressType* is formally defined in [Table 15](/§\_Ref42159564) .  
 
- **Table 15\- IIeeeTsnMacAddressType definition**   
+Table 15 - IIeeeTsnMacAddressType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IIeeeTsnMacAddressType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseInterfaceType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|DestinationAddress|Byte[6]|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|SourceAddress|Byte[6]|BaseDataVariableType|Optional|
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Config|
   
 
@@ -521,17 +553,21 @@ This OPC UA Interface is used to represent a MAC address based stream identifica
 
 This OPC UA Interface is used to represent the VLAN configuration of a TSN stream. The *IIeeeTsnVlanTagType* is formally defined in [Table 16](/§\_Ref42159582) .  
 
- **Table 16\- IIeeeTsnVlanTagType definition**   
+Table 16 - IIeeeTsnVlanTagType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IIeeeTsnVlanTagType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseInterfaceType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|VlanId|UInt16|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|PriorityCodePoint|Byte|BaseDataVariableType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Config|
   
 
@@ -547,19 +583,23 @@ This OPC UA Interface is used to translate a priority label like PriorityLabel (
 
 Note: This UA Interface is typically used to form a mapping rule table containing a set of object entities implementing the *IPriorityMappingEntryType* . Each network interface supporting priority mapping can reference such a mapping table *Object* .  
 
- **Table 17\- IPriorityMappingEntryType definition**   
+Table 17 - IPriorityMappingEntryType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IPriorityMappingEntryType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseInterfaceType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|MappingUri|String|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|PriorityLabel|String|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|PriorityValue\_PCP|Byte|BaseDataVariableType|Optional|
 |HasComponent|Variable|PriorityValue\_DSCP|UInt32|BaseDataVariableType|Optional|
+  
 | **Conformance Units** |
+|---|
 |BNM Priority Mapping|
   
 
@@ -579,7 +619,7 @@ Note: This UA Interface is typically used to form a mapping rule table containin
 
 The *Duplex* is an enumeration representing the configured, negotiated, or actual duplex mode of an Ethernet interface (aDuplexStatus is defined in [IEEE 802.3-2022](/§IEEEStd802\_3) , 30.3.1.1.32, aDuplexStatus). The values of the *Duplex* *Enumeration* are defined in [Table 18](/§\_Ref31128845) .  
 
- **Table 18\- Duplex Values**   
+Table 18 - Duplex Values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -592,16 +632,20 @@ The *Duplex* is an enumeration representing the configured, negotiated, or actua
 
 Its representation in the *AddressSpace* is defined in [Table 19](/§\_Ref16854453) .  
 
- **Table 19\- Duplex Definition**   
+Table 19 - Duplex Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Duplex|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumValues|EnumValueType[]|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |BNM Ethernet Base Info|
   
 
@@ -611,7 +655,7 @@ Its representation in the *AddressSpace* is defined in [Table 19](/§\_Ref168544
 
 The *InterfaceAdminStatus* is an enumeration for the possible desired states of the network interface (ifAdminStatus is defined in [IETF RFC 2863](/§IETF\_RFC\_2863) : The Interfaces Group MIB - ifAdminStatus). The values of the *InterfaceAdminStatus* *Enumeration* are defined in [Table 20](/§\_Ref29910552) .  
 
- **Table 20\- InterfaceAdminStatus Values**   
+Table 20 - InterfaceAdminStatus Values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -624,16 +668,20 @@ The *InterfaceAdminStatus* is an enumeration for the possible desired states of 
 
 Its representation in the *AddressSpace* is defined in [Table 21](/§\_Ref32297665) .  
 
- **Table 21\- InterfaceAdminStatus Definition**   
+Table 21 - InterfaceAdminStatus Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|InterfaceAdminStatus|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumValues|EnumValueType[]|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |BNM Ethernet Base Info|
   
 
@@ -643,7 +691,7 @@ Its representation in the *AddressSpace* is defined in [Table 21](/§\_Ref322976
 
 The *InterfaceOperStatus* is an enumeration for the possible operational states of the network interface (ifOperStatus is defined in [IETF RFC 2863](/§IETF\_RFC\_2863) : The Interfaces Group MIB - ifOperStatus). The values of the *InterfaceOperStatus* *Enumeration* are defined in [Table 22](/§\_Ref29910554) .  
 
- **Table 22\- InterfaceOperStatus Values**   
+Table 22 - InterfaceOperStatus Values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -660,16 +708,20 @@ The *InterfaceOperStatus* is an enumeration for the possible operational states 
 
 Its representation in the *AddressSpace* is defined in [Table 23](/§\_Ref32297716) .  
 
- **Table 23\- InterfaceOperStatus Definition**   
+Table 23 - InterfaceOperStatus Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|InterfaceOperStatus|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumValues|EnumValueType[]|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |BNM Ethernet Base Info|
   
 
@@ -679,7 +731,7 @@ Its representation in the *AddressSpace* is defined in [Table 23](/§\_Ref322977
 
 The *NegotiationStatus* is an enumeration representing the status of the auto-negotiation protocol (aAutoNegAutoConfig is defined in [IEEE 802.3-2022](/§IEEEStd802\_3) , clause 30.6.1.1.4, aAutoNegAutoConfig). The values of the *NegotiationStatus Enumeration* are defined in [Table 24](/§\_Ref31128829) .  
 
- **Table 24\- NegotiationStatus Values**   
+Table 24 - NegotiationStatus Values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -694,16 +746,20 @@ The *NegotiationStatus* is an enumeration representing the status of the auto-ne
 
 Its representation in the *AddressSpace* is defined in [Table 25](/§\_Ref32297877) .  
 
- **Table 25\- NegotiationStatus Definition**   
+Table 25 - NegotiationStatus Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|NegotiationStatus|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumValues|EnumValueType[]|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |BNM AutoNeg|
   
 
@@ -713,7 +769,7 @@ Its representation in the *AddressSpace* is defined in [Table 25](/§\_Ref322978
 
 The *TsnFailureCode* is an *Enumeration* to provide detailed error information for failures occurring during TSN stream establishment (TSN Failure Codes are defined in [IEEE 802.1Qcc-2018](/§IEEE802\_1Qcc\_2018) , Table 46-15, TSN Failure Codes). The *TsnFailureCode Enumeration* is defined in [Table 26](/§\_Ref29904523) .  
 
- **Table 26\- TsnFailureCode values**   
+Table 26 - TsnFailureCode values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -749,16 +805,20 @@ The *TsnFailureCode* is an *Enumeration* to provide detailed error information f
 
 Its representation in the *AddressSpace* is defined in [Table 27](/§\_Ref32297941) .  
 
- **Table 27\- TsnFailureCode Definition**   
+Table 27 - TsnFailureCode Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TsnFailureCode|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumValues|EnumValueType[]|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Base Info|
   
 
@@ -770,7 +830,7 @@ The *TsnStreamState* is an enumeration representing the state of the configurati
 
 The default value is *Disabled* . The *TsnStreamState* *Enumeration* is defined in [Table 28](/§\_Ref29904430) .  
 
- **Table 28\- TsnStreamState Values**   
+Table 28 - TsnStreamState Values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -785,16 +845,20 @@ The default value is *Disabled* . The *TsnStreamState* *Enumeration* is defined 
 
 Its representation in the *AddressSpace* is defined in [Table 29](/§\_Ref32297930) .  
 
- **Table 29\- TsnStreamState Definition**   
+Table 29 - TsnStreamState Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TsnStreamState|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumValues|EnumValueType[]|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Base Info|
   
 
@@ -806,7 +870,7 @@ The *TsnTalkerStatus* is an enumeration representing the state of the TSN Talker
 
 The default value is *None* . The *TsnTalkerStatus* *Enumeration* is defined in [Table 30](/§\_Ref149604503) Table 30.  
 
- **Table 30\- TsnTalkerStatus Values**   
+Table 30 - TsnTalkerStatus Values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -819,16 +883,20 @@ The default value is *None* . The *TsnTalkerStatus* *Enumeration* is defined in 
 
 Its representation in the *AddressSpace* is defined in [Table 31](/§\_Ref149604504) Table 31.  
 
- **Table 31\- TsnTalkerStatus Definition**   
+Table 31 - TsnTalkerStatus Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TsnTalkerStatus|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumValues|EnumValueType[]|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Base Info|
   
 
@@ -840,7 +908,7 @@ The *TsnListenerStatus* is an enumeration representing the state of the TSN List
 
 The default value is *None* . The *TsnListenerStatus* *Enumeration* is defined in [Table 32](/§\_Ref149604505) Table 32.  
 
- **Table 32\- TsnListenerStatus Values**   
+Table 32 - TsnListenerStatus Values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -854,16 +922,20 @@ The default value is *None* . The *TsnListenerStatus* *Enumeration* is defined i
 
 Its representation in the *AddressSpace* is defined in [Table 33](/§\_Ref149604512) Table 33.  
 
- **Table 33\- TsnListenerStatus Definition**   
+Table 33 - TsnListenerStatus Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TsnListenerStatus|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumValues|EnumValueType[]|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Base Info|
   
 
@@ -875,7 +947,7 @@ The *ChassisIdSubtype* is an enumeration representing different types of chassis
 
 The *ChassisIdSubtype* *Enumeration* is defined in [Table 34](/§\_Ref149604528) .  
 
- **Table 34\- ChassisIdSubtype Values**   
+Table 34 - ChassisIdSubtype Values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -892,16 +964,20 @@ The *ChassisIdSubtype* *Enumeration* is defined in [Table 34](/§\_Ref149604528)
 
 Its representation in the *AddressSpace* is defined in [Table 35](/§\_Ref149604545) .  
 
- **Table 35\- ChassisIdSubtype Definition**   
+Table 35 - ChassisIdSubtype Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ChassisIdSubtype|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumValues|EnumValueType[]|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -915,7 +991,7 @@ The *PortIdSubtype* is an enumeration representing different types of port ident
 
 The *PortIdSubtype* *Enumeration* is defined in [Table 36](/§\_Ref149604562) .  
 
- **Table 36\- PortIdSubtype Values**   
+Table 36 - PortIdSubtype Values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -932,16 +1008,20 @@ The *PortIdSubtype* *Enumeration* is defined in [Table 36](/§\_Ref149604562) .
 
 Its representation in the *AddressSpace* is defined in [Table 37](/§\_Ref149604573) .  
 
- **Table 37\- PortIdSubtype Definition**   
+Table 37 - PortIdSubtype Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|PortIdSubtype|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumValues|EnumValueType[]|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -953,7 +1033,7 @@ The *ManAddrIfSubtype* is an enumeration representing different types of managem
 
 The *ManAddrIfSubtype* *Enumeration* is defined in [Table 38](/§\_Ref149604581) .  
 
- **Table 38\- ManAddrIfSubtype Values**   
+Table 38 - ManAddrIfSubtype Values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -967,16 +1047,20 @@ The *ManAddrIfSubtype* *Enumeration* is defined in [Table 38](/§\_Ref149604581)
 
 Its representation in the *AddressSpace* is defined in [Table 39](/§\_Ref149604591) .  
 
- **Table 39\- ManAddrIfSubtype Definition**   
+Table 39 - ManAddrIfSubtype Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ManAddrIfSubtype|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumValues|EnumValueType[]|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -994,36 +1078,34 @@ Its representation in the *AddressSpace* is defined in [Table 39](/§\_Ref149604
 
 This *Structure DataType* is used to represent an entry in the *PriorityMappingTableType* . The *PriorityMappingEntryType* is formally defined in [Table 40](/§\_Ref80891616) .  
 
- **Table 40\- PriorityMappingEntryType structure**   
+Table 40 - PriorityMappingEntryType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |PriorityMappingEntryType|Structure||
 |MappingUri|String|Named identifier of a well-known predefined set of priority labels.|
 |PriorityLabel|String|Textual representation of the desired transport priority.|
-|PriorityValue\_PCP|Byte|VLAN Tag based priority value.  
-
-*PriorityValue\_PCP* shall be a value between 0 and 7, or 0xFF.  
-
-The value 0xFF indicates the *PriorityValue\_PCP* is not used.|
-|PriorityValue\_DSCP|UInt32|IP header based priority value.  
-
-*PriorityValue\_DSCP* shall be a value between 0 and 63, or 0xFFFFFFFF.The value 0xFFFFFFFF indicates the *PriorityValue\_PCP* is not used.|
+|PriorityValue\_PCP|Byte|VLAN Tag based priority value.<br>*PriorityValue\_PCP* shall be a value between 0 and 7, or 0xFF.<br>The value 0xFF indicates the *PriorityValue\_PCP* is not used.|
+|PriorityValue\_DSCP|UInt32|IP header based priority value.<br>*PriorityValue\_DSCP* shall be a value between 0 and 63, or 0xFFFFFFFF.The value 0xFFFFFFFF indicates the *PriorityValue\_PCP* is not used.|
   
 
   
 
 Its representation in the *AddressSpace* is defined in [Table 41](/§\_Ref80891694) .  
 
- **Table 41\- PriorityMappingEntryType Definition**   
+Table 41 - PriorityMappingEntryType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|PriorityMappingEntryType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Structure DataType defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |BNM Priority Mapping 2|
   
 
@@ -1033,7 +1115,7 @@ Its representation in the *AddressSpace* is defined in [Table 41](/§\_Ref808916
 
 This *Structure DataType* represents the YANG list *management-address-tx-port* as defined in IEEE 802.1ABcu-2021. The *LldpManagementAddressTxPortType* is formally defined in [Table 42](/§\_Ref149604655) .  
 
- **Table 42\- LldpManagementAddressTxPortType structure**   
+Table 42 - LldpManagementAddressTxPortType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1052,15 +1134,19 @@ The *AddressSubtype* and *ManAddress* are mandatory. The *TxEnable* has the defa
 
 Its representation in the *AddressSpace* is defined in [Table 43](/§\_Ref149604667) .  
 
- **Table 43\- LldpManagementAddressTxPortType Definition**   
+Table 43 - LldpManagementAddressTxPortType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|LldpManagementAddressTxPortType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Structure DataType defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -1070,7 +1156,7 @@ Its representation in the *AddressSpace* is defined in [Table 43](/§\_Ref149604
 
 This *Structure DataType* is used to represent the YANG list management-address as defined in IEEE 802.1ABcu-2021. The *LldpManagementAddressType* is formally defined in [Table 44](/§\_Ref149604638) .  
 
- **Table 44\- LldpManagementAddressType structure**   
+Table 44 - LldpManagementAddressType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1087,15 +1173,19 @@ The *AddressSubtype* and *Address* are mandatory. The *IfSubtype* is an optional
 
 Its representation in the *AddressSpace* is defined in [Table 45](/§\_Ref149604677) .  
 
- **Table 45\- LldpManagementAddressType Definition**   
+Table 45 - LldpManagementAddressType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|LldpManagementAddressType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Structure DataType defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -1107,7 +1197,7 @@ Its representation in the *AddressSpace* is defined in [Table 45](/§\_Ref149604
 
 This *Structure DataType* is used to represent the YANG list remote-unknown-tlv as defined in IEEE 802.1ABcu-2021. The *LldpTlvType* is formally defined in [Table 46](/§\_Ref149604687) .  
 
- **Table 46\- LldpTlvType structure**   
+Table 46 - LldpTlvType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1122,15 +1212,19 @@ The *TlvType* and *TlvInfo* are mandatory.
 
 Its representation in the *AddressSpace* is defined in [Table 47](/§\_Ref149604693) .  
 
- **Table 47\- LldpTlvType Definition**   
+Table 47 - LldpTlvType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|LldpTlvType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Structure DataType defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -1142,7 +1236,7 @@ Its representation in the *AddressSpace* is defined in [Table 47](/§\_Ref149604
 
 The *LldpSystemCapabilitiesMap* *OptionSet* is based on UInt32. It is used to represent the bitmap for the capabilities of a system as defined in IEEE 802.1AB-2016. All possible options for the *LldpSystemCapabilitiesMap* are formally defined in [Table 48](/§\_Ref161610453) .  
 
- **Table 48\- LldpSystemCapabilitiesMap OptionSet**   
+Table 48 - LldpSystemCapabilitiesMap OptionSet  
 
 | **Value** | **Bit No.** | **Description** |
 |---|---|---|
@@ -1165,16 +1259,20 @@ All variables in the *LldpSystemCapabilitiesMap* *OptionSet* are per default set
 
 Its representation in the *AddressSpace* is defined in [Table 49](/§\_Ref161610620) .  
 
- **Table 49\- LldpSystemCapabilitiesMap OptionSet Definition**   
+Table 49 - LldpSystemCapabilitiesMap OptionSet Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|LldpSystemCapabilitiesMap|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of 0:UInt32 defined in [OPC 10000-5](/§UAPart5)|
 |0:HasProperty|Variable|OptionSetValues|0:LocalizedText[]|0:PropertyType||
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -1194,16 +1292,20 @@ Figure 3 - Instance Entry Points for Network Interfaces, Streams, Mapping Tables
 
 The *Resources* *Object* shall be used as the browse entry point for physical and logical resources of the device the *Server* is running on. It shall reside in the *Server* *Object* defined in [OPC 10000-5](/§UAPart5) . It can contain a set of *Organizes* References that point to other *Objects* representing specific resources. It is formally defined in [Table 50](/§\_Ref29993695) .  
 
- **Table 50\- Resources definition**   
+Table 50 - Resources definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Resources|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |ComponentOf of the Server Object defined in Part 5.|
 |HasTypeDefinition|ObjectType|FolderType||
 |Organizes|Object|Communication|Defined in [5.4.2](/§\_Ref29994562)|
+  
 | **Conformance Units** |
+|---|
 |BNM Entry Points|
   
 
@@ -1227,18 +1329,22 @@ Additionally, the *Communication* *Object* may include the LLDP instance.
 
 It is recommended to keep TSN-Streams and possible future (DetNet-)Flows separated in specific folders.  
 
- **Table 51\- Communication definition**   
+Table 51 - Communication definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Communication|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |HasTypeDefinition|ObjectType|FolderType||
 |Organizes|Object|MappingTables|Defined in [5.4.3](/§\_Ref51855257)|
 |Organizes|Object|NetworkInterfaces|Defined in [5.4.4](/§\_Ref29993802)|
 |Organizes|Object|Streams|Defined in [5.4.5](/§\_Ref31129005)|
 |Organizes|Object|LLDP|Defined in [5.4.8](/§\_Ref149604810)|
+  
 | **Conformance Units** |
+|---|
 |BNM Entry Points|
   
 
@@ -1248,14 +1354,18 @@ It is recommended to keep TSN-Streams and possible future (DetNet-)Flows separat
 
 The *MappingTables* *Object* shall be used as the browse entry point for mapping tables of priority values and their application labels. It is formally defined in [Table 52 - MappingTables definition](/§\_Ref149604897) . All instances of the *PriorityMappingTableType* shall be referenced from this *Object* , either directly or indirectly, following hierarchical References.  
 
- **Table 52\- MappingTables definition**   
+Table 52 - MappingTables definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|MappingTables|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |HasTypeDefinition|ObjectType|FolderType||
+  
 | **Conformance Units** |
+|---|
 |BNM Mapping Entry Points|
   
 
@@ -1267,14 +1377,18 @@ The *MappingTables* *Object* shall be used as the browse entry point for mapping
 
 The *NetworkInterfaces* *Object* shall be used as the browse entry point for network interfaces of the device the *Server* is running on. It is formally defined in [Table 53](/§\_Ref29993719) .  
 
- **Table 53\- NetworkInterfaces definition**   
+Table 53 - NetworkInterfaces definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|NetworkInterfaces|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |HasTypeDefinition|ObjectType|FolderType||
+  
 | **Conformance Units** |
+|---|
 |BNM Entry Points|
   
 
@@ -1290,16 +1404,20 @@ All *Objects* of Type *IetfBaseNetworkInterfaceType* within the *NetworkInterfac
 
 The *Streams* *Object* shall be used as the browse entry point for network streams of the device the *Server* is running on. It is formally defined in [Table 54](/§\_Ref29994190) .  
 
- **Table 54\- Streams definition**   
+Table 54 - Streams definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Streams|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |HasTypeDefinition|ObjectType|FolderType||
 |Organizes|Object|TalkerStreams|Defined in [5.4.6](/§\_Ref32344289)|
 |Organizes|Object|ListenerStreams|Defined in [5.4.7](/§\_Ref32344293)|
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Entry Points|
   
 
@@ -1309,14 +1427,18 @@ The *Streams* *Object* shall be used as the browse entry point for network strea
 
 The *TalkerStreams* *Object* shall be used as the browse entry point for sending network streams of the device the *Server* is running on. It is formally defined in [Table 55](/§\_Ref32344396) .  
 
- **Table 55\- TalkerStreams definition**   
+Table 55 - TalkerStreams definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TalkerStreams|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |HasTypeDefinition|ObjectType|FolderType||
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Entry Points|
   
 
@@ -1326,14 +1448,18 @@ The *TalkerStreams* *Object* shall be used as the browse entry point for sending
 
 The *ListenerStreams* *Object* shall be used as the browse entry point for receiving network streams of the device the *Server* is running on. It is formally defined in [Table 56](/§\_Ref32344438) .  
 
- **Table 56\- ListenerStreams definition**   
+Table 56 - ListenerStreams definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ListenerStreams|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |HasTypeDefinition|ObjectType|FolderType||
+  
 | **Conformance Units** |
+|---|
 |BNM TSN Entry Points|
   
 
@@ -1343,14 +1469,18 @@ The *ListenerStreams* *Object* shall be used as the browse entry point for recei
 
 The *LLDP* *Information* *Object* shall be used as the single browse entry point for all LLDP information represented in the *Server* running on the device. It is formally defined in [Table 57](/§\_Ref140593913) .  
 
- **Table 57\- LLDP definition**   
+Table 57 - LLDP definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|LLDP|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |HasTypeDefinition|ObjectType|LldpInformationType||
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -1380,13 +1510,15 @@ Figure 4 - IetfBaseNetworkInterfaceType
 
 The *IetfBaseNetworkInterfaceType* is formally defined in [Table 58](/§\_Ref73352069) .  
 
- **Table 58\- IetfBaseNetworkInterfaceType definition**   
+Table 58 - IetfBaseNetworkInterfaceType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IetfBaseNetworkInterfaceType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType|
 |||||||
 |HasInterface|ObjectType|IIetfBaseNetworkInterfaceType||||
@@ -1397,7 +1529,9 @@ The *IetfBaseNetworkInterfaceType* is formally defined in [Table 58](/§\_Ref733
 |HasComponent|Variable|Speed|UInt64|AnalogUnitType|M|
 |||||||
 |HasLowerLayerInterface|Object|\<InterfaceName\>||BaseObjectType|OP|
+  
 | **Conformance Units** |
+|---|
 |BNM IETF Interface Base Info|
   
 
@@ -1421,28 +1555,18 @@ Note: An example for a simplified PubSub connection is shown in Annex [A.2](/§\
 
 The components of the *IetfBaseNetworkInterfaceType* have the *Attribute* values defined in [Table 59](/§\_Ref83038889) .  
 
- **Table 59\- IetfBaseNetworkInterfaceType Attribute values for child Nodes**   
+Table 59 - IetfBaseNetworkInterfaceType Attribute values for child Nodes  
 
 | **Source Path** | **Value Attribute** | **Description Attribute** |
 |---|---|---|
-|Speed|
-|---|
-|EngineeringUnits|
+Speed|EngineeringUnits||NamespaceUri: http://www.opcfoundation.org/UA/units/un/cefact<br>UnitId: 4337968DisplayName: bit/sDescription: bit per second|\-|
   
-
-  
-
-NamespaceUri: http://www.opcfoundation.org/UA/units/un/cefact  
-
-UnitId: 4337968DisplayName: bit/sDescription: bit per second  
-
-\-  
 
   
 
 The components of the *IetfBaseNetworkInterfaceType* have additional *References* which are defined in [Table 60](/§\_Ref16283617) .  
 
- **Table 60\- IetfBaseNetworkInterfaceType Additional References**   
+Table 60 - IetfBaseNetworkInterfaceType Additional References  
 
 | **SourceBrowsePath** | **Reference Type** | **Is Forward** | **TargetBrowsePath** |
 |---|---|---|---|
@@ -1465,18 +1589,22 @@ Figure 5 - PriorityMappingTableType
 
 The *PriorityMappingTableType* is formally defined in [Table 61](/§\_Ref83038961) .  
 
- **Table 61\- PriorityMappingTableType definition**   
+Table 61 - PriorityMappingTableType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|PriorityMappingTableType|
 |IsAbstract|False|
+  
 | **References** | **Node**  **Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|PriorityMapppingEntries|PriorityMappingEntryType[]|PropertyType|M|
 |HasComponent|Method|AddPriorityMappingEntry|Defined in [5.5.2.3](/§\_Ref83038739)|O|
 |HasComponent|Method|DeletePriorityMappingEntry|Defined in [5.5.2.4](/§\_Ref83038746)|O|
+  
 | **Conformance Units** |
+|---|
 |BNM Priority Mapping 2|
   
 
@@ -1514,7 +1642,7 @@ The signature of this *Method* is specified below. [Table 62](/§\_Ref83039291) 
 
  **);**   
 
- **Table 62\- AddPriorityMappingEntry Method arguments**   
+Table 62 - AddPriorityMappingEntry Method arguments  
 
 | **Argument** | **Description** |
 |---|---|
@@ -1528,7 +1656,7 @@ The signature of this *Method* is specified below. [Table 62](/§\_Ref83039291) 
 
 The possible *Method* result codes are defined in [Table 63](/§\_Ref83039224) .  
 
- **Table 63\- AddPriorityMappingEntry Method result codes**   
+Table 63 - AddPriorityMappingEntry Method result codes  
 
 | **ResultCode** | **Description** |
 |---|---|
@@ -1539,12 +1667,16 @@ The possible *Method* result codes are defined in [Table 63](/§\_Ref83039224) .
 
   
 
- **Table 64\- AddPriorityMappingEntry Method AddressSpace definition**   
+Table 64 - AddPriorityMappingEntry Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
+  
 |BrowseName| **AddPriorityMappingEntry** |
+|---|---|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|InputArguments|Argument[]|PropertyType|M|
   
 
@@ -1566,7 +1698,7 @@ The signature of this *Method* is specified below. [Table 65](/§\_Ref83039595) 
 
  **);**   
 
- **Table 65\- DeletePriorityMappingEntry Method arguments**   
+Table 65 - DeletePriorityMappingEntry Method arguments  
 
 | **Argument** | **Description** |
 |---|---|
@@ -1578,7 +1710,7 @@ The signature of this *Method* is specified below. [Table 65](/§\_Ref83039595) 
 
 The possible *Method* result codes are defined in [Table 66](/§\_Ref83039531) .  
 
- **Table 66\- DeletePriorityMappingEntry Method result codes**   
+Table 66 - DeletePriorityMappingEntry Method result codes  
 
 | **ResultCode** | **Description** |
 |---|---|
@@ -1589,12 +1721,16 @@ The possible *Method* result codes are defined in [Table 66](/§\_Ref83039531) .
 
   
 
- **Table 67\- DeletePriorityMappingEntry Method AddressSpace definition**   
+Table 67 - DeletePriorityMappingEntry Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
+  
 |BrowseName| **DeletePriorityMappingEntry** |
+|---|---|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|InputArguments|Argument[]|PropertyType|M|
   
 
@@ -1612,20 +1748,24 @@ Figure 6 - LldpInformationType
 
 The *LldpInformationType* is formally defined in [Table 68](/§\_Ref140594114) .  
 
- **Table 68\- LldpInformationType definition**   
+Table 68 - LldpInformationType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|LldpInformationType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType|
 |||||||
 |HasComponent|Object|RemoteStatistics||LldpRemoteStatisticsType|O|
 |HasComponent|Object|LocalSystemData||LldpLocalSystemType|M|
 |HasComponent|Object|Ports||FolderType|M|
 |||||||
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -1641,7 +1781,7 @@ The *LldpInformationType* is formally defined in [Table 68](/§\_Ref140594114) .
 
 The components of the *LldpInformationType* have additional subcomponents, which are defined in [Table 69](/§\_Ref163049681) .  
 
- **Table 69\- LldpInformationType Addtional Components**   
+Table 69 - LldpInformationType Addtional Components  
 
 | **BrowsePath** | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
 |---|---|---|---|---|---|---|
@@ -1656,13 +1796,15 @@ The components of the *LldpInformationType* have additional subcomponents, which
 
 The *LldpRemoteStatisticsType* is formally defined in [Table 70](/§\_Ref149604960) .  
 
- **Table 70\- LldpRemoteStatisticsType definition**   
+Table 70 - LldpRemoteStatisticsType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|LldpRemoteStatisticsType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType|
 |||||||
 |HasComponent|Variable|LastChangeTime|UInt32|BaseDataVariableType|M|
@@ -1671,7 +1813,9 @@ The *LldpRemoteStatisticsType* is formally defined in [Table 70](/§\_Ref1496049
 |HasComponent|Variable|RemoteDrops|UInt32|BaseDataVariableType|M|
 |HasComponent|Variable|RemoteAgeouts|UInt32|BaseDataVariableType|M|
 |||||||
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -1697,13 +1841,15 @@ RemoteAgeouts defines the number of times information aged out from the *LldpRem
 
 The *LldpLocalSystemType* is formally defined in [Table 71](/§\_Ref149604973) .  
 
- **Table 71\- LldpLocalSystemType definition**   
+Table 71 - LldpLocalSystemType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|LldpLocalSystemType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType|
 |||||||
 |HasProperty|Variable|ChassisIdSubtype|ChassisIdSubtype|PropertyType|M|
@@ -1713,7 +1859,9 @@ The *LldpLocalSystemType* is formally defined in [Table 71](/§\_Ref149604973) .
 |HasProperty|Variable|SystemCapabilitiesSupported|LldpSystemCapabilitiesMap|PropertyType|O|
 |HasProperty|Variable|SystemCapabilitiesEnabled|LldpSystemCapabilitiesMap|PropertyType|O|
 |||||||
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -1737,13 +1885,15 @@ The *LldpLocalSystemType* is formally defined in [Table 71](/§\_Ref149604973) .
 
 The *LldpPortInformationType* is formally defined in [Table 72](/§\_Ref149604983) .  
 
- **Table 72\- LldpPortInformationType definition**   
+Table 72 - LldpPortInformationType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|LldpPortInformationType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType|
 |||||||
 |HasProperty|Variable|IetfBaseNetworkInterfaceName|String|PropertyType|M|
@@ -1754,7 +1904,9 @@ The *LldpPortInformationType* is formally defined in [Table 72](/§\_Ref14960498
 |HasProperty|Variable|ManagementAddressTxPort|LldpManagementAddressTxPortType[]|PropertyType|O|
 |HasComponent|Object|RemoteSystemsData||FolderType|O|
 |||||||
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -1778,7 +1930,7 @@ ManagementAddressTxPort defines the set of ports (represented as a List of *Type
 
 The components of the *LldpInformationType* have additional subcomponents, which are defined in [Table 73](/§\_Ref163052830) .  
 
- **Table 73\- LldpPortInformationType additional subcomponents**   
+Table 73 - LldpPortInformationType additional subcomponents  
 
 | **BrowsePath** | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
 |---|---|---|---|---|---|---|
@@ -1791,13 +1943,15 @@ The components of the *LldpInformationType* have additional subcomponents, which
 
 The *LldpRemoteSystemType* is formally defined in [Table 74](/§\_Ref149604991) .  
 
- **Table 74\- LldpRemoteSystemType definition**   
+Table 74 - LldpRemoteSystemType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|LldpRemoteSystemType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType|
 |||||||
 |HasComponent|Variable|TimeMark|UInt32|BaseDataVariableType|M|
@@ -1816,7 +1970,9 @@ The *LldpRemoteSystemType* is formally defined in [Table 74](/§\_Ref149604991) 
 |HasComponent|Variable|ManagementAddress|LldpManagementAddressType[]|BaseDataVariableType|O|
 |HasComponent|Variable|RemoteUnknownTlv|LldpTlvType[]|BaseDataVariableType|O|
 |||||||
+  
 | **Conformance Units** |
+|---|
 |BNM IEEE LLDP Info|
   
 
@@ -1870,7 +2026,7 @@ The *TargetNode* of this *ReferenceType* shall be an instance of *PriorityMappin
 
 The *UsesPriorityMappingTable ReferenceType* is formally defined in [Table 75](/§\_Ref83039823) .  
 
- **Table 75\- UsesPriorityMappingTable definition**   
+Table 75 - UsesPriorityMappingTable definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -1878,9 +2034,13 @@ The *UsesPriorityMappingTable ReferenceType* is formally defined in [Table 75](/
 |InverseName|UsedByNetworkInterface|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of the NonHierarchicalReferences ReferenceType defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |BNM Priority Mapping 2|
   
 
@@ -1900,7 +2060,7 @@ The *TargetNode* of this *ReferenceType* shall be an *Object* organized in the *
 
 The *HasLowerLayerInterface* *ReferenceType* is formally defined in [Table 76](/§\_Ref83039868) .  
 
- **Table 76\- HasLowerLayerInterface ** definition**   
+Table 76 - HasLowerLayerInterface definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -1908,9 +2068,13 @@ The *HasLowerLayerInterface* *ReferenceType* is formally defined in [Table 76](/
 |InverseName|HasHigherLayerInterface|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of the HierarchicalReferences ReferenceType defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |BNM IETF Interface Base Info|
   
 
@@ -1932,7 +2096,7 @@ Note: The usage of the *References* is following the YANG modelling approach whi
 
 ![image010.png](images/image010.png)  
 
-Figure A- 1 - Modelling Example for virtual network interfaces  
+Figure A - 1 - Modelling Example for virtual network interfaces  
 
   
 
@@ -1942,7 +2106,7 @@ A link aggregation configuration can be represented by *Objects* representing th
 
 ![image011.png](images/image011.png)  
 
-Figure A- 2 - Modelling example for link aggregation  
+Figure A - 2 - Modelling example for link aggregation  
 
   
 
@@ -1954,7 +2118,7 @@ When using PubSub, each PubSubConnection as defined by the *PubSubConnectionData
 
 ![image012.png](images/image012.png)  
 
-Figure A- 3 - Modelling Example for PriorityMappingTableType and IetfBaseNetworkInterface  
+Figure A - 3 - Modelling Example for PriorityMappingTableType and IetfBaseNetworkInterface  
 
   
 
@@ -1964,7 +2128,7 @@ The *LldpPortInformationType* is connected to the associated *Object* of type *I
 
 ![image013.png](images/image013.png)  
 
-Figure A- 4 - Connection between LLDP and IetfInterfaces  
+Figure A - 4 - Connection between LLDP and IetfInterfaces  
 
   
 
@@ -1976,7 +2140,7 @@ LLDP exchanges information of the local system and its direct peers in the netwo
 
 ![image014.png](images/image014.png)  
 
-Figure A- 5 - Topology Discovery via LLDP  
+Figure A - 5 - Topology Discovery via LLDP  
 
   
 
@@ -1990,7 +2154,7 @@ An example using the BNM for PubSub over TSN is shown in [Figure A-6](/§\_Ref17
 
 ![image015.png](images/image015.png)  
 
-Figure A- 6 - Possible Integration of BNM into PubSub  
+Figure A - 6 - Possible Integration of BNM into PubSub  
 
 #### A.5.2 Usage of BNM in PROFINET Companion Spec  
 
@@ -1998,7 +2162,7 @@ An example is shown in [Figure A-7](/§\_Ref46139100) .
 
 ![image016.png](images/image016.png)  
 
-Figure A- 7 - Recommended Integration of BNM into Companion Spec exemplified by PROFINET  
+Figure A - 7 - Recommended Integration of BNM into Companion Spec exemplified by PROFINET  
 
 \_\_\_\_\_\_\_\_\_\_\_  
 

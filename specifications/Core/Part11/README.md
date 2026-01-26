@@ -220,7 +220,7 @@ When making a request for historical data using the *HistoryRead* *Service* , th
 
 In some cases, attempting to locate bounds, particularly FIRST or LAST points, can be resource intensive for *Servers* . Therefore, how far back or forward to look in history for Bounding Values is *Server* dependent, and the *Server* search limits can be reached before a bounding value can be found. There are also cases, such as reading *Annotations* or *Attribute* data where Bounding Values may not be appropriate. For such use cases it is permissible for the *Server* to return a *StatusCode* of *Bad\_BoundNotSupported.*  
 
- **Table 1\- Bounding Value examples**   
+Table 1 - Bounding Value examples  
 
 | **Start Time** | **End Time** | **numValuesPerNode** | **Bounds** | **Data Returned** |
 |---|---|---|---|---|
@@ -273,11 +273,7 @@ In some cases, attempting to locate bounds, particularly FIRST or LAST points, c
 |5:01|5:01|0|No|NODATA|
 |5:01|5:01|1|Yes|5:00|
 |5:01|5:01|1|No|NODATA|
-|a The timestamp of LAST cannot be the specified End Time because there is no specified End Time. In this situation the timestamp for LAST will be equal to the previous timestamp returned plus one second.  
-
-b The timestamp of FIRST cannot be the specified End Time because there is no specified Start Time. In this situation the timestamp for FIRST will be equal to the previous timestamp returned minus one second.  
-
-c When the Start Time = End Time (there is data at that time), and Bounds is set to True, the start bounds will equal the Start Time and the next data point will be used for the end bounds.|
+|a The timestamp of LAST cannot be the specified End Time because there is no specified End Time. In this situation the timestamp for LAST will be equal to the previous timestamp returned plus one second.<br>b The timestamp of FIRST cannot be the specified End Time because there is no specified Start Time. In this situation the timestamp for FIRST will be equal to the previous timestamp returned minus one second.<br>c When the Start Time = End Time (there is data at that time), and Bounds is set to True, the start bounds will equal the Start Time and the next data point will be used for the end bounds.|
   
 
   
@@ -306,12 +302,14 @@ The Historical Access model defines additional *Properties* that are applicable 
 
 The *DataVariable* or *Object* that has *Annotation* data will add the *Annotations Property* as shown in [Table 2](/§\_Ref114297294) .  
 
- **Table 2\- Annotations Property**   
+Table 2 - Annotations Property  
 
 | **Name** | **Use** | **Data Type** | **Description** |
 |---|---|---|---|
 |Annotations|O|Annotation|The *Annotations* *Property* is used to indicate that the history collection exposed by a *HistoricalDataNode supports Annotation* data. *Annotation* *DataType* is defined in [6.6.6](/§\_Ref487036926) .|
+  
 | **ConformanceUnits** |
+|---|
 |[Historical Access Annotations](https://profiles.opcfoundation.org/conformanceunit/2276)|
   
 
@@ -345,13 +343,15 @@ The Historical Access Data model extends the standard type model by defining the
 
 *Instances* of the *HistoricalDataConfigurationType* use the standard *BrowseName* as defined in [5.2.4](/§\_Ref129412931) .  
 
- **Table 3\- HistoricalDataConfigurationType definition**   
+Table 3 - HistoricalDataConfigurationType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HistoricalDataConfigurationType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasComponent|Object|AggregateConfiguration|\--|AggregateConfigurationType|Mandatory|
 |HasComponent|Object|AggregateFunctions|\--|FolderType|Optional|
 |HasProperty|Variable|Stepped|Boolean|PropertyType|Mandatory|
@@ -365,7 +365,9 @@ The Historical Access Data model extends the standard type model by defining the
 |HasProperty|Variable|ServerTimestampSupported|Boolean|PropertyType|Optional|
 |HasProperty|Variable|MaxTimeStoredValues|Duration|PropertyType|Optional|
 |HasProperty|Variable|MaxCountStoredValues|UInt32|PropertyType|Optional|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access Exception Storage|
 |Historical Access Periodic Storage|
 |Historical Access Default HistoricalData Configuration|
@@ -406,7 +408,7 @@ The MaxCountStoredValues is the maximum number of values that can be stored for 
 
 Typically, either MaxTimeStoredValues or MaxCountStoredValues is provided, if both are provided the smaller of the two applies. E.g. if 3 hours are specified and 10,000 values, then for a slowly changing point the 3 hour would be the cut off, but for a point that change more than once a second the 10,000 values would be encountered first.  
 
- **Table 4\- ExceptionDeviationFormat Items**   
+Table 4 - ExceptionDeviationFormat Items  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -421,16 +423,20 @@ Typically, either MaxTimeStoredValues or MaxCountStoredValues is provided, if bo
 
 Its representation in the AddressSpace is defined in [Table 58](/§\_Ref46498546) .  
 
- **Table 5\- ExceptionDeviationFormat definition**   
+Table 5 - ExceptionDeviationFormat definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ExceptionDeviationFormat|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the 0:Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |0:HasProperty|Variable|0:EnumStrings|0:LocalizedText []|0:PropertyType||
+  
 | **Conformance Units** |
+|---|
 |Historical Access Exception Storage|
   
 
@@ -450,15 +456,15 @@ Subclause 5.2.6 lists the *Attributes* of *Variables* that have particular impor
 
 This *Object* is used as the browse entry point for information about *HistoricalDataNode* configuration. The content of this *Object* is already defined by its type definition in [Table 3](/§\_Ref243896345) . It is formally defined in [Table 6](/§\_Ref129412658) . If a *HistoricalDataNode* has configuration defined then one instance shall have a *BrowseName* of 'HA Configuration'. Additional configurations can be defined with different *BrowseNames* . It is highly recommended that display names for historical configuration historical configuration are chosen that clearly describe the historical configuration e.g. "1 Second Collection", "Long Term Configuration", etc. All historical configuration *Objects* shall be referenced using the *HasHistoricalConfiguration* *ReferenceType* .  
 
- **Table 6\- Historical Access configuration definition**   
+Table 6 - Historical Access configuration definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HA Configuration|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
-|HasTypeDefinition|Object  
-
-Type|HistoricalDataConfigurationType|Defined in [Table 3](/§\_Ref243896345)|
+|---|---|---|---|---|---|
+|HasTypeDefinition|Object<br>Type|HistoricalDataConfigurationType|Defined in [Table 3](/§\_Ref243896345)|
 ||
   
 
@@ -482,7 +488,7 @@ This *ReferenceType* is a concrete *ReferenceType* that can be used directly. It
 
 The semantic indicates that the target *Node* is "used" by the source *Node* of the *Reference* . Its representation in the *AddressSpace* is specified in [Table 7](/§\_Ref216770749) .  
 
- **Table 7\- HasHistoricalConfiguration ReferenceType**   
+Table 7 - HasHistoricalConfiguration ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -490,9 +496,13 @@ The semantic indicates that the target *Node* is "used" by the source *Node* of 
 |InverseName|HistoricalConfigurationOf|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |The subtype of Aggregates *ReferenceType* is defined in [OPC 10000-5](/§) .|
+  
 | **ConformanceUnits** |
+|---|
 |[Historical Access Read Raw](https://profiles.opcfoundation.org/conformanceunit/2665)|
 |[Historical Access Time Instance](https://profiles.opcfoundation.org/conformanceunit/3020)|
 |[Historical Access Aggregates](https://profiles.opcfoundation.org/conformanceunit/3574)|
@@ -507,7 +517,7 @@ This *ReferenceType* is a concrete *ReferenceType* that can be used directly. It
 
 Its representation in the *AddressSpace* is specified in [Table 8](/§\_Ref130424623) . The *Source* node of this reference type shall be a *HistoricalDataNode.* The *Target* node shall be any *Variable* or *Property*  
 
- **Table 8\- HasCurrentData ReferenceType**   
+Table 8 - HasCurrentData ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -515,9 +525,13 @@ Its representation in the *AddressSpace* is specified in [Table 8](/§\_Ref13042
 |InverseName|HasHistoricalData|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |The subtype of NonHierarchicalReferences *ReferenceType* is defined in [OPC 10000-5](/§) .|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access HasCurrentData|
 ||
   
@@ -530,7 +544,7 @@ This *ReferenceType* is a concrete *ReferenceType* that can be used directly. It
 
 Its representation in the *AddressSpace* is specified in [Table 9](/§\_Ref139142669) . The *Source* node of this reference type shall be a *HistoricalEventNode.* The *Target* node shall be any *Object* or *View* that has the *EventNotifier Attribute* set to TRUE.  
 
- **Table 9\- HasCurrentEvent ReferenceType**   
+Table 9 - HasCurrentEvent ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -538,9 +552,13 @@ Its representation in the *AddressSpace* is specified in [Table 9](/§\_Ref13914
 |InverseName|HasHistoricalEvent|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |The subtype of NonHierarchicalReferences *ReferenceType* is defined in [OPC 10000-5](/§) .|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access HasCurrentEvent|
 ||
   
@@ -565,14 +583,14 @@ The *HistoricalEventFilter* can change over time so a *Client* can specify any f
 
 A *HistoricalEventNode* that has *Event* history available shall provide the *Property* . This *Property* is formally defined in [Table 10](/§\_Ref244351644) .  
 
- **Table 10\- Standard Historical Events Properties**   
+Table 10 - Standard Historical Events Properties  
 
 | **Name** | **Use** | **Data Type** | **Description** |
 |---|---|---|---|
-|HistoricalEventFilter|M|EventFilter|A filter used by the *Server* to determine which *Event* fields are available in history. It also includes a where clause that indicates the types of *Events* or restrictions on the *Events* that are available via the *HistoricalEventNode.*  
-
-The *HistoricalEventFilter* *Property* can be used as a guideline for what *Event* fields the *Historian* is currently storing. But this field may have no bearing on what *Event* fields the *Historian* is capable of storing or what was stored in the past.|
+|HistoricalEventFilter|M|EventFilter|A filter used by the *Server* to determine which *Event* fields are available in history. It also includes a where clause that indicates the types of *Events* or restrictions on the *Events* that are available via the *HistoricalEventNode.*<br>The *HistoricalEventFilter* *Property* can be used as a guideline for what *Event* fields the *Historian* is currently storing. But this field may have no bearing on what *Event* fields the *Historian* is capable of storing or what was stored in the past.|
+  
 | **ConformanceUnits** |
+|---|
 |[Historical Access Events](https://profiles.opcfoundation.org/conformanceunit/2947)|
 ||
   
@@ -585,18 +603,22 @@ The Historical Access Event model extends the standard type model by defining th
 
 Instances of this type shall be referenced by a *HistoricalEventNode* using the *HasHistoricalConfiguration* *ReferenceType* where the source node is the *HistoricalEventNode* and the destination node is the instance.  
 
- **Table 11\- HistoricalEventConfigurationType definition**   
+Table 11 - HistoricalEventConfigurationType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HistoricalEventConfigurationType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasComponent|Object|EventTypes|\--|FolderType|Mandatory|
 |HasProperty|Variable|StartOfArchive|UtcTime|PropertyType|Optional|
 |HasProperty|Variable|StartOfOnlineArchive|UtcTime|PropertyType|Optional|
 |HasProperty|Variable|SortByEventFields|SimpleAttributeOperand[]|PropertyType|Optional|
+  
 | **ConformanceUnits** |
+|---|
 |[Historical Access Events](https://profiles.opcfoundation.org/conformanceunit/2947)|
   
 
@@ -634,13 +656,15 @@ Some *Historians* collect information from other OPC UA *Servers.* The *Historia
 
 Instances of this *ObjectType* are used in a *Historian* to indicate the historical collection related details of an event stream that is being sourced from another OPC UA *Server* . An instance of this *ObjectType* shall include a *HasCurrentEvent* reference to the remote *Server* *Object* that is the source of the *Events* that are being collected.  
 
- **Table 12\- HistoricalExternalEventSourceType definition**   
+Table 12 - HistoricalExternalEventSourceType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HistoricalExternalEventSourceType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|Server|String|PropertyType|Optional|
 |HasProperty|Variable|EndpointUrl|String|PropertyType|Optional|
 |HasProperty|Variable|SecurityMode|MessageSecurityMode|PropertyType|Optional|
@@ -648,7 +672,9 @@ Instances of this *ObjectType* are used in a *Historian* to indicate the histori
 |HasProperty|Variable|IdentityTokenPolicy|UserTokenPolicy|PropertyType|Optional|
 |HasProperty|Variable|TransportProfileUri|String|PropertyType|Optional|
 |HasProperty|Variable|HistoricalEventFilter|EventFilter|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access External Event Source|
   
 
@@ -756,13 +782,15 @@ The content of this *BaseObjectType* is already defined by its type definition i
 
 These properties are intended to inform a *Client* of the general capabilities of the *Server* . They do not guarantee that all capabilities will be available for all *Nodes* . For example, not all *Nodes* will support *Events* , or in the case of an aggregating *Server* where underlying *Servers* may not support *Insert* or a particular *Aggregate* . In such cases the *HistoryServerCapabilities* *Property* would indicate the capability is supported, and the *Server* would return appropriate *StatusCodes* for situations where the capability does not apply.  
 
- **Table 13\- HistoryServerCapabilitiesType Definition**   
+Table 13 - HistoryServerCapabilitiesType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HistoryServerCapabilitiesType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **Browse Name** | **Data Type** | **Type Definition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|AccessHistoryDataCapability|Boolean|PropertyType|Mandatory|
 |HasProperty|Variable|AccessHistoryEventsCapability|Boolean|PropertyType|Mandatory|
 |HasProperty|Variable|MaxReturnDataValues|UInt32|PropertyType|Mandatory|
@@ -779,7 +807,9 @@ These properties are intended to inform a *Client* of the general capabilities o
 |HasProperty|Variable|InsertAnnotationCapability|Boolean|PropertyType|Mandatory|
 |HasComponent|Object|AggregateFunctions|\--|FolderType|Mandatory|
 |HasProperty|Variable|*ServerTimestampSupported*|Boolean|PropertyType|Optional|
+  
 | **ConformanceUnits** |
+|---|
 |[Historical Access Read Raw](https://profiles.opcfoundation.org/conformanceunit/2665)|
 |[Historical Access Time Instance](https://profiles.opcfoundation.org/conformanceunit/3020)|
 |[Historical Access Aggregates](https://profiles.opcfoundation.org/conformanceunit/3574)|
@@ -836,10 +866,14 @@ The *DefaultHAConfiguration* object is defined in [Table 14](/§\_Ref20220998) .
 |---|---|
 |BrowseName|DefaultHAConfiguration|
 |||
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** |
+|---|---|---|---|---|
 |OrganizedBy by the *Server* Object defined in [OPC 10000-5](/§UAPart5)|
 |HasTypeDefinition|ObjectType|HistoricalDataConfigurationType|Defined in [5.2.2](/§\_Ref125565055)|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access Default HA Configuration|
   
 
@@ -853,10 +887,14 @@ The *DefaultHEConfiguration* object is defined in [Table 15](/§\_Ref125565157) 
 |---|---|
 |BrowseName|DefaultHEConfiguration|
 |||
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** |
+|---|---|---|---|---|
 |OrganizedBy by the *Server* Object defined in [OPC 10000-5](/§UAPart5)|
 |HasTypeDefinition|ObjectType|HistoricalEventConfigurationType|Defined in [5.4.3](/§\_Ref125565215)|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access Default HE Configuration|
   
 
@@ -874,20 +912,24 @@ In particular using the Delete raw or Delete modified functionality shall genera
 
 This is a subtype of AuditHistoryUpdateEventType and is used for categorization of History *Event* update related *Events* . This type follows all the behaviour of its parent type. Its representation in the *AddressSpace* is formally defined in [Table 16](/§\_Ref244426661) .  
 
- **Table 16\- AuditHistoryEventUpdateEventType definition**   
+Table 16 - AuditHistoryEventUpdateEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditHistoryEventUpdateEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditHistoryUpdateEventType* defined in [OPC 10000-3](/§) , i.e. it has *HasProperty* *References* to the same *Nodes* .|
 |HasProperty|Variable|UpdatedNode|NodeId|PropertyType|Mandatory|
 |HasProperty|Variable|PerformInsertReplace|PerformUpdateType|PropertyType|Mandatory|
 |HasProperty|Variable|Filter|EventFilter|PropertyType|Mandatory|
 |HasProperty|Variable|NewValues|HistoryEventFieldList [ ]|PropertyType|Mandatory|
 |HasProperty|Variable|OldValues|HistoryEventFieldList [ ]|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access Event Audit Events|
   
 
@@ -911,19 +953,23 @@ Both the *NewValues* and the *OldValues* will contain *Events* with the appropri
 
 This is a subtype of *AuditHistoryUpdateEventType* and is used for categorization of history value update related *Events* . This type follows all the behaviour of its parent type. Its representation in the *AddressSpace* is formally defined in [Table 17](/§\_Ref248029792) .  
 
- **Table 17\- AuditHistoryValueUpdateEventType definition**   
+Table 17 - AuditHistoryValueUpdateEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditHistoryValueUpdateEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditHistoryUpdateEventType* defined in [OPC 10000-3](/§) , i.e. it has *HasProperty* *References* to the same *Nodes* .|
 |HasProperty|Variable|UpdatedNode|NodeId|PropertyType|Mandatory|
 |HasProperty|Variable|PerformInsertReplace|PerformUpdateType|PropertyType|Mandatory|
 |HasProperty|Variable|NewValues|DataValue[]|PropertyType|Mandatory|
 |HasProperty|Variable|OldValues|DataValue[]|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access Data Audit Events|
   
 
@@ -945,18 +991,22 @@ Both the *NewValues* and the *OldValues* will contain a value in the *DataType* 
 
 This is a subtype of *AuditHistoryUpdateEventType* and is used the insertion or change of an annotation. This type follows all the behaviour of its parent type. Its representation in the *AddressSpace* is formally defined in [Table 18](/§\_Ref486935999) .  
 
- **Table 18\- AuditHistoryAnnotationUpdateEventType definition**   
+Table 18 - AuditHistoryAnnotationUpdateEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditHistoryAnnotationUpdateEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditHistoryUpdateEventType* defined in [OPC 10000-3](/§) , i.e. it has *HasProperty* *References* to the same *Nodes* .|
 |HasProperty|Variable|PerformInsertReplace|PerformUpdateType|PropertyType|Mandatory|
 |HasProperty|Variable|NewValues|Annotation[]|PropertyType|Mandatory|
 |HasProperty|Variable|OldValues|Annotation[]|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access Annotation Audit Events|
 ||
   
@@ -977,19 +1027,23 @@ Both the *NewValues* and the *OldValues* will contain a value in the *DataType* 
 
 This is a subtype of *AuditHistoryUpdateEventType* and is used for categorization of history delete related *Events* . This type follows all the behaviour of its parent type. Its representation in the *AddressSpace* is formally defined in [Table 19](/§\_Ref248029952) .  
 
- **Table 19\- AuditHistoryDeleteEventType definition**   
+Table 19 - AuditHistoryDeleteEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditHistoryDeleteEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditHistoryUpdateEventType* defined in [OPC 10000-3](/§) , i.e. it has *HasProperty* *References* to the same *Nodes* .|
 |HasProperty|Variable|UpdatedNode|NodeId|PropertyType|Mandatory|
 |HasSubtype|ObjectType|AuditHistoryRawModifyDeleteEventType||||
 |HasSubtype|ObjectType|AuditHistoryAtTimeDeleteEventType||||
 |HasSubtype|ObjectType|AuditHistoryEventDeleteEventType||||
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access Delete Raw Audit Events|
   
 
@@ -1003,19 +1057,23 @@ The *UpdatedNode property* identifies the *NodeId* that was used for the delete 
 
 This is a subtype of *AuditHistoryDeleteEventType* and is used for categorization of history delete related *Events* . This type follows all the behaviour of its parent type. Its representation in the *AddressSpace* is formally defined in [Table 20](/§\_Ref248030658) .  
 
- **Table 20\- AuditHistoryRawModifyDeleteEventType definition**   
+Table 20 - AuditHistoryRawModifyDeleteEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditHistoryRawModifyDeleteEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditHistoryDeleteEventType* defined in [Table 19](/§\_Ref248029952) , i.e. it has *HasProperty* *References* to the same *Nodes* .|
 |HasProperty|Variable|IsDeleteModified|Boolean|PropertyType|Mandatory|
 |HasProperty|Variable|StartTime|UtcTime|PropertyType|Mandatory|
 |HasProperty|Variable|EndTime|UtcTime|PropertyType|Mandatory|
 |HasProperty|Variable|OldValues|DataValue[]|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access Audit Delete Raw|
   
 
@@ -1035,17 +1093,21 @@ The *OldValues* identify the value that history contained before the delete. A *
 
 This is a subtype of *AuditHistoryDeleteEventType* and is used for categorization of history delete related *Events* . This type follows all the behaviour of its parent type. Its representation in the *AddressSpace* is formally defined in [Table 21](/§\_Ref248030690) .  
 
- **Table 21\- AuditHistoryAtTimeDeleteEventType definition**   
+Table 21 - AuditHistoryAtTimeDeleteEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditHistoryAtTimeDeleteEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditHistoryDeleteEventType* defined in [Table 19](/§\_Ref248029952) , i.e. it has *HasProperty* *References* to the same *Nodes* .|
 |HasProperty|Variable|ReqTimes|UtcTime[]|PropertyType|Mandatory|
 |HasProperty|Variable|OldValues|DataValue[]|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access Audit Delete At Time|
   
 
@@ -1061,17 +1123,21 @@ The *OldValues* identifies the value that history contained before the delete. A
 
 This is a subtype of *AuditHistoryDeleteEventType* and is used for categorization of history delete related *Events* . This type follows all the behaviour of its parent type. Its representation in the *AddressSpace* is formally defined in [Table 22](/§\_Ref248030768) .  
 
- **Table 22\- AuditHistoryEventDeleteEventType definition**   
+Table 22 - AuditHistoryEventDeleteEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditHistoryEventDeleteEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditHistoryDeleteEventType* defined in [Table 19](/§\_Ref248029952) , i.e. it has *HasProperty* *References* to the same *Nodes* .|
 |HasProperty|Variable|EventIds|ByteString[]|PropertyType|Mandatory|
 |HasProperty|Variable|OldValues|HistoryEventFieldList|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access Audit Delete Events|
   
 
@@ -1087,15 +1153,19 @@ The *OldValues* identify the value that history contained before the delete. A *
 
 This is a subtype of *AuditEventType* and is used for categorization of history configuration changes. This type follows all the behaviour of its parent type. Its representation in the *AddressSpace* is formally defined in [Table 22](/§\_Ref248030768) .  
 
- **Table 23\- AuditHistoryConfigurationChangeEventType definition**   
+Table 23 - AuditHistoryConfigurationChangeEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditHistoryConfigurationChangeEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditEventType* defined in [OPC 10000-5](/§UAPart5) , i.e. it has *HasProperty* *References* to the same *Nodes* .|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access Audit Configuration Change Events|
   
 
@@ -1109,18 +1179,22 @@ This is a subtype of *AuditEventType* and is used for tracking a bulk insertion 
 
 This type follows all the behaviour of its parent type. Its representation in the *AddressSpace* is formally defined [Table 24](/§\_Ref135732862) .  
 
- **Table 24\- AuditHistoryBulkInsertEventType definition**   
+Table 24 - AuditHistoryBulkInsertEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditHistoryBulkInsertEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditEventType* defined in [OPC 10000-5](/§UAPart5) , i.e. it has *HasProperty* *References* to the same *Nodes* .|
 |HasProperty|Variable|UpdatedNode|NodeId|PropertyType|Mandatory|
 |HasProperty|Variable|StartTime|UtcTime|PropertyType|Mandatory|
 |HasProperty|Variable|EndTime|UtcTime|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |Historical Access Audit BulkInsert Events|
   
 
@@ -1194,7 +1268,7 @@ In the following, [Table 25](/§\_Ref128988066) contains codes with Bad severity
 
 It is important to note that these are the codes that are specific for OPC UA Historical Access and supplement the codes that apply to all types of data and are therefore defined in [OPC 10000-4](/§) , [OPC 10000-8](/§) and [OPC 10000-13](/§) .  
 
- **Table 25\- Bad operation level result codes**   
+Table 25 - Bad operation level result codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1205,9 +1279,7 @@ It is important to note that these are the codes that are specific for OPC UA Hi
 |Bad\_DataUnavailable|Expected data is unavailable for the requested time range due to an un-mounted volume, an off-line historical collection, or similar reason for temporary unavailability.|
 |Bad\_EntryExists|The data or *Event* was not successfully inserted because a matching entry exists.|
 |Bad\_NoEntryExists|The data or *Event* was not successfully updated because no matching entry exists.|
-|Bad\_TimestampNotSupported|The *Client* requested history using a *TimestampsToReturn* the *Server* does not support.  
-
-For example requested *ServerTimestamp* when *Server* only supports *SourceTimestamp* .|
+|Bad\_TimestampNotSupported|The *Client* requested history using a *TimestampsToReturn* the *Server* does not support.<br>For example requested *ServerTimestamp* when *Server* only supports *SourceTimestamp* .|
 |Bad\_InvalidArgument|One or more arguments are invalid or missing.|
 |Bad\_AggregateListMismatch|The list of Aggregates does not have the same length as the list of operations.|
 |Bad\_AggregateConfigurationRejected|The *Server* does not support the specified AggregateConfiguration for the Node.|
@@ -1223,7 +1295,7 @@ For example requested *ServerTimestamp* when *Server* only supports *SourceTimes
 
   
 
- **Table 26\- Good operation level result codes**   
+Table 26 - Good operation level result codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1307,49 +1379,37 @@ All processing for substrings, follow the same rules as for arrays (see *Numeric
 
 The *HistoryRead* *Service* defined in [OPC 10000-4](/§) can perform several different functions. The *HistoryReadDetails* parameter is an *Extensible Parameter* that specifies which function to perform and the details that are specific to that function. See [OPC 10000-4](/§) for the definition of *Extensible* *Parameter* . [Table 27](/§\_Ref112552204) lists the symbolic names of the valid *Extensible Parameter* structures. Some structures will perform different functions based on the setting of its associated parameters. For simplicity the functionality of each structure is listed. For example, text such as 'using the Read modified functionality' refers to the function the *HistoryRead* *Service* performs using the *Extensible* *Parameter* structure ReadRawModifiedDetails with the isReadModified Boolean parameter set to TRUE.  
 
- **Table 27\- HistoryReadDetails parameter Symbolic Names**   
+Table 27 - HistoryReadDetails parameter Symbolic Names  
 
 | **Symbolic Name** | **Functionality** | **Description** |
 |---|---|---|
-|ReadEventDetails|Read event|This structure selects a set of *Events* from the history database by specifying a filter and a time domain for one or more *Objects* or *Views* . See [6.5.2.1](/§\_Ref204956605) .  
-
-When this parameter is specified, the *Server* returns a *HistoryEvent* structure for each operation (see [6.6.4](/§\_Ref271010131) ).|
-|ReadEventDetails2|Read event|This structure selects a set of *Events* from the history database by specifying a filter and a time domain for one or more *Objects* or *Views* . See [6.5.2.1](/§\_Ref204956605) .  
-
-When this parameter is specified, the *Server* returns a *HistoryEvent* structure for each operation (see [6.6.4](/§\_Ref271010131) ).|
-|ReadEventDetails2|Read event modified|This structure selects a set of modified *Events* from the history database by specifying a filter and a time domain for one or more *Objects* or *Views* . See [6.5.2.3](/§\_Ref139147974)  
-
-When this parameter is specified, the *Server* returns a *HistoryModifiedEvent* structure for each operation (see [6.6.4](/§\_Ref271010131) ).|
-|ReadRawModifiedDetails|Read raw|This structure selects a set of values from the history database by specifying a time domain for one or more *Variables* . See [6.5.3.1](/§\_Ref233523776) .  
-
-When this parameter is specified, the *Server* returns a *HistoryData* structure for each operation (see [6.6.2](/§\_Ref271010107) ).|
-|ReadRawModifiedDetails|Read modified|This parameter selects a set of *ModifiedValues* from the history database by specifying a time domain for one or more *Variables.* See [6.5.3.1](/§\_Ref233523776) .  
-
-When this parameter is specified, the *Server* returns a *HistoryModifiedData* structure for each operation (see [6.6.3](/§\_Ref271010080) ).|
-|ReadProcessedDetails|Read processed|This structure selects a set of *Aggregate* values from the history database by specifying a time domain for one or more *Variables* . See [6.5.4.1](/§\_Ref233523836) .  
-
-When this parameter is specified, the *Server* returns a *HistoryData* structure for each operation (see [6.6.2](/§\_Ref271010107) )|
-|ReadAtTimeDetails|Read at time|This structure selects a set of raw or interpolated values from the history database by specifying a series of timestamps for one or more *Variables* . See [6.5.5.1](/§\_Ref233523860) .  
-
-When this parameter is specified, the *Server* returns a *HistoryData* structure for each operation (see Clause [6.6.2](/§\_Ref271010107) ).|
-|ReadAnnotationDataDetails|Read Annotation Data|This structure selects a set of *Annotation Data* from the history database by specifying a series of timestamps for one or more *Variables* . See [6.5.6.1](/§\_Ref487025844) .  
-
-When this parameter is specified, the *Server* returns an *Annotation* structure for each operation (see Clause [6.6.6](/§\_Ref487036926) ).|
+|ReadEventDetails|Read event|This structure selects a set of *Events* from the history database by specifying a filter and a time domain for one or more *Objects* or *Views* . See [6.5.2.1](/§\_Ref204956605) .<br>When this parameter is specified, the *Server* returns a *HistoryEvent* structure for each operation (see [6.6.4](/§\_Ref271010131) ).|
+|ReadEventDetails2|Read event|This structure selects a set of *Events* from the history database by specifying a filter and a time domain for one or more *Objects* or *Views* . See [6.5.2.1](/§\_Ref204956605) .<br>When this parameter is specified, the *Server* returns a *HistoryEvent* structure for each operation (see [6.6.4](/§\_Ref271010131) ).|
+|ReadEventDetails2|Read event modified|This structure selects a set of modified *Events* from the history database by specifying a filter and a time domain for one or more *Objects* or *Views* . See [6.5.2.3](/§\_Ref139147974)<br>When this parameter is specified, the *Server* returns a *HistoryModifiedEvent* structure for each operation (see [6.6.4](/§\_Ref271010131) ).|
+|ReadRawModifiedDetails|Read raw|This structure selects a set of values from the history database by specifying a time domain for one or more *Variables* . See [6.5.3.1](/§\_Ref233523776) .<br>When this parameter is specified, the *Server* returns a *HistoryData* structure for each operation (see [6.6.2](/§\_Ref271010107) ).|
+|ReadRawModifiedDetails|Read modified|This parameter selects a set of *ModifiedValues* from the history database by specifying a time domain for one or more *Variables.* See [6.5.3.1](/§\_Ref233523776) .<br>When this parameter is specified, the *Server* returns a *HistoryModifiedData* structure for each operation (see [6.6.3](/§\_Ref271010080) ).|
+|ReadProcessedDetails|Read processed|This structure selects a set of *Aggregate* values from the history database by specifying a time domain for one or more *Variables* . See [6.5.4.1](/§\_Ref233523836) .<br>When this parameter is specified, the *Server* returns a *HistoryData* structure for each operation (see [6.6.2](/§\_Ref271010107) )|
+|ReadAtTimeDetails|Read at time|This structure selects a set of raw or interpolated values from the history database by specifying a series of timestamps for one or more *Variables* . See [6.5.5.1](/§\_Ref233523860) .<br>When this parameter is specified, the *Server* returns a *HistoryData* structure for each operation (see Clause [6.6.2](/§\_Ref271010107) ).|
+|ReadAnnotationDataDetails|Read Annotation Data|This structure selects a set of *Annotation Data* from the history database by specifying a series of timestamps for one or more *Variables* . See [6.5.6.1](/§\_Ref487025844) .<br>When this parameter is specified, the *Server* returns an *Annotation* structure for each operation (see Clause [6.6.6](/§\_Ref487036926) ).|
   
 
   
 
 The *HistoryReadDetails Structure* definition in the *AddressSpace* is shown in [Table 28](/§\_Ref139120890) . The *Structure* is an abstract supertype and contains no fields.  
 
- **Table 28\- HistoryReadDetails definition**   
+Table 28 - HistoryReadDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HistoryReadDetails|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Structure defined in [OPC 10000-3](/§UAPart3)|
+  
 | **Conformance Units** |
+|---|
 |[Historical Access Read Raw](https://profiles.opcfoundation.org/conformanceunit/2947)|
   
 
@@ -1361,7 +1421,7 @@ The *HistoryReadDetails Structure* definition in the *AddressSpace* is shown in 
 
 [Table 29](/§\_Ref130293886) defines the *ReadEventDetails* structure. This parameter is only valid for *Objects* that have the *EventNotifier Attribute* set to TRUE (see [OPC 10000-3](/§) ). At least two of the three parameters, *numValuesPerNode* , *startTime* , and *endTime* shall be specified.  
 
- **Table 29\- ReadEventDetails Structure**   
+Table 29 - ReadEventDetails Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1376,15 +1436,19 @@ The *HistoryReadDetails Structure* definition in the *AddressSpace* is shown in 
 
 Its representation in the *AddressSpace* is defined in [Table 30](/§\_Ref46498488) .  
 
- **Table 30\- ReadEventDetails definition**   
+Table 30 - ReadEventDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ReadEventDetails|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the HistoryReadDetails defined in [Table 28](/§\_Ref139120890)|
+  
 | **Conformance Units** |
+|---|
 |[Historical Access Events](https://profiles.opcfoundation.org/conformanceunit/2947)|
   
 
@@ -1414,7 +1478,7 @@ When reading *Events,* *TimestampsToReturn* only applies to *Event* fields that 
 
 *ReadEventDetails2* is only valid for *Objects* that have the *EventNotifier Attribute* set to TRUE (see [OPC 10000-3](/§) ). At least two of the three parameters, *numValuesPerNode* , *startTime* , and *endTime* shall be specified.  
 
- **Table 31\- ReadEventDetails2 Structure**   
+Table 31 - ReadEventDetails2 Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1426,15 +1490,19 @@ When reading *Events,* *TimestampsToReturn* only applies to *Event* fields that 
 
 Its representation in the *AddressSpace* is defined in [Table 30](/§\_Ref46498488) .  
 
- **Table 32\- ReadEventDetails2 definition**   
+Table 32 - ReadEventDetails2 definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ReadEventDetails2|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the ReadEventDetails|
+  
 | **Conformance Units** |
+|---|
 |[Historical Access Modified Events](https://profiles.opcfoundation.org/conformanceunit/2947)|
   
 
@@ -1464,7 +1532,7 @@ When reading *Events,* *TimestampsToReturn* only applies to *Event* fields that 
 
 [Table 33](/§\_Ref157680286) defines the *ReadEventDetailsSorted* structure. The structure is a subtype of the *ReadEventDetails* *Structure* defined in [6.5.2](/§\_Ref112553034) , adding a *SortClause* used to define the order in ** which events will be returned by the *Server* . The *Server* shall use the *SortClause* to determine how the filtered rows shall be sorted before the results are returned.  
 
- **Table 33\- ReadEventDetailsSorted Structure**   
+Table 33 - ReadEventDetailsSorted Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1476,15 +1544,19 @@ When reading *Events,* *TimestampsToReturn* only applies to *Event* fields that 
 
 Its representation in the *AddressSpace* is defined in [Table 34](/§\_Ref157680299) .  
 
- **Table 34\- ReadEventDetailsSorted definition**   
+Table 34 - ReadEventDetailsSorted definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ReadEventDetailsSorted|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the ReadEventDetails defined in [6.5.2](/§\_Ref112553034)|
+  
 | **Conformance Units** |
+|---|
 |[Historical Access Sorted Events](https://profiles.opcfoundation.org/conformanceunit/2947)|
   
 
@@ -1496,7 +1568,7 @@ Its representation in the *AddressSpace* is defined in [Table 34](/§\_Ref157680
 
 [Table 35](/§\_Ref112552312) defines the *ReadRawModifiedDetails* structure. Two of the three parameters, numValuesPerNode, *startTime* , and *endTime* shall be specified.  
 
- **Table 35\- ReadRawModifiedDetails structure**   
+Table 35 - ReadRawModifiedDetails structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1505,26 +1577,26 @@ Its representation in the *AddressSpace* is defined in [Table 34](/§\_Ref157680
 |startTime|UtcTime|Beginning of period to read. Set to default value of *DateTime.MinValue* if no specific start time is specified.|
 |endTime|UtcTime|End of period to read. Set to default value of *DateTime.MinValue* if no specific end time is specified.|
 |numValuesPerNode|Counter|The maximum number of values returned for any *Node* over the time range. If only one time is specified, the time range shall extend to return this number of values. The default value 0 indicates that there is no maximum.|
-|returnBounds|Boolean|A Boolean parameter with the following values:  
-
-TRUE Bounding Values should be returned  
-
-FALSE All other cases|
+|returnBounds|Boolean|A Boolean parameter with the following values:<br>TRUE Bounding Values should be returned<br>FALSE All other cases|
   
 
   
 
 Its representation in the *AddressSpace* is defined in [Table 30](/§\_Ref46498488) .  
 
- **Table 36\- ReadRawModifiedDetails definition**   
+Table 36 - ReadRawModifiedDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ReadRawModifiedDetails|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the HistoryReadDetails defined in [Table 28](/§\_Ref139120890)|
+  
 | **Conformance Units** |
+|---|
 |[Historical Access Read Raw](https://profiles.opcfoundation.org/conformanceunit/2665)|
 |[Historical Access Modified Values](https://profiles.opcfoundation.org/conformanceunit/2929)|
   
@@ -1569,7 +1641,7 @@ If the requested TimestampsToReturn is not supported for a *Node* then the opera
 
 [Table 37](/§\_Ref112552313) defines the structure of the ReadProcessedDetails structure.  
 
- **Table 37\- ReadProcessedDetails structure**   
+Table 37 - ReadProcessedDetails structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1578,9 +1650,7 @@ If the requested TimestampsToReturn is not supported for a *Node* then the opera
 |endTime|UtcTime|End of period to read.|
 |ProcessingInterval|Duration|Interval between returned *Aggregate* values. The value 0 indicates that there is no *ProcessingInterval* defined.|
 |aggregateType[]|NodeId|The *NodeId* of the HistoryAggregate object that indicates the list of *Aggregates* to be used when retrieving the processed history. See [OPC 10000-13](/§) for details.|
-|AggregateConfiguration|Aggregate  
-
-Configuration|*Aggregate* configuration structure.|
+|AggregateConfiguration|Aggregate<br>Configuration|*Aggregate* configuration structure.|
 | useServerCapabilitiesDefaults|Boolean|As described in [OPC 10000-4](/§) *AggregateFilter* *Structure* . (also see *AggregateConfiguration* settings defined in [OPC 10000-13](/§) , and as described in *HistorianConfiguration* *Objects* (see [5.2.2](/§\_Ref127876780) ).|
 | TreatUncertainAsBad|Boolean|As described in [OPC 10000-13](/§) .|
 | PercentDataBad|Byte|As described in [OPC 10000-13](/§) .|
@@ -1594,15 +1664,19 @@ See [OPC 10000-13](/§) for details on possible *NodeId* values for the *aggrega
 
 Its representation in the *AddressSpace* is defined in [Table 30](/§\_Ref46498488) .  
 
- **Table 38\- ReadProcessedDetails definition**   
+Table 38 - ReadProcessedDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ReadProcessedDetails|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the HistoryReadDetails defined in [Table 28](/§\_Ref139120890)|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Aggregates|
   
 
@@ -1620,8 +1694,9 @@ The aggregateType[] parameter allows a *Client* to request multiple *Aggregate* 
 
 For example, to request Min *Aggregate* for *NodeId* FIC101, FIC102, and both Min and Max *Aggregates* for *NodeId* FIC103 would require *NodeId* FIC103 to appear twice in the NodesToRead array request parameter.  
 
-|aggregateType[]|NodesToRead[]|
+|||
 |---|---|
+|aggregateType[]|NodesToRead[]|
 |Min|FIC101|
 |Min|FIC102|
 |Min|FIC103|
@@ -1646,7 +1721,7 @@ Refer to [OPC 10000-13](/§) for handling of *Aggregate* specific cases. Not all
 
 [Table 39](/§\_Ref112552316) defines the ReadAtTimeDetails structure.  
 
- **Table 39\- ReadAtTimeDetails structure**   
+Table 39 - ReadAtTimeDetails structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1659,15 +1734,19 @@ Refer to [OPC 10000-13](/§) for handling of *Aggregate* specific cases. Not all
 
 Its representation in the *AddressSpace* is defined in [Table 30](/§\_Ref46498488) .  
 
- **Table 40\- ReadAtTimeDetails definition**   
+Table 40 - ReadAtTimeDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ReadAtTimeDetails|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the HistoryReadDetails defined in [Table 28](/§\_Ref139120890)|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Time Instance|
   
 
@@ -1695,7 +1774,7 @@ If the requested TimestampsToReturn is not supported for a *Node* , then the ope
 
 [Table 41](/§\_Ref487008456) defines the *ReadAnnotationDataDetails* structure. This request is passed using the *NodeId* of a node that has an *Annotations* *Property* .  
 
- **Table 41\- ReadAnnotationDataDetails Structure**   
+Table 41 - ReadAnnotationDataDetails Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1707,15 +1786,21 @@ If the requested TimestampsToReturn is not supported for a *Node* , then the ope
 
 Its representation in the *AddressSpace* is defined in [Table 42](/§\_Ref139148108)  
 
- **Table 42\- ReadAnnotationDataDetails definition**   
+Table 42 - ReadAnnotationDataDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ReadAnnotationDataDetails|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
+  
 | **Subtype of the HistoryReadDetails defined in [Table 28](/§\_Ref139120890)** |
+|---|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Annotations|
   
 
@@ -1735,7 +1820,7 @@ The standard *ContinuationPoint* rules (see [6.3](/§\_Ref121351746) ) apply.
 
 [Table 43](/§\_Ref157680232) defines the *SortRuleElement* structure. This structure is used by the *ReadEventDetailsSorted* *Structure* *DataType* defined in [6.5.2.5](/§\_Ref161747780) . It is used to define the order in which events are returned from the *Server* .  
 
- **Table 43\- SortRuleElement Structure**   
+Table 43 - SortRuleElement Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1748,15 +1833,19 @@ The standard *ContinuationPoint* rules (see [6.3](/§\_Ref121351746) ) apply.
 
 Its representation in the *AddressSpace* is defined in [Table 44](/§\_Ref157680249) .  
 
- **Table 44\- SortRuleElement definition**   
+Table 44 - SortRuleElement definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|SortRuleElement|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of *Structure* defined in [OPC 10000-3](/§UAPart3)|
+  
 | **Conformance Units** |
+|---|
 |[Historical Access Sorted Events](https://profiles.opcfoundation.org/conformanceunit/2947)|
   
 
@@ -1766,7 +1855,7 @@ Its representation in the *AddressSpace* is defined in [Table 44](/§\_Ref157680
 
 [Table 45](/§\_Ref157681315) defines the *SortOrderType* enumeration.  
 
- **Table 45\- SortOrderType Items**   
+Table 45 - SortOrderType Items  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -1778,16 +1867,20 @@ Its representation in the *AddressSpace* is defined in [Table 44](/§\_Ref157680
 
 Its representation in the *AddressSpace* is defined in [Table 46](/§\_Ref157681334) .  
 
- **Table 46\- SortOrderType definition**   
+Table 46 - SortOrderType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|SortOrderType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumStrings|LocalizedText []|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |[Historical Access Sorted Events](https://profiles.opcfoundation.org/conformanceunit/2947)|
   
 
@@ -1805,11 +1898,13 @@ The *HistoryRead* *Service* returns different types of data depending on whether
 
 [Table 47](/§\_Ref130307935) defines the structure of the *HistoryData* used for the data to return in a *HistoryRead* .  
 
- **Table 47\- HistoryData structure**   
+Table 47 - HistoryData structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **HistoryData** | **Structure** | **This structured datatype is a subtype of Structure defined in [OPC 10000-3](/§UAPart3)** |
+|---|---|---|
 |dataValues[]|DataValue|An array of values of history data for the *Node* . The size of the array depends on the requested data parameters.|
   
 
@@ -1817,15 +1912,19 @@ The *HistoryRead* *Service* returns different types of data depending on whether
 
 Its representation in the *AddressSpace* is defined in [Table 30](/§\_Ref46498488) .  
 
- **Table 48\- HistoryData definition**   
+Table 48 - HistoryData definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HistoryData|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Structure defined in [OPC 10000-3](/§UAPart3)|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Aggregates|
 |Historical Access Time Instance|
 |Historical Access Read Raw|
@@ -1837,7 +1936,7 @@ Its representation in the *AddressSpace* is defined in [Table 30](/§\_Ref464984
 
 [Table 49](/§\_Ref303792289) defines the structure of the *HistoryModifiedData* used for the data to return in a *HistoryRead* when IsReadModified = True. This DataType is a subtype of HistoryData.  
 
- **Table 49\- HistoryModifiedData structure**   
+Table 49 - HistoryModifiedData structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1852,15 +1951,19 @@ Its representation in the *AddressSpace* is defined in [Table 30](/§\_Ref464984
 
 Its representation in the *AddressSpace* is defined in [Table 50](/§\_Ref139151859)  
 
- **Table 50\- HistoryModifiedData definition**   
+Table 50 - HistoryModifiedData definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HistoryModifiedData|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the HistoryData defined in [OPC 10000-3](/§UAPart3)|
+  
 | **Conformance Units** |
+|---|
 |[Historical Access Modified Values](https://profiles.opcfoundation.org/conformanceunit/2929)|
 |Historical Access Annotations|
   
@@ -1873,7 +1976,7 @@ Its representation in the *AddressSpace* is defined in [Table 50](/§\_Ref139151
 
 The HistoryEvent defines a table structure that is used to return *Event* fields to a *Historical Read* . The structure is in the form of a table consisting of one or more *Events* , each containing an array of one or more fields. The selection and order of the fields returned for each *Event* are identical to the selected parameter of the *EventFilter* .  
 
- **Table 51\- HistoryEvent structure**   
+Table 51 - HistoryEvent structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1886,15 +1989,19 @@ The HistoryEvent defines a table structure that is used to return *Event* fields
 
 Its representation in the *AddressSpace* is defined in [Table 52](/§\_Ref139151874) .  
 
- **Table 52\- HistoryEvent definition**   
+Table 52 - HistoryEvent definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HistoryEvent|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Structure defined in [OPC 10000-3](/§UAPart3)|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Events|
 |Historical Access Modified Events|
   
@@ -1907,7 +2014,7 @@ Its representation in the *AddressSpace* is defined in [Table 52](/§\_Ref139151
 
 The HistoryModifyEvent defines a table structure that is used to return *Event* fields along with modification information to a *Historical Read* . The structure is in the form of a table consisting of one or more *Events* , each containing an array of one or more fields. The selection and order of the fields returned for each *Event* are identical to the selected parameter of the *EventFilter* .  For each *Event* a *modificationInfo* record is also returned.  
 
- **Table 53\- HistoryModifiedEvent structure**   
+Table 53 - HistoryModifiedEvent structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1922,15 +2029,19 @@ The HistoryModifyEvent defines a table structure that is used to return *Event* 
 
 Its representation in the *AddressSpace* is defined in [Table 54](/§\_Ref139151889) .  
 
- **Table 54\- HistoryModifiedEvent definition**   
+Table 54 - HistoryModifiedEvent definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HistoryModifiedEvent|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the HistoryEvent|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Modified Events|
   
 
@@ -1942,7 +2053,7 @@ Its representation in the *AddressSpace* is defined in [Table 54](/§\_Ref139151
 
 This *DataType* describes *Annotation* structure information for the history data items. Its elements are defined in [Table 55](/§\_Ref94579380) .  
 
- **Table 55\- Annotation Structure**   
+Table 55 - Annotation Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1956,15 +2067,19 @@ This *DataType* describes *Annotation* structure information for the history dat
 
 Its representation in the *AddressSpace* is defined in [Table 56](/§\_Ref139151904) .  
 
- **Table 56\- *Annotation* definition**   
+Table 56 - Annotation definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Annotation|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Structure defined in [OPC 10000-3](/§UAPart3)|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Annotations|
   
 
@@ -1974,7 +2089,7 @@ Its representation in the *AddressSpace* is defined in [Table 56](/§\_Ref139151
 
 [Table 57](/§\_Ref303792408) defines the HistoryUpdate enumeration.  
 
- **Table 57\- HistoryUpdateType Items**   
+Table 57 - HistoryUpdateType Items  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -1988,16 +2103,20 @@ Its representation in the *AddressSpace* is defined in [Table 56](/§\_Ref139151
 
 Its representation in the AddressSpace is defined in [Table 58](/§\_Ref46498546) .  
 
- **Table 58\- HistoryUpdateType definition**   
+Table 58 - HistoryUpdateType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HistoryUpdateType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the 0:Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |0:HasProperty|Variable|0:EnumValues|0:EnumValueType []|0:PropertyType||
+  
 | **Conformance Units** |
+|---|
 |Historical Access Modified Events|
 |[Historical Access Modified Values](https://profiles.opcfoundation.org/conformanceunit/2929)|
   
@@ -2008,7 +2127,7 @@ Its representation in the AddressSpace is defined in [Table 58](/§\_Ref46498546
 
 [Table 59](/§\_Ref303792728) defines the PerformUpdateType enumeration.  
 
- **Table 59\- PerformUpdateType Items**   
+Table 59 - PerformUpdateType Items  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -2022,16 +2141,20 @@ Its representation in the AddressSpace is defined in [Table 58](/§\_Ref46498546
 
 Its representation in the AddressSpace is defined in [Table 58](/§\_Ref46498546) .  
 
- **Table 60\- PerformUpdateType definition**   
+Table 60 - PerformUpdateType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|PerformUpdateType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the 0:Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |0:HasProperty|Variable|0:EnumValues|0:EnumValueType []|0:PropertyType||
+  
 | **Conformance Units** |
+|---|
 |Historical Access Insert Value|
 |Historical Access Delete Value|
 |Historical Access Update Value|
@@ -2046,31 +2169,17 @@ Its representation in the AddressSpace is defined in [Table 58](/§\_Ref46498546
 
 The *HistoryUpdate* *Service* defined in [OPC 10000-4](/§) can perform several different functions. The *historyUpdateDetails* parameter is an *Extensible Parameter* that specifies which function to perform and the details that are specific to that function. See [OPC 10000-4](/§UAPart4) for the definition of *Extensible* *Parameter* . [Table 61](/§\_Ref112121377) lists the symbolic names of the valid *Extensible* *Parameter* structures. Some structures will perform different functions based on the setting of its associated parameters. For simplicity a functionality of each structure is listed. For example, text such as 'using the Replace data functionality' refers to the function the *HistoryUpdate* *Service* performs using the *Extensible* *Parameter* structure *UpdateDataDetails* with the performInsertReplace enumeration parameter set to REPLACE.  
 
- **Table 61\- HistoryUpdateDetails parameter Symbolic Names**   
+Table 61 - HistoryUpdateDetails parameter Symbolic Names  
 
 | **Symbolic Name** | **Functionality** | **Description** |
 |---|---|---|
-|UpdateDataDetails|Insert data|This function inserts new values into the history database at the specified timestamps for one or more *HistoricalDataNodes*  
-
-The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
-|UpdateDataDetails|Replace data|This function replaces existing values into the history database at the specified timestamps for one or more *HistoricalDataNodes* .  
-
-The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
-|UpdateDataDetails|Update data|This function inserts or replaces values into the history database at the specified timestamps for one or more *HistoricalDataNodes* .  
-
-The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
-|UpdateStructureDataDetails|Insert data|This function inserts new *StructuredHistoryData* or *Annotations* into the history database at the specified timestamps for one or more *HistoricalDataNodes* .  
-
-The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
-|UpdateStructureDataDetails|Replace data|This function replaces existing *StructuredHistory Data* or *Annotations* into the history database at the specified timestamps for one or more *HistoricalDataNodes* .  
-
-The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
-|UpdateStructureDataDetails|Update data|This function inserts or replaces *StructuredHistoryData* or *Annotations* into the history database at the specified timestamps for one or more *HistoricalDataNodes* .  
-
-The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
-|UpdateStructureDataDetails|Remove data|This function removes *StructuredHistoryData* or *Annotations* from the history database at the specified timestamps for one or more *HistoricalDataNodes* .  
-
-The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
+|UpdateDataDetails|Insert data|This function inserts new values into the history database at the specified timestamps for one or more *HistoricalDataNodes*<br>The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
+|UpdateDataDetails|Replace data|This function replaces existing values into the history database at the specified timestamps for one or more *HistoricalDataNodes* .<br>The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
+|UpdateDataDetails|Update data|This function inserts or replaces values into the history database at the specified timestamps for one or more *HistoricalDataNodes* .<br>The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
+|UpdateStructureDataDetails|Insert data|This function inserts new *StructuredHistoryData* or *Annotations* into the history database at the specified timestamps for one or more *HistoricalDataNodes* .<br>The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
+|UpdateStructureDataDetails|Replace data|This function replaces existing *StructuredHistory Data* or *Annotations* into the history database at the specified timestamps for one or more *HistoricalDataNodes* .<br>The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
+|UpdateStructureDataDetails|Update data|This function inserts or replaces *StructuredHistoryData* or *Annotations* into the history database at the specified timestamps for one or more *HistoricalDataNodes* .<br>The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
+|UpdateStructureDataDetails|Remove data|This function removes *StructuredHistoryData* or *Annotations* from the history database at the specified timestamps for one or more *HistoricalDataNodes* .<br>The *Variable* 's value is represented by a composite value defined by the *DataValue* data type.|
 |UpdateEventDetails|Insert events|This function inserts new *Events* into the history database for one or more *HistoricalEventNodes* .|
 |UpdateEventDetails|Replace events|This function replaces values of fields in existing *Events* into the history database for one or more *HistoricalEventNodes* .|
 |UpdateEventDetails|Update events|This function inserts new *Events* or replaces existing *Events* in the history database for one or more *HistoricalEventNodes* .|
@@ -2088,7 +2197,7 @@ If the *HistoryUpdate* *Service* is called with two or more of *DataValues* , *E
 
 [Table 62](/§\_Ref139120369) defines the HistoryUpdateDetails structure.  
 
- **Table 62\- HistoryUpdateDetails Structure**   
+Table 62 - HistoryUpdateDetails Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -2100,15 +2209,19 @@ If the *HistoryUpdate* *Service* is called with two or more of *DataValues* , *E
 
 Its representation in the *AddressSpace* is defined in [Table 63](/§\_Ref139102429) .  
 
- **Table 63\- HistoryUpdateDetails definition**   
+Table 63 - HistoryUpdateDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HistoryUpdateDetails|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the *Structure* *DataType* defined in [OPC 10000-3](/§UAPart3)|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Update Value|
   
 
@@ -2120,7 +2233,7 @@ Its representation in the *AddressSpace* is defined in [Table 63](/§\_Ref139102
 
 [Table 64](/§\_Ref112569985) defines the UpdateDataDetails structure.  
 
- **Table 64\- UpdateDataDetails Structure**   
+Table 64 - UpdateDataDetails Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -2134,15 +2247,19 @@ Its representation in the *AddressSpace* is defined in [Table 63](/§\_Ref139102
 
 Its representation in the *AddressSpace* is defined in [Table 65](/§\_Ref124754087) .  
 
- **Table 65\- UpdateDataDetails definition**   
+Table 65 - UpdateDataDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|UpdateDataDetails|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the *HistoryUpdateDetails* *DataType* defined in [Table 62](/§\_Ref139120369) .|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Insert Value|
 |Historical Access Delete Value|
 |Historical Access Update Value|
@@ -2184,7 +2301,7 @@ If the *Time* does not fall within range that can be stored then the related *op
 
 [Table 64](/§\_Ref112569985) defines the UpdateStructureDataDetails structure.  
 
- **Table 66\- UpdateStructureDataDetails Structure**   
+Table 66 - UpdateStructureDataDetails Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -2198,15 +2315,19 @@ If the *Time* does not fall within range that can be stored then the related *op
 
 Its representation in the *AddressSpace* is defined in [Table 67](/§\_Ref124754175) .  
 
- **Table 67\- UpdateStructureDataDetails definition**   
+Table 67 - UpdateStructureDataDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|UpdateStructureDataDetails|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the *HistoryUpdateDetails* *DataType* defined in [Table 62](/§\_Ref139120369) .|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Structured Data Replace|
 |Historical Access Structured Data Update|
 |Historical Access Structured Data Insert|
@@ -2256,7 +2377,7 @@ If a *Structure History Data* entry exists at the specified parameters it is del
 
 [Table 68](/§\_Ref188800245) defines the UpdateEventDetails structure.  
 
- **Table 68\- UpdateEventDetails Structure**   
+Table 68 - UpdateEventDetails Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -2271,15 +2392,19 @@ If a *Structure History Data* entry exists at the specified parameters it is del
 
 Its representation in the *AddressSpace* is defined in [Table 69](/§\_Ref124754236) .  
 
- **Table 69\- UpdateEventDetails definition**   
+Table 69 - UpdateEventDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|UpdateEventDetails|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the *HistoryUpdateDetails* *DataType* defined in [Table 62](/§\_Ref139120369) .|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Replace Event|
 |Historical Access Update Event|
 |Historical Access Insert Event|
@@ -2331,7 +2456,7 @@ If an existing *Event* entry was replaced successfully then the related *operati
 
 [Table 70](/§\_Ref111516156) defines the DeleteRawModifiedDetails structure.  
 
- **Table 70\- DeleteRawModifiedDetails Structure**   
+Table 70 - DeleteRawModifiedDetails Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -2346,15 +2471,19 @@ If an existing *Event* entry was replaced successfully then the related *operati
 
 Its representation in the *AddressSpace* is defined in [Table 71](/§\_Ref124754385) .  
 
- **Table 71\- DeleteRawModifiedDetails definition**   
+Table 71 - DeleteRawModifiedDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|DeleteRawModifiedDetails|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the *HistoryUpdateDetails* *DataType* defined in [Table 62](/§\_Ref139120369) .|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Delete Value|
   
 
@@ -2380,7 +2509,7 @@ If no data is found in the time range for a particular *HistoricalDataNode* , th
 
 [Table 72](/§\_Ref112569824) defines the structure of the DeleteAtTimeDetails structure.  
 
- **Table 72\- DeleteAtTimeDetails Structure**   
+Table 72 - DeleteAtTimeDetails Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -2393,15 +2522,19 @@ If no data is found in the time range for a particular *HistoricalDataNode* , th
 
 Its representation in the *AddressSpace* is defined in [Table 30](/§\_Ref46498488) .  
 
- **Table 73\- DeleteAtTimeDetails definition**   
+Table 73 - DeleteAtTimeDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|DeleteAtTimeDetails|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the *HistoryUpdateDetails* *DataType* defined in [Table 62](/§\_Ref139120369) .|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Delete Value|
   
 
@@ -2419,7 +2552,7 @@ This parameter is intended to be used to delete specific data from the history d
 
 [Table 74](/§\_Ref382983784) defines the structure of the DeleteEventDetails structure.  
 
- **Table 74\- DeleteEventDetails Structure**   
+Table 74 - DeleteEventDetails Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -2432,15 +2565,19 @@ This parameter is intended to be used to delete specific data from the history d
 
 Its representation in the *AddressSpace* is defined in [Table 30](/§\_Ref46498488) .  
 
- **Table 75\- DeleteEventDetails definition**   
+Table 75 - DeleteEventDetails definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|DeleteEventDetails|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the *HistoryUpdateDetails* *DataType* defined in [Table 62](/§\_Ref139120369) .|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Delete Event|
   
 
@@ -2490,7 +2627,7 @@ Note that the above does not hold true for cases of adding or subtracting weeks 
 
 Note that all keywords and offsets are specified in uppercase.  
 
- **Table A. 1\- Time keyword definitions**   
+Table A. 1 - Time keyword definitions  
 
 | **Keyword** | **Description** |
 |---|---|
@@ -2506,7 +2643,7 @@ Note that all keywords and offsets are specified in uppercase.
 
   
 
- **Table A. 2\- Time offset definitions**   
+Table A. 2 - Time offset definitions  
 
 | **Offset** | **Description** |
 |---|---|

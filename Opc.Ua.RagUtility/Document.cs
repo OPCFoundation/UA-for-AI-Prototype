@@ -154,8 +154,7 @@ namespace Opc.Ua.RagUtility
     public class DocumentQuery
     {
         public string Prompt { get; set; }
-        public string Expected { get; set; }
-        public string Actual { get; set; }
+        public string Response { get; set; }
     }
 
     public class DocumentQuerySet

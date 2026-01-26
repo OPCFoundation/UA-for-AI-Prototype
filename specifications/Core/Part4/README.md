@@ -178,16 +178,20 @@ URL Uniform Resource Locator
 
 OPC UA *Services* contain parameters that are conveyed between the *Client* and the *Server* . The OPC UA *Service* specifications use tables to describe *Service* parameters, as shown in [Table 1](/§\_Ref75662306) . Parameters are organized in this table into request parameters and response parameters.  
 
- **Table 1\- Service definition table**   
+Table 1 - Service definition table  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** ||Defines the request parameters of the *Service*|
+|---|---|---|
 |Simple Parameter Name||Description of this parameter|
 |Constructed Parameter Name||Description of the constructed parameter|
 | Component Parameter Name||Description of the component parameter|
 ||||
+  
 | **Response** ||Defines the response parameters of the *Service*|
+|---|---|---|
 ||||
   
 
@@ -201,7 +205,7 @@ Constructed parameters are composed of two or more component parameters, which c
 
 The data types used in these tables may be base types, common types to multiple *Services* or *Service*\-specific types. Base data types are defined in [OPC 10000-3](/§UAPart3) . The base types used in *Services* are listed in [Table 2](/§\_Ref129176961) . Data types that are common to multiple *Services* are defined in Clause [7](/§\_Ref81632048) . Data types that are *Service*\-specific are defined in the parameter table of the *Service* .  
 
- **Table 2\- Parameter Types defined in [OPC 10000-3](/§UAPart3)**   
+Table 2 - Parameter Types defined in [OPC 10000-3](/§UAPart3)  
 
 | **Parameter Type** |
 |---|
@@ -423,39 +427,23 @@ This *Service* can be used without security and it is therefore vulnerable to De
 
 [Table 3](/§\_Ref153658081) defines the parameters for the *Service* .  
 
- **Table 3\- FindServers Service Parameters**   
+Table 3 - FindServers Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
-|requestHeader|RequestHeader|Common request parameters. The *authenticationToken* is always null. The *authenticationToken* shall be ignored if it is provided.  
-
-The type *RequestHeader* is defined in [7.32](/§\_Ref129000055) .|
-|endpointUrl|String|The network address that the *Client* used to access the *DiscoveryEndpoint* .  
-
-The *Server* uses this information for diagnostics and to determine what URLs to return in the response.  
-
-The *Server* should return a suitable default URL if it does not recognize the *HostName* in the URL.|
-|localeIds []|LocaleId|List of locales to use.  
-
-The *Server* should return the *applicationName* in the ApplicationDescription defined in [7.2](/§\_Ref153821547) using one of the locales specified.  
-
-See locale negotiation in [5.4](/§\_Ref161623610) which applies to this *Service* .|
-|serverUris []|String|List of *Servers* to return.  
-
-All known *Servers* are returned if the list is empty.  
-
-A serverUri matches the *applicationUri* from the *ApplicationDescription* defined in [7.2](/§\_Ref153821547) .|
+|---|---|---|
+|requestHeader|RequestHeader|Common request parameters. The *authenticationToken* is always null. The *authenticationToken* shall be ignored if it is provided.<br>The type *RequestHeader* is defined in [7.32](/§\_Ref129000055) .|
+|endpointUrl|String|The network address that the *Client* used to access the *DiscoveryEndpoint* .<br>The *Server* uses this information for diagnostics and to determine what URLs to return in the response.<br>The *Server* should return a suitable default URL if it does not recognize the *HostName* in the URL.|
+|localeIds []|LocaleId|List of locales to use.<br>The *Server* should return the *applicationName* in the ApplicationDescription defined in [7.2](/§\_Ref153821547) using one of the locales specified.<br>See locale negotiation in [5.4](/§\_Ref161623610) which applies to this *Service* .|
+|serverUris []|String|List of *Servers* to return.<br>All known *Servers* are returned if the list is empty.<br>A serverUri matches the *applicationUri* from the *ApplicationDescription* defined in [7.2](/§\_Ref153821547) .|
 ||||
+  
 | **Response** |||
-|responseHeader|ResponseHeader|Common response parameters.  
-
-The *ResponseHeader* type is defined in [7.33](/§\_Ref115239340) .|
-|servers []|ApplicationDescription|List of *Servers* that meet criteria specified in the request.  
-
-This list is empty if no *Servers* meet the criteria.  
-
-The *ApplicationDescription* type is defined in [7.2](/§\_Ref153821547) .|
+|---|---|---|
+|responseHeader|ResponseHeader|Common response parameters.<br>The *ResponseHeader* type is defined in [7.33](/§\_Ref115239340) .|
+|servers []|ApplicationDescription|List of *Servers* that meet criteria specified in the request.<br>This list is empty if no *Servers* meet the criteria.<br>The *ApplicationDescription* type is defined in [7.2](/§\_Ref153821547) .|
   
 
   
@@ -482,46 +470,28 @@ This *Service* can be used without security and it is therefore vulnerable to de
 
 [Table 4](/§\_Ref407044876) defines the parameters for the *Service* .  
 
- **Table 4\- FindServersOnNetwork Service Parameters**   
+Table 4 - FindServersOnNetwork Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
-|requestHeader|RequestHeader|Common request parameters. The *authenticationToken* is always null. The *authenticationToken* shall be ignored if it is provided.  
-
-The type *RequestHeader* is defined in [7.32](/§\_Ref129000055) .|
-|startingRecordId|Counter|Only records with an identifier greater than this number will be returned.  
-
-Specify 0 to start with the first record in the cache.|
-|maxRecordsToReturn|UInt32|The maximum number of records to return in the response.  
-
-0 indicates that there is no limit.|
-|serverCapabilityFilter[]|String|List of *Server* capability filters. The set of allowed *Server* capabilities are defined in [OPC 10000-12](/§UAPart12) .  
-
-Only records with all of the specified *Server* capabilities are returned.  
-
-The comparison is case insensitive.  
-
-If this list is empty then no filtering is performed.|
+|---|---|---|
+|requestHeader|RequestHeader|Common request parameters. The *authenticationToken* is always null. The *authenticationToken* shall be ignored if it is provided.<br>The type *RequestHeader* is defined in [7.32](/§\_Ref129000055) .|
+|startingRecordId|Counter|Only records with an identifier greater than this number will be returned.<br>Specify 0 to start with the first record in the cache.|
+|maxRecordsToReturn|UInt32|The maximum number of records to return in the response.<br>0 indicates that there is no limit.|
+|serverCapabilityFilter[]|String|List of *Server* capability filters. The set of allowed *Server* capabilities are defined in [OPC 10000-12](/§UAPart12) .<br>Only records with all of the specified *Server* capabilities are returned.<br>The comparison is case insensitive.<br>If this list is empty then no filtering is performed.|
 ||||
+  
 | **Response** |||
-|responseHeader|ResponseHeader|Common response parameters.  
-
-The *ResponseHeader* type is defined in [7.33](/§\_Ref115239340) .|
+|---|---|---|
+|responseHeader|ResponseHeader|Common response parameters.<br>The *ResponseHeader* type is defined in [7.33](/§\_Ref115239340) .|
 |lastCounterResetTime|UtcTime|The last time the counters were reset.|
-|servers[]|ServerOnNetwork|List of DNS service records that meet criteria specified in the request.  
-
-This list is empty if no *Servers* meet the criteria.|
-|recordId|UInt32|A unique identifier for the record.  
-
-This can be used to fetch the next batch of *Servers* in a subsequent call to *FindServersOnNetwork.*|
-|serverName|String|The name of the *Server* specified in the mDNS announcement (see [OPC 10000-12](/§UAPart12) ).  
-
-This may be the same as the *ApplicationName* for the *Server* .|
+|servers[]|ServerOnNetwork|List of DNS service records that meet criteria specified in the request.<br>This list is empty if no *Servers* meet the criteria.|
+|recordId|UInt32|A unique identifier for the record.<br>This can be used to fetch the next batch of *Servers* in a subsequent call to *FindServersOnNetwork.*|
+|serverName|String|The name of the *Server* specified in the mDNS announcement (see [OPC 10000-12](/§UAPart12) ).<br>This may be the same as the *ApplicationName* for the *Server* .|
 |discoveryUrl|String|The URL of the *DiscoveryEndpoint* .|
-|serverCapabilities|String[]|The set of *Server* capabilities supported by the *Server* .  
-
-The set of allowed *Server* capabilities are defined in [OPC 10000-12](/§UAPart12) .|
+|serverCapabilities|String[]|The set of *Server* capabilities supported by the *Server* .<br>The set of allowed *Server* capabilities are defined in [OPC 10000-12](/§UAPart12) .|
   
 
   
@@ -578,39 +548,23 @@ Figure 10 - Using a Gateway Server
 
 [Table 5](/§\_Ref151146140) defines the parameters for the *Service* .  
 
- **Table 5\- GetEndpoints Service Parameters**   
+Table 5 - GetEndpoints Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
-|requestHeader|RequestHeader|Common request parameters.  
-
-The *authenticationToken* is always null. The *authenticationToken* shall be ignored if it is provided.  
-
-The type *RequestHeader* is defined in [7.32](/§\_Ref129000055) .|
-|endpointUrl|String|The network address that the *Client* used to access the *DiscoveryEndpoint* .  
-
-The *Server* uses this information for diagnostics and to determine what URLs to return in the response.  
-
-The *Server* should return a suitable default URL if it does not recognize the *HostName* in the URL.|
-|localeIds []|LocaleId|List of locales to use.  
-
-See locale negotiation in [5.4](/§\_Ref161623610) which applies to this *Service* .|
-|profileUris []|String|List of *Transport* *Profile* that the returned *Endpoints* shall support. [OPC 10000-7](/§UAPart7) defines URIs for the *Transport* *Profiles* .  
-
-All *Endpoints* are returned if the list is empty.  
-
-If the URI is a URL, this URL may have a query string appended. The *Transport* *Profiles* that support query strings are defined in [OPC 10000-7](/§UAPart7) .|
+|---|---|---|
+|requestHeader|RequestHeader|Common request parameters.<br>The *authenticationToken* is always null. The *authenticationToken* shall be ignored if it is provided.<br>The type *RequestHeader* is defined in [7.32](/§\_Ref129000055) .|
+|endpointUrl|String|The network address that the *Client* used to access the *DiscoveryEndpoint* .<br>The *Server* uses this information for diagnostics and to determine what URLs to return in the response.<br>The *Server* should return a suitable default URL if it does not recognize the *HostName* in the URL.|
+|localeIds []|LocaleId|List of locales to use.<br>See locale negotiation in [5.4](/§\_Ref161623610) which applies to this *Service* .|
+|profileUris []|String|List of *Transport* *Profile* that the returned *Endpoints* shall support. [OPC 10000-7](/§UAPart7) defines URIs for the *Transport* *Profiles* .<br>All *Endpoints* are returned if the list is empty.<br>If the URI is a URL, this URL may have a query string appended. The *Transport* *Profiles* that support query strings are defined in [OPC 10000-7](/§UAPart7) .|
 ||||
+  
 | **Response** |||
-|responseHeader|ResponseHeader|Common response parameters.  
-
-The *ResponseHeader* type is defined in [7.33](/§\_Ref115239340) .|
-|Endpoints []|EndpointDescription|List of *Endpoints* that meet criteria specified in the request.  
-
-This list is empty if no *Endpoints* meet the criteria.  
-
-The *EndpointDescription* type is defined in [7.14](/§\_Ref171928664) .|
+|---|---|---|
+|responseHeader|ResponseHeader|Common response parameters.<br>The *ResponseHeader* type is defined in [7.33](/§\_Ref115239340) .|
+|Endpoints []|EndpointDescription|List of *Endpoints* that meet criteria specified in the request.<br>This list is empty if no *Endpoints* meet the criteria.<br>The *EndpointDescription* type is defined in [7.14](/§\_Ref171928664) .|
   
 
   
@@ -661,22 +615,20 @@ When an automatically launched *Server* (or its install program) registers with 
 
 [Table 6](/§\_Ref151146114) defines the parameters for the *Service* .  
 
- **Table 6\- RegisterServer Service Parameters**   
+Table 6 - RegisterServer Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
-|requestHeader|RequestHeader|Common request parameters.  
-
-The *authenticationToken* is always null.  
-
-The type *RequestHeader* is defined in [7.32](/§\_Ref129000055) .|
+|---|---|---|
+|requestHeader|RequestHeader|Common request parameters.<br>The *authenticationToken* is always null.<br>The type *RequestHeader* is defined in [7.32](/§\_Ref129000055) .|
 |Server|RegisteredServer|The *Server* to register. The type *RegisteredServer* is defined in [7.31](/§\_Ref413265664) .|
 ||||
+  
 | **Response** |||
-|ResponseHeader|ResponseHeader|Common response parameters.  
-
-The type *ResponseHeader* is defined in [7.33](/§\_Ref115239340) .|
+|---|---|---|
+|ResponseHeader|ResponseHeader|Common response parameters.<br>The type *ResponseHeader* is defined in [7.33](/§\_Ref115239340) .|
   
 
   
@@ -685,7 +637,7 @@ The type *ResponseHeader* is defined in [7.33](/§\_Ref115239340) .|
 
 [Table 7](/§\_Ref157830433) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 7\- RegisterServer Service Result Codes**   
+Table 7 - RegisterServer Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -716,27 +668,21 @@ This *Service* can only be invoked via *SecureChannels* that support *Client* au
 
 [Table 8](/§\_Ref407044784) defines the parameters for the *Service* .  
 
- **Table 8\- RegisterServer2**   
+Table 8 - RegisterServer2  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
-|requestHeader|RequestHeader|Common request parameters.  
-
-The *authenticationToken* is always null.  
-
-The type *RequestHeader* is defined in [7.32](/§\_Ref129000055) .|
+|---|---|---|
+|requestHeader|RequestHeader|Common request parameters.<br>The *authenticationToken* is always null.<br>The type *RequestHeader* is defined in [7.32](/§\_Ref129000055) .|
 |Server|RegisteredServer|The *Server* to register. The type *RegisteredServer* is defined in [7.31](/§\_Ref413265664) .|
-|discoveryConfiguration []|ExtensibleParameter DiscoveryConfiguration|Additional configuration settings for the *Server* to register.  
-
-The *discoveryConfiguration* is an extensible parameter type defined in [7.13](/§\_Ref413267662) .  
-
-Discovery *Servers* that do not understand a configuration shall return Bad\_NotSupported for this configuration.|
+|discoveryConfiguration []|ExtensibleParameter DiscoveryConfiguration|Additional configuration settings for the *Server* to register.<br>The *discoveryConfiguration* is an extensible parameter type defined in [7.13](/§\_Ref413267662) .<br>Discovery *Servers* that do not understand a configuration shall return Bad\_NotSupported for this configuration.|
 ||||
+  
 | **Response** |||
-|responseHeader|ResponseHeader|Common response parameters.  
-
-The type *ResponseHeader* is defined in [7.33](/§\_Ref115239340) .|
+|---|---|---|
+|responseHeader|ResponseHeader|Common response parameters.<br>The type *ResponseHeader* is defined in [7.33](/§\_Ref115239340) .|
 |configurationResults []|StatusCode|List of results for the *discoveryConfiguration* parameters.|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the *discoveryConfiguration* parameters. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
   
@@ -747,7 +693,7 @@ The type *ResponseHeader* is defined in [7.33](/§\_Ref115239340) .|
 
 [Table 9](/§\_Ref407044794) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 9\- RegisterServer2 Service Result Codes**   
+Table 9 - RegisterServer2 Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -765,7 +711,7 @@ The type *ResponseHeader* is defined in [7.33](/§\_Ref115239340) .|
 
 [Table 10](/§\_Ref469069600) defines values for the operation level *configurationResults* parameters that are specific to this Service. Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 10\- RegisterServer2 Operation Level Result Codes**   
+Table 10 - RegisterServer2 Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -838,68 +784,32 @@ If the *securityPolicyUri* is not None, a *Client* shall verify the *HostName* s
 
 Unlike other *Services* , the parameters for this *Service* provide only an abstract definition. The concrete representation on the network depends on the mappings defined in [OPC 10000-6](/§UAPart6) .  
 
- **Table 11\- OpenSecureChannel Service Parameters**   
+Table 11 - OpenSecureChannel Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
-|requestHeader|RequestHeader|Common request parameters. The *authenticationToken* is always null.  
-
-The type *RequestHeader* is defined in [7.32](/§\_Ref129000063) .|
-|clientCertificate|ApplicationInstance Certificate|A *Certificate* that identifies the *Client* .  
-
-The *OpenSecureChannel* request shall be signed with the private key for this *Certificate* .  
-
-The *ApplicationInstanceCertificate* type is defined in [7.3](/§\_Ref182127421) .  
-
-If the *securityPolicyUri* is None, the *Server* shall ignore the *ApplicationInstanceCertificate* .|
-|requestType|Enum  
-
-SecurityToken RequestType|The type of *SecurityToken* request:  
-
-An enumeration that shall be one of the following:  
-
-ISSUE creates a new *SecurityToken* for a new *SecureChannel* .  
-
-RENEW creates a new *SecurityToken* for an existing *SecureChannel* .|
-|secureChannelId|BaseDataType|The identifier for the *SecureChannel* that the new token should belong to. This parameter shall be null when creating a new *SecureChannel* .  
-
-The concrete security protocol definition in [OPC 10000-6](/§UAPart6) chooses the concrete *DataType* .|
-|securityMode|Enum  
-
-MessageSecurityMode|The type of security to apply to the messages.  
-
-The type *MessageSecurityMode* type is defined in [7.20](/§\_Ref153806472) .  
-
-A *SecureChannel* may need to be created even if the *securityMode* is *NONE* . The exact behaviour depends on the mapping used and is described in the [OPC 10000-6](/§UAPart6) .|
-|securityPolicyUri|String|The URI for *SecurityPolicy* to use when securing messages sent over the *SecureChannel* .  
-
-The set of known URIs and the S *ecurityPolicies* associated with them are defined in [OPC 10000-7](/§UAPart7) .|
-|clientNonce|ByteString|A random number that shall not be used in any other request. A new *clientNonce* shall be generated for each time a *SecureChannel* is renewed.  
-
-This parameter shall have a length equal to the *SecureChannelNonceLength* defined for the *SecurityPolicy* in [OPC 10000-7](/§UAPart7) . The *SecurityPolicy* is identified by the *securityPolicyUri* .|
-|requestedLifetime|Duration|The requested lifetime, in milliseconds, for the new *SecurityToken* . It specifies when the *Client* expects to renew the *SecureChannel* by calling the *OpenSecureChannel Service* again. If a *SecureChannel* is not renewed, then all *Messages* sent using the current *SecurityTokens* shall be rejected by the receiver.  
-
-Several cryptanalytic attacks become easier as more material encrypted with a specific key is available. By limiting the amount of data processed using a particular key, those attacks are made more difficult. Therefore the volume of data exchanged between *Client* and *Server* shall be limited by establishing a new *SecurityToken* after the lifetime.  
-
-The setting of the requested lifetime depends on the expected number of exchanged messages and their size in the lifetime. A higher volume of data requires shorter lifetime.|
+|---|---|---|
+|requestHeader|RequestHeader|Common request parameters. The *authenticationToken* is always null.<br>The type *RequestHeader* is defined in [7.32](/§\_Ref129000063) .|
+|clientCertificate|ApplicationInstance Certificate|A *Certificate* that identifies the *Client* .<br>The *OpenSecureChannel* request shall be signed with the private key for this *Certificate* .<br>The *ApplicationInstanceCertificate* type is defined in [7.3](/§\_Ref182127421) .<br>If the *securityPolicyUri* is None, the *Server* shall ignore the *ApplicationInstanceCertificate* .|
+|requestType|Enum<br>SecurityToken RequestType|The type of *SecurityToken* request:<br>An enumeration that shall be one of the following:<br>ISSUE creates a new *SecurityToken* for a new *SecureChannel* .<br>RENEW creates a new *SecurityToken* for an existing *SecureChannel* .|
+|secureChannelId|BaseDataType|The identifier for the *SecureChannel* that the new token should belong to. This parameter shall be null when creating a new *SecureChannel* .<br>The concrete security protocol definition in [OPC 10000-6](/§UAPart6) chooses the concrete *DataType* .|
+|securityMode|Enum<br>MessageSecurityMode|The type of security to apply to the messages.<br>The type *MessageSecurityMode* type is defined in [7.20](/§\_Ref153806472) .<br>A *SecureChannel* may need to be created even if the *securityMode* is *NONE* . The exact behaviour depends on the mapping used and is described in the [OPC 10000-6](/§UAPart6) .|
+|securityPolicyUri|String|The URI for *SecurityPolicy* to use when securing messages sent over the *SecureChannel* .<br>The set of known URIs and the S *ecurityPolicies* associated with them are defined in [OPC 10000-7](/§UAPart7) .|
+|clientNonce|ByteString|A random number that shall not be used in any other request. A new *clientNonce* shall be generated for each time a *SecureChannel* is renewed.<br>This parameter shall have a length equal to the *SecureChannelNonceLength* defined for the *SecurityPolicy* in [OPC 10000-7](/§UAPart7) . The *SecurityPolicy* is identified by the *securityPolicyUri* .|
+|requestedLifetime|Duration|The requested lifetime, in milliseconds, for the new *SecurityToken* . It specifies when the *Client* expects to renew the *SecureChannel* by calling the *OpenSecureChannel Service* again. If a *SecureChannel* is not renewed, then all *Messages* sent using the current *SecurityTokens* shall be rejected by the receiver.<br>Several cryptanalytic attacks become easier as more material encrypted with a specific key is available. By limiting the amount of data processed using a particular key, those attacks are made more difficult. Therefore the volume of data exchanged between *Client* and *Server* shall be limited by establishing a new *SecurityToken* after the lifetime.<br>The setting of the requested lifetime depends on the expected number of exchanged messages and their size in the lifetime. A higher volume of data requires shorter lifetime.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* type definition).|
 |securityToken|ChannelSecurityToken|Describes the new *SecurityToken* issued by the *Server* . This structure is defined in-line with the following indented items.|
-| channelId|BaseDataType|A unique identifier for the *SecureChannel* . This is the identifier that shall be supplied whenever the *SecureChannel* is renewed.  
-
-The concrete security protocol definition in [OPC 10000-6](/§UAPart6) chooses the concrete *DataType* .|
+| channelId|BaseDataType|A unique identifier for the *SecureChannel* . This is the identifier that shall be supplied whenever the *SecureChannel* is renewed.<br>The concrete security protocol definition in [OPC 10000-6](/§UAPart6) chooses the concrete *DataType* .|
 | tokenId|ByteString|A unique identifier for a single *SecurityToken* within the channel. This is the identifier that shall be passed with each *Message* secured with the *SecurityToken* .|
 | createdAt|UtcTime|The time when the *SecurityToken* was created.|
-| revisedLifetime|Duration|The lifetime of the *SecurityToken* in milliseconds. The UTC expiration time for the token may be calculated by adding the lifetime to the *createdAt* time.  
-
-The revised lifetime shall be used by the *Client* to renew a *SecureChannel* before it expires even if the *MessageSecurityMode* is *NONE* .  
-
-The Server shall provide a lifetime greater than 0. It should be a sensible value based on the capabilities and configuration of the *Server* .|
-|serverNonce|ByteString|A random number that shall not be used in any other request. A new *serverNonce* shall be generated for each time a *SecureChannel* is renewed.  
-
-This parameter shall have a length equal to the *SecureChannelNonceLength* defined for the *SecurityPolicy* in [OPC 10000-7](/§UAPart7) . The *SecurityPolicy* is identified by the *securityPolicyUri* .|
+| revisedLifetime|Duration|The lifetime of the *SecurityToken* in milliseconds. The UTC expiration time for the token may be calculated by adding the lifetime to the *createdAt* time.<br>The revised lifetime shall be used by the *Client* to renew a *SecureChannel* before it expires even if the *MessageSecurityMode* is *NONE* .<br>The Server shall provide a lifetime greater than 0. It should be a sensible value based on the capabilities and configuration of the *Server* .|
+|serverNonce|ByteString|A random number that shall not be used in any other request. A new *serverNonce* shall be generated for each time a *SecureChannel* is renewed.<br>This parameter shall have a length equal to the *SecureChannelNonceLength* defined for the *SecurityPolicy* in [OPC 10000-7](/§UAPart7) . The *SecurityPolicy* is identified by the *securityPolicyUri* .|
   
 
   
@@ -908,7 +818,7 @@ This parameter shall have a length equal to the *SecureChannelNonceLength* defin
 
 [Table 12](/§\_Ref130141799) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 12\- OpenSecureChannel Service Result Codes**   
+Table 12 - OpenSecureChannel Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -928,9 +838,7 @@ This parameter shall have a length equal to the *SecureChannelNonceLength* defin
 |Bad\_SecurityModeRejected|The security mode does not meet the requirements set by the server.|
 |Bad\_SecurityPolicyRejected|The security policy does not meet the requirements set by the *Server* .|
 |Bad\_SecureChannelIdInvalid|See [Table 176](/§\_Ref90539276) for the description of this result code.|
-|Bad\_NonceInvalid|See [Table 176](/§\_Ref90539276) for the description of this result code.  
-
-A *Server* shall check the minimum length of the *Client* nonce and return this status if the length is below 32 bytes. A check for duplicated nonce can only be done in *OpenSecureChannel* calls with the request type *RENEW* .|
+|Bad\_NonceInvalid|See [Table 176](/§\_Ref90539276) for the description of this result code.<br>A *Server* shall check the minimum length of the *Client* nonce and return this status if the length is below 32 bytes. A check for duplicated nonce can only be done in *OpenSecureChannel* calls with the request type *RENEW* .|
   
 
   
@@ -949,19 +857,19 @@ The request *Messages* shall be signed with the appropriate key associated with 
 
 Specific protocol mappings defined in [OPC 10000-6](/§UAPart6) may choose to omit the response.  
 
- **Table 13\- CloseSecureChannel Service Parameters**   
+Table 13 - CloseSecureChannel Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
-|requestHeader|RequestHeader|Common request parameters. The *authenticationToken* is always null.  
-
-The type *RequestHeader* is defined in [7.32](/§\_Ref129000063) .|
-|secureChannelId|BaseDataType|The identifier for the *SecureChannel* to close.  
-
-The concrete security protocol definition in [OPC 10000-6](/§UAPart6) chooses the concrete *DataType* .|
+|---|---|---|
+|requestHeader|RequestHeader|Common request parameters. The *authenticationToken* is always null.<br>The type *RequestHeader* is defined in [7.32](/§\_Ref129000063) .|
+|secureChannelId|BaseDataType|The identifier for the *SecureChannel* to close.<br>The concrete security protocol definition in [OPC 10000-6](/§UAPart6) chooses the concrete *DataType* .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
   
 
@@ -971,7 +879,7 @@ The concrete security protocol definition in [OPC 10000-6](/§UAPart6) chooses t
 
 [Table 14](/§\_Ref130141783) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 14\- CloseSecureChannel Service Result Codes**   
+Table 14 - CloseSecureChannel Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1036,117 +944,35 @@ Figure 14 - Multiplexing users on a Session
 
 [Table 15](/§\_Ref74381726) defines the parameters for the *Service* .  
 
- **Table 15\- CreateSession Service Parameters**   
+Table 15 - CreateSession Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
-|requestHeader|RequestHeader|Common request parameters. The *authenticationToken* is always null.  
-
-The type *RequestHeader* is defined in [7.32](/§\_Ref129000063) .|
-|clientDescription|Application Description|Information that describes the *Client* application.  
-
-The type *ApplicationDescription* is defined in [7.2](/§\_Ref153821547) .|
-|serverUri|String|This value is only specified if the *EndpointDescription* has a *gatewayServerUri* .  
-
-This value is the *applicationUri* from the *EndpointDescription* which is the *applicationUri* for the underlying *Server* . The type *EndpointDescription* is defined in [7.14](/§\_Ref171928664) .|
-|endpointUrl|String|The network address that the *Client* used to access the *Session* *Endpoint* .  
-
-The *Server* uses this information for diagnostics and to determine what URLs to return in the response.  
-
-The *Server* should return a suitable default URL if it does not recognize the *HostName* in the URL|
-|sessionName|String|Human readable string that identifies the *Session* . The *Server* makes this name and the *sessionId* visible in its *AddressSpace* for diagnostic purposes. The *Client* should provide a name that is unique for the instance of the *Client* .  
-
-If this parameter is null or empty the *Server* shall assign a value.|
-|clientNonce|ByteString|A random number that should never be used in any other request. This number shall have a length between 32 and 128 bytes inclusive. The Server shall check the length.  
-
-The *Server* shall use this value to prove possession of its *ApplicationInstanceCertificate* in the response.|
-|clientCertificate|ApplicationInstance  
-
-Certificate|The *ApplicationInstanceCertificate* issued to the *Client* .  
-
-The *ApplicationInstanceCertificate* type is defined in [7.3](/§\_Ref182127421) .  
-
-If the *securityPolicyUri* is None, the *Server* shall ignore the *ApplicationInstanceCertificate* .  
-
-If the *SecurityMode* is not None, a *Client* shall prove possession by using the private key to create a *Signature* using the *Nonce* provided by the *Server* in the response.  
-
-If the *SecurityMode* is not None, the *Server* shall verify that this *ApplicationInstanceCertificate* is the same as the one it used to create the *SecureChannel* .|
-|Requested  
-
-SessionTimeout|Duration|Requested maximum number of milliseconds that a *Session* should remain open without activity. If the *Client* fails to issue a *Service* request within this interval, then the *Server* shall automatically terminate the *Client* *Session* .|
-|maxResponse  
-
-MessageSize|UInt32|The maximum size, in bytes, for the body of any response message.  
-
-The *Server* should return a *Bad\_ResponseTooLarge* service fault if a response message exceeds this limit.  
-
-The value zero indicates that this parameter is not used.  
-
-The transport protocols defined in [OPC 10000-6](/§UAPart6) may imply minimum message sizes.  
-
-More information on the use of this parameter is provided in [5.3](/§\_Ref187648629) .|
+|---|---|---|
+|requestHeader|RequestHeader|Common request parameters. The *authenticationToken* is always null.<br>The type *RequestHeader* is defined in [7.32](/§\_Ref129000063) .|
+|clientDescription|Application Description|Information that describes the *Client* application.<br>The type *ApplicationDescription* is defined in [7.2](/§\_Ref153821547) .|
+|serverUri|String|This value is only specified if the *EndpointDescription* has a *gatewayServerUri* .<br>This value is the *applicationUri* from the *EndpointDescription* which is the *applicationUri* for the underlying *Server* . The type *EndpointDescription* is defined in [7.14](/§\_Ref171928664) .|
+|endpointUrl|String|The network address that the *Client* used to access the *Session* *Endpoint* .<br>The *Server* uses this information for diagnostics and to determine what URLs to return in the response.<br>The *Server* should return a suitable default URL if it does not recognize the *HostName* in the URL|
+|sessionName|String|Human readable string that identifies the *Session* . The *Server* makes this name and the *sessionId* visible in its *AddressSpace* for diagnostic purposes. The *Client* should provide a name that is unique for the instance of the *Client* .<br>If this parameter is null or empty the *Server* shall assign a value.|
+|clientNonce|ByteString|A random number that should never be used in any other request. This number shall have a length between 32 and 128 bytes inclusive. The Server shall check the length.<br>The *Server* shall use this value to prove possession of its *ApplicationInstanceCertificate* in the response.|
+|clientCertificate|ApplicationInstance<br>Certificate|The *ApplicationInstanceCertificate* issued to the *Client* .<br>The *ApplicationInstanceCertificate* type is defined in [7.3](/§\_Ref182127421) .<br>If the *securityPolicyUri* is None, the *Server* shall ignore the *ApplicationInstanceCertificate* .<br>If the *SecurityMode* is not None, a *Client* shall prove possession by using the private key to create a *Signature* using the *Nonce* provided by the *Server* in the response.<br>If the *SecurityMode* is not None, the *Server* shall verify that this *ApplicationInstanceCertificate* is the same as the one it used to create the *SecureChannel* .|
+|Requested<br>SessionTimeout|Duration|Requested maximum number of milliseconds that a *Session* should remain open without activity. If the *Client* fails to issue a *Service* request within this interval, then the *Server* shall automatically terminate the *Client* *Session* .|
+|maxResponse<br>MessageSize|UInt32|The maximum size, in bytes, for the body of any response message.<br>The *Server* should return a *Bad\_ResponseTooLarge* service fault if a response message exceeds this limit.<br>The value zero indicates that this parameter is not used.<br>The transport protocols defined in [OPC 10000-6](/§UAPart6) may imply minimum message sizes.<br>More information on the use of this parameter is provided in [5.3](/§\_Ref187648629) .|
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* type).|
 |sessionId|NodeId|A unique *NodeId* assigned by the *Server* to the *Session* . This identifier is used to access the diagnostics information for the *Session* in the *Server* *AddressSpace* . It is also used in the audit logs and any events that report information related to the *Session* . The *Session* diagnostic information is described in [OPC 10000-5](/§UAPart5) . Audit logs and their related events are described in [6.5](/§\_Ref468992909) .|
-|authentication  
-
-Token|Session  
-
-AuthenticationToken|A unique identifier assigned by the *Server* to the *Session* . This identifier shall be passed in the *RequestHeader* of each request and is used with the *SecureChannelId* to determine whether a *Client* has access to the *Session* . This identifier shall not be reused in a way that the *Client* or the *Server* has a chance of confusing them with a previous or existing *Session* .  
-
-The *SessionAuthenticationToken* type is described in [7.35](/§\_Ref183363986) .|
-|revisedSession Timeout|Duration|Actual maximum number of milliseconds that a *Session* shall remain open without activity. The *Server* should attempt to honour the *Client* request for this parameter, but may negotiate this value up or down to meet its own constraints.  
-
-The Server shall provide a timeout greater than 0. It should be a sensible value based on the capabilities and configuration of the *Server* .|
-|serverNonce|ByteString|A random number that should never be used in any other request.  
-
-This number shall have a length between 32 and 128 bytes inclusive. The Client shall check the length.  
-
-The *Client* shall use this value to prove possession of its *ApplicationInstanceCertificate* in the *ActivateSession* request.  
-
-This value may also be used to prove possession of the *userIdentityToken* it specified in the *ActivateSession* request.|
-|serverCertificate|ApplicationInstance  
-
-Certificate|The *ApplicationInstanceCertificate* issued to the *Server* .  
-
-A *Server* shall prove possession by using the private key to sign the *Nonce* provided by the *Client* in the request. For *SecureChannels* that use the *ApplicationInstanceCertificate* the *Client* shall verify that this *Certificate* is the same as the one it used to create the *SecureChannel* .  
-
-The *ApplicationInstanceCertificate* type is defined in [7.3](/§\_Ref182127421) .  
-
-If the *securityPolicyUri* is *None* and none of the *UserTokenPolicies* requires encryption, the *Client* shall ignore the *ApplicationInstanceCertificate* .|
-|serverEndpoints []|EndpointDescription|List of *Endpoints* that the *Server* supports.  
-
-The *Server* shall return a set of *EndpointDescriptions* available for the *serverUri* specified in the request. All *Endpoints* are returned if the *serverUri* is null or empty. The *EndpointDescription* type is defined in [7.14](/§\_Ref171928664) . If the *Client* used a *DiscoveryEndpoint* to select the security options from the available *EndpointDescriptions,* the *Client* shall verify this list with the list from a *DiscoveryEndpoint* . If the *Client* has the security options configured for the connection to the *Server* , it uses this configuration and ignores the list.  
-
-A *Client* shall compare only the *EndpointDescriptions* that match the *transportProfileUri* of the current *SecureChannel* . It is recommended that *Servers* only include the *server* . *applicationUri* , *endpointUrl* , *securityMode,* *securityPolicyUri* , *userIdentityTokens* , *transportProfileUri* and *securityLevel* with all other parameters set to null or empty. Only the recommended parameters shall be verified by the *Client* .|
-|serverSoftware  
-
-Certificates []|SignedSoftware Certificate|This parameter is no longer used and the array shall be empty.  
-
-The *SoftwareCertificates* are provided in the *Server* *AddressSpace* as defined in [OPC 10000-5](/§UAPart5) .|
-|serverSignature|SignatureData|This is a signature generated with the private key associated with the *serverCertificate* . This parameter is calculated by appending the *clientNonce* to the *clientCertificate* and signing the resulting sequence of bytes.  
-
-If the *clientCertificate* contains a chain, the signature calculation shall be done only with the leaf *Certificate* . For backward compatibility a *Client* shall check the signature with the full chain if the check with the leaf *Certificate* fails.  
-
-The *SignatureAlgorithm* shall be the *AsymmetricSignatureAlgorithm* specified in the *SecurityPolicy* for the *Endpoint* .  
-
-The *SignatureData* type is defined in [7.36](/§\_Ref153782728) .  
-
-The *clientCertificate* shall be validated according to the rules in [6.1.3](/§\_Ref169270721) even if the *Server* chooses to allow connections from untrusted *Clients* . This validation may have occurred when the *SecureChannel* was established and does not need to be repeated.  
-
-The *Signature* is not generated if the *SecurityMode* is *None* .|
-|maxRequest  
-
-MessageSize|UInt32|The maximum size, in bytes, for the body of any request message.  
-
-The *Client* *Communication Stack* should return a *Bad\_RequestTooLarge* error to the application if a request message exceeds this limit.  
-
-The value zero indicates that this parameter is not used.  
-
-See [OPC 10000-6](/§UAPart6) for protocol specific minimum or default values.  
-
-[5.3](/§\_Ref187648629) provides more information on the use of this parameter.|
+|authentication<br>Token|Session<br>AuthenticationToken|A unique identifier assigned by the *Server* to the *Session* . This identifier shall be passed in the *RequestHeader* of each request and is used with the *SecureChannelId* to determine whether a *Client* has access to the *Session* . This identifier shall not be reused in a way that the *Client* or the *Server* has a chance of confusing them with a previous or existing *Session* .<br>The *SessionAuthenticationToken* type is described in [7.35](/§\_Ref183363986) .|
+|revisedSession Timeout|Duration|Actual maximum number of milliseconds that a *Session* shall remain open without activity. The *Server* should attempt to honour the *Client* request for this parameter, but may negotiate this value up or down to meet its own constraints.<br>The Server shall provide a timeout greater than 0. It should be a sensible value based on the capabilities and configuration of the *Server* .|
+|serverNonce|ByteString|A random number that should never be used in any other request.<br>This number shall have a length between 32 and 128 bytes inclusive. The Client shall check the length.<br>The *Client* shall use this value to prove possession of its *ApplicationInstanceCertificate* in the *ActivateSession* request.<br>This value may also be used to prove possession of the *userIdentityToken* it specified in the *ActivateSession* request.|
+|serverCertificate|ApplicationInstance<br>Certificate|The *ApplicationInstanceCertificate* issued to the *Server* .<br>A *Server* shall prove possession by using the private key to sign the *Nonce* provided by the *Client* in the request. For *SecureChannels* that use the *ApplicationInstanceCertificate* the *Client* shall verify that this *Certificate* is the same as the one it used to create the *SecureChannel* .<br>The *ApplicationInstanceCertificate* type is defined in [7.3](/§\_Ref182127421) .<br>If the *securityPolicyUri* is *None* and none of the *UserTokenPolicies* requires encryption, the *Client* shall ignore the *ApplicationInstanceCertificate* .|
+|serverEndpoints []|EndpointDescription|List of *Endpoints* that the *Server* supports.<br>The *Server* shall return a set of *EndpointDescriptions* available for the *serverUri* specified in the request. All *Endpoints* are returned if the *serverUri* is null or empty. The *EndpointDescription* type is defined in [7.14](/§\_Ref171928664) . If the *Client* used a *DiscoveryEndpoint* to select the security options from the available *EndpointDescriptions,* the *Client* shall verify this list with the list from a *DiscoveryEndpoint* . If the *Client* has the security options configured for the connection to the *Server* , it uses this configuration and ignores the list.<br>A *Client* shall compare only the *EndpointDescriptions* that match the *transportProfileUri* of the current *SecureChannel* . It is recommended that *Servers* only include the *server* . *applicationUri* , *endpointUrl* , *securityMode,* *securityPolicyUri* , *userIdentityTokens* , *transportProfileUri* and *securityLevel* with all other parameters set to null or empty. Only the recommended parameters shall be verified by the *Client* .|
+|serverSoftware<br>Certificates []|SignedSoftware Certificate|This parameter is no longer used and the array shall be empty.<br>The *SoftwareCertificates* are provided in the *Server* *AddressSpace* as defined in [OPC 10000-5](/§UAPart5) .|
+|serverSignature|SignatureData|This is a signature generated with the private key associated with the *serverCertificate* . This parameter is calculated by appending the *clientNonce* to the *clientCertificate* and signing the resulting sequence of bytes.<br>If the *clientCertificate* contains a chain, the signature calculation shall be done only with the leaf *Certificate* . For backward compatibility a *Client* shall check the signature with the full chain if the check with the leaf *Certificate* fails.<br>The *SignatureAlgorithm* shall be the *AsymmetricSignatureAlgorithm* specified in the *SecurityPolicy* for the *Endpoint* .<br>The *SignatureData* type is defined in [7.36](/§\_Ref153782728) .<br>The *clientCertificate* shall be validated according to the rules in [6.1.3](/§\_Ref169270721) even if the *Server* chooses to allow connections from untrusted *Clients* . This validation may have occurred when the *SecureChannel* was established and does not need to be repeated.<br>The *Signature* is not generated if the *SecurityMode* is *None* .|
+|maxRequest<br>MessageSize|UInt32|The maximum size, in bytes, for the body of any request message.<br>The *Client* *Communication Stack* should return a *Bad\_RequestTooLarge* error to the application if a request message exceeds this limit.<br>The value zero indicates that this parameter is not used.<br>See [OPC 10000-6](/§UAPart6) for protocol specific minimum or default values.<br>[5.3](/§\_Ref187648629) provides more information on the use of this parameter.|
   
 
   
@@ -1155,14 +981,12 @@ See [OPC 10000-6](/§UAPart6) for protocol specific minimum or default values.
 
 [Table 16](/§\_Ref89580600) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 16\- CreateSession Service Result Codes**   
+Table 16 - CreateSession Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
 |Bad\_SecureChannelIdInvalid|See [Table 176](/§\_Ref90539276) for the description of this result code.|
-|Bad\_NonceInvalid|See [Table 176](/§\_Ref90539276) for the description of this result code.  
-
-A *Server* shall check the length of the *Client* nonce and return this status if the length is less than 32 bytes or greater than 128 bytes. A check for a duplicated nonce is optional and requires access to the nonce used to create the secure channel.|
+|Bad\_NonceInvalid|See [Table 176](/§\_Ref90539276) for the description of this result code.<br>A *Server* shall check the length of the *Client* nonce and return this status if the length is less than 32 bytes or greater than 128 bytes. A check for a duplicated nonce is optional and requires access to the nonce used to create the secure channel.|
 |Bad\_SecurityChecksFailed|See [Table 176](/§\_Ref90539276) for the description of this result code.|
 |Bad\_CertificateTimeInvalid|See [Table 176](/§\_Ref90539276) for the description of this result code.|
 |Bad\_CertificateIssuerTimeInvalid|See [Table 176](/§\_Ref90539276) for the description of this result code.|
@@ -1214,47 +1038,25 @@ A *Gateway Server* is expected to impersonate the user provided by the *Client* 
 
 [Table 17](/§\_Ref109722150) defines the parameters for the *Service* .  
 
- **Table 17\- ActivateSession Service Parameters**   
+Table 17 - ActivateSession Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters. The type *RequestHeader* is defined in [7.32](/§\_Ref129000063) .|
-|clientSignature|SignatureData|This is a signature generated with the private key associated with the *clientCertificate* . This parameter is calculated by appending the *serverNonce* to the *serverCertificate* and signing the resulting sequence of bytes.  
-
-If the *serverCertificate* contains a chain, the signature calculation shall be done only with the leaf *Certificate* . For backward compatibility a *Server* shall check the signature with the full chain if the check with the leaf *Certificate* fails.  
-
-The *SignatureAlgorithm* shall be the *AsymmetricSignatureAlgorithm* specified in the *SecurityPolicy* for the *Endpoint* .  
-
-The *SignatureData* type is defined in [7.36](/§\_Ref153782728) .|
-|clientSoftwareCertificates []|SignedSoftware Certificate|Reserved for future use.  
-
-The *SignedSoftwareCertificate* type is defined in [7.37](/§\_Ref180486734) .|
-|localeIds []|LocaleId|List of locale ids to use. See locale negotiation in [5.4](/§\_Ref161623610) which applies to this *Service.*  
-
-This parameter only needs to be specified during the first call to *ActivateSession* during a single application *Session* . If it is null or empty the *Server* shall keep using the current *localeIds* for the *Session* .|
-|userIdentityToken|Extensible Parameter  
-
-UserIdentityToken|The credentials of the user associated with the *Client* application. The *Server* uses these credentials to determine whether the *Client* should be allowed to activate a *Session* and what resources the *Client* has access to during this *Session* .  
-
-The *UserIdentityToken* is an extensible parameter type defined in [7.40](/§\_Ref128235836) .  
-
-The EndpointDescription specifies what *UserIdentityTokens* the *Server* shall accept.  
-
-Null or empty user token shall always be interpreted as anonymous.|
-|userTokenSignature|SignatureData|If the *Client* specified a user identity token that supports digital signatures, then it shall create a signature and pass it as this parameter. Otherwise the parameter is null or empty.  
-
-The *SignatureAlgorithm* depends on the identity token type.  
-
-The *SignatureData* type is defined in [7.36](/§\_Ref153782728) .|
+|clientSignature|SignatureData|This is a signature generated with the private key associated with the *clientCertificate* . This parameter is calculated by appending the *serverNonce* to the *serverCertificate* and signing the resulting sequence of bytes.<br>If the *serverCertificate* contains a chain, the signature calculation shall be done only with the leaf *Certificate* . For backward compatibility a *Server* shall check the signature with the full chain if the check with the leaf *Certificate* fails.<br>The *SignatureAlgorithm* shall be the *AsymmetricSignatureAlgorithm* specified in the *SecurityPolicy* for the *Endpoint* .<br>The *SignatureData* type is defined in [7.36](/§\_Ref153782728) .|
+|clientSoftwareCertificates []|SignedSoftware Certificate|Reserved for future use.<br>The *SignedSoftwareCertificate* type is defined in [7.37](/§\_Ref180486734) .|
+|localeIds []|LocaleId|List of locale ids to use. See locale negotiation in [5.4](/§\_Ref161623610) which applies to this *Service.*<br>This parameter only needs to be specified during the first call to *ActivateSession* during a single application *Session* . If it is null or empty the *Server* shall keep using the current *localeIds* for the *Session* .|
+|userIdentityToken|Extensible Parameter<br>UserIdentityToken|The credentials of the user associated with the *Client* application. The *Server* uses these credentials to determine whether the *Client* should be allowed to activate a *Session* and what resources the *Client* has access to during this *Session* .<br>The *UserIdentityToken* is an extensible parameter type defined in [7.40](/§\_Ref128235836) .<br>The EndpointDescription specifies what *UserIdentityTokens* the *Server* shall accept.<br>Null or empty user token shall always be interpreted as anonymous.|
+|userTokenSignature|SignatureData|If the *Client* specified a user identity token that supports digital signatures, then it shall create a signature and pass it as this parameter. Otherwise the parameter is null or empty.<br>The *SignatureAlgorithm* depends on the identity token type.<br>The *SignatureData* type is defined in [7.36](/§\_Ref153782728) .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
-|serverNonce|ByteString|A random number that should never be used in any other request.  
-
-This number shall have a length between 32 and 128 bytes inclusive. The Client shall check the length.  
-
-The *Client* shall use this value to prove possession of its *ApplicationInstanceCertificate* in the next call to *ActivateSession* request.|
+|serverNonce|ByteString|A random number that should never be used in any other request.<br>This number shall have a length between 32 and 128 bytes inclusive. The Client shall check the length.<br>The *Client* shall use this value to prove possession of its *ApplicationInstanceCertificate* in the next call to *ActivateSession* request.|
 |results []|StatusCode|List of validation results for the *SoftwareCertificates* (see [7.38](/§\_Ref127346441) for *StatusCode* definition).|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information associated with *SoftwareCertificate* validation errors (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
   
@@ -1265,7 +1067,7 @@ The *Client* shall use this value to prove possession of its *ApplicationInstanc
 
 [Table 18](/§\_Ref109722179) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 18\- ActivateSession Service Result Codes**   
+Table 18 - ActivateSession Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1277,11 +1079,7 @@ The *Client* shall use this value to prove possession of its *ApplicationInstanc
 |Bad\_NoValidCertificates|The *Client* did not provide at least one *Software Certificate* that is valid and meets the profile requirements for the *Server* .|
 |Bad\_IdentityChangeNotSupported|The *Server* does not support changing the user identity assigned to the session.|
 |Bad\_SecurityPolicyRejected|See [Table 176](/§\_Ref90539276) for the description of this result code.|
-|Good\_PasswordChangeRequired|The log-on for the user succeeded but the user is required to change the password.  
-
-The activated *Session* has limited rights and is mainly available to change the password.  
-
-The detailed definitions for *UserManagement* , restrictions for *Sessions* and the *Method ChangePassword* used to set a new password are defined in [OPC 10000-18](/§UAPart18) . This result code is only used by *Servers* that support the *Method ChangePassword* .|
+|Good\_PasswordChangeRequired|The log-on for the user succeeded but the user is required to change the password.<br>The activated *Session* has limited rights and is mainly available to change the password.<br>The detailed definitions for *UserManagement* , restrictions for *Sessions* and the *Method ChangePassword* used to set a new password are defined in [OPC 10000-18](/§UAPart18) . This result code is only used by *Servers* that support the *Method ChangePassword* .|
   
 
   
@@ -1304,15 +1102,19 @@ When the *CloseSession* *Service* is called before the *Session* is successfully
 
 [Table 19](/§\_Ref74381727) defines the parameters for the *Service* .  
 
- **Table 19\- CloseSession Service Parameters**   
+Table 19 - CloseSession Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |deleteSubscriptions|Boolean|If the value is TRUE, the *Server* deletes all *Subscriptions* associated with the Session. If the value is FALSE, the *Server* keeps the *Subscriptions* associated with the Session until they timeout based on their own lifetime.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
   
 
@@ -1322,7 +1124,7 @@ When the *CloseSession* *Service* is called before the *Session* is successfully
 
 [Table 20](/§\_Ref88280183) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 20\- CloseSession Service Result Codes**   
+Table 20 - CloseSession Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1341,15 +1143,19 @@ This *Service* is used to cancel outstanding Service requests. Successfully canc
 
 [Table 21](/§\_Ref154214840) defines the parameters for the *Service* .  
 
- **Table 21\- Cancel Service Parameters**   
+Table 21 - Cancel Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |requestHandle|IntegerId|The *requestHandle* assigned to one or more requests that should be cancelled. All outstanding requests with the matching *requestHandle* shall be cancelled.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |cancelCount|UInt32|Number of cancelled requests.|
   
@@ -1380,38 +1186,26 @@ When a *Server* creates an instance of a *TypeDefinitionNode* it shall create th
 
 [Table 22](/§\_Ref71355893) defines the parameters for the *Service* .  
 
- **Table 22\- AddNodes Service Parameters**   
+Table 22 - AddNodes Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |nodesToAdd []|AddNodesItem|List of *Nodes* to add. All *Nodes* are added as a *Reference* to an existing *Node* using a hierarchical *ReferenceType* . This structure is defined in-line with the following indented items.|
-| parentNodeId|Expanded NodeId|*ExpandedNodeId* of the parent *Node* for the *Reference* . The *ExpandedNodeId* type is defined in [7.16](/§\_Ref129164940) .  
-
-If the *server* Index indicates that the parent *Node* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the parent *Node* is a local *Node* the *nodeId* shall contain the namespace index.|
+| parentNodeId|Expanded NodeId|*ExpandedNodeId* of the parent *Node* for the *Reference* . The *ExpandedNodeId* type is defined in [7.16](/§\_Ref129164940) .<br>If the *server* Index indicates that the parent *Node* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the parent *Node* is a local *Node* the *nodeId* shall contain the namespace index.|
 | referenceTypeId|NodeId|*NodeId* of the hierarchical *ReferenceType* to use for the *Reference* from the parent *Node* to the new *Node* .|
-| requestedNewNodeId|Expanded NodeId|*Client* requested expanded *NodeId* of the *Node* to add. The *serverIndex* in the expanded NodeId shall be 0.  
-
-If the *Server* cannot use this *NodeId* , it rejects this *Node* and returns the appropriate error code.  
-
-If the *Client* does not want to request a *NodeId* , then it sets the value of this parameter to the null expanded *NodeId* .  
-
-If the *Node* to add is a *ReferenceType* *Node* , its *NodeId* should be a numeric id. See [OPC 10000-3](/§UAPart3) for a description of *ReferenceType* *NodeIds* .|
+| requestedNewNodeId|Expanded NodeId|*Client* requested expanded *NodeId* of the *Node* to add. The *serverIndex* in the expanded NodeId shall be 0.<br>If the *Server* cannot use this *NodeId* , it rejects this *Node* and returns the appropriate error code.<br>If the *Client* does not want to request a *NodeId* , then it sets the value of this parameter to the null expanded *NodeId* .<br>If the *Node* to add is a *ReferenceType* *Node* , its *NodeId* should be a numeric id. See [OPC 10000-3](/§UAPart3) for a description of *ReferenceType* *NodeIds* .|
 | browseName|QualifiedName|The browse name of the *Node* to add.|
 | nodeClass|NodeClass|*NodeClass* of the *Node* to add.|
-| nodeAttributes|Extensible Parameter  
-
-NodeAttributes|The *Attributes* that are specific to the *NodeClass* . The *NodeAttributes* parameter type is an extensible parameter type specified in [7.24](/§\_Ref130144342) .  
-
-A *Client* is allowed to omit values for some or all *Attributes* . If an *Attribute* value is null, the *Server* shall use the default values from the *TypeDefinitionNode* . If a *TypeDefinitionNode* was not provided the *Server* shall choose a suitable default value.  
-
-The *Server* may still add an optional Attribute to the *Node* with an appropriate default value even if the *Client* does not specify a value.|
-| typeDefinition|Expanded NodeId|*NodeId* of the *TypeDefinitionNode* for the *Node* to add. This parameter shall be null for all *NodeClasses* other than *Object* and *Variable* in which case it shall be provided.  
-
-If the *server* Index indicates that the type definition *Node* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the type definition *Node* is a local *Node* the *nodeId* shall contain the namespace index.|
+| nodeAttributes|Extensible Parameter<br>NodeAttributes|The *Attributes* that are specific to the *NodeClass* . The *NodeAttributes* parameter type is an extensible parameter type specified in [7.24](/§\_Ref130144342) .<br>A *Client* is allowed to omit values for some or all *Attributes* . If an *Attribute* value is null, the *Server* shall use the default values from the *TypeDefinitionNode* . If a *TypeDefinitionNode* was not provided the *Server* shall choose a suitable default value.<br>The *Server* may still add an optional Attribute to the *Node* with an appropriate default value even if the *Client* does not specify a value.|
+| typeDefinition|Expanded NodeId|*NodeId* of the *TypeDefinitionNode* for the *Node* to add. This parameter shall be null for all *NodeClasses* other than *Object* and *Variable* in which case it shall be provided.<br>If the *server* Index indicates that the type definition *Node* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the type definition *Node* is a local *Node* the *nodeId* shall contain the namespace index.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|AddNodesResult|List of results for the *Nodes* to add. The size and order of the list matches the size and order of the *nodesToAdd* request parameter. This structure is defined in-line with the following indented items.|
 | statusCode|StatusCode|*StatusCode* for the *Node* to add (see [7.38](/§\_Ref127346441) for *StatusCode* definition).|
@@ -1425,7 +1219,7 @@ If the *server* Index indicates that the type definition *Node* is a remote *Nod
 
 [Table 23](/§\_Ref89583258) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 23\- AddNodes Service Result Codes**   
+Table 23 - AddNodes Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1439,7 +1233,7 @@ If the *server* Index indicates that the type definition *Node* is a remote *Nod
 
 [Table 24](/§\_Ref71358695) defines values for the operation level *statusCode* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 24\- AddNodes Operation Level Result Codes**   
+Table 24 - AddNodes Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1470,23 +1264,25 @@ In certain cases, adding new *References* to the *AddressSpace* shall require th
 
 [Table 25](/§\_Ref71435580) defines the parameters for the *Service* .  
 
- **Table 25\- AddReferences Service Parameters**   
+Table 25 - AddReferences Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|Request Header|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |referencesToAdd []|AddReferences Item|List of *Reference* instances to add to the *SourceNode* . The *targetNodeClass* of each *Reference* in the list shall match the *NodeClass* of the *TargetNode* . This structure is defined in-line with the following indented items.|
 | sourceNodeId|NodeId|*NodeId* of the *Node* to which the *Reference* is to be added. The source *Node* shall always exist in the *Server* to add the *Reference* . The isForward parameter can be set to FALSE if the target *Node* is on the local *Server* and the source *Node* on the remote *Server* .|
 | referenceTypeId|NodeId|*NodeId* of the *ReferenceType* that defines the *Reference* .|
 | isForward|Boolean|If the value is TRUE, the *Server* creates a forward Reference. If the value is FALSE, the *Server* creates an inverse Reference.|
 | targetServerUri|String|URI of the remote *Server* . If this parameter is not null or empty, it overrides the *serverIndex* in the *targetNodeId* .|
-| targetNodeId|Expanded NodeId|Expanded *NodeId* of the *TargetNode* . The *ExpandedNodeId* type is defined in [7.16](/§\_Ref129164940) .  
-
-If the *server* Index indicates that the *TargetNode* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the *TargetNode* is a local *Node* the *nodeId* shall contain the namespace index.|
+| targetNodeId|Expanded NodeId|Expanded *NodeId* of the *TargetNode* . The *ExpandedNodeId* type is defined in [7.16](/§\_Ref129164940) .<br>If the *server* Index indicates that the *TargetNode* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the *TargetNode* is a local *Node* the *nodeId* shall contain the namespace index.|
 | targetNodeClass|NodeClass|*NodeClass* of the *TargetNode* . The *Client* shall specify this since the *TargetNode* might not be accessible directly by the *Server* .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|StatusCode|List of *StatusCodes* for the *References* to add (see [7.38](/§\_Ref127346441) for *StatusCode* definition). The size and order of the list matches the size and order of the *referencesToAdd* request parameter.|
 |diagnosticInfos []|Diagnostic Info|List of diagnostic information for the *References* to add (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *referencesToAdd* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
@@ -1498,7 +1294,7 @@ If the *server* Index indicates that the *TargetNode* is a remote *Node* , then 
 
 [Table 26](/§\_Ref89583306) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 26\- AddReferences Service Result Codes**   
+Table 26 - AddReferences Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1512,7 +1308,7 @@ If the *server* Index indicates that the *TargetNode* is a remote *Node* , then 
 
 [Table 27](/§\_Ref71435581) defines values for the *results* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 27\- AddReferences Operation Level Result Codes**   
+Table 27 - AddReferences Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1546,23 +1342,21 @@ When any of the *Nodes* deleted by an invocation of this *Service* is being moni
 
 [Table 28](/§\_Ref71358561) defines the parameters for the *Service* .  
 
- **Table 28\- DeleteNodes Service Parameters**   
+Table 28 - DeleteNodes Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|Request Header|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |nodesToDelete []|DeleteNodes Item|List of *Nodes* to delete. This structure is defined in-line with the following indented items.|
 | nodeId|NodeId|*NodeId* of the *Node* to delete.|
-| deleteTargetReferences|Boolean|A *Boolean* parameter with the following values:  
-
-TRUE delete *References* in *TargetNodes* that *Reference* the *Node* to delete.  
-
-FALSE delete only the *References* for which the *Node* to delete is the source.  
-
-The *Server* cannot guarantee that it is able to delete all *References* from *TargetNodes* if this parameter is TRUE.|
+| deleteTargetReferences|Boolean|A *Boolean* parameter with the following values:<br>TRUE delete *References* in *TargetNodes* that *Reference* the *Node* to delete.<br>FALSE delete only the *References* for which the *Node* to delete is the source.<br>The *Server* cannot guarantee that it is able to delete all *References* from *TargetNodes* if this parameter is TRUE.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|StatusCode|List of *StatusCodes* for the *Nodes* to delete (see [7.38](/§\_Ref127346441) for *StatusCode* definition). The size and order of the list matches the size and order of the list of the *nodesToDelete* request parameter.|
 |diagnosticInfos []|Diagnostic Info|List of diagnostic information for the *Nodes* to delete (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *nodesToDelete* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
@@ -1574,7 +1368,7 @@ The *Server* cannot guarantee that it is able to delete all *References* from *T
 
 [Table 29](/§\_Ref89583511) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 29\- DeleteNodes Service Result Codes**   
+Table 29 - DeleteNodes Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1588,7 +1382,7 @@ The *Server* cannot guarantee that it is able to delete all *References* from *T
 
 [Table 30](/§\_Ref71358535) defines values for the *results* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 30\- DeleteNodes Operation Level Result Codes**   
+Table 30 - DeleteNodes Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1611,26 +1405,24 @@ When any of the *References* deleted by an invocation of this *Service* are cont
 
 [Table 31](/§\_Ref324447564) defines the parameters for the *Service* .  
 
- **Table 31\- DeleteReferences Service Parameters**   
+Table 31 - DeleteReferences Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |referencesToDelete []|DeleteReferences Item|List of *References* to delete. This structure is defined in-line with the following indented items.|
 | sourceNodeId|NodeId|*NodeId* of the *Node* that contains the *Reference* to delete.|
 | referenceTypeId|NodeId|*NodeId* of the *ReferenceType* that defines the *Reference* to delete.|
 | isForward|Boolean|If the value is TRUE, the *Server* deletes a forward Reference. If the value is FALSE, the *Server* deletes an inverse Reference.|
-| targetNodeId|ExpandedNodeId|*NodeId* of the *TargetNode* of the *Reference* .  
-
-If the *Server* index indicates that the *TargetNode* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the *TargetNode* is a local *Node* the *nodeId* shall contain the namespace index.|
-| deleteBidirectional|Boolean|A *Boolean* parameter with the following values:  
-
-TRUE delete the specified *Reference* and the opposite *Reference* from the *TargetNode* . If the *TargetNode* is located in a remote *Server* , the *Server* is permitted to delete the specified *Reference* only.  
-
-FALSE delete only the specified *Reference* .|
+| targetNodeId|ExpandedNodeId|*NodeId* of the *TargetNode* of the *Reference* .<br>If the *Server* index indicates that the *TargetNode* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the *TargetNode* is a local *Node* the *nodeId* shall contain the namespace index.|
+| deleteBidirectional|Boolean|A *Boolean* parameter with the following values:<br>TRUE delete the specified *Reference* and the opposite *Reference* from the *TargetNode* . If the *TargetNode* is located in a remote *Server* , the *Server* is permitted to delete the specified *Reference* only.<br>FALSE delete only the specified *Reference* .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|StatusCode|List of *StatusCodes* for the *References* to delete (see [7.38](/§\_Ref127346441) for *StatusCode* definition). The size and order of the list matches the size and order of the *referencesToDelete* request parameter.|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the *References* to delete (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *referencesToDelete* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
@@ -1642,7 +1434,7 @@ FALSE delete only the specified *Reference* .|
 
 [Table 32](/§\_Ref108420688) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 32\- DeleteReferences Service Result Codes**   
+Table 32 - DeleteReferences Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1656,7 +1448,7 @@ FALSE delete only the specified *Reference* .|
 
 [Table 33](/§\_Ref108420690) defines values for the r *esults* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 33\- DeleteReferences Operation Level Result Codes**   
+Table 33 - DeleteReferences Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1690,96 +1482,31 @@ In some cases it may take longer than the *Client* timeout hint to process all n
 
 [Table 34](/§\_Ref86802881) defines the parameters for the *Service* .  
 
- **Table 34\- Browse Service Parameters**   
+Table 34 - Browse Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |View|ViewDescription|Description of the *View* to browse (see [7.44](/§\_Ref141201863) for *ViewDescription* definition). An empty *ViewDescription* value indicates the entire *AddressSpace* . Use of the empty *ViewDescription* value causes all *References* of the *nodesToBrowse* to be returned. Use of any other *View* causes only the *References* of the *nodesToBrowse* that are defined for that *View* to be returned.|
-|requestedMax  
-
-ReferencesPerNode|Counter|Indicates the maximum number of references to return for each starting Node specified in the request. The value 0 indicates that the *Client* is imposing no limitation (see [7.8](/§\_Ref128930737) for *Counter* definition).|
+|requestedMax<br>ReferencesPerNode|Counter|Indicates the maximum number of references to return for each starting Node specified in the request. The value 0 indicates that the *Client* is imposing no limitation (see [7.8](/§\_Ref128930737) for *Counter* definition).|
 |nodesToBrowse []|BrowseDescription|A list of nodes to Browse. This structure is defined in-line with the following indented items.|
 | nodeId|NodeId|*NodeId* of the *Node* to be browsed. If a *view* is provided, it shall include this Node.|
-| browseDirection|Enum  
-
-BrowseDirection|An enumeration that specifies the direction of *References* to follow. The enumeration is defined in [7.5](/§\_Ref42717663) .  
-
-The returned *References* do indicate the direction the *Server* followed in the *isForward* parameter of the *ReferenceDescription* .  
-
-Symmetric *References* are always considered to be in forward direction therefore the isForward flag is always set to TRUE and symmetric *References* are not returned if *browseDirection* is set to *INVERSE* .|
-| referenceTypeId|NodeId|Specifies the *NodeId* of the *ReferenceType* to follow. Only instances of this *ReferenceType* or its subtypes are returned.  
-
-If not specified then all *References* are returned and includeSubtypes is ignored.|
+| browseDirection|Enum<br>BrowseDirection|An enumeration that specifies the direction of *References* to follow. The enumeration is defined in [7.5](/§\_Ref42717663) .<br>The returned *References* do indicate the direction the *Server* followed in the *isForward* parameter of the *ReferenceDescription* .<br>Symmetric *References* are always considered to be in forward direction therefore the isForward flag is always set to TRUE and symmetric *References* are not returned if *browseDirection* is set to *INVERSE* .|
+| referenceTypeId|NodeId|Specifies the *NodeId* of the *ReferenceType* to follow. Only instances of this *ReferenceType* or its subtypes are returned.<br>If not specified then all *References* are returned and includeSubtypes is ignored.|
 | includeSubtypes|Boolean|Indicates whether subtypes of the *ReferenceType* should be included in the browse. If TRUE, then instances of *referenceTypeId* and all of its subtypes are returned.|
-| nodeClassMask|UInt32|Specifies the *NodeClasses* of the *TargetNodes* . Only *TargetNodes* with the selected *NodeClasses* are returned. The *NodeClasses* are assigned the following bits:  
-
-| **Bit** | **NodeClass** |
+  
+| nodeClassMask|UInt32|Specifies the *NodeClasses* of the *TargetNodes* . Only *TargetNodes* with the selected *NodeClasses* are returned. The *NodeClasses* are assigned the following bits:<br> **Bit** | **NodeClass** |0|Object|1|Variable|2|Method|3|ObjectType|4|VariableType|5|ReferenceType|6|DataType|7|View|If set to zero, then all *NodeClasses* are returned.If the *NodeClass* is unknown for a remote *Node* , the *nodeClassMask* is ignored.|
 |---|---|
-|0|Object|
-|1|Variable|
-|2|Method|
-|3|ObjectType|
-|4|VariableType|
-|5|ReferenceType|
-|6|DataType|
-|7|View|
+| resultMask|UInt32|Specifies the fields in the *ReferenceDescription* structure that should be returned. The fields are assigned the following bits:<br> **Bit** | **Result** |0|ReferenceType|1|IsForward|2|NodeClass|3|BrowseName|4|DisplayName|5|TypeDefinition|The *ReferenceDescription* type is defined in [7.29](/§\_Ref129166653) .|
+||||
+| **Response** |||
+|responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
+|results []|BrowseResult|A list of *BrowseResults* . The size and order of the list matches the size and order of the *nodesToBrowse* specified in the request.<br>The *BrowseResult* type is defined in [7.6](/§\_Ref182132862) .|
+|diagnosticInfos []|Diagnostic Info|List of diagnostic information for the *results* (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *results* response parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
   
-
-If set to zero, then all *NodeClasses* are returned.  
-
-If the *NodeClass* is unknown for a remote *Node* , the *nodeClassMask* is ignored.  
-
- resultMask  
-
-UInt32  
-
-Specifies the fields in the *ReferenceDescription* structure that should be returned. The fields are assigned the following bits:  
-
-| **Bit** | **Result** |
-|---|---|
-|0|ReferenceType|
-|1|IsForward|
-|2|NodeClass|
-|3|BrowseName|
-|4|DisplayName|
-|5|TypeDefinition|
-  
-
-The *ReferenceDescription* type is defined in [7.29](/§\_Ref129166653) .  
-
-  
-
-  
-
-  
-
- **Response**   
-
-  
-
-  
-
-responseHeader  
-
-Response Header  
-
-Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).  
-
-results []  
-
-BrowseResult  
-
-A list of *BrowseResults* . The size and order of the list matches the size and order of the *nodesToBrowse* specified in the request.  
-
-The *BrowseResult* type is defined in [7.6](/§\_Ref182132862) .  
-
-diagnosticInfos []  
-
-Diagnostic Info  
-
-List of diagnostic information for the *results* (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *results* response parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.  
 
   
 
@@ -1787,7 +1514,7 @@ List of diagnostic information for the *results* (see [7.12](/§\_Ref127334266) 
 
 [Table 35](/§\_Ref89583684) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 35\- Browse Service Result Codes**   
+Table 35 - Browse Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1805,7 +1532,7 @@ List of diagnostic information for the *results* (see [7.12](/§\_Ref127334266) 
 
 [Table 36](/§\_Ref181564146) defines values for the r *esults* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 36\- Browse Operation Level Result Codes**   
+Table 36 - Browse Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1830,32 +1557,22 @@ This *Service* is used to request the next set of *Browse* or *BrowseNext* respo
 
 [Table 37](/§\_Ref93320494) defines the parameters for the *Service* .  
 
- **Table 37\- BrowseNext Service Parameters**   
+Table 37 - BrowseNext Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|Request Header|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
-|releaseContinuationPoints|Boolean|A *Boolean* parameter with the following values:  
-
-TRUE passed *continuationPoints* shall be reset to free resources in the *Server* . The continuation points are released and the results and diagnosticInfos arrays are empty.  
-
-FALSE passed *continuationPoints* shall be used to get the next set of browse information.  
-
-A *Client* shall always use the continuation point returned by a *Browse* or *BrowseNext* response to free the resources for the continuation point in the *Server* . If the *Client* does not want to get the next set of browse information, *BrowseNext* shall be called with this parameter set to TRUE.|
-|continuationPoints []|Continuation Point|A list of *Server*\-defined opaque values that represent continuation points. The value for a continuation point was returned to the *Client* in a previous *Browse* or *BrowseNext* response. These values are used to identify the previously processed *Browse* or *BrowseNext* request that is being continued and the point in the result set from which the browse response is to continue.  
-
-*Clients* may mix continuation points from different Browse or BrowseNext responses.  
-
-The *ContinuationPoint* type is described in [7.9](/§\_Ref183360083) .|
+|releaseContinuationPoints|Boolean|A *Boolean* parameter with the following values:<br>TRUE passed *continuationPoints* shall be reset to free resources in the *Server* . The continuation points are released and the results and diagnosticInfos arrays are empty.<br>FALSE passed *continuationPoints* shall be used to get the next set of browse information.<br>A *Client* shall always use the continuation point returned by a *Browse* or *BrowseNext* response to free the resources for the continuation point in the *Server* . If the *Client* does not want to get the next set of browse information, *BrowseNext* shall be called with this parameter set to TRUE.|
+|continuationPoints []|Continuation Point|A list of *Server*\-defined opaque values that represent continuation points. The value for a continuation point was returned to the *Client* in a previous *Browse* or *BrowseNext* response. These values are used to identify the previously processed *Browse* or *BrowseNext* request that is being continued and the point in the result set from which the browse response is to continue.<br>*Clients* may mix continuation points from different Browse or BrowseNext responses.<br>The *ContinuationPoint* type is described in [7.9](/§\_Ref183360083) .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
-|results []|BrowseResult|A list of references that met the criteria specified in the original *Browse* request.  
-
-The size and order of this list matches the size and order of the *continuationPoints* request parameter.  
-
-The *BrowseResult* type is defined in [7.6](/§\_Ref182132862) .|
+|results []|BrowseResult|A list of references that met the criteria specified in the original *Browse* request.<br>The size and order of this list matches the size and order of the *continuationPoints* request parameter.<br>The *BrowseResult* type is defined in [7.6](/§\_Ref182132862) .|
 |diagnosticInfos []|Diagnostic Info|List of diagnostic information for the *results* (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *results* response parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
   
 
@@ -1865,7 +1582,7 @@ The *BrowseResult* type is defined in [7.6](/§\_Ref182132862) .|
 
 [Table 38](/§\_Ref93320492) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 38\- BrowseNext Service Result Codes**   
+Table 38 - BrowseNext Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1879,7 +1596,7 @@ The *BrowseResult* type is defined in [7.6](/§\_Ref182132862) .|
 
 [Table 39](/§\_Ref181564527) defines values for the r *esults* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 39\- BrowseNext Operation Level Result Codes**   
+Table 39 - BrowseNext Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1907,35 +1624,27 @@ If a *Node* has multiple targets with the same *BrowseName* , the *Server* shall
 
 [Table 40](/§\_Ref134958373) defines the parameters for the *Service* .  
 
- **Table 40\- TranslateBrowsePathsToNodeIds Service Parameters**   
+Table 40 - TranslateBrowsePathsToNodeIds Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |browsePaths []|BrowsePath|List of browse paths for which *NodeIds* are being requested. This structure is defined in-line with the following indented items.|
 | startingNode|NodeId|*NodeId* of the starting *Node* for the browse path.|
-| relativePath|RelativePath|The path to follow from the *startingNode* .  
-
-The last element in the *relativePath* shall always have a *targetName* specified. This further restricts the definition of the RelativePath type. The *Server* shall return *Bad* \_ *BrowseNameInvalid* if the *targetName* is missing.  
-
-The *RelativePath* structure is defined in [7.30](/§\_Ref139474657) .|
+| relativePath|RelativePath|The path to follow from the *startingNode* .<br>The last element in the *relativePath* shall always have a *targetName* specified. This further restricts the definition of the RelativePath type. The *Server* shall return *Bad* \_ *BrowseNameInvalid* if the *targetName* is missing.<br>The *RelativePath* structure is defined in [7.30](/§\_Ref139474657) .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|BrowsePathResult|List of results for the list of browse paths. The size and order of the list matches the size and order of the *browsePaths* request parameter. This structure is defined in-line with the following indented items.|
 | statusCode|StatusCode|*StatusCode* for the browse path (see [7.38](/§\_Ref127346441) for *StatusCode* definition).|
-| targets []|BrowsePathTarget  
-
-|List of targets for the *relativePath* from the *startingNode* . This structure is defined in-line with the following indented items.  
-
-A *Server* may encounter a *Reference* to a *Node* in another *Server* which it cannot follow while it is processing the *RelativePath* . If this happens the *Server* returns the *NodeId* of the external *Node* and sets the *remainingPathIndex* parameter to indicate which *RelativePath* elements still need to be processed. To complete the operation the *Client* shall connect to the other *Server* and call this service again using the target as the *startingNode* and the unprocessed elements as the *relativePath* .|
-|  targetId|ExpandedNodeId|The identifier for a target of the *RelativePath* .  
-
-If the *server* Index indicates that the target *Node* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the target *Node* is a local *Node* the *nodeId* shall contain the namespace index.|
-|  remainingPathIndex|Index|The index of the first unprocessed element in the *RelativePath* .  
-
-This value shall be equal to the maximum value of *Index* data type if all elements were processed (see [7.18](/§\_Ref187558134) for *Index* definition).|
+| targets []|BrowsePathTarget<br>|List of targets for the *relativePath* from the *startingNode* . This structure is defined in-line with the following indented items.<br>A *Server* may encounter a *Reference* to a *Node* in another *Server* which it cannot follow while it is processing the *RelativePath* . If this happens the *Server* returns the *NodeId* of the external *Node* and sets the *remainingPathIndex* parameter to indicate which *RelativePath* elements still need to be processed. To complete the operation the *Client* shall connect to the other *Server* and call this service again using the target as the *startingNode* and the unprocessed elements as the *relativePath* .|
+|  targetId|ExpandedNodeId|The identifier for a target of the *RelativePath* .<br>If the *server* Index indicates that the target *Node* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the target *Node* is a local *Node* the *nodeId* shall contain the namespace index.|
+|  remainingPathIndex|Index|The index of the first unprocessed element in the *RelativePath* .<br>This value shall be equal to the maximum value of *Index* data type if all elements were processed (see [7.18](/§\_Ref187558134) for *Index* definition).|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the list of browse paths (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *browsePaths* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
   
 
@@ -1945,7 +1654,7 @@ This value shall be equal to the maximum value of *Index* data type if all eleme
 
 [Table 41](/§\_Ref134958396) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [7.38](/§\_Ref88280762) .  
 
- **Table 41\- TranslateBrowsePathsToNodeIds Service Result Codes**   
+Table 41 - TranslateBrowsePathsToNodeIds Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1959,22 +1668,16 @@ This value shall be equal to the maximum value of *Index* data type if all eleme
 
 [Table 42](/§\_Ref134418324) defines values for the operation level *statusCode* parameters that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 42\- TranslateBrowsePathsToNodeIds Operation Level Result Codes**   
+Table 42 - TranslateBrowsePathsToNodeIds Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
 |Bad\_NodeIdInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_NodeIdUnknown|See [Table 177](/§\_Ref127606591) for the description of this result code.|
-|Bad\_NothingToDo|See [Table 176](/§\_Ref90539276) for the description of this result code.  
-
-This code indicates that the relativePath contained an empty list.|
-|Bad\_BrowseNameInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-This code indicates that a TargetName was missing in a RelativePath.|
+|Bad\_NothingToDo|See [Table 176](/§\_Ref90539276) for the description of this result code.<br>This code indicates that the relativePath contained an empty list.|
+|Bad\_BrowseNameInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>This code indicates that a TargetName was missing in a RelativePath.|
 |Uncertain\_ReferenceOutOfServer|The path element has targets which are in another *Server* .|
-|Bad\_TooManyMatches|The requested operation has too many matches to return.  
-
-Users should use queries for large result sets. *Servers* should allow at least 10 matches before returning this error code.|
+|Bad\_TooManyMatches|The requested operation has too many matches to return.<br>Users should use queries for large result sets. *Servers* should allow at least 10 matches before returning this error code.|
 |Bad\_QueryTooComplex|The requested operation requires too many resources in the *Server* .|
 |Bad\_NoMatch|The requested relativePath cannot be resolved to a target to return.|
   
@@ -1997,21 +1700,21 @@ For the purpose of *Auditing* , *Servers* shall not use the registered *NodeIds*
 
 [Table 43](/§\_Ref188680939) defines the parameters for the *Service* .  
 
- **Table 43\- RegisterNodes Service Parameters**   
+Table 43 - RegisterNodes Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|Request Header|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |nodesToRegister []|NodeId|List of *NodeIds* to register that the *Client* has retrieved through browsing, querying or in some other manner.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
-|registeredNodeIds []|NodeId|A list of *NodeIds* which the *Client* shall use for subsequent access operations. The size and order of this list matches the size and order of the *nodesToRegister* request parameter.  
-
-The *Server* may return the *NodeId* from the request or a new (an alias) *NodeId* . It is recommended that the *Server* return a numeric *NodeIds* for aliasing.  
-
-In case no optimization is supported for a *Node* , the *Server* shall return the *NodeId* from the request.|
+|registeredNodeIds []|NodeId|A list of *NodeIds* which the *Client* shall use for subsequent access operations. The size and order of this list matches the size and order of the *nodesToRegister* request parameter.<br>The *Server* may return the *NodeId* from the request or a new (an alias) *NodeId* . It is recommended that the *Server* return a numeric *NodeIds* for aliasing.<br>In case no optimization is supported for a *Node* , the *Server* shall return the *NodeId* from the request.|
   
 
   
@@ -2020,15 +1723,13 @@ In case no optimization is supported for a *Node* , the *Server* shall return th
 
 [Table 44](/§\_Ref188680979) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 44\- RegisterNodes Service Result Codes**   
+Table 44 - RegisterNodes Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
 |Bad\_NothingToDo|See [Table 176](/§\_Ref90539276) for the description of this result code.|
 |Bad\_TooManyOperations|See [Table 176](/§\_Ref90539276) for the description of this result code.|
-|Bad\_NodeIdInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-*Servers* shall completely reject the *RegisterNodes* request if any of the *NodeIds* in the *nodesToRegister* parameter are structurally invalid.|
+|Bad\_NodeIdInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>*Servers* shall completely reject the *RegisterNodes* request if any of the *NodeIds* in the *nodesToRegister* parameter are structurally invalid.|
   
 
   
@@ -2045,15 +1746,19 @@ This *Service* is used to unregister *NodeIds* that have been obtained via the *
 
 [Table 45](/§\_Ref209356567) defines the parameters for the *Service* .  
 
- **Table 45\- UnregisterNodes Service Parameters**   
+Table 45 - UnregisterNodes Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|Request Header|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |nodesToUnregister []|NodeId|A list of *NodeIds* that have been obtained via the *RegisterNodes* service.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
   
 
@@ -2063,7 +1768,7 @@ This *Service* is used to unregister *NodeIds* that have been obtained via the *
 
 [Table 46](/§\_Ref209356525) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 46\- UnregisterNodes Service Result Codes**   
+Table 46 - UnregisterNodes Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2095,33 +1800,21 @@ The maxAge parameter is used to direct the *Server* to access the value from the
 
 [Table 47](/§\_Ref74550850) defines the parameters for the *Service* .  
 
- **Table 47\- Read Service Parameters**   
+Table 47 - Read Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
-|maxAge|Duration|Maximum age of the value to be read in milliseconds. The age of the value is based on the difference between the *ServerTimestamp* and the time when the *Server* starts processing the request. For example if the *Client* specifies a *maxAge* of 500 milliseconds and it takes 100 milliseconds until the *Server* starts processing the request, the age of the returned value could be 600 milliseconds prior to the time it was requested.  
-
-If the *Server* has one or more values of an *Attribute* that are within the maximum age, it can return any one of the values or it can read a new value from the data source. The number of values of an *Attribute* that a *Server* has depends on the number of *MonitoredItems* that are defined for the *Attribute* . In any case, the *Client* can make no assumption about which copy of the data will be returned.  
-
-If the *Server* does not have a value that is within the maximum age, it shall attempt to read a new value from the data source.  
-
-If the *Server* cannot meet the requested *maxAge* , it returns its "best effort" value rather than rejecting the request. This may occur when the time it takes the *Server* to process and return the new data value after it has been accessed is greater than the specified maximum age.  
-
-If *maxAge* is set to 0, the *Server* shall attempt to read a new value from the data source.  
-
-If *maxAge* is set to the max Int32 value or greater, the *Server* shall attempt to get a cached value.  
-
-Negative values are invalid for *maxAge* .|
-|timestampsTo  
-
-Return|Enum  
-
-TimestampsTo Return|An enumeration that specifies the *Timestamps* to be returned for each requested *Variable* *Value* *Attribute* . The *TimestampsToReturn* enumeration is defined in [7.39](/§\_Ref133134319) .|
+|maxAge|Duration|Maximum age of the value to be read in milliseconds. The age of the value is based on the difference between the *ServerTimestamp* and the time when the *Server* starts processing the request. For example if the *Client* specifies a *maxAge* of 500 milliseconds and it takes 100 milliseconds until the *Server* starts processing the request, the age of the returned value could be 600 milliseconds prior to the time it was requested.<br>If the *Server* has one or more values of an *Attribute* that are within the maximum age, it can return any one of the values or it can read a new value from the data source. The number of values of an *Attribute* that a *Server* has depends on the number of *MonitoredItems* that are defined for the *Attribute* . In any case, the *Client* can make no assumption about which copy of the data will be returned.<br>If the *Server* does not have a value that is within the maximum age, it shall attempt to read a new value from the data source.<br>If the *Server* cannot meet the requested *maxAge* , it returns its "best effort" value rather than rejecting the request. This may occur when the time it takes the *Server* to process and return the new data value after it has been accessed is greater than the specified maximum age.<br>If *maxAge* is set to 0, the *Server* shall attempt to read a new value from the data source.<br>If *maxAge* is set to the max Int32 value or greater, the *Server* shall attempt to get a cached value.<br>Negative values are invalid for *maxAge* .|
+|timestampsTo<br>Return|Enum<br>TimestampsTo Return|An enumeration that specifies the *Timestamps* to be returned for each requested *Variable* *Value* *Attribute* . The *TimestampsToReturn* enumeration is defined in [7.39](/§\_Ref133134319) .|
 |nodesToRead []|ReadValueId|List of *Nodes* and their *Attributes* to read. For each entry in this list, a *StatusCode* is returned, and if it indicates success, the *Attribute* *Value* is also returned. The ReadValueId parameter type is defined in [7.28](/§\_Ref133162567) .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|DataValue|List of *Attribute* values (see [7.11](/§\_Ref127334314) for *DataValue* definition). The size and order of this list matches the size and order of the *nodesToRead* request parameter. There is one entry in this list for each *Node* contained in the *nodesToRead* parameter.|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of this list matches the size and order of the *nodesToRead* request parameter. There is one entry in this list for each *Node* contained in the *nodesToRead* parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
@@ -2133,7 +1826,7 @@ TimestampsTo Return|An enumeration that specifies the *Timestamps* to be returne
 
 [Table 48](/§\_Ref134958453) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 48\- Read Service Result Codes**   
+Table 48 - Read Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2149,7 +1842,7 @@ TimestampsTo Return|An enumeration that specifies the *Timestamps* to be returne
 
 [Table 49](/§\_Ref74550839) defines values for the operation level *statusCode* contained in the *DataValue* structure of each *results* element. Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 49\- Read Operation Level Result Codes**   
+Table 49 - Read Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2183,72 +1876,30 @@ For additional details on reading historical data and historical *Events* see [O
 
 [Table 50](/§\_Ref110223196) defines the parameters for the *Service* .  
 
- **Table 50\- HistoryRead Service Parameters**   
+Table 50 - HistoryRead Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
-|historyReadDetails|Extensible Parameter  
-
-HistoryReadDetails|The details define the types of history reads that can be performed. The *HistoryReadDetails* parameter type is an extensible parameter type formally defined in [OPC 10000-11](/§UAPart11) . The *ExtensibleParameter* type is defined in [7.17](/§\_Ref182070092) .|
-|timestampsToReturn|Enum  
-
-TimestampsTo Return|An enumeration that specifies the timestamps to be returned for each requested *Variable* *Value* *Attribute* . The *TimestampsToReturn* enumeration is defined in [7.39](/§\_Ref133134319) .  
-
-Specifying a *TimestampsToReturn* of NEITHER is not valid. A *Server* shall return a *Bad\_TimestampsToReturnInvalid* *StatusCode* in this case.  
-
-[OPC 10000-11](/§UAPart11) defines exceptions where this parameter shall be ignored.|
-|releaseContinuation  
-
-Points|Boolean|A *Boolean* parameter with the following values:  
-
-TRUE passed *continuationPoints* shall be reset to free resources in the *Server* .  
-
-FALSE passed *continuationPoints* shall be used to get the next set of historical information.  
-
-A *Client* shall always use the continuation point returned by a *HistoryRead* response to free the resources for the continuation point in the *Server* . If the *Client* does not want to get the next set of historical information, *HistoryRead* shall be called with this parameter set to TRUE.|
+|historyReadDetails|Extensible Parameter<br>HistoryReadDetails|The details define the types of history reads that can be performed. The *HistoryReadDetails* parameter type is an extensible parameter type formally defined in [OPC 10000-11](/§UAPart11) . The *ExtensibleParameter* type is defined in [7.17](/§\_Ref182070092) .|
+|timestampsToReturn|Enum<br>TimestampsTo Return|An enumeration that specifies the timestamps to be returned for each requested *Variable* *Value* *Attribute* . The *TimestampsToReturn* enumeration is defined in [7.39](/§\_Ref133134319) .<br>Specifying a *TimestampsToReturn* of NEITHER is not valid. A *Server* shall return a *Bad\_TimestampsToReturnInvalid* *StatusCode* in this case.<br>[OPC 10000-11](/§UAPart11) defines exceptions where this parameter shall be ignored.|
+|releaseContinuation<br>Points|Boolean|A *Boolean* parameter with the following values:<br>TRUE passed *continuationPoints* shall be reset to free resources in the *Server* .<br>FALSE passed *continuationPoints* shall be used to get the next set of historical information.<br>A *Client* shall always use the continuation point returned by a *HistoryRead* response to free the resources for the continuation point in the *Server* . If the *Client* does not want to get the next set of historical information, *HistoryRead* shall be called with this parameter set to TRUE.|
 |nodesToRead []|HistoryReadValueId|This parameter contains the list of items upon which the historical retrieval is to be performed. This structure is defined in-line with the following indented items.|
-| nodeId|NodeId|If the *HistoryReadDetails* is ** RAW, PROCESSED, MODIFIED or ATTIME:  
-
-The *nodeId* of the *Nodes* whose historical values are to be read. The value returned shall always include a timestamp.  
-
-If the *HistoryReadDetails* is ** EVENTS:  
-
-The *NodeId* of the *Node* whose *Event* history is to be read.  
-
-If the *Node* does not support the requested access for historical values or historical *Events* the appropriate error response for the given *Node* shall be generated.|
-| indexRange|NumericRange|This parameter is used to identify a single element of an array, or a single range of indexes for arrays. If a range of elements is specified, the values are returned as a composite. The first element is identified by index 0 (zero). The *NumericRange* type is defined in [7.27](/§\_Ref129174867) .  
-
-This parameter is null or empty if the value is not an array. However, if the value is an array, and this parameter is null or empty, then all elements are to be included in the range.|
-| dataEncoding|QualifiedName|This parameter is no longer used.  
-
-Clients shall set it to null or empty.  
-
-The *Server* shall ignore the parameter.|
-| continuationPoint|ContinuationPoint|For each *NodesToRead* item this parameter specifies a continuation point returned from a previous *HistoryRead* call, allowing the *Client* to continue that read from the last value received.  
-
-The *HistoryRead* is used to select an ordered sequence of historical values or events. A continuation point marks a point in that ordered sequence, such that the *Server* returns the subset of the sequence that follows that point.  
-
-A null or empty value indicates that this parameter is not used.  
-
-See [7.9](/§\_Ref183360083) for a general description of continuation points *.*  
-
-This continuation point is described in more detail in [OPC 10000-11](/§UAPart11) .|
+| nodeId|NodeId|If the *HistoryReadDetails* is ** RAW, PROCESSED, MODIFIED or ATTIME:<br>The *nodeId* of the *Nodes* whose historical values are to be read. The value returned shall always include a timestamp.<br>If the *HistoryReadDetails* is ** EVENTS:<br>The *NodeId* of the *Node* whose *Event* history is to be read.<br>If the *Node* does not support the requested access for historical values or historical *Events* the appropriate error response for the given *Node* shall be generated.|
+| indexRange|NumericRange|This parameter is used to identify a single element of an array, or a single range of indexes for arrays. If a range of elements is specified, the values are returned as a composite. The first element is identified by index 0 (zero). The *NumericRange* type is defined in [7.27](/§\_Ref129174867) .<br>This parameter is null or empty if the value is not an array. However, if the value is an array, and this parameter is null or empty, then all elements are to be included in the range.|
+| dataEncoding|QualifiedName|This parameter is no longer used.<br>Clients shall set it to null or empty.<br>The *Server* shall ignore the parameter.|
+| continuationPoint|ContinuationPoint|For each *NodesToRead* item this parameter specifies a continuation point returned from a previous *HistoryRead* call, allowing the *Client* to continue that read from the last value received.<br>The *HistoryRead* is used to select an ordered sequence of historical values or events. A continuation point marks a point in that ordered sequence, such that the *Server* returns the subset of the sequence that follows that point.<br>A null or empty value indicates that this parameter is not used.<br>See [7.9](/§\_Ref183360083) for a general description of continuation points *.*<br>This continuation point is described in more detail in [OPC 10000-11](/§UAPart11) .|
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* type).|
 |results []|HistoryReadResult|List of read results. The size and order of the list matches the size and order of the *nodesToRead* request parameter. This structure is defined in-line with the following indented items.|
 | statusCode|StatusCode|*StatusCode* for the *NodesToRead* item (see [7.38](/§\_Ref127346441) for *StatusCode* definition).|
-| continuationPoint|ContinuationPoint|This parameter is used only if the number of values to be returned is too large to be returned in a single response or if the timeout provided as hint by the *Client* is close to expiring and not all nodes have been processed.  
-
-When this parameter is not used, its value is null or empty.  
-
-*Servers* shall support at least one continuation point per *Session* . *Servers* specify a max history continuation points per *Session* in the *Server* capabilities *Object* defined in [OPC 10000-5](/§UAPart5) . A continuation point shall remain active until the *Client* passes the continuation point to *HistoryRead* or the *Session* is closed. If the max continuation points have been reached the oldest continuation point shall be reset.|
-| historyData|Extensible Parameter  
-
-HistoryData|The history data returned for the *Node* .  
-
-The *HistoryData* parameter type is an extensible parameter type formally defined in [OPC 10000-11](/§UAPart11) . It specifies the types of history data that can be returned. The *ExtensibleParameter* base type is defined in [7.17](/§\_Ref182070092) .|
+| continuationPoint|ContinuationPoint|This parameter is used only if the number of values to be returned is too large to be returned in a single response or if the timeout provided as hint by the *Client* is close to expiring and not all nodes have been processed.<br>When this parameter is not used, its value is null or empty.<br>*Servers* shall support at least one continuation point per *Session* . *Servers* specify a max history continuation points per *Session* in the *Server* capabilities *Object* defined in [OPC 10000-5](/§UAPart5) . A continuation point shall remain active until the *Client* passes the continuation point to *HistoryRead* or the *Session* is closed. If the max continuation points have been reached the oldest continuation point shall be reset.|
+| historyData|Extensible Parameter<br>HistoryData|The history data returned for the *Node* .<br>The *HistoryData* parameter type is an extensible parameter type formally defined in [OPC 10000-11](/§UAPart11) . It specifies the types of history data that can be returned. The *ExtensibleParameter* base type is defined in [7.17](/§\_Ref182070092) .|
 |diagnosticInfos []|Diagnostic Info|List of diagnostic information. The size and order of the list matches the size and order of the *nodesToRead* request parameter. There is one entry in this list for each *Node* contained in the *nodesToRead* parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
   
 
@@ -2258,7 +1909,7 @@ The *HistoryData* parameter type is an extensible parameter type formally define
 
 [Table 51](/§\_Ref110226537) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 51\- HistoryRead Service Result Codes**   
+Table 51 - HistoryRead Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2266,9 +1917,7 @@ The *HistoryData* parameter type is an extensible parameter type formally define
 |Bad\_TooManyOperations|See [Table 176](/§\_Ref90539276) for the description of this result code.|
 |Bad\_TimestampsToReturnInvalid|See [Table 176](/§\_Ref90539276) for the description of this result code.|
 |Bad\_HistoryOperationInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.|
-|Bad\_HistoryOperationUnsupported|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-The requested history operation is not supported by the *Server* .|
+|Bad\_HistoryOperationUnsupported|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>The requested history operation is not supported by the *Server* .|
   
 
   
@@ -2277,7 +1926,7 @@ The requested history operation is not supported by the *Server* .|
 
 [Table 52](/§\_Ref110226538) defines values for the operation level *statusCode* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) . History access specific *StatusCodes* are defined in [OPC 10000-11](/§UAPart11) .  
 
- **Table 52\- HistoryRead Operation Level Result Codes**   
+Table 52 - HistoryRead Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2287,12 +1936,8 @@ The requested history operation is not supported by the *Server* .|
 |Bad\_ContinuationPointInvalid|See [Table 176](/§\_Ref90539276) for the description of this result code.|
 |Bad\_IndexRangeInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_IndexRangeNoData|See [Table 177](/§\_Ref127606591) for the description of this result code.|
-|Bad\_HistoryOperationUnsupported|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-The requested history operation is not supported for the requested node.|
-|Bad\_NoContinuationPoints|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-See [7.9](/§\_Ref183360083) for the rules to apply this status code.|
+|Bad\_HistoryOperationUnsupported|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>The requested history operation is not supported for the requested node.|
+|Bad\_NoContinuationPoints|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>See [7.9](/§\_Ref183360083) for the rules to apply this status code.|
   
 
   
@@ -2315,31 +1960,23 @@ If a *Server* allows writing of *Attributes* with the *DataType* *LocalizedText*
 
 [Table 53](/§\_Ref74470619) defines the parameters for the *Service* .  
 
- **Table 53\- Write Service Parameters**   
+Table 53 - Write Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |nodesToWrite []|WriteValue|List of *Nodes* and their *Attributes* to write. This structure is defined in-line with the following indented items.|
 | nodeId|NodeId|*NodeId* of the *Node* that contains the *Attributes* .|
 | attributeId|IntegerId|Id of the *Attribute* . This shall be a valid *Attribute* id. The *IntegerId* is defined in [7.19](/§\_Ref128929614) . The IntegerIds for the Attributes are defined in [OPC 10000-6](/§UAPart6) .|
-| indexRange|NumericRange|This parameter is used to identify a single element of an array, or a single range of indexes for arrays. The array in this context includes *String* and *ByteString* . The first element is identified by index 0 (zero). The *NumericRange* type is defined in [7.27](/§\_Ref129174867) .  
-
-This parameter is not used if the specified *Attribute* is not an array. However, if the specified *Attribute* is an array and this parameter is not used, then all elements are to be included in the range. The parameter is null or empty if not used.  
-
-A *Server* shall return a Bad\_WriteNotSupported error if an *indexRange* is provided and writing of *indexRange* is not possible for the *Node* .|
-| value|DataValue|The *Node* 's *Attribute* value (see [7.11](/§\_Ref127334314) for *DataValue* definition).  
-
-If the *indexRange* parameter is specified then the *Value* shall be an array even if only one element is being written.  
-
-If the *SourceTimestamp* or the *ServerTimestamp* is specified, the *Server* shall use these values. The *Server* returns a Bad\_WriteNotSupported error if it does not support writing of timestamps.  
-
-A *Server* shall return a Bad\_TypeMismatch error if the data type of the written value is not the same type or subtype of the *Attribute's* *DataType* . Based on the *DataType* hierarchy, subtypes of the *Attribute* *DataType* shall be accepted by the *Server* . *Servers* may reject subtypes defined in newer specification versions than supported by the *Server* with Bad\_TypeMismatch. For the *Value Attribute* the *DataType* is defined through the *DataType Attribute* . A *ByteString* is structurally the same as a one dimensional array of Byte. A *Server* shall accept a *ByteString* if an array of *Byte* is expected.  
-
-*Simple DataTypes* (see [OPC 10000-3](/§UAPart3) ) use the same representation on the wire as their super types and therefore writing a value of a simple *DataType* cannot be distinguished from writing a value of its super type. The *Server* shall assume that by receiving the correct wire representation for a simple *DataType* the correct type was chosen. *Servers* are allowed to impose additional data validations on the value independent of the encoding (e.g. having an image in GIF format in a *ByteString* ). In this case the *Server* shall return a Bad\_TypeMismatch error if the validation fails.|
+| indexRange|NumericRange|This parameter is used to identify a single element of an array, or a single range of indexes for arrays. The array in this context includes *String* and *ByteString* . The first element is identified by index 0 (zero). The *NumericRange* type is defined in [7.27](/§\_Ref129174867) .<br>This parameter is not used if the specified *Attribute* is not an array. However, if the specified *Attribute* is an array and this parameter is not used, then all elements are to be included in the range. The parameter is null or empty if not used.<br>A *Server* shall return a Bad\_WriteNotSupported error if an *indexRange* is provided and writing of *indexRange* is not possible for the *Node* .|
+| value|DataValue|The *Node* 's *Attribute* value (see [7.11](/§\_Ref127334314) for *DataValue* definition).<br>If the *indexRange* parameter is specified then the *Value* shall be an array even if only one element is being written.<br>If the *SourceTimestamp* or the *ServerTimestamp* is specified, the *Server* shall use these values. The *Server* returns a Bad\_WriteNotSupported error if it does not support writing of timestamps.<br>A *Server* shall return a Bad\_TypeMismatch error if the data type of the written value is not the same type or subtype of the *Attribute's* *DataType* . Based on the *DataType* hierarchy, subtypes of the *Attribute* *DataType* shall be accepted by the *Server* . *Servers* may reject subtypes defined in newer specification versions than supported by the *Server* with Bad\_TypeMismatch. For the *Value Attribute* the *DataType* is defined through the *DataType Attribute* . A *ByteString* is structurally the same as a one dimensional array of Byte. A *Server* shall accept a *ByteString* if an array of *Byte* is expected.<br>*Simple DataTypes* (see [OPC 10000-3](/§UAPart3) ) use the same representation on the wire as their super types and therefore writing a value of a simple *DataType* cannot be distinguished from writing a value of its super type. The *Server* shall assume that by receiving the correct wire representation for a simple *DataType* the correct type was chosen. *Servers* are allowed to impose additional data validations on the value independent of the encoding (e.g. having an image in GIF format in a *ByteString* ). In this case the *Server* shall return a Bad\_TypeMismatch error if the validation fails.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|StatusCode|List of results for the *Nodes* to write (see [7.38](/§\_Ref127346441) for *StatusCode* definition). The size and order of the list matches the size and order of the *nodesToWrite* request parameter. There is one entry in this list for each *Node* contained in the *nodesToWrite* parameter.|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the *Nodes* to write (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *nodesToWrite* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
@@ -2351,7 +1988,7 @@ A *Server* shall return a Bad\_TypeMismatch error if the data type of the writte
 
 [Table 54](/§\_Ref89583872) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 54\- Write Service Result Codes**   
+Table 54 - Write Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2365,33 +2002,21 @@ A *Server* shall return a Bad\_TypeMismatch error if the data type of the writte
 
 [Table 55](/§\_Ref74380751) defines values for the *results* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 55\- Write Operation Level Result Codes**   
+Table 55 - Write Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
-|Good\_CompletesAsynchronously|See [Table 176](/§\_Ref90539276) for the description of this result code.  
-
-The value was successfully written to an intermediate system but the *Server* does not know if the data source was updated properly.|
+|Good\_CompletesAsynchronously|See [Table 176](/§\_Ref90539276) for the description of this result code.<br>The value was successfully written to an intermediate system but the *Server* does not know if the data source was updated properly.|
 |Bad\_NodeIdInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_NodeIdUnknown|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_AttributeIdInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.|
-|Bad\_IndexRangeInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-It is also used if writing of *IndexRange* is supported in general for a *Node* but the passed *IndexRange* cannot be written by the Server.|
+|Bad\_IndexRangeInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>It is also used if writing of *IndexRange* is supported in general for a *Node* but the passed *IndexRange* cannot be written by the Server.|
 |Bad\_IndexRangeNoData|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_IndexRangeDataMismatch|The data to be written does not match the *IndexRange* .|
-|Bad\_WriteNotSupported|The requested write operation is not supported.  
-
-If a *Client* attempts to write any value, status code, timestamp combination and the *Server* does not support the requested combination (which could be a single quantity such as just timestamp); than the *Server* shall not perform any write on this *Node* and shall return this *StatusCode* for this *Node* . It is also used if writing of *IndexRanges* is not supported for a *Node* .|
+|Bad\_WriteNotSupported|The requested write operation is not supported.<br>If a *Client* attempts to write any value, status code, timestamp combination and the *Server* does not support the requested combination (which could be a single quantity such as just timestamp); than the *Server* shall not perform any write on this *Node* and shall return this *StatusCode* for this *Node* . It is also used if writing of *IndexRanges* is not supported for a *Node* .|
 |Bad\_NotWritable|See [Table 177](/§\_Ref127606591) for the description of this result code.|
-|Bad\_UserAccessDenied|See [Table 176](/§\_Ref90539276) for the description of this result code.  
-
-The current user does not have permission to write the attribute.|
-|Bad\_OutOfRange|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-If a *Client* attempts to write a value outside the valid range like a value not contained in the enumeration data type of the *Node* , the *Server* shall return this *StatusCode* for this *Node* .  
-
-This result code can be returned for any value that has the right *DataType* but does not comply with the restrictions defined by the *Server* implementation e.g. if a written *String* contains unsupported characters.|
+|Bad\_UserAccessDenied|See [Table 176](/§\_Ref90539276) for the description of this result code.<br>The current user does not have permission to write the attribute.|
+|Bad\_OutOfRange|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>If a *Client* attempts to write a value outside the valid range like a value not contained in the enumeration data type of the *Node* , the *Server* shall return this *StatusCode* for this *Node* .<br>This result code can be returned for any value that has the right *DataType* but does not comply with the restrictions defined by the *Server* implementation e.g. if a written *String* contains unsupported characters.|
 |Bad\_TypeMismatch|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_DataEncodingUnsupported|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_NoCommunication|See [Table 177](/§\_Ref127606591) for the description of this result code.|
@@ -2410,18 +2035,18 @@ This *Service* is used to update historical values or *Events* of one or more *N
 
 [Table 56](/§\_Ref94948365) defines the parameters for the *Service* .  
 
- **Table 56\- HistoryUpdate Service Parameters**   
+Table 56 - HistoryUpdate Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
-|historyUpdateDetails []|Extensible Parameter  
-
-HistoryUpdate  
-
-Details|The details defined for this update. The *HistoryUpdateDetails* parameter type is an extensible parameter type formally defined in [OPC 10000-11](/§UAPart11) . It specifies the types of history updates that can be performed. The *ExtensibleParameter* type is defined in [7.17](/§\_Ref182070092) .|
+|historyUpdateDetails []|Extensible Parameter<br>HistoryUpdate<br>Details|The details defined for this update. The *HistoryUpdateDetails* parameter type is an extensible parameter type formally defined in [OPC 10000-11](/§UAPart11) . It specifies the types of history updates that can be performed. The *ExtensibleParameter* type is defined in [7.17](/§\_Ref182070092) .|
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|HistoryUpdate Result|List of update results for the history update details. The size and order of the list matches the size and order of the details element of the *historyUpdateDetails* parameter specified in the request. This structure is defined in-line with the following indented items.|
 | statusCode|StatusCode|*StatusCode* for the update of the *Node* (see [7.38](/§\_Ref127346441) for *StatusCode* definition).|
@@ -2436,7 +2061,7 @@ Details|The details defined for this update. The *HistoryUpdateDetails* paramete
 
 [Table 57](/§\_Ref94948366) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 57\- HistoryUpdate Service Result Codes**   
+Table 57 - HistoryUpdate Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2450,16 +2075,14 @@ Details|The details defined for this update. The *HistoryUpdateDetails* paramete
 
 [Table 58](/§\_Ref94948367) defines values for the *statusCode* and *operationResults* parameters that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) . History access specific *StatusCodes* are defined in [OPC 10000-11](/§UAPart11) .  
 
- **Table 58\- HistoryUpdate Operation Level Result Codes**   
+Table 58 - HistoryUpdate Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
 |Bad\_NotWritable|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_HistoryOperationInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_HistoryOperationUnsupported|See [Table 177](/§\_Ref127606591) for the description of this result code.|
-|Bad\_UserAccessDenied|See [Table 176](/§\_Ref90539276) for the description of this result code.  
-
-The current user does not have permission to update the history.|
+|Bad\_UserAccessDenied|See [Table 176](/§\_Ref90539276) for the description of this result code.<br>The current user does not have permission to update the history.|
   
 
   
@@ -2490,50 +2113,28 @@ The order the operations are processed in the *Server* is not defined and depend
 
 [Table 59](/§\_Ref80166068) defines the parameters for the *Service* .  
 
- **Table 59\- Call Service Parameters**   
+Table 59 - Call Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |methodsToCall []|CallMethodRequest|List of *Methods* to call. This structure is defined in-line with the following indented items.|
-| objectId|NodeId|The *NodeId* shall be that of the *Object* or *ObjectType* on which the *Method* is invoked.  
-
-In case of an *Object,* the *Object* or the *ObjectType* of the *Object* or a super type of that *ObjectType* shall be the source of a *HasComponent* *Reference* (or subtype of *HasComponent* *Reference* ) to the *Method* specified in *methodId* .  
-
-In case of an *ObjectType* , the *ObjectType* shall be the source of a *HasComponent* *Reference* (or subtype of *HasComponent* *Reference* ) to the *Method* specified in *methodId.* In this case the *Method* shall not have a *ModellingRule* .  
-
-See [OPC 10000-3](/§UAPart3) for a description of *Objects* and their *Methods* .|
-| methodId|NodeId|*NodeId* of the *Method* to invoke.  
-
-If the *objectId* is the *NodeId* of an *Object* , the *methodId* is either the *NodeId* of the *Method* that is a component of the *Object* instance or the *NodeId* of the *Method* in the *ObjectType* that defines the *Method* .  
-
-Independent of the *methodId* parameter, the *RolePermissions* are always verified with the *Method* *Node* that is the target of a *HasComponent* from the *Node* defined by *objectId* .|
-| inputArguments []|BaseDataType|List of input argument values. An empty list indicates that there are no input arguments. The size and order of this list matches the size and order of the input arguments defined by the input *InputArguments Property* of the *Method* .  
-
-The name, a description and the data type of each argument are defined by the *Argument* structure in each element of the method's *InputArguments Property* .  
-
-Fewer arguments than the total number of input arguments defined may be passed by the *Client* when optional input arguments are defined. A *Method* may define input arguments as optional by including *HasOptionalInputArgumentDescription* references to argument metadata. The *InputArguments* *Property* and the *HasOptionalInputArgumentDescription* *ReferenceType* are defined in [OPC 10000-3](/§UAPart3) .|
+| objectId|NodeId|The *NodeId* shall be that of the *Object* or *ObjectType* on which the *Method* is invoked.<br>In case of an *Object,* the *Object* or the *ObjectType* of the *Object* or a super type of that *ObjectType* shall be the source of a *HasComponent* *Reference* (or subtype of *HasComponent* *Reference* ) to the *Method* specified in *methodId* .<br>In case of an *ObjectType* , the *ObjectType* shall be the source of a *HasComponent* *Reference* (or subtype of *HasComponent* *Reference* ) to the *Method* specified in *methodId.* In this case the *Method* shall not have a *ModellingRule* .<br>See [OPC 10000-3](/§UAPart3) for a description of *Objects* and their *Methods* .|
+| methodId|NodeId|*NodeId* of the *Method* to invoke.<br>If the *objectId* is the *NodeId* of an *Object* , the *methodId* is either the *NodeId* of the *Method* that is a component of the *Object* instance or the *NodeId* of the *Method* in the *ObjectType* that defines the *Method* .<br>Independent of the *methodId* parameter, the *RolePermissions* are always verified with the *Method* *Node* that is the target of a *HasComponent* from the *Node* defined by *objectId* .|
+| inputArguments []|BaseDataType|List of input argument values. An empty list indicates that there are no input arguments. The size and order of this list matches the size and order of the input arguments defined by the input *InputArguments Property* of the *Method* .<br>The name, a description and the data type of each argument are defined by the *Argument* structure in each element of the method's *InputArguments Property* .<br>Fewer arguments than the total number of input arguments defined may be passed by the *Client* when optional input arguments are defined. A *Method* may define input arguments as optional by including *HasOptionalInputArgumentDescription* references to argument metadata. The *InputArguments* *Property* and the *HasOptionalInputArgumentDescription* *ReferenceType* are defined in [OPC 10000-3](/§UAPart3) .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|CallMethodResult|Result for the *Method* calls. This structure is defined in-line with the following indented items.|
-| statusCode|StatusCode|*StatusCode* of the *Method* executed in the *Server* . This *StatusCode* is set to the Bad\_InvalidArgument *StatusCode* if at least one input argument broke a constraint (e.g. wrong data type, value out of range).  
-
-This *StatusCode* is set to a bad *StatusCode* if the *Method* execution failed in the *Server* , e.g. based on an exception.  
-
-If the *Method* execution fails but the *outputArguments* provide additional information like an application specific error code, the *Method* should return a *StatusCode* with *Severity* *Uncertain* .|
-| inputArgumentResults []|StatusCode|List of *StatusCodes* corresponding to the *inputArguments* .  
-
-This list is empty unless the operation level result is Bad\_InvalidArgument.  
-
-If this list is populated, it has the same length as the *inputArguments* list.|
+| statusCode|StatusCode|*StatusCode* of the *Method* executed in the *Server* . This *StatusCode* is set to the Bad\_InvalidArgument *StatusCode* if at least one input argument broke a constraint (e.g. wrong data type, value out of range).<br>This *StatusCode* is set to a bad *StatusCode* if the *Method* execution failed in the *Server* , e.g. based on an exception.<br>If the *Method* execution fails but the *outputArguments* provide additional information like an application specific error code, the *Method* should return a *StatusCode* with *Severity* *Uncertain* .|
+| inputArgumentResults []|StatusCode|List of *StatusCodes* corresponding to the *inputArguments* .<br>This list is empty unless the operation level result is Bad\_InvalidArgument.<br>If this list is populated, it has the same length as the *inputArguments* list.|
 | inputArgumentDiagnosticInfos []|DiagnosticInfo|List of diagnostic information corresponding to the *inputArguments* . This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
-| outputArguments []|BaseDataType|List of output argument values. An empty list indicates that there are no output arguments. The size and order of this list matches the size and order of the output arguments defined by the *OutputArguments Property* of the *Method* .  
-
-The name, a description and the data type of each argument are defined by the *Argument* structure in each element of the methods *OutputArguments Property* .  
-
-The list shall be empty if the *statusCode* *Severity* is Bad.|
+| outputArguments []|BaseDataType|List of output argument values. An empty list indicates that there are no output arguments. The size and order of this list matches the size and order of the output arguments defined by the *OutputArguments Property* of the *Method* .<br>The name, a description and the data type of each argument are defined by the *Argument* structure in each element of the methods *OutputArguments Property* .<br>The list shall be empty if the *statusCode* *Severity* is Bad.|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the *statusCode* of the *results* . This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
   
 
@@ -2543,7 +2144,7 @@ The list shall be empty if the *statusCode* *Severity* is Bad.|
 
 [Table 60](/§\_Ref80166070) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 60\- Call Service Result Codes**   
+Table 60 - Call Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2561,49 +2162,33 @@ The list shall be empty if the *statusCode* *Severity* is Bad.|
 
 Good *StatusCodes* with sub-status shall not be used as *statusCode* since many programming language bindings would cause such codes to throw an exception.  
 
- **Table 61\- Call Operation Level Result Codes**   
+Table 61 - Call Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
-|Bad\_NodeIdInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-Used to indicate that the specified *objectId* is not an *Object* or *ObjectType* .|
-|Bad\_NodeIdUnknown|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-Used to indicate that the specified *objectId* refers to a node that does not exist in the *Server* address space.|
+|Bad\_NodeIdInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>Used to indicate that the specified *objectId* is not an *Object* or *ObjectType* .|
+|Bad\_NodeIdUnknown|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>Used to indicate that the specified *objectId* refers to a node that does not exist in the *Server* address space.|
 |Bad\_NotExecutable|The executable *Attribute* does not allow the execution of the *Method* .|
 |Bad\_ArgumentsMissing|The *Client* did not specify all of the non-optional input arguments for the *Method* .|
 |Bad\_TooManyArguments|The *Client* specified more input arguments than defined for the *Method* .|
-|Bad\_InvalidArgument|See [Table 176](/§\_Ref90539276) for the description of this result code.  
-
-Used to indicate in the operation level results that one or more of the input arguments are invalid. The *inputArgumentResults* contain the specific status code for each invalid argument.|
+|Bad\_InvalidArgument|See [Table 176](/§\_Ref90539276) for the description of this result code.<br>Used to indicate in the operation level results that one or more of the input arguments are invalid. The *inputArgumentResults* contain the specific status code for each invalid argument.|
 |Bad\_UserAccessDenied|See [Table 176](/§\_Ref90539276) for the description of this result code.|
 |Bad\_SecurityModeInsufficient|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_MethodInvalid|The method id does not refer to a *Method* for the specified *Object* .|
 |Bad\_NoCommunication|See [Table 177](/§\_Ref127606591) for the description of this result code.|
-|Bad\_NotSupported|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-The *Method* is not supported for the *Object* instance.|
+|Bad\_NotSupported|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>The *Method* is not supported for the *Object* instance.|
 |Uncertain|The *Method* execution fails but the *outputArguments* provide additional information like an application specific error code.|
   
 
   
 
- **Table 62\- Call Input Argument Result Codes**   
+Table 62 - Call Input Argument Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
-|Bad\_OutOfRange|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-Used to indicate that an input argument is outside the acceptable range.|
-|Bad\_TypeMismatch|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-Used to indicate that an input argument does not have the correct data type.  
-
-A *ByteString* is structurally the same as a one dimensional array of *Byte* . A *Server* shall accept a *ByteString* if an array of *Byte* is expected.|
-|Bad\_DecodingError|See [Table 176](/§\_Ref90539276) for the description of this result code.  
-
-Used to indicate that an input argument with a *Structure DataType* cannot be decoded.|
+|Bad\_OutOfRange|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>Used to indicate that an input argument is outside the acceptable range.|
+|Bad\_TypeMismatch|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>Used to indicate that an input argument does not have the correct data type.<br>A *ByteString* is structurally the same as a one dimensional array of *Byte* . A *Server* shall accept a *ByteString* if an array of *Byte* is expected.|
+|Bad\_DecodingError|See [Table 176](/§\_Ref90539276) for the description of this result code.<br>Used to indicate that an input argument with a *Structure DataType* cannot be decoded.|
   
 
   
@@ -2756,37 +2341,31 @@ It is strongly recommended by OPC UA that a *Client* reuses a *Subscription* aft
 
 [Table 63](/§\_Ref104715274) defines the parameters for the *Service* .  
 
- **Table 63\- CreateMonitoredItems Service Parameters**   
+Table 63 - CreateMonitoredItems Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |subscriptionId|IntegerId|The *Server*\-assigned identifier for the *Subscription* that will report *Notifications* for this *MonitoredItem* (see [7.19](/§\_Ref128929614) for *IntegerId* definition).|
-|timestampsToReturn|Enum  
-
-Timestamps ToReturn|An enumeration that specifies the timestamp *Attributes* to be transmitted for each *MonitoredItem* . The *TimestampsToReturn* enumeration is defined in [7.39](/§\_Ref133134319) .  
-
-When monitoring *Events* , this applies only to *Event* fields that are of type *DataValue* .|
+|timestampsToReturn|Enum<br>Timestamps ToReturn|An enumeration that specifies the timestamp *Attributes* to be transmitted for each *MonitoredItem* . The *TimestampsToReturn* enumeration is defined in [7.39](/§\_Ref133134319) .<br>When monitoring *Events* , this applies only to *Event* fields that are of type *DataValue* .|
 |itemsToCreate []|MonitoredItem CreateRequest|A list of *MonitoredItems* to be created and assigned to the specified *Subscription* . This structure is defined in-line with the following indented items.|
 | itemToMonitor|ReadValueId|Identifies an item in the *AddressSpace* to monitor. To monitor for *Events* , the *attributeId* element of the *ReadValueId* structure is the id of the *EventNotifier* *Attribute* . The *ReadValueId* type is defined in [7.28](/§\_Ref133161488) .|
-| monitoringMode|Enum  
-
-MonitoringMode|The monitoring mode to be set for the *MonitoredItem* . The *MonitoringMode* enumeration is defined in [7.23](/§\_Ref187493167) .|
+| monitoringMode|Enum<br>MonitoringMode|The monitoring mode to be set for the *MonitoredItem* . The *MonitoringMode* enumeration is defined in [7.23](/§\_Ref187493167) .|
 | requestedParameters|Monitoring Parameters|The requested monitoring parameters. *Servers* negotiate the values of these parameters based on the *Subscription* and the capabilities of the *Server* . The *MonitoringParameters* type is defined in [7.21](/§\_Ref161114771) .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|MonitoredItem CreateResult|List of results for the *MonitoredItems* to create. The size and order of the list matches the size and order of the *itemsToCreate* request parameter. This structure is defined in-line with the following indented items.|
 | statusCode|StatusCode|*StatusCode* for the *MonitoredItem* to create (see [7.38](/§\_Ref127346441) for *StatusCode* definition).|
 | monitoredItemId|IntegerId|*Server*\-assigned id for the *MonitoredItem* (see [7.19](/§\_Ref128929614) for *IntegerId* definition). This id is unique within the *Subscription* , but might not be unique within the *Server* or *Session* . This parameter is present only if the *statusCode* indicates that the *MonitoredItem* was successfully created.|
-| revisedSampling  Interval|Duration|The actual sampling interval that the *Server* will use.  
-
-This value is based on a number of factors, including capabilities of the underlying system. The *Server* shall always return a *revisedSamplingInterval* that is equal or higher than the requested *samplingInterval* . If the requested *samplingInterval* is higher than the maximum sampling interval supported by the *Server* , the maximum sampling interval is returned.|
+| revisedSampling  Interval|Duration|The actual sampling interval that the *Server* will use.<br>This value is based on a number of factors, including capabilities of the underlying system. The *Server* shall always return a *revisedSamplingInterval* that is equal or higher than the requested *samplingInterval* . If the requested *samplingInterval* is higher than the maximum sampling interval supported by the *Server* , the maximum sampling interval is returned.|
 | revisedQueueSize|Counter|The actual queue size that the *Server* will use.|
-| filterResult|Extensible Parameter  
-
-MonitoringFilterResult|Contains any revised parameter values or error results associated with the *MonitoringFilter* specified in *requestedParameters* . This parameter may be null if no errors occurred. The *MonitoringFilterResult* parameter type is an extensible parameter type specified in [7.22](/§\_Ref127325541) .|
+| filterResult|Extensible Parameter<br>MonitoringFilterResult|Contains any revised parameter values or error results associated with the *MonitoringFilter* specified in *requestedParameters* . This parameter may be null if no errors occurred. The *MonitoringFilterResult* parameter type is an extensible parameter type specified in [7.22](/§\_Ref127325541) .|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the *MonitoredItems* to create (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *itemsToCreate* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
   
 
@@ -2796,7 +2375,7 @@ MonitoringFilterResult|Contains any revised parameter values or error results as
 
 [Table 64](/§\_Ref104715658) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 64\- CreateMonitoredItems Service Result Codes**   
+Table 64 - CreateMonitoredItems Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2812,7 +2391,7 @@ MonitoringFilterResult|Contains any revised parameter values or error results as
 
 [Table 65](/§\_Ref104715683) defines values for the operation level *statusCode* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 65\- CreateMonitoredItems Operation Level Result Codes**   
+Table 65 - CreateMonitoredItems Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2821,9 +2400,7 @@ MonitoringFilterResult|Contains any revised parameter values or error results as
 |Bad\_NodeIdUnknown|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_AttributeIdInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_IndexRangeInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.|
-|Bad\_IndexRangeNoData|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-If the *ArrayDimensions* have a fixed length that cannot change and no data exists within the range of indexes specified, Bad\_IndexRangeNoData is returned in *CreateMonitoredItems* . Otherwise if the length of the array is dynamic, the *Server* shall return this status in a *Publish* response for the *MonitoredItem* if no data exists within the range.|
+|Bad\_IndexRangeNoData|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>If the *ArrayDimensions* have a fixed length that cannot change and no data exists within the range of indexes specified, Bad\_IndexRangeNoData is returned in *CreateMonitoredItems* . Otherwise if the length of the array is dynamic, the *Server* shall return this status in a *Publish* response for the *MonitoredItem* if no data exists within the range.|
 |Bad\_DataEncodingInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_MonitoredItemFilterInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.|
 |Bad\_MonitoredItemFilterUnsupported|See [Table 177](/§\_Ref127606591) for the description of this result code.|
@@ -2847,35 +2424,29 @@ Illegal request values for parameters that can be revised do not generate errors
 
 [Table 66](/§\_Ref104715750) defines the parameters for the *Service* .  
 
- **Table 66\- ModifyMonitoredItems Service Parameters**   
+Table 66 - ModifyMonitoredItems Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |subscriptionId|IntegerId|The *Server*\-assigned identifier for the *Subscription* used to qualify the *monitoredItemId* (see [7.19](/§\_Ref128929614) for *IntegerId* definition).|
-|timestampsToReturn|Enum  
-
-Timestamps ToReturn|An enumeration that specifies the timestamp *Attributes* to be transmitted for each *MonitoredItem* to be modified. The *TimestampsToReturn* enumeration is defined in [7.39](/§\_Ref133134319) . When monitoring *Events* , this applies only to *Event* fields that are of type *DataValue* .|
+|timestampsToReturn|Enum<br>Timestamps ToReturn|An enumeration that specifies the timestamp *Attributes* to be transmitted for each *MonitoredItem* to be modified. The *TimestampsToReturn* enumeration is defined in [7.39](/§\_Ref133134319) . When monitoring *Events* , this applies only to *Event* fields that are of type *DataValue* .|
 |itemsToModify []|MonitoredItemModifyRequest|The list of *MonitoredItems* to modify. This structure is defined in-line with the following indented items.|
 | monitoredItemId|IntegerId|*Server*\-assigned id for the *MonitoredItem* .|
-| requestedParameters|Monitoring Parameters|The requested values for the monitoring parameters. The *MonitoringParameters* type is defined in [7.21](/§\_Ref161114771) .  
-
-If the number of notifications in the queue exceeds the new queue size, the notifications exceeding the size shall be discarded following the configured discard policy.|
+| requestedParameters|Monitoring Parameters|The requested values for the monitoring parameters. The *MonitoringParameters* type is defined in [7.21](/§\_Ref161114771) .<br>If the number of notifications in the queue exceeds the new queue size, the notifications exceeding the size shall be discarded following the configured discard policy.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|MonitoredItemModifyResult|List of results for the *MonitoredItems* to modify. The size and order of the list matches the size and order of the *itemsToModify* request parameter. This structure is defined in-line with the following indented items.|
 | statusCode|StatusCode|*StatusCode* for the *MonitoredItem* to be modified (see [7.38](/§\_Ref127346441) for *StatusCode* definition).|
-| revisedSampling  
-
- Interval|Duration|The actual sampling interval that the *Server* will use. The *Server* returns the value it will actually use for the sampling interval. This value is based on a number of factors, including capabilities of the underlying system.  
-
-The *Server* shall always return a *revisedSamplingInterval* that is equal or higher than the requested *samplingInterval* . If the requested *samplingInterval* is higher than the maximum sampling interval supported by the *Server* , the maximum sampling interval is returned.|
+| revisedSampling<br> Interval|Duration|The actual sampling interval that the *Server* will use. The *Server* returns the value it will actually use for the sampling interval. This value is based on a number of factors, including capabilities of the underlying system.<br>The *Server* shall always return a *revisedSamplingInterval* that is equal or higher than the requested *samplingInterval* . If the requested *samplingInterval* is higher than the maximum sampling interval supported by the *Server* , the maximum sampling interval is returned.|
 | revisedQueueSize|Counter|The actual queue size that the *Server* will use.|
-| filterResult|Extensible Parameter  
-
-MonitoringFilter Result|Contains any revised parameter values or error results associated with the *MonitoringFilter* specified in the request. This parameter may be null if no errors occurred. The *MonitoringFilterResult* parameter type is an extensible parameter type specified in [7.22](/§\_Ref127325541) .|
+| filterResult|Extensible Parameter<br>MonitoringFilter Result|Contains any revised parameter values or error results associated with the *MonitoringFilter* specified in the request. This parameter may be null if no errors occurred. The *MonitoringFilterResult* parameter type is an extensible parameter type specified in [7.22](/§\_Ref127325541) .|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the *MonitoredItems* to modify (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *itemsToModify* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
   
 
@@ -2885,7 +2456,7 @@ MonitoringFilter Result|Contains any revised parameter values or error results a
 
 [Table 67](/§\_Ref89583990) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 67\- ModifyMonitoredItems Service Result Codes**   
+Table 67 - ModifyMonitoredItems Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2901,7 +2472,7 @@ MonitoringFilter Result|Contains any revised parameter values or error results a
 
 [Table 68](/§\_Ref89583957) defines values for the operation level *statusCode* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 68\- ModifyMonitoredItems Operation Level Result Codes**   
+Table 68 - ModifyMonitoredItems Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2923,19 +2494,21 @@ This *Service* is used to set the monitoring mode for one or more *MonitoredItem
 
 [Table 69](/§\_Ref80159433) defines the parameters for the *Service* .  
 
- **Table 69\- SetMonitoringMode Service Parameters**   
+Table 69 - SetMonitoringMode Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |subscriptionId|IntegerId|The *Server*\-assigned identifier for the *Subscription* used to qualify the *monitoredItemIds* (see [7.19](/§\_Ref128929614) for *IntegerId* definition).|
-|monitoringMode|Enum  
-
-MonitoringMode|The monitoring mode to be set for the *MonitoredItems* . The *MonitoringMode* enumeration is defined in [7.23](/§\_Ref187493167) .|
+|monitoringMode|Enum<br>MonitoringMode|The monitoring mode to be set for the *MonitoredItems* . The *MonitoringMode* enumeration is defined in [7.23](/§\_Ref187493167) .|
 |monitoredItemIds []|IntegerId|List of *Server*\-assigned ids for the *MonitoredItems* .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|StatusCode|List of *StatusCodes* for the *MonitoredItems* to enable/disable (see [7.38](/§\_Ref127346441) for *StatusCode* definition). The size and order of the list matches the size and order of the *monitoredItemIds* request parameter.|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the *MonitoredItems* to enable/disable (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *monitoredItemIds* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
@@ -2947,7 +2520,7 @@ MonitoringMode|The monitoring mode to be set for the *MonitoredItems* . The *Mon
 
 [Table 70](/§\_Ref88280104) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 70\- SetMonitoringMode Service Result Codes**   
+Table 70 - SetMonitoringMode Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2963,7 +2536,7 @@ MonitoringMode|The monitoring mode to be set for the *MonitoredItems* . The *Mon
 
 [Table 71](/§\_Ref80161899) defines values for the operation level *results* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 71\- SetMonitoringMode Operation Level Result Codes**   
+Table 71 - SetMonitoringMode Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -2986,18 +2559,22 @@ See [5.13.1.6](/§\_Ref288138179) for a description of the triggering model.
 
 [Table 72](/§\_Ref106006196) defines the parameters for the *Service* .  
 
- **Table 72\- SetTriggering Service Parameters**   
+Table 72 - SetTriggering Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|Request Header|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |subscriptionId|IntegerId|The *Server*\-assigned identifier for the *Subscription* that contains the triggering item and the items to report (see [7.19](/§\_Ref128929614) for *IntegerId* definition).|
 |triggeringItemId|IntegerId|*Server*\-assigned id for the *MonitoredItem* used as the triggering item.|
 |linksToAdd []|IntegerId|The list of *Server*\-assigned ids of the items to report that are to be added as triggering links. The list of *linksToRemove* is processed before the *linksToAdd* .|
 |linksToRemove []|IntegerId|The list of *Server*\-assigned ids of the items to report for the triggering links to be deleted. The list of *linksToRemove* is processed before the *linksToAdd* .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |addResults []|StatusCode|List of *StatusCodes* for the items to add (see [7.38](/§\_Ref127346441) for *StatusCode* definition). The size and order of the list matches the size and order of the *linksToAdd* parameter specified in the request.|
 |addDiagnosticInfos []|Diagnostic Info|List of diagnostic information for the links to add (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *linksToAdd* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
@@ -3011,7 +2588,7 @@ See [5.13.1.6](/§\_Ref288138179) for a description of the triggering model.
 
 [Table 73](/§\_Ref106011622) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [7.38](/§\_Ref88280762) .  
 
- **Table 73\- SetTriggering Service Result Codes**   
+Table 73 - SetTriggering Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -3027,7 +2604,7 @@ See [5.13.1.6](/§\_Ref288138179) for a description of the triggering model.
 
 [Table 74](/§\_Ref106011650) defines values for the results parameters that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 74\- SetTriggering Operation Level Result Codes**   
+Table 74 - SetTriggering Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -3048,16 +2625,20 @@ Successful removal of a *MonitoredItem* , however, might not remove *Notificatio
 
 [Table 75](/§\_Ref78943893) defines the parameters for the *Service* .  
 
- **Table 75\- DeleteMonitoredItems Service Parameters**   
+Table 75 - DeleteMonitoredItems Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |subscriptionId|IntegerId|The *Server*\-assigned identifier for the *Subscription* that contains the *MonitoredItems* to be deleted (see [7.19](/§\_Ref128929614) for *IntegerId* definition).|
 |monitoredItemIds []|IntegerId|List of *Server*\-assigned ids for the *MonitoredItems* to be deleted.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|StatusCode|List of *StatusCodes* for the *MonitoredItems* to delete (see [7.38](/§\_Ref127346441) for *StatusCode* definition). The size and order of the list matches the size and order of the *monitoredItemIds* request parameter.|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the *MonitoredItems* to delete (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *monitoredItemIds* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
@@ -3069,7 +2650,7 @@ Successful removal of a *MonitoredItem* , however, might not remove *Notificatio
 
 [Table 76](/§\_Ref88280064) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 76\- DeleteMonitoredItems Service Result Codes**   
+Table 76 - DeleteMonitoredItems Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -3084,7 +2665,7 @@ Successful removal of a *MonitoredItem* , however, might not remove *Notificatio
 
 [Table 77](/§\_Ref78943877) defines values for the *results* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 77\- DeleteMonitoredItems Operation Level Result Codes**   
+Table 77 - DeleteMonitoredItems Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -3159,7 +2740,7 @@ While in the keep-alive state, it checks for *Notifications* each time the publi
 
 The *Subscription* states are defined in [Table 78](/§\_Ref107032179) .  
 
- **Table 78\- Subscription States**   
+Table 78 - Subscription States  
 
 | **State** | **Description** |
 |---|---|
@@ -3188,345 +2769,37 @@ The state table is described in [Table 79](/§\_Ref107032203) . The following ru
 
 1. The LifetimeTimerExpires *Event* is triggered when its corresponding counter reaches zero.  
 
- **Table 79\- Subscription State Table**   
+Table 79 - Subscription State Table  
 
 | **\#** | **Current State** | **Event/Conditions** | **Action** | **Next State** |
 |---|---|---|---|---|
 |1|CLOSED|Receive CreateSubscription Request|CreateSubscription()|CREATING|
 |2|CREATING|CreateSubscription fails|ReturnNegativeResponse()|CLOSED|
-|3|CREATING|CreateSubscription succeeds|InitializeSubscription()  
-
-MessageSent = FALSE  
-
-ReturnResponse()|NORMAL|
-|4|NORMAL|Receive *Publish* Request  
-
-&&  
-
-(  
-
- PublishingEnabled == FALSE  
-
-||  
-
- (PublishingEnabled == TRUE  
-
- && MoreNotifications == FALSE)  
-
-)|DeleteAckedNotificationMsgs()  
-
-EnqueuePublishingReq()|NORMAL|
-|5|NORMAL|Receive *Publish* Request  
-
-&& PublishingEnabled == TRUE  
-
-&& MoreNotifications == TRUE|ResetLifetimeCounter()  
-
-DeleteAckedNotificationMsgs()  
-
-ReturnNotifications()  
-
-MessageSent = TRUE|NORMAL|
-|6|NORMAL|PublishingTimer Expires  
-
-&& PublishingReqQueued == TRUE  
-
-&& PublishingEnabled == TRUE  
-
-&& NotificationsAvailable == TRUE|ResetLifetimeCounter()  
-
-StartPublishingTimer()  
-
-DequeuePublishReq()  
-
-ReturnNotifications()  
-
-MessageSent = TRUE|NORMAL|
-|7|NORMAL|PublishingTimer Expires  
-
-&& PublishingReqQueued == TRUE  
-
-&& MessageSent == FALSE  
-
-&&  
-
-(  
-
- PublishingEnabled == FALSE  
-
-||  
-
- (PublishingEnabled == TRUE  
-
- && NotificationsAvailable == FALSE)  
-
-)|ResetLifetimeCounter()  
-
-StartPublishingTimer()  
-
-DequeuePublishReq()  
-
-ReturnKeepAlive()  
-
-MessageSent = TRUE|NORMAL|
-|8|NORMAL|PublishingTimer Expires  
-
-&& PublishingReqQueued == FALSE  
-
-&&  
-
-(  
-
- MessageSent == FALSE  
-
-||  
-
- (PublishingEnabled == TRUE  
-
- && NotificationsAvailable == TRUE)  
-
-)|StartPublishingTimer()|LATE|
-|9|NORMAL|PublishingTimer Expires  
-
-&& MessageSent == TRUE  
-
-&&  
-
-(  
-
- PublishingEnabled == FALSE  
-
-||  
-
- (PublishingEnabled == TRUE  
-
- && NotificationsAvailable == FALSE)  
-
-)|StartPublishingTimer()  
-
-ResetKeepAliveCounter()  
-
-KeepAliveCounter--|KEEPALIVE|
-|10|LATE|Receive *Publish* Request  
-
-&& PublishingEnabled == TRUE  
-
-&& (NotificationsAvailable == TRUE  
-
-|| MoreNotifications == TRUE)|ResetLifetimeCounter()  
-
-DeleteAckedNotificationMsgs()  
-
-ReturnNotifications()  
-
-MessageSent = TRUE|NORMAL|
-|11|LATE|Receive *Publish* Request  
-
-&&  
-
-(  
-
- PublishingEnabled == FALSE  
-
-||  
-
- (PublishingEnabled == TRUE  
-
- && NotificationsAvailable == FALSE  
-
- && MoreNotifications == FALSE)  
-
-)|ResetLifetimeCounter()  
-
-DeleteAckedNotificationMsgs()  
-
-ReturnKeepAlive()  
-
-MessageSent = TRUE|KEEPALIVE|
+|3|CREATING|CreateSubscription succeeds|InitializeSubscription()<br>MessageSent = FALSE<br>ReturnResponse()|NORMAL|
+|4|NORMAL|Receive *Publish* Request<br>&&<br>(<br> PublishingEnabled == FALSE<br>||<br> (PublishingEnabled == TRUE<br> && MoreNotifications == FALSE)<br>)|DeleteAckedNotificationMsgs()<br>EnqueuePublishingReq()|NORMAL|
+|5|NORMAL|Receive *Publish* Request<br>&& PublishingEnabled == TRUE<br>&& MoreNotifications == TRUE|ResetLifetimeCounter()<br>DeleteAckedNotificationMsgs()<br>ReturnNotifications()<br>MessageSent = TRUE|NORMAL|
+|6|NORMAL|PublishingTimer Expires<br>&& PublishingReqQueued == TRUE<br>&& PublishingEnabled == TRUE<br>&& NotificationsAvailable == TRUE|ResetLifetimeCounter()<br>StartPublishingTimer()<br>DequeuePublishReq()<br>ReturnNotifications()<br>MessageSent = TRUE|NORMAL|
+|7|NORMAL|PublishingTimer Expires<br>&& PublishingReqQueued == TRUE<br>&& MessageSent == FALSE<br>&&<br>(<br> PublishingEnabled == FALSE<br>||<br> (PublishingEnabled == TRUE<br> && NotificationsAvailable == FALSE)<br>)|ResetLifetimeCounter()<br>StartPublishingTimer()<br>DequeuePublishReq()<br>ReturnKeepAlive()<br>MessageSent = TRUE|NORMAL|
+|8|NORMAL|PublishingTimer Expires<br>&& PublishingReqQueued == FALSE<br>&&<br>(<br> MessageSent == FALSE<br>||<br> (PublishingEnabled == TRUE<br> && NotificationsAvailable == TRUE)<br>)|StartPublishingTimer()|LATE|
+|9|NORMAL|PublishingTimer Expires<br>&& MessageSent == TRUE<br>&&<br>(<br> PublishingEnabled == FALSE<br>||<br> (PublishingEnabled == TRUE<br> && NotificationsAvailable == FALSE)<br>)|StartPublishingTimer()<br>ResetKeepAliveCounter()<br>KeepAliveCounter--|KEEPALIVE|
+|10|LATE|Receive *Publish* Request<br>&& PublishingEnabled == TRUE<br>&& (NotificationsAvailable == TRUE<br>|| MoreNotifications == TRUE)|ResetLifetimeCounter()<br>DeleteAckedNotificationMsgs()<br>ReturnNotifications()<br>MessageSent = TRUE|NORMAL|
+|11|LATE|Receive *Publish* Request<br>&&<br>(<br> PublishingEnabled == FALSE<br>||<br> (PublishingEnabled == TRUE<br> && NotificationsAvailable == FALSE<br> && MoreNotifications == FALSE)<br>)|ResetLifetimeCounter()<br>DeleteAckedNotificationMsgs()<br>ReturnKeepAlive()<br>MessageSent = TRUE|KEEPALIVE|
 |12|LATE|PublishingTimer Expires|StartPublishingTimer()|LATE|
-|13|KEEPALIVE|Receive *Publish* Request|DeleteAckedNotificationMsgs()  
-
-EnqueuePublishingReq()|KEEPALIVE|
-|14|KEEPALIVE|PublishingTimer Expires  
-
-&& PublishingEnabled == TRUE  
-
-&& NotificationsAvailable == TRUE  
-
-&& PublishingReqQueued == TRUE|ResetLifetimeCounter()  
-
-StartPublishingTimer()  
-
-DequeuePublishReq()  
-
-ReturnNotifications()  
-
-MessageSent = TRUE|NORMAL|
-|15|KEEPALIVE|PublishingTimer Expires  
-
-&& PublishingReqQueued == TRUE  
-
-&& KeepAliveCounter \<= 1  
-
-&&  
-
-(  
-
- PublishingEnabled == FALSE  
-
-||  
-
- (PublishingEnabled == TRUE  
-
- && NotificationsAvailable == FALSE  
-
-)|StartPublishingTimer()  
-
-DequeuePublishReq()  
-
-ReturnKeepAlive()  
-
-ResetKeepAliveCounter()|KEEPALIVE|
-|16|KEEPALIVE|PublishingTimer Expires  
-
-&& KeepAliveCounter \> 1  
-
-&&  
-
-(  
-
- PublishingEnabled == FALSE  
-
-||  
-
- (PublishingEnabled == TRUE  
-
- && NotificationsAvailable == FALSE)  
-
-)|StartPublishingTimer()  
-
-KeepAliveCounter--|KEEPALIVE|
-|17|KEEPALIVE|PublishingTimer Expires  
-
-&& PublishingReqQueued == FALSE  
-
-&&  
-
-(  
-
- KeepAliveCounter == 1  
-
-||  
-
- (KeepAliveCounter \> 1  
-
- && PublishingEnabled == TRUE  
-
- && NotificationsAvailable == TRUE)  
-
-)|StartPublishingTimer()|LATE|
-|18|NORMAL  
-
-|| LATE  
-
-|| KEEPALIVE|Receive ModifySubscription Request  
-
-&& SubscriptionAssignedToSession == TRUE|ResetLifetimeCounter()  
-
-UpdateSubscriptionParams()  
-
-ReturnResponse()|SAME|
-|19|NORMAL  
-
-|| LATE  
-
-|| KEEPALIVE|Receive SetPublishingMode Request  
-
-&& SubscriptionAssignedToSession == TRUE|ResetLifetimeCounter()  
-
-SetPublishingEnabled()  
-
-MoreNotifications = FALSE  
-
-ReturnResponse()|SAME|
-|20|NORMAL  
-
-|| LATE  
-
-|| KEEPALIVE|Receive Republish Request  
-
-&& RequestedMessageFound == TRUE|ResetLifetimeCounter()  
-
-ReturnResponse()|SAME|
-|21|NORMAL  
-
-|| LATE  
-
-|| KEEPALIVE|Receive Republish Request  
-
-&& RequestedMessageFound == FALSE|ResetLifetimeCounter()  
-
-ReturnNegativeResponse()|SAME|
-|22|NORMAL  
-
-|| LATE  
-
-|| KEEPALIVE|Receive TransferSubscriptions Request  
-
-&& SessionChanged() == FALSE|ResetLifetimeCounter()  
-
-ReturnNegativeResponse ()|SAME|
-|23|NORMAL  
-
-|| LATE  
-
-|| KEEPALIVE|Receive TransferSubscriptions Request  
-
-&& SessionChanged() == TRUE  
-
-&& ClientValidated() ==TRUE|SetSession()  
-
-ResetLifetimeCounter()  
-
-ReturnResponse()  
-
-IssueStatusChangeNotification()|SAME|
-|24|NORMAL  
-
-|| LATE  
-
-|| KEEPALIVE|Receive TransferSubscriptions Request  
-
-&& SessionChanged() == TRUE  
-
-&& ClientValidated() == FALSE|ReturnNegativeResponse()|SAME|
-|25|NORMAL  
-
-|| LATE  
-
-|| KEEPALIVE|Receive DeleteSubscriptions Request  
-
-&& SubscriptionAssignedToSession ==TRUE|DeleteMonitoredItems()  
-
-DeleteClientPublReqQueue()|CLOSED|
-|26|NORMAL  
-
-|| LATE  
-
-|| KEEPALIVE|Receive Subscription related Request  
-
-&& SubscriptionAssignedToSession ==FALSE|ReturnNegativeResponse()|SAME|
-|27|NORMAL  
-
-|| LATE  
-
-|| KEEPALIVE|LifetimeCounter == 1  
-
-The LifetimeCounter is decremented if PublishingTimer expires and PublishingReqQueued == FALSE  
-
-The LifetimeCounter is reset if PublishingReqQueued == TRUE.|DeleteMonitoredItems()  
-
-IssueStatusChangeNotification()|CLOSED|
+|13|KEEPALIVE|Receive *Publish* Request|DeleteAckedNotificationMsgs()<br>EnqueuePublishingReq()|KEEPALIVE|
+|14|KEEPALIVE|PublishingTimer Expires<br>&& PublishingEnabled == TRUE<br>&& NotificationsAvailable == TRUE<br>&& PublishingReqQueued == TRUE|ResetLifetimeCounter()<br>StartPublishingTimer()<br>DequeuePublishReq()<br>ReturnNotifications()<br>MessageSent = TRUE|NORMAL|
+|15|KEEPALIVE|PublishingTimer Expires<br>&& PublishingReqQueued == TRUE<br>&& KeepAliveCounter \<= 1<br>&&<br>(<br> PublishingEnabled == FALSE<br>||<br> (PublishingEnabled == TRUE<br> && NotificationsAvailable == FALSE<br>)|StartPublishingTimer()<br>DequeuePublishReq()<br>ReturnKeepAlive()<br>ResetKeepAliveCounter()|KEEPALIVE|
+|16|KEEPALIVE|PublishingTimer Expires<br>&& KeepAliveCounter \> 1<br>&&<br>(<br> PublishingEnabled == FALSE<br>||<br> (PublishingEnabled == TRUE<br> && NotificationsAvailable == FALSE)<br>)|StartPublishingTimer()<br>KeepAliveCounter--|KEEPALIVE|
+|17|KEEPALIVE|PublishingTimer Expires<br>&& PublishingReqQueued == FALSE<br>&&<br>(<br> KeepAliveCounter == 1<br>||<br> (KeepAliveCounter \> 1<br> && PublishingEnabled == TRUE<br> && NotificationsAvailable == TRUE)<br>)|StartPublishingTimer()|LATE|
+|18|NORMAL<br>|| LATE<br>|| KEEPALIVE|Receive ModifySubscription Request<br>&& SubscriptionAssignedToSession == TRUE|ResetLifetimeCounter()<br>UpdateSubscriptionParams()<br>ReturnResponse()|SAME|
+|19|NORMAL<br>|| LATE<br>|| KEEPALIVE|Receive SetPublishingMode Request<br>&& SubscriptionAssignedToSession == TRUE|ResetLifetimeCounter()<br>SetPublishingEnabled()<br>MoreNotifications = FALSE<br>ReturnResponse()|SAME|
+|20|NORMAL<br>|| LATE<br>|| KEEPALIVE|Receive Republish Request<br>&& RequestedMessageFound == TRUE|ResetLifetimeCounter()<br>ReturnResponse()|SAME|
+|21|NORMAL<br>|| LATE<br>|| KEEPALIVE|Receive Republish Request<br>&& RequestedMessageFound == FALSE|ResetLifetimeCounter()<br>ReturnNegativeResponse()|SAME|
+|22|NORMAL<br>|| LATE<br>|| KEEPALIVE|Receive TransferSubscriptions Request<br>&& SessionChanged() == FALSE|ResetLifetimeCounter()<br>ReturnNegativeResponse ()|SAME|
+|23|NORMAL<br>|| LATE<br>|| KEEPALIVE|Receive TransferSubscriptions Request<br>&& SessionChanged() == TRUE<br>&& ClientValidated() ==TRUE|SetSession()<br>ResetLifetimeCounter()<br>ReturnResponse()<br>IssueStatusChangeNotification()|SAME|
+|24|NORMAL<br>|| LATE<br>|| KEEPALIVE|Receive TransferSubscriptions Request<br>&& SessionChanged() == TRUE<br>&& ClientValidated() == FALSE|ReturnNegativeResponse()|SAME|
+|25|NORMAL<br>|| LATE<br>|| KEEPALIVE|Receive DeleteSubscriptions Request<br>&& SubscriptionAssignedToSession ==TRUE|DeleteMonitoredItems()<br>DeleteClientPublReqQueue()|CLOSED|
+|26|NORMAL<br>|| LATE<br>|| KEEPALIVE|Receive Subscription related Request<br>&& SubscriptionAssignedToSession ==FALSE|ReturnNegativeResponse()|SAME|
+|27|NORMAL<br>|| LATE<br>|| KEEPALIVE|LifetimeCounter == 1<br>The LifetimeCounter is decremented if PublishingTimer expires and PublishingReqQueued == FALSE<br>The LifetimeCounter is reset if PublishingReqQueued == TRUE.|DeleteMonitoredItems()<br>IssueStatusChangeNotification()|CLOSED|
   
 
   
@@ -3535,7 +2808,7 @@ IssueStatusChangeNotification()|CLOSED|
 
 The state variables are defined alphabetically in [Table 80](/§\_Ref107200087) .  
 
- **Table 80\- State variables and parameters**   
+Table 80 - State variables and parameters  
 
 | **State Variable** | **Description** |
 |---|---|
@@ -3557,63 +2830,25 @@ The state variables are defined alphabetically in [Table 80](/§\_Ref107200087) 
 
 The action functions are defined alphabetically in [Table 81](/§\_Ref107200088) .  
 
- **Table 81\- Functions**   
+Table 81 - Functions  
 
 | **Function** | **Description** |
 |---|---|
 |ClientValidated()|A boolean function that returns TRUE only when the *Client* that is submitting a TransferSubscriptions request is operating on behalf of the same user and supports the same *Profiles* as the *Client* of the previous *Session* .|
-|CreateNotificationMsg()|Increment the SeqNum and create a *NotificationMessage* from the *MonitoredItems* assigned to the *Subscription* .  
-
-Save the newly-created *NotificationMessage* in the retransmission queue.  
-
-If all available *Notifications* can be sent in the *Publish* response, the MoreNotifications state *Variable* is set to FALSE. Otherwise, it is set to TRUE.|
+|CreateNotificationMsg()|Increment the SeqNum and create a *NotificationMessage* from the *MonitoredItems* assigned to the *Subscription* .<br>Save the newly-created *NotificationMessage* in the retransmission queue.<br>If all available *Notifications* can be sent in the *Publish* response, the MoreNotifications state *Variable* is set to FALSE. Otherwise, it is set to TRUE.|
 |CreateSubscription()|Attempt to create the *Subscription* .|
 |DeleteAckedNotificationMsgs()|Delete the *NotificationMessages* from the retransmission queue that were acknowledged by the request.|
 |DeleteClientPublReqQueue()|Clear the *Publish* request queue for the *Client* that is sending the DeleteSubscriptions request, if there are no more *Subscriptions* assigned to that *Client* .|
 |DeleteMonitoredItems()|Delete all *MonitoredItems* assigned to the *Subscription.*|
-|DequeuePublishReq()|De-queue a publishing request in first-in first-out order.  
-
-Validate if the publish request is still valid by checking the timeoutHint in the RequestHeader.  
-
-If the request timed out, send a *Bad\_Timeout* service result for the request and de-queue another publish request.  
-
-ResetLifetimeCounter()|
+|DequeuePublishReq()|De-queue a publishing request in first-in first-out order.<br>Validate if the publish request is still valid by checking the timeoutHint in the RequestHeader.<br>If the request timed out, send a *Bad\_Timeout* service result for the request and de-queue another publish request.<br>ResetLifetimeCounter()|
 |EnqueuePublishingReq()|Enqueue the publishing request.|
-|InitializeSubscription()|ResetLifetimeCounter()  
-
-MoreNotifications = FALSE  
-
-PublishRateChange = FALSE  
-
-PublishingEnabled = value of publishingEnabled parameter in the CreateSubscription request  
-
-PublishingReqQueued = FALSE  
-
-SeqNum = 0  
-
-SetSession()  
-
-StartPublishingTimer()|
+|InitializeSubscription()|ResetLifetimeCounter()<br>MoreNotifications = FALSE<br>PublishRateChange = FALSE<br>PublishingEnabled = value of publishingEnabled parameter in the CreateSubscription request<br>PublishingReqQueued = FALSE<br>SeqNum = 0<br>SetSession()<br>StartPublishingTimer()|
 |IssueStatusChangeNotification()|Issue a *StatusChangeNotification* *notificationMessage* with a status code for the status change of the *Subscription* . The *StatusChangeNotification notificationMessage* type is defined in [7.25.4](/§\_Ref166078476) . Bad\_Timeout status code is used if the lifetime expires and Good\_SubscriptionTransferred is used if the *Subscriptions* was transferred to another Session.|
 |ResetKeepAliveCounter()|Reset the keep-alive counter to the maximum keep-alive count of the *Subscription* . The maximum keep-alive count is set by the *Client* when the *Subscription* is created and may be modified using the ModifySubscription *Service* .|
 |ResetLifetimeCounter()|Reset the LifetimeCounter *Variable* to the value specified for the lifetime of a *Subscription* in the CreateSubscription *Service* ( [5.14.2](/§\_Ref113157332) ).|
-|ReturnKeepAlive()|Create an empty *NotificationMessage* with the current SeqNum value.  
-
-ReturnResponse()|
+|ReturnKeepAlive()|Create an empty *NotificationMessage* with the current SeqNum value.<br>ReturnResponse()|
 |ReturnNegativeResponse()|Return a *Service* response indicating the appropriate *Service* level error. No parameters are returned other than the responseHeader that contains the *Service* level *StatusCode* .|
-|ReturnNotifications()|CreateNotificationMsg()  
-
-ReturnResponse()  
-
-If (MoreNotifications == TRUE) && (PublishingReqQueued == TRUE)  
-
-\{  
-
-DequeuePublishReq()  
-
-Loop through this function again  
-
-\}|
+|ReturnNotifications()|CreateNotificationMsg()<br>ReturnResponse()<br>If (MoreNotifications == TRUE) && (PublishingReqQueued == TRUE)<br>\{<br>DequeuePublishReq()<br>Loop through this function again<br>\}|
 |ReturnResponse()|Return the appropriate response, setting the appropriate parameter values and *StatusCodes* defined for the *Service* .|
 |SessionChanged()|A boolean function that returns TRUE only when the *Session* used to send a TransferSubscriptions request is different from the *Client* *Session* currently associated with the *Subscription* .|
 |SetPublishingEnabled ()|Set the PublishingEnabled state *Variable* to the value of the publishingEnabled parameter received in the request.|
@@ -3636,48 +2871,26 @@ Illegal request values for parameters that can be revised do not generate errors
 
 [Table 82](/§\_Ref106788204) defines the parameters for the *Service* .  
 
- **Table 82\- CreateSubscription Service Parameters**   
+Table 82 - CreateSubscription Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|Request Header|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
-|requestedPublishing  
-
-Interval|Duration|This interval defines the cyclic rate that the *Subscription* is being requested to return *Notifications* to the *Client* . This interval is expressed in milliseconds. This interval is represented by the publishing timer in the *Subscription* state table (see [5.14.1.2](/§\_Ref107033922) ).  
-
-The negotiated value for this parameter returned in the response is used as the default sampling interval for *MonitoredItems* assigned to this *Subscription* .  
-
-If the requested value is 0 or negative, the *Server* shall revise with the fastest supported publishing interval.|
-|requestedLifetimeCount|Counter|Requested lifetime count (see [7.8](/§\_Ref128930737) for *Counter* definition). The lifetime count shall be a minimum of three times the keep keep-alive count.  
-
-When the publishing timer has expired this number of times without a *Publish* request being available to send a *NotificationMessage* , then the *Subscription* shall be deleted by the *Server* .|
-|requestedMaxKeepAlive  
-
-Count|Counter|Requested maximum keep-alive count (see [7.8](/§\_Ref128930737) for *Counter* definition). When the publishing timer has expired this number of times without requiring any *NotificationMessage* to be sent, the *Subscription* sends a keep-alive *Message* to the *Client* .  
-
-The negotiated value for this parameter is returned in the response.  
-
-If the requested value is 0, the *Server* shall revise with the smallest supported keep-alive count.|
-|maxNotificationsPerPublish|Counter|The maximum number of notifications that the *Client* wishes to receive in a single *Publish* response. A value of zero indicates that there is no limit.  
-
-The number of notifications per *Publish* is the sum of monitoredItems in the DataChangeNotification and events in the EventNotificationList.|
-|publishingEnabled|Boolean|A *Boolean* parameter with the following values:  
-
-TRUE publishing is enabled for the *Subscription* .  
-
-FALSE publishing is disabled for the *Subscription* .  
-
-The value of this parameter does not affect the value of the monitoring mode *Attribute* of *MonitoredItems* .|
-|priority|Byte|Indicates the relative priority of the *Subscription* . When more than one *Subscription* needs to send a *Publish* response, the *Server* should de-queue a *Publish* request to the *Subscription* with the highest *priority* number. For *Subscriptions* with equal *priority* the *Server* should de-queue *Publish* requests in a round-robin fashion.  
-
-A *Client* that does not require special priority settings should set this value to zero.|
+|requestedPublishing<br>Interval|Duration|This interval defines the cyclic rate that the *Subscription* is being requested to return *Notifications* to the *Client* . This interval is expressed in milliseconds. This interval is represented by the publishing timer in the *Subscription* state table (see [5.14.1.2](/§\_Ref107033922) ).<br>The negotiated value for this parameter returned in the response is used as the default sampling interval for *MonitoredItems* assigned to this *Subscription* .<br>If the requested value is 0 or negative, the *Server* shall revise with the fastest supported publishing interval.|
+|requestedLifetimeCount|Counter|Requested lifetime count (see [7.8](/§\_Ref128930737) for *Counter* definition). The lifetime count shall be a minimum of three times the keep keep-alive count.<br>When the publishing timer has expired this number of times without a *Publish* request being available to send a *NotificationMessage* , then the *Subscription* shall be deleted by the *Server* .|
+|requestedMaxKeepAlive<br>Count|Counter|Requested maximum keep-alive count (see [7.8](/§\_Ref128930737) for *Counter* definition). When the publishing timer has expired this number of times without requiring any *NotificationMessage* to be sent, the *Subscription* sends a keep-alive *Message* to the *Client* .<br>The negotiated value for this parameter is returned in the response.<br>If the requested value is 0, the *Server* shall revise with the smallest supported keep-alive count.|
+|maxNotificationsPerPublish|Counter|The maximum number of notifications that the *Client* wishes to receive in a single *Publish* response. A value of zero indicates that there is no limit.<br>The number of notifications per *Publish* is the sum of monitoredItems in the DataChangeNotification and events in the EventNotificationList.|
+|publishingEnabled|Boolean|A *Boolean* parameter with the following values:<br>TRUE publishing is enabled for the *Subscription* .<br>FALSE publishing is disabled for the *Subscription* .<br>The value of this parameter does not affect the value of the monitoring mode *Attribute* of *MonitoredItems* .|
+|priority|Byte|Indicates the relative priority of the *Subscription* . When more than one *Subscription* needs to send a *Publish* response, the *Server* should de-queue a *Publish* request to the *Subscription* with the highest *priority* number. For *Subscriptions* with equal *priority* the *Server* should de-queue *Publish* requests in a round-robin fashion.<br>A *Client* that does not require special priority settings should set this value to zero.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
-|subscriptionId|IntegerId|The *Server*\-assigned identifier for the *Subscription* (see [7.19](/§\_Ref128929614) for *IntegerId* definition). This identifier shall be unique for the entire *Server* , not just for the *Session* , in order to allow the *Subscription* to be transferred to another *Session* using the TransferSubscriptions service.  
-
-After *Server* start-up the generation of *subscriptionIds* should start from a random *IntegerId* or continue from the point before the restart.|
+|subscriptionId|IntegerId|The *Server*\-assigned identifier for the *Subscription* (see [7.19](/§\_Ref128929614) for *IntegerId* definition). This identifier shall be unique for the entire *Server* , not just for the *Session* , in order to allow the *Subscription* to be transferred to another *Session* using the TransferSubscriptions service.<br>After *Server* start-up the generation of *subscriptionIds* should start from a random *IntegerId* or continue from the point before the restart.|
 |revisedPublishingInterval|Duration|The actual publishing interval that the *Server* will use, expressed in milliseconds. The *Server* should attempt to honour the *Client* request for this parameter, but may negotiate this value up or down to meet its own constraints.|
 |revisedLifetimeCount|Counter|The lifetime of the *Subscription* shall be a minimum of three times the keep-alive interval negotiated by the *Server.*|
 |revisedMaxKeepAliveCount|Counter|The actual maximum keep-alive count (see [7.8](/§\_Ref128930737) for *Counter* definition). The *Server* should attempt to honour the *Client* request for this parameter, but may negotiate this value up or down to meet its own constraints.|
@@ -3689,7 +2902,7 @@ After *Server* start-up the generation of *subscriptionIds* should start from a 
 
 [Table 83](/§\_Ref106788233) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 83\- CreateSubscription Service Result Codes**   
+Table 83 - CreateSubscription Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -3712,32 +2925,24 @@ Changes to the *Subscription* settings shall be applied immediately by the *Serv
 
 [Table 84](/§\_Ref74549805) defines the parameters for the *Service* .  
 
- **Table 84\- ModifySubscription Service Parameters**   
+Table 84 - ModifySubscription Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |subscriptionId|IntegerId|The *Server*\-assigned identifier for the *Subscription* (see [7.19](/§\_Ref128929614) for *IntegerId* definition).|
-|requestedPublishingInterval|Duration|This interval defines the cyclic rate at which the *Subscription* is being requested to return *Notifications* to the *Client* . This interval is expressed in milliseconds. This interval is represented by the publishing timer in the *Subscription* state table (see [5.14.1.2](/§\_Ref107033922) ).  
-
-The negotiated value for this parameter returned in the response is used as the default sampling interval for *MonitoredItems* assigned to this *Subscription* .  
-
-If the requested value is 0 or negative, the *Server* shall revise with the fastest supported publishing interval.|
-|requestedLifetimeCount|Counter|Requested lifetime count (see [7.8](/§\_Ref128930737) for *Counter* definition). The lifetime count shall be a minimum of three times the keep-alive count.  
-
-When the publishing timer has expired this number of times without a *Publish* request being available to send a *NotificationMessage* , then the *Subscription* shall be deleted by the *Server* .|
-|requestedMaxKeepAliveCount|Counter|Requested maximum keep-alive count (see [7.8](/§\_Ref128930737) for *Counter* definition). When the publishing timer has expired this number of times without requiring any *NotificationMessage* to be sent, the *Subscription* sends a keep-alive *Message* to the *Client* .  
-
-The negotiated value for this parameter is returned in the response.  
-
-If the requested value is 0, the *Server* shall revise with the smallest supported keep-alive count.|
+|requestedPublishingInterval|Duration|This interval defines the cyclic rate at which the *Subscription* is being requested to return *Notifications* to the *Client* . This interval is expressed in milliseconds. This interval is represented by the publishing timer in the *Subscription* state table (see [5.14.1.2](/§\_Ref107033922) ).<br>The negotiated value for this parameter returned in the response is used as the default sampling interval for *MonitoredItems* assigned to this *Subscription* .<br>If the requested value is 0 or negative, the *Server* shall revise with the fastest supported publishing interval.|
+|requestedLifetimeCount|Counter|Requested lifetime count (see [7.8](/§\_Ref128930737) for *Counter* definition). The lifetime count shall be a minimum of three times the keep-alive count.<br>When the publishing timer has expired this number of times without a *Publish* request being available to send a *NotificationMessage* , then the *Subscription* shall be deleted by the *Server* .|
+|requestedMaxKeepAliveCount|Counter|Requested maximum keep-alive count (see [7.8](/§\_Ref128930737) for *Counter* definition). When the publishing timer has expired this number of times without requiring any *NotificationMessage* to be sent, the *Subscription* sends a keep-alive *Message* to the *Client* .<br>The negotiated value for this parameter is returned in the response.<br>If the requested value is 0, the *Server* shall revise with the smallest supported keep-alive count.|
 |maxNotificationsPerPublish|Counter|The maximum number of notifications that the *Client* wishes to receive in a single *Publish* response. A value of zero indicates that there is no limit.|
-|priority|Byte|Indicates the relative priority of the *Subscription* . When more than one *Subscription* needs to send *Notifications* , the *Server* should de-queue a Publish request to the *Subscription* with the highest *priority* number. For *Subscriptions* with equal *priority* the *Server* should de-queue Publish requests in a round-robin fashion.  
-
-A *Client* that does not require special priority settings should set this value to zero.|
+|priority|Byte|Indicates the relative priority of the *Subscription* . When more than one *Subscription* needs to send *Notifications* , the *Server* should de-queue a Publish request to the *Subscription* with the highest *priority* number. For *Subscriptions* with equal *priority* the *Server* should de-queue Publish requests in a round-robin fashion.<br>A *Client* that does not require special priority settings should set this value to zero.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |revisedPublishingInterval|Duration|The actual publishing interval that the *Server* will use, expressed in milliseconds. The *Server* should attempt to honour the *Client* request for this parameter, but may negotiate this value up or down to meet its own constraints.|
 |revisedLifetimeCount|Counter|The lifetime of the *Subscription* shall be a minimum of three times the keep-alive interval negotiated by the *Server.*|
@@ -3750,7 +2955,7 @@ A *Client* that does not require special priority settings should set this value
 
 [Table 85](/§\_Ref74549766) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 85\- ModifySubscription Service Result Codes**   
+Table 85 - ModifySubscription Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -3769,22 +2974,20 @@ This *Service* is used to enable sending of *Notifications* on one or more *Subs
 
 [Table 86](/§\_Ref94950888) defines the parameters for the *Service* .  
 
- **Table 86\- SetPublishingMode Service Parameters**   
+Table 86 - SetPublishingMode Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
-|publishingEnabled|Boolean|A *Boolean* parameter with the following values:  
-
-TRUE publishing of *NotificationMessages* is enabled for the *Subscription* .  
-
-FALSE publishing of *NotificationMessages* is disabled for the *Subscription* .  
-
-The value of this parameter does not affect the value of the monitoring mode *Attribute* of *MonitoredItems* . Setting this value to FALSE does not discontinue the sending of keep-alive *Messages* .|
+|publishingEnabled|Boolean|A *Boolean* parameter with the following values:<br>TRUE publishing of *NotificationMessages* is enabled for the *Subscription* .<br>FALSE publishing of *NotificationMessages* is disabled for the *Subscription* .<br>The value of this parameter does not affect the value of the monitoring mode *Attribute* of *MonitoredItems* . Setting this value to FALSE does not discontinue the sending of keep-alive *Messages* .|
 |subscriptionIds []|IntegerId|List of *Server*\-assigned identifiers for the *Subscriptions* to enable or disable (see [7.19](/§\_Ref128929614) for *IntegerId* definition).|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|StatusCode|List of *StatusCodes* for the *Subscriptions* to enable/disable (see [7.38](/§\_Ref127346441) for *StatusCode* definition). The size and order of the list matches the size and order of the *subscriptionIds* request parameter.|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the *Subscriptions* to enable/disable (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *subscriptionIds* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
@@ -3796,7 +2999,7 @@ The value of this parameter does not affect the value of the monitoring mode *At
 
 [Table 87](/§\_Ref80163002) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 87\- SetPublishingMode Service Result Codes**   
+Table 87 - SetPublishingMode Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -3810,7 +3013,7 @@ The value of this parameter does not affect the value of the monitoring mode *At
 
 [Table 88](/§\_Ref134422919) defines values for the *results* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 88\- SetPublishingMode Operation Level Result Codes**   
+Table 88 - SetPublishingMode Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -3839,33 +3042,25 @@ The return diagnostic info setting in the request header of the *CreateMonitored
 
 [Table 89](/§\_Ref71530469) defines the parameters for the *Service* .  
 
- **Table 89\- Publish Service Parameters**   
+Table 89 - Publish Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
-|subscription  
-
-Acknowledgements []|Subscription Acknowledgement|The list of acknowledgements for one or more *Subscriptions* . This list may contain multiple acknowledgements for the same *Subscription* (multiple entries with the same *subscriptionId* ). This structure is defined in-line with the following indented items.|
+|subscription<br>Acknowledgements []|Subscription Acknowledgement|The list of acknowledgements for one or more *Subscriptions* . This list may contain multiple acknowledgements for the same *Subscription* (multiple entries with the same *subscriptionId* ). This structure is defined in-line with the following indented items.|
 | subscriptionId|IntegerId|The *Server* assigned identifier for a *Subscription* (see [7.19](/§\_Ref128929614) for *IntegerId* definition).|
 | sequenceNumber|Counter|The sequence number being acknowledged (see [7.8](/§\_Ref128930737) for *Counter* definition). The *Server* may delete the *Message* with this sequence number from its retransmission queue.|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |subscriptionId|IntegerId|The *Server*\-assigned identifier for the *Subscription* for which *Notifications* are being returned (see [7.19](/§\_Ref128929614) for *IntegerId* definition). The value 0 is used to indicate that there were no *Subscriptions* defined for which a response could be sent.|
-|availableSequence  
-
-Numbers []|Counter|A list of sequence number ranges that identify unacknowledged *NotificationMessages* that are available for retransmission from the *Subscription* 's retransmission queue including the sequence number of this response if it is not a keep-alive *Message* . This list is prepared after processing the acknowledgements in the request (see [7.8](/§\_Ref128930737) for *Counter* definition).  
-
-The list shall be empty if the *Server* does not support the retransmission queue. If the list is empty, the *Client* should not acknowledge sequence numbers.  
-
-This information is for diagnostic purpose and *Clients* should log differences to the expected sequence numbers.|
-|moreNotifications|Boolean|A *Boolean* parameter with the following values:  
-
-TRUE the number of *Notifications* that were ready to be sent could not be sent in a single response.  
-
-FALSE all *Notifications* that were ready are included in the response.|
+|availableSequence<br>Numbers []|Counter|A list of sequence number ranges that identify unacknowledged *NotificationMessages* that are available for retransmission from the *Subscription* 's retransmission queue including the sequence number of this response if it is not a keep-alive *Message* . This list is prepared after processing the acknowledgements in the request (see [7.8](/§\_Ref128930737) for *Counter* definition).<br>The list shall be empty if the *Server* does not support the retransmission queue. If the list is empty, the *Client* should not acknowledge sequence numbers.<br>This information is for diagnostic purpose and *Clients* should log differences to the expected sequence numbers.|
+|moreNotifications|Boolean|A *Boolean* parameter with the following values:<br>TRUE the number of *Notifications* that were ready to be sent could not be sent in a single response.<br>FALSE all *Notifications* that were ready are included in the response.|
 |notificationMessage|Notification Message|The *NotificationMessage* that contains the list of *Notifications* . The *NotificationMessage* parameter type is specified in [7.26](/§\_Ref187493407) .|
 |results []|StatusCode|List of results for the acknowledgements (see [7.38](/§\_Ref127346441) for *StatusCode* definition). The size and order of the list matches the size and order of the *subscriptionAcknowledgements* request parameter.|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the acknowledgements (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *subscriptionAcknowledgements* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
@@ -3877,7 +3072,7 @@ FALSE all *Notifications* that were ready are included in the response.|
 
 [Table 90](/§\_Ref141618767) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 90\- Publish Service Result Codes**   
+Table 90 - Publish Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -3891,7 +3086,7 @@ FALSE all *Notifications* that were ready are included in the response.|
 
 [Table 91](/§\_Ref110842152) defines values for the *results* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 91\- Publish Operation Level Result Codes**   
+Table 91 - Publish Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -3916,18 +3111,20 @@ See [6.7](/§\_Ref303088449) for a description of the issues and strategies rega
 
 [Table 92](/§\_Ref107043833) defines the parameters for the *Service* .  
 
- **Table 92\- Republish Service Parameters**   
+Table 92 - Republish Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |subscriptionId|IntegerId|The *Server* assigned identifier for the *Subscription* to be republished (see [7.19](/§\_Ref128929614) for *IntegerId* definition).|
-|retransmitSequence  
-
-Number|Counter|The sequence number of a specific *NotificationMessage* to be republished (see [7.8](/§\_Ref128930737) for *Counter* definition).|
+|retransmitSequence<br>Number|Counter|The sequence number of a specific *NotificationMessage* to be republished (see [7.8](/§\_Ref128930737) for *Counter* definition).|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |notificationMessage|Notification Message|The requested *NotificationMessage* . The *NotificationMessage* parameter type is specified in [7.26](/§\_Ref187493407) .|
   
@@ -3938,7 +3135,7 @@ Number|Counter|The sequence number of a specific *NotificationMessage* to be rep
 
 [Table 93](/§\_Ref107043835) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 93\- Republish Service Result Codes**   
+Table 93 - Republish Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -3962,30 +3159,24 @@ If the *Server* transfers the *Subscription* to the new *Session* , the *Server*
 
 [Table 94](/§\_Ref78939141) defines the parameters for the *Service* .  
 
- **Table 94\- TransferSubscriptions Service Parameters**   
+Table 94 - TransferSubscriptions Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |subscriptionIds []|IntegerId|List of identifiers for the *Subscriptions* to be transferred to the new *Client* (see [7.19](/§\_Ref128929614) for *IntegerId* definition). These identifiers are transferred from the primary *Client* to a backup *Client* via external mechanisms.|
-|sendInitialValues|Boolean|A *Boolean* parameter with the following values:  
-
-TRUE the first Publish response(s) after the *TransferSubscriptions* call shall contain the current value for each data MonitoredItem in the *Subscription* where the Monitoring Mode is set to Reporting.If a value is queued for a data *MonitoredItem* , the next value in the queue is sent in the *Publish* response. If no value is queued for a data *MonitoredItem* , the last value sent is repeated in the *Publish* response.  
-
-FALSE the first Publish response after the TransferSubscriptions call shall contain only the value changes since the last Publish response was sent.  
-
-This parameter only applies to MonitoredItems used for monitoring Attribute changes.  
-
-The data should be sent in the next regular *PublishingInterval* .|
+|sendInitialValues|Boolean|A *Boolean* parameter with the following values:<br>TRUE the first Publish response(s) after the *TransferSubscriptions* call shall contain the current value for each data MonitoredItem in the *Subscription* where the Monitoring Mode is set to Reporting.If a value is queued for a data *MonitoredItem* , the next value in the queue is sent in the *Publish* response. If no value is queued for a data *MonitoredItem* , the last value sent is repeated in the *Publish* response.<br>FALSE the first Publish response after the TransferSubscriptions call shall contain only the value changes since the last Publish response was sent.<br>This parameter only applies to MonitoredItems used for monitoring Attribute changes.<br>The data should be sent in the next regular *PublishingInterval* .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|TransferResult|List of results for the *Subscriptions* to transfer. The size and order of the list matches the size and order of the *subscriptionIds* request parameter. This structure is defined in-line with the following indented items.|
 | statusCode|StatusCode|*StatusCode* for each *Subscription* to be transferred (see [7.38](/§\_Ref127346441) for *StatusCode* definition).|
-| availableSequence  
-
- Numbers []|Counter|A list of sequence number ranges that identify *NotificationMessages* that are in the *Subscription* 's retransmission queue. This parameter is null or empty if the transfer of the *Subscription* failed. The *Counter* type is defined in [7.8](/§\_Ref128930737) .|
+| availableSequence<br> Numbers []|Counter|A list of sequence number ranges that identify *NotificationMessages* that are in the *Subscription* 's retransmission queue. This parameter is null or empty if the transfer of the *Subscription* failed. The *Counter* type is defined in [7.8](/§\_Ref128930737) .|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the *Subscriptions* to transfer (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *subscriptionIds* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
   
 
@@ -3995,7 +3186,7 @@ The data should be sent in the next regular *PublishingInterval* .|
 
 [Table 95](/§\_Ref78939142) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 95\- TransferSubscriptions Service Result Codes**   
+Table 95 - TransferSubscriptions Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -4010,18 +3201,14 @@ The data should be sent in the next regular *PublishingInterval* .|
 
 [Table 96](/§\_Ref134423720) defines values for the operation level *statusCode* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 96\- TransferSubscriptions Operation Level Result Codes**   
+Table 96 - TransferSubscriptions Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
 |Bad\_SubscriptionIdInvalid|See [Table 176](/§\_Ref90539276) for the description of this result code.|
-|Bad\_UserAccessDenied|See [Table 176](/§\_Ref90539276) for the description of this result code.  
-
-The *Client* of the current *Session* is not operating on behalf of the same user as the *Session* that owns the *Subscription* .|
+|Bad\_UserAccessDenied|See [Table 176](/§\_Ref90539276) for the description of this result code.<br>The *Client* of the current *Session* is not operating on behalf of the same user as the *Session* that owns the *Subscription* .|
 |Bad\_TooManySubscriptions|The *Server* has reached its maximum number of *Subscriptions* for the *Session* .|
-|Bad\_NothingToDo|See [Table 176](/§\_Ref90539276) for the description of this result code.  
-
-This result code is returned if the *Subscription* is already owned by the *Session* used to call *TransferSubscription* .|
+|Bad\_NothingToDo|See [Table 176](/§\_Ref90539276) for the description of this result code.<br>This result code is returned if the *Subscription* is already owned by the *Session* used to call *TransferSubscription* .|
   
 
   
@@ -4040,15 +3227,19 @@ Successful completion of this *Service* causes all *MonitoredItems* that use the
 
 [Table 97](/§\_Ref74552979) defines the parameters for the *Service* .  
 
- **Table 97\- DeleteSubscriptions Service Parameters**   
+Table 97 - DeleteSubscriptions Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|RequestHeader|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
 |subscriptionIds []|IntegerId|The *Server*\-assigned identifier for the *Subscription* (see [7.19](/§\_Ref128929614) for *IntegerId* definition).|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
 |results []|StatusCode|List of *StatusCodes* for the *Subscriptions* to delete (see [7.38](/§\_Ref127346441) for *StatusCode* definition). The size and order of the list matches the size and order of the *subscriptionIds* request parameter.|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the *Subscriptions* to delete (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *subscriptionIds* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the request.|
@@ -4060,7 +3251,7 @@ Successful completion of this *Service* causes all *MonitoredItems* that use the
 
 [Table 98](/§\_Ref78939143) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 98\- DeleteSubscriptions Service Result Codes**   
+Table 98 - DeleteSubscriptions Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -4074,7 +3265,7 @@ Successful completion of this *Service* causes all *MonitoredItems* that use the
 
 [Table 99](/§\_Ref134423989) defines values for the *results* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 99\- DeleteSubscriptions Operation Level Result Codes**   
+Table 99 - DeleteSubscriptions Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -4153,101 +3344,21 @@ Determining trust requires access to all *Certificates* in the chain. These *Cer
 
 *ApplicationInstanceCertificates* shall not be used in a *Client* or *Server* until they have been evaluated and marked as trusted. This can happen automatically by a PKI trust chain or in an offline manner where the *Certificate* is marked as trusted by an administrator after evaluation.  
 
- **Table 100\- Certificate validation steps**   
+Table 100 - Certificate validation steps  
 
 | **Step** | **Error/AuditEvent** | **Description** |
 |---|---|---|
-|Certificate Structure|Bad\_CertificateInvalid Bad\_SecurityChecksFailed  
-
-AuditCertificateInvalidEventType|The *Certificate* structure is verified.  
-
-This error may not be suppressed.  
-
-If this check fails on the *Server* side, the error Bad\_SecurityChecksFailed shall be reported back to the *Client* .|
-|Build Certificate Chain|Bad\_CertificateChainIncomplete  
-
-Bad\_SecurityChecksFailed  
-
-AuditCertificateInvalidEventType|The trust chain for the *Certificate* is created.  
-
-An error during the chain creation may not be suppressed.  
-
-If this check fails on the *Server* side, the error Bad\_SecurityChecksFailed shall be reported back to the *Client* .|
-|Signature|Bad\_CertificateInvalid  
-
-Bad\_SecurityChecksFailed  
-
-AuditCertificateInvalidEventType|A *Certificate* with an invalid signature shall always be rejected.  
-
-A *Certificate* signature is invalid if the *Issuer* *Certificate* is unknown. A self-signed *Certificate* is its own issuer.  
-
-If this check fails on the *Server* side, the error Bad\_SecurityChecksFailed shall be reported back to the *Client* .|
-|Security Policy Check|Bad\_CertificatePolicyCheckFailed  
-
-Bad\_SecurityChecksFailed  
-
-AuditCertificateInvalidEventType|A *Certificate* signature shall comply with the CertificateSignatureAlgorithm, MinAsymmetricKeyLength and MaxAsymmetricKeyLength requirements for the used *SecurityPolicy* defined in [OPC 10000-7](/§UAPart7) .  
-
-If this check fails on the *Server* side, the error Bad\_SecurityChecksFailed shall be reported back to the *Client* .  
-
-This error may be suppressed.|
-|Trust List Check|Bad\_CertificateUntrusted  
-
-Bad\_SecurityChecksFailed  
-
-AuditCertificateUntrustedEventType|If the *ApplicationInstanceCertificate* is not trusted and none of the CA *Certificates* in the chain is trusted, the result of the *Certificate* validation shall be Bad\_CertificateUntrusted.  
-
-If this check fails on the *Server* side, the error Bad\_SecurityChecksFailed shall be reported back to the *Client* .  
-
-This check is applied for *ApplicationInstanceCertificates* and may not apply for all other *Certificate* types.|
-|Validity Period|Bad\_CertificateTimeInvalid  
-
-Bad\_CertificateIssuerTimeInvalid  
-
-AuditCertificateExpiredEventType|The current time shall be after the start of the validity period and before the end.  
-
-This error may be suppressed.|
-|Host Name|Bad\_CertificateHostNameInvalid  
-
-AuditCertificateDataMismatchEventType|The HostName in the URL used to connect to the *Server* shall be the same as one of the HostNames specified in the *Certificate* .  
-
-This check is applied for OPC UA *Server* *ApplicationInstanceCertificates* and skipped for CA *Certificates* and *Client* *ApplicationInstanceCertificates.*  
-
-This check may be skipped for other *Certificate* types.  
-
-This error may be suppressed.|
-|URI|Bad\_CertificateUriInvalid  
-
-AuditCertificateDataMismatchEventType|*Application and Software Certificates* contain an application or product URI that shall match the URI specified in the *ApplicationDescription* provided with the *Certificate* .  
-
-This check is only applied for *ApplicationInstanceCertificates* and skipped for all other types like CA *Certificates* .  
-
-This error may not be suppressed.  
-
-The *gatewayServerUri* is used to validate an *Application Certificate* when connecting to a *Gateway Server* (see [7.2](/§\_Ref153821547) ).|
-|Certificate Usage|Bad\_CertificateUseNotAllowed  
-
-Bad\_CertificateIssuerUseNotAllowed  
-
-AuditCertificateMismatchEventType|Each *Certificate* has a set of uses for the *Certificate* (see [OPC 10000-6](/§UAPart6) ). These uses shall match use requested for the *Certificate* (i.e. Application, Software or CA).  
-
-This error may be suppressed unless the *Certificate* indicates that the usage is mandatory.|
-|Find Revocation List|Bad\_CertificateRevocationUnknown Bad\_CertificateIssuerRevocationUnknown  
-
-AuditCertificateRevokedEventType|Each CA *Certificate* may have a revocation list. This check fails if this list is not available (i.e. a network interruption prevents the application from accessing the list). No error is reported if the *Administrator* disables revocation checks for a CA *Certificate* .  
-
-This error may be suppressed.  
-
-Bad\_SecurityChecksFailed should be reported back to the *Client* .|
-|Revocation Check|Bad\_CertificateRevoked  
-
-Bad\_CertificateIssuerRevoked  
-
-AuditCertificateRevokedEventType|The *Certificate* shall not be revoked. Whether a certificate is revoked shall be checked as specified in RFC 5280, 6.3.  
-
-If a revocation list is found, this error may not be suppressed.  
-
-If this check fails on the *Server* side, the error Bad\_SecurityChecksFailed shall be reported back to the *Client* .|
+|Certificate Structure|Bad\_CertificateInvalid Bad\_SecurityChecksFailed<br>AuditCertificateInvalidEventType|The *Certificate* structure is verified.<br>This error may not be suppressed.<br>If this check fails on the *Server* side, the error Bad\_SecurityChecksFailed shall be reported back to the *Client* .|
+|Build Certificate Chain|Bad\_CertificateChainIncomplete<br>Bad\_SecurityChecksFailed<br>AuditCertificateInvalidEventType|The trust chain for the *Certificate* is created.<br>An error during the chain creation may not be suppressed.<br>If this check fails on the *Server* side, the error Bad\_SecurityChecksFailed shall be reported back to the *Client* .|
+|Signature|Bad\_CertificateInvalid<br>Bad\_SecurityChecksFailed<br>AuditCertificateInvalidEventType|A *Certificate* with an invalid signature shall always be rejected.<br>A *Certificate* signature is invalid if the *Issuer* *Certificate* is unknown. A self-signed *Certificate* is its own issuer.<br>If this check fails on the *Server* side, the error Bad\_SecurityChecksFailed shall be reported back to the *Client* .|
+|Security Policy Check|Bad\_CertificatePolicyCheckFailed<br>Bad\_SecurityChecksFailed<br>AuditCertificateInvalidEventType|A *Certificate* signature shall comply with the CertificateSignatureAlgorithm, MinAsymmetricKeyLength and MaxAsymmetricKeyLength requirements for the used *SecurityPolicy* defined in [OPC 10000-7](/§UAPart7) .<br>If this check fails on the *Server* side, the error Bad\_SecurityChecksFailed shall be reported back to the *Client* .<br>This error may be suppressed.|
+|Trust List Check|Bad\_CertificateUntrusted<br>Bad\_SecurityChecksFailed<br>AuditCertificateUntrustedEventType|If the *ApplicationInstanceCertificate* is not trusted and none of the CA *Certificates* in the chain is trusted, the result of the *Certificate* validation shall be Bad\_CertificateUntrusted.<br>If this check fails on the *Server* side, the error Bad\_SecurityChecksFailed shall be reported back to the *Client* .<br>This check is applied for *ApplicationInstanceCertificates* and may not apply for all other *Certificate* types.|
+|Validity Period|Bad\_CertificateTimeInvalid<br>Bad\_CertificateIssuerTimeInvalid<br>AuditCertificateExpiredEventType|The current time shall be after the start of the validity period and before the end.<br>This error may be suppressed.|
+|Host Name|Bad\_CertificateHostNameInvalid<br>AuditCertificateDataMismatchEventType|The HostName in the URL used to connect to the *Server* shall be the same as one of the HostNames specified in the *Certificate* .<br>This check is applied for OPC UA *Server* *ApplicationInstanceCertificates* and skipped for CA *Certificates* and *Client* *ApplicationInstanceCertificates.*<br>This check may be skipped for other *Certificate* types.<br>This error may be suppressed.|
+|URI|Bad\_CertificateUriInvalid<br>AuditCertificateDataMismatchEventType|*Application and Software Certificates* contain an application or product URI that shall match the URI specified in the *ApplicationDescription* provided with the *Certificate* .<br>This check is only applied for *ApplicationInstanceCertificates* and skipped for all other types like CA *Certificates* .<br>This error may not be suppressed.<br>The *gatewayServerUri* is used to validate an *Application Certificate* when connecting to a *Gateway Server* (see [7.2](/§\_Ref153821547) ).|
+|Certificate Usage|Bad\_CertificateUseNotAllowed<br>Bad\_CertificateIssuerUseNotAllowed<br>AuditCertificateMismatchEventType|Each *Certificate* has a set of uses for the *Certificate* (see [OPC 10000-6](/§UAPart6) ). These uses shall match use requested for the *Certificate* (i.e. Application, Software or CA).<br>This error may be suppressed unless the *Certificate* indicates that the usage is mandatory.|
+|Find Revocation List|Bad\_CertificateRevocationUnknown Bad\_CertificateIssuerRevocationUnknown<br>AuditCertificateRevokedEventType|Each CA *Certificate* may have a revocation list. This check fails if this list is not available (i.e. a network interruption prevents the application from accessing the list). No error is reported if the *Administrator* disables revocation checks for a CA *Certificate* .<br>This error may be suppressed.<br>Bad\_SecurityChecksFailed should be reported back to the *Client* .|
+|Revocation Check|Bad\_CertificateRevoked<br>Bad\_CertificateIssuerRevoked<br>AuditCertificateRevokedEventType|The *Certificate* shall not be revoked. Whether a certificate is revoked shall be checked as specified in RFC 5280, 6.3.<br>If a revocation list is found, this error may not be suppressed.<br>If this check fails on the *Server* side, the error Bad\_SecurityChecksFailed shall be reported back to the *Client* .|
   
 
   
@@ -4382,54 +3493,26 @@ A *Session* ensures that a namespace index or a server index does not change dur
 
 [Table 101](/§\_Ref457764532) defines the parameters for the *Service* .  
 
- **Table 101\- SessionlessInvoke Service Parameters**   
+Table 101 - SessionlessInvoke Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
-|urisVersion|VersionTime|The version of the *NamespaceArray* and the *ServerArray* used for the *Service* invocation. The version shall match the value of the *UrisVersion Property* that defines the version for the URI lists in the *NamespaceArray* and the *ServerArray Properties* defined in [OPC 10000-5](/§UAPart5) . If the *urisVersion* parameter does not match the *Server's* *UrisVersion Property* , the *Server* shall return Bad\_VersionTimeInvalid. In this case the *Client* shall read the *UrisVersion* , *NamespaceArray* and the *ServerArray* from the *Server Object* to repeat the Service invocation with the right version. The *VersionTime* *DataType* is defined in [7.43](/§\_Ref482817493) .  
-
-If the value is 0, the parameter is ignored and the URIs are defined by the *namespaceUris* and *serverUris* parameters in request and response.  
-
-If the value is non-zero, the *namespaceUris* and *serverUris* parameters in the request are ignored by the *Server* and set to null or empty arrays in the response.|
-|namespaceUris []|String|A list of URIs referenced by *NodeIds* or *QualifiedNames* in the request.  
-
-NamespaceIndex 0 shall not be in this list.  
-
-The first entry in this list is NamespaceIndex 1.  
-
-The parameter shall be ignored by the *Server* if the *urisVersion* is not 0.|
-|serverUris []|String|A list of URIs referenced by *ExpandedNodeIds* in the request.  
-
-ServerIndex 0 shall not be in this list.  
-
-The first entry in this list is ServerIndex 1.  
-
-The parameter shall be ignored by the *Server* if the *urisVersion* is not 0.|
+|---|---|---|
+|urisVersion|VersionTime|The version of the *NamespaceArray* and the *ServerArray* used for the *Service* invocation. The version shall match the value of the *UrisVersion Property* that defines the version for the URI lists in the *NamespaceArray* and the *ServerArray Properties* defined in [OPC 10000-5](/§UAPart5) . If the *urisVersion* parameter does not match the *Server's* *UrisVersion Property* , the *Server* shall return Bad\_VersionTimeInvalid. In this case the *Client* shall read the *UrisVersion* , *NamespaceArray* and the *ServerArray* from the *Server Object* to repeat the Service invocation with the right version. The *VersionTime* *DataType* is defined in [7.43](/§\_Ref482817493) .<br>If the value is 0, the parameter is ignored and the URIs are defined by the *namespaceUris* and *serverUris* parameters in request and response.<br>If the value is non-zero, the *namespaceUris* and *serverUris* parameters in the request are ignored by the *Server* and set to null or empty arrays in the response.|
+|namespaceUris []|String|A list of URIs referenced by *NodeIds* or *QualifiedNames* in the request.<br>NamespaceIndex 0 shall not be in this list.<br>The first entry in this list is NamespaceIndex 1.<br>The parameter shall be ignored by the *Server* if the *urisVersion* is not 0.|
+|serverUris []|String|A list of URIs referenced by *ExpandedNodeIds* in the request.<br>ServerIndex 0 shall not be in this list.<br>The first entry in this list is ServerIndex 1.<br>The parameter shall be ignored by the *Server* if the *urisVersion* is not 0.|
 |localeIds []|LocaleId|List of locale ids to use. See locale negotiation in [5.4](/§\_Ref161623610) which applies to this *Service* .|
 |serviceId|UInt32|The numeric identifier assigned to the *Service* request *DataType* *NodeId* describing the body.|
-|body|\*|The body of the request.  
-
-The body is an embedded structure containing the corresponding *Service* request for the *serviceId* .|
+|body|\*|The body of the request.<br>The body is an embedded structure containing the corresponding *Service* request for the *serviceId* .|
+  
 | **Response** |||
-|namespaceUris []|String|A list of URIs referenced by *NodeIds* or *QualifiedNames* in the response.  
-
-NamespaceIndex 0 shall not be in this list.  
-
-The first entry in this list is NamespaceIndex 1.  
-
-An empty array shall be returned if the *urisVersion* is not 0.|
-|serverUris []|String|A list of URIs referenced by *ExpandedNodeIds* in the response.  
-
-ServerIndex 0 shall not be in this list.  
-
-The first entry in this list is ServerIndex 1.  
-
-An empty array shall be returned if the *urisVersion* is not 0.|
+|---|---|---|
+|namespaceUris []|String|A list of URIs referenced by *NodeIds* or *QualifiedNames* in the response.<br>NamespaceIndex 0 shall not be in this list.<br>The first entry in this list is NamespaceIndex 1.<br>An empty array shall be returned if the *urisVersion* is not 0.|
+|serverUris []|String|A list of URIs referenced by *ExpandedNodeIds* in the response.<br>ServerIndex 0 shall not be in this list.<br>The first entry in this list is ServerIndex 1.<br>An empty array shall be returned if the *urisVersion* is not 0.|
 |serviceId|UInt32|The numeric identifier assigned to the *Service* response *DataType* *NodeId* describing the body.|
-|body|\*|The body of the response.  
-
-The body is an embedded structure containing the corresponding *Service* response for the *serviceId* .|
+|body|\*|The body of the response.<br>The body is an embedded structure containing the corresponding *Service* response for the *serviceId* .|
   
 
   
@@ -4438,7 +3521,7 @@ The body is an embedded structure containing the corresponding *Service* respons
 
 [Table 102](/§\_Ref482816649) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table 102\- SessionlessInvoke Service Result Codes**   
+Table 102 - SessionlessInvoke Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -4609,26 +3692,14 @@ The *ServiceLevel* provides information to a *Client* regarding the health of a 
 
 The algorithm used by a *Server* to determine its *ServiceLevel* within each sub-range is *Server* specific. However, all *Servers* in a *RedundantServerSet* shall use the same algorithm to determine the *ServiceLevel.* All *Servers,* regardless of *RedundantServerSet* membership, shall adhere to the sub-ranges defined in [Table 103](/§\_Ref411766108) .  
 
- **Table 103\- ServiceLevel ranges**   
+Table 103 - ServiceLevel ranges  
 
 | **Sub-range** | **Name** | **Description** |
 |---|---|---|
-|0-0|Maintenance|The *Failed* *Server* is in maintenance sub-range. Therefore, new *Clients* shall not connect and currently connected *Clients* shall disconnect. The *Server* should expose a target time at which the *Clients* are able to reconnect. See *EstimatedReturnTime* defined in [OPC 10000-5](/§UAPart5) for additional information.  
-
-A *Server* that has been set to *Maintenance* is typically undergoing some maintenance or updates. The main goal for the *Maintenance* *ServiceLevel* is to ensure that *Clients* do not generate load on the *Server* and allow time for the *Server* to complete any actions that are required. This load includes even simple connections attempts or monitoring of the *ServiceLevel* . The *EstimatedReturnTime* indicates when the *Client* should check to see if the *Server* is available. If updates or patches are taking longer than expected the *Client* may discover that the *EstimatedReturnTime* has been extended further into the future. If the *Server* does not provide the *EstimatedReturnTime,* or if the time has lapsed, the *Client* should use a much longer interval between reconnects to a *Server* in the *Maintenance* sub-range than its normal reconnect interval.|
-|1-1|NoData|The *Failed* *Server* is not operational. Therefore, a *Client* is not able to exchange any information with it. The *Server* most likely has no data other than *ServiceLevel, ServerStatus* and diagnostic information available.  
-
-A *Failed* *Server* in this sub-range has no data available. *Clients* may connect to it to obtain *ServiceLevel* , *ServerStatus* and other diagnostic information. If the underlying system has failed, typically the *ServerStatus* would indicate COMMUNICATION\_FAULT. The *Client* may monitor this *Server* for a *ServerStatus* and *ServiceLevel* change, which would indicate that normal communication could be resumed.|
-|2-199|Degraded|*The Server* is partially operational, but is experiencing problems such that portions of the *AddressSpace* are out of service or unavailable. An example usage of this *ServiceLevel* sub-range would be if 3 of 10 devices connected to a *Server* are unavailable.  
-
-*Servers* that report a *ServiceLevel* in the *Degraded* sub-range are partially able to service *Client* requests. The degradation could be caused by loss of connection to underlying systems or functioning in a mode like a backup *Server* which results in less than full functionality being available. Alternatively, it could be that the *Server* is overloaded to the point that it is unable to reliably deliver data to *Clients* in a timely manner.  
-
-If *Clients* are experiencing difficulties obtaining required data, they shall switch to another *Server* if any *Servers* in the *Healthy* range are available. If no *Servers* are available in the *Healthy* range, then *Clients* may switch to a *Server* with a higher *ServiceLevel* or one that provides the required data. Some *Clients* may also be configured for higher priority data and may check all *Degraded* *Servers* , to see if any of the *Servers* are able to report as good quality the high priority data, but this functionality would be *Client* specific. In some cases a *Client* may connect to multiple *Degraded* *Servers* to maximize the available information.|
-|200-255|Healthy|The *Server* is fully operational. Therefore, a *Client* can obtain all information from this *Server* . The sub-range allows a *Server* to provide information that can be used by *Clients* to load balance. An example usage of this *ServiceLevel* sub-range would be to reflect the *Server's* CPU load where data is delivered as expected.  
-
-*Servers* in the *Healthy* *ServiceLevel* sub-range are able to deliver information in a timely manner. This *ServiceLevel* may change for internal *Server* reason or it may be used for load balancing described in [6.6.2.4.3](/§\_Ref412066360) .  
-
-*Client* shall connect to the *Server* with the highest *ServiceLevel* . Once connected, the *ServiceLevel* may change, but a *Client* shall not *Failover* to a different *Server* as long as the *ServiceLevel* of the *Server* is accessible and in the *Healthy* sub-range.|
+|0-0|Maintenance|The *Failed* *Server* is in maintenance sub-range. Therefore, new *Clients* shall not connect and currently connected *Clients* shall disconnect. The *Server* should expose a target time at which the *Clients* are able to reconnect. See *EstimatedReturnTime* defined in [OPC 10000-5](/§UAPart5) for additional information.<br>A *Server* that has been set to *Maintenance* is typically undergoing some maintenance or updates. The main goal for the *Maintenance* *ServiceLevel* is to ensure that *Clients* do not generate load on the *Server* and allow time for the *Server* to complete any actions that are required. This load includes even simple connections attempts or monitoring of the *ServiceLevel* . The *EstimatedReturnTime* indicates when the *Client* should check to see if the *Server* is available. If updates or patches are taking longer than expected the *Client* may discover that the *EstimatedReturnTime* has been extended further into the future. If the *Server* does not provide the *EstimatedReturnTime,* or if the time has lapsed, the *Client* should use a much longer interval between reconnects to a *Server* in the *Maintenance* sub-range than its normal reconnect interval.|
+|1-1|NoData|The *Failed* *Server* is not operational. Therefore, a *Client* is not able to exchange any information with it. The *Server* most likely has no data other than *ServiceLevel, ServerStatus* and diagnostic information available.<br>A *Failed* *Server* in this sub-range has no data available. *Clients* may connect to it to obtain *ServiceLevel* , *ServerStatus* and other diagnostic information. If the underlying system has failed, typically the *ServerStatus* would indicate COMMUNICATION\_FAULT. The *Client* may monitor this *Server* for a *ServerStatus* and *ServiceLevel* change, which would indicate that normal communication could be resumed.|
+|2-199|Degraded|*The Server* is partially operational, but is experiencing problems such that portions of the *AddressSpace* are out of service or unavailable. An example usage of this *ServiceLevel* sub-range would be if 3 of 10 devices connected to a *Server* are unavailable.<br>*Servers* that report a *ServiceLevel* in the *Degraded* sub-range are partially able to service *Client* requests. The degradation could be caused by loss of connection to underlying systems or functioning in a mode like a backup *Server* which results in less than full functionality being available. Alternatively, it could be that the *Server* is overloaded to the point that it is unable to reliably deliver data to *Clients* in a timely manner.<br>If *Clients* are experiencing difficulties obtaining required data, they shall switch to another *Server* if any *Servers* in the *Healthy* range are available. If no *Servers* are available in the *Healthy* range, then *Clients* may switch to a *Server* with a higher *ServiceLevel* or one that provides the required data. Some *Clients* may also be configured for higher priority data and may check all *Degraded* *Servers* , to see if any of the *Servers* are able to report as good quality the high priority data, but this functionality would be *Client* specific. In some cases a *Client* may connect to multiple *Degraded* *Servers* to maximize the available information.|
+|200-255|Healthy|The *Server* is fully operational. Therefore, a *Client* can obtain all information from this *Server* . The sub-range allows a *Server* to provide information that can be used by *Clients* to load balance. An example usage of this *ServiceLevel* sub-range would be to reflect the *Server's* CPU load where data is delivered as expected.<br>*Servers* in the *Healthy* *ServiceLevel* sub-range are able to deliver information in a timely manner. This *ServiceLevel* may change for internal *Server* reason or it may be used for load balancing described in [6.6.2.4.3](/§\_Ref412066360) .<br>*Client* shall connect to the *Server* with the highest *ServiceLevel* . Once connected, the *ServiceLevel* may change, but a *Client* shall not *Failover* to a different *Server* as long as the *ServiceLevel* of the *Server* is accessible and in the *Healthy* sub-range.|
   
 
   
@@ -4645,7 +3716,7 @@ It is up to the *Server* vendor to define the logic for spreading the load and t
 
 The *Failover* mode of a *Server* is provided in the *ServerRedundancy* *Object* defined in [OPC 10000-5](/§UAPart5) . The different *Failover* modes for non-transparent Redundancy are described in [Table 104](/§\_Ref412498967) .  
 
- **Table 104\- Server Failover modes**   
+Table 104 - Server Failover modes  
 
 | **Name** | **Description** |
 |---|---|
@@ -4665,7 +3736,7 @@ Each *Server* maintains a list of *ServerUris* for all redundant *Servers* in th
 
 [Table 105](/§\_Ref412065975) defines a list of *Client* actions for initial connections and *Failovers* .  
 
- **Table 105\- Redundancy Failover actions**   
+Table 105 - Redundancy Failover actions  
 
 | **Failover mode and *Client* options** | **Cold** | **Warm** | **Hot (a)** | **Hot (b)** | **HotAndMirrored** |
 |---|---|---|---|---|---|
@@ -4893,14 +3964,12 @@ Note that the calls to *CreateSession* / *ActivateSession* are made before the *
 
 The components of this structure are defined in [Table 106](/§\_Ref43210126) .  
 
- **Table 106\- AdditionalParametersType**   
+Table 106 - AdditionalParametersType  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |AdditionalParametersType|structure|Specifies a list of value qualified by a name.|
-|parameters|KeyValuePair []|A list of headers identified by a *QualifiedName* .  
-
-The *KeyValuePair* type is defined in [OPC 10000-5](/§UAPart5) .|
+|parameters|KeyValuePair []|A list of headers identified by a *QualifiedName* .<br>The *KeyValuePair* type is defined in [OPC 10000-5](/§UAPart5) .|
   
 
   
@@ -4909,7 +3978,7 @@ The *KeyValuePair* type is defined in [OPC 10000-5](/§UAPart5) .|
 
 The components of this parameter are defined in [Table 107](/§\_Ref154233713) .  
 
- **Table 107\- ApplicationDescription**   
+Table 107 - ApplicationDescription  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -4917,24 +3986,10 @@ The components of this parameter are defined in [Table 107](/§\_Ref154233713) .
 |applicationUri|String|The globally unique identifier for the application instance. This URI is used as *ServerUri* in *Services* if the application is a *Server* .|
 |productUri|String|The globally unique identifier for the product.|
 |applicationName|LocalizedText|A localized descriptive name for the application.|
-|applicationType|Enum  
-
-ApplicationType|The type of application. The ApplicationType enumeration is defined in [7.4](/§\_Ref42717375) .|
-|gatewayServerUri|String|A URI that identifies the *Gateway Server* associated with the *discoveryUrls* .  
-
-This value is null or empty if the *Server* can be accessed directly.  
-
-This field is not used if the *applicationType* is *CLIENT* .|
-|discoveryProfileUri|String|A URI that identifies the discovery profile supported by the URLs provided.  
-
-This field is not used if the *applicationType* is *CLIENT* .  
-
-If this value is null or empty then the Endpoints shall support the Discovery Services defined in [5.5](/§\_Ref182127531) .  
-
-Alternate discovery profiles are defined in [OPC 10000-7](/§UAPart7) .|
-|discoveryUrls []|String|A list of URLs for the *DiscoveryEndpoints* provided by the application.  
-
-If the *applicationType* is *CLIENT* , this field shall contain an empty list.|
+|applicationType|Enum<br>ApplicationType|The type of application. The ApplicationType enumeration is defined in [7.4](/§\_Ref42717375) .|
+|gatewayServerUri|String|A URI that identifies the *Gateway Server* associated with the *discoveryUrls* .<br>This value is null or empty if the *Server* can be accessed directly.<br>This field is not used if the *applicationType* is *CLIENT* .|
+|discoveryProfileUri|String|A URI that identifies the discovery profile supported by the URLs provided.<br>This field is not used if the *applicationType* is *CLIENT* .<br>If this value is null or empty then the Endpoints shall support the Discovery Services defined in [5.5](/§\_Ref182127531) .<br>Alternate discovery profiles are defined in [OPC 10000-7](/§UAPart7) .|
+|discoveryUrls []|String|A list of URLs for the *DiscoveryEndpoints* provided by the application.<br>If the *applicationType* is *CLIENT* , this field shall contain an empty list.|
   
 
   
@@ -4943,39 +3998,23 @@ If the *applicationType* is *CLIENT* , this field shall contain an empty list.|
 
 An *ApplicationInstanceCertificate* is a *ByteString* containing an encoded *Certificate.* The encoding of an *ApplicationInstanceCertificate* depends on the security technology mapping and is defined completely in [OPC 10000-6](/§UAPart6) . [Table 108](/§\_Ref181632373) specifies the information that should be contained in an *ApplicationInstanceCertificate* .  
 
- **Table 108\- ApplicationInstanceCertificate**   
+Table 108 - ApplicationInstanceCertificate  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |ApplicationInstanceCertificate|structure|*ApplicationInstanceCertificate* with signature created by a *Certificate Authority* .|
 |version|String|An identifier for the version of the *Certificate* encoding.|
 |serialNumber|ByteString|A unique identifier for the *Certificate* assigned by the Issuer.|
-|signatureAlgorithm|String|The algorithm used to sign the *Certificate* .  
-
-The syntax of this field depends on the *Certificate* encoding.|
+|signatureAlgorithm|String|The algorithm used to sign the *Certificate* .<br>The syntax of this field depends on the *Certificate* encoding.|
 |signature|ByteString|The signature created by the Issuer.|
 |issuer|Structure|A name that identifies the *Issuer* *Certificate* used to create the signature.|
 |validFrom|UtcTime|When the *Certificate* becomes valid.|
 |validTo|UtcTime|When the *Certificate* expires.|
-|subject|Structure|A name that identifies the application instance that the *Certificate* describes.  
-
-This field should contain the *productName* and the ** name of the organization responsible for the application instance.|
-|applicationUri|String|The *applicationUri* specified in the *ApplicationDescription* .  
-
-The *ApplicationDescription* is described in [7.2](/§\_Ref153821547) .|
-|hostnames []|String|The name of the machine where the application instance runs.  
-
-A machine may have multiple names if is accessible via multiple networks.  
-
-The hostname may be a numeric network address or a descriptive name.  
-
-*Server* *Certificates* should have at least one hostname defined.|
+|subject|Structure|A name that identifies the application instance that the *Certificate* describes.<br>This field should contain the *productName* and the ** name of the organization responsible for the application instance.|
+|applicationUri|String|The *applicationUri* specified in the *ApplicationDescription* .<br>The *ApplicationDescription* is described in [7.2](/§\_Ref153821547) .|
+|hostnames []|String|The name of the machine where the application instance runs.<br>A machine may have multiple names if is accessible via multiple networks.<br>The hostname may be a numeric network address or a descriptive name.<br>*Server* *Certificates* should have at least one hostname defined.|
 |publicKey|ByteString|The public key associated with the *Certificate* .|
-|keyUsage []|String|Specifies how the *Certificate* key may be used.  
-
-*ApplicationInstanceCertificates* should support Digital Signature, Non-Repudiation Key Encryption, Data Encryption and Client/Server Authorization.  
-
-The contents of this field depend on the *Certificate* encoding.|
+|keyUsage []|String|Specifies how the *Certificate* key may be used.<br>*ApplicationInstanceCertificates* should support Digital Signature, Non-Repudiation Key Encryption, Data Encryption and Client/Server Authorization.<br>The contents of this field depend on the *Certificate* encoding.|
   
 
   
@@ -4984,7 +4023,7 @@ The contents of this field depend on the *Certificate* encoding.|
 
 The *ApplicationType* is an enumeration that specifies the type of OPC UA *Application* . The possible values are described in [Table 109](/§\_Ref42717337) .  
 
- **Table 109\- ApplicationType values**   
+Table 109 - ApplicationType values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -5000,7 +4039,7 @@ The *ApplicationType* is an enumeration that specifies the type of OPC UA *Appli
 
 The *BrowseDirection* is an enumeration that specifies the direction of *References* to follow. The possible values are described in [Table 110](/§\_Ref42717723) .  
 
- **Table 110\- BrowseDirection values**   
+Table 110 - BrowseDirection values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -5016,22 +4055,14 @@ The *BrowseDirection* is an enumeration that specifies the direction of *Referen
 
 The components of this parameter are defined in [Table 111](/§\_Ref181562824) .  
 
- **Table 111\- BrowseResult**   
+Table 111 - BrowseResult  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |BrowseResult|structure|The results of a Browse operation.|
-|statusCode|StatusCode|The status for the *BrowseDescription.*  
-
-This value is set to *Good* if there are still references to return for the *BrowseDescription* .|
-|continuationPoint|ContinuationPoint|A *Server* defined opaque value that identifies the continuation point.  
-
-The *ContinuationPoint* type is defined in [7.9](/§\_Ref183360083) .|
-|References []|ReferenceDescription|The set of references that meet the criteria specified in the *BrowseDescription* .  
-
-Empty, if no *References* met the criteria.  
-
-The Reference Description type is defined in [7.29](/§\_Ref129166653) .|
+|statusCode|StatusCode|The status for the *BrowseDescription.*<br>This value is set to *Good* if there are still references to return for the *BrowseDescription* .|
+|continuationPoint|ContinuationPoint|A *Server* defined opaque value that identifies the continuation point.<br>The *ContinuationPoint* type is defined in [7.9](/§\_Ref183360083) .|
+|References []|ReferenceDescription|The set of references that meet the criteria specified in the *BrowseDescription* .<br>Empty, if no *References* met the criteria.<br>The Reference Description type is defined in [7.29](/§\_Ref129166653) .|
   
 
   
@@ -5044,22 +4075,14 @@ The ContentFilter structure defines a collection of elements that define filteri
 
 [Table 112](/§\_Ref131322052) defines the *ContentFilter* structure.  
 
- **Table 112\- ContentFilter structure**   
+Table 112 - ContentFilter structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |ContentFilter|structure||
 |elements []|ContentFilterElement|List of operators and their operands that compose the filter criteria. The filter is evaluated by starting with the first entry in this array. This structure is defined in-line with the following indented items.|
-| filterOperator|Enum  
-
-FilterOperator|Filter operator to be evaluated.  
-
-The *FilterOperator* enumeration is defined in [Table 116](/§\_Ref127328167) .|
-| filterOperands []|Extensible Parameter  
-
-FilterOperand|Operands used by the selected operator. The number and use depend on the operators defined in [Table 116](/§\_Ref127328167) . This array needs at least one entry.  
-
-This extensible parameter type is the *FilterOperand* parameter type specified in [7.7.4](/§\_Ref132018533) . It specifies the list of valid *FilterOperand* values.|
+| filterOperator|Enum<br>FilterOperator|Filter operator to be evaluated.<br>The *FilterOperator* enumeration is defined in [Table 116](/§\_Ref127328167) .|
+| filterOperands []|Extensible Parameter<br>FilterOperand|Operands used by the selected operator. The number and use depend on the operators defined in [Table 116](/§\_Ref127328167) . This array needs at least one entry.<br>This extensible parameter type is the *FilterOperand* parameter type specified in [7.7.4](/§\_Ref132018533) . It specifies the list of valid *FilterOperand* values.|
   
 
   
@@ -5068,14 +4091,12 @@ This extensible parameter type is the *FilterOperand* parameter type specified i
 
 The components of this data type are defined in [Table 113](/§\_Ref180475619) .  
 
- **Table 113\- ContentFilterResult structure**   
+Table 113 - ContentFilterResult structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |ContentFilterResult|structure|A structure that contains any errors associated with the filter.|
-|elementResults []|ContentFilter  
-
-ElementResult|A list of results for individual elements in the filter. The size and order of the list matches the size and order of the elements in the *ContentFilter* parameter. This structure is defined in-line with the following indented items.|
+|elementResults []|ContentFilter<br>ElementResult|A list of results for individual elements in the filter. The size and order of the list matches the size and order of the elements in the *ContentFilter* parameter. This structure is defined in-line with the following indented items.|
 | statusCode|StatusCode|The status code for a single element.|
 | operandStatusCodes []|StatusCode|A list of status codes for the operands in an element. The size and order of the list matches the size and order of the operands in the *ContentFilterElement.* This list is empty if no operand errors occurred.|
 | operandDiagnosticInfos []|DiagnosticInfo|A list of diagnostic information for the operands in an element. The size and order of the list matches the size and order of the operands in the *ContentFilterElement.* This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the operands.|
@@ -5086,7 +4107,7 @@ ElementResult|A list of results for individual elements in the filter. The size 
 
 [Table 114](/§\_Ref187591767) defines values for the *StatusCode* parameter that are specific to this structure. Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 114\- ContentFilterResult Result Codes**   
+Table 114 - ContentFilterResult Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -5097,7 +4118,7 @@ ElementResult|A list of results for individual elements in the filter. The size 
 
 [Table 115](/§\_Ref196798495) defines values for the *operandStatusCodes* parameter that are specific to this structure. Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 115\- ContentFilterResult Operand Result Codes**   
+Table 115 - ContentFilterResult Operand Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -5117,115 +4138,25 @@ ElementResult|A list of results for individual elements in the filter. The size 
 
 [Table 116](/§\_Ref127328167) defines the basic operators that can be used in a *ContentFilter* . See [Table 117](/§\_Ref165186340) for a description of advanced operators. See [7.7.4](/§\_Ref132018533) for a definition of operands.  
 
- **Table 116\- Basic FilterOperator definition**   
+Table 116 - Basic FilterOperator definition  
 
-| **Operator**   
-
- **Name** | **Operator**   
-
- **Number** | **Number of Operands** | **Description** |
+| **Operator** <br> **Name** | **Operator** <br> **Number** | **Number of Operands** | **Description** |
 |---|---|---|---|
-|Equals|0|2|TRUE if operand[0] is equal to operand[1].  
-
-If the operands are of different types, the system shall perform any implicit conversion to a common type. This operator resolves to FALSE if no implicit conversion is available and the operands are of different types. This operator returns FALSE if the implicit conversion fails. See the discussion on data type precedence in [Table 120](/§\_Ref163527377) for more information how to convert operands of different types.  
-
-The *Equals* operator for *String* is case sensitive.|
-|IsNull|1|1|TRUE if operand[0] is a null value.  
-
-TRUE If the value in operand[0] is a *StatusCode* instead of the field *DataType* .|
-|GreaterThan|2|2|TRUE if operand[0] is greater than operand[1].  
-
-The following restrictions apply to the operands:  
-
-[0]: Any operand that resolves to an ordered value.  
-
-[1]: Any operand that resolves to an ordered value.  
-
-The same conversion rules as defined for *Equals* apply.|
-|LessThan|3|2|TRUE if operand[0] is less than operand[1].  
-
-The same conversion rules and restrictions as defined for *GreaterThan* apply.|
-|GreaterThanOrEqual|4|2|TRUE if operand[0] is greater than or equal to operand[1].  
-
-The same conversion rules and restrictions as defined for *GreaterThan* apply.|
-|LessThanOrEqual|5|2|TRUE if operand[0] is less than or equal to operand[1].  
-
-The same conversion rules and restrictions as defined for *GreaterThan* apply.|
-|Like|6|2|TRUE if operand[0] matches a pattern defined by operand[1]. See [Table 118](/§\_Ref132016905) for the definition of the pattern syntax.  
-
-The following restrictions apply to the operands:  
-
-[0]: Any operand that resolves to a String.  
-
-[1]: Any operand that resolves to a String.  
-
-This operator resolves to FALSE if no operand can be resolved to a string.|
-|Not|7|1|TRUE if operand[0] is FALSE.  
-
-The following restrictions apply to the operands:  
-
-[0]: Any operand that resolves to a Boolean.  
-
-If the operand cannot be resolved to a Boolean, the result is a NULL. See below for a discussion on the handling of NULL.|
-|Between|8|3|TRUE if operand[0] is greater or equal to operand[1] and less than or equal to operand[2].  
-
-The following restrictions apply to the operands:  
-
-[0]: Any operand that resolves to an ordered value.  
-
-[1]: Any operand that resolves to an ordered value.  
-
-[2]: Any operand that resolves to an ordered value.  
-
-If the operands are of different types, the system shall perform any implicit conversion to match all operands to a common type. If no implicit conversion is available and the operands are of different types, the particular result is FALSE. See the discussion on data type precedence in [Table 120](/§\_Ref163527377) for more information how to convert operands of different types.|
-|InList|9|2\..n|TRUE if operand[0] is equal to one or more of the remaining operands.  
-
-The Equals Operator is evaluated for operand[0] and each remaining operand in the list. If any Equals evaluation is TRUE, InList returns TRUE.|
-|And|10|2|TRUE if operand[0] and operand[1] are TRUE.  
-
-The following restrictions apply to the operands:  
-
-[0]: Any operand that resolves to a Boolean.  
-
-[1]: Any operand that resolves to a Boolean.  
-
-If any operand cannot be resolved to a Boolean it is considered a NULL. See below for a discussion on the handling of NULL.|
-|Or|11|2|TRUE if operand[0] or operand[1] are TRUE.  
-
-The following restrictions apply to the operands:  
-
-[0]: Any operand that resolves to a Boolean.  
-
-[1]: Any operand that resolves to a Boolean.  
-
-If any operand cannot be resolved to a Boolean it is considered a NULL. See below for a discussion on the handling of NULL.|
-|Cast|12|2|Converts operand[0] to a value with a data type with a NodeId identified by operand[1].  
-
-The following restrictions apply to the operands:  
-
-[0]: Any operand.  
-
-[1]: Any operand that resolves to a NodeId or ExpandedNodeId where the *Node* is of the *NodeClass* *DataType* .  
-
-If there is any error in conversion or in any of the parameters then the Cast Operation evaluates to a NULL. See below for a discussion on the handling of NULL.|
-|BitwiseAnd|16|2|The result is an integer which matches the size of the largest operand and contains a bitwise And operation of the two operands where both have been converted to the same size (largest of the two operands).  
-
-The following restrictions apply to the operands:  
-
-[0]: Any operand that resolves to an integer.  
-
-[1]: Any operand that resolves to an integer.  
-
-If any operand cannot be resolved to an integer it is considered a NULL. See below for a discussion on the handling of NULL.|
-|BitwiseOr|17|2|The result is an integer which matches the size of the largest operand and contains a bitwise Or operation of the two operands where both have been converted to the same size (largest of the two operands).  
-
-The following restrictions apply to the operands:  
-
-[0]: Any operand that resolves to an integer.  
-
-[1]: Any operand that resolves to an integer.  
-
-If any operand cannot be resolved to an integer it is considered a NULL. See below for a discussion on the handling of NULL.|
+|Equals|0|2|TRUE if operand[0] is equal to operand[1].<br>If the operands are of different types, the system shall perform any implicit conversion to a common type. This operator resolves to FALSE if no implicit conversion is available and the operands are of different types. This operator returns FALSE if the implicit conversion fails. See the discussion on data type precedence in [Table 120](/§\_Ref163527377) for more information how to convert operands of different types.<br>The *Equals* operator for *String* is case sensitive.|
+|IsNull|1|1|TRUE if operand[0] is a null value.<br>TRUE If the value in operand[0] is a *StatusCode* instead of the field *DataType* .|
+|GreaterThan|2|2|TRUE if operand[0] is greater than operand[1].<br>The following restrictions apply to the operands:<br>[0]: Any operand that resolves to an ordered value.<br>[1]: Any operand that resolves to an ordered value.<br>The same conversion rules as defined for *Equals* apply.|
+|LessThan|3|2|TRUE if operand[0] is less than operand[1].<br>The same conversion rules and restrictions as defined for *GreaterThan* apply.|
+|GreaterThanOrEqual|4|2|TRUE if operand[0] is greater than or equal to operand[1].<br>The same conversion rules and restrictions as defined for *GreaterThan* apply.|
+|LessThanOrEqual|5|2|TRUE if operand[0] is less than or equal to operand[1].<br>The same conversion rules and restrictions as defined for *GreaterThan* apply.|
+|Like|6|2|TRUE if operand[0] matches a pattern defined by operand[1]. See [Table 118](/§\_Ref132016905) for the definition of the pattern syntax.<br>The following restrictions apply to the operands:<br>[0]: Any operand that resolves to a String.<br>[1]: Any operand that resolves to a String.<br>This operator resolves to FALSE if no operand can be resolved to a string.|
+|Not|7|1|TRUE if operand[0] is FALSE.<br>The following restrictions apply to the operands:<br>[0]: Any operand that resolves to a Boolean.<br>If the operand cannot be resolved to a Boolean, the result is a NULL. See below for a discussion on the handling of NULL.|
+|Between|8|3|TRUE if operand[0] is greater or equal to operand[1] and less than or equal to operand[2].<br>The following restrictions apply to the operands:<br>[0]: Any operand that resolves to an ordered value.<br>[1]: Any operand that resolves to an ordered value.<br>[2]: Any operand that resolves to an ordered value.<br>If the operands are of different types, the system shall perform any implicit conversion to match all operands to a common type. If no implicit conversion is available and the operands are of different types, the particular result is FALSE. See the discussion on data type precedence in [Table 120](/§\_Ref163527377) for more information how to convert operands of different types.|
+|InList|9|2\..n|TRUE if operand[0] is equal to one or more of the remaining operands.<br>The Equals Operator is evaluated for operand[0] and each remaining operand in the list. If any Equals evaluation is TRUE, InList returns TRUE.|
+|And|10|2|TRUE if operand[0] and operand[1] are TRUE.<br>The following restrictions apply to the operands:<br>[0]: Any operand that resolves to a Boolean.<br>[1]: Any operand that resolves to a Boolean.<br>If any operand cannot be resolved to a Boolean it is considered a NULL. See below for a discussion on the handling of NULL.|
+|Or|11|2|TRUE if operand[0] or operand[1] are TRUE.<br>The following restrictions apply to the operands:<br>[0]: Any operand that resolves to a Boolean.<br>[1]: Any operand that resolves to a Boolean.<br>If any operand cannot be resolved to a Boolean it is considered a NULL. See below for a discussion on the handling of NULL.|
+|Cast|12|2|Converts operand[0] to a value with a data type with a NodeId identified by operand[1].<br>The following restrictions apply to the operands:<br>[0]: Any operand.<br>[1]: Any operand that resolves to a NodeId or ExpandedNodeId where the *Node* is of the *NodeClass* *DataType* .<br>If there is any error in conversion or in any of the parameters then the Cast Operation evaluates to a NULL. See below for a discussion on the handling of NULL.|
+|BitwiseAnd|16|2|The result is an integer which matches the size of the largest operand and contains a bitwise And operation of the two operands where both have been converted to the same size (largest of the two operands).<br>The following restrictions apply to the operands:<br>[0]: Any operand that resolves to an integer.<br>[1]: Any operand that resolves to an integer.<br>If any operand cannot be resolved to an integer it is considered a NULL. See below for a discussion on the handling of NULL.|
+|BitwiseOr|17|2|The result is an integer which matches the size of the largest operand and contains a bitwise Or operation of the two operands where both have been converted to the same size (largest of the two operands).<br>The following restrictions apply to the operands:<br>[0]: Any operand that resolves to an integer.<br>[1]: Any operand that resolves to an integer.<br>If any operand cannot be resolved to an integer it is considered a NULL. See below for a discussion on the handling of NULL.|
   
 
   
@@ -5238,61 +4169,13 @@ When testing for equality, a *Server* shall treat null and empty arrays of the s
 
 [Table 117](/§\_Ref165186340) defines complex operators that require a target node (i.e. row) to evaluate. These operators shall be re-evaluated for each possible target node in the result set.  
 
- **Table 117\- Complex FilterOperator definition**   
+Table 117 - Complex FilterOperator definition  
 
-| **Operator**   
-
- **Name** | **Operator**   
-
- **Number** | **Number of Operands** | **Description** |
+| **Operator** <br> **Name** | **Operator** <br> **Number** | **Number of Operands** | **Description** |
 |---|---|---|---|
-|InView|13|1|TRUE if the target *Node* is contained in the *View* defined by operand[0].  
-
-The following restrictions apply to the operands:  
-
-[0]: Any operand that resolves to a *NodeId* that identifies a View Node.  
-
-If operand[0] does not resolve to a *NodeId* that identifies a View Node, this operation shall always be False.|
-|OfType|14|1|TRUE if the target *Node* is of type operand[0] or of a subtype of operand[0].  
-
-The following restrictions apply to the operands:  
-
-[0]: Any operand that resolves to a *NodeId* that identifies an ObjectType or  VariableType Node.  
-
-If operand[0] does not resolve to a *NodeId* that identifies an ObjectType or VariableType Node, this operation shall always be False.|
-|RelatedTo|15|6|TRUE if the target *Node* is of type operand[0] and is related to a *NodeId* of the type defined in operand[1] by the *Reference* type defined in operand[2].  
-
-operand[0] or operand[1] can also point to an element *Reference* where the referred to element is another RelatedTo operator. This allows chaining of relationships (e.g. A is related to B is related to C), where the relationship is defined by the *ReferenceType* defined in operand[2]. In this case, the referred to element returns a list of *NodeIds* instead of TRUE or FALSE. In this case if any errors occur or any of the operands cannot be resolved to an appropriate value, the result of the chained relationship is an empty list of nodes.  
-
-Operand[3] defines the number of hops for which the relationship should be followed. If operand[3] is 1, then objects shall be directly related. If a hop is greater than 1, then a *NodeId* of the type described in operand[1] is checked for at the depth specified by the hop. In this case, the type of the intermediate *Node* is undefined, and only the *Reference* type used to reach the end *Node* is defined. If the requested number of hops cannot be followed, then the result is FALSE, i.e., an empty *Node* list. If operand[3] is 0, the relationship is followed to its logical end in a forward direction and each *Node* is checked to be of the type specified in operand[1]. If any *Node* satisfies this criterion, then the result is TRUE, i.e., the *NodeId* is included in the sub-list.  
-
-Operand [4] defines if operands [0] and [1] should include support for subtypes of the types defined by these operands. A TRUE indicates support for subtypes  
-
-operand [5] defines if operand [2] should include support for subtypes of the reference type. A TRUE indicates support for subtypes.  
-
-  
-
-The following restrictions apply to the operands:  
-
-[0]: Any operand that resolves to a *NodeId* or *ExpandedNodeId* that identifies  an ObjectType or VariableType Node or a reference to another element  which is a RelatedTo operator.  
-
-[1]: Any operand that resolves to a *NodeId* or *ExpandedNodeId* that identifies  an ObjectType or VariableType Node or a reference to another element  which is a RelatedTo operator.  
-
-[2]: Any operand that resolves to a *NodeId* that identifies a ReferenceType  Node.  
-
-[3]: Any operand that resolves to a value implicitly convertible to UInt32.  
-
-[4]: Any operand that resolves to a value implicitly convertible to a Boolean; if  this operand does not resolve to a Boolean, then a value of FALSE is used.  
-
-[5]: Any operand that resolves to a value implicitly convertible to a Boolean; if  this operand does not resolve to a Boolean, then a value of FALSE is used.  
-
-  
-
-If none of the operands [0],[1],[2],[3] resolves to an appropriate value then the result of this operation shall always be False (or an Empty set in the case of a nested *RelatedTo* operand).  
-
-  
-
-See examples for RelatedTo in [B.2](/§\_Ref188668219) .|
+|InView|13|1|TRUE if the target *Node* is contained in the *View* defined by operand[0].<br>The following restrictions apply to the operands:<br>[0]: Any operand that resolves to a *NodeId* that identifies a View Node.<br>If operand[0] does not resolve to a *NodeId* that identifies a View Node, this operation shall always be False.|
+|OfType|14|1|TRUE if the target *Node* is of type operand[0] or of a subtype of operand[0].<br>The following restrictions apply to the operands:<br>[0]: Any operand that resolves to a *NodeId* that identifies an ObjectType or  VariableType Node.<br>If operand[0] does not resolve to a *NodeId* that identifies an ObjectType or VariableType Node, this operation shall always be False.|
+|RelatedTo|15|6|TRUE if the target *Node* is of type operand[0] and is related to a *NodeId* of the type defined in operand[1] by the *Reference* type defined in operand[2].<br>operand[0] or operand[1] can also point to an element *Reference* where the referred to element is another RelatedTo operator. This allows chaining of relationships (e.g. A is related to B is related to C), where the relationship is defined by the *ReferenceType* defined in operand[2]. In this case, the referred to element returns a list of *NodeIds* instead of TRUE or FALSE. In this case if any errors occur or any of the operands cannot be resolved to an appropriate value, the result of the chained relationship is an empty list of nodes.<br>Operand[3] defines the number of hops for which the relationship should be followed. If operand[3] is 1, then objects shall be directly related. If a hop is greater than 1, then a *NodeId* of the type described in operand[1] is checked for at the depth specified by the hop. In this case, the type of the intermediate *Node* is undefined, and only the *Reference* type used to reach the end *Node* is defined. If the requested number of hops cannot be followed, then the result is FALSE, i.e., an empty *Node* list. If operand[3] is 0, the relationship is followed to its logical end in a forward direction and each *Node* is checked to be of the type specified in operand[1]. If any *Node* satisfies this criterion, then the result is TRUE, i.e., the *NodeId* is included in the sub-list.<br>Operand [4] defines if operands [0] and [1] should include support for subtypes of the types defined by these operands. A TRUE indicates support for subtypes<br>operand [5] defines if operand [2] should include support for subtypes of the reference type. A TRUE indicates support for subtypes.<br><br>The following restrictions apply to the operands:<br>[0]: Any operand that resolves to a *NodeId* or *ExpandedNodeId* that identifies  an ObjectType or VariableType Node or a reference to another element  which is a RelatedTo operator.<br>[1]: Any operand that resolves to a *NodeId* or *ExpandedNodeId* that identifies  an ObjectType or VariableType Node or a reference to another element  which is a RelatedTo operator.<br>[2]: Any operand that resolves to a *NodeId* that identifies a ReferenceType  Node.<br>[3]: Any operand that resolves to a value implicitly convertible to UInt32.<br>[4]: Any operand that resolves to a value implicitly convertible to a Boolean; if  this operand does not resolve to a Boolean, then a value of FALSE is used.<br>[5]: Any operand that resolves to a value implicitly convertible to a Boolean; if  this operand does not resolve to a Boolean, then a value of FALSE is used.<br><br>If none of the operands [0],[1],[2],[3] resolves to an appropriate value then the result of this operation shall always be False (or an Empty set in the case of a nested *RelatedTo* operand).<br><br>See examples for RelatedTo in [B.2](/§\_Ref188668219) .|
   
 
   
@@ -5301,1008 +4184,51 @@ The RelatedTo operator can be used to identify if a given type, set as operand[1
 
 The *Like* operator can be used to perform wildcard comparisons. Several special characters can be included in the second operand of the *Like* operator. The valid characters are defined in [Table 118](/§\_Ref132016905) . The wildcard characters can be combined in a single string (i.e. 'Th[ia][ts]%' would match 'That is fine', 'This is fine', 'That as one', 'This it is', 'Then at any', etc.). The *Like* operator is case sensitive.  
 
- **Table 118\- Wildcard characters**   
+Table 118 - Wildcard characters  
 
 | **Special Character** | **Description** |
 |---|---|
 |%|Match any string of zero or more characters (i.e. 'main%' would match any string that starts with 'main', '%en%' would match any string that contains the letters 'en' such as 'entail', 'green' and 'content'.) If a '%' sign is intend in a string the list operand can be used (i.e. 5[%] would match '5%').|
 |\_|Match any single character (i.e. '\_ould' would match 'would', 'could'). If the '\_' is intended in a string then the list operand can be used (i.e. 5[\_] would match '5\_').|
-|\\|Escape character allows literal interpretation  
-
-(i.e. \\\\ is \\, \\% is %, \\\_ is \_)|
-|[]|Match any single character in a list  
-
-(i.e. 'abc[13-68] would match 'abc1', 'abc3', 'abc4', 'abc5', 'abc6', and 'abc8'.  
-
-'xyz[c-f]' would match 'xyzc', 'xyzd', 'xyze', 'xyzf').|
-|[^]|Not Matching any single character in a list.  
-
-The ^ shall be the first character inside on the [].  
-
-(i.e. 'ABC[^13-5]' would NOT match 'ABC1', 'ABC3', 'ABC4', and 'ABC5'. xyz[^dgh] would NOT match 'xyzd', 'xyzg', 'xyzh'. )|
+|\\|Escape character allows literal interpretation<br>(i.e. \\\\ is \\, \\% is %, \\\_ is \_)|
+|[]|Match any single character in a list<br>(i.e. 'abc[13-68] would match 'abc1', 'abc3', 'abc4', 'abc5', 'abc6', and 'abc8'.<br>'xyz[c-f]' would match 'xyzc', 'xyzd', 'xyze', 'xyzf').|
+|[^]|Not Matching any single character in a list.<br>The ^ shall be the first character inside on the [].<br>(i.e. 'ABC[^13-5]' would NOT match 'ABC1', 'ABC3', 'ABC4', and 'ABC5'. xyz[^dgh] would NOT match 'xyzd', 'xyzg', 'xyzh'. )|
   
 
   
 
 [Table 119](/§\_Ref135730244) defines the conversion rules for the operand values. The types are automatically converted if an implicit conversion exists (I). If an explicit conversion exists (E) then type can be converted with the cast operator. If no conversion exists (X) the then types cannot be converted, however, some *Servers* may support application specific explicit conversions. The types used in the table are defined in [OPC 10000-3](/§UAPart3) . A data type that is not in the table does not have any defined conversions.  
 
- **Table 119\- Conversion rules**   
+Table 119 - Conversion rules  
 
 || **Target Type (To)** |
 |---|---|
-| **Source Type**   
-
- **(From)** |
-|---|
+ **Source Type** <br> **(From)** ||Boolean|Byte|ByteString|DateTime|Double|ExpandedNodeId|Float|Guid|Int16|Int32|Int64|NodeId|SByte|StatusCode|String|LocalizedText|QualifiedName|UInt16|UInt32|UInt64|XmlElement|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
   
-
+|Boolean|\-|I|X|X|I|X|I|X|I|I|I|X|I|X|E|X|X|I|I|I|X|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|Byte|E|\-|X|X|I|X|I|X|I|I|I|X|I|X|E|X|X|I|I|I|X|
+|ByteString|X|X|\-|X|X|X|X|E|X|X|X|X|X|X|X|X|X|X|X|X|X|
+|DateTime|X|X|X|\-|X|X|X|X|X|X|X|X|X|X|E|X|X|X|X|X|X|
+|Double|E|E|X|X|\-|X|E|X|E|E|E|X|E|X|E|X|X|E|E|E|X|
+|ExpandedNodeId|X|X|X|X|X|\-|X|X|X|X|X|E|X|X|I|X|X|X|X|X|X|
+|Float|E|E|X|X|I|X|\-|X|E|E|E|X|E|X|E|X|X|E|E|E|X|
+|Guid|X|X|E|X|X|X|X|\-|X|X|X|X|X|X|E|X|X|X|X|X|X|
+|Int16|E|E|X|X|I|X|I|X|\-|I|I|X|E|X|E|X|X|E|I|I|X|
+|Int32|E|E|X|X|I|X|I|X|E|\-|I|X|E|E|E|X|X|E|E|I|X|
+|Int64|E|E|X|X|I|X|I|X|E|E|\-|X|E|E|E|X|X|E|E|E|X|
+|NodeId|X|X|X|X|X|I|X|X|X|X|X|\-|X|X|I|X|X|X|X|X|X|
+|SByte|E|E|X|X|I|X|I|X|I|I|I|X|\-|X|E|X|X|I|I|I|X|
+|StatusCode|X|X|X|X|X|X|X|X|X|E|E|X|X|\-|X|X|X|E|E|E|X|
+|String|I|I|X|E|I|E|I|I|I|I|I|E|I|X|\-|E|E|I|I|I|X|
+|LocalizedText|X|X|X|X|X|X|X|X|X|X|X|X|X|X|I|\-|X|X|X|X|X|
+|QualifiedName|X|X|X|X|X|X|X|X|X|X|X|X|X|X|I|I|\-|X|X|X|X|
+|UInt16|E|E|X|X|I|X|I|X|I|I|I|X|E|I|E|X|X|\-|I|I|X|
+|UInt32|E|E|X|X|I|X|I|X|E|I|I|X|E|E|E|X|X|E|\-|I|X|
+|UInt64|E|E|X|X|I|X|I|X|E|E|I|X|E|E|E|X|X|E|E|\-|X|
+|XmlElement|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|\-|
   
-
-Boolean  
-
-Byte  
-
-ByteString  
-
-DateTime  
-
-Double  
-
-ExpandedNodeId  
-
-Float  
-
-Guid  
-
-Int16  
-
-Int32  
-
-Int64  
-
-NodeId  
-
-SByte  
-
-StatusCode  
-
-String  
-
-LocalizedText  
-
-QualifiedName  
-
-UInt16  
-
-UInt32  
-
-UInt64  
-
-XmlElement  
-
-Boolean  
-
-\-  
-
-I  
-
-X  
-
-X  
-
-I  
-
-X  
-
-I  
-
-X  
-
-I  
-
-I  
-
-I  
-
-X  
-
-I  
-
-X  
-
-E  
-
-X  
-
-X  
-
-I  
-
-I  
-
-I  
-
-X  
-
-Byte  
-
-E  
-
-\-  
-
-X  
-
-X  
-
-I  
-
-X  
-
-I  
-
-X  
-
-I  
-
-I  
-
-I  
-
-X  
-
-I  
-
-X  
-
-E  
-
-X  
-
-X  
-
-I  
-
-I  
-
-I  
-
-X  
-
-ByteString  
-
-X  
-
-X  
-
-\-  
-
-X  
-
-X  
-
-X  
-
-X  
-
-E  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-DateTime  
-
-X  
-
-X  
-
-X  
-
-\-  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-E  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-Double  
-
-E  
-
-E  
-
-X  
-
-X  
-
-\-  
-
-X  
-
-E  
-
-X  
-
-E  
-
-E  
-
-E  
-
-X  
-
-E  
-
-X  
-
-E  
-
-X  
-
-X  
-
-E  
-
-E  
-
-E  
-
-X  
-
-ExpandedNodeId  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-\-  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-E  
-
-X  
-
-X  
-
-I  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-Float  
-
-E  
-
-E  
-
-X  
-
-X  
-
-I  
-
-X  
-
-\-  
-
-X  
-
-E  
-
-E  
-
-E  
-
-X  
-
-E  
-
-X  
-
-E  
-
-X  
-
-X  
-
-E  
-
-E  
-
-E  
-
-X  
-
-Guid  
-
-X  
-
-X  
-
-E  
-
-X  
-
-X  
-
-X  
-
-X  
-
-\-  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-E  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-Int16  
-
-E  
-
-E  
-
-X  
-
-X  
-
-I  
-
-X  
-
-I  
-
-X  
-
-\-  
-
-I  
-
-I  
-
-X  
-
-E  
-
-X  
-
-E  
-
-X  
-
-X  
-
-E  
-
-I  
-
-I  
-
-X  
-
-Int32  
-
-E  
-
-E  
-
-X  
-
-X  
-
-I  
-
-X  
-
-I  
-
-X  
-
-E  
-
-\-  
-
-I  
-
-X  
-
-E  
-
-E  
-
-E  
-
-X  
-
-X  
-
-E  
-
-E  
-
-I  
-
-X  
-
-Int64  
-
-E  
-
-E  
-
-X  
-
-X  
-
-I  
-
-X  
-
-I  
-
-X  
-
-E  
-
-E  
-
-\-  
-
-X  
-
-E  
-
-E  
-
-E  
-
-X  
-
-X  
-
-E  
-
-E  
-
-E  
-
-X  
-
-NodeId  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-I  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-\-  
-
-X  
-
-X  
-
-I  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-SByte  
-
-E  
-
-E  
-
-X  
-
-X  
-
-I  
-
-X  
-
-I  
-
-X  
-
-I  
-
-I  
-
-I  
-
-X  
-
-\-  
-
-X  
-
-E  
-
-X  
-
-X  
-
-I  
-
-I  
-
-I  
-
-X  
-
-StatusCode  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-E  
-
-E  
-
-X  
-
-X  
-
-\-  
-
-X  
-
-X  
-
-X  
-
-E  
-
-E  
-
-E  
-
-X  
-
-String  
-
-I  
-
-I  
-
-X  
-
-E  
-
-I  
-
-E  
-
-I  
-
-I  
-
-I  
-
-I  
-
-I  
-
-E  
-
-I  
-
-X  
-
-\-  
-
-E  
-
-E  
-
-I  
-
-I  
-
-I  
-
-X  
-
-LocalizedText  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-I  
-
-\-  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-QualifiedName  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-I  
-
-I  
-
-\-  
-
-X  
-
-X  
-
-X  
-
-X  
-
-UInt16  
-
-E  
-
-E  
-
-X  
-
-X  
-
-I  
-
-X  
-
-I  
-
-X  
-
-I  
-
-I  
-
-I  
-
-X  
-
-E  
-
-I  
-
-E  
-
-X  
-
-X  
-
-\-  
-
-I  
-
-I  
-
-X  
-
-UInt32  
-
-E  
-
-E  
-
-X  
-
-X  
-
-I  
-
-X  
-
-I  
-
-X  
-
-E  
-
-I  
-
-I  
-
-X  
-
-E  
-
-E  
-
-E  
-
-X  
-
-X  
-
-E  
-
-\-  
-
-I  
-
-X  
-
-UInt64  
-
-E  
-
-E  
-
-X  
-
-X  
-
-I  
-
-X  
-
-I  
-
-X  
-
-E  
-
-E  
-
-I  
-
-X  
-
-E  
-
-E  
-
-E  
-
-X  
-
-X  
-
-E  
-
-E  
-
-\-  
-
-X  
-
-XmlElement  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-X  
-
-\-  
 
   
 
@@ -6332,7 +4258,7 @@ It is sometimes possible to use implicit casts when operands with different data
 
 For example, assume that A = 1,1 ( *Float* ) and B = 1 ( *Int32* ) and that these values are used with an *Equals* operator. This operation would be evaluated by casting the *Int32* value to a *Float* since the *Float* data type has more precedence.  
 
- **Table 120\- Data Precedence rules**   
+Table 120 - Data Precedence rules  
 
 | **Rank** | **Data Type** |
 |---|---|
@@ -6360,13 +4286,19 @@ For example, assume that A = 1,1 ( *Float* ) and B = 1 ( *Int32* ) and that thes
 
 Operands may contain null values (i.e. values which do not exist). When this happens, the element always evaluates to NULL (unless the *IsNull* operator has been specified). [Table 121](/§\_Ref163564926) defines how to combine elements that evaluate to NULL with other elements in a logical AND operation.  
 
- **Table 121\- Logical AND Truth table**   
+Table 121 - Logical AND Truth table  
 
 || **TRUE** | **FALSE** | **NULL** |
 |---|---|---|---|
+  
 | **TRUE** |TRUE|FALSE|NULL|
+|---|---|---|---|
+  
 | **FALSE** |FALSE|FALSE|FALSE|
+|---|---|---|---|
+  
 | **NULL** |NULL|FALSE|NULL|
+|---|---|---|---|
   
 
   
@@ -6375,13 +4307,19 @@ Operands may contain null values (i.e. values which do not exist). When this hap
 
 [Table 122](/§\_Ref163565558) defines how to combine elements that evaluate to NULL with other elements in a logical OR operation.  
 
- **Table 122\- Logical OR Truth table**   
+Table 122 - Logical OR Truth table  
 
 || **TRUE** | **FALSE** | **NULL** |
 |---|---|---|---|
+  
 | **TRUE** |TRUE|TRUE|TRUE|
+|---|---|---|---|
+  
 | **FALSE** |TRUE|FALSE|NULL|
+|---|---|---|---|
+  
 | **NULL** |TRUE|NULL|NULL|
+|---|---|---|---|
   
 
   
@@ -6398,7 +4336,7 @@ For any fatal errors like out of memory situations, the operator either evaluate
 
 The *ContentFilter* structure specified in [7.7](/§\_Ref132019060) defines a collection of elements that makes up filter criteria and contains different types of *FilterOperands* . The *FilterOperand* parameter is an extensible parameter. This parameter is defined in [Table 123](/§\_Ref131322470) . The *ExtensibleParameter* type is defined in [7.17](/§\_Ref182070092) .  
 
- **Table 123\- FilterOperand parameter TypeIds**   
+Table 123 - FilterOperand parameter TypeIds  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -6416,7 +4354,7 @@ The *ElementOperand* provides the linking to sub-elements within a *ContentFilte
 
 [Table 124](/§\_Ref132017822) defines the *ElementOperand* type.  
 
- **Table 124\- ElementOperand**   
+Table 124 - ElementOperand  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -6430,7 +4368,7 @@ The *ElementOperand* provides the linking to sub-elements within a *ContentFilte
 
 [Table 125](/§\_Ref132017835) defines the *LiteralOperand* type.  
 
- **Table 125\- LiteralOperand**   
+Table 125 - LiteralOperand  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -6444,7 +4382,7 @@ The *ElementOperand* provides the linking to sub-elements within a *ContentFilte
 
 [Table 126](/§\_Ref132017848) defines the *AttributeOperand* type.  
 
- **Table 126\- AttributeOperand**   
+Table 126 - AttributeOperand  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -6453,11 +4391,7 @@ The *ElementOperand* provides the linking to sub-elements within a *ContentFilte
 |alias|String|An optional parameter used to identify or refer to an alias. An alias is a symbolic name that can be used to alias this operand and use it in other locations in the filter structure.|
 |browsePath|RelativePath|Browse path relative to the *Node* identified by the *nodeId* parameter. See [7.30](/§\_Ref139474657) for the definition of *RelativePath* .|
 |attributeId|IntegerId|Id of the *Attribute* . This shall be a valid *AttributeId* . The *IntegerId* is defined in [7.19](/§\_Ref128929614) . The IntegerIds for the Attributes are defined in [OPC 10000-6](/§UAPart6) .|
-|indexRange|NumericRange|This parameter is used to identify a single element of an array or a single range of indexes for an array. The first element is identified by index 0 (zero).  
-
-The *NumericRange* type is defined in [7.27](/§\_Ref129174867) .  
-
-This parameter is not used if the specified *Attribute* is not an array. However, if the specified *Attribute* is an array and this parameter is not used, then all elements are to be included in the range. The parameter is null or empty if not used.|
+|indexRange|NumericRange|This parameter is used to identify a single element of an array or a single range of indexes for an array. The first element is identified by index 0 (zero).<br>The *NumericRange* type is defined in [7.27](/§\_Ref129174867) .<br>This parameter is not used if the specified *Attribute* is not an array. However, if the specified *Attribute* is an array and this parameter is not used, then all elements are to be included in the range. The parameter is null or empty if not used.|
   
 
   
@@ -6468,33 +4402,15 @@ The *SimpleAttributeOperand* is a simplified form of the *AttributeOperand* and 
 
 [Table 127](/§\_Ref189306839) defines the *SimpleAttributeOperand* type.  
 
- **Table 127\- SimpleAttributeOperand**   
+Table 127 - SimpleAttributeOperand  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |SimpleAttributeOperand|structure|Attribute of a *Node* in the *AddressSpace* .|
-|typeDefinitionId|NodeId|*NodeId* of a *TypeDefinitionNode* .  
-
-This parameter restricts the operand to instances of the *TypeDefinitionNode* or one of its subtypes.  
-
-If the *SimpleAttributeOperand* is used in an *EventFilter* and the *typeDefinitionId* is *BaseEventType* the *Server* shall evaluate the *browsePath* without considering the *typeDefinitionId* .|
-|browsePath []|QualifiedName|A relative path to a *Node* .  
-
-This parameter specifies a relative path using a list of *BrowseNames* instead of the *RelativePath* structure used in the *AttributeOperand* . The list of *BrowseNames* is equivalent to a *RelativePath* that specifies forward references which are subtypes of the *HierarchicalReferences ReferenceType* .  
-
-All *Nodes* followed by the *browsePath* shall be of the *NodeClass* *Object* or *Variable* .  
-
-If this list is empty the *Node* is the instance of the *TypeDefinition* .|
-|attributeId|IntegerId|Id of the *Attribute* . The *IntegerId* is defined in [7.19](/§\_Ref128929614) .  
-
-The *Value Attribute* shall be supported by all *Servers* . The support of other *Attributes* depends on requirements set in Profiles or other parts of this specification.|
-|indexRange|NumericRange|This parameter is used to identify a single element of an array, or a single range of indexes for an array. The array in this context includes *String* and *ByteString.* The first element is identified by index 0 (zero).  
-
-This parameter is ignored if the selected Node is not a Variable or the Value of a Variable is not an array.  
-
-All values in the array are used if this parameter is null or empty.  
-
-The *NumericRange* type is defined in [7.27](/§\_Ref129174867) .|
+|typeDefinitionId|NodeId|*NodeId* of a *TypeDefinitionNode* .<br>This parameter restricts the operand to instances of the *TypeDefinitionNode* or one of its subtypes.<br>If the *SimpleAttributeOperand* is used in an *EventFilter* and the *typeDefinitionId* is *BaseEventType* the *Server* shall evaluate the *browsePath* without considering the *typeDefinitionId* .|
+|browsePath []|QualifiedName|A relative path to a *Node* .<br>This parameter specifies a relative path using a list of *BrowseNames* instead of the *RelativePath* structure used in the *AttributeOperand* . The list of *BrowseNames* is equivalent to a *RelativePath* that specifies forward references which are subtypes of the *HierarchicalReferences ReferenceType* .<br>All *Nodes* followed by the *browsePath* shall be of the *NodeClass* *Object* or *Variable* .<br>If this list is empty the *Node* is the instance of the *TypeDefinition* .|
+|attributeId|IntegerId|Id of the *Attribute* . The *IntegerId* is defined in [7.19](/§\_Ref128929614) .<br>The *Value Attribute* shall be supported by all *Servers* . The support of other *Attributes* depends on requirements set in Profiles or other parts of this specification.|
+|indexRange|NumericRange|This parameter is used to identify a single element of an array, or a single range of indexes for an array. The array in this context includes *String* and *ByteString.* The first element is identified by index 0 (zero).<br>This parameter is ignored if the selected Node is not a Variable or the Value of a Variable is not an array.<br>All values in the array are used if this parameter is null or empty.<br>The *NumericRange* type is defined in [7.27](/§\_Ref129174867) .|
   
 
   
@@ -6529,18 +4445,12 @@ A *ContinuationPoint* is a subtype of the *ByteString* data type.
 
 The *DataChangeTrigger* is an enumeration that specifies the conditions under which a data change notification should be reported. The possible values are described in [Table 128](/§\_Ref43031751) .  
 
- **Table 128\- DataChangeTrigger values**   
+Table 128 - DataChangeTrigger values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
 |STATUS|0|Report a notification ONLY if the *StatusCode* associated with the value changes. See [Table 177](/§\_Ref127606591) for *StatusCodes* defined in this document. [OPC 10000-8](/§UAPart8) specifies additional *StatusCodes* that are valid in particular for device data.|
-|STATUS\_VALUE|1|Report a notification if either the *StatusCode* or the value change. The *Deadband* filter can be used in addition for filtering value changes.  
-
-For floating point values a *Server* shall check for NaN and only report a single notification with NaN when the value enters the NaN state.  
-
-When testing for changes, a *Server* shall treat null and empty arrays of the same *DataType* as equal. This also applies to *Strings* and *ByteStrings* .  
-
- **This is the default setting if no filter is set.** |
+|STATUS\_VALUE|1|Report a notification if either the *StatusCode* or the value change. The *Deadband* filter can be used in addition for filtering value changes.<br>For floating point values a *Server* shall check for NaN and only report a single notification with NaN when the value enters the NaN state.<br>When testing for changes, a *Server* shall treat null and empty arrays of the same *DataType* as equal. This also applies to *Strings* and *ByteStrings* .<br> **This is the default setting if no filter is set.** |
 |STATUS\_VALUE\_TIMESTAMP|2|Report a notification if either StatusCode, value or the *SourceTimestamp* change. If a *Deadband* filter is specified, this trigger has the same behaviour as *STATUS\_VALUE* .|
   
 
@@ -6552,7 +4462,7 @@ When testing for changes, a *Server* shall treat null and empty arrays of the sa
 
 The components of this parameter are defined in [Table 129](/§\_Ref115234515) .  
 
- **Table 129\- DataValue**   
+Table 129 - DataValue  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -6631,33 +4541,17 @@ The components of this parameter are defined in [Table 130](/§\_Ref141105467) .
 
 The *DiagnosticInfo* shall not contain any security related information.  
 
- **Table 130\- DiagnosticInfo**   
+Table 130 - DiagnosticInfo  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |DiagnosticInfo|structure|Vendor-specific diagnostic information.|
-|namespaceUri|Int32|The *symbolicId* is defined within the context of a namespace. This namespace is represented as a string and is conveyed to the *Client* in the *stringTable* parameter of the *ResponseHeader* parameter defined in [7.33](/§\_Ref115239340) .  
-
-The *namespaceUri* parameter contains the index into the *stringTable* for this string. -1 indicates that no string is specified.  
-
-The *namespaceUri* shall not be the standard OPC UA namespace. There are no *symbolicIds* provided for standard *StatusCodes* .|
-|symbolicId|Int32|The *symbolicId* shall be used to identify a vendor-specific error or condition; typically the result of some *Server* internal operation. The maximum length of this string is 32 characters. *Servers* wishing to return a numeric return code should convert the return code into a string and use this string as *symbolicId* (e.g., "0xC0040007" or "-4").  
-
-This symbolic identifier string is conveyed to the *Client* in the *stringTable* parameter of the *ResponseHeader* parameter defined in [7.33](/§\_Ref115239340) . The *symbolicId* parameter contains the index into the *stringTable* for this string. -1 indicates that no string is specified.  
-
-The *symbolicId* shall not contain *StatusCodes* . If the *localizedText* contains a translation for the description of a *StatusCode* , the *symbolicId* is -1.|
-|locale|Int32|The locale part of the vendor-specific localized text describing the symbolic id.  
-
-This localized text string is conveyed to the *Client* in the *stringTable* parameter of the *ResponseHeader* parameter defined in [7.33](/§\_Ref115239340) . The *locale* parameter contains the index into the *stringTable* for this string. -1 indicates that no string is specified.|
-|localizedText|Int32|A vendor-specific localized text string describes the symbolic id. The maximum length of this text string is 256 characters.  
-
-This localized text string is conveyed to the *Client* in the *stringTable* parameter of the *ResponseHeader* parameter defined in [7.33](/§\_Ref115239340) . The *localizedText* parameter contains the index into the *stringTable* for this string. -1 indicates that no string is specified.  
-
-The localizedText refers to the symbolicId if present or the string that describes the standard StatusCode if the *Server* provides translations. If the index is -1, the *Server* has no translation to return and the *Client* should use the invariant StatusCode description from the specification.|
+|namespaceUri|Int32|The *symbolicId* is defined within the context of a namespace. This namespace is represented as a string and is conveyed to the *Client* in the *stringTable* parameter of the *ResponseHeader* parameter defined in [7.33](/§\_Ref115239340) .<br>The *namespaceUri* parameter contains the index into the *stringTable* for this string. -1 indicates that no string is specified.<br>The *namespaceUri* shall not be the standard OPC UA namespace. There are no *symbolicIds* provided for standard *StatusCodes* .|
+|symbolicId|Int32|The *symbolicId* shall be used to identify a vendor-specific error or condition; typically the result of some *Server* internal operation. The maximum length of this string is 32 characters. *Servers* wishing to return a numeric return code should convert the return code into a string and use this string as *symbolicId* (e.g., "0xC0040007" or "-4").<br>This symbolic identifier string is conveyed to the *Client* in the *stringTable* parameter of the *ResponseHeader* parameter defined in [7.33](/§\_Ref115239340) . The *symbolicId* parameter contains the index into the *stringTable* for this string. -1 indicates that no string is specified.<br>The *symbolicId* shall not contain *StatusCodes* . If the *localizedText* contains a translation for the description of a *StatusCode* , the *symbolicId* is -1.|
+|locale|Int32|The locale part of the vendor-specific localized text describing the symbolic id.<br>This localized text string is conveyed to the *Client* in the *stringTable* parameter of the *ResponseHeader* parameter defined in [7.33](/§\_Ref115239340) . The *locale* parameter contains the index into the *stringTable* for this string. -1 indicates that no string is specified.|
+|localizedText|Int32|A vendor-specific localized text string describes the symbolic id. The maximum length of this text string is 256 characters.<br>This localized text string is conveyed to the *Client* in the *stringTable* parameter of the *ResponseHeader* parameter defined in [7.33](/§\_Ref115239340) . The *localizedText* parameter contains the index into the *stringTable* for this string. -1 indicates that no string is specified.<br>The localizedText refers to the symbolicId if present or the string that describes the standard StatusCode if the *Server* provides translations. If the index is -1, the *Server* has no translation to return and the *Client* should use the invariant StatusCode description from the specification.|
 |additionalInfo|String|Vendor-specific diagnostic information.|
-|innerStatusCode|StatusCode|The *StatusCode* from the inner operation.  
-
-Many applications will make calls into underlying systems during OPC UA request processing. An OPC UA *Server* has the option of reporting the status from the underlying system in the diagnostic info.|
+|innerStatusCode|StatusCode|The *StatusCode* from the inner operation.<br>Many applications will make calls into underlying systems during OPC UA request processing. An OPC UA *Server* has the option of reporting the status from the underlying system in the diagnostic info.|
 |innerDiagnosticInfo|DiagnosticInfo|The diagnostic info associated with the inner *StatusCode* .|
   
 
@@ -6669,7 +4563,7 @@ Many applications will make calls into underlying systems during OPC UA request 
 
 The *DiscoveryConfiguration* structure used in the *RegisterServer2 Service* allows *Servers* to provide additional configuration parameters to *Discovery Servers* for registration. [Table 131](/§\_Ref413267915) defines the current set of discovery configuration options. The *ExtensibleParameter* type is defined in [7.17](/§\_Ref182070092) .  
 
- **Table 131\- DiscoveryConfiguration parameterTypeIds**   
+Table 131 - DiscoveryConfiguration parameterTypeIds  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -6682,21 +4576,13 @@ The *DiscoveryConfiguration* structure used in the *RegisterServer2 Service* all
 
 [Table 132](/§\_Ref413267926) defines the *MdnsDiscoveryConfiguration* parameter.  
 
- **Table 132\- MdnsDiscoveryConfiguration**   
+Table 132 - MdnsDiscoveryConfiguration  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |MdnsDiscoveryConfiguration|structure|mDNS discovery configuration.|
-|mdnsServerName|String|The name of the *Server* when it is announced via mDNS. See [OPC 10000-12](/§UAPart12) for the details about mDNS.  
-
-This string shall be less than 64 bytes.  
-
-If null or empty the first element of the *serverNames* array from *RegisteredServer* is used ( *Text* of *LocalizedText* and truncated to 63 bytes if necessary).|
-|serverCapabilities []|String|The set of *Server* capabilities supported by the *Server* .  
-
-A *Server* capability is a short identifier for a feature  
-
-The set of allowed *Server* capabilities are defined in [OPC 10000-12](/§UAPart12) .|
+|mdnsServerName|String|The name of the *Server* when it is announced via mDNS. See [OPC 10000-12](/§UAPart12) for the details about mDNS.<br>This string shall be less than 64 bytes.<br>If null or empty the first element of the *serverNames* array from *RegisteredServer* is used ( *Text* of *LocalizedText* and truncated to 63 bytes if necessary).|
+|serverCapabilities []|String|The set of *Server* capabilities supported by the *Server* .<br>A *Server* capability is a short identifier for a feature<br>The set of allowed *Server* capabilities are defined in [OPC 10000-12](/§UAPart12) .|
   
 
   
@@ -6705,41 +4591,19 @@ The set of allowed *Server* capabilities are defined in [OPC 10000-12](/§UAPart
 
 The components of this parameter are defined in [Table 133](/§\_Ref175564678) .  
 
- **Table 133\- EndpointDescription**   
+Table 133 - EndpointDescription  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |EndpointDescription|structure|Describes an *Endpoint* for a *Server* .|
 |endpointUrl|String|The URL for the *Endpoint* described.|
-|server|ApplicationDescription|The description for the *Server* that the *Endpoint* belongs to.  
-
-The *ApplicationDescription* type is defined in [7.2](/§\_Ref153821547) .|
-|serverCertificate|ApplicationInstance  
-
-Certificate|The *ApplicationInstanceCertificate* issued to the *Server* .  
-
-The *ApplicationInstanceCertificate* type is defined in [7.3](/§\_Ref182127421) .|
-|securityMode|Enum  
-
-MessageSecurityMode|The type of security to apply to the messages.  
-
-The type *MessageSecurityMode* type is defined in [7.20](/§\_Ref153806472) .  
-
-A *SecureChannel* may need to be created even if the *securityMode* is NONE. The exact behaviour depends on the mapping used and is described in the [OPC 10000-6](/§UAPart6) .|
-|securityPolicyUri|String|The URI for *SecurityPolicy* to use when securing messages.  
-
-The set of known URIs and the S *ecurityPolicies* associated with them are defined in [OPC 10000-7](/§UAPart7) .|
-|userIdentityTokens []|UserTokenPolicy|The user identity tokens that the *Server* will accept.  
-
-The *Client* shall pass one of the *UserIdentityTokens* in the *ActivateSession* request. The *UserTokenPolicy* type is described in [7.41](/§\_Ref184567336) .|
-|transportProfileUri|String|The URI of the *Transport* *Profile* supported by the *Endpoint* .  
-
-[OPC 10000-7](/§UAPart7) defines URIs for the *Transport* *Profiles* .|
-|securityLevel|Byte|A numeric value that indicates how secure the EndpointDescription is compared to other EndpointDescriptions for the same *Server* .  
-
-A value of 0 indicates that the *EndpointDescription* is not recommended and is only supported for backward compatibility.  
-
-A higher value indicates better security.|
+|server|ApplicationDescription|The description for the *Server* that the *Endpoint* belongs to.<br>The *ApplicationDescription* type is defined in [7.2](/§\_Ref153821547) .|
+|serverCertificate|ApplicationInstance<br>Certificate|The *ApplicationInstanceCertificate* issued to the *Server* .<br>The *ApplicationInstanceCertificate* type is defined in [7.3](/§\_Ref182127421) .|
+|securityMode|Enum<br>MessageSecurityMode|The type of security to apply to the messages.<br>The type *MessageSecurityMode* type is defined in [7.20](/§\_Ref153806472) .<br>A *SecureChannel* may need to be created even if the *securityMode* is NONE. The exact behaviour depends on the mapping used and is described in the [OPC 10000-6](/§UAPart6) .|
+|securityPolicyUri|String|The URI for *SecurityPolicy* to use when securing messages.<br>The set of known URIs and the S *ecurityPolicies* associated with them are defined in [OPC 10000-7](/§UAPart7) .|
+|userIdentityTokens []|UserTokenPolicy|The user identity tokens that the *Server* will accept.<br>The *Client* shall pass one of the *UserIdentityTokens* in the *ActivateSession* request. The *UserTokenPolicy* type is described in [7.41](/§\_Ref184567336) .|
+|transportProfileUri|String|The URI of the *Transport* *Profile* supported by the *Endpoint* .<br>[OPC 10000-7](/§UAPart7) defines URIs for the *Transport* *Profiles* .|
+|securityLevel|Byte|A numeric value that indicates how secure the EndpointDescription is compared to other EndpointDescriptions for the same *Server* .<br>A value of 0 indicates that the *EndpointDescription* is not recommended and is only supported for backward compatibility.<br>A higher value indicates better security.|
   
 
   
@@ -6750,21 +4614,13 @@ The *EphemeralKeyType* parameter is used to return an ECC EphemeralKey needed to
 
 The components of this structure are defined in [Table 134](/§\_Ref43209629) .  
 
- **Table 134\- EphemeralKeyType**   
+Table 134 - EphemeralKeyType  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |EphemeralKeyType|Structure|Specifies an ECC ephemeral *Public Key* and a signature created by the application that owns the associated *Private Key* .|
-|publicKey|ByteString|The *Public Key* associated with an *EphemeralKey* created by the sender.  
-
-It is encoded according to the rules for the ECC *SecurityPolicies* (see [OPC 10000-7](/§UAPart7) ).  
-
-The size of the *Public Key* is specified by the current *SecurityPolicyUri* .|
-|signature|ByteString|The *Signature* calculated using the *ApplicationInstanceCertificate* of the owner of the *Private Key* associated with the *Public Key* .  
-
-The value of the *Public Key* field is the data used to calculate the *Signature* .  
-
-The *SecurityPolicyUri* used to generate the *EphemeralKey* is the *SecurityPolicyUri* used to calculate the signature.|
+|publicKey|ByteString|The *Public Key* associated with an *EphemeralKey* created by the sender.<br>It is encoded according to the rules for the ECC *SecurityPolicies* (see [OPC 10000-7](/§UAPart7) ).<br>The size of the *Public Key* is specified by the current *SecurityPolicyUri* .|
+|signature|ByteString|The *Signature* calculated using the *ApplicationInstanceCertificate* of the owner of the *Private Key* associated with the *Public Key* .<br>The value of the *Public Key* field is the data used to calculate the *Signature* .<br>The *SecurityPolicyUri* used to generate the *EphemeralKey* is the *SecurityPolicyUri* used to calculate the signature.|
   
 
   
@@ -6773,24 +4629,14 @@ The *SecurityPolicyUri* used to generate the *EphemeralKey* is the *SecurityPoli
 
 The components of this parameter are defined in [Table 135](/§\_Ref115064134) . *ExpandedNodeId* allows the namespace to be specified explicitly as a string or with an index in the *Server* 's namespace table.  
 
- **Table 135\- ExpandedNodeId**   
+Table 135 - ExpandedNodeId  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |ExpandedNodeId|structure|The *NodeId* with the namespace expanded to its string representation.|
-|serverIndex|Index|Index that identifies the *Server* that contains the *TargetNode* . This *Server* may be the local *Server* or a remote *Server* .  
-
-This index is the index of that *Server* in the local *Server* 's *Server* table. The index of the local *Server* in the *Server* table is always 0. All remote *Servers* have indexes greater than 0. The *Server* table is contained in the *Server* *Object* in the *AddressSpace* (see [OPC 10000-3](/§UAPart3) and [OPC 10000-5](/§UAPart5) ).  
-
-The *Client* may read the *Server* table *Variable* to access the description of the target *Server.*|
-|namespaceUri|String|The URI of the namespace.  
-
-If this parameter is specified then the namespace index is ignored.  
-
-[5.5](/§\_Ref163991716) and [OPC 10000-12](/§UAPart12) describes discovery mechanism that can be used to resolve URIs into URLs.|
-|namespaceIndex|UInt16|The index in the *Server* 's namespace table.  
-
-This parameter shall be 0 and is ignored in the *Server* if the namespace URI is specified.|
+|serverIndex|Index|Index that identifies the *Server* that contains the *TargetNode* . This *Server* may be the local *Server* or a remote *Server* .<br>This index is the index of that *Server* in the local *Server* 's *Server* table. The index of the local *Server* in the *Server* table is always 0. All remote *Servers* have indexes greater than 0. The *Server* table is contained in the *Server* *Object* in the *AddressSpace* (see [OPC 10000-3](/§UAPart3) and [OPC 10000-5](/§UAPart5) ).<br>The *Client* may read the *Server* table *Variable* to access the description of the target *Server.*|
+|namespaceUri|String|The URI of the namespace.<br>If this parameter is specified then the namespace index is ignored.<br>[5.5](/§\_Ref163991716) and [OPC 10000-12](/§UAPart12) describes discovery mechanism that can be used to resolve URIs into URLs.|
+|namespaceIndex|UInt16|The index in the *Server* 's namespace table.<br>This parameter shall be 0 and is ignored in the *Server* if the namespace URI is specified.|
 |identifierType|IdType|Type of the identifier element of the *NodeId* .|
 |identifier|\*|The identifier for a *Node* in the *AddressSpace* of an OPC UA *Server* (see *NodeId* definition in [OPC 10000-3](/§UAPart3) ).|
   
@@ -6805,7 +4651,7 @@ The *ExtensibleParameter* defines a data structure with two elements. The *param
 
 Concrete extensible parameters that are common to OPC UA are defined in Clause [7](/§\_Ref81632048) . Additional parts of OPC 10000 can define additional extensible parameter types.  
 
- **Table 136\- ExtensibleParameter base type**   
+Table 136 - ExtensibleParameter base type  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -6828,13 +4674,11 @@ This primitive data type is a UInt32 that is used as an identifier, such as a ha
 
 The *MessageSecurityMode* is an enumeration that specifies what security should be applied to messages exchanges during a Session. The possible values are described in [Table 137](/§\_Ref154235244) .  
 
- **Table 137\- MessageSecurityMode values**   
+Table 137 - MessageSecurityMode values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
-|INVALID|0|The MessageSecurityMode is invalid.  
-
-This value is the default value to avoid an accidental choice of no security is applied. This choice will always be rejected.|
+|INVALID|0|The MessageSecurityMode is invalid.<br>This value is the default value to avoid an accidental choice of no security is applied. This choice will always be rejected.|
 |NONE|1|No security is applied.|
 |SIGN|2|All messages are signed but not encrypted.|
 |SIGNANDENCRYPT|3|All messages are signed and encrypted.|
@@ -6846,54 +4690,16 @@ This value is the default value to avoid an accidental choice of no security is 
 
 The components of this parameter are defined in [Table 138](/§\_Ref103573463) .  
 
- **Table 138\- MonitoringParameters**   
+Table 138 - MonitoringParameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |MonitoringParameters|structure|Parameters ** that define the monitoring characteristics of a *MonitoredItem* .|
 |clientHandle|IntegerId|*Client*\-supplied id of the *MonitoredItem* . This id is used in *Notifications* generated for the list *Node* . The *IntegerId* type is defined in [7.19](/§\_Ref128930275) .|
-|samplingInterval|Duration|The interval that defines the fastest rate at which the *MonitoredItem* (s) should be accessed and evaluated. This interval is defined in milliseconds.  
-
-The value 0 indicates that the *Server* should use the fastest practical rate.  
-
-The value -1 indicates that the default sampling interval defined by the publishing interval of the *Subscription* is requested. A different sampling interval is used if the publishing interval is not a supported sampling interval. Any negative number is interpreted as -1. The sampling interval is not changed if the publishing interval is changed by a subsequent call to the *ModifySubscription* *Service* .  
-
-The *Server* uses this parameter to assign the *MonitoredItems* to a sampling interval that it supports.  
-
-The assigned interval is provided in the *revisedSamplingInterval* parameter. The *Server* shall always return a *revisedSamplingInterval* that is equal or higher than the requested *samplingInterval* unless the requested *samplingInterval* is higher than the maximum sampling interval supported by the *Server* , in which case the maximum sampling interval shall be returned.|
-|filter|Extensible Parameter  
-
-MonitoringFilter|A filter used by the *Server* to determine if the *MonitoredItem* should generate a *Notification* . If not used, this parameter is null. The *MonitoringFilter* parameter type is an extensible parameter type specified in [7.22](/§\_Ref127325541) . It specifies the types of filters that can be used.|
-|queueSize|Counter|The requested size of the *MonitoredItem* queue.  
-
-The following values have special meaning for data monitored items:  
-
-Value Meaning  
-
-0 or 1 the *Server* returns the default queue size which shall be 1 as *revisedQueueSize* for data monitored items. The queue has a single entry, effectively disabling queuing.  
-
-For values larger than one a first-in-first-out queue is to be used. The *Server* may limit the size in *revisedQueueSize* . In the case of a queue overflow, the *Overflow* bit (flag) in the *InfoBits* portion of the *DataValue* *statusCode* is set in the new value.  
-
-  
-
-The following values have special meaning for event monitored items:  
-
-Value Meaning  
-
-0 the *Server* returns the default queue size for *Event* *Notifications* as *revisedQueueSize* for event monitored items.  
-
-1 the *Server* returns the minimum queue size the *Server* requires for *Event* *Notifications* as *revisedQueueSize* .  
-
-MaxUInt32 the *Server* returns the maximum queue size that the *Server* can support for *Event* *Notifications* as *revisedQueueSize* .  
-
-If a *Client* chooses a value between the minimum and maximum settings of the *Server* the value shall be returned in the *revisedQueueSize* . If the requested *queueSize* is outside the minimum or maximum, the *Server* shall return the corresponding bounding value.  
-
-In the case of a queue overflow, an *Event* of the type *EventQueueOverflowEventType* is generated.|
-|discardOldest|Boolean|Specifies the discard policy when the queue is full and a new *Notification* is to be queued. It has the following values:  
-
-TRUE the oldest (first) *Notification* in the queue is discarded. The new *Notification* is added to the end of the queue.  
-
-FALSE the last *Notification* added to the queue gets replaced with the new *Notification* .|
+|samplingInterval|Duration|The interval that defines the fastest rate at which the *MonitoredItem* (s) should be accessed and evaluated. This interval is defined in milliseconds.<br>The value 0 indicates that the *Server* should use the fastest practical rate.<br>The value -1 indicates that the default sampling interval defined by the publishing interval of the *Subscription* is requested. A different sampling interval is used if the publishing interval is not a supported sampling interval. Any negative number is interpreted as -1. The sampling interval is not changed if the publishing interval is changed by a subsequent call to the *ModifySubscription* *Service* .<br>The *Server* uses this parameter to assign the *MonitoredItems* to a sampling interval that it supports.<br>The assigned interval is provided in the *revisedSamplingInterval* parameter. The *Server* shall always return a *revisedSamplingInterval* that is equal or higher than the requested *samplingInterval* unless the requested *samplingInterval* is higher than the maximum sampling interval supported by the *Server* , in which case the maximum sampling interval shall be returned.|
+|filter|Extensible Parameter<br>MonitoringFilter|A filter used by the *Server* to determine if the *MonitoredItem* should generate a *Notification* . If not used, this parameter is null. The *MonitoringFilter* parameter type is an extensible parameter type specified in [7.22](/§\_Ref127325541) . It specifies the types of filters that can be used.|
+|queueSize|Counter|The requested size of the *MonitoredItem* queue.<br>The following values have special meaning for data monitored items:<br>Value Meaning<br>0 or 1 the *Server* returns the default queue size which shall be 1 as *revisedQueueSize* for data monitored items. The queue has a single entry, effectively disabling queuing.<br>For values larger than one a first-in-first-out queue is to be used. The *Server* may limit the size in *revisedQueueSize* . In the case of a queue overflow, the *Overflow* bit (flag) in the *InfoBits* portion of the *DataValue* *statusCode* is set in the new value.<br><br>The following values have special meaning for event monitored items:<br>Value Meaning<br>0 the *Server* returns the default queue size for *Event* *Notifications* as *revisedQueueSize* for event monitored items.<br>1 the *Server* returns the minimum queue size the *Server* requires for *Event* *Notifications* as *revisedQueueSize* .<br>MaxUInt32 the *Server* returns the maximum queue size that the *Server* can support for *Event* *Notifications* as *revisedQueueSize* .<br>If a *Client* chooses a value between the minimum and maximum settings of the *Server* the value shall be returned in the *revisedQueueSize* . If the requested *queueSize* is outside the minimum or maximum, the *Server* shall return the corresponding bounding value.<br>In the case of a queue overflow, an *Event* of the type *EventQueueOverflowEventType* is generated.|
+|discardOldest|Boolean|Specifies the discard policy when the queue is full and a new *Notification* is to be queued. It has the following values:<br>TRUE the oldest (first) *Notification* in the queue is discarded. The new *Notification* is added to the end of the queue.<br>FALSE the last *Notification* added to the queue gets replaced with the new *Notification* .|
   
 
   
@@ -6906,7 +4712,7 @@ The *CreateMonitoredItem* *Service* allows specifying a filter for each *Monitor
 
 Each *MonitoringFilter* may have an associated *MonitoringFilterResult* structure which returns revised parameters and/or error information to *Clients* in the response. The result structures, when they exist, are described in the section that defines the *MonitoringFilter* .  
 
- **Table 139\- MonitoringFilter parameterTypeIds**   
+Table 139 - MonitoringFilter parameterTypeIds  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -6921,44 +4727,14 @@ Each *MonitoringFilter* may have an associated *MonitoringFilterResult* structur
 
 The *DataChangeFilter* defines the conditions under which a *DataChange Notification* should be reported and, optionally, a range or band for value changes where no *DataChange* *Notification* is generated. This range is called *Deadband* . The *DataChangeFilter* is defined in [Table 140](/§\_Ref127327568) .  
 
- **Table 140\- DataChangeFilter**   
+Table 140 - DataChangeFilter  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |DataChangeFilter|structure||
-|trigger|Enum  
-
-DataChangeTrigger|Specifies the conditions under which a data change notification should be reported. The *DataChangeTrigger* enumeration is defined in [7.10](/§\_Ref43031711) .  
-
-If the DataChangeFilter is not applied to the monitored item, *STATUS\_VALUE* is the default reporting behaviour.|
-|deadbandType|UInt32|A value that defines the *Deadband* type and behaviour.  
-
-Value Name Description  
-
-0   None No *Deadband* calculation should be applied.  
-
-1   Absolute AbsoluteDeadband (see below)  
-
-2   Percent PercentDeadband (This type is specified in [OPC 10000-8](/§UAPart8) ).|
-|deadbandValue|Double|The *Deadband* is applied only if \* the *trigger* includes value changes and \* the *deadbandType* is set appropriately.  
-
-Deadband is ignored if the status of the data item changes.  
-
- ***DeadbandType = AbsoluteDeadband***   
-
-For this type the *deadbandValue* contains the absolute change in a data value that shall cause a *Notification* to be generated. This parameter applies only to *Variables* with any *Number* data type.  
-
-An exception that causes a *DataChange* *Notification* based on an *AbsoluteDeadband* is determined as follows:  
-
- **Generate a *Notification***  **if (absolute value of (last cached value - current value) \> *AbsoluteDeadband* )**   
-
-The last cached value is defined as the last value pushed to the queue.  
-
-If the item is an array of values, the entire array is returned if any array element exceeds the AbsoluteDeadband, or the size or dimension of the array changes.  
-
- ***DeadbandType = PercentDeadband:***   
-
-This type is specified in [OPC 10000-8](/§UAPart8)|
+|trigger|Enum<br>DataChangeTrigger|Specifies the conditions under which a data change notification should be reported. The *DataChangeTrigger* enumeration is defined in [7.10](/§\_Ref43031711) .<br>If the DataChangeFilter is not applied to the monitored item, *STATUS\_VALUE* is the default reporting behaviour.|
+|deadbandType|UInt32|A value that defines the *Deadband* type and behaviour.<br>Value Name Description<br>0   None No *Deadband* calculation should be applied.<br>1   Absolute AbsoluteDeadband (see below)<br>2   Percent PercentDeadband (This type is specified in [OPC 10000-8](/§UAPart8) ).|
+|deadbandValue|Double|The *Deadband* is applied only if \* the *trigger* includes value changes and \* the *deadbandType* is set appropriately.<br>Deadband is ignored if the status of the data item changes.<br> ***DeadbandType = AbsoluteDeadband*** <br>For this type the *deadbandValue* contains the absolute change in a data value that shall cause a *Notification* to be generated. This parameter applies only to *Variables* with any *Number* data type.<br>An exception that causes a *DataChange* *Notification* based on an *AbsoluteDeadband* is determined as follows:<br> **Generate a *Notification***  **if (absolute value of (last cached value - current value) \> *AbsoluteDeadband* )** <br>The last cached value is defined as the last value pushed to the queue.<br>If the item is an array of values, the entire array is returned if any array element exceeds the AbsoluteDeadband, or the size or dimension of the array changes.<br> ***DeadbandType = PercentDeadband:*** <br>This type is specified in [OPC 10000-8](/§UAPart8)|
   
 
   
@@ -6995,61 +4771,43 @@ The *Server* shall validate the *whereClause* when a *Client* creates or updates
 
 [Table 141](/§\_Ref132018690) defines the EventFilter structure.  
 
- **Table 141\- EventFilter structure**   
+Table 141 - EventFilter structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |EventFilter|structure||
-|selectClauses []|SimpleAttribute  
-
-Operand|List of the values to return with each *Event* in a *Notification* . At least one valid clause shall be specified. See [7.7.4.5](/§\_Ref189225639) for the definition of *SimpleAttributeOperand* .|
-|whereClause|ContentFilter|Limit the *Notifications* to those *Events* that match the criteria defined by this ContentFilter. The ContentFilter structure is described in [7.7](/§\_Ref132019059) .  
-
-The *AttributeOperand* structure may not be used in an *EventFilter* .|
+|selectClauses []|SimpleAttribute<br>Operand|List of the values to return with each *Event* in a *Notification* . At least one valid clause shall be specified. See [7.7.4.5](/§\_Ref189225639) for the definition of *SimpleAttributeOperand* .|
+|whereClause|ContentFilter|Limit the *Notifications* to those *Events* that match the criteria defined by this ContentFilter. The ContentFilter structure is described in [7.7](/§\_Ref132019059) .<br>The *AttributeOperand* structure may not be used in an *EventFilter* .|
   
 
   
 
 [Table 142](/§\_Ref163490072) defines the EventFilterResult structure. This is the *MonitoringFilterResult* associated with the *EventFilter* *MonitoringFilter* .  
 
- **Table 142\- EventFilterResult structure**   
+Table 142 - EventFilterResult structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |EventFilterResult|structure||
 |selectClauseResults []|StatusCode|List of status codes for the elements in the select clause. The size and order of the list matches the size and order of the elements in the *selectClauses* request parameter. The *Server* returns null for unavailable or rejected *Event* fields.|
 |selectClauseDiagnosticInfos []|DiagnosticInfo|A list of diagnostic information for individual elements in the select clause. The size and order of the list matches the size and order of the elements in the *selectClauses* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the select clauses.|
-|whereClauseResult|ContentFilter  
-
-Result|Any results associated with the *whereClause* request parameter.  
-
-The *ContentFilterResult* type is defined in [7.7.2](/§\_Ref180477312) .|
+|whereClauseResult|ContentFilter<br>Result|Any results associated with the *whereClause* request parameter.<br>The *ContentFilterResult* type is defined in [7.7.2](/§\_Ref180477312) .|
   
 
   
 
 [Table 143](/§\_Ref189310724) defines values for the selectClauseResults parameter. Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table 143\- EventFilterResult Result Codes**   
+Table 143 - EventFilterResult Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
-|Bad\_TypeDefinitionInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-The typeId is not the NodeId for BaseEventType or a subtype of it.|
-|Bad\_NodeIdUnknown|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-The browsePath is specified but it will never exist in any Event.|
-|Bad\_BrowseNameInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-The browsePath is specified and contains a null element.|
-|Bad\_AttributeIdInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-The node specified by the browse path will never allow the given *AttributeId* to be returned.|
+|Bad\_TypeDefinitionInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>The typeId is not the NodeId for BaseEventType or a subtype of it.|
+|Bad\_NodeIdUnknown|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>The browsePath is specified but it will never exist in any Event.|
+|Bad\_BrowseNameInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>The browsePath is specified and contains a null element.|
+|Bad\_AttributeIdInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>The node specified by the browse path will never allow the given *AttributeId* to be returned.|
 |Bad\_IndexRangeInvalid|See [Table 177](/§\_Ref127606591) for the description of this result code.|
-|Bad\_TypeMismatch|See [Table 177](/§\_Ref127606591) for the description of this result code.  
-
-The indexRange is valid but the value of the Attribute is never an array.|
+|Bad\_TypeMismatch|See [Table 177](/§\_Ref127606591) for the description of this result code.<br>The indexRange is valid but the value of the Attribute is never an array.|
   
 
   
@@ -7070,7 +4828,7 @@ The *ServerTimestamp* for each interval shall be the time of the end of the proc
 
 The *AggregateFilter* is defined in [Table 144](/§\_Ref165187582) .  
 
- **Table 144\- AggregateFilter structure**   
+Table 144 - AggregateFilter structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -7078,46 +4836,26 @@ The *AggregateFilter* is defined in [Table 144](/§\_Ref165187582) .
 |startTime|UtcTime|Beginning of period to calculate the *Aggregate* the first time. The size of each period used to calculate the *Aggregate* is defined by the samplingInterval of the *MonitoringParameters* (see [7.21](/§\_Ref161114771) ).|
 |aggregateType|NodeId|The NodeId of the *AggregateFunctionType* *Object* that indicates the *Aggregate* to be used when retrieving processed data. See [OPC 10000-13](/§UaPart13) for details.|
 |processingInterval|Duration|The period be used to compute the *Aggregate* .|
-|aggregateConfiguration|Aggregate  
-
-Configuration|This parameter allows *Clients* to override the *Aggregate* configuration settings supplied by the *AggregateConfiguration* *Object* on a per monitored item basis. See [OPC 10000-13](/§UaPart13) for more information on *Aggregate* configurations. If the *Server* does not support the ability to override the *Aggregate* configuration settings it shall return a *StatusCode* of Bad\_AggregateListMismatch. This structure is defined in-line with the following indented items.|
-| useServerCapabilities  
-
- Defaults|Boolean|If value = TRUE use Aggregate configuration settings as outlined by the AggregateConfiguration object.  
-
-If value=FALSE use configuration settings as outlined in the following aggregateConfiguration parameters.  
-
-Default is TRUE.|
+|aggregateConfiguration|Aggregate<br>Configuration|This parameter allows *Clients* to override the *Aggregate* configuration settings supplied by the *AggregateConfiguration* *Object* on a per monitored item basis. See [OPC 10000-13](/§UaPart13) for more information on *Aggregate* configurations. If the *Server* does not support the ability to override the *Aggregate* configuration settings it shall return a *StatusCode* of Bad\_AggregateListMismatch. This structure is defined in-line with the following indented items.|
+| useServerCapabilities<br> Defaults|Boolean|If value = TRUE use Aggregate configuration settings as outlined by the AggregateConfiguration object.<br>If value=FALSE use configuration settings as outlined in the following aggregateConfiguration parameters.<br>Default is TRUE.|
 | treatUncertainAsBad|Boolean|As described in [OPC 10000-13](/§UaPart13) .|
 | percentDataBad|Byte|As described in [OPC 10000-13](/§UaPart13) .|
 | percentDataGood|Byte|As described in [OPC 10000-13](/§UaPart13) .|
-| useSloped  
-
- Extrapolation|Boolean|As described in [OPC 10000-13](/§UaPart13) .|
+| useSloped<br> Extrapolation|Boolean|As described in [OPC 10000-13](/§UaPart13) .|
   
 
   
 
 The *AggregateFilterResult* defines the revised *AggregateFilter* the *Server* can return when an *AggregateFilter* is defined for a *MonitoredItem* in the *CreateMonitoredItems* or *ModifyMonitoredItems* *Services* . The *AggregateFilterResult* is defined in [Table 145](/§\_Ref165187583) . This is the *MonitoringFilterResult* associated with the *AggregateFilter* *MonitoringFilter* .  
 
- **Table 145\- AggregateFilterResult structure**   
+Table 145 - AggregateFilterResult structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |AggregateFilterResult|structure||
-|revisedStartTime|UtcTime|The actual StartTime interval that the *Server* shall use.  
-
-This value is based on a number of factors, including capabilities of the *Server* to access historical data. The revisedStartTime should remain in the same boundary as the startTime (startTime + samplingInterval \* n = revisedStartTime).|
-|revisedProcessingInterval|Duration|The actual processingInterval that the *Server* shall use.  
-
-  
-
-The revisedProcessingInterval shall be at least twice the revisedSamplingInterval for the MonitoredItem.|
-|revisedAggregateConfiguration|Aggregate  
-
-Configuration|The actual aggregateConfiguration that the *Server* shall use.  
-
-The structure is defined in [Table 144](/§\_Ref165187582) .|
+|revisedStartTime|UtcTime|The actual StartTime interval that the *Server* shall use.<br>This value is based on a number of factors, including capabilities of the *Server* to access historical data. The revisedStartTime should remain in the same boundary as the startTime (startTime + samplingInterval \* n = revisedStartTime).|
+|revisedProcessingInterval|Duration|The actual processingInterval that the *Server* shall use.<br><br>The revisedProcessingInterval shall be at least twice the revisedSamplingInterval for the MonitoredItem.|
+|revisedAggregateConfiguration|Aggregate<br>Configuration|The actual aggregateConfiguration that the *Server* shall use.<br>The structure is defined in [Table 144](/§\_Ref165187582) .|
   
 
   
@@ -7126,7 +4864,7 @@ The structure is defined in [Table 144](/§\_Ref165187582) .|
 
 The *MonitoringMode* is an enumeration that specifies whether sampling and reporting are enabled or disabled for a *MonitoredItem* . The value of the publishing enabled parameter for a *Subscription* does not affect the value of the monitoring mode for a *MonitoredItem* of the *Subscription* . The values of this parameter are defined in [Table 146](/§\_Ref104716199) .  
 
- **Table 146\- MonitoringMode values**   
+Table 146 - MonitoringMode values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -7143,7 +4881,7 @@ The *MonitoringMode* is an enumeration that specifies whether sampling and repor
 
 The *AddNodes* *Service* allows specifying the *Attributes* for the *Nodes* to add. The *NodeAttributes* is an extensible parameter whose structure depends on the type of the *NodeClass* being added. It identifies the *NodeClass* that defines the structure of the *Attributes* that follow. The *parameterTypeIds* are defined in [Table 147](/§\_Ref130144036) . The *ExtensibleParameter* type is defined in [7.17](/§\_Ref182070092) .  
 
- **Table 147\- NodeAttributes parameterTypeIds**   
+Table 147 - NodeAttributes parameterTypeIds  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -7162,7 +4900,7 @@ The *AddNodes* *Service* allows specifying the *Attributes* for the *Nodes* to a
 
 [Table 148](/§\_Ref176330917) defines the bit mask used in the *NodeAttributes* parameters to specify which *Attributes* are set by the *Client* .  
 
- **Table 148\- Bit mask for specified Attributes**   
+Table 148 - Bit mask for specified Attributes  
 
 | **Field** | **Bit** | **Description** |
 |---|---|---|
@@ -7197,16 +4935,12 @@ The *AddNodes* *Service* allows specifying the *Attributes* for the *Nodes* to a
 
 [Table 149](/§\_Ref114548391) defines the *ObjectAttributes* parameter.  
 
- **Table 149\- ObjectAttributes**   
+Table 149 - ObjectAttributes  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |ObjectAttributes|structure|Defines the *Attributes* for the *Object* *NodeClass.*|
-|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.  
-
-A field shall be ignored if the corresponding bit is set to 0.  
-
-The bit values are defined in [Table 148](/§\_Ref176330917) .|
+|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.<br>A field shall be ignored if the corresponding bit is set to 0.<br>The bit values are defined in [Table 148](/§\_Ref176330917) .|
 |displayName|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |description|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |writeMask|UInt32|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
@@ -7220,16 +4954,12 @@ The bit values are defined in [Table 148](/§\_Ref176330917) .|
 
 [Table 150](/§\_Ref134963183) defines the *VariableAttributes* parameter.  
 
- **Table 150\- VariableAttributes**   
+Table 150 - VariableAttributes  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |VariableAttributes|structure|Defines the *Attributes* for the *Variable* *NodeClass*|
-|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.  
-
-A field shall be ignored if the corresponding bit is set to 0.  
-
-The bit values are defined in [Table 148](/§\_Ref176330917) .|
+|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.<br>A field shall be ignored if the corresponding bit is set to 0.<br>The bit values are defined in [Table 148](/§\_Ref176330917) .|
 |displayName|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |description|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |writeMask|UInt32|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
@@ -7250,16 +4980,12 @@ The bit values are defined in [Table 148](/§\_Ref176330917) .|
 
 [Table 151](/§\_Ref134963184) defines the *MethodAttributes* parameter.  
 
- **Table 151\- MethodAttributes**   
+Table 151 - MethodAttributes  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |MethodAttributes|structure|Defines the *Attributes* for the *Method* *NodeClass*|
-|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.  
-
-A field shall be ignored if the corresponding bit is set to 0.  
-
-The bit values are defined in [Table 148](/§\_Ref176330917) .|
+|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.<br>A field shall be ignored if the corresponding bit is set to 0.<br>The bit values are defined in [Table 148](/§\_Ref176330917) .|
 |displayName|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |description|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |writeMask|UInt32|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
@@ -7274,16 +5000,12 @@ The bit values are defined in [Table 148](/§\_Ref176330917) .|
 
 [Table 152](/§\_Ref134963185) defines the *ObjectTypeAttributes* parameter.  
 
- **Table 152\- ObjectTypeAttributes**   
+Table 152 - ObjectTypeAttributes  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |ObjectTypeAttributes|structure|Defines the *Attributes* for the *ObjectType* *NodeClass.*|
-|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.  
-
-A field shall be ignored if the corresponding bit is set to 0.  
-
-The bit values are defined in [Table 148](/§\_Ref176330917) .|
+|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.<br>A field shall be ignored if the corresponding bit is set to 0.<br>The bit values are defined in [Table 148](/§\_Ref176330917) .|
 |displayName|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |description|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |writeMask|UInt32|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
@@ -7297,16 +5019,12 @@ The bit values are defined in [Table 148](/§\_Ref176330917) .|
 
 [Table 153](/§\_Ref134963186) defines the *VariableTypeAttributes* parameter.  
 
- **Table 153\- VariableTypeAttributes**   
+Table 153 - VariableTypeAttributes  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |VariableTypeAttributes|structure|Defines the *Attributes* for the *VariableType* *NodeClass*|
-|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.  
-
-A field shall be ignored if the corresponding bit is set to 0.  
-
-The bit values are defined in [Table 148](/§\_Ref176330917) .|
+|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.<br>A field shall be ignored if the corresponding bit is set to 0.<br>The bit values are defined in [Table 148](/§\_Ref176330917) .|
 |displayName|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |description|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |writeMask|UInt32|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
@@ -7324,16 +5042,12 @@ The bit values are defined in [Table 148](/§\_Ref176330917) .|
 
 [Table 154](/§\_Ref134963187) defines the *ReferenceTypeAttributes* parameter.  
 
- **Table 154\- ReferenceTypeAttributes**   
+Table 154 - ReferenceTypeAttributes  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |ReferenceTypeAttributes|structure|Defines the *Attributes* for the *ReferenceType* *NodeClass.*|
-|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.  
-
-A field shall be ignored if the corresponding bit is set to 0.  
-
-The bit values are defined in [Table 148](/§\_Ref176330917) .|
+|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.<br>A field shall be ignored if the corresponding bit is set to 0.<br>The bit values are defined in [Table 148](/§\_Ref176330917) .|
 |displayName|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |description|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |writeMask|UInt32|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
@@ -7349,16 +5063,12 @@ The bit values are defined in [Table 148](/§\_Ref176330917) .|
 
 [Table 155](/§\_Ref182068196) defines the *DataTypeAttributes* parameter.  
 
- **Table 155\- DataTypeAttributes**   
+Table 155 - DataTypeAttributes  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |DataTypeAttributes|structure|Defines the *Attributes* for the *DataType* *NodeClass.*|
-|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.  
-
-A field shall be ignored if the corresponding bit is set to 0.  
-
-The bit values are defined in [Table 148](/§\_Ref176330917) .|
+|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.<br>A field shall be ignored if the corresponding bit is set to 0.<br>The bit values are defined in [Table 148](/§\_Ref176330917) .|
 |displayName|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |description|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |writeMask|UInt32|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
@@ -7372,16 +5082,12 @@ The bit values are defined in [Table 148](/§\_Ref176330917) .|
 
 [Table 156](/§\_Ref134963189) defines the *ViewAttributes* parameter.  
 
- **Table 156\- ViewAttributes**   
+Table 156 - ViewAttributes  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |ViewAttributes|structure|Defines the *Attributes* for the *View* *NodeClass.*|
-|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.  
-
-A field shall be ignored if the corresponding bit is set to 0.  
-
-The bit values are defined in [Table 148](/§\_Ref176330917) .|
+|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.<br>A field shall be ignored if the corresponding bit is set to 0.<br>The bit values are defined in [Table 148](/§\_Ref176330917) .|
 |displayName|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |description|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |writeMask|UInt32|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
@@ -7398,16 +5104,12 @@ This structure should be used instead of the *NodeClass* specific structures def
 
 [Table 157](/§\_Ref471384282) defines the *GenericAttributes* parameter.  
 
- **Table 157\- GenericAttributes**   
+Table 157 - GenericAttributes  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |GenericAttributes|structure|Defines a generic structure for passing in any number of *Attributes.*|
-|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.  
-
-A field shall be ignored if the corresponding bit is set to 0.  
-
-The bit values are defined in [Table 148](/§\_Ref176330917) .|
+|specifiedAttributes|UInt32|A bit mask that indicates which fields contain valid values.<br>A field shall be ignored if the corresponding bit is set to 0.<br>The bit values are defined in [Table 148](/§\_Ref176330917) .|
 |displayName|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |description|LocalizedText|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
 |writeMask|UInt32|See [OPC 10000-3](/§UAPart3) for the description of this *Attribute* .|
@@ -7427,7 +5129,7 @@ The *NotificationMessage* structure used in the *Subscription* *Service* set all
 
 There may be multiple notifications for a single *MonitoredItem* in a single NotificationData structure. When that happens the *Server* shall ensure the notifications appear in the same order that they were queued in the *MonitoredItem* . These notifications do not need to appear as a contiguous block.  
 
- **Table 158\- NotificationData parameterTypeIds**   
+Table 158 - NotificationData parameterTypeIds  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -7450,20 +5152,14 @@ See [5.13](/§\_Ref127334094) for a description of the *MonitoredItem* *Service*
 
 After creating a *MonitoredItem,* the current value or status of the monitored Attribute shall be queued without applying the filter. If the current value is not available after the first sampling interval the first *Notification* shall be queued after getting the initial value or status from the data source.  
 
- **Table 159\- DataChangeNotification**   
+Table 159 - DataChangeNotification  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |DataChangeNotification|structure|Data change *Notification* data.|
 |monitoredItems []|MonitoredItem Notification|The list of *MonitoredItems* for which a change has been detected. This structure is defined in-line with the following indented items.|
 | clientHandle|IntegerId|*Client*\-supplied handle for the *MonitoredItem* . The *IntegerId* type is defined in [7.19](/§\_Ref128931107)|
-| Value|DataValue|The *StatusCode* , value and timestamp(s) of the monitored *Attribute* depending on the sampling and queuing configuration.  
-
-If the *StatusCode* indicates an error then the value is to be ignored.  
-
-If not every detected change has been returned since the *Server* 's queue buffer for the *MonitoredItem* reached its limit and had to purge out data and the size of the queue is larger than one, the *Overflow* bit in the *DataValue* *InfoBits* of the *statusCode* is set.  
-
-*DataValue* is a common type defined in [7.11](/§\_Ref127334314) .|
+| Value|DataValue|The *StatusCode* , value and timestamp(s) of the monitored *Attribute* depending on the sampling and queuing configuration.<br>If the *StatusCode* indicates an error then the value is to be ignored.<br>If not every detected change has been returned since the *Server* 's queue buffer for the *MonitoredItem* reached its limit and had to purge out data and the size of the queue is larger than one, the *Overflow* bit in the *DataValue* *InfoBits* of the *statusCode* is set.<br>*DataValue* is a common type defined in [7.11](/§\_Ref127334314) .|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information. The size and order of this list matches the size and order of the *monitoredItems* parameter. There is one entry in this list for each *Node* contained in the *monitoredItems* parameter. This list is empty if diagnostics information was not requested or is not available for any of the *MonitoredItems* . *DiagnosticInfo* is a common type defined in [7.12](/§\_Ref127334266) .|
   
 
@@ -7475,16 +5171,14 @@ If not every detected change has been returned since the *Server* 's queue buffe
 
 The EventNotificationList defines a table structure that is used to return *Event* fields to a *Client* *Subscription* . The structure is in the form of a table consisting of one or more *Events* , each containing an array of one or more fields. The selection and order of the fields returned for each *Event* is identical to the selected parameter of the *EventFilter* .  
 
- **Table 160\- EventNotificationList**   
+Table 160 - EventNotificationList  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |EventNotificationList|structure|Event *Notification* data.|
 |events []|EventFieldList|The list of *Events* being delivered. This structure is defined in-line with the following indented items.|
 | clientHandle|IntegerId|*Client*\-supplied handle for the *MonitoredItem* . The *IntegerId* type is defined in [7.19](/§\_Ref128931107) .|
-| eventFields []|BaseDataType|List of selected *Event* fields. This shall be a one to one match with the fields selected in the *EventFilter* .  
-
-[7.22.3](/§\_Ref129512350) specifies how the *Server* shall deal with error conditions.|
+| eventFields []|BaseDataType|List of selected *Event* fields. This shall be a one to one match with the fields selected in the *EventFilter* .<br>[7.22.3](/§\_Ref129512350) specifies how the *Server* shall deal with error conditions.|
   
 
   
@@ -7495,7 +5189,7 @@ The EventNotificationList defines a table structure that is used to return *Even
 
 The *StatusChangeNotification* informs the *Client* about a change in the status of a *Subscription* .  
 
- **Table 161\- StatusChangeNotification**   
+Table 161 - StatusChangeNotification  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -7510,20 +5204,14 @@ The *StatusChangeNotification* informs the *Client* about a change in the status
 
 The components of this parameter are defined in [Table 162](/§\_Ref78952255) .  
 
- **Table 162\- NotificationMessage**   
+Table 162 - NotificationMessage  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |NotificationMessage|structure|The *Message* that contains one or more *Notifications* .|
 |sequenceNumber|Counter|The sequence number of the *NotificationMessage* .|
 |publishTime|UtcTime|The time that this *Message* was sent to the *Client* . If this *Message* is retransmitted to the *Client* , this parameter contains the time it was first transmitted to the *Client* .|
-|notificationData []|Extensible Parameter  
-
-NotificationData|The list of *NotificationData structures* .  
-
-The *NotificationData* parameter type is an extensible parameter type specified in [7.25](/§\_Ref127333461) . It specifies the types of *Notifications* that can be sent. The *ExtensibleParameter* type is specified in [7.17](/§\_Ref182070092) .  
-
-Notifications of the same type should be grouped into one NotificationData element. If a *Subscription* contains *MonitoredItems* for events and data, this array should have not more than 2 elements. If the *Subscription* contains *MonitoredItems* only for data or only for events, the array size should always be one for this *Subscription* .|
+|notificationData []|Extensible Parameter<br>NotificationData|The list of *NotificationData structures* .<br>The *NotificationData* parameter type is an extensible parameter type specified in [7.25](/§\_Ref127333461) . It specifies the types of *Notifications* that can be sent. The *ExtensibleParameter* type is specified in [7.17](/§\_Ref182070092) .<br>Notifications of the same type should be grouped into one NotificationData element. If a *Subscription* contains *MonitoredItems* for events and data, this array should have not more than 2 elements. If the *Subscription* contains *MonitoredItems* only for data or only for events, the array size should always be one for this *Subscription* .|
   
 
   
@@ -7532,13 +5220,11 @@ Notifications of the same type should be grouped into one NotificationData eleme
 
 This parameter is defined in [Table 163](/§\_Ref111608672) . A formal BNF definition of the numeric range can be found in Clause A.3. Examples for the use of the parameter are shown in [Table 164](/§\_Ref209703336) .  
 
- **Table 163\- NumericRange**   
+Table 163 - NumericRange  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
-|NumericRange|String|A number or a numeric range.  
-
-A null or empty string indicates that this parameter is not used.|
+|NumericRange|String|A number or a numeric range.<br>A null or empty string indicates that this parameter is not used.|
   
 
   
@@ -7559,7 +5245,7 @@ When writing a value, the size of the array shall match the size specified by th
 
 The *NumericRange* can also be used to specify substrings for *ByteString* and *String* values. Arrays of *ByteString* and *String* values are treated as two dimensional arrays where the final index specifies the substring range within the *ByteString* or *String* value. The entire *ByteString* or *String* value is selected if the final index is omitted. If the last element of the specified *IndexRange* refers to a substring, the *Server* shall return partial results accordingly. For any element in the array where the lower and upper bound of the specified *IndexRange* for the substring are out of bounds, the *Server* shall return a null or empty value.  
 
- **Table 164\- NumericRange examples**   
+Table 164 - NumericRange examples  
 
 | **Value** | **NumericRange** | **Result** |
 |---|---|---|
@@ -7576,21 +5262,15 @@ The *NumericRange* can also be used to specify substrings for *ByteString* and *
 
 The components of this parameter are defined in [Table 165](/§\_Ref104699528) .  
 
- **Table 165\- ReadValueId**   
+Table 165 - ReadValueId  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |ReadValueId|structure|Identifier for an item to read or to monitor.|
 |nodeId|NodeId|*NodeId* of a *Node* .|
 |attributeId|IntegerId|Id of the *Attribute* . This shall be a valid *Attribute* id. The *IntegerId* is defined in [7.19](/§\_Ref128929614) . The IntegerIds for the Attributes are defined in [OPC 10000-6](/§UAPart6) .|
-|indexRange|NumericRange|This parameter is used to identify a single element of an array, or a single range of indexes for arrays. The array in this context includes *String* and *ByteString.* If a range of elements is specified, the values are returned as a composite. The first element is identified by index 0 (zero). The *NumericRange* type is defined in [7.27](/§\_Ref129174867) .  
-
-This parameter is null or empty if the specified *Attribute* is not an array. However, if the specified *Attribute* is an array, and this parameter is null or empty, then all elements are to be included in the range.|
-|dataEncoding|QualifiedName|This parameter is no longer used.  
-
-Clients shall set it to null or empty.  
-
-The *Server* shall ignore the parameter.|
+|indexRange|NumericRange|This parameter is used to identify a single element of an array, or a single range of indexes for arrays. The array in this context includes *String* and *ByteString.* If a range of elements is specified, the values are returned as a composite. The first element is identified by index 0 (zero). The *NumericRange* type is defined in [7.27](/§\_Ref129174867) .<br>This parameter is null or empty if the specified *Attribute* is not an array. However, if the specified *Attribute* is an array, and this parameter is null or empty, then all elements are to be included in the range.|
+|dataEncoding|QualifiedName|This parameter is no longer used.<br>Clients shall set it to null or empty.<br>The *Server* shall ignore the parameter.|
   
 
   
@@ -7599,26 +5279,18 @@ The *Server* shall ignore the parameter.|
 
 The components of this parameter are defined in [Table 166](/§\_Ref100043538) .  
 
- **Table 166\- ReferenceDescription**   
+Table 166 - ReferenceDescription  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |ReferenceDescription|structure|Reference parameters returned for the *Browse* *Service* .|
 |referenceTypeId|NodeId|*NodeId* of the *ReferenceType* that defines the *Reference* .|
 |isForward|Boolean|If the value is TRUE, the *Server* followed a forward *Reference* . If the value is FALSE, the *Server* followed an inverse *Reference* .|
-|nodeId|Expanded  
-
-NodeId|*NodeId* of the *TargetNode* as assigned by the *Server* identified by the *Server* index. The *ExpandedNodeId* type is defined in [7.16](/§\_Ref129164940) .  
-
-If the *server* Index indicates that the *TargetNode* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the *TargetNode* is a local *Node* the *nodeId* shall contain the namespace index.|
+|nodeId|Expanded<br>NodeId|*NodeId* of the *TargetNode* as assigned by the *Server* identified by the *Server* index. The *ExpandedNodeId* type is defined in [7.16](/§\_Ref129164940) .<br>If the *server* Index indicates that the *TargetNode* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the *TargetNode* is a local *Node* the *nodeId* shall contain the namespace index.|
 |browseName 1|QualifiedName|The *BrowseName* of the *TargetNode* .|
 |displayName|LocalizedText|The *DisplayName* of the *TargetNode* .|
 |nodeClass 1|NodeClass|*NodeClass* of the *TargetNode* .|
-|typeDefinition 1|Expanded  
-
-NodeId|Type definition *NodeId* of the *TargetNode* . Type definitions are only available for the *NodeClasses* *Object* and *Variable* . For all other *NodeClasses* a null NodeId shall be returned.  
-
-If the *server* Index indicates that the type definition *Node* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the type definition *Node* is a local *Node* the *nodeId* shall contain the namespace index.|
+|typeDefinition 1|Expanded<br>NodeId|Type definition *NodeId* of the *TargetNode* . Type definitions are only available for the *NodeClasses* *Object* and *Variable* . For all other *NodeClasses* a null NodeId shall be returned.<br>If the *server* Index indicates that the type definition *Node* is a remote *Node* , then the *nodeId* shall contain the absolute namespace URI. If the type definition *Node* is a local *Node* the *nodeId* shall contain the namespace index.|
 |1) If the *Server* index in the *ExpandedNodeId* indicates that the *TargetNode* is a remote *Node* , then the *browseName* , nodeClass and typeDefinition may be null or empty. If they are not null or empty, they might not be up to date because the local *Server* might not continuously monitor the remote *Server* for changes. The displayName shall be provided for remote *Nodes* .|
   
 
@@ -7628,32 +5300,16 @@ If the *server* Index indicates that the type definition *Node* is a remote *Nod
 
 The components of this parameter are defined in [Table 167](/§\_Ref179409027) .  
 
- **Table 167\- RelativePath**   
+Table 167 - RelativePath  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |RelativePath|structure|Defines a sequence of *References* and *BrowseNames* to follow.|
-|elements []|RelativePath  
-
-Element|A sequence of *References* and *BrowseNames* to follow. This structure is defined in-line with the following indented items.  
-
-Each element in the sequence is processed by finding the targets and then using those targets as the starting nodes for the next element. The targets of the final element are the target of the *RelativePath* .|
-| referenceTypeId|NodeId|The type of reference to follow from the current node.  
-
-The current path cannot be followed any further if the referenceTypeId is not available on the Node instance.  
-
-If the *referenceTypeId* is null then all *References* are included and the parameter includeSubtypes is ignored. This is equal to use the base *References ReferenceType* and *includeSubtypes* set to TRUE.|
-| isInverse|Boolean|Only inverse references shall be followed if this value is TRUE.  
-
-Only forward references shall be followed if this value is FALSE.|
+|elements []|RelativePath<br>Element|A sequence of *References* and *BrowseNames* to follow. This structure is defined in-line with the following indented items.<br>Each element in the sequence is processed by finding the targets and then using those targets as the starting nodes for the next element. The targets of the final element are the target of the *RelativePath* .|
+| referenceTypeId|NodeId|The type of reference to follow from the current node.<br>The current path cannot be followed any further if the referenceTypeId is not available on the Node instance.<br>If the *referenceTypeId* is null then all *References* are included and the parameter includeSubtypes is ignored. This is equal to use the base *References ReferenceType* and *includeSubtypes* set to TRUE.|
+| isInverse|Boolean|Only inverse references shall be followed if this value is TRUE.<br>Only forward references shall be followed if this value is FALSE.|
 | includeSubtypes|Boolean|Indicates whether subtypes of the *ReferenceType* should be followed. Subtypes are included if this value is TRUE.|
-| targetName|QualifiedName|The *BrowseName* of the target node.  
-
-The final element may have an empty *targetName* . In this situation all targets of the references identified by the referenceTypeId are the targets of the *RelativePath* .  
-
-The *targetName* shall be specified for all other elements.  
-
-The current path cannot be followed any further if no targets with the specified *BrowseName* exist.|
+| targetName|QualifiedName|The *BrowseName* of the target node.<br>The final element may have an empty *targetName* . In this situation all targets of the references identified by the referenceTypeId are the targets of the *RelativePath* .<br>The *targetName* shall be specified for all other elements.<br>The current path cannot be followed any further if no targets with the specified *BrowseName* exist.|
   
 
   
@@ -7666,49 +5322,19 @@ A text format for the *RelativePath* can be found in Clause A.2. This format is 
 
 The components of this parameter are defined in [Table 168](/§\_Ref413265357) .  
 
- **Table 168\- RegisteredServer**   
+Table 168 - RegisteredServer  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |RegisteredServer|structure|The *Server* to register.|
 |serverUri|String|The globally unique identifier for the *Server* instance. The *serverUri* matches the *applicationUri* from the *ApplicationDescription* defined in [7.2](/§\_Ref153821547) .|
 |productUri|String|The globally unique identifier for the *Server* product.|
-|serverNames []|LocalizedText|A list of localized descriptive names for the *Server* .  
-
-The list shall have at least one valid entry.|
-|serverType|Enum  
-
-ApplicationType|The type of application.  
-
-The enumeration values are defined in [Table 107](/§\_Ref154233713) .  
-
-The value "CLIENT" (The application is a *Client)* is not allowed. The *Service* result shall be Bad\_InvalidArgument in this case.|
-|gatewayServerUri|String|The URI of the *Gateway Server* associated with the *discoveryUrls* .  
-
-This value is only specified by *Gateway Servers* that wish to register the *Servers* that they provide access to.  
-
-For *Servers* that do not act as a *Gateway Server* this parameter shall be null or empty.|
-|discoveryUrls []|String|A list of *DiscoveryEndpoints* for the *Server* .  
-
-The list shall have at least one valid entry.|
-|semaphoreFilePath|String|The path to the semaphore file used to identify an automatically-launched *Server* instance; Manually-launched *Servers* will not use this parameter.  
-
-If a Semaphore file is provided, the isOnline flag is ignored.  
-
-If a Semaphore file is provided and exists, the *LocalDiscoveryServer* shall save the registration information in a persistent data store that it reads whenever the *LocalDiscoveryServer* starts.  
-
-If a Semaphore file is specified but does not exist the *Discovery* *Server* shall remove the registration from any persistent data store.  
-
-If the *Server* has registered with a semaphoreFilePath, the *Discovery Server* shall check that this file exists before returning the *ApplicationDescription* to the *Client* .  
-
-If the *Server* did not register with a semaphoreFilePath (it is null or empty) then the *Discovery Server* does not attempt to verify the existence of the file before returning the ApplicationDescription to the *Client* .|
-|isOnline|Boolean|True if the *Server* is currently able to accept connections from *Clients* . ** The *Discovery Server* shall return *ApplicationDescriptions* to the *Client* .  
-
-The *Server* is expected to periodically re-register with the *Discovery Server.*  
-
-False if the *Server* is currently unable to accept connections from *Clients* . ** The *Discovery Server* shall NOT return *ApplicationDescriptions* to the *Client.*  
-
-This parameter is ignored if a semaphoreFilePath is provided.|
+|serverNames []|LocalizedText|A list of localized descriptive names for the *Server* .<br>The list shall have at least one valid entry.|
+|serverType|Enum<br>ApplicationType|The type of application.<br>The enumeration values are defined in [Table 107](/§\_Ref154233713) .<br>The value "CLIENT" (The application is a *Client)* is not allowed. The *Service* result shall be Bad\_InvalidArgument in this case.|
+|gatewayServerUri|String|The URI of the *Gateway Server* associated with the *discoveryUrls* .<br>This value is only specified by *Gateway Servers* that wish to register the *Servers* that they provide access to.<br>For *Servers* that do not act as a *Gateway Server* this parameter shall be null or empty.|
+|discoveryUrls []|String|A list of *DiscoveryEndpoints* for the *Server* .<br>The list shall have at least one valid entry.|
+|semaphoreFilePath|String|The path to the semaphore file used to identify an automatically-launched *Server* instance; Manually-launched *Servers* will not use this parameter.<br>If a Semaphore file is provided, the isOnline flag is ignored.<br>If a Semaphore file is provided and exists, the *LocalDiscoveryServer* shall save the registration information in a persistent data store that it reads whenever the *LocalDiscoveryServer* starts.<br>If a Semaphore file is specified but does not exist the *Discovery* *Server* shall remove the registration from any persistent data store.<br>If the *Server* has registered with a semaphoreFilePath, the *Discovery Server* shall check that this file exists before returning the *ApplicationDescription* to the *Client* .<br>If the *Server* did not register with a semaphoreFilePath (it is null or empty) then the *Discovery Server* does not attempt to verify the existence of the file before returning the ApplicationDescription to the *Client* .|
+|isOnline|Boolean|True if the *Server* is currently able to accept connections from *Clients* . ** The *Discovery Server* shall return *ApplicationDescriptions* to the *Client* .<br>The *Server* is expected to periodically re-register with the *Discovery Server.*<br>False if the *Server* is currently unable to accept connections from *Clients* . ** The *Discovery Server* shall NOT return *ApplicationDescriptions* to the *Client.*<br>This parameter is ignored if a semaphoreFilePath is provided.|
   
 
   
@@ -7717,92 +5343,21 @@ This parameter is ignored if a semaphoreFilePath is provided.|
 
 The components of this parameter are defined in [Table 169](/§\_Ref107372950) .  
 
- **Table 169\- RequestHeader**   
+Table 169 - RequestHeader  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |RequestHeader|structure|Common parameters for all requests submitted on a *Session* .|
-|authenticationToken|Session  
-
-AuthenticationToken|The secret *Session* identifier used to verify that the request is associated with the *Session.* The *SessionAuthenticationToken* type is defined in [7.35](/§\_Ref183363986) .|
+|authenticationToken|Session<br>AuthenticationToken|The secret *Session* identifier used to verify that the request is associated with the *Session.* The *SessionAuthenticationToken* type is defined in [7.35](/§\_Ref183363986) .|
 |timestamp|UtcTime|The time the *Client* sent the request. The parameter is only used for diagnostic and logging purposes in the *Server* .|
 |requestHandle|IntegerId|A *requestHandle* associated with the request. This *Client* defined handle can be used to cancel the request. It is also returned in the response.|
-|returnDiagnostics|UInt32|A bit mask that identifies the types of vendor-specific diagnostics to be returned in *diagnosticInfo r* esponse parameters.  
-
-The value of this parameter may consist of zero, one or more of the following values. No value indicates that diagnostics are not to be returned.  
-
   
-
-| **Bit Value** | **Diagnostics to return** |
+|returnDiagnostics|UInt32|A bit mask that identifies the types of vendor-specific diagnostics to be returned in *diagnosticInfo r* esponse parameters.<br>The value of this parameter may consist of zero, one or more of the following values. No value indicates that diagnostics are not to be returned.<br><br> **Bit Value** | **Diagnostics to return** |0x0000 0001|ServiceLevel / SymbolicId|0x0000 0002|ServiceLevel / LocalizedText|0x0000 0004|ServiceLevel / AdditionalInfo|0x0000 0008|ServiceLevel / Inner *StatusCode*|0x0000 0010|ServiceLevel / Inner Diagnostics|0x0000 0020|OperationLevel / SymbolicId|0x0000 0040|OperationLevel / LocalizedText|0x0000 0080|OperationLevel / AdditionalInfo|0x0000 0100|OperationLevel / Inner *StatusCode*|0x0000 0200|OperationLevel / Inner Diagnostics|Each of these values is composed of two components, *level* and *type* , as described below. If none are requested, as indicated by a 0 value, or if no diagnostic information was encountered in processing of the request, then diagnostics information is not returned.*Level* :ServiceLevel|return diagnostics in the *diagnosticInfo* of the *Service* .|OperationLevel|return diagnostics in the *diagnosticInfo* defined for individual operations requested in the *Service* .|*Type* : SymbolicId|return a namespace-qualified, symbolic identifier for an error or condition. The maximum length of this identifier is 32 characters.|LocalizedText|return up to 256 bytes of localized text that describes the symbolic id.|AdditionalInfo|return a byte string that contains additional diagnostic information, such as a memory image. The format of this byte string is vendor-specific, and may depend on the type of error or condition encountered.|InnerStatusCode|return the inner *StatusCode* associated with the operation or *Service* .|InnerDiagnostics|return the inner diagnostic info associated with the operation or *Service* . The contents of the inner diagnostic info structure are determined by other bits in the mask. Note that setting this bit could cause multiple levels of nested diagnostic info structures to be returned.||
 |---|---|
-|0x0000 0001|ServiceLevel / SymbolicId|
-|0x0000 0002|ServiceLevel / LocalizedText|
-|0x0000 0004|ServiceLevel / AdditionalInfo|
-|0x0000 0008|ServiceLevel / Inner *StatusCode*|
-|0x0000 0010|ServiceLevel / Inner Diagnostics|
-|0x0000 0020|OperationLevel / SymbolicId|
-|0x0000 0040|OperationLevel / LocalizedText|
-|0x0000 0080|OperationLevel / AdditionalInfo|
-|0x0000 0100|OperationLevel / Inner *StatusCode*|
-|0x0000 0200|OperationLevel / Inner Diagnostics|
+|auditEntryId|String|An identifier that identifies the *Client* 's security audit log entry associated with this request. An empty string value means that this parameter is not used.<br>The *auditEntryId* typically contains who initiated the action and from where it was initiated. The *auditEntryId* is included in the *AuditEvent* to allow human readers to correlate an *Event* with the initiating action.<br>More details of the *Audit* mechanisms are defined in [6.5](/§\_Ref468992842) and in [OPC 10000-3](/§UAPart3) .|
+|timeoutHint|UInt32|This timeout in milliseconds is used in the *Client* side *Communication* *Stack* to set the timeout on a per-call base.<br>For a *Server* this timeout is only a hint and can be used to cancel long running operations to free resources. If the *Server* detects a timeout, he can cancel the operation by sending the *Service* result *Bad\_Timeout* . The *Server* should wait at minimum the timeout after he received the request before cancelling the operation. The *Server* shall check the *timeoutHint* parameter of a *Publish* request before processing a *Publish* response *.* If the request timed out, a Bad\_Timeout *Service* result is sent and another *Publish* request is used.<br>The value of 0 indicates no timeout.|
+|additionalHeader|Extensible Parameter<br>AdditionalHeader|If additional header parameters are needed, they shall be passed using the *AdditionalParametersType* defined in [7.1](/§\_Ref43210127) .<br>Applications that do not understand the header should ignore it.|
   
-
-  
-
-Each of these values is composed of two components, *level* and *type* , as described below. If none are requested, as indicated by a 0 value, or if no diagnostic information was encountered in processing of the request, then diagnostics information is not returned.  
-
-  
-
-*Level* :  
-
-|ServiceLevel|return diagnostics in the *diagnosticInfo* of the *Service* .|
-|---|---|
-|OperationLevel|return diagnostics in the *diagnosticInfo* defined for individual operations requested in the *Service* .|
-  
-
-  
-
-*Type* :   
-
-|SymbolicId|return a namespace-qualified, symbolic identifier for an error or condition. The maximum length of this identifier is 32 characters.|
-|---|---|
-|LocalizedText|return up to 256 bytes of localized text that describes the symbolic id.|
-|AdditionalInfo|return a byte string that contains additional diagnostic information, such as a memory image. The format of this byte string is vendor-specific, and may depend on the type of error or condition encountered.|
-|InnerStatusCode|return the inner *StatusCode* associated with the operation or *Service* .|
-|InnerDiagnostics|return the inner diagnostic info associated with the operation or *Service* . The contents of the inner diagnostic info structure are determined by other bits in the mask. Note that setting this bit could cause multiple levels of nested diagnostic info structures to be returned.|
-  
-
-  
-
-auditEntryId  
-
-String  
-
-An identifier that identifies the *Client* 's security audit log entry associated with this request. An empty string value means that this parameter is not used.  
-
-The *auditEntryId* typically contains who initiated the action and from where it was initiated. The *auditEntryId* is included in the *AuditEvent* to allow human readers to correlate an *Event* with the initiating action.  
-
-More details of the *Audit* mechanisms are defined in [6.5](/§\_Ref468992842) and in [OPC 10000-3](/§UAPart3) .  
-
-timeoutHint  
-
-UInt32  
-
-This timeout in milliseconds is used in the *Client* side *Communication* *Stack* to set the timeout on a per-call base.  
-
-For a *Server* this timeout is only a hint and can be used to cancel long running operations to free resources. If the *Server* detects a timeout, he can cancel the operation by sending the *Service* result *Bad\_Timeout* . The *Server* should wait at minimum the timeout after he received the request before cancelling the operation. The *Server* shall check the *timeoutHint* parameter of a *Publish* request before processing a *Publish* response *.* If the request timed out, a Bad\_Timeout *Service* result is sent and another *Publish* request is used.  
-
-The value of 0 indicates no timeout.  
-
-additionalHeader  
-
-Extensible Parameter  
-
-AdditionalHeader  
-
-If additional header parameters are needed, they shall be passed using the *AdditionalParametersType* defined in [7.1](/§\_Ref43210127) .  
-
-Applications that do not understand the header should ignore it.  
 
   
 
@@ -7810,7 +5365,7 @@ Applications that do not understand the header should ignore it.
 
 The components of this parameter are defined in [Table 170](/§\_Ref107373020) .  
 
- **Table 170\- ResponseHeader**   
+Table 170 - ResponseHeader  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -7820,11 +5375,7 @@ The components of this parameter are defined in [Table 170](/§\_Ref107373020) .
 |serviceResult|StatusCode|OPC UA-defined result of the *Service* invocation. The *StatusCode* type is defined in [7.38](/§\_Ref127346441) .|
 |serviceDiagnostics|DiagnosticInfo|Diagnostic information for the *Service* invocation. This parameter is empty if diagnostics information was not requested in the request header. The *DiagnosticInfo* type is defined in [7.12](/§\_Ref127334266) .|
 |stringTable []|String|There is one string in this list for each unique namespace, symbolic identifier, and localized text string contained in all of the diagnostics information parameters contained in the response (see [7.12](/§\_Ref115239793) ). Each is identified within this table by its zero-based index.|
-|additionalHeader|Extensible Parameter  
-
-AdditionalHeader|If additional header parameters are needed, they shall be passed using the *AdditionalParametersType* defined in [7.1](/§\_Ref43210127) .  
-
-Applications that do not understand the header should ignore it.|
+|additionalHeader|Extensible Parameter<br>AdditionalHeader|If additional header parameters are needed, they shall be passed using the *AdditionalParametersType* defined in [7.1](/§\_Ref43210127) .<br>Applications that do not understand the header should ignore it.|
   
 
   
@@ -7837,7 +5388,7 @@ The *ServiceFault* parameter shall be returned instead of the Service response m
 
 The exact use of this parameter depends on the mappings defined in [OPC 10000-6](/§UAPart6) .  
 
- **Table 171\- ServiceFault**   
+Table 171 - ServiceFault  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -7875,14 +5426,12 @@ The *SessionAuthenticationToken* is a subtype of the *NodeId* data type; however
 
 The components of this parameter are defined in [Table 172](/§\_Ref153780325) .  
 
- **Table 172\- SignatureData**   
+Table 172 - SignatureData  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |SignatureData|structure|Contains a digital signature created with a *Certificate* .|
-|algorithm|String|A string containing the URI of the *algorithm* .  
-
-The URI string values are defined as part of the security profiles specified in [OPC 10000-7](/§UAPart7) .|
+|algorithm|String|A string containing the URI of the *algorithm* .<br>The URI string values are defined as part of the security profiles specified in [OPC 10000-7](/§UAPart7) .|
 |signature|ByteString|This is a signature generated with the private key associated with a *Certificate* .|
   
 
@@ -7894,7 +5443,7 @@ Note Details on SoftwareCertificates will be defined in a future version of this
 
 [Table 173](/§\_Ref181549897) specifies *SignedSoftwareCertificate Structure* .  
 
- **Table 173\- SignedSoftwareCertificate**   
+Table 173 - SignedSoftwareCertificate  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -7923,146 +5472,36 @@ The list of *StatusCodes* is managed by OPC UA. The complete list of *StatusCode
 
 The exact bit assignments are shown in [Table 174](/§\_Ref127250480) .  
 
- **Table 174\- StatusCode bit assignments**   
+Table 174 - StatusCode bit assignments  
 
 | **Field** | **Bit Range** | **Description** |
 |---|---|---|
-|Severity|30:31|Indicates whether the *StatusCode* represents a good, bad or uncertain condition. These bits have the following meanings:  
-
-|Good Success|00|Indicates that the operation was successful and the associated results may be used.|
-|---|---|---|
-|Uncertain Warning|01|Indicates that the operation was partially successful and that associated results might not be suitable for some purposes.|
-|Bad Failure|10|Indicates that the operation failed and any associated results cannot be used.|
-|Reserved|11|Reserved for future use. All *Clients* should treat a *StatusCode* with this severity as "Bad".|
+|Severity|30:31|Indicates whether the *StatusCode* represents a good, bad or uncertain condition. These bits have the following meanings:<br>Good Success|00|Indicates that the operation was successful and the associated results may be used.|Uncertain Warning|01|Indicates that the operation was partially successful and that associated results might not be suitable for some purposes.|Bad Failure|10|Indicates that the operation failed and any associated results cannot be used.|Reserved|11|Reserved for future use. All *Clients* should treat a *StatusCode* with this severity as "Bad".||
+|Reserved|29:29|Reserved for use in OPC UA application specific APIs. This bit shall always be zero on the wire but may be used by OPC UA application specific APIs for API specific status codes.|
+|Reserved|28:28|Reserved for future use. Shall always be zero.|
+|SubCode|16:27|The code is a numeric value assigned to represent different conditions. Each code has a symbolic name and a numeric value. All descriptions in the OPC UA specification refer to the symbolic name. [OPC 10000-6](/§UAPart6) maps the symbolic names onto a numeric value.|
+|StructureChanged|15:15|Indicates that the structure of the associated data value has changed since the last *Notification* . *Clients* should not process the data value unless they re-read the metadata.<br>*Servers* shall set this bit if the *DataTypeDefinition* of the *DataType* used for a *Variable* changes.<br>This bit is provided to warn *Clients* that parse complex data values that their parsing routines could fail because the serialized form of the data value has changed.<br>This bit has meaning only for *StatusCodes* returned as part of a data change *Notification* or the *HistoryRead* . *StatusCodes* used in other contexts shall always set this bit to zero.<br>The bit is set on one data change Notification per MonitoredItem that samples values at the time the structure change happened. If the data change notification with the bit set is deleted because of a queue overflow, the bit shall be set on the next data change notification in the queue.|
+|SemanticsChanged|14:14|Indicates that the semantics of the associated data value have changed. *Clients* should not process the data value until they re-read the metadata associated with the *Variable* .<br>*Servers* should set this bit if the metadata has changed in way that could cause application errors if the *Client* does not re-read the metadata. For example, a change to the engineering units could create problems if the *Client* uses the value to perform calculations.<br>[OPC 10000-8](/§UAPart8) defines the conditions where a *Server* shall set this bit for a DA *Variable* . Other specifications may define additional conditions. A *Server* may define other conditions that cause this bit to be set.<br>This bit has meaning only for *StatusCodes* returned as part of a data change *Notification* or the *HistoryRead* . *StatusCodes* used in other contexts shall always set this bit to zero.<br>The bit is set on one data change Notification per MonitoredItem that samples values at the time the semantic change happened. If the data change notification with the bit set is deleted because of a queue overflow, the bit shall be set on the next data change notification in the queue.|
+|Reserved|12:13|Reserved for future use. Shall always be zero.|
+|InfoType|10:11|The type of information contained in the info bits. These bits have the following meanings:<br>NotUsed|00|The info bits are not used and shall be set to zero.|DataValue|01|The *StatusCode* and its info bits are associated with a data value returned from the *Server* . The info bits are defined in [Table 175](/§\_Ref127252123) .|Reserved|1X|Reserved for future use. The info bits shall be ignored.||
+|InfoBits|0:9|Additional information bits that qualify the *StatusCode* .<br>The structure of these bits depends on the Info Type field.|
   
-
-  
-
-Reserved  
-
-29:29  
-
-Reserved for use in OPC UA application specific APIs. This bit shall always be zero on the wire but may be used by OPC UA application specific APIs for API specific status codes.  
-
-Reserved  
-
-28:28  
-
-Reserved for future use. Shall always be zero.  
-
-SubCode  
-
-16:27  
-
-The code is a numeric value assigned to represent different conditions. Each code has a symbolic name and a numeric value. All descriptions in the OPC UA specification refer to the symbolic name. [OPC 10000-6](/§UAPart6) maps the symbolic names onto a numeric value.  
-
-StructureChanged  
-
-15:15  
-
-Indicates that the structure of the associated data value has changed since the last *Notification* . *Clients* should not process the data value unless they re-read the metadata.  
-
-*Servers* shall set this bit if the *DataTypeDefinition* of the *DataType* used for a *Variable* changes.  
-
-This bit is provided to warn *Clients* that parse complex data values that their parsing routines could fail because the serialized form of the data value has changed.  
-
-This bit has meaning only for *StatusCodes* returned as part of a data change *Notification* or the *HistoryRead* . *StatusCodes* used in other contexts shall always set this bit to zero.  
-
-The bit is set on one data change Notification per MonitoredItem that samples values at the time the structure change happened. If the data change notification with the bit set is deleted because of a queue overflow, the bit shall be set on the next data change notification in the queue.  
-
-SemanticsChanged  
-
-14:14  
-
-Indicates that the semantics of the associated data value have changed. *Clients* should not process the data value until they re-read the metadata associated with the *Variable* .  
-
-*Servers* should set this bit if the metadata has changed in way that could cause application errors if the *Client* does not re-read the metadata. For example, a change to the engineering units could create problems if the *Client* uses the value to perform calculations.  
-
-[OPC 10000-8](/§UAPart8) defines the conditions where a *Server* shall set this bit for a DA *Variable* . Other specifications may define additional conditions. A *Server* may define other conditions that cause this bit to be set.  
-
-This bit has meaning only for *StatusCodes* returned as part of a data change *Notification* or the *HistoryRead* . *StatusCodes* used in other contexts shall always set this bit to zero.  
-
-The bit is set on one data change Notification per MonitoredItem that samples values at the time the semantic change happened. If the data change notification with the bit set is deleted because of a queue overflow, the bit shall be set on the next data change notification in the queue.  
-
-Reserved  
-
-12:13  
-
-Reserved for future use. Shall always be zero.  
-
-InfoType  
-
-10:11  
-
-The type of information contained in the info bits. These bits have the following meanings:  
-
-|NotUsed|00|The info bits are not used and shall be set to zero.|
-|---|---|---|
-|DataValue|01|The *StatusCode* and its info bits are associated with a data value returned from the *Server* . The info bits are defined in [Table 175](/§\_Ref127252123) .|
-|Reserved|1X|Reserved for future use. The info bits shall be ignored.|
-  
-
-  
-
-InfoBits  
-
-0:9  
-
-Additional information bits that qualify the *StatusCode* .  
-
-The structure of these bits depends on the Info Type field.  
 
   
 
 [Table 175](/§\_Ref127252123) describes the structure of the *InfoBits* when the Info Type is set to *DataValue* (01).  
 
- **Table 175\- DataValue InfoBits**   
+Table 175 - DataValue InfoBits  
 
 | **Info Type** | **Bit Range** | **Description** |
 |---|---|---|
-|LimitBits|8:9|The limit bits associated with the data value. The limits bits have the following meanings:  
-
-| **Limit** | **Bits** | **Description** |
+  
+|LimitBits|8:9|The limit bits associated with the data value. The limits bits have the following meanings:<br> **Limit** | **Bits** | **Description** |None|00|The value is free to change.|Low|01|The value is at the lower limit for the data source.|High|10|The value is at the higher limit for the data source.|Constant|11|The value is constant and cannot change.||
 |---|---|---|
-|None|00|The value is free to change.|
-|Low|01|The value is at the lower limit for the data source.|
-|High|10|The value is at the higher limit for the data source.|
-|Constant|11|The value is constant and cannot change.|
+|Overflow|7|This bit shall only be set if the *MonitoredItem* queue size is greater than 1.<br>If this bit is set, not every detected change has been returned since the *Server* 's queue buffer for the *MonitoredItem* reached its limit and had to purge out data.|
+|Reserved|5:6|Reserved for future use. Shall always be zero.|
+|HistorianBits|0:4|These bits are set only when reading historical data. They indicate where the data value came from and provide information that affects how the *Client* uses the data value. The historian bits have the following meaning:<br>Raw|XXX00|A raw data value.|Calculated|XXX01|A data value which was calculated.|Interpolated|XXX10|A data value which was interpolated.|Reserved|XXX11|Undefined.|Partial|XX1XX|A data value which was calculated with an incomplete interval.|Extra Data|X1XXX|A raw data value that hides other data at the same timestamp.|Multi Value|1XXXX|Multiple values match the *Aggregate* criteria (i.e. multiple minimum values at different timestamps within the same interval).|[OPC 10000-11](/§UAPart11) describes how these bits are used in more detail.|
   
-
-  
-
-Overflow  
-
-7  
-
-This bit shall only be set if the *MonitoredItem* queue size is greater than 1.  
-
-If this bit is set, not every detected change has been returned since the *Server* 's queue buffer for the *MonitoredItem* reached its limit and had to purge out data.  
-
-Reserved  
-
-5:6  
-
-Reserved for future use. Shall always be zero.  
-
-HistorianBits  
-
-0:4  
-
-These bits are set only when reading historical data. They indicate where the data value came from and provide information that affects how the *Client* uses the data value. The historian bits have the following meaning:  
-
-|Raw|XXX00|A raw data value.|
-|---|---|---|
-|Calculated|XXX01|A data value which was calculated.|
-|Interpolated|XXX10|A data value which was interpolated.|
-|Reserved|XXX11|Undefined.|
-|Partial|XX1XX|A data value which was calculated with an incomplete interval.|
-|Extra Data|X1XXX|A raw data value that hides other data at the same timestamp.|
-|Multi Value|1XXXX|Multiple values match the *Aggregate* criteria (i.e. multiple minimum values at different timestamps within the same interval).|
-  
-
-[OPC 10000-11](/§UAPart11) describes how these bits are used in more detail.  
 
   
 
@@ -8070,7 +5509,7 @@ These bits are set only when reading historical data. They indicate where the da
 
 [Table 176](/§\_Ref90539276) defines the common *StatusCodes* for all *Service* results used in more than one service. It does not provide a complete list. These *StatusCodes* may also be used as operation level result code. [OPC 10000-6](/§UAPart6) maps the symbolic names to a numeric value and provides a complete list of StatusCodes including codes defines in other parts.  
 
- **Table 176\- Common Service Result Codes**   
+Table 176 - Common Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -8078,9 +5517,7 @@ These bits are set only when reading historical data. They indicate where the da
 |Good\_CompletesAsynchronously|The processing will complete asynchronously.|
 |Good\_SubscriptionTransferred|The *Subscription* was transferred to another session.|
 |||
-|Bad\_CertificateHostNameInvalid  
-
-|The *HostName* used to connect to a *Server* does not match a *HostName* in the *Certificate* .|
+|Bad\_CertificateHostNameInvalid<br>|The *HostName* used to connect to a *Server* does not match a *HostName* in the *Certificate* .|
 |Bad\_CertificateChainIncomplete|The *Certificate* chain is incomplete.|
 |Bad\_CertificateIssuerRevocationUnknown|It was not possible to determine if the *Issuer* *Certificate* has been revoked.|
 |Bad\_CertificateIssuerUseNotAllowed|The *Issuer* *Certificate* may not be used for the requested operation.|
@@ -8101,18 +5538,14 @@ These bits are set only when reading historical data. They indicate where the da
 |Bad\_IdentityTokenInvalid|The user identity token is not valid.|
 |Bad\_IdentityTokenRejected|The user identity token is valid but the *Server* has rejected it.|
 |Bad\_InternalError|An internal error occurred as a result of a programming or configuration error.|
-|Bad\_InvalidArgument|One or more arguments are invalid.  
-
-Each service defines parameter-specific *StatusCodes* and these *StatusCodes* shall be used instead of this general error code. This error code shall be used only by the *Communication Stack* and in services where it is defined in the list of valid *StatusCodes* for the service.|
+|Bad\_InvalidArgument|One or more arguments are invalid.<br>Each service defines parameter-specific *StatusCodes* and these *StatusCodes* shall be used instead of this general error code. This error code shall be used only by the *Communication Stack* and in services where it is defined in the list of valid *StatusCodes* for the service.|
 |Bad\_InvalidState|The operation cannot be completed because the object is closed, uninitialized or in some other invalid state.|
 |Bad\_InvalidTimestamp|The timestamp is outside the range allowed by the *Server* .|
 |Bad\_LicenseExpired|The UA *Server* requires a license to operate in general or to perform a service or operation, but existing license is expired|
 |Bad\_LicenseLimitsExceeded|The UA *Server* has limits on number of allowed operations / objects, based on installed licenses, and these limits where exceeded.|
 |Bad\_LicenseNotAvailable|The UA *Server* does not have a license which is required to operate in general or to perform a service or operation.|
 |Bad\_NonceInvalid|The nonce does appear to be not a random value or it is not the correct length.|
-|Bad\_NothingToDo|No processing could be done because there was nothing to do.  
-
-For *Service* level results the code is used if the *Client* passed a list of operations with no elements.|
+|Bad\_NothingToDo|No processing could be done because there was nothing to do.<br>For *Service* level results the code is used if the *Client* passed a list of operations with no elements.|
 |Bad\_OutOfMemory|Not enough memory to complete the operation.|
 |Bad\_RequestCancelledByClient|The request was cancelled by the *Client* .|
 |Bad\_RequestTooLarge|The request message size exceeds limits set by the *Server* .|
@@ -8124,18 +5557,14 @@ For *Service* level results the code is used if the *Client* passed a list of op
 |Bad\_SecurityPolicyRejected|The security policy does not meet the requirements set by the *Server* .|
 |Bad\_ServerHalted|The *Server* has stopped and cannot process any requests.|
 |Bad\_ServerNotConnected|The operation could not complete because the *Client* is not connected to the *Server* .|
-|Bad\_ServerTooBusy|The *Server* does not have the resources to process the request at this time.  
-
-This can be caused by a general overload of the *Server* or an overload by the *Client* that receives the result code.|
+|Bad\_ServerTooBusy|The *Server* does not have the resources to process the request at this time.<br>This can be caused by a general overload of the *Server* or an overload by the *Client* that receives the result code.|
 |Bad\_ServerUriInvalid|The *Server* URI is not valid.|
 |Bad\_ServiceUnsupported|The *Server* does not support the requested service.|
 |Bad\_SessionIdInvalid|The *Session* id is not valid.|
 |Bad\_SessionClosed|The *Session* was closed by the *Client* .|
 |Bad\_SessionNotActivated|The *Session* cannot be used because ActivateSession has not been called.|
 |Bad\_Shutdown|The operation was cancelled because the application is shutting down.|
-|Bad\_SubscriptionIdInvalid|The *Subscription* id is not valid.  
-
-The *Subscription* id is not known or is not valid in the context of the *Session* used to call the *Subscription* related *Service* .|
+|Bad\_SubscriptionIdInvalid|The *Subscription* id is not valid.<br>The *Subscription* id is not known or is not valid in the context of the *Session* used to call the *Subscription* related *Service* .|
 |Bad\_Timeout|The operation timed out.|
 |Bad\_TimestampsToReturnInvalid|The timestamps to return parameter is invalid.|
 |Bad\_TooManyOperations|The request could not be processed because it specified too many operations.|
@@ -8152,7 +5581,7 @@ The *Subscription* id is not known or is not valid in the context of the *Sessio
 
 [Table 177](/§\_Ref127606591) defines the common *StatusCodes* for all operation level results used in more than one service. It does not provide a complete list. [OPC 10000-6](/§UAPart6) maps the symbolic names to a numeric value and provides a complete list of StatusCodes including codes defines in other parts. The common *Service* result codes can be also contained in the operation level.  
 
- **Table 177\- Common Operation Level Result Codes**   
+Table 177 - Common Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -8166,9 +5595,7 @@ The *Subscription* id is not known or is not valid in the context of the *Sessio
 |Bad\_BrowseDirectionInvalid|The browse direction is not valid.|
 |Bad\_BrowseNameInvalid|The browse name is invalid.|
 |Bad\_ContentFilterInvalid|The content filter is not valid.|
-|Bad\_ContinuationPointInvalid|The continuation point provided is no longer valid.  
-
-This status is returned if the continuation point was deleted or the address space was changed between the browse calls.|
+|Bad\_ContinuationPointInvalid|The continuation point provided is no longer valid.<br>This status is returned if the continuation point was deleted or the address space was changed between the browse calls.|
 |Bad\_DataEncodingInvalid|The data encoding is invalid.|
 |Bad\_DataEncodingUnsupported|The *Server* does not support the requested data encoding for the node.|
 |Bad\_EventFilterInvalid|The event filter is not valid.|
@@ -8182,9 +5609,7 @@ This status is returned if the continuation point was deleted or the address spa
 |Bad\_MonitoredItemFilterUnsupported|The *Server* does not support the requested monitored item filter.|
 |Bad\_MonitoredItemIdInvalid|The monitoring item id does not refer to a valid monitored item.|
 |Bad\_MonitoringModeInvalid|The monitoring mode is invalid.|
-|Bad\_NoCommunication|Communication with the data source is defined, but not established, and there is no last known value available.  
-
-This status/sub-status is used for cached values before the first value is received or for Write and Call if the communication is not established.|
+|Bad\_NoCommunication|Communication with the data source is defined, but not established, and there is no last known value available.<br>This status/sub-status is used for cached values before the first value is received or for Write and Call if the communication is not established.|
 |Bad\_NoContinuationPoints|The operation could not be processed because all continuation points have been allocated.|
 |Bad\_NodeClassInvalid|The node class is not valid.|
 |Bad\_NodeIdInvalid|The syntax of the node id is not valid or refers to a node that is not valid for the operation.|
@@ -8193,26 +5618,20 @@ This status/sub-status is used for cached values before the first value is recei
 |Bad\_NodeNotInView|The nodesToBrowse is not part of the view.|
 |Bad\_NotFound|A requested item was not found or a search operation ended without success.|
 |Bad\_NotImplemented|Requested operation is not implemented.|
-|Bad\_NoValue|There is no value available.  
-
-This status is also used if a *Variable* is created and no default value or no initial value is available.|
+|Bad\_NoValue|There is no value available.<br>This status is also used if a *Variable* is created and no default value or no initial value is available.|
 |Bad\_NotReadable|The access level does not allow reading or subscribing to the *Node* .|
 |Bad\_NotSupported|The requested operation is not supported.|
 |Bad\_NotWritable|The access level does not allow writing to the *Node* .|
 |Bad\_ObjectDeleted|The *Object* cannot be used because it has been deleted.|
 |Bad\_OutOfRange|The value was out of range.|
 |Bad\_ReferenceTypeIdInvalid|The reference type id does not refer to a valid reference type node.|
-|Bad\_SecurityModeInsufficient|The SecurityPolicy and/or MessageSecurityMode do not match the *Server* requirements to complete the operation.  
-
-For example, a user may have the right to receive the data but the data can only be transferred through an encrypted channel with an appropriate *SecurityPolicy* .|
+|Bad\_SecurityModeInsufficient|The SecurityPolicy and/or MessageSecurityMode do not match the *Server* requirements to complete the operation.<br>For example, a user may have the right to receive the data but the data can only be transferred through an encrypted channel with an appropriate *SecurityPolicy* .|
 |Bad\_SourceNodeIdInvalid|The source node id does not refer to a valid node.|
 |Bad\_StructureMissing|A mandatory structured parameter was missing or null.|
 |Bad\_TargetNodeIdInvalid|The target node id does not refer to a valid node.|
 |Bad\_TypeDefinitionInvalid|The type definition node id does not reference an appropriate type node.|
 |Bad\_TypeMismatch|The value supplied for the attribute is not of the same type as the attribute's value.|
-|Bad\_WaitingForInitialData|Waiting for the *Server* to obtain values from the underlying data source.  
-
-After creating a *MonitoredItem* or after setting the MonitoringMode from DISABLED to REPORTING or SAMPLING, it may take some time for the *Server* to actually obtain values for these items. In such cases the *Server* can send a *Notification* with this status prior to the *Notification* with the first value or status from the data source.|
+|Bad\_WaitingForInitialData|Waiting for the *Server* to obtain values from the underlying data source.<br>After creating a *MonitoredItem* or after setting the MonitoringMode from DISABLED to REPORTING or SAMPLING, it may take some time for the *Server* to actually obtain values for these items. In such cases the *Server* can send a *Notification* with this status prior to the *Notification* with the first value or status from the data source.|
   
 
   
@@ -8221,18 +5640,14 @@ After creating a *MonitoredItem* or after setting the MonitoringMode from DISABL
 
 The *TimestampsToReturn* is an enumeration that specifies the *Timestamp* *Attributes* to be transmitted for *MonitoredItems* or *Nodes* in *Read* and *HistoryRead* . The values of this parameter are defined in [Table 178](/§\_Ref112485903) .  
 
- **Table 178\- TimestampsToReturn values**   
+Table 178 - TimestampsToReturn values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
 |SOURCE|0|Return the source timestamp.|
 |SERVER|1|Return the *Server* timestamp.|
 |BOTH|2|Return both the source and *Server* timestamps.|
-|NEITHER|3|Return neither timestamp.  
-
-This is the default value for *MonitoredItems* if a *Variable* value is not being accessed.  
-
-For *HistoryRead* this is not a valid setting.|
+|NEITHER|3|Return neither timestamp.<br>This is the default value for *MonitoredItems* if a *Variable* value is not being accessed.<br>For *HistoryRead* this is not a valid setting.|
 |INVALID|4|No value specified.|
   
 
@@ -8244,7 +5659,7 @@ For *HistoryRead* this is not a valid setting.|
 
 The *UserIdentityToken* structure used in the *Server* *Service* *Set* allows *Clients* to specify the identity of the user they are acting on behalf of. The exact mechanism used to identify users depends on the system configuration. The different types of identity tokens are based on the most common mechanisms that are used in systems today. [Table 179](/§\_Ref128242293) defines the current set of user identity tokens. The *ExtensibleParameter* type is defined in [7.17](/§\_Ref182070092) .  
 
- **Table 179\- UserIdentityToken parameterTypeIds**   
+Table 179 - UserIdentityToken parameterTypeIds  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -8292,13 +5707,11 @@ If no encryption is applied, the structure is not used and only the secret witho
 
 [Table 180](/§\_Ref183363340) describes how to serialize *UserIdentityTokens* before applying encryption.  
 
- **Table 180\- Legacy UserIdentityToken Encrypted Token Secret Format**   
+Table 180 - Legacy UserIdentityToken Encrypted Token Secret Format  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
-|Length|Byte [4]|The length of the data to be encrypted including the *ServerNonce* but excluding the *length* field.  
-
-This field is a 4-byte unsigned integer encoded with the least significant bytes appearing first.|
+|Length|Byte [4]|The length of the data to be encrypted including the *ServerNonce* but excluding the *length* field.<br>This field is a 4-byte unsigned integer encoded with the least significant bytes appearing first.|
 |tokenData|Byte [\*]|The token data.|
 |serverNonce|Byte [\*]|The last *ServerNonce* returned by the *Server* in the *CreateSession* or *ActivateSession* response.|
   
@@ -8363,7 +5776,7 @@ The *EncryptedSecret* is deserilized and validated as follows *:*
 
 The fields in the *EncryptedSecret* are described in [Table 181](/§\_Ref483801559) . The first three fields *TypeId* , *EncodingMask* and *Length* belong to the *ExtensionObject* encoding defined in [OPC 10000-6](/§UAPart6) .  
 
- **Table 181\- EncryptedSecret layout**   
+Table 181 - EncryptedSecret layout  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -8373,29 +5786,13 @@ The fields in the *EncryptedSecret* are described in [Table 181](/§\_Ref4838015
 |SecurityPolicyUri|String|The URI for the *SecurityPolicy* used to apply security.|
 |Certificate|ByteString|The signing and/or encrypting *Certificate* .|
 |SigningTime|DateTime|When the *Signature* was created.|
-|KeyDataLength|UInt16|The length, in bytes, of the *KeyData* that follows  
-
-If the *KeyData* is encrypted this is the length of the encrypted data;  
-
-Otherwise, it is the length of the unencrypted data.|
+|KeyDataLength|UInt16|The length, in bytes, of the *KeyData* that follows<br>If the *KeyData* is encrypted this is the length of the encrypted data;<br>Otherwise, it is the length of the unencrypted data.|
 |KeyData|Byte [\*]|The key data used to create the keys needed for decrypting and verifying the payload using the *SymmetricEncryptionAlgorithm* specified by the *SecurityPolicyUri* . Each *EncryptedSecret DataType* describes how the key data is structured for different *SecurityPolicies* .|
-|Nonce|ByteString|This is the last *serverNonce* returned in the *CreateSession* or *ActivateSession* *Response* when a *UserIdentityToken* is passed with the *ActivateSession* *Request* .  
-
-If used outside of an *ActivateSession* call, the *Nonce* is created by the sender and its length shall be between 32 and 128 bytes inclusive.|
-|Secret|ByteString|The secret to protect.  
-
-The *password* when used with *UserNameIdentityTokens* .  
-
-The *tokenData* when used with *IssuedIdentityTokens.*  
-
-If the *Secret* is a *String* is it encoded using UTF-8 first.|
-|PayloadPadding|Byte[\*]|Additional padding added to ensure the size of the encrypted payload is an integer multiple of the *InitializationVectorLength* specified by the *SecurityPolicyUri* . If the *InitializationVectorLength* is less than 16 bytes then 16 bytes are used instead.  
-
-The value of each byte is the least significant byte of the *PayloadPaddingSize* .|
+|Nonce|ByteString|This is the last *serverNonce* returned in the *CreateSession* or *ActivateSession* *Response* when a *UserIdentityToken* is passed with the *ActivateSession* *Request* .<br>If used outside of an *ActivateSession* call, the *Nonce* is created by the sender and its length shall be between 32 and 128 bytes inclusive.|
+|Secret|ByteString|The secret to protect.<br>The *password* when used with *UserNameIdentityTokens* .<br>The *tokenData* when used with *IssuedIdentityTokens.*<br>If the *Secret* is a *String* is it encoded using UTF-8 first.|
+|PayloadPadding|Byte[\*]|Additional padding added to ensure the size of the encrypted payload is an integer multiple of the *InitializationVectorLength* specified by the *SecurityPolicyUri* . If the *InitializationVectorLength* is less than 16 bytes then 16 bytes are used instead.<br>The value of each byte is the least significant byte of the *PayloadPaddingSize* .|
 |PayloadPaddingSize|UInt16|The size of the padding added to the payload.|
-|Signature|Byte[\*]|The *Signature* calculated after all encryption is applied.  
-
-Each *EncryptedSecret DataType* describes how the *Signature* is calculated for different *SecurityPolicies* .|
+|Signature|Byte[\*]|The *Signature* calculated after all encryption is applied.<br>Each *EncryptedSecret DataType* describes how the *Signature* is calculated for different *SecurityPolicies* .|
   
 
   
@@ -8410,7 +5807,7 @@ Where the *InitializationVectorLength* is specified by the SymmetricEncryptionAl
 
 The currently available *EncryptedSecret* *DataTypes* are defined in [Table 182](/§\_Ref482755394) .  
 
- **Table 182\- EncryptedSecret DataTypes**   
+Table 182 - EncryptedSecret DataTypes  
 
 | **Type Name** | **When to Use** |
 |---|---|
@@ -8426,7 +5823,7 @@ The *RsaEncryptedSecret* uses RSA based *Asymmetric Cryptography* .
 
 Additional semantics for the fields in the *EncryptedSecret* layout for the *RsaEncryptedSecret* *Structure* are described in [Table 183](/§\_Ref486275903) .  
 
- **Table 183\- RsaEncryptedSecret structure**   
+Table 183 - RsaEncryptedSecret structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -8445,11 +5842,7 @@ Additional semantics for the fields in the *EncryptedSecret* layout for the *Rsa
 |Secret|ByteString|See [Table 181](/§\_Ref483801559) .|
 |PayloadPadding|Byte[\*]|See [Table 181](/§\_Ref483801559) .|
 |PayloadPaddingSize|UInt16|See [Table 181](/§\_Ref483801559) .|
-|Signature|Byte[\*]|The *Signature* calculated with the *SigningKey* using the *SymmetricEncryptionAlgorithm* from the *SecurityPolicy* .  
-
-The *Signature* is calculated after encrypting the *KeyData* and the payload.  
-
-The *Signature* can only be checked after the *KeyData* is decrypted. It allows the receiver to verify that the message has not beem tampered with. It does not provide any information about who created the *EncryptedSecret* .|
+|Signature|Byte[\*]|The *Signature* calculated with the *SigningKey* using the *SymmetricEncryptionAlgorithm* from the *SecurityPolicy* .<br>The *Signature* is calculated after encrypting the *KeyData* and the payload.<br>The *Signature* can only be checked after the *KeyData* is decrypted. It allows the receiver to verify that the message has not beem tampered with. It does not provide any information about who created the *EncryptedSecret* .|
   
 
   
@@ -8462,7 +5855,7 @@ Additional semantics for the fields in the *EncryptedSecret* layout for the *Ecc
 
 The *EccEncryptedSecret* uses ECC *EphemeralKeys* to create the symmetric key used to encrypt the Secret. The handshake required to create and use the *EphemeralKeys* is described in [OPC 10000-6](/§UAPart6) .  
 
- **Table 184\- EccEncryptedSecret Layout**   
+Table 184 - EccEncryptedSecret Layout  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -8470,11 +5863,7 @@ The *EccEncryptedSecret* uses ECC *EphemeralKeys* to create the symmetric key us
 |EncodingMask|Byte|See [Table 181](/§\_Ref483801559)|
 |Length|UInt32|See [Table 181](/§\_Ref483801559)|
 |SecurityPolicyUri|String|See [Table 181](/§\_Ref483801559)|
-|Certificate|ByteString|The signing *Certificate* encoded in DER form.  
-
-The value shall include the entire chain.  
-
-This value may be null or empty if the *SigningCertificate* is known to the receiver. This is true if the structure is used to provide a *UserIdentityToken* to a *Server* over a *SecureChannel* and the *SigningCertificate* is the *Client ApplicationInstance Certificate* .|
+|Certificate|ByteString|The signing *Certificate* encoded in DER form.<br>The value shall include the entire chain.<br>This value may be null or empty if the *SigningCertificate* is known to the receiver. This is true if the structure is used to provide a *UserIdentityToken* to a *Server* over a *SecureChannel* and the *SigningCertificate* is the *Client ApplicationInstance Certificate* .|
 |SigningTime|DateTime|See [Table 181](/§\_Ref483801559)|
 |KeyDataLength|UInt16|The length of the *KeyData* without encryption.|
 |KeyData||The *KeyData* is not encrypted.|
@@ -8484,9 +5873,7 @@ This value may be null or empty if the *SigningCertificate* is known to the rece
 |Secret|ByteString|See [Table 181](/§\_Ref483801559)|
 |PayloadPadding|Byte [\*]|See [Table 181](/§\_Ref483801559)|
 |PayloadPaddingSize|UInt16|See [Table 181](/§\_Ref483801559)|
-|Signature|Byte [\*]|When using *AuthenticatedEncryption* the *Signature* has two parts: the *Signature* produced when the secret is encrypted using the *SymmetricEncryptionAlgorithm* and the *Signature* calculated using the *Certificate* and the *AsymmetricSignatureAlgorithm* . Both *Signatures* are calculated from the start of the packet. The *AsymmetricSignatureAlgorithm* *Signature* includes the *SymmetricEncryptionAlgorithm* *Signature* .  
-
-When using *UnauthenticatedEncryption* the *Signature* is only calculated using the *Certificate* and the *AsymmetricSignatureAlgorithm.*|
+|Signature|Byte [\*]|When using *AuthenticatedEncryption* the *Signature* has two parts: the *Signature* produced when the secret is encrypted using the *SymmetricEncryptionAlgorithm* and the *Signature* calculated using the *Certificate* and the *AsymmetricSignatureAlgorithm* . Both *Signatures* are calculated from the start of the packet. The *AsymmetricSignatureAlgorithm* *Signature* includes the *SymmetricEncryptionAlgorithm* *Signature* .<br>When using *UnauthenticatedEncryption* the *Signature* is only calculated using the *Certificate* and the *AsymmetricSignatureAlgorithm.*|
   
 
   
@@ -8497,14 +5884,12 @@ The *AnonymousIdentityToken* is used to indicate that the *Client* has no user c
 
 [Table 185](/§\_Ref183190852) defines the *AnonymousIdentityToken* parameter.  
 
- **Table 185\- AnonymousIdentityToken**   
+Table 185 - AnonymousIdentityToken  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |AnonymousIdentityToken|Structure|An anonymous user identity.|
-|policyId|String|An identifier for the *UserTokenPolicy* that the token conforms to.  
-
-The *UserTokenPolicy* structure is defined in [7.41](/§\_Ref184567336) . Servers that provide a null or empty *PolicyId* shall accept null or empty and treat them as equal.|
+|policyId|String|An identifier for the *UserTokenPolicy* that the token conforms to.<br>The *UserTokenPolicy* structure is defined in [7.41](/§\_Ref184567336) . Servers that provide a null or empty *PolicyId* shall accept null or empty and treat them as equal.|
   
 
   
@@ -8523,38 +5908,24 @@ If the *SecurityPolicy* is *None* then the password only contains the UTF-8 enco
 
 [Table 186](/§\_Ref122192489) defines the *UserNameIdentityToken* parameter.  
 
- **Table 186\- UserNameIdentityToken**   
+Table 186 - UserNameIdentityToken  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |UserNameIdentityToken|Structure|UserName value.|
-|policyId|String|An identifier for the *UserTokenPolicy* that the token conforms to.  
-
-The *UserTokenPolicy* structure is defined in [7.41](/§\_Ref184567336) . Servers that provide a null or empty *PolicyId* shall accept null or empty and treat them as equal.|
+|policyId|String|An identifier for the *UserTokenPolicy* that the token conforms to.<br>The *UserTokenPolicy* structure is defined in [7.41](/§\_Ref184567336) . Servers that provide a null or empty *PolicyId* shall accept null or empty and treat them as equal.|
 |userName|String|A string that identifies the user.|
-|password|ByteString|The password for the user. The password can be an empty string.  
-
-The format used for the encrypted data is described in [7.40.2.2](/§\_Ref482553831) .|
-|encryptionAlgorithm|String|A string containing the URI of the *AsymmetricEncryptionAlgorithm* .  
-
-The URI string values are defined names that may be used as part of the security profiles specified in [OPC 10000-7](/§UAPart7) .  
-
-This parameter is null or empty if the password is not encrypted.|
+|password|ByteString|The password for the user. The password can be an empty string.<br>The format used for the encrypted data is described in [7.40.2.2](/§\_Ref482553831) .|
+|encryptionAlgorithm|String|A string containing the URI of the *AsymmetricEncryptionAlgorithm* .<br>The URI string values are defined names that may be used as part of the security profiles specified in [OPC 10000-7](/§UAPart7) .<br>This parameter is null or empty if the password is not encrypted.|
   
 
   
 
 [Table 187](/§\_Ref367827984) describes the dependencies for selecting the *AsymmetricEncryptionAlgorithm* for the *UserNameIdentityToken* . The *SecureChannel* *SecurityPolicy* URI is specified in the *EndpointDescription* and used in subsequent OpenSecureChannel requests. The *UserTokenPolicy* *SecurityPolicy* URI is specified in the *EndpointDescription* . The *encryptionAlgorithm* is specified in the *UserNameIdentityToken* or *IssuedIdentityToken* provided by the *Client* in the *ActivateSession* call. The *SecurityPolicy* Other in the table refers to any *SecurityPolicy* other than None. The selection of the *EncryptionAlgorithm* is based on the *UserTokenPolicy* . The *SecureChannel* *SecurityPolicy* is used if the *UserTokenPolicy* is null or empty. If the *SecurityMode* is not NONE, it is recommended to use the same *SecurityPolicy* for the *SecureChannel* and the user token. The *SecurityPolicy* used for the user token shall be compatible with the *Certificate* in the *EndpointDescription* .  
 
- **Table 187\- EncryptionAlgorithm selection**   
+Table 187 - EncryptionAlgorithm selection  
 
-| **SecureChannel**   
-
- **SecurityPolicy** | **SecureChannel**   
-
- **SecurityMode** | **UserTokenPolicy**   
-
- **SecurityPolicy** | **UserIdentityToken EncryptionAlgorithm** |
+| **SecureChannel** <br> **SecurityPolicy** | **SecureChannel** <br> **SecurityMode** | **UserTokenPolicy** <br> **SecurityPolicy** | **UserIdentityToken EncryptionAlgorithm** |
 |---|---|---|---|
 |Security Policy - None|NONE|Null or empty|No encryption (a)|
 |Security Policy - None|NONE|Security Policy - None|No encryption (a)|
@@ -8564,9 +5935,7 @@ This parameter is null or empty if the password is not encrypted.|
 |Security Policy - Other|Other than NONE|Security Policy - Other|Asymmetric algorithm for "Other"|
 |Security Policy - Other|SIGNANDENCRYPT|Security Policy - None|No encryption but encrypted SecureChannel|
 |Security Policy - Other|SIGN|Security Policy - None|Invalid configuration shall be rejected.|
-|(a) The use of this configuration without network encryption would result in a serious security fault.  
-
-(b) This configuration should not be used.|
+|(a) The use of this configuration without network encryption would result in a serious security fault.<br>(b) This configuration should not be used.|
   
 
   
@@ -8581,14 +5950,12 @@ This token shall always be accompanied by a *Signature* in the *userTokenSignatu
 
 [Table 188](/§\_Ref122192442) defines the X509IdentityToken parameter.  
 
- **Table 188\- X.509 v3 Identity Token**   
+Table 188 - X.509 v3 Identity Token  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |X509IdentityToken|structure|X.509 v3 value.|
-|policyId|String|An identifier for the *UserTokenPolicy* that the token conforms to.  
-
-The *UserTokenPolicy* structure is defined in [7.41](/§\_Ref184567336) . Servers that provide a null or empty *PolicyId* shall accept null or empty and treat them as equal.|
+|policyId|String|An identifier for the *UserTokenPolicy* that the token conforms to.<br>The *UserTokenPolicy* structure is defined in [7.41](/§\_Ref184567336) . Servers that provide a null or empty *PolicyId* shall accept null or empty and treat them as equal.|
 |certificateData|ByteString|The X.509 v3 *Certificate* in DER format.|
   
 
@@ -8610,24 +5977,14 @@ If the *SecurityPolicy* is *None* then the *tokenData* only contains the UTF-8 e
 
 [Table 189](/§\_Ref153107520) defines the *IssuedIdentityToken* parameter.  
 
- **Table 189\- IssuedIdentityToken**   
+Table 189 - IssuedIdentityToken  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |IssuedIdentityToken|structure|The token provided by an *Authorization Service* .|
-|policyId|String|An identifier for the *UserTokenPolicy* that the token conforms to.  
-
-The *UserTokenPolicy* structure is defined in [7.41](/§\_Ref184567336) . Servers that provide a null or empty *PolicyId* shall accept null or empty and treat them as equal.|
-|tokenData|ByteString|The text or binary representation of the token.  
-
-The format of the data depends on the associated *UserTokenPolicy.*|
-|encryptionAlgorithm|String|The URI of the *AsymmetricEncryptionAlgorithm* .  
-
-The list of OPC UA-defined names that may be used is specified in [OPC 10000-7](/§UAPart7) .  
-
-See [Table 187](/§\_Ref367827984) for details on picking the correct URI.  
-
-This parameter is null or empty if the *tokenData* is not encrypted or if the *EncryptedSecret* format is used.|
+|policyId|String|An identifier for the *UserTokenPolicy* that the token conforms to.<br>The *UserTokenPolicy* structure is defined in [7.41](/§\_Ref184567336) . Servers that provide a null or empty *PolicyId* shall accept null or empty and treat them as equal.|
+|tokenData|ByteString|The text or binary representation of the token.<br>The format of the data depends on the associated *UserTokenPolicy.*|
+|encryptionAlgorithm|String|The URI of the *AsymmetricEncryptionAlgorithm* .<br>The list of OPC UA-defined names that may be used is specified in [OPC 10000-7](/§UAPart7) .<br>See [Table 187](/§\_Ref367827984) for details on picking the correct URI.<br>This parameter is null or empty if the *tokenData* is not encrypted or if the *EncryptedSecret* format is used.|
   
 
   
@@ -8636,36 +5993,16 @@ This parameter is null or empty if the *tokenData* is not encrypted or if the *E
 
 The components of this parameter are defined in [Table 190](/§\_Ref128244140) .  
 
- **Table 190\- UserTokenPolicy**   
+Table 190 - UserTokenPolicy  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |UserTokenPolicy|structure|Specifies a *UserIdentityToken* that a *Server* will accept *.*|
-|policyId|String|An identifier for the UserTokenPolicy assigned by the *Server* . The identifier may be null or empty. Null or empty are equal. The identifier shall be unique across the *UserTokenPolicies* assigned by the *Server* .  
-
-The *Client* specifies this value when it constructs a *UserIdentityToken* that conforms to the policy.  
-
-This value is only unique within the context of a single *Server* .|
-|tokenType|Enum  
-
-User TokenType|The type of user identity token required. The UserTokenType is defined in [7.42](/§\_Ref43034466)  
-
-A tokenType of *ANONYMOUS* indicates that the *Server* does not require any user identification. In this case, the *Client* *ApplicationInstanceCertificate* is used as the user identification.|
-|issuedTokenType|String|A URI for the type of token.  
-
-[OPC 10000-6](/§UAPart6) defines URIs for common issued token types.  
-
-Vendors may specify their own token types.  
-
-This field may only be specified if *TokenType* is *ISSUEDTOKEN* .|
-|issuerEndpointUrl|String|An optional string which depends on the *Authorization Service* .  
-
-The meaning of this value depends on the *issuedTokenType.* Further details for the different token types are defined in [OPC 10000-6](/§UAPart6) .  
-
-For JWTs this is a JSON object with fields defined in [OPC 10000-6](/§UAPart6) .|
-|securityPolicyUri|String|The security policy to use when encrypting or signing the *UserIdentityToken* when it is passed to the *Server* in the *ActivateSession* request. Clause [7.40](/§\_Ref128235836) describes how this parameter is used.  
-
-The security policy for the SecureChannel is used if this value is null or empty.|
+|policyId|String|An identifier for the UserTokenPolicy assigned by the *Server* . The identifier may be null or empty. Null or empty are equal. The identifier shall be unique across the *UserTokenPolicies* assigned by the *Server* .<br>The *Client* specifies this value when it constructs a *UserIdentityToken* that conforms to the policy.<br>This value is only unique within the context of a single *Server* .|
+|tokenType|Enum<br>User TokenType|The type of user identity token required. The UserTokenType is defined in [7.42](/§\_Ref43034466)<br>A tokenType of *ANONYMOUS* indicates that the *Server* does not require any user identification. In this case, the *Client* *ApplicationInstanceCertificate* is used as the user identification.|
+|issuedTokenType|String|A URI for the type of token.<br>[OPC 10000-6](/§UAPart6) defines URIs for common issued token types.<br>Vendors may specify their own token types.<br>This field may only be specified if *TokenType* is *ISSUEDTOKEN* .|
+|issuerEndpointUrl|String|An optional string which depends on the *Authorization Service* .<br>The meaning of this value depends on the *issuedTokenType.* Further details for the different token types are defined in [OPC 10000-6](/§UAPart6) .<br>For JWTs this is a JSON object with fields defined in [OPC 10000-6](/§UAPart6) .|
+|securityPolicyUri|String|The security policy to use when encrypting or signing the *UserIdentityToken* when it is passed to the *Server* in the *ActivateSession* request. Clause [7.40](/§\_Ref128235836) describes how this parameter is used.<br>The security policy for the SecureChannel is used if this value is null or empty.|
   
 
   
@@ -8674,7 +6011,7 @@ The security policy for the SecureChannel is used if this value is null or empty
 
 The *UserTokenType* is an enumeration that specifies the user identity token type. The possible values are described in [Table 191](/§\_Ref43034490) .  
 
- **Table 191\- UserTokenType values**   
+Table 191 - UserTokenType values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -8700,15 +6037,13 @@ The value 0 is used to indicate that no version information is available.
 
 The components of this parameter are defined in [Table 192](/§\_Ref141201840) .  
 
- **Table 192\- ViewDescription**   
+Table 192 - ViewDescription  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |ViewDescription|structure|Specifies a *View.*|
 |viewId|NodeId|*NodeId* of the *View* to *Query* . A null value indicates the entire *AddressSpace.*|
-|timestamp  
-
-|UtcTime|The time date desired. The corresponding version is the one with the closest previous creation timestamp. Either the *Timestamp* or the *viewVersion* parameter may be set by a *Client* , but not both. If *ViewVersion* is set this parameter shall be null.|
+|timestamp<br>|UtcTime|The time date desired. The corresponding version is the one with the closest previous creation timestamp. Either the *Timestamp* or the *viewVersion* parameter may be set by a *Client* , but not both. If *ViewVersion* is set this parameter shall be null.|
 |viewVersion|UInt32|The version number for the *View* desired. When *Nodes* are added to or removed from a *View* , the value of a View's *ViewVersion Property* is updated. Either the *Timestamp* or the *viewVersion* parameter may be set by a *Client* , but not both. The ViewVersion *Property* is defined in [OPC 10000-3](/§UAPart3) . If *timestamp* is set this parameter shall be 0. The current view is used if timestamp is null and viewVersion is 0.|
   
 
@@ -8726,38 +6061,22 @@ A *RelativePath* is a structure that describes a sequence of *References* and *N
 
 The components of a *RelativePath* text format are specified in [Table A.1](/§\_Ref179408330) .  
 
- **Table A. 1\- RelativePath**   
+Table A. 1 - RelativePath  
 
 | **Symbol** | **Meaning** |
 |---|---|
 |/|The forward slash character indicates that the *Server* is to follow any subtype of *HierarchicalReferences* .|
 |.|The period (dot) character indicates that the *Server* is to follow any subtype of a *Aggregates* *ReferenceType* .|
-|\<[\#\!ns:]ReferenceType\>|A string delimited by the '\<' and '\>' symbols specifies the *BrowseName* of a *ReferenceType* to follow. By default, any *References* of the subtypes the *ReferenceType* are followed as well. A '\#' placed in front of the BrowseName indicates that subtypes should not be followed.  
-
-A '\!' in front of the BrowseName is used to indicate that the inverse *Reference* should be followed.  
-
-The *BrowseName* may be qualified with a namespace index (indicated by a numeric prefix followed by a colon). This namespace index is used specify the namespace component of the *BrowseName* for the *ReferenceType.* If the namespace prefix is omitted then namespace index 0 is used.|
-|[ns:]BrowseName|A string that follows a '/', '.' or '\>' symbol specifies the *BrowseName* of a target *Node* to return or follow. This BrowseName may be prefixed by its namespace index. If the namespace prefix is omitted then namespace index 0 is used.  
-
-Omitting the final *BrowseName* from a path is equivalent to a wildcard operation that matches all *Nodes* which are the target of the *Reference* specified by the path.|
-|&|The & sign character is the escape character. It is used to specify reserved characters that appear within a *BrowseName* . A reserved character is escaped by inserting the '&' in front of it. Examples of *BrowseNames* with escaped characters are:  
-
-Received browse path name Resolves to  
-
-"&/Name\_1"    "/Name\_1"  
-
-"&.Name\_2"    ".Name\_2"  
-
-"&:Name\_3"    ":Name\_3"  
-
-"&&Name\_4"   "&Name\_4"|
+|\<[\#\!ns:]ReferenceType\>|A string delimited by the '\<' and '\>' symbols specifies the *BrowseName* of a *ReferenceType* to follow. By default, any *References* of the subtypes the *ReferenceType* are followed as well. A '\#' placed in front of the BrowseName indicates that subtypes should not be followed.<br>A '\!' in front of the BrowseName is used to indicate that the inverse *Reference* should be followed.<br>The *BrowseName* may be qualified with a namespace index (indicated by a numeric prefix followed by a colon). This namespace index is used specify the namespace component of the *BrowseName* for the *ReferenceType.* If the namespace prefix is omitted then namespace index 0 is used.|
+|[ns:]BrowseName|A string that follows a '/', '.' or '\>' symbol specifies the *BrowseName* of a target *Node* to return or follow. This BrowseName may be prefixed by its namespace index. If the namespace prefix is omitted then namespace index 0 is used.<br>Omitting the final *BrowseName* from a path is equivalent to a wildcard operation that matches all *Nodes* which are the target of the *Reference* specified by the path.|
+|&|The & sign character is the escape character. It is used to specify reserved characters that appear within a *BrowseName* . A reserved character is escaped by inserting the '&' in front of it. Examples of *BrowseNames* with escaped characters are:<br>Received browse path name Resolves to<br>"&/Name\_1"    "/Name\_1"<br>"&.Name\_2"    ".Name\_2"<br>"&:Name\_3"    ":Name\_3"<br>"&&Name\_4"   "&Name\_4"|
   
 
   
 
 [Table A.2](/§\_Ref179408349) provides *RelativePaths* examples in text format.  
 
- **Table A. 2\- *RelativePath* Examples**   
+Table A. 2 - RelativePath Examples  
 
 | **Browse Path** | **Description** |
 |---|---|
@@ -8850,18 +6169,14 @@ Figure B. 1 - Filter logic tree example
 
 [Table B.1](/§\_Ref180476910) describes the elements, operators and operands used in the example.  
 
- **Table B. 1\- ContentFilter example**   
+Table B. 1 - ContentFilter example  
 
 | **Element[]** | **Operator** | **Operand[0]** | **Operand[1]** | **Operand[2]** | **Operand[3]** |
 |---|---|---|---|---|---|
 |0|And|ElementOperand = 1|Element Operand = 4|||
 |1|Or|ElementOperand = 2|Element Operand = 3|||
-|2|Equals|AttributeOperand = NodeId: AType, BrowsePath: ".12:A",  
-
-Attribute:value|LiteralOperand = '5'|||
-|3|InList|AttributeOperand = NodeId: BType, BrowsePath: ".12:B",  
-
-Attribute:value|LiteralOperand = '3'|LiteralOperand = '5'|LiteralOperand = '7'|
+|2|Equals|AttributeOperand = NodeId: AType, BrowsePath: ".12:A",<br>Attribute:value|LiteralOperand = '5'|||
+|3|InList|AttributeOperand = NodeId: BType, BrowsePath: ".12:B",<br>Attribute:value|LiteralOperand = '3'|LiteralOperand = '5'|LiteralOperand = '7'|
 |4|Like|AttributeOperand = NodeId: BaseObjectType, BrowsePath: ".", Attribute: displayName|LiteralOperand = "Main%"|||
   
 
@@ -8877,7 +6192,7 @@ Figure B. 2 - Filter logic tree example
 
 [Table B.2](/§\_Ref180476811) describes the elements, operators and operands used in the example.  
 
- **Table B. 2\- ContentFilter example**   
+Table B. 2 - ContentFilter example  
 
 | **Element[]** | **Operator** | **Operand[0]** | **Operand[1]** |
 |---|---|---|---|
@@ -8924,7 +6239,7 @@ Query Services allow a special handling of the targetName field in the RelativeP
 
 [Table B.3](/§\_Ref136942240) defines the request parameters and [Table B.4](/§\_Ref136942241) the response parameters for the *QueryFirst* *Service* .  
 
- **Table B. 3\- QueryFirst Request Parameters**   
+Table B. 3 - QueryFirst Request Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -8935,69 +6250,37 @@ Query Services allow a special handling of the targetName field in the RelativeP
 | typeDefinitionNode|ExpandedNodeId|*NodeId* of the originating *TypeDefinitionNode* of the instances for which data is to be returned.|
 | includeSubTypes|Boolean|A flag that indicates whether the *Server* should include instances of subtypes of the TypeDefinitionNode in the list of instances of the *Node* type.|
 | dataToReturn []|QueryDataDescription|Specifies an *Attribute* or *Reference* from the originating typeDefinitionNode along a given relativePath for which to return data. This structure is defined in-line with the following indented items.|
-|  relativePath|RelativePath|Browse path relative to the originating Node that identifies the Node which contains the data that is being requested, where the originating *Node* is an instance *Node* of the type defined by the type definition *Node* . The instance *Nodes* are further limited by the filter provided as part of this call. For a definition of relativePath see [7.30](/§\_Ref139474657) .  
-
-This relative path could end on a *Reference* , in which case the *ReferenceDescription* of the *Reference* would be returned as its value.  
-
-The targetName field of the relativePath may contain a type NodeId. This is done by setting the *namespaceIndex* of the *targetName* to zero and the *name* part of the *targetName* to the XML representation of the *NodeId* . The XML representation is defined in [OPC 10000-6](/§UAPart6) .  
-
-When matching instances are returned as the target node, the target node should be an instance of the specified type or subtype of the specified type.|
+|  relativePath|RelativePath|Browse path relative to the originating Node that identifies the Node which contains the data that is being requested, where the originating *Node* is an instance *Node* of the type defined by the type definition *Node* . The instance *Nodes* are further limited by the filter provided as part of this call. For a definition of relativePath see [7.30](/§\_Ref139474657) .<br>This relative path could end on a *Reference* , in which case the *ReferenceDescription* of the *Reference* would be returned as its value.<br>The targetName field of the relativePath may contain a type NodeId. This is done by setting the *namespaceIndex* of the *targetName* to zero and the *name* part of the *targetName* to the XML representation of the *NodeId* . The XML representation is defined in [OPC 10000-6](/§UAPart6) .<br>When matching instances are returned as the target node, the target node should be an instance of the specified type or subtype of the specified type.|
 |  attributeId|IntegerId|Id of the *Attribute* . This should be a valid *Attribute* Id. The *IntegerId* is defined in [7.19](/§\_Ref128929614) . The IntegerId for Attributes are defined in [OPC 10000-6](/§UAPart6) . If the *RelativePath* ended in a *Reference* then this parameter is 0 and ignored by the *Server* .|
-|  indexRange|NumericRange|This parameter is used to identify a single element of a structure or an array, or a single range of indexes for arrays. If a range of elements are specified, the values are returned as a composite. The first element is identified by index 0 (zero). The *NumericRange* type is defined in [7.27](/§\_Ref129174867) .  
-
-This parameter is null or empty if the specified *Attribute* is not an array or a structure. However, if the specified *Attribute* is an array or a structure, and this parameter is null or empty, then all elements are to be included in the range.|
+|  indexRange|NumericRange|This parameter is used to identify a single element of a structure or an array, or a single range of indexes for arrays. If a range of elements are specified, the values are returned as a composite. The first element is identified by index 0 (zero). The *NumericRange* type is defined in [7.27](/§\_Ref129174867) .<br>This parameter is null or empty if the specified *Attribute* is not an array or a structure. However, if the specified *Attribute* is an array or a structure, and this parameter is null or empty, then all elements are to be included in the range.|
 |Filter|ContentFilter|Resulting *Nodes* should be limited to the *Nodes* matching the criteria defined by the filter. ContentFilter is discussed in [7.7](/§\_Ref132019059) . If an empty filter is provided then the entire *AddressSpace* should be examined and all *Nodes* that contain a matching requested *Attribute* or *Reference* are returned.|
-|maxDataSetsToReturn|Counter|The number of *QueryDataSets* that the *Client* wants the *Server* to return in the response and on each subsequent continuation call response. The *Server* is allowed to further limit the response, but should not exceed this limit.  
-
-A value of 0 indicates that the *Client* is imposing no limitation.|
-|maxReferencesToReturn|Counter|The number of *References* that the *Client* wants the *Server* to return in the response for each *QueryDataSet* and on each subsequent continuation call response. The *Server* is allowed to further limit the response, but should not exceed this limit.  
-
-A value of 0 indicates that the *Client* is imposing no limitation.  
-
-For example a result where 4 *Nodes* are being returned, but each has 100 *References* , if this limit were set to 50 then only the first 50 *References* for each *Node* would be returned on the initial call and a continuation point would be set indicating additional data.|
+|maxDataSetsToReturn|Counter|The number of *QueryDataSets* that the *Client* wants the *Server* to return in the response and on each subsequent continuation call response. The *Server* is allowed to further limit the response, but should not exceed this limit.<br>A value of 0 indicates that the *Client* is imposing no limitation.|
+|maxReferencesToReturn|Counter|The number of *References* that the *Client* wants the *Server* to return in the response for each *QueryDataSet* and on each subsequent continuation call response. The *Server* is allowed to further limit the response, but should not exceed this limit.<br>A value of 0 indicates that the *Client* is imposing no limitation.<br>For example a result where 4 *Nodes* are being returned, but each has 100 *References* , if this limit were set to 50 then only the first 50 *References* for each *Node* would be returned on the initial call and a continuation point would be set indicating additional data.|
   
 
   
 
- **Table B. 4\- QueryFirst Response Parameters**   
+Table B. 4 - QueryFirst Response Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |Response|||
 |responseHeader|ResponseHeader|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
-|queryDataSets []|QueryDataSet|The array of *QueryDataSets* . This array is empty if no *Nodes* or *References* met the *nodeTypes* criteria. In this case the continuationPoint parameter should be empty.  
-
-The *QueryDataSet* type is defined in [B.2.5](/§\_Ref141617868) .|
-|continuationPoint|ContinuationPoint|*Server*\-defined opaque value that identifies the continuation point.  
-
-The continuation point is used only when the *Query* results are too large to be returned in a single response. "Too large" in this context means that the *Server* is not able to return a larger response or that the number of *QueryDataSets* to return exceeds the maximum number of *QueryDataSets* to return that was specified by the *Client* in the request.  
-
-The continuation point is used in the *QueryNext* *Service* . When not used, the value of this parameter is null or empty. If a continuation point is returned, the *Client* should call *QueryNext* to get the next set of *QueryDataSets* or to free the resources for the continuation point in the *Server* .  
-
-A continuation point should remain active until the *Client* passes the continuation point to *QueryNext* or the session is closed. If the maximum continuation points have been reached the oldest continuation point should be reset.  
-
-The *ContinuationPoint* type is described in [7.9](/§\_Ref183360083) .|
-|parsingResults[]|ParsingResult|List of parsing results for *QueryFirst* . The size and order of the list matches the size and order of the *NodeTypes* request parameter. This structure is defined in-line with the following indented items.  
-
-This list is populated with any status codes that are related to the processing of the node types that are part of the query. The array can be empty if no errors where encountered. If any node type encountered an error all node types should have an associated status code.|
+|queryDataSets []|QueryDataSet|The array of *QueryDataSets* . This array is empty if no *Nodes* or *References* met the *nodeTypes* criteria. In this case the continuationPoint parameter should be empty.<br>The *QueryDataSet* type is defined in [B.2.5](/§\_Ref141617868) .|
+|continuationPoint|ContinuationPoint|*Server*\-defined opaque value that identifies the continuation point.<br>The continuation point is used only when the *Query* results are too large to be returned in a single response. "Too large" in this context means that the *Server* is not able to return a larger response or that the number of *QueryDataSets* to return exceeds the maximum number of *QueryDataSets* to return that was specified by the *Client* in the request.<br>The continuation point is used in the *QueryNext* *Service* . When not used, the value of this parameter is null or empty. If a continuation point is returned, the *Client* should call *QueryNext* to get the next set of *QueryDataSets* or to free the resources for the continuation point in the *Server* .<br>A continuation point should remain active until the *Client* passes the continuation point to *QueryNext* or the session is closed. If the maximum continuation points have been reached the oldest continuation point should be reset.<br>The *ContinuationPoint* type is described in [7.9](/§\_Ref183360083) .|
+|parsingResults[]|ParsingResult|List of parsing results for *QueryFirst* . The size and order of the list matches the size and order of the *NodeTypes* request parameter. This structure is defined in-line with the following indented items.<br>This list is populated with any status codes that are related to the processing of the node types that are part of the query. The array can be empty if no errors where encountered. If any node type encountered an error all node types should have an associated status code.|
 | statusCode|StatusCode|Parsing result for the requested *NodeTypeDescription* .|
 | dataStatusCodes []|StatusCode|List of results for *dataToReturn* . The size and order of the list matches the size and order of the *dataToReturn* request parameter. The array can be empty if no errors where encountered.|
 | dataDiagnosticInfos []|DiagnosticInfo|List of diagnostic information *dataToReturn* (see [7.12](/§\_Ref127334266) for *DiagnosticInfo* definition). The size and order of the list matches the size and order of the *dataToReturn* request parameter. This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the query request.|
 |diagnosticInfos []|DiagnosticInfo|List of diagnostic information for the requested *NodeTypeDescription* . This list is empty if diagnostics information was not requested in the request header or if no diagnostic information was encountered in processing of the query request.|
-|filterResult|ContentFilter  
-
-Result|A structure that contains any errors associated with the filter.  
-
-This structure should be empty if no errors occurred.  
-
-The *ContentFilterResult* type is defined in [7.7.2](/§\_Ref180477313) .|
+|filterResult|ContentFilter<br>Result|A structure that contains any errors associated with the filter.<br>This structure should be empty if no errors occurred.<br>The *ContentFilterResult* type is defined in [7.7.2](/§\_Ref180477313) .|
   
 
   
 
 If the *Query* is invalid or cannot be processed, then *QueryDataSets* are not returned and only a *Service* result, filterResult, parsingResults and optional *DiagnosticInfo* is returned. [Table B.5](/§\_Ref136942239) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table B. 5\- QueryFirst Service Result Codes**   
+Table B. 5 - QueryFirst Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -9018,7 +6301,7 @@ If the *Query* is invalid or cannot be processed, then *QueryDataSets* are not r
 
 [Table B.6](/§\_Ref187578114) defines values for the parsingResults *statusCode* parameter that are specific to this *Service* . Common *StatusCodes* are defined in [Table 177](/§\_Ref127606591) .  
 
- **Table B. 6\- QueryFirst Operation Level Result Codes**   
+Table B. 6 - QueryFirst Operation Level Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -9037,40 +6320,30 @@ This *Service* is used to request the next set of *QueryFirst* or *QueryNext* re
 
 [Table B.7](/§\_Ref136942238) defines the parameters for the *Service* .  
 
- **Table B. 7\- QueryNext Service Parameters**   
+Table B. 7 - QueryNext Service Parameters  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
+  
 | **Request** |||
+|---|---|---|
 |requestHeader|Request Header|Common request parameters (see [7.32](/§\_Ref129000063) for *RequestHeader* definition).|
-|releaseContinuationPoint|Boolean|A *Boolean* parameter with the following values:  
-
-TRUE passed *continuationPoint* should be reset to free resources for the continuation point in the *Server* .  
-
-FALSE passed *continuationPoint* should be used to get the next set of *QueryDataSets* .  
-
-A *Client* should always use the continuation point returned by a *QueryFirst* or *QueryNext* response to free the resources for the continuation point in the *Server* . If the *Client* does not want to get the next set of *Query* information, *QueryNext* should be called with this parameter set to TRUE.  
-
-If the parameter is set to TRUE all array parameters in the response should contain empty arrays.|
-|continuationPoint|ContinuationPoint|*Server* defined opaque value that represents the continuation point. The value of the continuation point was returned to the *Client* in a previous *QueryFirst* or *QueryNext* response. This value is used to identify the previously processed *QueryFirst* or *QueryNext* request that is being continued, and the point in the result set from which the browse response is to continue.  
-
-The *ContinuationPoint* type is described in [7.9](/§\_Ref183360083) .|
+|releaseContinuationPoint|Boolean|A *Boolean* parameter with the following values:<br>TRUE passed *continuationPoint* should be reset to free resources for the continuation point in the *Server* .<br>FALSE passed *continuationPoint* should be used to get the next set of *QueryDataSets* .<br>A *Client* should always use the continuation point returned by a *QueryFirst* or *QueryNext* response to free the resources for the continuation point in the *Server* . If the *Client* does not want to get the next set of *Query* information, *QueryNext* should be called with this parameter set to TRUE.<br>If the parameter is set to TRUE all array parameters in the response should contain empty arrays.|
+|continuationPoint|ContinuationPoint|*Server* defined opaque value that represents the continuation point. The value of the continuation point was returned to the *Client* in a previous *QueryFirst* or *QueryNext* response. This value is used to identify the previously processed *QueryFirst* or *QueryNext* request that is being continued, and the point in the result set from which the browse response is to continue.<br>The *ContinuationPoint* type is described in [7.9](/§\_Ref183360083) .|
 ||||
+  
 | **Response** |||
+|---|---|---|
 |responseHeader|Response Header|Common response parameters (see [7.33](/§\_Ref115239340) for *ResponseHeader* definition).|
-|queryDataSets []|QueryDataSet|The array of *QueryDataSets* .  
-
-The *QueryDataSet* type is defined in [B.2.5](/§\_Ref141617868) .|
-|revisedContinuationPoint|ContinuationPoint|*Server*\-defined opaque value that represents the continuation point. It is used only if the information to be returned is too large to be contained in a single response. When not used or when *releaseContinuationPoint* is set, the value of this parameter is null or empty.  
-
-The *ContinuationPoint* type is described in [7.9](/§\_Ref183360083) .|
+|queryDataSets []|QueryDataSet|The array of *QueryDataSets* .<br>The *QueryDataSet* type is defined in [B.2.5](/§\_Ref141617868) .|
+|revisedContinuationPoint|ContinuationPoint|*Server*\-defined opaque value that represents the continuation point. It is used only if the information to be returned is too large to be contained in a single response. When not used or when *releaseContinuationPoint* is set, the value of this parameter is null or empty.<br>The *ContinuationPoint* type is described in [7.9](/§\_Ref183360083) .|
   
 
   
 
 [Table B.8](/§\_Ref136942237) defines the *Service* results specific to this *Service* . Common *StatusCodes* are defined in [Table 176](/§\_Ref90539276) .  
 
- **Table B. 8\- QueryNext Service Result Codes**   
+Table B. 8 - QueryNext Service Result Codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -9083,16 +6356,14 @@ The *ContinuationPoint* type is described in [7.9](/§\_Ref183360083) .|
 
 The components of this parameter are defined in [Table B.9](/§\_Ref139187117) .  
 
- **Table B. 9\- QueryDataSet**   
+Table B. 9 - QueryDataSet  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |QueryDataSet|structure|Data related to a *Node* returned in a Query response.|
 |nodeId|ExpandedNodeId|The *NodeId* for this *Node* description.|
 |typeDefinitionNode|ExpandedNodeId|The *NodeId* for the type definition for this *Node* description.|
-|values []|BaseDataType|Values for the selected *Attributes.* The order of returned items matches the order of the requested items. There is an entry for each requested item for the given *TypeDefinitionNode* that matches the selected instance, this includes any related nodes that were specified using a relative path from the selected instance's *TypeDefinitionNode* . If no values where found for a given requested item a null value is returned for that item. If a value has a bad status, the *StatusCode* is returned instead of the value. If multiple values exist for a requested item then an array of values is returned. If the requested item is a reference then a *ReferenceDescription* or array of *ReferenceDescription* is returned for that item.  
-
-If the *QueryDataSet* is returned in a *QueryNext* to continue a list of *ReferenceDescription* , the *values* array will have the same size but the other values already returned are null.|
+|values []|BaseDataType|Values for the selected *Attributes.* The order of returned items matches the order of the requested items. There is an entry for each requested item for the given *TypeDefinitionNode* that matches the selected instance, this includes any related nodes that were specified using a relative path from the selected instance's *TypeDefinitionNode* . If no values where found for a given requested item a null value is returned for that item. If a value has a bad status, the *StatusCode* is returned instead of the value. If multiple values exist for a requested item then an array of values is returned. If the requested item is a reference then a *ReferenceDescription* or array of *ReferenceDescription* is returned for that item.<br>If the *QueryDataSet* is returned in a *QueryNext* to continue a list of *ReferenceDescription* , the *values* array will have the same size but the other values already returned are null.|
   
 
   
@@ -9233,13 +6504,13 @@ This example requests a simple layered filter, a person has a pet and the pet ha
 
 The *NodeTypeDescription* parameters used in the example are described in [Table B.10](/§\_Ref140595981) .  
 
- **Table B. 10\- Example 1 NodeTypeDescription**   
+Table B. 10 - Example 1 NodeTypeDescription  
 
-| **Type Definition Node** | **Include**   
-
- **Subtypes** | **QueryDataDescription** |
+| **Type Definition Node** | **Include** <br> **Subtypes** | **QueryDataDescription** |
 |---|---|---|
+  
 ||| **Relative Path** | **Attribute** | **Index Range** |
+|---|---|---|---|---|
 |PersonType|FALSE|".12:LastName"|value|N/A|
 |||"\<12:HasPet\>12:AnimalType. 12:Name"|value|N/A|
 |||"\<12:HasPet\>12:AnimalType\<12:HasSchedule\> 12:Schedule. 12:Period"|value|N/A|
@@ -9255,13 +6526,11 @@ Figure B. 5 - Example 1 Filter
 
 [Table B.11](/§\_Ref141118851) describes the *ContentFilter* elements, operators and operands used in the example.  
 
- **Table B. 11\- Example 1 ContentFilter**   
+Table B. 11 - Example 1 ContentFilter  
 
 | **Element[]** | **Operator** | **Operand[0]** | **Operand[1]** | **Operand[2]** | **Operand[3]** |
 |---|---|---|---|---|---|
-|1|*RelatedTo*|AttributeOperand = NodeId: PersonType,  
-
-BrowsePath ".", Attribute: NodeId|ElementOperand = 2|AttributeOperand = NodeId: HasPet, BrowsePath ".", Attribute: NodeId|LiteralOperand = '1'|
+|1|*RelatedTo*|AttributeOperand = NodeId: PersonType,<br>BrowsePath ".", Attribute: NodeId|ElementOperand = 2|AttributeOperand = NodeId: HasPet, BrowsePath ".", Attribute: NodeId|LiteralOperand = '1'|
 |2|*RelatedTo*|AttributeOperand = NodeId: AnimalType, BrowsePath ".", Attribute: NodeId|AttributeOperand = NodeId: ScheduleType, BrowsePath ".", Attribute: NodeId|AttributeOperand = NodeId: HasSchedule, BrowsePath ".", Attribute: NodeId|LiteralOperand= '1'|
   
 
@@ -9269,11 +6538,9 @@ BrowsePath ".", Attribute: NodeId|ElementOperand = 2|AttributeOperand = NodeId: 
 
 [Table B.12](/§\_Ref140601076) describes the *QueryDataSet* that results from this query if it were executed against the instances described in [Figure B.4](/§\_Ref205280545)  
 
- **Table B. 12\- Example 1 QueryDataSets**   
+Table B. 12 - Example 1 QueryDataSets  
 
-| **NodeId** | **TypeDefinition**   
-
- **NodeId** | **RelativePath** | **Value** |
+| **NodeId** | **TypeDefinition** <br> **NodeId** | **RelativePath** | **Value** |
 |---|---|---|---|
 |12:30 (JFamily1)|PersonType|".12:LastName"|Jones|
 |||"\<12:HasPet\>12:AnimalType. 12:Name"|Rosemary|
@@ -9299,15 +6566,15 @@ The second example illustrates receiving a list of disjoint *Nodes* and also ill
 
 The NodeTypeDescription parameters used in the example are described in [Table B.13](/§\_Ref140909908) .  
 
- **Table B. 13\- Example 2 NodeTypeDescription**   
+Table B. 13 - Example 2 NodeTypeDescription  
 
   
 
-| **Type Definition Node** | **Include**   
-
- **Subtypes** | **QueryDataDescription** |
+| **Type Definition Node** | **Include** <br> **Subtypes** | **QueryDataDescription** |
 |---|---|---|
+  
 ||| **Relative Path** | **Attribute** | **Index Range** |
+|---|---|---|---|---|
 |PersonType|FALSE|".12:LastName"|Value|N/A|
 |AnimalType|TRUE|".12:Name"|Value|N/A|
   
@@ -9326,7 +6593,7 @@ Figure B. 6 - Example 2 filter logic tree
 
 [Table B.14](/§\_Ref140914695) describes the elements, operators and operands used in the example. It is worth noting that a CatType is a subtype of AnimalType.  
 
- **Table B. 14\- Example 2 ContentFilter**   
+Table B. 14 - Example 2 ContentFilter  
 
 | **Element[]** | **Operator** | **Operand[0]** | **Operand[1]** | **Operand[2]** | **Operand[3]** |
 |---|---|---|---|---|---|
@@ -9339,7 +6606,7 @@ Figure B. 6 - Example 2 filter logic tree
 
 The results from this query would contain the *QueryDataSets* shown in [Table B.15](/§\_Ref140917208) .  
 
- **Table B. 15\- Example 2 QueryDataSets**   
+Table B. 15 - Example 2 QueryDataSets  
 
 | **NodeId** | **TypeDefinition NodeId** | **RelativePath** | **Value** |
 |---|---|---|---|
@@ -9362,13 +6629,13 @@ The third example provides a more complex *Query* in which the results are filte
 
 [Table B.16](/§\_Ref140917265) describes the NodeTypeDescription parameters used in the example.  
 
- **Table B. 16\- Example 3 - NodeTypeDescription**   
+Table B. 16 - Example 3 - NodeTypeDescription  
 
-| **Type Definition Node** | **Include**   
-
- **Subtypes** | **QueryDataDescription** |
+| **Type Definition Node** | **Include** <br> **Subtypes** | **QueryDataDescription** |
 |---|---|---|
+  
 ||| **RelativePath** | **Attribute** | **Index Range** |
+|---|---|---|---|---|
 |PersonType|FALSE|"12:LastName"|Value|N/A|
 |||"\<12:HasPet\>12:AnimalType. 12:Name"|Value|N/A|
 |||"\<12:HasPet\>12:AnimalType\<12:HasSchedule\> 12:FeedingSchedule.Period"|Value|N/A|
@@ -9384,7 +6651,7 @@ Figure B. 7 - Example 3 filter logic tree
 
 [Table B.17](/§\_Ref140917350) describes the elements, operators and operands used in the example.  
 
- **Table B. 17\- Example 3 ContentFilter**   
+Table B. 17 - Example 3 ContentFilter  
 
 | **Element[]** | **Operator** | **Operand[0]** | **Operand[1]** | **Operand[2]** | **Operand[3]** |
 |---|---|---|---|---|---|
@@ -9393,27 +6660,11 @@ Figure B. 7 - Example 3 filter logic tree
 |2|And|ElementOperand = 3|ElementOperand = 9|||
 |3|Or|ElementOperand = 7|ElementOperand = 8|||
 |4|RelatedTo|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".", Attribute: NodeId|ElementOperand = 5|AttributeOperand = NodeId: 12:HasPet, BrowsePath ".", Attribute: NodeId|LiteralOperand = '1'|
-|5|RelatedTo|AttributeOperand = Node: 12:AnilmalType, BrowsePath ".", Attribute: NodeId  
-
-Alias:  AT|AttributeOperand = NodeId: 12:FeedingScheduleType, BrowsePath ".", Attribute: NodeId  
-
-Alias: FST|AttributeOperand = NodeId: 12:HasSchedule, BrowsePath ".", Attribute: NodeId|LiteralOperand = '1'|
+|5|RelatedTo|AttributeOperand = Node: 12:AnilmalType, BrowsePath ".", Attribute: NodeId<br>Alias:  AT|AttributeOperand = NodeId: 12:FeedingScheduleType, BrowsePath ".", Attribute: NodeId<br>Alias: FST|AttributeOperand = NodeId: 12:HasSchedule, BrowsePath ".", Attribute: NodeId|LiteralOperand = '1'|
 |6|Equals|AttributeOperand = NodeId: 12:PersonType BrowsePath 12:Zipcode ".", Attribute: Value|LiteralOperand = '02138'|||
-|7|Equals|AttributeOperand = NodeId: 12:PersonType  
-
-BrowsePath "12:HasPet\>12:AnimalType\<12:HasSchedule\>12: FeedingSchedule/12:Period", Attribute: Value  
-
-Alias: FST|LiteralOperand = 'Daily'|||
-|8|Equals|AttributeOperand = NodeId: 12:PersonType  
-
-BrowsePath "12:HasPet\>12:AnimalType\<12:HasSchedule\>12: FeedingSchedule/12:Period", Attribute: Value  
-
-Alias: FST|LiteralOperand = 'Hourly'|||
-|9|Greater Than|AttributeOperand = NodeId: 12:PersonType  
-
-BrowsePath "12:HasPet\>12:AnimalType\<12:HasSchedule\>12: FeedingSchedule/12:Amount", Attribute: Value  
-
-Alias: FST|ElementOperand = 10|||
+|7|Equals|AttributeOperand = NodeId: 12:PersonType<br>BrowsePath "12:HasPet\>12:AnimalType\<12:HasSchedule\>12: FeedingSchedule/12:Period", Attribute: Value<br>Alias: FST|LiteralOperand = 'Daily'|||
+|8|Equals|AttributeOperand = NodeId: 12:PersonType<br>BrowsePath "12:HasPet\>12:AnimalType\<12:HasSchedule\>12: FeedingSchedule/12:Period", Attribute: Value<br>Alias: FST|LiteralOperand = 'Hourly'|||
+|9|Greater Than|AttributeOperand = NodeId: 12:PersonType<br>BrowsePath "12:HasPet\>12:AnimalType\<12:HasSchedule\>12: FeedingSchedule/12:Amount", Attribute: Value<br>Alias: FST|ElementOperand = 10|||
 |10|Cast|LiteralOperand = 10|AttributeOperand = NodeId: Int32, BrowsePath ".", Attribute: NodeId|||
   
 
@@ -9421,11 +6672,9 @@ Alias: FST|ElementOperand = 10|||
 
 The results from this query would contain the *QueryDataSets* shown in ** [Table B.18](/§\_Ref140917404) .  
 
- **Table B. 18\- Example 3 QueryDataSets**   
+Table B. 18 - Example 3 QueryDataSets  
 
-| **NodeId** | **TypeDefinition**   
-
- **NodeId** | **RelativePath** | **Value** |
+| **NodeId** | **TypeDefinition** <br> **NodeId** | **RelativePath** | **Value** |
 |---|---|---|---|
 |12:30 (JFamily1)|PersonType|".12:LastName"|Jones|
 |||"\<12:HasPet\>12:PersonType. 12:Name"|Rosemary|
@@ -9446,13 +6695,13 @@ The fourth example provides an illustration of the Hop parameter that is part of
 
 [Table B.19](/§\_Ref140950083) describes the NodeTypeDescription parameters used in the example.  
 
- **Table B. 19\- Example 4 NodeTypeDescription**   
+Table B. 19 - Example 4 NodeTypeDescription  
 
-| **Type Definition Node** | **Include**   
-
- **Subtypes** | **QueryDataDescription** |
+| **Type Definition Node** | **Include** <br> **Subtypes** | **QueryDataDescription** |
 |---|---|---|
+  
 ||| **Relative Path** | **Attribute** | **Index Range** |
+|---|---|---|---|---|
 |PersonType|FALSE|".12:LastName"|value|N/A|
   
 
@@ -9466,27 +6715,21 @@ Figure B. 8 - Example 4 filter logic tree
 
 [Table B.20](/§\_Ref141118852) describes the elements, operators and operands used in the example.  
 
- **Table B. 20\- Example 4 ContentFilter**   
+Table B. 20 - Example 4 ContentFilter  
 
 | **Element[]** | **Operator** | **Operand[0]** | **Operand[1]** | **Operand[2]** | **Operand[3]** |
 |---|---|---|---|---|---|
-|0|RelatedTo|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".",  
-
-Attribute: NodeId|Element Operand = 1|AttributeOperand = NodeId: 12:HasChild, BrowsePath ".", Attribute: NodeId|LiteralOperand = '2'|
-|1|RelatedTo|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".",  
-
-Attribute: NodeId|AttributeOperand = NodeId: 12:AnimalType, BrowsePath ".", Attribute: NodeId|AttributeOperand = NodeId: 12:HasPet, BrowsePath ".", Attribute: NodeId|LiteralOperand = '1'|
+|0|RelatedTo|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".",<br>Attribute: NodeId|Element Operand = 1|AttributeOperand = NodeId: 12:HasChild, BrowsePath ".", Attribute: NodeId|LiteralOperand = '2'|
+|1|RelatedTo|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".",<br>Attribute: NodeId|AttributeOperand = NodeId: 12:AnimalType, BrowsePath ".", Attribute: NodeId|AttributeOperand = NodeId: 12:HasPet, BrowsePath ".", Attribute: NodeId|LiteralOperand = '1'|
   
 
   
 
 The results from this query would contain the *QueryDataSets* shown in [Table B.21](/§\_Ref141008187) . It is worth noting that the pig "Pig1" is referenced as a pet by Sara, but is referenced as a farm animal by Sara's parent Paul.  
 
- **Table B. 21\- Example 4 QueryDataSets**   
+Table B. 21 - Example 4 QueryDataSets  
 
-| **NodeId** | **TypeDefinition**   
-
- **NodeId** | **RelativePath** | **Value** |
+| **NodeId** | **TypeDefinition** <br> **NodeId** | **RelativePath** | **Value** |
 |---|---|---|---|
 |12:42 (HFamily1)|PersonType|".12:LastName"|Hervey|
   
@@ -9505,13 +6748,13 @@ The fifth example provides an illustration of the use of alias.
 
   
 
- **Table B. 22\- Example 5 NodeTypeDescription**   
+Table B. 22 - Example 5 NodeTypeDescription  
 
-| **Type Definition Node** | **Include**   
-
- **Subtypes** | **QueryDataDescription** |
+| **Type Definition Node** | **Include** <br> **Subtypes** | **QueryDataDescription** |
 |---|---|---|
+  
 ||| **Relative Path** | **Attribute** | **Index Range** |
+|---|---|---|---|---|
 |PersonType|FALSE|"\<12:HasChild\>12:PersonType. 12:LastName"|Value|N/A|
   
 
@@ -9525,32 +6768,22 @@ Figure B. 9 - Example 5 filter logic tree
 
 In this example, one *Reference* to PersonType is aliased to "Parent" and another *Reference* to PersonType is aliased to "Child". The value of Parent.firstName and Child.firstName are then compared. [Table B.23](/§\_Ref140950924) describes the elements, operators and operands used in the example.  
 
- **Table B. 23\- Example 5 ContentFilter**   
+Table B. 23 - Example 5 ContentFilter  
 
 | **Element[]** | **Operator** | **Operand[0]** | **Operand[1]** | **Operand[2]** | **Operand[3\}** |
 |---|---|---|---|---|---|
 |0|And|ElementOperand = 1|ElementOperand = 2|||
-|1|RelatedTo|AttributeOperand =  NodeId: 12:PersonType, BrowsePath ".",  
-
-Attribute: NodeId,  
-
-Alias: "Parent"|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".", Attribute: NodeId,  
-
-Alias: "Child"|AttributeOperand = NodeId: 12:HasChild, Attribute: NodeId|LiteralOperand = "1"|
-|2|Equals|AttributeOperand =  
-
-NodeId: 12:PersonType, BrowsePath ""/12:FirstName", Attribute: Value, Alias: "Parent"|AttributeOperand = NodeId: 12:PersonType, BrowsePath ""/12:FirstName", Attribute: Value, Alias: "Child"|||
+|1|RelatedTo|AttributeOperand =  NodeId: 12:PersonType, BrowsePath ".",<br>Attribute: NodeId,<br>Alias: "Parent"|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".", Attribute: NodeId,<br>Alias: "Child"|AttributeOperand = NodeId: 12:HasChild, Attribute: NodeId|LiteralOperand = "1"|
+|2|Equals|AttributeOperand =<br>NodeId: 12:PersonType, BrowsePath ""/12:FirstName", Attribute: Value, Alias: "Parent"|AttributeOperand = NodeId: 12:PersonType, BrowsePath ""/12:FirstName", Attribute: Value, Alias: "Child"|||
   
 
   
 
 The results from this query would contain the *QueryDataSets* shown ** in [Table B.24](/§\_Ref141008454) .  
 
- **Table B. 24\- Example 5 QueryDataSets**   
+Table B. 24 - Example 5 QueryDataSets  
 
-| **NodeId** | **TypeDefinition**   
-
- **NodeId** | **RelativePath** | **Value** |
+| **NodeId** | **TypeDefinition** <br> **NodeId** | **RelativePath** | **Value** |
 |---|---|---|---|
 |12:42 (HFamily1)|PersonType|"\<12:HasChild\>12:PersonType.12:LastName"|Hervey|
   
@@ -9567,13 +6800,13 @@ The sixth example provides an illustration a different type of request, one in w
 
 [Table B.25](/§\_Ref141009577) describes the NodeTypeDescription parameters used in the example.  
 
- **Table B. 25\- Example 6 NodeTypeDescription**   
+Table B. 25 - Example 6 NodeTypeDescription  
 
-| **Type Definition Node** | **Include**   
-
- **Subtypes** | **QueryDataDescription** |
+| **Type Definition Node** | **Include** <br> **Subtypes** | **QueryDataDescription** |
 |---|---|---|
+  
 ||| **Relative Path** | **Attribute** | **Index Range** |
+|---|---|---|---|---|
 |PersonType|FALSE|".12:NodeId"|value|N/A|
 |||\<12:HasChild\>12:PersonType\<12:HasAnimal\>12:AnimalType.NodeId|value|N/A|
 |||\<12:HasChild\>|value|N/A|
@@ -9590,7 +6823,7 @@ Figure B. 10 - Example 6 filter logic tree
 
 [Table B.26](/§\_Ref141009703) describes the elements, operators and operands used in the example.  
 
- **Table B. 26\- Example 6 ContentFilter**   
+Table B. 26 - Example 6 ContentFilter  
 
 | **Element[]** | **Operator** | **Operand[0]** | **Operand[1]** | **Operand[2]** | **Operand[3]** |
 |---|---|---|---|---|---|
@@ -9602,32 +6835,18 @@ Figure B. 10 - Example 6 filter logic tree
 
 The results from this query would contain the *QueryDataSets* shown ** in [Table B.27](/§\_Ref141009804) .  
 
- **Table B. 27\- Example 6 QueryDataSets**   
+Table B. 27 - Example 6 QueryDataSets  
 
-| **NodeId** | **TypeDefinition**   
-
- **NodeId** | **RelativePath** | **Value** |
+| **NodeId** | **TypeDefinition** <br> **NodeId** | **RelativePath** | **Value** |
 |---|---|---|---|
 |12:42 (HFamily1)|PersonType|".NodeId"|12:42 (HFamily1)|
-|||\<12:HasChild\>12:PersonType\<12:HasAnimal\>  
-
-12:AnimalType.NodeId|12:91 (Pig1)|
-|||\<12:HasChild\>|HasChild  
-
-*ReferenceDescription*|
-|||\<12:HasChild\>12:PersonType\<12:HasAnimal\>|HasFarmAnimal  
-
-*ReferenceDescription*|
+|||\<12:HasChild\>12:PersonType\<12:HasAnimal\><br>12:AnimalType.NodeId|12:91 (Pig1)|
+|||\<12:HasChild\>|HasChild<br>*ReferenceDescription*|
+|||\<12:HasChild\>12:PersonType\<12:HasAnimal\>|HasFarmAnimal<br>*ReferenceDescription*|
 |12:48 (HFamily2)|PersonType|".NodeId"|12:48 (HFamily2)|
-|||\<12:HasChild\>12:PersonType\<12:HasAnimal\>  
-
-12:AnimalType.NodeId|12:91 (Pig1)|
-|||\<12:HasChild\>|HasChild  
-
-*ReferenceDescription*|
-|||\<12:HasChild\>12:PersonType\<12:HasAnimal\>|HasPet  
-
-*ReferenceDescription*|
+|||\<12:HasChild\>12:PersonType\<12:HasAnimal\><br>12:AnimalType.NodeId|12:91 (Pig1)|
+|||\<12:HasChild\>|HasChild<br>*ReferenceDescription*|
+|||\<12:HasChild\>12:PersonType\<12:HasAnimal\>|HasPet<br>*ReferenceDescription*|
   
 
   
@@ -9636,11 +6855,9 @@ NOTE The *RelativePath* and browse name (in parentheses) is not in the *QueryDat
 
 [Table B.28](/§\_Ref141675192) provides an example of the same QueryDataSet as shown in [Table B.27](/§\_Ref141009804) without any additional fields and minimal symbolic Ids. There is an entry for each requested Attribute, in the cases where an Attribute would return multiple entries the entries are separated by comas. If a structure is being returned then the structure is enclosed in square brackets. In the case of a ReferenceDescription the structure contains a structure and DisplayName and BrowseName are assumed to be the same and defined in [Figure B.4](/§\_Ref205280545) .  
 
- **Table B. 28\- Example 6 QueryDataSets without additional information**   
+Table B. 28 - Example 6 QueryDataSets without additional information  
 
-| **NodeId** | **TypeDefinition**   
-
- **NodeId** | **Value** |
+| **NodeId** | **TypeDefinition** <br> **NodeId** | **Value** |
 |---|---|---|
 |12:42|PersonType|12:42|
 |||12:91|
@@ -9664,13 +6881,13 @@ The seventh example provides an illustration a request in which a *Client* wants
 
 [Table B.29](/§\_Ref153089063) describes the NodeTypeDescription parameters used in the example.  
 
- **Table B. 29\- Example 7 NodeTypeDescription**   
+Table B. 29 - Example 7 NodeTypeDescription  
 
-| **Type Definition Node** | **Include**   
-
- **Subtypes** | **QueryDataDescription** |
+| **Type Definition Node** | **Include** <br> **Subtypes** | **QueryDataDescription** |
 |---|---|---|
+  
 ||| **Relative Path** | **Attribute** | **Index Range** |
+|---|---|---|---|---|
 |PersonType|FALSE|".NodeId"|Value|N/A|
 |||\<12:HasChild\>|Value|N/A|
 |||\<12:HasAnimal\>NodeId|Value|N/A|
@@ -9687,34 +6904,22 @@ Figure B. 11 - Example 7 filter logic tree
 
 [Table B.30](/§\_Ref153096054) describes the elements, operators and operands used in the example.  
 
- **Table B. 30\- Example 7 ContentFilter**   
+Table B. 30 - Example 7 ContentFilter  
 
 | **Element[]** | **Operator** | **Operand[0]** | **Operand[1]** | **Operand[2]** | **Operand[3]** |
 |---|---|---|---|---|---|
 |0|RelatedTo|ElementOperand = 2|ElementOperand = 1|AttributeOperand = Node:HierachicalReference, BrowsePath ".", Attribute:NodeId|LiteralOperand = '1'|
-|1|RelatedTo|AttributeOperand =  
-
-NodeId: 12:PersonType, BrowsePath ".", Attribute: NodeId|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".", Attribute: NodeId|AttributeOperand =  
-
-NodeId: 12:HasChild, BrowsePath ".",  
-
-Attribute: NodeId|LiteralOperand = '1'|
-|2|Equals|AttributeOperand =  
-
-NodeId: BaseObjectType, BrowsePath ".",  
-
-Attribute: NodeId,|LiteralOperand = '95|||
+|1|RelatedTo|AttributeOperand =<br>NodeId: 12:PersonType, BrowsePath ".", Attribute: NodeId|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".", Attribute: NodeId|AttributeOperand =<br>NodeId: 12:HasChild, BrowsePath ".",<br>Attribute: NodeId|LiteralOperand = '1'|
+|2|Equals|AttributeOperand =<br>NodeId: BaseObjectType, BrowsePath ".",<br>Attribute: NodeId,|LiteralOperand = '95|||
   
 
   
 
 The results from this *Query* would contain the *QueryDataSets* shown ** in [Table B.31](/§\_Ref153096506) .  
 
- **Table B. 31\- Example 7 QueryDataSets**   
+Table B. 31 - Example 7 QueryDataSets  
 
-| **NodeId** | **TypeDefinition**   
-
- **NodeId** | **RelativePath** | **Value** |
+| **NodeId** | **TypeDefinition** <br> **NodeId** | **RelativePath** | **Value** |
 |---|---|---|---|
 |12:42 (HFamily1)|PersonType|".NodeId"|12:42 (HFamily1)|
 |||\<12:HasChild\>|HasChild *ReferenceDescription*|
@@ -9738,15 +6943,15 @@ The eighth example provides an illustration of a request in which the *AddressSp
 
 The NodeTypeDescription parameters used in the example are described in [Table B.32](/§\_Ref153097930)  
 
- **Table B. 32\- Example 8 NodeTypeDescription**   
+Table B. 32 - Example 8 NodeTypeDescription  
 
   
 
-| **Type Definition Node** | **Include**   
-
- **Subtypes** | **QueryDataDescription** |
+| **Type Definition Node** | **Include** <br> **Subtypes** | **QueryDataDescription** |
 |---|---|---|
+  
 ||| **Relative Path** | **Attribute** | **Index Range** |
+|---|---|---|---|---|
 |PersonType|FALSE|".12:LastName"|value|N/A|
 |AnimalType|TRUE|"12.Name"|value|N/A|
   
@@ -9761,24 +6966,20 @@ Figure B. 12 - Example 8 filter logic tree
 
 [Table B.33](/§\_Ref153097962) describes the elements, operators and operands used in the example. It is worth noting that a CatType is a subtype of AnimalType.  
 
- **Table B. 33\- Example 8 ContentFilter**   
+Table B. 33 - Example 8 ContentFilter  
 
 | **Element[]** | **Operator** | **Operand[0]** | **Operand[1]** | **Operand[2]** | **Operand[3]** |
 |---|---|---|---|---|---|
 |0|Or|ElementOperand=1|ElementOperand = 2|||
-|1|RelatedTo|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".", Attribute: NodeId|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".",  
-
-Attribute: NodeId|AttributeOperand = NodeId: 12:HasChild, BrowsePath ".", Attribute: NodeId|LiteralOperand = '1'|
-|2|RelatedTo|AttributeOperand = NodeId: 12:CatType, BrowsePath ".", Attribute: NodeId|AttributeOperand = NodeId: 12:FeedingScheduleType, BrowsePath ".",  
-
-Attribute: NodeId|AttributeOperand = NodeId: 12:HasSchedule, BrowsePath ".", Attribute: NodeId|LiteralOperand = '1'|
+|1|RelatedTo|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".", Attribute: NodeId|AttributeOperand = NodeId: 12:PersonType, BrowsePath ".",<br>Attribute: NodeId|AttributeOperand = NodeId: 12:HasChild, BrowsePath ".", Attribute: NodeId|LiteralOperand = '1'|
+|2|RelatedTo|AttributeOperand = NodeId: 12:CatType, BrowsePath ".", Attribute: NodeId|AttributeOperand = NodeId: 12:FeedingScheduleType, BrowsePath ".",<br>Attribute: NodeId|AttributeOperand = NodeId: 12:HasSchedule, BrowsePath ".", Attribute: NodeId|LiteralOperand = '1'|
   
 
   
 
 The results from this query would contain the *QueryDataSets* shown in [Table B.34](/§\_Ref153098374) . If this is compared to the result set from example 2, the only difference is the omission of the Cat *Nodes* . These *Nodes* are not in the *View* and thus are not included in the result set.  
 
- **Table B. 34\- Example 8 QueryDataSets**   
+Table B. 34 - Example 8 QueryDataSets  
 
 | **NodeId** | **TypeDefinition NodeId** | **RelativePath** | **Value** |
 |---|---|---|---|
@@ -9797,19 +6998,17 @@ The ninth example provides a further illustration for a request in which the *Ad
 
 [Table B.35](/§\_Ref153099601) describes the NodeTypeDescription parameters used in the example.  
 
- **Table B. 35\- Example 9 NodeTypeDescription**   
+Table B. 35 - Example 9 NodeTypeDescription  
 
-| **Type Definition Node** | **Include**   
-
- **Subtypes** | **QueryDataDescription** |
+| **Type Definition Node** | **Include** <br> **Subtypes** | **QueryDataDescription** |
 |---|---|---|
+  
 ||| **Relative Path** | **Attribute** | **Index Range** |
+|---|---|---|---|---|
 |PersonType|FALSE|".NodeId"|value|N/A|
 |||\<12:HasChild\>12:PersonType\<12:HasAnimal\>12:AnimalType.NodeId|value|N/A|
 |||\<12:HasChild\>|value|N/A|
-|||\<12:HasChild\>12:PersonType  
-
-\<12:HasAnimal\>|value|N/A|
+|||\<12:HasChild\>12:PersonType<br>\<12:HasAnimal\>|value|N/A|
 |PersonType|FALSE|".12:LastName"|value|N/A|
 |||\<12:HasAnimal\>12:AnimalType. 12:Name|value|N/A|
 |AnimalType|TRUE|".12:name"|value|N/A|
@@ -9825,7 +7024,7 @@ Figure B. 13 - Example 9 filter logic tree
 
 [Table B.36](/§\_Ref153100053) describes the elements, operators and operands used in the example.  
 
- **Table B. 36\- Example 9 ContentFilter**   
+Table B. 36 - Example 9 ContentFilter  
 
 | **Element[]** | **Operator** | **Operand[0]** | **Operand[1]** | **Operand[2]** | **Operand[3]** |
 |---|---|---|---|---|---|
@@ -9838,7 +7037,7 @@ Figure B. 13 - Example 9 filter logic tree
 
 The results from this *Query* would contain the *QueryDataSets* shown in [Table B.37](/§\_Ref153100351) . If this is compared to the result set from example 2, the Pet *Nodes* are included in the list, even though they are outside of the *View* . This is possible since the name referenced via the relative path and the root *Node* is in the *View* .  
 
- **Table B. 37\- Example 9 QueryDataSets**   
+Table B. 37 - Example 9 QueryDataSets  
 
 | **NodeId** | **TypeDefinition NodeId** | **RelativePath** | **Value** |
 |---|---|---|---|

@@ -2,374 +2,539 @@
   "Title": "Part 20 - File Transfer",
   "Chunks": [
     {
-      "Id": "936ba8e4-ff38-415b-99fd-fbca200d5040",
+      "Id": "4b0831e9-1532-4f91-8456-8fdb979746b5",
       "Header": "Document: Part 20 - File Transfer\n---\n",
       "Content": "1 Scope"
     },
     {
-      "Id": "348e069d-8229-425d-9ef9-aef64a2ea16b",
+      "Id": "71913dc4-acf7-4a66-bd5a-10962338b901",
       "Header": "Document: Part 20 - File Transfer\nSection: 1 Scope\n---\n",
       "Content": "This part of the OPC Unified Architecture defines an Information Model. The Information Model describes the basic infrastructure to model file transfers."
     },
     {
-      "Id": "0555338d-5c83-4f85-ad22-f41ca2f46630",
+      "Id": "102de5a4-011d-4baf-9f3a-39dee1ec2193",
       "Header": "Document: Part 20 - File Transfer\n---\n",
       "Content": "2 Normative references"
     },
     {
-      "Id": "d42307ed-ed5d-46a6-a8a9-350d531f1fb7",
+      "Id": "38d44c8a-9c2c-4ba1-9780-d1fc4b80d660",
       "Header": "Document: Part 20 - File Transfer\nSection: 2 Normative references\n---\n",
       "Content": "The following documents, in whole or in part, are normatively referenced in this document and are indispensable for its application. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments and errata) applies.\nOPC 10000-1, OPC Unified Architecture - Part 1: Concepts\n[http://www.opcfoundation.org/UA/Part1/](http://www.opcfoundation.org/UA/Part1/)\nOPC 10000-3, OPC Unified Architecture - Part 3: Address Space Model\n[http://www.opcfoundation.org/UA/Part3/](http://www.opcfoundation.org/UA/Part3/)\nOPC 10000-4, OPC Unified Architecture - Part 4: Services\n[http://www.opcfoundation.org/UA/Part4/](http://www.opcfoundation.org/UA/Part4/)\nOPC 10000-5, OPC Unified Architecture - Part 5: Information Model\n[http://www.opcfoundation.org/UA/Part5/](http://www.opcfoundation.org/UA/Part5/)"
     },
     {
-      "Id": "4fa0885f-e0d5-4b79-bca8-9accf1d9fc0f",
+      "Id": "405907b8-c053-4835-b8e4-5aaa11cad0e2",
       "Header": "Document: Part 20 - File Transfer\n---\n",
       "Content": "3 Terms, definitions, abbreviated terms and conventions"
     },
     {
-      "Id": "c03cad61-b765-46c3-8fc7-577919b9eec5",
+      "Id": "9720aabd-6d9c-4a88-93cd-7a6c56e8054e",
       "Header": "Document: Part 20 - File Transfer\nSection: 3 Terms, definitions, abbreviated terms and conventions\n---\n",
       "Content": "3.1 Terms and definitions"
     },
     {
-      "Id": "38ab0ad2-3fa6-4766-b3a5-f749f4065f50",
+      "Id": "ce5f0a5e-025e-4f0f-9236-6bb274c6d7fa",
       "Header": "Document: Part 20 - File Transfer\nSection: 3.1 Terms and definitions\n---\n",
       "Content": "For the purposes of this document, the terms and definitions given in[OPC 10000-1](/\u00A7UAPart1),[OPC 10000-3](/\u00A7UAPart3) and[OPC 10000-5](/\u00A7UAPart5) apply."
     },
     {
-      "Id": "98e2c7a3-9cb8-4092-a893-8b29bb10231c",
+      "Id": "cc746d0d-a194-40e1-a214-c99838bfd7fa",
       "Header": "Document: Part 20 - File Transfer\n---\n",
       "Content": "4 File Transfer Model"
     },
     {
-      "Id": "c531f0ef-8c60-445e-a36d-829dbb719614",
+      "Id": "bbafb0bb-54c6-4f70-b811-7294129ceaaa",
       "Header": "Document: Part 20 - File Transfer\nSection: 4 File Transfer Model\n---\n",
       "Content": "4.1 Overview"
     },
     {
-      "Id": "2dc4f3bd-82d9-47f4-b76e-bf6d106d6fd3",
+      "Id": "6d3ab37f-c151-4153-863b-6da48f163f59",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.1 Overview\n---\n",
       "Content": "This document describes an information model for file transfer. Files could be modelled in OPC UA as simple Variables using ByteStrings. However, the overall message size in OPC UA is limited due to resources and security issues (denial of service attacks). Only accessing parts of the array can lead to concurrency issues if one client is reading the array while others are manipulating it. Therefore, the ObjectType FileType is defined representing a file with Methods to access the file. The life-cycle of a file stored on a hard disk and an instance of the FileType representing the file in an OPC UA AddressSpace can be independent.\nIn addition to representing individual files this document also defines a way to represent a whole file system or a part of a file system. This can be done using the FileDirectoryType in combination with the FileType. The FileDirectoryType provides Methods to create, delete, and move files and directories. The root of a file system or part of a file system is represented by an instance of the FileDirectoryType with the BrowseName FileSystem. All directories below the root directory are represented by instances of the FileDirectoryType or a subtype. All files below the root directory are represented by instances of the FileType or a subtype.\nIn different situations like transfer of configuration files or firmware update, the files are temporary, and an additional handshake is necessary to create the file for reading or to apply the file after writing it to the server. This use case is covered by the TemporaryFileTransferType defined in this document."
     },
     {
-      "Id": "13b89884-d0d7-4db8-a93a-a018248395c5",
+      "Id": "27d3482b-261e-4447-af4a-e80bf6610590",
       "Header": "Document: Part 20 - File Transfer\nSection: 4 File Transfer Model\n---\n",
       "Content": "4.2 FileType"
     },
     {
-      "Id": "330bfc27-a56f-468c-9565-00e6e444a692",
+      "Id": "8781b63d-2180-4208-bd77-9f72cacd23be",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2 FileType\n---\n",
       "Content": "4.2.1 General"
     },
     {
-      "Id": "91cd1f52-fb13-4988-953c-147baf92cd47",
+      "Id": "7e9775d9-e0dd-4007-b32a-a5c08e190f41",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2.1 General\n---\n",
-      "Content": "This ObjectType defines a type for files. It is formally defined in[Table 1](/\u00A7_Ref17727931).\nTable 1- FileType\nAttribute\nValue\nBrowseName\nFileType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nSize\nUInt64\nPropertyType\nMandatory\nHasProperty\nVariable\nWritable\nBoolean\nPropertyType\nMandatory\nHasProperty\nVariable\nUserWritable\nBoolean\nPropertyType\nMandatory\nHasProperty\nVariable\nOpenCount\nUInt16\nPropertyType\nMandatory\nHasProperty\nVariable\nMimeType\nString\nPropertyType\nOptional\nHasComponent\nMethod\nOpen\nDefined in[4.2.2](/\u00A7_Ref293494056)\nMandatory\nHasComponent\nMethod\nClose\nDefined in[4.2.3](/\u00A7_Ref293494061)\nMandatory\nHasComponent\nMethod\nRead\nDefined in[4.2.4](/\u00A7_Ref293494065)\nMandatory\nHasComponent\nMethod\nWrite\nDefined in[4.2.5](/\u00A7_Ref293494069)\nMandatory\nHasComponent\nMethod\nGetPosition\nDefined in[4.2.6](/\u00A7_Ref293494073)\nMandatory\nHasComponent\nMethod\nSetPosition\nDefined in[4.2.7](/\u00A7_Ref293494077)\nMandatory\nHasProperty\nVariable\nMaxByteStringLength\nUInt32\nPropertyType\nOptional\nHasProperty\nVariable\nLastModifiedTime\nDateTime\nPropertyType\nOptional\nConformance Units\nBase Info FileType Base\n\nSize"
+      "Content": "This ObjectType defines a type for files. It is formally defined in[Table 1](/\u00A7_Ref17727931).\nTable 1 - FileType"
     },
     {
-      "Id": "6715b428-f2e2-4131-b49b-0e5fb51e411a",
+      "Id": "b4be8f7a-730e-4dda-a4c5-43887713989b",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.1 General\nCaption: Table 1 - FileType\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nFileType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nSize\nUInt64\nPropertyType\nMandatory\nHasProperty\nVariable\nWritable\nBoolean\nPropertyType\nMandatory\nHasProperty\nVariable\nUserWritable\nBoolean\nPropertyType\nMandatory\nHasProperty\nVariable\nOpenCount\nUInt16\nPropertyType\nMandatory\nHasProperty\nVariable\nMimeType\nString\nPropertyType\nOptional\nHasComponent\nMethod\nOpen\nDefined in[4.2.2](/\u00A7_Ref293494056)\nMandatory\nHasComponent\nMethod\nClose\nDefined in[4.2.3](/\u00A7_Ref293494061)\nMandatory\nHasComponent\nMethod\nRead\nDefined in[4.2.4](/\u00A7_Ref293494065)\nMandatory\nHasComponent\nMethod\nWrite\nDefined in[4.2.5](/\u00A7_Ref293494069)\nMandatory\nHasComponent\nMethod\nGetPosition\nDefined in[4.2.6](/\u00A7_Ref293494073)\nMandatory\nHasComponent\nMethod\nSetPosition\nDefined in[4.2.7](/\u00A7_Ref293494077)\nMandatory\nHasProperty\nVariable\nMaxByteStringLength\nUInt32\nPropertyType\nOptional\nHasProperty\nVariable\nLastModifiedTime\nDateTime\nPropertyType\nOptional\nConformance Units\nBase Info FileType Base"
+    },
+    {
+      "Id": "dd464b2b-dc69-4b5f-bba6-db059104cd0e",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2.1 General\n---\n",
       "Content": "Size defines the size of the file in Bytes. When a file is opened for write, the size might not be accurate. If the Server can not accurately determine the size of the file, the Size Property shall be returned to a Client with a StatusCode of Bad_NotSupported.\nWritable indicates whether the file is writable. It does not take any user access rights into account, i.e., although the file is writable this may be restricted to a certain user / user group. The Property does not consider whether the file is currently opened for writing by another client and thus currently locked and not writable by others.\nUserWritable indicates whether the file is writable taking user access rights into account. The Property does not consider whether the file is currently opened for writing by another client and thus currently locked and not writable by others.\nOpenCount indicates the number of currently valid file handles on the file.\nThe optional Property MimeType contains the media type of the file based on RFC 2046.\nNote that all Methods on a file require a fileHandle, which is returned in the Open Method.\nThe optional MaxByteStringLength Property indicates the maximum number of bytes of the read and write buffers. If this Property is not present then the maximum size is defined by the MaxByteStringLength Property of the ServerCapabilitiesType defined in[OPC 10000-5](/\u00A7UAPart5).\nThe optional LastModifiedTime Property indicates the time the file was last modified. The Property shall be updated whenever the Server detects that the file has changed."
     },
     {
-      "Id": "c81c31d2-0fcf-4c22-bdb5-d7b1ce2ee31b",
+      "Id": "de307cdf-08b4-4462-b3de-4cffa70b7d00",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2 FileType\n---\n",
       "Content": "4.2.2 Open"
     },
     {
-      "Id": "34ad7ef2-cb75-49dd-aceb-30c1f033ca68",
+      "Id": "55fd1d10-fc5b-401b-9228-482daed068ab",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2.2 Open\n---\n",
       "Content": "Open is used to open a file represented by an Object of FileType. When a client opens a file it gets a file handle that is valid while the session is open. Clients shall use the Close Method to release the handle when they do not need access to the file anymore. Clients can open the same file several times for read. A request to open for writing shall return Bad_NotWritable when the file is already opened. A request to open for reading shall return Bad_NotReadable when the file is already opened for writing.\nSignature\nOpen\n[in] Byte mode\n[out] UInt32 fileHandle\n);\n\nArgument\nDescription\nmode\nIndicates whether the file should be opened only for read operations or for read and write operations and where the initial position is set.\nThe mode is an 8-bit unsigned integer used as bit mask with the structure defined in the following table:\n\nField\nBit\nDescription\nRead\n0\nThe file is opened for reading. If this bit is not set the Read Method cannot be executed.\nWrite\n1\nThe file is opened for writing. If this bit is not set the Write Method cannot be executed.\nEraseExisting\n2\nThis bit can only be set if the file is opened for writing (Write bit is set). The existing content of the file is erased and an empty file is provided.\nAppend\n3\nWhen the Append bit is set the file is opened at end of the file, otherwise at begin of the file. The SetPosition Method can be used to change the position.\nReserved\n4:7\nReserved for future use. Shall always be zero.\n\n\nfileHandle"
     },
     {
-      "Id": "1e16c1a9-0fc1-4f48-8fa4-9c006f745075",
+      "Id": "e5584521-4e74-4167-b316-1801e462dc46",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2.2 Open\n---\n",
-      "Content": "fileHandle\nA handle for the file used in other method calls indicating not the file (this is done by the Object of the Method call) but the access request and thus the position in the file. The fileHandle is generated by the server and is unique for the Session. Clients cannot transfer the fileHandle to another Session but need to get a new fileHandle by calling the Open Method.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_NotReadable\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. File might be locked and thus not readable.\nBad_NotWritable\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBad_InvalidState\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. The file is locked and thus not writable.\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. Mode setting is invalid.\nBad_NotFound\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBad_UnexpectedError\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\n\n[Table 2](/\u00A7_Ref33090522) specifies the AddressSpace representation for the Open Method.\nTable 2- Open Method AddressSpace definition\nAttribute\nValue\nBrowseName\nOpen\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory"
+      "Content": "fileHandle\nA handle for the file used in other method calls indicating not the file (this is done by the Object of the Method call) but the access request and thus the position in the file. The fileHandle is generated by the server and is unique for the Session. Clients cannot transfer the fileHandle to another Session but need to get a new fileHandle by calling the Open Method.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_NotReadable\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. File might be locked and thus not readable.\nBad_NotWritable\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBad_InvalidState\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. The file is locked and thus not writable.\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. Mode setting is invalid.\nBad_NotFound\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBad_UnexpectedError\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\n\n[Table 2](/\u00A7_Ref33090522) specifies the AddressSpace representation for the Open Method.\nTable 2 - Open Method AddressSpace definition"
     },
     {
-      "Id": "b71f7f48-c928-48d0-8c04-413271d7e75b",
-      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.2 Open\n---\n",
-      "Content": "PropertyType\nMandatory\nConformance Units\nBase Info FileType Base"
+      "Id": "c456a591-392a-45a3-bb29-525026c87a3a",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.2 Open\nCaption: Table 2 - Open Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nOpen\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileType Base"
     },
     {
-      "Id": "b808a35d-f214-4432-9a95-94f93d5434b7",
+      "Id": "a92ded28-e960-46e4-8fc1-12dd6f2e08f8",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.2 Open\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "564a7042-3415-4e4d-a107-8d137acbdb72",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2 FileType\n---\n",
       "Content": "4.2.3 Close"
     },
     {
-      "Id": "393260fe-7034-4926-a091-503dc35b9012",
+      "Id": "40bd729f-7039-4a2d-99e8-a54ffae065eb",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2.3 Close\n---\n",
-      "Content": "Close is used to close a file represented by a FileType. When a client closes a file, the handle becomes invalid.\nSignature\nClose\n[in] UInt32 fileHandle\n);\n\nArgument\nDescription\nfileHandle\nA handle indicating the access request and thus indirectly the position inside the file.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. Invalid file handle in call.\n\n[Table 3](/\u00A7_Ref33090544) specifies the AddressSpace representation for the Close Method.\nTable 3- Close Method AddressSpace definition\nAttribute\nValue\nBrowseName\nClose\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileType Base"
+      "Content": "Close is used to close a file represented by a FileType. When a client closes a file, the handle becomes invalid.\nSignature\nClose\n[in] UInt32 fileHandle\n);\n\nArgument\nDescription\nfileHandle\nA handle indicating the access request and thus indirectly the position inside the file.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. Invalid file handle in call.\n\n[Table 3](/\u00A7_Ref33090544) specifies the AddressSpace representation for the Close Method.\nTable 3 - Close Method AddressSpace definition"
     },
     {
-      "Id": "0f87a9b0-b5d7-4ac4-85bb-5c0d47a2c6b7",
+      "Id": "48af986c-d3c0-41af-abee-656e7ac327c5",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.3 Close\nCaption: Table 3 - Close Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nClose\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileType Base"
+    },
+    {
+      "Id": "04c2a69e-cf4b-49fd-be0d-683d4286f726",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.3 Close\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "0c761116-e28e-48cc-826a-4ca0c0b9d97b",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2 FileType\n---\n",
       "Content": "4.2.4 Read"
     },
     {
-      "Id": "c3f46428-50c4-45bc-9652-ee56557d5587",
+      "Id": "4e53c367-5086-4c28-b2cb-87f7ce140924",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2.4 Read\n---\n",
-      "Content": "Read is used to read a part of the file starting from the current file position. The file position is advanced by the number of bytes read.\nSignature\nRead\n[in] UInt32 fileHandle\n[in] Int32 length\n[out] ByteString data\n);\n\nArgument\nDescription\nfileHandle\nA handle indicating the access request and thus indirectly the position inside the file.\nLength\nDefines the length in bytes that should be returned in data, starting from the current position of the file handle. If the end of file is reached all data until the end of the file is returned. The Server is allowed to return less data than specified length.\nOnly positive values are allowed.\nData\nContains the returned data of the file. If the ByteString is empty it indicates that the end of the file is reached.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) Invalid file handle in call or non-positive length.\nBad_UnexpectedError\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBad_InvalidState\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. File was not opened for read access.\n\n[Table 4](/\u00A7_Ref33090563) specifies the AddressSpace representation for the Read Method.\nTable 4- Read Method AddressSpace definition\nAttribute\nValue\nBrowseName\nRead\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units"
+      "Content": "Read is used to read a part of the file starting from the current file position. The file position is advanced by the number of bytes read.\nSignature\nRead\n[in] UInt32 fileHandle\n[in] Int32 length\n[out] ByteString data\n);\n\nArgument\nDescription\nfileHandle\nA handle indicating the access request and thus indirectly the position inside the file.\nLength\nDefines the length in bytes that should be returned in data, starting from the current position of the file handle. If the end of file is reached all data until the end of the file is returned. The Server is allowed to return less data than specified length.\nOnly positive values are allowed.\nData\nContains the returned data of the file. If the ByteString is empty it indicates that the end of the file is reached.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) Invalid file handle in call or non-positive length.\nBad_UnexpectedError\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBad_InvalidState\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. File was not opened for read access.\n\n[Table 4](/\u00A7_Ref33090563) specifies the AddressSpace representation for the Read Method.\nTable 4 - Read Method AddressSpace definition"
     },
     {
-      "Id": "ca075538-defc-41f1-817c-fa452be8b6dc",
-      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.4 Read\n---\n",
-      "Content": "Conformance Units\nBase Info FileType Base"
+      "Id": "cdefc244-0ba2-4412-bf01-1ed9c311afb0",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.4 Read\nCaption: Table 4 - Read Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nRead\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileType Base"
     },
     {
-      "Id": "8ae30674-1e92-4875-a20d-15a68fa78170",
+      "Id": "801c9ba5-ad5a-4b9e-9c15-54eb2d2f6f1f",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.4 Read\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "aa6f365e-6425-4fb9-bff5-c47b1b2e326f",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2 FileType\n---\n",
       "Content": "4.2.5 Write"
     },
     {
-      "Id": "a82581d9-27be-4bfc-aa9a-79b79bce826b",
+      "Id": "26b709a3-5695-4873-bc0a-49e08f9ede06",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2.5 Write\n---\n",
-      "Content": "Write is used to write a part of the file starting from the current file position. The file position is advanced by the number of bytes written.\nSignature\nWrite\n[in] UInt32 fileHandle\n[in] ByteString data\n);\n\nArgument\nDescription\nfileHandle\nA handle indicating the access request and thus indirectly the position inside the file.\ndata\nContains the data to be written at the position of the file. It is server-dependent whether the written data are persistently stored if the session is ended without calling the Close Method with the fileHandle.\nWriting an empty or null ByteString returns a Good result code without any affect on the file.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. Invalid file handle in call.\nBad_NotWritable\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. File might be locked and thus not writable.\nBad_InvalidState\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. File was not opened for write access.\n\n[Table 5](/\u00A7_Ref33090581) specifies the AddressSpace representation for the Write Method.\nTable 5- Write Method AddressSpace definition\nAttribute\nValue\nBrowseName\nWrite\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileType Base"
+      "Content": "Write is used to write a part of the file starting from the current file position. The file position is advanced by the number of bytes written.\nSignature\nWrite\n[in] UInt32 fileHandle\n[in] ByteString data\n);\n\nArgument\nDescription\nfileHandle\nA handle indicating the access request and thus indirectly the position inside the file.\ndata\nContains the data to be written at the position of the file. It is server-dependent whether the written data are persistently stored if the session is ended without calling the Close Method with the fileHandle.\nWriting an empty or null ByteString returns a Good result code without any affect on the file.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. Invalid file handle in call.\nBad_NotWritable\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. File might be locked and thus not writable.\nBad_InvalidState\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. File was not opened for write access.\n\n[Table 5](/\u00A7_Ref33090581) specifies the AddressSpace representation for the Write Method.\nTable 5 - Write Method AddressSpace definition"
     },
     {
-      "Id": "3fcae08d-e147-4c64-8f13-9616316d8684",
+      "Id": "f2e1f965-0013-468b-adcb-39180ce8e846",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.5 Write\nCaption: Table 5 - Write Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nWrite\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileType Base"
+    },
+    {
+      "Id": "f9b8117d-1961-456a-ae09-225939658a5b",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.5 Write\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "2527ad3c-5bd5-4e4c-8529-eacac70990a4",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2 FileType\n---\n",
       "Content": "4.2.6 GetPosition"
     },
     {
-      "Id": "3047e467-0572-4760-9e7f-82d4174ca894",
+      "Id": "b1554590-b68e-4788-80c5-e60887798106",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2.6 GetPosition\n---\n",
-      "Content": "GetPosition is used to provide the current position of the file handle.\nSignature\nGetPosition\n[in] UInt32 fileHandle\n[out] UInt64 position\n);\n\nArgument\nDescription\nfileHandle\nA handle indicating the access request and thus indirectly the position inside the file.\nPosition\nThe position of the fileHandle in the file. If a Read or Write is called it starts at that position.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. Invalid file handle in call.\n\n[Table 6](/\u00A7_Ref33090599) specifies the AddressSpace representation for the GetPosition Method.\nTable 6- GetPosition Method AddressSpace definition\nAttribute\nValue\nBrowseName\nGetPosition\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileType Base"
+      "Content": "GetPosition is used to provide the current position of the file handle.\nSignature\nGetPosition\n[in] UInt32 fileHandle\n[out] UInt64 position\n);\n\nArgument\nDescription\nfileHandle\nA handle indicating the access request and thus indirectly the position inside the file.\nPosition\nThe position of the fileHandle in the file. If a Read or Write is called it starts at that position.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. Invalid file handle in call.\n\n[Table 6](/\u00A7_Ref33090599) specifies the AddressSpace representation for the GetPosition Method.\nTable 6 - GetPosition Method AddressSpace definition"
     },
     {
-      "Id": "fe1922bb-78c7-4bc6-aa5f-8883eff949ba",
+      "Id": "ded4a831-63f2-4799-ba29-50fcba09a2df",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.6 GetPosition\nCaption: Table 6 - GetPosition Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nGetPosition\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileType Base"
+    },
+    {
+      "Id": "f2d3faad-458e-4569-bc78-1cb467a5cc18",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.6 GetPosition\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "a010ff46-d575-4dfd-a582-9d308e0e3f9e",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2 FileType\n---\n",
       "Content": "4.2.7 SetPosition"
     },
     {
-      "Id": "88b6c0ec-0513-4ea1-b5c2-2d042f7f2ffd",
+      "Id": "381a4f45-ffff-4dec-ad5c-4d80302b6669",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.2.7 SetPosition\n---\n",
-      "Content": "SetPosition is used to set the current position of the file handle.\nSignature\nSetPosition\n[in] UInt32 fileHandle\n[in] UInt64 position\n);\n\nArgument\nDescription\nfileHandle\nA handle indicating the access request and thus indirectly the position inside the file.\nPosition\nThe position to be set for the fileHandle in the file. If a Read or Write is called it starts at that position. If the position is higher than the file size the position is set to the end of the file.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. Invalid file handle in call.\n\n[Table 7](/\u00A7_Ref33090615) specifies the AddressSpace representation for the SetPosition Method.\nTable 7- SetPosition Method AddressSpace definition\nAttribute\nValue\nBrowseName\nSetPosition\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileType Base"
+      "Content": "SetPosition is used to set the current position of the file handle.\nSignature\nSetPosition\n[in] UInt32 fileHandle\n[in] UInt64 position\n);\n\nArgument\nDescription\nfileHandle\nA handle indicating the access request and thus indirectly the position inside the file.\nPosition\nThe position to be set for the fileHandle in the file. If a Read or Write is called it starts at that position. If the position is higher than the file size the position is set to the end of the file.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. Invalid file handle in call.\n\n[Table 7](/\u00A7_Ref33090615) specifies the AddressSpace representation for the SetPosition Method.\nTable 7 - SetPosition Method AddressSpace definition"
     },
     {
-      "Id": "8daa1f0c-48c9-4116-abdd-2556ef851f0c",
+      "Id": "9217c6fe-7d9b-4efc-85b3-4874a6c2fe3c",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.7 SetPosition\nCaption: Table 7 - SetPosition Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nSetPosition\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileType Base"
+    },
+    {
+      "Id": "d5efce7c-2a94-4a64-993a-72a683153864",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.2.7 SetPosition\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "2ddcc68f-0a71-4222-88c1-5b06f31ba4d7",
       "Header": "Document: Part 20 - File Transfer\nSection: 4 File Transfer Model\n---\n",
       "Content": "4.3 File System"
     },
     {
-      "Id": "4472109d-a003-4dcf-8f9d-057b1e8b60b4",
+      "Id": "7e0f8833-9d6d-47d0-bc0d-50e4ea844e8b",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3 File System\n---\n",
       "Content": "4.3.1 FileDirectoryType"
     },
     {
-      "Id": "76a28025-cabe-4cb5-9ed1-ac05cd51134d",
+      "Id": "249f41dc-1f7f-47a4-9446-d2ea7565cb14",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3.1 FileDirectoryType\n---\n",
-      "Content": "This ObjectType defines a type for the representation of file directories. It is formally defined in[Table 8](/\u00A7_Ref33089497).\nIt is expected that OPC UA Servers will create vendor-specific subtypes of the FileDirectoryType with additional functionalities like Methods for creating symbolic links or setting access permissions. OPC UA Clients providing specialized file transfer user interfaces should be prepared to expose such additional Methods to the user.\nTable 8- FileDirectoryType\nAttribute\nValue\nBrowseName\nFileDirectoryType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the FolderType defined in[OPC 10000-5](/\u00A7UAPart5)\nOrganizes\nObject\n\u003CFileDirectoryName\u003E\n\nFileDirectoryType\nOptionalPlaceholder\nOrganizes\nObject\n\u003CFileName\u003E\n\nFileType\nOptionalPlaceholder\nHasComponent\nMethod\nCreateDirectory\nDefined in[4.3.3](/\u00A7_Ref410074051)\nMandatory\nHasComponent\nMethod\nCreateFile\nDefined in[4.3.4](/\u00A7_Ref409879519)\nMandatory\nHasComponent\nMethod\nDelete\nDefined in[4.3.5](/\u00A7_Ref409879522)\nMandatory\nHasComponent\nMethod\nMoveOrCopy\nDefined in[4.3.6](/\u00A7_Ref410074068)\nMandatory\nConformance Units\nBase Info FileDirectoryType Base\n\nInstances of the ObjectType contain a list of FileDirectoryType Objects representing the subdirectories of the file directory represented by the instance of this ObjectType.\nInstances of the ObjectType contain a list of FileType Objects representing the files in the file directory represented by the instance of this ObjectType."
+      "Content": "This ObjectType defines a type for the representation of file directories. It is formally defined in[Table 8](/\u00A7_Ref33089497).\nIt is expected that OPC UA Servers will create vendor-specific subtypes of the FileDirectoryType with additional functionalities like Methods for creating symbolic links or setting access permissions. OPC UA Clients providing specialized file transfer user interfaces should be prepared to expose such additional Methods to the user.\nTable 8 - FileDirectoryType"
     },
     {
-      "Id": "d4132ab6-7ebe-4e0e-b5d0-7fc8a360689d",
+      "Id": "c007c7ef-f86d-4cdf-a5bb-f77e15a7b18c",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.3.1 FileDirectoryType\nCaption: Table 8 - FileDirectoryType\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nFileDirectoryType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the FolderType defined in[OPC 10000-5](/\u00A7UAPart5)\nOrganizes\nObject\n\u003CFileDirectoryName\u003E\n\nFileDirectoryType\nOptionalPlaceholder\nOrganizes\nObject\n\u003CFileName\u003E\n\nFileType\nOptionalPlaceholder\nHasComponent\nMethod\nCreateDirectory\nDefined in[4.3.3](/\u00A7_Ref410074051)\nMandatory\nHasComponent\nMethod\nCreateFile\nDefined in[4.3.4](/\u00A7_Ref409879519)\nMandatory\nHasComponent\nMethod\nDelete\nDefined in[4.3.5](/\u00A7_Ref409879522)\nMandatory\nHasComponent\nMethod\nMoveOrCopy\nDefined in[4.3.6](/\u00A7_Ref410074068)\nMandatory\nConformance Units\nBase Info FileDirectoryType Base"
+    },
+    {
+      "Id": "2290fbbb-9850-42a1-9e5e-2665680ce40c",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.3.1 FileDirectoryType\n---\n",
+      "Content": "Instances of the ObjectType contain a list of FileDirectoryType Objects representing the subdirectories of the file directory represented by the instance of this ObjectType.\nInstances of the ObjectType contain a list of FileType Objects representing the files in the file directory represented by the instance of this ObjectType."
+    },
+    {
+      "Id": "1ed39139-b6b5-416d-b3ea-4d1836dc49bd",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3 File System\n---\n",
       "Content": "4.3.2 FileSystem Object"
     },
     {
-      "Id": "30792776-29f3-4411-94ea-ecd334f3430e",
+      "Id": "5fdff016-4db4-4f97-a369-0d5dc0f993af",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3.2 FileSystem Object\n---\n",
       "Content": "The support of file directory structures is declared by aggregating an instance of the FileDirectoryType with the BrowseName FileSystem as illustrated in[Figure 1](/\u00A7_Ref33077716)."
     },
     {
-      "Id": "cb8e9216-c299-4806-abd5-1b9fd4db56eb",
+      "Id": "f9d56e61-6589-4589-958e-ef48b189b728",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3.2 FileSystem Object\nCaption: Figure 1 - FileSystem example\n---\n",
       "Content": "[image004.png](images/image004.png)"
     },
     {
-      "Id": "e2081762-386f-4cf6-a8af-b15287d10ca4",
+      "Id": "921d4704-282a-4710-bea3-6c1aee4219f6",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3.2 FileSystem Object\n---\n",
       "Content": "Figure 1 - FileSystem example\nThe Object representing the root of a file directory structure shall have the BrowseName FileSystem. An OPC UA Server may have different FileSystem Objects in the AddressSpace. HasComponent is used to reference a FileSystem from aggregating Objects like the Objects Folder or the Object representing a device."
     },
     {
-      "Id": "381c7368-54c0-4d59-9069-aae18d8a8b4b",
+      "Id": "32ec9da5-62fa-4c8b-ad7e-f7adc8670a3e",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3 File System\n---\n",
       "Content": "4.3.3 CreateDirectory"
     },
     {
-      "Id": "096efd36-80a4-496f-b234-d2ad61fb223a",
+      "Id": "051bd86e-fcd7-41c2-b3db-7507f7cdf9bc",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3.3 CreateDirectory\n---\n",
-      "Content": "CreateDirectory is used to create a new FileDirectoryType Object organized by this Object.\nSignature\nCreateDirectory\n[in] String directoryName\n[out] NodeId directoryNodeId\n);\n\nArgument\nDescription\ndirectoryName\nThe name of the directory to create. The name is used for the BrowseName and DisplayName of the directory object and also for the directory in the file system.\nFor the BrowseName, the directoryName is used for the name part of the QualifiedName. The namespace index is Server specific.\nFor the DisplayName, the directoryName is used for the text part of the LocalizedText. The locale part is Server specific.\ndirectoryNodeId\nThe NodeId of the created directory Object.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_BrowseNameDuplicated\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. A directory with the name already exists.\nBad_UserAccessDenied\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\n\n[Table 9](/\u00A7_Ref33089593) specifies the AddressSpace representation for the CreateDirectory Method.\nTable 9- CreateDirectory Method AddressSpace definition\nAttribute\nValue\nBrowseName\nCreateDirectory\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileDirectoryType Base"
+      "Content": "CreateDirectory is used to create a new FileDirectoryType Object organized by this Object.\nSignature\nCreateDirectory\n[in] String directoryName\n[out] NodeId directoryNodeId\n);\n\nArgument\nDescription\ndirectoryName\nThe name of the directory to create. The name is used for the BrowseName and DisplayName of the directory object and also for the directory in the file system.\nFor the BrowseName, the directoryName is used for the name part of the QualifiedName. The namespace index is Server specific.\nFor the DisplayName, the directoryName is used for the text part of the LocalizedText. The locale part is Server specific.\ndirectoryNodeId\nThe NodeId of the created directory Object.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_BrowseNameDuplicated\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. A directory with the name already exists.\nBad_UserAccessDenied\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\n\n[Table 9](/\u00A7_Ref33089593) specifies the AddressSpace representation for the CreateDirectory Method.\nTable 9 - CreateDirectory Method AddressSpace definition"
     },
     {
-      "Id": "ff115f5a-824b-494a-87a8-51f974f86099",
+      "Id": "138bbe6e-89b0-4010-8db9-c9a34519c649",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.3.3 CreateDirectory\nCaption: Table 9 - CreateDirectory Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nCreateDirectory\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileDirectoryType Base"
+    },
+    {
+      "Id": "78010210-84e9-454c-9415-01487f99342e",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.3.3 CreateDirectory\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "1ab8598d-c991-4c55-8fb3-b1d5bcee99c3",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3 File System\n---\n",
       "Content": "4.3.4 CreateFile"
     },
     {
-      "Id": "86360299-2721-4f8c-83f6-78a7baf68617",
+      "Id": "bf4a6bca-24eb-4d3f-8049-4ec72f1c5165",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3.4 CreateFile\n---\n",
       "Content": "CreateFile is used to create a new FileType Object organized by this Object. The created file can be written using the Write Method of the FileType.\nSignature\nCreateFile\n[in] String fileName\n[in] Boolean requestFileOpen\n[out] NodeId fileNodeId\n[out] UInt32 fileHandle\n);\n\nArgument\nDescription\nfileName\nThe name of the file to create. The name is used for the BrowseName and DisplayName of the file object and also for the file in the file system.\nFor the BrowseName, the fileName is used for the name part of the QualifiedName. The namespace index is Server specific.\nFor the DisplayName, the fileName is used for the text part of the LocalizedText. The locale part is Server specific.\nrequestFileOpen\nFlag indicating if the new file should be opened with the Write and Read bits set in the open mode after the creation of the file. If the flag is set to True, the file is created and opened for writing. If the flag is set to False, the file is just created.\nfileNodeId\nThe NodeId of the created file Object.\nfileHandle\nThe fileHandle is returned if the requestFileOpen is set to True.\nThe fileNodeId and the fileHandle can be used to access the new file through the FileType Object representing the new file.\nIf requestFileOpen is set to False, the returned value shall be 0 and shall be ignored by the caller.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_BrowseNameDuplicated\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. A file with the name already exists.\nBad_UserAccessDenied\nSee[OPC 10000-4](/\u00A7UAPart4)"
     },
     {
-      "Id": "ac358796-b17f-4b61-b4f3-60800bd0f52a",
+      "Id": "effce1f7-de29-4ba9-a8a5-efd6e6b81bf5",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3.4 CreateFile\n---\n",
-      "Content": "for a general description.\n\n[Table 10](/\u00A7_Ref33090643) specifies the AddressSpace representation for the CreateFile Method.\nTable 10- CreateFile Method AddressSpace definition\nAttribute\nValue\nBrowseName\nCreateFile\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileDirectoryType Base"
+      "Content": "for a general description.\n\n[Table 10](/\u00A7_Ref33090643) specifies the AddressSpace representation for the CreateFile Method.\nTable 10 - CreateFile Method AddressSpace definition"
     },
     {
-      "Id": "5a47e4d9-cfdb-4d14-8f36-fe9d856c8ab4",
+      "Id": "1f490eb4-297f-478c-af85-2c39a38b4c0b",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.3.4 CreateFile\nCaption: Table 10 - CreateFile Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nCreateFile\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileDirectoryType Base"
+    },
+    {
+      "Id": "7653e737-bdc0-45f5-9bfa-a1bdd99edfa5",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.3.4 CreateFile\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "8fb64d3b-a978-4fde-9541-7b309e297bc6",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3 File System\n---\n",
       "Content": "4.3.5 Delete"
     },
     {
-      "Id": "45350e78-af61-4e0f-b2b4-f02692830e32",
+      "Id": "19dc053f-81df-4fc0-9867-8f25cf2a1fd6",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3.5 Delete\n---\n",
-      "Content": "Delete is used to delete a file or directory organized by this Object.\nSignature\nDelete\n[in] NodeId objectToDelete\n);\n\nArgument\nDescription\nobjectToDelete\nThe NodeId of the file or directory to delete.\nIn the case of a directory, all file and directory Objects below the directory to delete are deleted recursively.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_NotFound\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. A file or directory with the provided NodeId is not organized by this object.\nBad_InvalidState\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. The file or directory is locked and thus cannot be deleted.\nBad_UserAccessDenied\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\n\n[Table 11](/\u00A7_Ref33090656) specifies the AddressSpace representation for the Delete Method.\nTable 11- Delete Method AddressSpace definition\nAttribute\nValue\nBrowseName\nDelete\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileDirectoryType Base"
+      "Content": "Delete is used to delete a file or directory organized by this Object.\nSignature\nDelete\n[in] NodeId objectToDelete\n);\n\nArgument\nDescription\nobjectToDelete\nThe NodeId of the file or directory to delete.\nIn the case of a directory, all file and directory Objects below the directory to delete are deleted recursively.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_NotFound\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. A file or directory with the provided NodeId is not organized by this object.\nBad_InvalidState\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. The file or directory is locked and thus cannot be deleted.\nBad_UserAccessDenied\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\n\n[Table 11](/\u00A7_Ref33090656) specifies the AddressSpace representation for the Delete Method.\nTable 11 - Delete Method AddressSpace definition"
     },
     {
-      "Id": "5fac2f40-b240-42b2-bad1-460545b64506",
+      "Id": "6d29e25b-e10f-4d03-a16e-46c43827019c",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.3.5 Delete\nCaption: Table 11 - Delete Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nDelete\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileDirectoryType Base"
+    },
+    {
+      "Id": "985347a4-de18-4c5c-a58d-b448d0c754b2",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.3.5 Delete\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "ece9fc76-1e0b-4619-9140-b6a92a89fc31",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3 File System\n---\n",
       "Content": "4.3.6 MoveOrCopy"
     },
     {
-      "Id": "496ccd77-b25c-4233-906f-0be137882264",
+      "Id": "c14a9484-5c2b-4c88-aa8a-69e9a221f6b5",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3.6 MoveOrCopy\n---\n",
       "Content": "MoveOrCopy is used to move or copy a file or directory organized by this Object to another directory or to rename a file or directory.\nSignature\nMoveOrCopy\n[in] NodeId objectToMoveOrCopy\n[in] NodeId targetDirectory\n[in] Boolean createCopy\n[in] String newName\n[out] NodeId newNodeId\n);\n\nArgument\nDescription\nobjectToMoveOrCopy\nThe NodeId of the file or directory to move or copy.\ntargetDirectory\nThe NodeId of the target directory of the move or copy command. If the file or directory is just renamed, the targetDirectory matches the ObjectId passed to the method call.\ncreateCopy\nA flag indicating if a copy of the file or directory should be created at the target directory.\nnewName\nThe new name of the file or directory in the new location. If the string is empty, the name is unchanged.\nnewNodeId\nThe NodeId of the moved or copied object. Even if the Object is moved, the Server may return a new NodeId.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_BrowseNameDuplicated\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. A file or directory with the name already exists.\nBad_NotFound\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. A file or directory with the provided NodeId is not organized by this object.\nBad_InvalidState\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. The file or directory is locked and thus cannot be moved or copied.\nBad_UserAccessDenied\nSee"
     },
     {
-      "Id": "3565bf56-a5f7-4e85-a806-b737ff07c371",
+      "Id": "9f4e99dd-adcf-4ae0-b64e-892a03461121",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.3.6 MoveOrCopy\n---\n",
-      "Content": "See[OPC 10000-4](/\u00A7UAPart4) for a general description.\n\n[Table 12](/\u00A7_Ref33089629) specifies the AddressSpace representation for the MoveOrCopy Method.\nTable 12- MoveOrCopy Method AddressSpace definition\nAttribute\nValue\nBrowseName\nMoveOrCopy\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileDirectoryType Base"
+      "Content": "See[OPC 10000-4](/\u00A7UAPart4) for a general description.\n\n[Table 12](/\u00A7_Ref33089629) specifies the AddressSpace representation for the MoveOrCopy Method.\nTable 12 - MoveOrCopy Method AddressSpace definition"
     },
     {
-      "Id": "73bdb25c-df44-4bc4-b43c-a193e415274e",
+      "Id": "7c7141d8-2000-4eb6-be77-ddf14e2f3cd6",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.3.6 MoveOrCopy\nCaption: Table 12 - MoveOrCopy Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nMoveOrCopy\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info FileDirectoryType Base"
+    },
+    {
+      "Id": "2c45f263-68d1-4db0-9043-845b70e110bb",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.3.6 MoveOrCopy\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "922faa08-743d-4128-93dd-9cf4269678ad",
       "Header": "Document: Part 20 - File Transfer\nSection: 4 File Transfer Model\n---\n",
       "Content": "4.4 Temporary file transfer"
     },
     {
-      "Id": "19fd7732-ad3e-4d78-ac88-67cbf97c0605",
+      "Id": "09bd3bf1-4638-45ff-b5c8-a3e38ff701bc",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4 Temporary file transfer\n---\n",
       "Content": "4.4.1 TemporaryFileTransferType"
     },
     {
-      "Id": "f33cc2d4-79a5-42b5-ae4e-787d69890b09",
+      "Id": "46186b45-10eb-4799-90c8-2ec3ab480c46",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.1 TemporaryFileTransferType\n---\n",
-      "Content": "This ObjectType defines a type for the representation of temporary file transfers. It is formally defined in[Table 13](/\u00A7_Ref33089650). The Methods GenerateFileForRead or GenerateFileForWrite generate a temporary FileType Object that is not browsable in the AddressSpace and can only be accessed with the NodeId and FileHandle returned by the Methods in the same Session. This Object is used to transfer the temporary file between OPC UA Client and Server. A file may be readonly, writeonly or readable and writable.\nTable 13- TemporaryFileTransferType\nAttribute\nValue\nBrowseName\nTemporaryFileTransferType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nClientProcessingTimeout\nDuration\nPropertyType\nMandatory\nHasComponent\nMethod\nGenerateFileForRead\nDefined in[4.4.3](/\u00A7_Ref452631914)\nMandatory\nHasComponent\nMethod\nGenerateFileForWrite\nDefined in[4.4.4](/\u00A7_Ref452631921)\nMandatory\nHasComponent\nMethod\nCloseAndCommit\nDefined in[4.4.5](/\u00A7_Ref452631928)\nMandatory\nHasComponent\nObject\n\u003CTransferState\u003E\n\nFileTransferStateMachineType\nOptionalPlaceholder\nConformance Units\nBase Info TemporaryFileTransferType Base\n\nThe Property ClientProcessingTimeout defines the maximum time in milliseconds the Server accepts between Method calls necessary to complete a file read transfer or a file write transfer transaction. This includes the Method calls to read or write the file content from the virtual temporary FileType Object. If the Client exceeds the timeout between Method"
+      "Content": "This ObjectType defines a type for the representation of temporary file transfers. It is formally defined in[Table 13](/\u00A7_Ref33089650). The Methods GenerateFileForRead or GenerateFileForWrite generate a temporary FileType Object that is not browsable in the AddressSpace and can only be accessed with the NodeId and FileHandle returned by the Methods in the same Session. This Object is used to transfer the temporary file between OPC UA Client and Server. A file may be readonly, writeonly or readable and writable.\nTable 13 - TemporaryFileTransferType"
     },
     {
-      "Id": "a50b5fff-d45b-4505-8512-4a7c40a82008",
-      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.1 TemporaryFileTransferType\n---\n",
-      "Content": "Method calls, the Server may close the file and cancel the corresponding transfer transaction. Any open temporary transfer file shall be deleted if the Session used to create the file is no longer valid.\nThe TransferState Objects are used to expose the state of a transfer transaction in the case that the preparation of a file for reading or the processing of the file after writing completes asynchronous after the corresponding Method execution. If the transactions are completed when the Method is returned, the optional TransferState Objects are not available. A Server may allow more than one parallel read transfer. A Server may not allow more than one write transfer or a parallel read and writer transfer."
+      "Id": "f27e04fd-d513-4296-b7f3-54585acc0a39",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.1 TemporaryFileTransferType\nCaption: Table 13 - TemporaryFileTransferType\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nTemporaryFileTransferType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasProperty\nVariable\nClientProcessingTimeout\nDuration\nPropertyType\nMandatory\nHasComponent\nMethod\nGenerateFileForRead\nDefined in[4.4.3](/\u00A7_Ref452631914)\nMandatory\nHasComponent\nMethod\nGenerateFileForWrite\nDefined in[4.4.4](/\u00A7_Ref452631921)\nMandatory\nHasComponent\nMethod\nCloseAndCommit\nDefined in[4.4.5](/\u00A7_Ref452631928)\nMandatory\nHasComponent\nObject\n\u003CTransferState\u003E\n\nFileTransferStateMachineType\nOptionalPlaceholder\nConformance Units\nBase Info TemporaryFileTransferType Base"
     },
     {
-      "Id": "7d23f16f-c387-4dda-91f0-7d39c7791496",
+      "Id": "75b84ed7-af6a-4617-836f-b15dc9ca2205",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.1 TemporaryFileTransferType\n---\n",
+      "Content": "The Property ClientProcessingTimeout defines the maximum time in milliseconds the Server accepts between Method calls necessary to complete a file read transfer or a file write transfer transaction. This includes the Method calls to read or write the file content from the virtual temporary FileType Object. If the Client exceeds the timeout between Method calls, the Server may close the file and cancel the corresponding transfer transaction. Any open temporary transfer file shall be deleted if the Session used to create the file is no longer valid.\nThe TransferState Objects are used to expose the state of a transfer transaction in the case that the preparation of a file for reading or the processing of the file after writing completes asynchronous after the corresponding Method execution. If the transactions are completed when the Method is returned, the optional TransferState Objects are not available. A Server may allow more than one parallel read transfer. A Server may not allow more than one write transfer or a parallel read and writer transfer."
+    },
+    {
+      "Id": "acf54ab8-d230-454d-85c2-383f68f0eeb2",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4 Temporary file transfer\n---\n",
       "Content": "4.4.2 File transfer sequences"
     },
     {
-      "Id": "99687f92-093d-40c3-9f57-3f730e379494",
+      "Id": "7fbb5aa8-2d5a-41eb-8ff5-bcd4fc0a9c0b",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.2 File transfer sequences\n---\n",
       "Content": "The sequence of Method calls necessary to execute a read file transfer transaction is illustrated in[Figure 2](/\u00A7_Ref33089688)."
     },
     {
-      "Id": "ba28dfe7-f91a-4781-bc2d-fa0ddb966c1e",
+      "Id": "828cb622-8f5b-491e-86c4-1fb7e95c8d1d",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.2 File transfer sequences\nCaption: Figure 2 - Read file transfer example sequence\n---\n",
       "Content": "[image005.png](images/image005.png)"
     },
     {
-      "Id": "69b65f65-472c-40a4-a53b-0eb8a38983a7",
+      "Id": "1057ecac-39ef-440f-a778-3185227bfc37",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.2 File transfer sequences\n---\n",
       "Content": "Figure 2 - Read file transfer example sequence\nThe read file transfer transaction is started with the Method GenerateFileForRead defined by the TemporaryFileTransferType. After a successful call of this Method, the Client reads the file content by calling the Method Read defined by the FileType until the whole file is transferred from the Server to the Client. The transaction is completed by calling the Method Close defined by the FileType.\nThe sequence of Method calls necessary to execute a write file transfer transaction is illustrated in[Figure 3](/\u00A7_Ref33089704)."
     },
     {
-      "Id": "0c3ab16d-e803-48ff-a242-edd62f681f35",
+      "Id": "b029418f-9e24-482e-90f4-10fc3ee7f5cf",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.2 File transfer sequences\nCaption: Figure 3 - Write file transfer example sequence\n---\n",
       "Content": "[image006.png](images/image006.png)"
     },
     {
-      "Id": "8de92449-1692-4266-a2ca-adabb9be3bc9",
+      "Id": "61cd2d9d-fdfd-4e6b-a4e9-3abfc038c118",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.2 File transfer sequences\n---\n",
       "Content": "Figure 3 - Write file transfer example sequence\nThe write file transfer transaction is started with the Method StartWriteTransfer defined by the TemporaryFileTransferType. After a successful call of this Method, the Client writes the file content by calling the Method Write defined by the FileType until the whole file is transferred from the Client to the Server. The transaction is completed by calling the Method CloseAndCommit defined by the TemporaryFileTransferType. If the Client wants to abort the operation it uses the Close Method of the temporary FileType Object."
     },
     {
-      "Id": "1932fb02-ffc7-4ab8-83ec-3a5569e27b40",
+      "Id": "875fcc81-fb38-4880-a504-266b8703a7be",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4 Temporary file transfer\n---\n",
       "Content": "4.4.3 GenerateFileForRead"
     },
     {
-      "Id": "7b237eb7-432e-4637-a339-d7fed50cf928",
+      "Id": "20e1487c-7187-43c7-9981-5a44402ae158",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.3 GenerateFileForRead\n---\n",
       "Content": "GenerateFileForRead is used to start the read file transaction. A successful call of this Method creates a temporary FileType Object with the file content and returns the NodeId of this Object and the file handle to access the Object.\nSignature\nGenerateFileForRead\n[in]  BaseDataType generateOptions\n[out] NodeId fileNodeId\n[out] UInt32 fileHandle\n[out] NodeId completionStateMachine\n);\n\nArgument\nDescription\ngenerateOptions\nThe optional parameter can be used to specify server specific file generation options. To allow such options, the Server shall specify a concrete DataType in the Argument Structure for this argument in the instance of the Method.\nIf the DataType is BaseDataType, the Client shall pass Null for this argument.\nExamples for concrete DataTypes are\nOptionSet Used to provide a bit mask for file content selection\nString Can be used to provide a string filter or a regular expression\nStructure Can be used to provide a structure with create settings e.g. to create a report\nEnumeration Can be used to provide a list of options\nfileNodeId\nNodeId of the temporary file.\nfileHandle\nThe fileHandle of the opened TransferFile.\nThe fileHandle can be used to access the TransferFile Methods Read and Close.\ncompletionStateMachine\nIf the creation of the file is completed asynchronous, the parameter returns the NodeId of the corresponding FileTransferStateMachineType Object.\nIf the creation of the file is already completed, the parameter is null.\nIf a FileTransferStateMachineType Object NodeId is returned, the Read Method of the file fails until the TransferState changed to ReadTransfer.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_UserAccessDenied\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBad_NotReadable\nThe temporary FileType"
     },
     {
-      "Id": "753439bf-9162-48c4-be14-a6429cee779c",
+      "Id": "3a092f6e-8a9f-43ff-a408-3039f81ccd95",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.3 GenerateFileForRead\n---\n",
-      "Content": "The temporary FileType Object is writeonly and can not be generated for read.\n\n[Table 14](/\u00A7_Ref33089733) specifies the AddressSpace representation for the GenerateFileForRead Method.\nTable 14- GenerateFileForRead Method AddressSpace definition\nAttribute\nValue\nBrowseName\nGenerateFileForRead\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info TemporaryFileTransferType Base"
+      "Content": "The temporary FileType Object is writeonly and can not be generated for read.\n\n[Table 14](/\u00A7_Ref33089733) specifies the AddressSpace representation for the GenerateFileForRead Method.\nTable 14 - GenerateFileForRead Method AddressSpace definition"
     },
     {
-      "Id": "f7a32b9a-2fae-4583-93d3-959a72f65538",
+      "Id": "5b19675f-1fc6-474b-bb89-0ffe82b2e853",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.3 GenerateFileForRead\nCaption: Table 14 - GenerateFileForRead Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nGenerateFileForRead\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info TemporaryFileTransferType Base"
+    },
+    {
+      "Id": "eee90777-651f-4038-8592-94ac2abf0339",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.3 GenerateFileForRead\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "89f6cbc3-9280-4523-8781-067a177a62af",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4 Temporary file transfer\n---\n",
       "Content": "4.4.4 GenerateFileForWrite"
     },
     {
-      "Id": "060bdd6c-5d84-496b-9118-549e59721bd6",
+      "Id": "ccb4afad-0a27-4bb9-aa11-ac0b720962ba",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.4 GenerateFileForWrite\n---\n",
-      "Content": "GenerateFileForWrite is used to start the write file transaction. A successful call of this Method creates a temporary FileType Object and returns the NodeId of this Object and the file handle to access the Object.\nSignature\nGenerateFileForWrite\n[in] BaseDataType generateOptions\n[out] NodeId fileNodeId\n[out] UInt32 fileHandle\n);\n\nArgument\nDescription\ngenerateOptions\nThe optional parameter can be used to specify server specific file generation options. To allow such options, the Server shall specify a concrete DataType in the Argument Structure for this argument in the instance of the Method.\nIf the DataType is BaseDataType, the Client shall pass Null for this argument.\nExamples for concrete DataTypes are\nOptionSet Used to provide a bit mask for file use selection\nStructure Can be used to provide a structure with create settings e.g. firmware update settings\nEnumeration Can be used to provide a list of options like file handling options\nfileNodeId\nNodeId of the temporary file.\nfileHandle\nThe fileHandle of the opened TransferFile.\nThe fileHandle can be used to access the TransferFile Methods Write and Close.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_UserAccessDenied\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBad_NotWritable\nThe temporary FileType Object is readonly and can not be generated for wirting.\n\n[Table 15](/\u00A7_Ref33089754) specifies the AddressSpace representation for the GenerateFileForWrite Method.\nTable 15- GenerateFileForWrite Method AddressSpace definition\nAttribute\nValue\nBrowseName\nGenerateFileForWrite\n\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]"
+      "Content": "GenerateFileForWrite is used to start the write file transaction. A successful call of this Method creates a temporary FileType Object and returns the NodeId of this Object and the file handle to access the Object.\nSignature\nGenerateFileForWrite\n[in] BaseDataType generateOptions\n[out] NodeId fileNodeId\n[out] UInt32 fileHandle\n);\n\nArgument\nDescription\ngenerateOptions\nThe optional parameter can be used to specify server specific file generation options. To allow such options, the Server shall specify a concrete DataType in the Argument Structure for this argument in the instance of the Method.\nIf the DataType is BaseDataType, the Client shall pass Null for this argument.\nExamples for concrete DataTypes are\nOptionSet Used to provide a bit mask for file use selection\nStructure Can be used to provide a structure with create settings e.g. firmware update settings\nEnumeration Can be used to provide a list of options like file handling options\nfileNodeId\nNodeId of the temporary file.\nfileHandle\nThe fileHandle of the opened TransferFile.\nThe fileHandle can be used to access the TransferFile Methods Write and Close.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_UserAccessDenied\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBad_NotWritable\nThe temporary FileType Object is readonly and can not be generated for wirting.\n\n[Table 15](/\u00A7_Ref33089754) specifies the AddressSpace representation for the GenerateFileForWrite Method.\nTable 15 - GenerateFileForWrite Method AddressSpace definition"
     },
     {
-      "Id": "83f1070a-bba6-40f7-aeaf-428a62face78",
-      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.4 GenerateFileForWrite\n---\n",
-      "Content": "Argument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info TemporaryFileTransferType Base"
+      "Id": "362d8719-efc2-4f5a-bea7-3594d35e54c2",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.4 GenerateFileForWrite\nCaption: Table 15 - GenerateFileForWrite Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nGenerateFileForWrite\n\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info TemporaryFileTransferType Base"
     },
     {
-      "Id": "2b4a0561-0c14-4469-aee4-0f8421a645d4",
+      "Id": "8b2a5d8c-e84f-4597-b5f1-45099741e922",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.4 GenerateFileForWrite\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "c1de63cc-ee74-4339-a9ba-73c17079ef95",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4 Temporary file transfer\n---\n",
       "Content": "4.4.5 CloseAndCommit"
     },
     {
-      "Id": "4530314f-d673-4c0a-b6d1-6ba7c7985425",
+      "Id": "7d575a84-9566-4c25-9c8c-0578629e9347",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.5 CloseAndCommit\n---\n",
-      "Content": "CloseAndCommit is used to apply the content of the written file and to delete the temporary file after the completion of the transaction.\nSignature\nCloseAndCommit\n[in]  UInt32 fileHandle\n[out] NodeId completionStateMachine\n);\n\nArgument\nDescription\nfileHandle\nThe fileHandle used to write the file.\ncompletionStateMachine\nIf the processing of the file is completed asynchronous, the parameter returns the NodeId of the corresponding FileTransferStateMachineType Object.\nIf the processing of the file is already completed, the parameter is null.\nIf a FileTransferStateMachineType Object NodeId is returned, the processing is in progress until the TransferState changed to Idle.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_UserAccessDenied\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. Invalid file handle in call.\n\n[Table 16](/\u00A7_Ref33089769) specifies the AddressSpace representation for the CloseAndCommit Method.\nTable 16- CloseAndCommit Method AddressSpace definition\nAttribute\nValue\nBrowseName\nCloseAndCommit\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info TemporaryFileTransferType Base"
+      "Content": "CloseAndCommit is used to apply the content of the written file and to delete the temporary file after the completion of the transaction.\nSignature\nCloseAndCommit\n[in]  UInt32 fileHandle\n[out] NodeId completionStateMachine\n);\n\nArgument\nDescription\nfileHandle\nThe fileHandle used to write the file.\ncompletionStateMachine\nIf the processing of the file is completed asynchronous, the parameter returns the NodeId of the corresponding FileTransferStateMachineType Object.\nIf the processing of the file is already completed, the parameter is null.\nIf a FileTransferStateMachineType Object NodeId is returned, the processing is in progress until the TransferState changed to Idle.\n\nMethod Result Codes (defined in Call Service)\nResult Code\nDescription\nBad_UserAccessDenied\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBad_InvalidArgument\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description. Invalid file handle in call.\n\n[Table 16](/\u00A7_Ref33089769) specifies the AddressSpace representation for the CloseAndCommit Method.\nTable 16 - CloseAndCommit Method AddressSpace definition"
     },
     {
-      "Id": "03804193-c831-45cf-be04-ff2319629093",
+      "Id": "ff02b699-b2d6-4a29-9627-3b5b43993e4d",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.5 CloseAndCommit\nCaption: Table 16 - CloseAndCommit Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nCloseAndCommit\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\nConformance Units\nBase Info TemporaryFileTransferType Base"
+    },
+    {
+      "Id": "60484243-2df9-4676-b07c-800856e5f677",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.5 CloseAndCommit\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "2b567087-95bd-4f34-920d-60c3ec1e9b51",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4 Temporary file transfer\n---\n",
       "Content": "4.4.6 FileTransferStateMachineType"
     },
     {
-      "Id": "cc42f87e-7c9f-4813-9883-76302fcfbf38",
+      "Id": "01dfae16-0323-46f0-b019-4011f31eaa0d",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.6 FileTransferStateMachineType\n---\n",
       "Content": "The states of the file transfer state machine are shown in[Figure 4](/\u00A7_Ref33089811)."
     },
     {
-      "Id": "f66f56cd-5117-4bd6-86c7-09d8cc049afd",
+      "Id": "7ad71932-9325-48ac-9c30-fa708bbfde85",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.6 FileTransferStateMachineType\nCaption: Figure 4 - File transfer States\n---\n",
       "Content": "[image007.png](images/image007.png)"
     },
     {
-      "Id": "09287ed7-d99d-477c-abcd-fde926dbfce9",
+      "Id": "419737bb-c311-41c6-abd6-66339861a776",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.6 FileTransferStateMachineType\n---\n",
       "Content": "Figure 4 - File transfer States\n\nThe FileTransferStateMachineType and the related type are illustrated in[Figure 5](/\u00A7_Ref33089821)."
     },
     {
-      "Id": "784125d8-60ae-4663-b79f-299bb6d882e1",
+      "Id": "db6eb31b-4808-45ee-8f42-73db8a39a14e",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.6 FileTransferStateMachineType\nCaption: Figure 5 - FileTransferStateMachineType\n---\n",
       "Content": "[image008.png](images/image008.png)"
     },
     {
-      "Id": "d671bc17-7264-4409-aff2-cf155c71b769",
+      "Id": "8c91f9ad-0688-44e7-8f50-22cf994d581b",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.6 FileTransferStateMachineType\n---\n",
-      "Content": "Figure 5 - FileTransferStateMachineType\nThis ObjectType defines the StateMachine for asynchronous processing of temporary file transfers. It is formally defined in[Table 17](/\u00A7_Ref33089883). The transitions are formally defined in[Table 19](/\u00A7_Ref33089894).\nTable 17- FileTransferStateMachineType\nAttribute\nValue\nBrowseName\nFileTransferStateMachineType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the FiniteStateMachineType defined in B.4.5.\nHasComponent\nObject\nIdle\n\nInitialStateType\n\nHasComponent\nObject\nReadPrepare\n\nStateType\n\nHasComponent\nObject\nReadTransfer\n\nStateType\n\nHasComponent\nObject\nApplyWrite\n\nStateType\n\nHasComponent\nObject\nError\n\nStateType\n\nHasComponent\nObject\nIdleToReadPrepare\n\nTransitionType\n\nHasComponent\nObject\nReadPrepareToReadTransfer\n\nTransitionType\n\nHasComponent\nObject\nReadTransferToIdle\n\nTransitionType\n\nHasComponent\nObject\nIdleToApplyWrite\n\nTransitionType\n\nHasComponent\nObject\nApplyWriteToIdle\n\nTransitionType\n\nHasComponent\nObject\nReadPrepareToError\n\nTransitionType\n\nHasComponent\nObject\nReadTransferToError\n\nTransitionType\n\nHasComponent\nObject\nApplyWriteToError\n\nTransitionType\n\nHasComponent\nObject\nErrorToIdle\n\nTransitionType\n\nHasComponent\nMethod\nReset\nDefined in[4.4.7](/\u00A7_Ref33089939)\nMandatory\nConformance Units\nBase Info TemporaryFileTransferType Base\n\nThe component Variables of the FileTransferStateMachineType have additional Attributes defined in"
+      "Content": "Figure 5 - FileTransferStateMachineType\nThis ObjectType defines the StateMachine for asynchronous processing of temporary file transfers. It is formally defined in[Table 17](/\u00A7_Ref33089883). The transitions are formally defined in[Table 19](/\u00A7_Ref33089894).\nTable 17 - FileTransferStateMachineType"
     },
     {
-      "Id": "c722bbc3-e564-4229-a8f9-14774b7d9bf1",
-      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.6 FileTransferStateMachineType\n---\n",
-      "Content": "have additional Attributes defined in[Table 18](/\u00A7_Ref57799265).\nTable 18- FileTransferStateMachineType Attribute values for child Nodes\nSource Path\nValue Attribute\nIdle\nStateNumber\n\n1\nReadPrepare\nStateNumber\n\n2\nReadTransfer\nStateNumber\n\n3\nApplyWrite\nStateNumber\n\n4\nError\nStateNumber\n\n5\nIdleToReadPrepare\nTransitionNumber\n\n12\nReadPrepareToReadTransfer\nTransitionNumber\n\n23\nReadTransferToIdle\nTransitionNumber\n\n31\nIdleToApplyWrite\nTransitionNumber\n\n14\nApplyWriteToIdle\nTransitionNumber\n\n41\nReadPrepareToError\nTransitionNumber\n\n25\nReadTransferToError\nTransitionNumber\n\n35\nApplyWriteToError\nTransitionNumber\n\n45\nErrorToIdle\nTransitionNumber\n\n51\n\nTable 19- FileTransferStateMachineType Additional References\nSourceBrowsePath\nReferences\nIsForward\nTargetBrowsePath\nIdleToReadPrepare\nFromState\nTrue\nIdle\n\nToState\nTrue\nReadPrepare\n\nHasEffect\nTrue\nTransitionEventType\nReadPrepareToReadTransfer\nFromState\nTrue\nReadPrepare\n\nToState\nTrue\nReadTransfer\n\nHasEffect\nTrue\nTransitionEventType\nReadTransferToIdle\nFromState\nTrue\nReadTransfer\n\nToState\nTrue\nIdle\n\nHasEffect\nTrue\nTransitionEventType\nIdleToApplyWrite\nFromState\nTrue\nIdle\n\nToState\nTrue\nApplyWrite\n\nHasEffect\nTrue\nTransitionEventType\nApplyWriteToIdle\nFromState\nTrue\nApplyWrite\n\nToState\nTrue\nIdle\n\nHasEffect\nTrue\nTransitionEventType\nReadPrepareToError\nFromState\nTrue\nReadPrepare\n\nToState\nTrue\nError"
+      "Id": "70e6c7c7-5a35-4fc8-8773-f3c4d40cdf55",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.6 FileTransferStateMachineType\nCaption: Table 17 - FileTransferStateMachineType\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nFileTransferStateMachineType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the FiniteStateMachineType defined in B.4.5.\nHasComponent\nObject\nIdle\n\nInitialStateType\n\nHasComponent\nObject\nReadPrepare\n\nStateType\n\nHasComponent\nObject\nReadTransfer\n\nStateType\n\nHasComponent\nObject\nApplyWrite\n\nStateType\n\nHasComponent\nObject\nError\n\nStateType\n\nHasComponent\nObject\nIdleToReadPrepare\n\nTransitionType\n\nHasComponent\nObject\nReadPrepareToReadTransfer\n\nTransitionType\n\nHasComponent\nObject\nReadTransferToIdle\n\nTransitionType\n\nHasComponent\nObject\nIdleToApplyWrite\n\nTransitionType\n\nHasComponent\nObject\nApplyWriteToIdle\n\nTransitionType\n\nHasComponent\nObject\nReadPrepareToError\n\nTransitionType\n\nHasComponent\nObject\nReadTransferToError\n\nTransitionType\n\nHasComponent\nObject\nApplyWriteToError\n\nTransitionType\n\nHasComponent\nObject\nErrorToIdle\n\nTransitionType\n\nHasComponent\nMethod\nReset\nDefined in[4.4.7](/\u00A7_Ref33089939)\nMandatory\nConformance Units\nBase Info TemporaryFileTransferType Base"
     },
     {
-      "Id": "e4a2f3b0-93f5-484e-a601-4f7bee5d7505",
+      "Id": "b5eb1f02-16d6-4374-895a-def18352751f",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.6 FileTransferStateMachineType\n---\n",
-      "Content": "True\nError\n\nHasEffect\nTrue\nTransitionEventType\nReadTransferToError\nFromState\nTrue\nReadTransfer\n\nToState\nTrue\nError\n\nHasEffect\nTrue\nTransitionEventType\nApplyWriteToError\nFromState\nTrue\nApplyWrite\n\nToState\nTrue\nError\n\nHasEffect\nTrue\nTransitionEventType\nErrorToIdle\nFromState\nTrue\nError\n\nToState\nTrue\nIdle\n\nHasEffect\nTrue\nTransitionEventType"
+      "Content": "The component Variables of the FileTransferStateMachineType have additional Attributes defined in[Table 18](/\u00A7_Ref57799265).\nTable 18 - FileTransferStateMachineType Attribute values for child Nodes"
     },
     {
-      "Id": "9a5c49b7-23ac-4587-b11b-57d3e9bd82b9",
+      "Id": "a1474303-a441-4f10-b9da-f928f2ac43a7",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.6 FileTransferStateMachineType\nCaption: Table 18 - FileTransferStateMachineType Attribute values for child Nodes\n---\n",
+      "Content": "Source Path\nValue Attribute\nIdle\nStateNumber\n\n1\nReadPrepare\nStateNumber\n\n2\nReadTransfer\nStateNumber\n\n3\nApplyWrite\nStateNumber\n\n4\nError\nStateNumber\n\n5\nIdleToReadPrepare\nTransitionNumber\n\n12\nReadPrepareToReadTransfer\nTransitionNumber\n\n23\nReadTransferToIdle\nTransitionNumber\n\n31\nIdleToApplyWrite\nTransitionNumber\n\n14\nApplyWriteToIdle\nTransitionNumber\n\n41\nReadPrepareToError\nTransitionNumber\n\n25\nReadTransferToError\nTransitionNumber\n\n35\nApplyWriteToError\nTransitionNumber\n\n45\nErrorToIdle\nTransitionNumber\n\n51"
+    },
+    {
+      "Id": "cd6bb125-59a7-43c8-a4d2-77d3ee386b9b",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.6 FileTransferStateMachineType\n---\n",
+      "Content": "Table 19 - FileTransferStateMachineType Additional References"
+    },
+    {
+      "Id": "7a2b1d09-9d75-4479-9ae4-d5814156b6fa",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.6 FileTransferStateMachineType\nCaption: Table 19 - FileTransferStateMachineType Additional References\n---\n",
+      "Content": "SourceBrowsePath\nReferences\nIsForward\nTargetBrowsePath\nIdleToReadPrepare\nFromState\nTrue\nIdle\n\nToState\nTrue\nReadPrepare\n\nHasEffect\nTrue\nTransitionEventType\nReadPrepareToReadTransfer\nFromState\nTrue\nReadPrepare\n\nToState\nTrue\nReadTransfer\n\nHasEffect\nTrue\nTransitionEventType\nReadTransferToIdle\nFromState\nTrue\nReadTransfer\n\nToState\nTrue\nIdle\n\nHasEffect\nTrue\nTransitionEventType\nIdleToApplyWrite\nFromState\nTrue\nIdle\n\nToState\nTrue\nApplyWrite\n\nHasEffect\nTrue\nTransitionEventType\nApplyWriteToIdle\nFromState\nTrue\nApplyWrite\n\nToState\nTrue\nIdle\n\nHasEffect\nTrue\nTransitionEventType\nReadPrepareToError\nFromState\nTrue\nReadPrepare\n\nToState\nTrue\nError\n\nHasEffect\nTrue\nTransitionEventType\nReadTransferToError\nFromState\nTrue\nReadTransfer\n\nToState\nTrue\nError\n\nHasEffect\nTrue\nTransitionEventType\nApplyWriteToError\nFromState\nTrue\nApplyWrite\n\nToState\nTrue\nError\n\nHasEffect\nTrue\nTransitionEventType\nErrorToIdle\nFromState\nTrue\nError\n\nToState\nTrue\nIdle\n\nHasEffect\nTrue\nTransitionEventType"
+    },
+    {
+      "Id": "3a3791de-5fcb-4418-88f9-ef400dbc06b6",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.6 FileTransferStateMachineType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "4961e93d-9c33-4b46-86e7-9991854cdfe3",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4 Temporary file transfer\n---\n",
       "Content": "4.4.7 Reset"
     },
     {
-      "Id": "ce7126a8-28f5-4b3a-9a8b-eeaa580a66c6",
+      "Id": "6a264255-ece4-4b82-aa6f-8607f7c08b46",
       "Header": "Document: Part 20 - File Transfer\nSection: 4.4.7 Reset\n---\n",
-      "Content": "Reset is used to reset the Error state of a FileTransferStateMachineType Object.\nSignature\nReset\n\n[Table 20](/\u00A7_Ref71024101) specifies the AddressSpace representation for the Reset Method.\nTable 20- Reset Method AddressSpace definition\nAttribute\nValue\nBrowseName\nReset\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nConformance Units\nBase Info TemporaryFileTransferType Base\n\n_____________"
+      "Content": "Reset is used to reset the Error state of a FileTransferStateMachineType Object.\nSignature\nReset\n\n[Table 20](/\u00A7_Ref71024101) specifies the AddressSpace representation for the Reset Method.\nTable 20 - Reset Method AddressSpace definition"
+    },
+    {
+      "Id": "c076ba49-8d25-46f7-95cc-d4e6358f1867",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.7 Reset\nCaption: Table 20 - Reset Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nReset\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nConformance Units\nBase Info TemporaryFileTransferType Base"
+    },
+    {
+      "Id": "8782a424-a165-4440-ac9f-edf2e6e051bf",
+      "Header": "Document: Part 20 - File Transfer\nSection: 4.4.7 Reset\n---\n",
+      "Content": "_____________"
     }
   ]
 }

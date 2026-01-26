@@ -1,0 +1,1060 @@
+{
+  "Title": "Part 24 - Scheduler",
+  "Chunks": [
+    {
+      "Id": "8e1d6f5c-d60e-45e7-8231-1df60ebc2d26",
+      "Header": "Document: Part 24 - Scheduler\n---\n",
+      "Content": "1 Scope"
+    },
+    {
+      "Id": "b2daa53f-ff2e-4105-b622-01c77b7c947b",
+      "Header": "Document: Part 24 - Scheduler\nSection: 1 Scope\n---\n",
+      "Content": "This document specifies an OPC UA information model to expose information, at what dates and times specific actions are executed by the OPC UA Server. Those schedules can optionally also be manipulated via the information model.\nThe schedule defines on which dates they are active, and can also reference global calendars representing specific dates, for example public holidays. In addition, the schedule defines times and actions that should be executed at that time. The model defines writing Variables and calling Methods, but can be extended to other actions as well."
+    },
+    {
+      "Id": "1e23b5d8-ca4e-4179-afba-7577cb05d4e4",
+      "Header": "Document: Part 24 - Scheduler\n---\n",
+      "Content": "2 Normative references"
+    },
+    {
+      "Id": "2777a565-f17a-481d-8119-79764c525c87",
+      "Header": "Document: Part 24 - Scheduler\nSection: 2 Normative references\n---\n",
+      "Content": "The following referenced documents are indispensable for the application of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments and errata) applies.\nOPC 10000-1, OPC Unified Architecture - Part 1: Overview and Concepts\n[http://www.opcfoundation.org/UA/Part1/](http://www.opcfoundation.org/UA/Part1/)\nOPC 10000-3, OPC Unified Architecture - Part 3: Address Space Model\n[http://www.opcfoundation.org/UA/Part3/](http://www.opcfoundation.org/UA/Part3/)\nOPC 10000-4, OPC Unified Architecture - Part 4: Services\n[http://www.opcfoundation.org/UA/Part4/](http://www.opcfoundation.org/UA/Part4/)\nOPC 10000-5, OPC Unified Architecture - Part 5: Information Model\n[http://www.opcfoundation.org/UA/Part5/](http://www.opcfoundation.org/UA/Part5/)\nOPC 10000-6, OPC Unified Architecture - Part 6: Mappings\n[http://www.opcfoundation.org/UA/Part6/](http://www.opcfoundation.org/UA/Part6/)\nOPC 10000-7, OPC Unified Architecture - Part 7: Profiles\n[http://www.opcfoundation.org/UA/Part7/](http://www.opcfoundation.org/UA/Part7/)"
+    },
+    {
+      "Id": "483d836f-5d10-4627-8dec-608b85d73872",
+      "Header": "Document: Part 24 - Scheduler\n---\n",
+      "Content": "3 Terms, abbreviated terms and conventions"
+    },
+    {
+      "Id": "4ae2e4a0-8cab-4bb6-badb-5ba0c1eb7570",
+      "Header": "Document: Part 24 - Scheduler\nSection: 3 Terms, abbreviated terms and conventions\n---\n",
+      "Content": "3.1 Overview"
+    },
+    {
+      "Id": "f5c04d01-2fd6-48ef-8b13-fa4cd64356fe",
+      "Header": "Document: Part 24 - Scheduler\nSection: 3.1 Overview\n---\n",
+      "Content": "It is assumed that basic concepts of OPC UA information modelling are understood in this document. This document will use these concepts to describe the Scheduler Information Model. For the purposes of this document, the terms and definitions given in OPC 10000-1, OPC 10000-3, OPC 10000-4, OPC 10000-5, OPC 10000-7 as well as the following apply.\nNote that OPC UA terms and terms defined in this document are italicized in the document."
+    },
+    {
+      "Id": "769e84bb-31c5-41fe-8460-ea876cc42d82",
+      "Header": "Document: Part 24 - Scheduler\nSection: 3 Terms, abbreviated terms and conventions\n---\n",
+      "Content": "3.2 Abbreviated terms"
+    },
+    {
+      "Id": "4951a753-1bb2-42fc-a8b8-0abf7444ad88",
+      "Header": "Document: Part 24 - Scheduler\nSection: 3.2 Abbreviated terms\n---\n",
+      "Content": "HTTP Hypertext Transfer Protocol\nPMS Production Management System\nURI Uniform Resource Identifier\nXML Extensible Markup Language"
+    },
+    {
+      "Id": "8236d45a-bb59-4ad4-906c-8587ce3901ac",
+      "Header": "Document: Part 24 - Scheduler\n---\n",
+      "Content": "4 General information to Scheduler"
+    },
+    {
+      "Id": "2446754d-9d8c-4f6c-9687-bc3dbdbc46a8",
+      "Header": "Document: Part 24 - Scheduler\nSection: 4 General information to Scheduler\n---\n",
+      "Content": "Schedulers allow to define per day of the week specific times at which specific actions are executed in the OPC UA Server.\nIn addition, schedulers can define special dates and times at which specific actions are executed in the OPC UA Server. If such a date occurs, the actions of the special date are executed, and the weekly schedule is ignored.\nA scheduler can define the special dates by either\ndefining a concrete date (e.g. 2022-01-17),\ndefining a range of dates (e.g. 2022-01-17 until 2022-04-13)\ndefining repeating dates with wildcards (e.g. every 1 st January)\nor referencing global calendars containing for example all public holidays of a year\nPer date an array of times and corresponding actions including parameterization is defined, when the action is executed. Actions can be the writing of Variables or calling Methods, but can also be extended to other actions."
+    },
+    {
+      "Id": "81750aa5-e61f-48dd-9315-4bdba95d63e5",
+      "Header": "Document: Part 24 - Scheduler\n---\n",
+      "Content": "5 Use cases"
+    },
+    {
+      "Id": "88835bc8-4203-4f89-9a2b-93fb1c14dfa2",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5 Use cases\n---\n",
+      "Content": "5.1 UC01: Scheduling actions on specific times on each weekday"
+    },
+    {
+      "Id": "08562eba-2e19-422b-8c96-0b7852d1bc81",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.1 UC01: Scheduling actions on specific times on each weekday\n---\n",
+      "Content": "The user wants to schedule that at specific times on each individual weekday a specific action is executed, for example the heating is set to a specific setpoint. In[Table 1](/\u00A7_Ref93656717), an example of such a schedule is given. It contains the schedule for the heating of a school building, that is not used over the weekend. It may be needed to disable the schedule, e.g. when it is warm outside during summer.\nTable 1 - Example Weekly Schedule"
+    },
+    {
+      "Id": "5c22c3d4-f15c-4c44-814e-22555e24688e",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.1 UC01: Scheduling actions on specific times on each weekday\nCaption: Table 1 - Example Weekly Schedule\n---\n",
+      "Content": "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday\n00:00Night\n07:00On\n07:00On\n07:00On\n07:00On\n00:00Off\n00:00Off\n07:00On\n16:30Night\n16:30Night\n16:30Night\n16:30Off\n\n\n16:30Night"
+    },
+    {
+      "Id": "3a32d26b-65f1-4a96-82e1-49d0728e0e98",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.1 UC01: Scheduling actions on specific times on each weekday\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "82ee51a5-3814-4334-baf0-55cab37d98ab",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5 Use cases\n---\n",
+      "Content": "5.2 UC02: Scheduling actions on special dates"
+    },
+    {
+      "Id": "dec231d2-30d7-4aa9-8d1f-a4d43f596db8",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2 UC02: Scheduling actions on special dates\n---\n",
+      "Content": "5.2.1 Overview"
+    },
+    {
+      "Id": "f8e632c4-ae8b-4376-9504-c10f467c4cfe",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2.1 Overview\n---\n",
+      "Content": "The user wants to schedule that on special dates or date periods a specific action is executed, for example switching off the heating during public holidays. The user wants to be able to define those dates individual or reference predefined dates that can be used in several schedules. In[Table 2](/\u00A7_Ref93658886), an example is given.\nTable 2 - Example Exception Schedule"
+    },
+    {
+      "Id": "403d6aca-aece-4f2b-8139-1a9012f20745",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2.1 Overview\nCaption: Table 2 - Example Exception Schedule\n---\n",
+      "Content": "Date\nTime\nValue\nPriority\nDay\nInterval\nRecurring\nReference\n\n\n\n\n\nEvery Saturday of March 2022\n\n05:00\nOn\n11 (School board)\n\n\n\n\n12:00\nOff\n\n\n2022-04-03 - 2022-04-07\n\n\n05:00\nOn\n12(IT user)\n\n\n\n\n16:30\nOff\n\n2022-04-01\n\n\n\n05:00\nOn\n13(facility manager)\n\n\n\n\n\n\n\n\n\n\nCAL1Variable Holidays\n00:00\nOff\n14\n\n\n\nCAL2Set Holidays\n00:00\nOff\n15\n\n\n\nCAL3School Vacation\n00:00\nOff\n16"
+    },
+    {
+      "Id": "6bd2f1f2-736d-49f0-b6c6-0579d297a1f6",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2.1 Overview\n---\n",
+      "Content": "The referenced calendars are defined in[Table 3](/\u00A7_Ref93662361).\nTable 3 - Example Calendars"
+    },
+    {
+      "Id": "ae3ec124-498b-4546-9114-5411d6931e3e",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2.1 Overview\nCaption: Table 3 - Example Calendars\n---\n",
+      "Content": "Day\nInterval\nRecurring\nNote\nCAL1: Variable Holidays\n2022-04-18\n\n\nEaster Monday\n2022-05-26\n\n\nAscension Day\nCAL2: Set Holidays\n\n\nJan 01.\nNew Year\u0027s\n\n\nJan 06.\nEpiphany\n\n\nDec 24.\nChristmas Eve\n\n\nDec 25.\nChristmas Day\n\n\nDec 26.\nChristmas Day\nCAL3: School Vacation\n\n2022-02-21 - 2022-02-25\n\n\n\n2022-07-25 - 2022-09-02\n\n\n\n2022-12-23 - 2023-01-02"
+    },
+    {
+      "Id": "21c8a648-2248-455f-85c0-b98bdfa51c52",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2.1 Overview\n---\n",
+      "Content": "The example shows more detailed use cases, summarized in the following subsections."
+    },
+    {
+      "Id": "8db7ac4f-7519-485e-8186-71924c0e598f",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2 UC02: Scheduling actions on special dates\n---\n",
+      "Content": "5.2.2 UC002.1: Schedule actions at a specific date"
+    },
+    {
+      "Id": "7276108b-0acd-4a8a-b2ba-c91304119937",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2.2 UC002.1: Schedule actions at a specific date\n---\n",
+      "Content": "As shown in[Table 2](/\u00A7_Ref93658886) in the third entry, a special schedule on a specific date (2022-04-01) shall be applied."
+    },
+    {
+      "Id": "52c88847-f95a-4317-a94c-ae960e3d467f",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2 UC02: Scheduling actions on special dates\n---\n",
+      "Content": "5.2.3 UC002.2: Schedule actions at an interval from a specific date to a specific date"
+    },
+    {
+      "Id": "adb0347b-58aa-4cb7-9dec-110e5d918d3f",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2.3 UC002.2: Schedule actions at an interval from a specific date to a specific date\n---\n",
+      "Content": "As shown in[Table 2](/\u00A7_Ref93658886) in the second entry, a special schedule on a specific interval (2022-04-03 - 2022-04-07) shall be applied."
+    },
+    {
+      "Id": "45245e49-d11e-46dc-8ce5-288041fceee9",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2 UC02: Scheduling actions on special dates\n---\n",
+      "Content": "5.2.4 UC002.3 Schedule actions at a recurring interval"
+    },
+    {
+      "Id": "15c259c5-9767-441b-a121-e292d1d650d1",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2.4 UC002.3 Schedule actions at a recurring interval\n---\n",
+      "Content": "As shown in[Table 2](/\u00A7_Ref93658886) in the first entry, a special schedule on a recurring interval (every Saturday per of March 2022) shall be applied."
+    },
+    {
+      "Id": "fcbe8819-3f98-4faa-ae80-4ba6fe2ccb13",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2 UC02: Scheduling actions on special dates\n---\n",
+      "Content": "5.2.5 UC002.4 Schedule actions at specific dates defined globally"
+    },
+    {
+      "Id": "27f54e08-e849-4519-bc86-78542eb2c073",
+      "Header": "Document: Part 24 - Scheduler\nSection: 5.2.5 UC002.4 Schedule actions at specific dates defined globally\n---\n",
+      "Content": "As shown in[Table 2](/\u00A7_Ref93658886) in the last three entries, a special schedule shall be applied on dates defined globally. The global definition shall support concrete dates (CAL1), recurring dates (CAL2) and concrete ranges (CAL3)."
+    },
+    {
+      "Id": "95c1ecb1-eb91-4467-b7d7-87342dead761",
+      "Header": "Document: Part 24 - Scheduler\n---\n",
+      "Content": "6 Scheduler Information Model overview"
+    },
+    {
+      "Id": "06e1f85b-6791-4fbb-8aff-54f4c3c28b75",
+      "Header": "Document: Part 24 - Scheduler\nSection: 6 Scheduler Information Model overview\n---\n",
+      "Content": "6.1 Overview"
+    },
+    {
+      "Id": "42de4413-0691-4660-88d6-c9b2f0e853f7",
+      "Header": "Document: Part 24 - Scheduler\nSection: 6.1 Overview\n---\n",
+      "Content": "This specification defines two main ObjectTypes:\nan instance of CalendarType represent a globally defined set of dates that can be referenced by schedule Objects;\nan instance of ScheduleType represent a schedule, that defines for specific dates or weekdays specific times and actions, that shall be executed at those times.\nAn overview is given in[Figure 1](/\u00A7_Ref94545155). Instances of ScheduleType can have a WeeklySchedule, defining per weekday specific times and per specific time a list of actions that shall be executed at that time. Optionally, the WeeklySchedule can be configured by OPC UA Clients.\nIn addition, or as alternative, a schedule Object can have a ExceptionSchedule. This defines special dates (days), either by defining a concrete date, a range of dates, or recurring dates, or by referencing instances of CalendarType. The optional Methods AddExceptionScheduleElements and RemoveExceptionScheduleElements can be used to configure the ExceptionSchedule by an OPC UA Client."
+    },
+    {
+      "Id": "f6f1e0ba-5ca6-47e2-af35-710d06593895",
+      "Header": "Document: Part 24 - Scheduler\nSection: 6.1 Overview\nCaption: Figure 1 - Overview Scheduler Information Model\n---\n",
+      "Content": "[image004.png](images/image004.png)"
+    },
+    {
+      "Id": "16094b0d-503d-44ae-a0d7-a08bda038ce7",
+      "Header": "Document: Part 24 - Scheduler\nSection: 6.1 Overview\n---\n",
+      "Content": "Figure 1 - Overview Scheduler Information Model\nThe CalendarType defines a DateList with specific dates. The optional AddDateListElements and RemoveDateListElements Methods can be used to manipulate the DateList Property by OPC UA Clients.\nThis specification does not define any specific entry points where to find schedule or calendar Objects. It is expected that they are placed reasonable in the AddressSpace, for example as child Object of an Object that is manipulated by actions of the schedule Object.\nThis specification does not define any specific mechanism how new schedule or calendar Objects are added or removed via OPC UA. Information Models using those Objects might define specific mechanisms like Methods or using the NodeManagement Service Set."
+    },
+    {
+      "Id": "c9d63e6c-e109-4b2d-a438-e933b461247b",
+      "Header": "Document: Part 24 - Scheduler\nSection: 6 Scheduler Information Model overview\n---\n",
+      "Content": "6.2 Scheduling Times and Priorities"
+    },
+    {
+      "Id": "3f01c219-e26b-469d-8c7b-11ef5a0e7957",
+      "Header": "Document: Part 24 - Scheduler\nSection: 6.2 Scheduling Times and Priorities\n---\n",
+      "Content": "A schedule Object can contain a WeeklySchedule with one entry per weekday and / or an ExceptionSchedule. One of both shall be defined. The WeeklySchedule contains for each day actions, that should be taken at specific times. The ExceptionSchedule contains specific dates or ranges of dates, and the corresponding actions that should be taken at specific times. For example, the ExceptionSchedule can contain an entry with all public holidays and another with plant holidays. Since the different entries of the ExceptionSchedule might overlap, each entry contains a priority. If overlapping entries exist, the one with the highest priority is used. If both, WeeklySchedule and ExceptionSchedule exist, the exception schedule has priority over the WeeklySchedule. That is, if the exception schedule has a matching date, the exception schedule is used, otherwise the weekly schedule."
+    },
+    {
+      "Id": "565f579e-1e8e-47d8-b270-005f64a72109",
+      "Header": "Document: Part 24 - Scheduler\nSection: 6 Scheduler Information Model overview\n---\n",
+      "Content": "6.3 Start-up of Schedules"
+    },
+    {
+      "Id": "35fc2d6f-bbed-4854-b50a-79122c2f3f4d",
+      "Header": "Document: Part 24 - Scheduler\nSection: 6.3 Start-up of Schedules\n---\n",
+      "Content": "When a Server restarts or starts the first time, and when a schedule Object becomes active (by reaching its EffectivePeriod, see[7.2.2](/\u00A7_Ref94540214)) there are two options how a schedule Object shall react.\nIf the ApplyLastAfterStart Property is set to TRUE, the Server shall find the last set of actions to be executed before the current time and execute those actions. The mechanism to find the last set of actions is to find the last element in the list of TimeActionsType that occurs on or before the current time, and then use that element\u0027s actions. If no such element is found, then no action is executed.\nIf the ApplyLastAfterStart Property is set to FALSE, the Server does not consider any previous actions and starts executing actions according to the defined schedule defined in the future."
+    },
+    {
+      "Id": "8594cbee-5b61-4470-b80f-396e24623c90",
+      "Header": "Document: Part 24 - Scheduler\n---\n",
+      "Content": "7 OPC UA ObjectTypes"
+    },
+    {
+      "Id": "e9c05874-6458-4931-8c82-eb7082cc033a",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7 OPC UA ObjectTypes\n---\n",
+      "Content": "7.1 CalendarType"
+    },
+    {
+      "Id": "a4a20989-aeba-421b-90bb-26b7c63c78ee",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1 CalendarType\n---\n",
+      "Content": "7.1.1 Overview"
+    },
+    {
+      "Id": "0ebf9249-3587-43e8-9d5b-c25ea9eba2b3",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.1 Overview\n---\n",
+      "Content": "The CalendarType provides a list of calendar dates. Each entry in the list describes a specific date or date pattern, or range of dates. The CalendarType ObjectType is formally defined in[Table 4](/\u00A7_Ref345281570)."
+    },
+    {
+      "Id": "d0f90b5d-6f64-4994-be8e-5a665b2147f1",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1 CalendarType\n---\n",
+      "Content": "7.1.2 ObjectType definition"
+    },
+    {
+      "Id": "dddb7675-7b38-40a4-bb92-b9ccc95dc952",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.2 ObjectType definition\n---\n",
+      "Content": "Table 4 - CalendarType Definition"
+    },
+    {
+      "Id": "f6a20626-4864-4a49-917b-03d7e7208510",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.2 ObjectType definition\nCaption: Table 4 - CalendarType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nCalendarType\nIsAbstract\nFalse\nDescription\nProvides a list of calendar dates. Each entry in the list describes a specific date or date pattern, or range of dates\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:BaseObjectType\n0:HasComponent\nVariable\nPresentValue\n0:Boolean\n0:BaseDataVariableType\nM\n0:HasProperty\nVariable\nDateList\nCalendarEntryType[]\n0:PropertyType\nM\n0:HasComponent\nMethod\nAddDateListElements\n\n\nO\n0:HasComponent\nMethod\nRemoveDateListElements\n\n\nO\nConformance Units\nScheduler Calendar Base"
+    },
+    {
+      "Id": "27a2bdc9-1eaa-4e23-9253-f2072c159b8d",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.2 ObjectType definition\n---\n",
+      "Content": "This PresentValue indicates the current value of the calendar: True if the current date is in the DateList and False if it is not. For the current date that local time of the OPC UA Server shall be considered.\nThe DateList is an array of elements of which each is either a specific date or date pattern, or range of dates.\nThe child Nodes of the CalendarType have additional Attribute values defined in[Table 5](/\u00A7_Ref93655813).\nTable 5 - CalendarType Attribute values for child Nodes"
+    },
+    {
+      "Id": "e8511ac3-6a1d-4aca-9945-33b332ac37e3",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.2 ObjectType definition\nCaption: Table 5 - CalendarType Attribute values for child Nodes\n---\n",
+      "Content": "BrowsePath\nDescription Attribute\nPresentValue\nIndicates if the current date is in the DateList (true) or not (false)\nDateList\nArray of elements each defining either a specific date or date pattern, or range of dates\nAddDateListElements\nAdds elements to the DateList\nRemoveDateListElements\nRemoves elements of the DateList"
+    },
+    {
+      "Id": "f4987cb8-4fea-4c00-a9d3-406741a39a5c",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.2 ObjectType definition\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "7ea10430-ceed-4a89-ab39-2dfa8d5376a5",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1 CalendarType\n---\n",
+      "Content": "7.1.3 Method AddDateListElements"
+    },
+    {
+      "Id": "2fb15173-1a09-43e4-9d56-29faabcc2345",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.3 Method AddDateListElements\n---\n",
+      "Content": "This Method adds entries to the DateList Property. Even if one entry cannot be added, the other entries are still processed and added, if possible. The signature of this Method is specified below.[Table 6](/\u00A7_Ref93650757) and[Table 7](/\u00A7_Ref93650764) specify the Arguments and AddressSpace representation, respectively.\nSignature\nAddDateListElements\n[in] CalendarEntryType[] CalendarEntries\n[out] 0:Int32[] EntryResults\n);\nTable 6 - AddDateListElements Method Arguments"
+    },
+    {
+      "Id": "748bc5e6-9ca7-4697-bf03-3d7cb2ab1357",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.3 Method AddDateListElements\nCaption: Table 6 - AddDateListElements Method Arguments\n---\n",
+      "Content": "Argument\nDescription\nCalendarEntries\nAn array of calendar entries to be added to the DateList Property.\nEntryResults\nAn array of results, one entry per entry in CalendarEntries, indicating if the individual entry could be added. Each result \u003C\u003E 0 indicates, that adding this calendar entry was not successful.\n0 - OK\n-1 - Duplicate - Entry already in DateList\n-2 - Invalid Format - The entry contains an invalid format, e.g. an invalid range\nValues larger 0 can be used for vendor-specific errors."
+    },
+    {
+      "Id": "1866838a-3339-45bb-8e8c-23098c086ca7",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.3 Method AddDateListElements\n---\n",
+      "Content": "Method Result Codes (defined in Call Service)\nResult Code\nDescription\nBadNodeIdUnknown\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBadNotWritable\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBadOutOfMemory\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\n\nTable 7 - AddDateListElements Method AddressSpace definition"
+    },
+    {
+      "Id": "d69ef70e-952f-484e-84b4-2e70910609ce",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.3 Method AddDateListElements\nCaption: Table 7 - AddDateListElements Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nAddDateListElements\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\n0:Mandatory\n0:HasProperty\nVariable\n0:OutputArguments\n0:Argument[]\n0:PropertyType\n0:Mandatory"
+    },
+    {
+      "Id": "da934513-95ad-4fa3-95ef-681e7795ebd4",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.3 Method AddDateListElements\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "93c86487-7c56-4393-a1c0-eee15b122b51",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1 CalendarType\n---\n",
+      "Content": "7.1.4 Method RemoveDateListElements"
+    },
+    {
+      "Id": "28752ece-31e2-4acc-ab94-789bfddd5117",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.4 Method RemoveDateListElements\n---\n",
+      "Content": "This Method removes entries from the DateList Property. Even if one entry cannot be removed, the other entries are still processed and removed, if possible. The signature of this Method is specified below.[Table 8](/\u00A7_Ref93651018) and[Table 9](/\u00A7_Ref93651027) specify the Arguments and AddressSpace representation, respectively.\nSignature\nRemoveDateListElements\n[in] CalendarEntryType[] CalendarEntries\n[out] 0:Int32[] EntryResults\n);\nTable 8 - RemoveDateListElements Method Arguments"
+    },
+    {
+      "Id": "c710c24e-ae7f-4fd1-9cc3-df455cef5906",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.4 Method RemoveDateListElements\nCaption: Table 8 - RemoveDateListElements Method Arguments\n---\n",
+      "Content": "Argument\nDescription\nCalendarEntries\nAn array of calendar entries to be removed from the DateList Property.\nEntryResults\nAn array of results, one entry per entry in CalendarEntries, indicating if the individual entry could be removed. Each result \u003C\u003E 0 indicates, that removing this calendar entry was not successful.\n0 - OK\n-1 - Not found - Entry is not in DateList\nValues larger 0 can be used for vendor-specific errors."
+    },
+    {
+      "Id": "34ed6b52-e221-4271-8081-d0257879c9b9",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.4 Method RemoveDateListElements\n---\n",
+      "Content": "Method Result Codes (defined in Call Service)\nResult Code\nDescription\nBadNodeIdUnknown\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBadNotWritable\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\n\nTable 9 - RemoveDateListElements Method AddressSpace definition"
+    },
+    {
+      "Id": "8fa41c8e-67fa-47c7-9bbe-fd1b8cc32300",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.4 Method RemoveDateListElements\nCaption: Table 9 - RemoveDateListElements Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nRemoveDateListElements\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\n0:Mandatory\n0:HasProperty\nVariable\n0:OutputArguments\n0:Argument[]\n0:PropertyType\n0:Mandatory"
+    },
+    {
+      "Id": "7f810e9b-5dd3-4261-9369-5faee6f941c4",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.1.4 Method RemoveDateListElements\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "08cceb37-4c54-4667-a002-379765f24792",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7 OPC UA ObjectTypes\n---\n",
+      "Content": "7.2 ScheduleType definition"
+    },
+    {
+      "Id": "6d20f7b3-9458-4d3c-a438-1bfa2505fd21",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2 ScheduleType definition\n---\n",
+      "Content": "7.2.1 Overview"
+    },
+    {
+      "Id": "80f4720c-f43a-4510-9337-2f0d2c19a517",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.1 Overview\n---\n",
+      "Content": "The ScheduleType defines a periodic schedule that can recur over a range of dates. The schedule may have optional exceptions at arbitrary times or dates. The basic unit of a schedule is days, which are divided into two types: normal days within a week and exception days. A priority mechanism defines which scheduled event is currently valid. The ScheduleType is formally defined in[Table 10](/\u00A7_Ref96249224)."
+    },
+    {
+      "Id": "324f4786-ceea-49dc-abb0-f7d8f8bcda7a",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2 ScheduleType definition\n---\n",
+      "Content": "7.2.2 ObjectType definition"
+    },
+    {
+      "Id": "ad8bf5d5-4eba-41b9-a6d9-d79afad3d64d",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.2 ObjectType definition\n---\n",
+      "Content": "Table 10 - ScheduleType definition"
+    },
+    {
+      "Id": "b0a4a0e6-5a86-4428-bcdf-277276072232",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.2 ObjectType definition\nCaption: Table 10 - ScheduleType definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nScheduleType\nIsAbstract\nFalse\nDescription\nDefines a periodic schedule that can recur over a range of dates. The schedule may have optional exceptions at arbitrary times or dates. The basic unit of a schedule is days, which are divided into two types: normal days within a week and exception days. A priority mechanism defines which scheduled event is currently valid. The schedule includes a PresentValue Variable whose value describes the current state of the schedule, including a default value when no schedules are in effect.\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:BaseObjectType\n0:HasProperty\nVariable\nExceptionSchedule\nSpecialEventType[]\n0:PropertyType\nO\n0:HasComponent\nMethod\nAddExceptionScheduleElements\n\n\nO\n0:HasComponent\nMethod\nRemoveExceptionScheduleElements\n\n\nO\n0:HasProperty\nVariable\nWeeklySchedule\nDailyScheduleType[7]\n0:PropertyType\nO\n0:HasProperty\nVariable\n0:LocalTime\n0:TimeZoneDataType\n0:PropertyType\nM\n0: HasProperty\nVariable\nEffectivePeriod\nDateRangeType\n0:PropertyType\nO\n0:HasProperty\nVariable\nApplyLastAfterStart\n0:Boolean\n0:PropertyType\nM\nConformance Units\nScheduler Scheduling Base"
+    },
+    {
+      "Id": "7785612f-86ac-4727-aab1-fec904b299d7",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.2 ObjectType definition\n---\n",
+      "Content": "The ExceptionSchedule provides an array of SpecialEventType. If present, each of those special events describes a sequence of schedule actions that take precedence over a normal day\u0027s behaviour on a special day or days.\nThe WeeklySchedule provides an array of seven DailyScheduleType. Each entry represents one day of the week. The first entry in the array represents Monday, the last Sunday. Each element describes a sequence of times and a list of actions that provides a sequence of schedule actions on one day of the week when no ExceptionSchedule is in effect.\nAt least one of the two Properties ExceptionSchedule and WeeklySchedule shall be present.\nTo manipulate the ExceptionSchedule, the Methods AddExceptionScheduleElements and RemoveExceptionScheduleElements should be used. This simplifies adding and removing entries of the array. As the WeeklySchedule is a fixed-size array with a length of 7, there are no corresponding Methods. Instead, an individual entry of the array may be written by the Client to change only the schedule of one weekday.\nThe 0: LocalTime provides information about the local time of the schedule Object. All scheduled times are UTC time. Clients need to consider this Property to calculate the local time of the schedule. If this Property is changed, it is server-specific whether the times of the schedule are adjusted or not. If the Server and the Object the schedule is defined for are in the same local time, the Object may reference the 0: LocalTime Property of the 0: Server Object.\nThe EffectivePeriod specifies the range of dates within which the schedule Object is active. Upon entering its effective period, the object shall execute the defined actions at the defined times, otherwise it shall not execute any actions.\nThe ApplyLastAfterStart Property defines if the last set of actions shall be applied when starting the schedule Object(see"
+    },
+    {
+      "Id": "58ad32e1-3446-491a-bc97-6631188ba790",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.2 ObjectType definition\n---\n",
+      "Content": "Object(see[6.3](/\u00A7_Ref94541793) for details).\nThe child Nodes of the ScheduleType have additional Attribute values defined in[Table 11](/\u00A7_Ref56780683).\nTable 11 - ScheduleType Attribute values for child Nodes"
+    },
+    {
+      "Id": "89511386-b900-490d-b086-faab055e4301",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.2 ObjectType definition\nCaption: Table 11 - ScheduleType Attribute values for child Nodes\n---\n",
+      "Content": "BrowsePath\nDescription Attribute\nExceptionSchedule\nAn array of special events. If present, each of those special events describes a sequence of schedule actions that take precedence over a normal day\u0027s behaviour on a special day or days.\nAddExceptionScheduleElements\nAdds elements to the ExceptionSchedule\nRemoveExceptionScheduleElements\nRemoves elements from the ExceptionSchedule\nWeeklySchedule\nEach entry represents one day of the week. The first entry in the array represents Monday, the last Sunday. Each element describes a sequence of times and a list of actions that provides a sequence of schedule actions on one day of the week when no ExceptionSchedule is in effect.\n0:LocalTime\nProvides information about the local time of the schedule Object. All scheduled times are UTC time. Clients need to consider this Property to calculate the local time of the schedule. If this Property is changed, it is server-specific whether the times of the schedule are adjusted or not.\nEffectivePeriod\nSpecifies the range of dates within which the schedule Object is active. Upon entering its effective period, the object shall execute the defined actions at the defined times, otherwise it shall not execute any actions.\nApplyLastAfterStart\nThe ApplyLastAfterStart Property defines if the last set of actions shall be applied when starting the schedule Object"
+    },
+    {
+      "Id": "b8d75ce8-62d1-4ca8-96c3-235325bd14b6",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.2 ObjectType definition\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "22bf2f48-f1f1-4a03-8ecb-4d7e4d7c2bcf",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2 ScheduleType definition\n---\n",
+      "Content": "7.2.3 Method AddExceptionScheduleElements"
+    },
+    {
+      "Id": "f2a65066-4763-4e90-9af6-b8bf0686ca32",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.3 Method AddExceptionScheduleElements\n---\n",
+      "Content": "This Method adds entries to the ExceptionSchedule Property. Even if one entry cannot be added, the other entries are still processed and added, if possible. The signature of this Method is specified below.[Table 12](/\u00A7_Ref94541322) and[Table 13](/\u00A7_Ref94541323) specify the Arguments and AddressSpace representation, respectively.\nSignature\nAddExceptionScheduleElements\n[in] SpecialEventType[] SpecialEvents\n[out] 0:Int32[] EntryResults\n);\nTable 12 - AddExceptionScheduleElements Method Arguments"
+    },
+    {
+      "Id": "f0e21851-0d0e-4ca0-8926-f8b8d7086574",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.3 Method AddExceptionScheduleElements\nCaption: Table 12 - AddExceptionScheduleElements Method Arguments\n---\n",
+      "Content": "Argument\nDescription\nSpecialEvents\nAn array of special events to be added to the ExceptionSchedule Property.\nEntryResults\nAn array of results, one entry per entry in SpecialEvents, indicating if the individual entry could be added. Each result \u003C\u003E 0 indicates, that adding this special event entry was not successful.\n0 - OK\n-1 - Duplicate - Entry already in ExceptionSchedule\n-2 - Invalid Format - The entry contains an invalid format, e.g. an invalid range\nValues larger 0 can be used for vendor-specific errors."
+    },
+    {
+      "Id": "983f724b-07b2-4534-a641-c711305b0427",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.3 Method AddExceptionScheduleElements\n---\n",
+      "Content": "Method Result Codes (defined in Call Service)\nResult Code\nDescription\nBadNodeIdUnknown\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBadNotWritable\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBadOutOfMemory\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\n\nTable 13 - AddExceptionScheduleElements Method AddressSpace definition"
+    },
+    {
+      "Id": "22540013-e4c3-414b-b6a0-25932a0d67de",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.3 Method AddExceptionScheduleElements\nCaption: Table 13 - AddExceptionScheduleElements Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nAddExceptionScheduleElements\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\n0:Mandatory\n0:HasProperty\nVariable\n0:OutputArguments\n0:Argument[]\n0:PropertyType\n0:Mandatory"
+    },
+    {
+      "Id": "6f730bd0-6385-4635-b372-3637159f309b",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.3 Method AddExceptionScheduleElements\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "7cfceae1-f336-4584-b869-5bc01f5f5c32",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2 ScheduleType definition\n---\n",
+      "Content": "7.2.4 Method RemoveExceptionScheduleElements"
+    },
+    {
+      "Id": "2045026b-ace2-448a-9cdd-733d3fec61d4",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.4 Method RemoveExceptionScheduleElements\n---\n",
+      "Content": "This Method removes entries from the ExceptionSchedule Property. Even if one entry cannot be removed, the other entries are still processed and removed, if possible. The signature of this Method is specified below.[Table 14](/\u00A7_Ref94541324) and[Table 15](/\u00A7_Ref94541325) specify the Arguments and AddressSpace representation, respectively.\nSignature\nRemoveExceptionScheduleElements\n[in] SpecialEventType[] SpecialEvents\n[out] 0:Int32[] EntryResults\n);\nTable 14 - RemoveExceptionScheduleElements Method Arguments"
+    },
+    {
+      "Id": "aa5f2bb4-39a3-43b5-aeb9-53175429b0f7",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.4 Method RemoveExceptionScheduleElements\nCaption: Table 14 - RemoveExceptionScheduleElements Method Arguments\n---\n",
+      "Content": "Argument\nDescription\nSpecialEvents\nAn array of special events to be removed from the ExceptionSchedule Property.\nEntryResults\nAn array of results, one entry per entry in SpecialEvents, indicating if the individual entry could be removed. Each result \u003C\u003E 0 indicates, that removing this special event entry was not successful.\n0 - OK\n-1 - Not found - Entry is not in ExceptionSchedule\nValues larger 0 can be used for vendor-specific errors."
+    },
+    {
+      "Id": "75b96559-735d-4b76-a686-58f66f75f731",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.4 Method RemoveExceptionScheduleElements\n---\n",
+      "Content": "Method Result Codes (defined in Call Service)\nResult Code\nDescription\nBadNodeIdUnknown\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\nBadNotWritable\nSee[OPC 10000-4](/\u00A7UAPart4) for a general description.\n\nTable 15 - RemoveExceptionScheduleElements Method AddressSpace definition"
+    },
+    {
+      "Id": "00ef452a-bf3e-4dbc-bf0e-a966801af47c",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.4 Method RemoveExceptionScheduleElements\nCaption: Table 15 - RemoveExceptionScheduleElements Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nRemoveExceptionScheduleElements\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\n0:Mandatory\n0:HasProperty\nVariable\n0:OutputArguments\n0:Argument[]\n0:PropertyType\n0:Mandatory"
+    },
+    {
+      "Id": "4ddb4466-2380-4509-a179-f1df4fc4fe3e",
+      "Header": "Document: Part 24 - Scheduler\nSection: 7.2.4 Method RemoveExceptionScheduleElements\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "34d0134b-5c11-4e94-bc85-5d7a96d754fb",
+      "Header": "Document: Part 24 - Scheduler\n---\n",
+      "Content": "8 OPC UA DataTypes"
+    },
+    {
+      "Id": "934ac08c-d554-42d1-b4ea-3e942c0f7023",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.1 SpecialEventType"
+    },
+    {
+      "Id": "c156e059-8047-4e9c-840f-9862459559ca",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.1 SpecialEventType\n---\n",
+      "Content": "This structure contains a period, a list of time actions, and a priority. It is a means to identify moments in time over one or more days. How the priority is used is defined in section[6.2](/\u00A7_Ref93653969). The structure is defined in[Table 16](/\u00A7_Ref109726409).\nTable 16 - SpecialEventType Structure"
+    },
+    {
+      "Id": "514c949a-6e44-43bd-8455-d095d9256120",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.1 SpecialEventType\nCaption: Table 16 - SpecialEventType Structure\n---\n",
+      "Content": "Name\nType\nDescription\nSpecialEventType\nstructure\n\nPeriod\nSpecialEventPeriodType\nA period where the special event is active\nListOfTimeActions\nTimeActionsType[]\nPoints in time where the special event occurs and the associated actions\nEventPriority\n0:Byte\nPriority of this special event. The lower the number, the higher the priority."
+    },
+    {
+      "Id": "d69ea799-b32e-4d18-b44b-6368167b60a9",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.1 SpecialEventType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 17](/\u00A7_Ref46498488).\nTable 17 - SpecialEventType Definition"
+    },
+    {
+      "Id": "22092990-e161-485c-997f-8baa469b8a12",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.1 SpecialEventType\nCaption: Table 17 - SpecialEventType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nSpecialEventType\nIsAbstract\nFalse\nDescription\nThis structure contains a period, a list of time values, and a priority. It is a means to identify moments in time over one or more days.\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Structure\nConformance Units\nScheduler Scheduling Base"
+    },
+    {
+      "Id": "aff8c009-d23a-4e90-baf1-44a5e8fa36b5",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.1 SpecialEventType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "70a3506c-726c-4fda-9610-515334cfd4ab",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.2 SpecialEventPeriodType"
+    },
+    {
+      "Id": "88b133af-3996-4885-8156-0b9ecd233c13",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.2 SpecialEventPeriodType\n---\n",
+      "Content": "This union contains a calendar entry or a reference to a calendar Object. The union is defined in[Table 18](/\u00A7_Ref370760614).\nTable 18 - SpecialEventPeriodType Union"
+    },
+    {
+      "Id": "9924b452-690c-4e6d-821b-dab2e8fe4397",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.2 SpecialEventPeriodType\nCaption: Table 18 - SpecialEventPeriodType Union\n---\n",
+      "Content": "Name\nType\nDescription\nSpecialEventPeriodType\nunion\n\nCalendarEntry\nCalendarEntryType\nA calendar entry\nCalendarReference\n0:NodeId\nReference to a calendar object"
+    },
+    {
+      "Id": "1a98f2e0-ff17-4de2-8259-a89324715d52",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.2 SpecialEventPeriodType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 19](/\u00A7_Ref370760615).\nTable 19 - SpecialEventPeriodType definition"
+    },
+    {
+      "Id": "b2c1147c-1df0-4a7f-b2cc-96a1322a09fd",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.2 SpecialEventPeriodType\nCaption: Table 19 - SpecialEventPeriodType definition\n---\n",
+      "Content": "Attributes\nValue\nBrowseName\nSpecialEventPeriodType\nIsAbstract\nFalse\nDescription\nThis union contains a calendar entry or a reference to a calendar object\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of 0:Union\nConformance Units\nScheduler Scheduling Base"
+    },
+    {
+      "Id": "8c17b378-f0b2-4056-ba58-5c98e542bfc9",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.2 SpecialEventPeriodType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "f37d7ef1-ecc4-4792-8dae-b0e1055f068e",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.3 CalendarEntryType"
+    },
+    {
+      "Id": "f1d1ccc2-6a10-484c-87fe-e51251193eed",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.3 CalendarEntryType\n---\n",
+      "Content": "This union that defines various calendar date values. The union is defined in[Table 18](/\u00A7_Ref370760614).\nTable 20 - CalendarEntryType Union"
+    },
+    {
+      "Id": "04372553-7899-456e-8183-fc4c9eac5b1b",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.3 CalendarEntryType\nCaption: Table 20 - CalendarEntryType Union\n---\n",
+      "Content": "Name\nType\nDescription\nCalendarEntryType\nunion\n\nDate\nDateType\nA calendar date, potentially partly defined and repeating\nDateRange\nDateRangeType\nA range of dates"
+    },
+    {
+      "Id": "6eff126e-58de-49a0-a53f-9eafa8444249",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.3 CalendarEntryType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 19](/\u00A7_Ref370760615).\nTable 21 - CalendarEntryType Definition"
+    },
+    {
+      "Id": "1d24bcdd-316f-4034-a8f9-69f01af5892a",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.3 CalendarEntryType\nCaption: Table 21 - CalendarEntryType Definition\n---\n",
+      "Content": "Attributes\nValue\nBrowseName\nCalendarEntryType\nIsAbstract\nFalse\nDescription\nThis union that defines various calendar date values\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of 0:Union\nConformance Units\nScheduler Scheduling Base\nScheduler Calendar Base"
+    },
+    {
+      "Id": "32aded0e-1ab0-48c4-8406-1fc4a32cd891",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.3 CalendarEntryType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "570b3bb2-35cc-4010-8e65-451dc3e7ec44",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.4 DateType"
+    },
+    {
+      "Id": "3606e93d-2765-4476-b94b-31a130bd7057",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.4 DateType\n---\n",
+      "Content": "This structure defines a calendar date. It allows to define a concrete date, e.g. 2022-02-12. By using wildcards, it also allows to define repeating dates, like every Wednesday, every odd day of a month, every 24 th of December, every last day of a month in 2023, etc. Its composition is formally defined in[Table 22](/\u00A7_Ref370797599).\nTable 22 - DateType Structure"
+    },
+    {
+      "Id": "829cf39d-ed56-4208-b649-eeffe6973a2b",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.4 DateType\nCaption: Table 22 - DateType Structure\n---\n",
+      "Content": "Name\nType\nDescription\nDateType\nstructure\n\nYear\n0:UInt16\nYears based on the Gregorian calendar, 0 is used as \u0022unspecific\u0022.\nMonth\nMonth\nA specific Gregorian calendar month or relative (e.g. \u0022odd\u0022, \u0022even\u0022)\nDayOfMonth\nDayOfMonth\nA specific day of the month or relative (e.g. \u0022last day\u0022). Shall be \u0022unspecific\u0022 if DayOfWeek is not \u0022unspecific\u0022.\nDayOfWeek\nDayOfWeek\nA specific day of the week. Shall be \u0022unspecific\u0022 if DayOfMonth is not \u0022unspecific\u0022."
+    },
+    {
+      "Id": "8a37622c-4f0d-43ab-900f-fb660fa3df39",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.4 DateType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 23](/\u00A7_Ref370797600).\nTable 23 - DateType Definition"
+    },
+    {
+      "Id": "74f4fcaf-3d96-4681-adcc-66b15c9bbfab",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.4 DateType\nCaption: Table 23 - DateType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nDateType\nIsAbstract\nFalse\nDescription\nThis structure defines a calendar date. It allows to define a concrete date, e.g. 2022-02-12. By using wildcards, it also allows to define repeating dates, like every Wednesday, every odd day of a month, every 24 th of December, every last day of a month in 2023, etc.\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Structure\nConformance Units\nScheduler Scheduling Base\nScheduler Calendar Base"
+    },
+    {
+      "Id": "18ab4862-4a4d-414e-8e1a-4e715c6ec41a",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.4 DateType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "70a6aab4-6713-4e29-a35b-c1df8d5e8571",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.5 Month"
+    },
+    {
+      "Id": "ebf9aec2-0c04-484f-a20f-a1df8555833b",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.5 Month\n---\n",
+      "Content": "This enumeration indicates either a specific Gregorian calendar month, or a relative relationship (\u0022odd\u0022, \u0022even\u0022, and \u0022unspecified\u0022). The enumeration is defined in[Table 24](/\u00A7_Ref377027377).\nTable 24 - Month Values"
+    },
+    {
+      "Id": "4931f1c9-5c73-4202-b30c-fa7f9a5e05e5",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.5 Month\nCaption: Table 24 - Month Values\n---\n",
+      "Content": "Name\nValue\nDescription\nUnspecified\n0\n\nJanuary\n1\n\nFebruary\n2\n\nMarch\n3\n\nApril\n4\n\nMay\n5\n\nJune\n6\n\nJuly\n7\n\nAugust\n8\n\nSeptember\n9\n\nOctober\n10\n\nNovember\n11\n\nDecember\n12\n\nOdd\n13\n\nEven\n14"
+    },
+    {
+      "Id": "7cd5c562-f8cc-4c68-9f89-9bbb6995fccf",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.5 Month\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 25](/\u00A7_Ref377027384).\nTable 25 - Month Definition"
+    },
+    {
+      "Id": "8d84ebcc-f74e-4106-91e5-3bcdd794a6ca",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.5 Month\nCaption: Table 25 - Month Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nMonth\nIsAbstract\nFalse\nDescription\nThis enumeration indicates either a specific Gregorian calendar month, or a relative relationship (\u0022odd\u0022, \u0022even\u0022, and \u0022unspecified\u0022).\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Enumeration\n0:HasProperty\nVariable\n0:EnumStrings\n0:LocalizedText[]\n0:PropertyType\n\nConformance Units\nScheduler Scheduling Base\nScheduler Calendar Base"
+    },
+    {
+      "Id": "8fb6384f-4b75-4b02-9dec-fa685f77cdb5",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.5 Month\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "caf1decf-ac9e-43da-84c2-7f4d3179d095",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.6 DayOfMonth"
+    },
+    {
+      "Id": "3f2c2176-e8cd-46a8-9210-e628bb7e26d3",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.6 DayOfMonth\n---\n",
+      "Content": "This enumeration indicates specific days of the month by specific date (\u00221\u0022, \u002222\u0022, and so on) or by relative position (\u0022last day of month\u0022, \u0022even day of month\u0022, and so on). The enumeration is defined in[Table 26](/\u00A7_Ref377034996).\nTable 26 - DayOfMonth Values"
+    },
+    {
+      "Id": "602fe45b-9175-4f98-ba8a-5abdcf1a80d7",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.6 DayOfMonth\nCaption: Table 26 - DayOfMonth Values\n---\n",
+      "Content": "Name\nValue\nDescription\nUnspecified\n0\n\nDay1\n1\n\nDay2\n2\n\nDay3\n3\n\nDay4\n4\n\nDay5\n5\n\nDay6\n6\n\nDay7\n7\n\nDay8\n8\n\nDay9\n9\n\nDay10\n10\n\nDay11\n11\n\nDay12\n12\n\nDay13\n13\n\nDay14\n14\n\nDay15\n15\n\nDay16\n16\n\nDay17\n17\n\nDay18\n18\n\nDay19\n19\n\nDay20\n20\n\nDay21\n21\n\nDay22\n22\n\nDay23\n23\n\nDay24\n24\n\nDay25\n25\n\nDay26\n26\n\nDay27\n27\n\nDay28\n28\n\nDay29\n29\n\nDay30\n30\n\nDay31\n31\n\nLastDayOfMonth\n32\n\nOddDayOfMonth\n33\n\nEvenDayOfMonth\n34"
+    },
+    {
+      "Id": "d59de5fa-995a-4fbd-b0a0-a4859bd6d29d",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.6 DayOfMonth\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 27](/\u00A7_Ref377035247).\nTable 27 - DayOfMonth Definition"
+    },
+    {
+      "Id": "9f8fc727-1cb1-4cdf-887c-c9b8ceac7913",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.6 DayOfMonth\nCaption: Table 27 - DayOfMonth Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nDayOfMonth\nIsAbstract\nFalse\nDescription\nThis enumeration indicates specific days of the month by specific date (\u00221\u0022, \u002222\u0022, and so on) or by relative position (\u0022last day of month\u0022, \u0022even day of month\u0022, and so on).\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Enumeration\n0:HasProperty\nVariable\n0:EnumStrings\n0:LocalizedText[]\n0:PropertyType\n\nConformance Units\nScheduler Scheduling Base\nScheduler Calendar Base"
+    },
+    {
+      "Id": "cbf60e16-69c7-481f-8d24-83747f88d9fc",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.6 DayOfMonth\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "2d3692e2-748b-4407-9f42-22edde8e4706",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.7 DayOfWeek"
+    },
+    {
+      "Id": "674c0007-8737-4436-904b-c97ceba4e56b",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.7 DayOfWeek\n---\n",
+      "Content": "This enumeration indicates each of the seven days of the week, or \u0022unspecified\u0022. The enumeration is defined in[Table 28](/\u00A7_Ref377035251).\nTable 28 - DayOfWeek Values"
+    },
+    {
+      "Id": "a6c75899-ed7a-4268-b106-f943bc4ec12f",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.7 DayOfWeek\nCaption: Table 28 - DayOfWeek Values\n---\n",
+      "Content": "Name\nValue\nDescription\nUnspecified\n0\n\nMonday\n1\n\nTuesday\n2\n\nWednesday\n3\n\nThursday\n4\n\nFriday\n5\n\nSaturday\n6\n\nSunday\n7"
+    },
+    {
+      "Id": "f3302715-f7d2-404a-8c84-b436628d329e",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.7 DayOfWeek\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 29](/\u00A7_Ref377035255).\nTable 29 - DayOfWeek Definition"
+    },
+    {
+      "Id": "901af946-c074-47a5-b627-6be16574342b",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.7 DayOfWeek\nCaption: Table 29 - DayOfWeek Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nDayOfWeek\nIsAbstract\nFalse\nDescription\nThis enumeration indicates each of the seven days of the week, or \u0022unspecified\u0022.\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Enumeration type defined in[OPC 10000-5](/\u00A7UAPart5)\n0:HasProperty\nVariable\n0:EnumStrings\n0:LocalizedText[]\n0:PropertyType\n\nConformance Units\nScheduler Scheduling Base\nScheduler Calendar Base"
+    },
+    {
+      "Id": "17d5ffee-5d9e-4119-adb8-1cf040300800",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.7 DayOfWeek\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "086b7a92-a9a8-43b8-b854-5701026c3fe5",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.8 DateRangeType"
+    },
+    {
+      "Id": "28dece60-6e17-4c05-a068-f7b370c9c1fb",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.8 DateRangeType\n---\n",
+      "Content": "This structure defines a time span, with start and end dates that are either open or absolute. The structure is defined in[Table 30](/\u00A7_Ref370797601).\nThe StartDate and EndDate are limited to either use specific dates, i.e., wild cards like odd months are not allowed, or unspecified dates, i.e. only use wild cards.\nIn case a specific date is provided, the Year field shall not be 0; the Month field shall be a value between 1 to 12; the DayOfMonth field shall be between 1 to 31 and the DayOfWeek field shall be \u0022unspecified\u0022.\nIn case an unspecified date is provided, the Year field shall be 0, the Month field shall be \u0022unspecified\u0022, the DayOfMonth field shall be \u0022unspecified\u0022, and the DayOfWeek field shall be \u0022unspecified\u0022.\nNo other values shall be used for StartDate and EndDate.\nTable 30 - DateRangeType Structure"
+    },
+    {
+      "Id": "4e7c6925-f2eb-42b0-b244-fa3f71ffc363",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.8 DateRangeType\nCaption: Table 30 - DateRangeType Structure\n---\n",
+      "Content": "Name\nType\nDescription\nDateRangeType\nstructure\n\nStartDate\nDateType\nThe start date of the date range. The start day is included in the range.\nEndDate\nDateType\nThe end date of the date range. The end day is included in the range."
+    },
+    {
+      "Id": "8f1c2b10-85db-4b1c-80cc-2ef691be4878",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.8 DateRangeType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 31](/\u00A7_Ref370797602).\nTable 31 - DateRangeType Definition"
+    },
+    {
+      "Id": "020179ba-2015-4ccb-85c0-d035270a5930",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.8 DateRangeType\nCaption: Table 31 - DateRangeType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nDateRangeType\nIsAbstract\nFalse\nDescription\nThis structure defines a time span, with absolute start and end dates. The StartDate and EndDate are limited to specific values, i.e., wild cards like odd months are not allowed. The Year field shall not be 0; the Month field shall be a value between 1 to 12; the DayOfMonth field shall be between 1 to 31 and the DayOfMonth field shall be \u0022unspecified\u0022.\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Structure\nConformance Units\nScheduler Scheduling Base\nScheduler Calendar Base"
+    },
+    {
+      "Id": "efebca47-a08b-4e9f-ac35-492ecef60943",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.8 DateRangeType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "33b09d9e-078e-42ed-bc42-2b39ceab7d25",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.9 TimeActionsType"
+    },
+    {
+      "Id": "3f1a969d-56f9-459b-91d8-1c9c7ee72f2d",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.9 TimeActionsType\n---\n",
+      "Content": "This structure contains a time and an array of actions. It is used to define which actions shall be executed at a specific point in time. The structure is defined in[Table 16](/\u00A7_Ref109726409).\nTable 32 - TimeActionsType Structure"
+    },
+    {
+      "Id": "19643977-4f32-479d-acb5-30883af71162",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.9 TimeActionsType\nCaption: Table 32 - TimeActionsType Structure\n---\n",
+      "Content": "Name\nType\nDescription\nAllowSubtypes\nTimeActionsType\nstructure\n\n\nTime\nTimeType\nA point in time during a day\n\nActions\nBaseActionType[]\nA list of actions to be executed at the defined Time\nNote: Here, subtypes are allowed. The table format will be updated, once a final format is defined.\nTrue"
+    },
+    {
+      "Id": "fff0df36-6227-441f-a659-115ff6af48b7",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.9 TimeActionsType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 17](/\u00A7_Ref46498488).\nTable 33 - TimeActionsType Definition"
+    },
+    {
+      "Id": "d31c6a23-036f-4e29-987d-496558bc7a46",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.9 TimeActionsType\nCaption: Table 33 - TimeActionsType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nTimeActionsType\nIsAbstract\nFalse\nDescription\nThis structure contains a time and an array of actions. It is used to define actions to be executed at a specific point in time.\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Structure\nConformance Units\nScheduler Scheduling Base"
+    },
+    {
+      "Id": "e26f7650-437a-460a-8669-da144bd448d9",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.9 TimeActionsType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "9411bfdd-62a3-4917-b81b-b4c048dd92b6",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.10 BaseActionType"
+    },
+    {
+      "Id": "8dcc521f-42ab-4486-8bff-98698b31ce3c",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.10 BaseActionType\n---\n",
+      "Content": "This abstract structure defines the base of an action. The base only contains information, if the last execution of the action was successful. The structure is defined in[Table 34](/\u00A7_Ref94281088).\nTable 34 - BaseActionType Structure"
+    },
+    {
+      "Id": "92c549b7-d910-46d4-9730-73f336113292",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.10 BaseActionType\nCaption: Table 34 - BaseActionType Structure\n---\n",
+      "Content": "Name\nType\nDescription\nBaseActionType\nstructure\n\nLastActionResult\n0:StatusCode\nContains information, whether the last execution of the action was successful. Shall be Uncertain, if action was never executed or last execution not known by Server anymore, e.g., because of a restart.\nShall be a good status code when execution of action was successful, and a bad status code, when execution was not successful.\nSubtypes might add additional information on execution of action, e.g. output arguments."
+    },
+    {
+      "Id": "33247a4c-8df8-4850-b907-104c88bb8afd",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.10 BaseActionType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 35](/\u00A7_Ref94281114).\nTable 35 - BaseActionType Definition"
+    },
+    {
+      "Id": "c23eaac4-7888-4fef-8120-86b52a7253e0",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.10 BaseActionType\nCaption: Table 35 - BaseActionType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nBaseActionType\nIsAbstract\nTrue\nDescription\nThis abstract structure defines the base of an action. The base only contains information, if the last execution of the action was successful.\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Structure\nConformance Units\nScheduler Scheduling Base"
+    },
+    {
+      "Id": "e03472e5-93dd-47db-b9a6-b911a0e4c2f3",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.10 BaseActionType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "5d924c43-23e5-47a5-8229-6afe00f1441a",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.11 WriteLocalVariableActionType"
+    },
+    {
+      "Id": "b380897f-bb84-4d8f-98b3-7403577fe457",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.11 WriteLocalVariableActionType\n---\n",
+      "Content": "This structure defines an action to write the value of a Variable managed in the same Server where the action is used. The structure is defined in[Table 36](/\u00A7_Ref94539287).\nTable 36 - WriteLocalVariableActionType Structure"
+    },
+    {
+      "Id": "dbf2461d-4615-424f-aa0a-69596912907c",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.11 WriteLocalVariableActionType\nCaption: Table 36 - WriteLocalVariableActionType Structure\n---\n",
+      "Content": "Name\nType\nDescription\nWriteLocalVariableActionType\nstructure\n\nVariable\n0:NodeId\nThe NodeId of the Variable to be written\nValue\n0:BaseDataType\nThe value to be written to the Variable"
+    },
+    {
+      "Id": "4ecc1e9c-80c4-418b-8e13-8d8e7de4cff9",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.11 WriteLocalVariableActionType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 37](/\u00A7_Ref94539307).\nTable 37 - WriteLocalVariableActionType Definition"
+    },
+    {
+      "Id": "153ca1ee-99b5-466b-a302-4846cbc11a02",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.11 WriteLocalVariableActionType\nCaption: Table 37 - WriteLocalVariableActionType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nWriteLocalVariableActionType\nIsAbstract\nFalse\nDescription\nThis structure defines an action to write the value of a Variable managed in the same Server where the action is used.\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the BaseActionType\nConformance Units\nScheduler Scheduling Base"
+    },
+    {
+      "Id": "72022809-7892-4c43-8bdf-3bc117e5fd97",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.11 WriteLocalVariableActionType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "03683eec-592e-4cb5-ad1a-d1dd3ab7f043",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.12 CallLocalMethodActionType"
+    },
+    {
+      "Id": "fee6ce24-7052-4b47-b4f1-26dbca6d1f22",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.12 CallLocalMethodActionType\n---\n",
+      "Content": "This structure defines an action to call a Method of an Object managed in the same Server where the action is used. The structure is defined in[Table 38](/\u00A7_Ref94539519).\nTable 38 - CallLocalMethodActionType Structure"
+    },
+    {
+      "Id": "641037e1-1c84-4d43-82f4-063a9e77845a",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.12 CallLocalMethodActionType\nCaption: Table 38 - CallLocalMethodActionType Structure\n---\n",
+      "Content": "Name\nType\nDescription\nCallLocalMethodActionType\nstructure\n\nObjectId\n0:NodeId\nThe NodeId of the Object the Method should be called on\nMethodId\n0:NodeId\nThe NodeId of the Method to be called\nInputValues\n0:BaseDataType[]\nAn array of input values to be used in the Method call\nLastOutputValues\n0:BaseDataType[]\nAn array of the output values the last time the Method was called. Shall be an empty array if no outputs arguments, the LastActionResult is a bad status code or the action was never executed or last execution is unknown."
+    },
+    {
+      "Id": "431745db-db13-4000-969a-6332dc8f58f2",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.12 CallLocalMethodActionType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 39](/\u00A7_Ref94539529).\nTable 39 - CallLocalMethodActionType Definition"
+    },
+    {
+      "Id": "44e65b45-80bc-42bd-9106-30cf0d4860a4",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.12 CallLocalMethodActionType\nCaption: Table 39 - CallLocalMethodActionType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nCallLocalMethodActionType\nIsAbstract\nFalse\nDescription\nThis structure defines an action to call a Method of an Object managed in the same Server where the action is used.\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the BaseActionType\nConformance Units\nScheduler Scheduling Base"
+    },
+    {
+      "Id": "271a4235-0dff-41cb-9d8a-28352706ed79",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.12 CallLocalMethodActionType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "a2ea973a-c702-4128-ba0a-a246fb2da245",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.13 TimeType"
+    },
+    {
+      "Id": "1674dae4-03a3-4cd2-91de-48777a616832",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.13 TimeType\n---\n",
+      "Content": "This structure that represents a point in time during a day. The structure is defined in[Table 40](/\u00A7_Ref379490350).\nTable 40 - TimeType Structure"
+    },
+    {
+      "Id": "9150bbc3-36a1-43bd-82e3-63c80e5455b8",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.13 TimeType\nCaption: Table 40 - TimeType Structure\n---\n",
+      "Content": "Name\nType\nDescription\nTimeType\nstructure\n\nHour\n0:Byte\nAllowed values between 0 and 23 - 255 as unspecific\nMinute\n0:Byte\nAllowed values between 0 and 59 - 255 as unspecific\nSecond\n0:Byte\nAllowed values between 0 and  59 - 255 as unspecific"
+    },
+    {
+      "Id": "95f66f99-d978-48f6-bb53-32c201466745",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.13 TimeType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 41](/\u00A7_Ref379490351).\nTable 41 - TimeType Definition"
+    },
+    {
+      "Id": "e289de22-8415-470b-8e94-81300a578593",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.13 TimeType\nCaption: Table 41 - TimeType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nTimeType\nIsAbstract\nFalse\nDescription\nThis structure that represents a point in time during a day\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Structure\nConformance Units\nScheduler Scheduling Base"
+    },
+    {
+      "Id": "d08a7344-1651-470d-8e45-897434656d12",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.13 TimeType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "e43adbeb-0f66-4bec-b754-4b134607b86b",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8 OPC UA DataTypes\n---\n",
+      "Content": "8.14 DailyScheduleType"
+    },
+    {
+      "Id": "bb58162c-c59a-4cc2-a2ef-819b5c8b2761",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.14 DailyScheduleType\n---\n",
+      "Content": "This structure defines a sequence of TimeActionsType structures. Each element in the sequence defines a time and a list of actions that shall be executed at that point in time. The structure is defined in[Table 42](/\u00A7_Ref379490344).\nTable 42 - DailyScheduleType Structure"
+    },
+    {
+      "Id": "22235054-def7-4542-a264-e70dd409c563",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.14 DailyScheduleType\nCaption: Table 42 - DailyScheduleType Structure\n---\n",
+      "Content": "Name\nType\nDescription\nDailyScheduleType\nstructure\n\nDaySchedule\nTimeActionsType[]\nA sequence of time / value pairs describing the value at a given point in the day."
+    },
+    {
+      "Id": "51f6f5d0-5c23-4537-916a-49594a2eb5f3",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.14 DailyScheduleType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 43](/\u00A7_Ref379490345).\nTable 43 - DailyScheduleType Definition"
+    },
+    {
+      "Id": "329db1a7-4905-4f71-b535-e21ca01b7c06",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.14 DailyScheduleType\nCaption: Table 43 - DailyScheduleType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nDailyScheduleType\nIsAbstract\nFalse\nDescription\nThis structure defines a sequence of TimeActionsType structures. Each element in the sequence defines a time/actions pair that describes the actions to be executed at a given point in the day.\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Structure\nConformance Units\nScheduler Scheduling Base"
+    },
+    {
+      "Id": "813a50c5-a063-4aa1-b364-e2ddb206904a",
+      "Header": "Document: Part 24 - Scheduler\nSection: 8.14 DailyScheduleType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "4b5de82c-95c3-44e8-bf68-bea47ed491d6",
+      "Header": "Document: Part 24 - Scheduler\n---\n",
+      "Content": "9 Profiles and Conformance Units"
+    },
+    {
+      "Id": "10b5da6f-b9ca-4ccf-92a7-16ae8393c191",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9 Profiles and Conformance Units\n---\n",
+      "Content": "Editor comment: This section will not be published in this document, but in the Profile database and OPC 10000-7 Profiles\n9.1 Conformance Units"
+    },
+    {
+      "Id": "02c7e5cf-3133-42e0-b9e0-81a685267cc4",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.1 Conformance Units\n---\n",
+      "Content": "[Table 44](/\u00A7_Ref46497388) defines the corresponding ConformanceUnits for the OPC UA Information Model for Scheduler.\nTable 44 - Conformance Units for Scheduler"
+    },
+    {
+      "Id": "ecf948a4-ab35-4dc0-82ec-9c378e1bd593",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.1 Conformance Units\nCaption: Table 44 - Conformance Units for Scheduler\n---\n",
+      "Content": "Category\nTitle\nDescription\nServer\nScheduler Scheduling Base\nExposes the ObjectType ScheduleType, the DataTypes SpecialEventType, SpecialEventPeriodType, CalendarEntryType, DateType, Month, DayOfMonth, DayOfWeek, DateRangeType, TimeActionsType, BaseActionType, WriteLocalVariableActionType, CallLocalMethodActionType, TimeType and DailyScheduleType and all their supertypes in the AddressSpace.\nSupports a configuration with at least two instances of ScheduleType having at least 12 entries of DaySchedule in their WeeklySchedule (overall, not per day), and 6 entries in the ExceptionSchedule each having at least 6 entries of ListOfTimeActions.\nServer\nScheduler Calendar Base\nExposes the ObjectType CalendarType, the DataTypes CalendarEntryType, DateType, Month, DayOfMonth, DayOfWeek, and DateRangeType and all their supertypes in the AddressSpace.\nSupports a configuration with at least three instances of CalendarType, each having at least 10 entries in DateList.\nServer\nScheduler Scheduling Configuration\nSupports at least on instance of ScheduleType supporting the Methods AddExceptionScheduleElements and RemoveExceptionScheduleElements to change the ExceptionSchedule Property and allowing writing the WeeklySchedule Property.\nServer\nScheduler Calendar Configuration\nSupports at least on instance of CalendarType supporting the Methods AddDateListElements and RemoveDateListElements to change the DateList Property.\nClient\nScheduler Client Configuration\nThe client supports the configuration of instances of ScheduleType and CalendarType, by changing the configuration of existing Objects."
+    },
+    {
+      "Id": "eaf27547-db2d-4302-8a66-df456327410e",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.1 Conformance Units\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "99bae4a6-5100-4953-8dc5-c6ff58f5b81b",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9 Profiles and Conformance Units\n---\n",
+      "Content": "9.2 Profiles"
+    },
+    {
+      "Id": "95f1b100-d630-405c-925f-09bc6aa27dbc",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2 Profiles\n---\n",
+      "Content": "9.2.1 Profile list"
+    },
+    {
+      "Id": "4f966b3c-7d4b-4eab-ad01-544285dac041",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.1 Profile list\n---\n",
+      "Content": "[Table 45](/\u00A7_Ref18152903) lists all Profiles defined in this document and defines their URIs.\nTable 45 - Profile URIs for Scheduler"
+    },
+    {
+      "Id": "9d7c04b5-cdd1-452e-a8b8-bceaa64de331",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.1 Profile list\nCaption: Table 45 - Profile URIs for Scheduler\n---\n",
+      "Content": "Profile\nURI\nScheduler Base Server Profile\nhttp://opcfoundation.org/UA-Profile/Scheduler/Server/Base\nScheduler Configuration Server Facet\nhttp://opcfoundation.org/UA-Profile/Scheduler/Server/Configuration\nScheduler Configuration Client Facet\nhttp://opcfoundation.org/UA-Profile/Scheduler/Client/Configuration"
+    },
+    {
+      "Id": "4dff03e6-6076-42e6-91cf-12909e8687a6",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.1 Profile list\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "5f565092-f915-4625-ac15-125f54cedc8d",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2 Profiles\n---\n",
+      "Content": "9.2.2 Server Facets"
+    },
+    {
+      "Id": "6c06d915-7611-4b6b-a1f2-57886c4d2753",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.2 Server Facets\n---\n",
+      "Content": "9.2.2.1 Overview"
+    },
+    {
+      "Id": "96cc5187-9125-491e-915e-06efbd7420a6",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.2.1 Overview\n---\n",
+      "Content": "The following sections specify the Facets available for Servers that implement the Scheduler companion specification. Each section defines and describes a Facet or Profile."
+    },
+    {
+      "Id": "2121329b-8756-4b4f-ba9a-4c09a7a85b33",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.2 Server Facets\n---\n",
+      "Content": "9.2.2.2 Scheduler Base Server Facet"
+    },
+    {
+      "Id": "e371382d-a566-43da-9bb7-efa77dd4947e",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.2.2 Scheduler Base Server Facet\n---\n",
+      "Content": "[Table 46](/\u00A7_Ref18071949) defines a Profile that describes the describes the base characteristics for all OPC UA Servers that support exposing schedules.\nTable 46 - Scheduler Base Server Facet"
+    },
+    {
+      "Id": "8646508d-e0fa-452d-a44b-35642e53491e",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.2.2 Scheduler Base Server Facet\nCaption: Table 46 - Scheduler Base Server Facet\n---\n",
+      "Content": "Group\nConformance Unit / Profile Title\nMandatory / Optional\nProfile\n0:Core 2022 Server Facethttp://opcfoundation.org/UA-Profile/Server/Core2022Facet\n\nProfile\n0:Method 2021 Server Facethttp://opcfoundation.org/UA-Profile/Server/Methods2021\n\nScheduler\nScheduler Scheduling Base\nM\nScheduler\nScheduler Calendar Base\nO"
+    },
+    {
+      "Id": "09644ea0-1a0a-427c-9390-eacf0b5dfc0d",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.2.2 Scheduler Base Server Facet\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "080e1947-1032-4826-8b68-9c0dd5ce3cdb",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.2 Server Facets\n---\n",
+      "Content": "9.2.2.3 Scheduler Configuration Server Facet"
+    },
+    {
+      "Id": "32584a86-892f-44f7-9976-6d0bb45f3ae0",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.2.3 Scheduler Configuration Server Facet\n---\n",
+      "Content": "[Table 47](/\u00A7_Ref18071980) defines a Facet that describes the base characteristics for all OPC UA Servers that support configuring schedules.\nTable 47 - Scheduler Configuration Server Facet"
+    },
+    {
+      "Id": "e688c304-1d5b-4245-b0d4-728b188ceb21",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.2.3 Scheduler Configuration Server Facet\nCaption: Table 47 - Scheduler Configuration Server Facet\n---\n",
+      "Content": "Group\nConformance Unit / Profile Title\nMandatory / Optional\nProfile\nScheduler Base Server Facet\nM\nScheduler\nScheduler Scheduling Configuration\nM\nScheduler\nScheduler Calendar Configuration\nO"
+    },
+    {
+      "Id": "f8b2546d-346b-46c0-a9e5-505b66357a53",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.2.3 Scheduler Configuration Server Facet\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "9a6417c0-2350-4893-aefc-deeee52582d2",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2 Profiles\n---\n",
+      "Content": "9.2.3 Client Facets"
+    },
+    {
+      "Id": "c3df2b2e-d5d9-4d27-8e46-682d425a1158",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.3 Client Facets\n---\n",
+      "Content": "9.2.3.1 Overview"
+    },
+    {
+      "Id": "504c965c-5d59-49c8-a838-9858b16877db",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.3.1 Overview\n---\n",
+      "Content": "The following tables specify the Facets available for Clients that implement the Scheduler companion specification."
+    },
+    {
+      "Id": "84859f89-6f8e-4fd6-a827-eb2aa50d7049",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.3 Client Facets\n---\n",
+      "Content": "9.2.3.2 Scheduler Configuration Client Facet"
+    },
+    {
+      "Id": "fb1e6c76-2b4e-4f67-b31d-c9132a7b5c4e",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.3.2 Scheduler Configuration Client Facet\n---\n",
+      "Content": "[Table 48](/\u00A7_Ref442394485) defines a Facet that describes the base characteristics for all OPC UA Clients that support the configuration of schedules.\nTable 48 - Scheduler Configuration Client Facet"
+    },
+    {
+      "Id": "dbd103f7-2ff3-41a5-af32-c687c6d3b72c",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.3.2 Scheduler Configuration Client Facet\nCaption: Table 48 - Scheduler Configuration Client Facet\n---\n",
+      "Content": "Group\nConformance Unit / Profile Title\nMandatory / Optional\nProfile\n0:AddressSpace Lookup Client Facethttp://opcfoundation.org/UA-Profile/Client/AddressSpaceLookup\n\nProfile\n0:DataAccess Client Facethttp://opcfoundation.org/UA-Profile/Client/DataAccess\n\nScheduler\nScheduler Client Configuration\nM"
+    },
+    {
+      "Id": "0b83362e-676e-4415-be5b-098ede77856d",
+      "Header": "Document: Part 24 - Scheduler\nSection: 9.2.3.2 Scheduler Configuration Client Facet\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "c5217be2-3d86-41e3-95c6-c3b66c7a2df0",
+      "Header": "Document: Part 24 - Scheduler\n---\n",
+      "Content": "10 Namespaces"
+    },
+    {
+      "Id": "45cddafb-0d6c-43a1-81cb-058d16f27163",
+      "Header": "Document: Part 24 - Scheduler\nSection: 10 Namespaces\n---\n",
+      "Content": "10.1 Namespace Metadata"
+    },
+    {
+      "Id": "eb04f77a-88b7-4511-b24f-b2c4ee0bb0b4",
+      "Header": "Document: Part 24 - Scheduler\nSection: 10.1 Namespace Metadata\n---\n",
+      "Content": "[Table 49](/\u00A7_Ref16863029) defines the namespace metadata for this document. The Object is used to provide version information for the namespace and an indication about static Nodes. Static Nodes are identical for all Attributes in all Servers, including the Value Attribute. See[OPC 10000-5](/\u00A7UAPart5) for more details.\nThe information is provided as Object of type NamespaceMetadataType. This Object is a component of the Namespaces Object that is part of the Server Object. The NamespaceMetadataType ObjectType and its Properties are defined in[OPC 10000-5](/\u00A7UAPart5).\nThe version information is also provided as part of the ModelTableEntry in the UANodeSet XML file. The UANodeSet XML schema is defined in[OPC 10000-6](/\u00A7UAPart6).\nTable 49 - NamespaceMetadata Object for this Document"
+    },
+    {
+      "Id": "9508854c-ff2c-4fef-bd0b-8bead37967c9",
+      "Header": "Document: Part 24 - Scheduler\nSection: 10.1 Namespace Metadata\nCaption: Table 49 - NamespaceMetadata Object for this Document\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nhttp://opcfoundation.org/UA/Scheduler/\nProperty\nDataType\nValue\nNamespaceUri\nString\nhttp://opcfoundation.org/UA/Scheduler/\nNamespaceVersion\nString\n1.05.02\nNamespacePublicationDate\nDateTime\n2022-10-01\nIsNamespaceSubset\nBoolean\nFalse\nStaticNodeIdTypes\nIdType[]\n0\nStaticNumericNodeIdRange\nNumericRange []\n-\nStaticStringNodeIdPattern\nString\n-"
+    },
+    {
+      "Id": "b6bb5caf-2219-4f56-aaba-cc1b48472d43",
+      "Header": "Document: Part 24 - Scheduler\nSection: 10.1 Namespace Metadata\n---\n",
+      "Content": "Note: The IsNamespaceSubset Property is set to False as the UaNodeSet XML file contains the complete Namespace. Servers only exposing a subset of the Namespace need to change the value to True."
+    },
+    {
+      "Id": "02672f3a-5ac8-48c9-9882-d197ac43d75b",
+      "Header": "Document: Part 24 - Scheduler\nSection: 10 Namespaces\n---\n",
+      "Content": "10.2 Handling of OPC UA Namespaces"
+    },
+    {
+      "Id": "afb85309-3c85-4538-9b78-345104524d50",
+      "Header": "Document: Part 24 - Scheduler\nSection: 10.2 Handling of OPC UA Namespaces\n---\n",
+      "Content": "Namespaces are used by OPC UA to create unique identifiers across different naming authorities. The Attributes NodeId and BrowseName are identifiers. A Node in the UA AddressSpace is unambiguously identified using a NodeId. Unlike NodeIds, the BrowseName cannot be used to unambiguously identify a Node. Different Nodes may have the same BrowseName. They are used to build a browse path between two Nodes or to define a standard Property.\nServers may often choose to use the same namespace for the NodeId and the BrowseName. However, if they want to provide a standard Property, its BrowseName shall have the namespace of the standards body although the namespace of the NodeId reflects something else, for example the EngineeringUnits Property. All NodeIds of Nodes not defined in this document shall not use the standard namespaces.\n[Table 50](/\u00A7_Ref16778538) provides a list of namespaces typically used in a Scheduler OPC UA Server.\nTable 50 - Namespaces used in a Scheduler Server"
+    },
+    {
+      "Id": "e0de1c21-148b-4e38-935b-82c0cabdc3a7",
+      "Header": "Document: Part 24 - Scheduler\nSection: 10.2 Handling of OPC UA Namespaces\nCaption: Table 50 - Namespaces used in a Scheduler Server\n---\n",
+      "Content": "NamespaceURI\nDescription\nhttp://opcfoundation.org/UA/\nNamespace for NodeIds and BrowseNames defined in the OPC UA specification. This namespace shall have namespace index 0.\nLocal Server URI\nNamespace for nodes defined in the local server. This namespace shall have namespace index 1.\nhttp://opcfoundation.org/UA/Scheduler/\nNamespace for NodeIds and BrowseNames defined in this document. The namespace index is Server specific.\nVendor specific types\nA Server may provide vendor-specific types like types derived from ObjectTypes defined in this document in a vendor-specific namespace.\nVendor specific instances\nA Server provides vendor-specific instances of the standard types or vendor-specific instances of vendor-specific types in a vendor-specific namespace.\nIt is recommended to separate vendor specific types and vendor specific instances into two or more namespaces."
+    },
+    {
+      "Id": "29306d6c-fefa-46af-af11-985cb1f687a7",
+      "Header": "Document: Part 24 - Scheduler\nSection: 10.2 Handling of OPC UA Namespaces\n---\n",
+      "Content": "[Table 51](/\u00A7_Ref16577438) provides a list of namespaces and their indices used for BrowseNames in this document. The default namespace of this document is not listed since all BrowseNames without prefix use this default namespace.\nTable 51 - Namespaces used in this document"
+    },
+    {
+      "Id": "b87320da-ef25-4123-9bcc-0ba1cc656ba3",
+      "Header": "Document: Part 24 - Scheduler\nSection: 10.2 Handling of OPC UA Namespaces\nCaption: Table 51 - Namespaces used in this document\n---\n",
+      "Content": "NamespaceURI\nNamespace Index\nExample\nhttp://opcfoundation.org/UA/\n0\n0:EngineeringUnits"
+    },
+    {
+      "Id": "7572efda-8f2d-4fc2-87af-6c426561057b",
+      "Header": "Document: Part 24 - Scheduler\nSection: 10.2 Handling of OPC UA Namespaces\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "49e4816a-f4e4-45c8-bc83-0f1b4466b6b6",
+      "Header": "Document: Part 24 - Scheduler\n---\n",
+      "Content": "Annex\u00A0A(normative) Scheduler Namespace and Identifiers\nA.1 Namespace and Identifiers for the Scheduler Information Model"
+    },
+    {
+      "Id": "59a8559a-9219-46a9-a181-e629ce3ea3d5",
+      "Header": "Document: Part 24 - Scheduler\nSection: A.1 Namespace and Identifiers for the Scheduler Information Model\n---\n",
+      "Content": "This appendix defines the numeric identifiers for all of the numeric NodeIds defined in this document. The identifiers are specified in a CSV file with the following syntax:\n\u003CSymbolName\u003E, \u003CIdentifier\u003E, \u003CNodeClass\u003E\nWhere the SymbolName is either the BrowseName of a Type Node or the BrowsePath for an Instance Node that appears in the specification and the Identifier is the numeric value for the NodeId.\nThe BrowsePath for an Instance Node is constructed by appending the BrowseName of the instance Node to the BrowseName for the containing instance or type. An underscore character is used to separate each BrowseName in the path. Let\u0027s take for example, the ScheduleType ObjectType Node which has the ExceptionSchedule Property. The Name ExceptionSchedule InstanceDeclaration within the ScheduleType declaration is: ScheduleType_ExceptionSchedule.\nThe NamespaceUri for all NodeIds defined here is[http://opcfoundation.org/UA/Scheduler/](http://opcfoundation.org/UA/Scheduler/)\nThe CSV released with this version of the specification can be found here:\n[http://www.opcfoundation.org/UA/schemas/1.05/Opc.Ua.Scheduler.NodeIds.csv](http://www.opcfoundation.org/UA/schemas/1.05/Opc.Ua.Scheduler.NodeIds.csv)\nNOTE    The latest CSV that is compatible with this version of the specification can be found here:\n[http://www.opcfoundation.org/UA/schemas/Opc.Ua.Scheduler.NodeIds.csv](http://www.opcfoundation.org/UA/schemas/Opc.Ua.Scheduler.NodeIds.csv)\nA computer processible version of the complete Information Model defined in this document is also provided. It follows the XML Information Model schema syntax defined in[OPC 10000-6](/\u00A7UAPart6)."
+    },
+    {
+      "Id": "db28ed69-80d8-4d79-a407-9142328ee134",
+      "Header": "Document: Part 24 - Scheduler\nSection: A.1 Namespace and Identifiers for the Scheduler Information Model\n---\n",
+      "Content": ".\nThe Information Model Schema for this version of the document (including any revisions, amendments or errata) can be found here:\n[http://www.opcfoundation.org/UA/schemas/1.05/Opc.Ua.Scheduler.NodeSet2.xml](http://www.opcfoundation.org/UA/schemas/Scheduler/1.0/Opc.Ua.Scheduler.NodeSet2.xml) http://www.opcfoundation.org/UA/schemas/1.05/Opc.Ua.Scheduler.NodeSet2.xml\nNOTE    The latest Information Model schema that is compatible with this version of the document can be found here:\n[http://www.opcfoundation.org/UA/schemas/Opc.Ua.Scheduler.NodeSet2.xml](http://www.opcfoundation.org/UA/schemas/Opc.Ua.Scheduler.NodeSet2.xml)\n_____________"
+    }
+  ]
+}

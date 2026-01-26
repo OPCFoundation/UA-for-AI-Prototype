@@ -1,0 +1,720 @@
+{
+  "Title": "Part 26 - LogObject",
+  "Chunks": [
+    {
+      "Id": "27db2235-3be1-412f-9011-e125f08b404b",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "1 Scope"
+    },
+    {
+      "Id": "d570e591-32e2-4777-9735-5f67dea9874b",
+      "Header": "Document: Part 26 - LogObject\nSection: 1 Scope\n---\n",
+      "Content": "Editors Note: Significant changes were made to this new Part very late in the specification release cycle with limited implementation to validate the design. Subsequent implementations and interoperability testing may result in breaking changes in future versions of this Part.\nThis document provides an Information Model for a set of Objects and Events that can be used to collect diagnostic information in a system. The LogObject model and related Events, Methods and Datatypes are defined in this specification."
+    },
+    {
+      "Id": "f2dcaa40-3c3e-4b00-9a43-9e0b5aa6707f",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "2 Normative references"
+    },
+    {
+      "Id": "0a14bd88-1352-44f6-b9d5-f7d420a3c65b",
+      "Header": "Document: Part 26 - LogObject\nSection: 2 Normative references\n---\n",
+      "Content": "The following referenced documents are indispensable for the application of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments and errata) applies.\nOPC 10000-1 - OPC Unified Architecture - Part 1: OPC Overview and Concepts\n[https://opcfoundation.org/documents/10000-1/](https://opcfoundation.org/documents/10000-1/)\nOPC 10000-3 - OPC Unified Architecture - Part 3: Address Space Model\n[https://opcfoundation.org/documents/10000-3/](https://opcfoundation.org/documents/10000-3/)\nOPC 10000-4 - OPC Unified Architecture - Part 4: Services\n[https://opcfoundation.org/documents/10000-4/](https://opcfoundation.org/documents/10000-4/)\nOPC 10000-5 - OPC Unified Architecture - Part 5: Information Model\n[https://opcfoundation.org/documents/10000-5/](https://opcfoundation.org/documents/10000-5/)\nOPC 10000-6  - OPC Unified Architecture - Part 6: Mappings\n[https://opcfoundation.org/documents/10000-6/](https://opcfoundation.org/docuemtns/10000-6)\nOPC 10000-7 - OPC Unified Architecture - Part 7: Profiles\n[https://opcfoundation.org/documents/10000-7/](https://opcfoundation.org/documents/10000-7/)\nOPC 10000-9 - OPC Unified Architecture - Part 9: Alarms \u0026 Conditions"
+    },
+    {
+      "Id": "128c1628-dafa-4b33-9341-72c0f2ee90eb",
+      "Header": "Document: Part 26 - LogObject\nSection: 2 Normative references\n---\n",
+      "Content": "[https://opcfoundation.org/documents/10000-8/](https://opcfoundation.org/documents/10000-8/)\nOPC 10000-11 - OPC Unified Architecture - Part 11: Historical Access\n[https://opcfoundation.org/documents/10000-11/](https://opcfoundation.org/documents/10000-11/)\nOPC 10000-22 - OPC Unified Architecture - Part 22: Base Network Model\n[https://opcfoundation.org/documents/10000-22/](https://opcfoundation.org/documents/10000-22/)\nGUID - A Universally Unique IDentifier (UUID) URN Namespace\n[https://datatracker.ietf.org/doc/html/rfc4122](https://datatracker.ietf.org/doc/html/rfc4122)"
+    },
+    {
+      "Id": "8e8f8fe7-76ac-41a7-a793-01e116bbf80a",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "3 Terms, definitions, abbreviated terms, and conventions"
+    },
+    {
+      "Id": "17ed23e4-6087-4b96-91ca-69e7f8cc0acf",
+      "Header": "Document: Part 26 - LogObject\nSection: 3 Terms, definitions, abbreviated terms, and conventions\n---\n",
+      "Content": "3.1 Terms and definitions"
+    },
+    {
+      "Id": "0d4c6b52-cdab-45b9-881f-4babb9a4ade5",
+      "Header": "Document: Part 26 - LogObject\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "For the purposes of this document, the terms and definitions given in[OPC 10000-1](/\u00A7Part1),[OPC 10000-3](/\u00A7Part3),[OPC 10000-4](/\u00A7Part4),[OPC 10000-5](/\u00A7Part5),[OPC 10000-7](/\u00A7Part7),[OPC 10000-9](/\u00A7),[OPC 10000-22](/\u00A7Part22), as well as the following apply.\nAll used terms are italicized in the specification as described in[OPC 10000-1](/\u00A7).\n3.1.1 LogRecord"
+    },
+    {
+      "Id": "40e4e431-446b-4011-9ed3-572387e875c2",
+      "Header": "Document: Part 26 - LogObject\nSection: 3.1.1 LogRecord\n---\n",
+      "Content": "An instance of a LogRecord Structure"
+    },
+    {
+      "Id": "e93b8cb1-06d1-40b1-bfeb-6d19a10c4c36",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "4 OPC UA LogObject"
+    },
+    {
+      "Id": "002c5d0f-f736-4f3e-9272-0debaf389ab4",
+      "Header": "Document: Part 26 - LogObject\nSection: 4 OPC UA LogObject\n---\n",
+      "Content": "4.1 Overview"
+    },
+    {
+      "Id": "3ce72459-94ba-498d-a92b-e315827d3e88",
+      "Header": "Document: Part 26 - LogObject\nSection: 4.1 Overview\n---\n",
+      "Content": "This specification defines a standard Object that can be used to collect information, like diagnostic information, in a standard manner. This Object can collect information defined in base specifications, companion specifications or even generated by an application that is loaded into a device or Server. This allows a standard Client to access the information and provide a standard manner for user access to this information.\nThe LogObject returns LogRecords via the GetRecords Method.\nThe LogRecords when they are generated, can also be sent as Events(see[6](/\u00A7_Ref184977158)).\nThe LogObject does not define how the information is stored, only how it can be collected and how it can be accessed. This allows a vendor to choose the most appropriate storage for the information.\nThe LogObject is illustrated in[Figure 1](/\u00A7_Ref174462683)."
+    },
+    {
+      "Id": "b9c8f866-f3c2-4585-be93-1ade7be5cfed",
+      "Header": "Document: Part 26 - LogObject\nSection: 4.1 Overview\nCaption: Figure 1 - LogObject usage illustration\n---\n",
+      "Content": "[image004.png](images/image004.png)"
+    },
+    {
+      "Id": "cc550408-abaf-465f-b1e4-eb1ead4a22d1",
+      "Header": "Document: Part 26 - LogObject\nSection: 4.1 Overview\n---\n",
+      "Content": "Figure 1 - LogObject usage illustration\n[Figure 1](/\u00A7_Ref174462683) illustrates both a predefined LogObject( ServerLog) and application defined LogObject (MyApplicationLog). The green boxes are defined in this specification, the blue boxes are defined in[OPC 10000-5](/\u00A7Part5) or[OPC 10000-22](/\u00A7Part22), the orange boxes are defined in the OPC UA FX specifications and the grey boxes are not defined in any specification.\n[Annex A](/\u00A7_Ref184999788) and[Annex B](/\u00A7_Ref185329537) provide additional examples of LogObjects and possible Client uses and Server implementations.\nThis specification defines ObjectTypes, EventTypes, ConditionClass and instances (see[Figure 2](/\u00A7_Ref54973945)). Not all of the illustrated types/instances are required for an implementation and are covered by separate ConformanceUnits and Facets."
+    },
+    {
+      "Id": "21a61f28-3890-4f78-9433-0ffea30a4272",
+      "Header": "Document: Part 26 - LogObject\nSection: 4.1 Overview\nCaption: Figure 2 - Overview of LogObject Information Model\n---\n",
+      "Content": "[image005.png](images/image005.png)"
+    },
+    {
+      "Id": "6e218ec5-26bd-40b0-b496-f83d3c6f22e2",
+      "Header": "Document: Part 26 - LogObject\nSection: 4.1 Overview\n---\n",
+      "Content": "Figure 2 - Overview of LogObject Information Model"
+    },
+    {
+      "Id": "97503c4f-8d89-410b-a9ca-be148cc47880",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "5 LogObjectType"
+    },
+    {
+      "Id": "ca22f1fd-2266-4755-aa68-d5fa938a81d1",
+      "Header": "Document: Part 26 - LogObject\nSection: 5 LogObjectType\n---\n",
+      "Content": "5.1 Overview"
+    },
+    {
+      "Id": "8a5128d9-155d-4cf6-a44c-94836c90a82e",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.1 Overview\n---\n",
+      "Content": "The LogObjectType is an ObjectType that defines an instance that is used to collect log messages and make them available to a Client. An instance of LogObject can contain LogRecords that were generated internally. It can also contain LogRecords that result from Events that have a ConditionClassId or ConditionSubClassId of LogEntryConditionClassType that are reported by the Object on which the LogObject instance is declared (see[6](/\u00A7_Ref186755359)). The LogObject can also generate Events for LogRecords that were generated internally.\nThe underlying storage of LogRecords is not defined. The records could be stored as part of an EventHistory, the records could be stored in a[SYSLOG](/\u00A7Syslog)[OpenTelemetry](/\u00A7OpenT)[Annex A](/\u00A7_Ref184999788) for illustrations)\nAlthough this specification does not define how data is stored, a requirement to persist LogRecords(i.e. LogRecords will be retained following a restart) is defined in a ConformanceUnit and may be added to a Profile.\nThe LogObject exposes a Method that allows a Client to retrieve the LogRecords. This Method does not provide complex filtering, only a time range and Severity. It also provides a mask that allows the Client to select which fields in a LogRecord to return and a maximum number of records to return. Some instances of a LogObject may optionally expose HistoricalEvents which would allow a more complex Event retrieval filter (see HistoricalEvent retrieval in[OPC 10000-11](/\u00A7Part11)).\nThe LogObjectType is illustrated in[Figure 3](/\u00A7_Ref172052556)."
+    },
+    {
+      "Id": "2c3ed8e0-5b6d-425d-bb3d-68c211ef0691",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.1 Overview\nCaption: Figure 3 - LogObjectType illustration\n---\n",
+      "Content": "[image006.png](images/image006.png)"
+    },
+    {
+      "Id": "1e9127e6-27ab-4ff7-854b-15a495975378",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.1 Overview\n---\n",
+      "Content": "Figure 3 - LogObjectType illustration"
+    },
+    {
+      "Id": "bdce723e-2fc5-498b-8465-73d05c978564",
+      "Header": "Document: Part 26 - LogObject\nSection: 5 LogObjectType\n---\n",
+      "Content": "5.2 LogObjectType definition"
+    },
+    {
+      "Id": "93237d02-2b3c-4e53-8184-4ce3b675715e",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.2 LogObjectType definition\n---\n",
+      "Content": "The LogObjectType is formally defined in[Table 1](/\u00A7_Ref172052584). The LogRecord structure that is returned by the GetRecords Method is described in[5.4](/\u00A7_Ref184947648).\nTable 1 - LogObjectType definition"
+    },
+    {
+      "Id": "870af690-f661-42e1-8b7d-b5be543d9dd9",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.2 LogObjectType definition\nCaption: Table 1 - LogObjectType definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\n0:LogObjectType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:BaseObjectType defined in[OPC 10000-5](/\u00A7Part5)\n0:HasComponent\nMethod\n0:GetRecords\nDefined in[5.3](/\u00A7_Ref168592371)\nM\n0:HasProperty\nVariable\n0:MaxRecords\n0:UInt32\n0:PropertyType\nO\n0:HasProperty\nVariable\n0:MaxStorageDuration\n0:Duration\n0:PropertyType\nO\n0:HasProperty\nVariable\n0:MinimumSeverity\n0:UInt16\n0:PropertyType\nO\n\n\n\n\n\n\nConformanceUnits\nLogObject Base"
+    },
+    {
+      "Id": "918928e3-e9a7-482f-825d-f209293aa8a5",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.2 LogObjectType definition\n---\n",
+      "Content": "Optional MaxRecords defines the maximum number of records in a buffer associated with this LogObject. When this maximum is reached, a new log record will trigger the deletion of the oldest record. If this Variable is not provided, then there is no Server published limit on the log buffer. Zero is an invalid value for MaxRecords. The LogRecord Structure is defined in[5.4](/\u00A7_Ref184947648).\nOptional MaxStorageDuration defines the maximum time period that the LogObject will buffer log entries in the LogObject. Records that are older than the maximum duration may be deleted. If this Variable is not provided than no maximum duration is configured. Zero is an invalid duration. In the case of persistent storage, on startup a number of records may be deleted, depending on the duration of the downtime for the application.\nThe two maximum settings are used to limit the storage requirements for a Server. MaxRecords is typically a hard limit while MaxStorageDuration is more a soft limit in that LogRecords may be retained past the MaxStorageDuration if space allows. If MaxRecords is exceeded before MaxStorageDuration, the system should generate a LogOverflowEventType warning Event indicating an overflow of LogRecords(see[6.4](/\u00A7_Ref174908505)).\nThe MinimumSeverity describes the minimum Severity associated with a LogRecord that is stored. LogRecords with a Severity that is less then this number will not be stored in this LogObject. If omitted, there is no restriction on the Severity associated with LogRecords that are stored. This number shall be between 0 and 1000, any other number is illegal. S ervers can allow this value to be written. The Severity is only checked when a LogRecord is being generated, a change to the value does not affect the records that are already stored."
+    },
+    {
+      "Id": "8c116eb6-fba9-41ee-bde9-da7ecc786835",
+      "Header": "Document: Part 26 - LogObject\nSection: 5 LogObjectType\n---\n",
+      "Content": "5.3 GetRecords Method"
+    },
+    {
+      "Id": "e2e146db-74dd-4d01-adc8-5442a6100028",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.3 GetRecords Method\n---\n",
+      "Content": "This Method allows a Client to retrieve LogRecords from the LogObject.\nThe signature of the Method is described below, and the arguments are described in[Table 2](/\u00A7_Ref168609471).\nSignature\nGetRecords (\n[in] 0:DateTime StartTime,\n[in] 0:DateTime EndTime,\n[in] 0:UInt32 MaxReturnRecords,\n[in] 0:UInt16 MinimumSeverity,\n[in] 0:LogRecordMask RequestMask,\n[in] 0:ByteString ContinuationPointIn,\n\n[out] LogRecordsDataType Results,\n[out] 0:ByteString ContinuationPointOut\n);\nTable 2 - GetRecords Method arguments"
+    },
+    {
+      "Id": "56851559-ebb4-4133-be83-33349ba1e2c1",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.3 GetRecords Method\nCaption: Table 2 - GetRecords Method arguments\n---\n",
+      "Content": "Argument\nDescription\nStartTime\nThe time associated with the first LogRecord returned in the Results array, or if no there is no LogRecord at this time, then the first LogRecord returned will have the time closest to, but greater than StartTime.\nEndTime\nThe time associated with the last LogRecord. EndTime must be equal to or greater than StartTime. No records more recent then EndTime are returned. If there are no LogRecords at EndTime, then the most recent record before EndTime is the last record in the Results array.\nMaxReturnRecords\nThe maximum number of LogRecords to be returned, 0 indicates that no limit is specified. If this limit is specified then the LogRecords will start at StartTime, but may end before EndTime if the limit is reached. This shall result in a ContinuationPointOut being generated by the Server. On subsequent calls with the continuation point, the remaining LogRecords can be retrieved.\nMinimumSeverity\nThe minimum Severity(all LogRecords with a Severity equal to this number or greater are returned).\nRequestMask\nThe RecordMask indicates which optional fields in the LogRecord Structure are to be returned, if they are available. The LogRecordMask is defined in[5.7](/\u00A7_Ref201376875).\nContinuationPointIn\nAn opaque identifier provided by the Server from a previous call to GetRecords. This input parameter shall be null on an initial call to GetRecords. If not all records were returned on a previous call, the ContinuationPointOut can be provided to continue the retrieval of records. If a ContinuationPointIn is passed in, all other input arguments shall be the same as provided on the call that returned the ContinuationPointOut. If any of the input parameters are changed, the Server"
+    },
+    {
+      "Id": "6ccc21e4-6ef9-44ee-88fe-bc78890698bd",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.3 GetRecords Method\nCaption: Table 2 - GetRecords Method arguments\n---\n",
+      "Content": "Server can ignore the updated parameters, it can detect any changes to the parameters and report an error or it can process the request as if it was a new request. If the[Client](https://reference.opcfoundation.org/search/411?t=Client) specifies a[ContinuationPoint](https://reference.opcfoundation.org/search/411?t=ContinuationPoint) In that is no longer valid, then the[Server](https://reference.opcfoundation.org/search/411?t=Server) shall return a[Bad](https://reference.opcfoundation.org/search/411?t=Bad)_ ContinuationPointInvalid error.\nResults\nIs a structure (see[5.9](/\u00A7_Ref193383487)) that contains an array of the LogRecord Structure (see[5.4](/\u00A7_Ref184947648)). The LogRecords shall be returned in chronological order from oldest to newest.\nContinuationPointOut\nAn opaque identifier that is used if the number of records to be returned is too large to be returned in a single response or if the Server requires the Client to call again. When this parameter is not used, its value is null. This identifier can be used to continue the retrieval of LogRecords in subsequent calls."
+    },
+    {
+      "Id": "fab3d2af-149b-46a8-9119-9c7c3ecd655c",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.3 GetRecords Method\n---\n",
+      "Content": "StartTime and EndTime together form the range in which LogRecords are returned. If StartTime equals EndTime, then only LogRecord(s) that have the provided time are returned. If EndTime is earlier than StartTime, then the error Bad_InvalidParameter is returned.\nSeverity is a number between 1 and 1000 inclusive, a number outside of this range will result in the error Bad_InvalidParameter(see[Table 5](/\u00A7_Ref184950853) for additional details).\nA ContinuationPointOut shall be generated if the number of records to return between StartTime and EndTime is larger than what can be returned in a single Method call. It can also be returned due to an internal error or issue by the Server.\nThe GetRecords Method representation in the AddressSpace is formally defined in[Table 3](/\u00A7_Ref168609446).\nTable 3 - GetRecords Method AddressSpace definition"
+    },
+    {
+      "Id": "3b75b90a-0528-4217-8304-bff18784c761",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.3 GetRecords Method\nCaption: Table 3 - GetRecords Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\n0:GetRecords\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nOther\n0:HasProperty\nVariable\n0:InputArguments\n0:Argument[]\n0:PropertyType\nM\n0:HasProperty\nVariable\n0:OutputArguments\n0:Argument[]\n0:PropertyType\nM\n\n\n\n\n\nConformanceUnits\nLogObject Base"
+    },
+    {
+      "Id": "601acc1d-2220-4953-8a90-c00346f8392b",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.3 GetRecords Method\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "da83a306-c761-4057-be81-b499dcded0aa",
+      "Header": "Document: Part 26 - LogObject\nSection: 5 LogObjectType\n---\n",
+      "Content": "5.4 LogRecord structure"
+    },
+    {
+      "Id": "882fe29c-c547-4557-a9ff-76e339a40131",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.4 LogRecord structure\n---\n",
+      "Content": "This structured DataType describes the required information in a LogRecord. An array of this record type is returned in the LogObject GetRecords Method call.\nThe structure is formally defined in.\nTable 4 - LogRecord structure"
+    },
+    {
+      "Id": "1a585db9-3aba-40ae-945b-036414dee725",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.4 LogRecord structure\nCaption: Table 4 - LogRecord structure\n---\n",
+      "Content": "Name\nType\nDescription\nOptional\nLogRecord\nStructure\nSubtype of Structure defined in[OPC 10000-5](/\u00A7)\n\nTime\n0:DateTime\nTime associated with this record.\nFalse\nSeverity\n0:UInt16\nIs a number between 1 and 1000 inclusive and corresponds to the range provided in the OPC UA BaseEventType(see[OPC 10000-3](/\u00A7Part3)). Additional details for mapping of the severity defined for OPC BaseEvents to LogRecords is described in[Table 5](/\u00A7_Ref184950853).\nFalse\nEventType\n0:NodeId\nDescribes the specific type of Event. It corresponds to the EventType field defined in BaseEventType.\nIf AdditionalData is provided then an EventType should be provided.\nTrue\nSourceNode\n0:NodeId\nIdentifies the Node this record originated from. If the LogRecord is not related to a specific Node then this shall be set to a null NodeId.. Additional rules may be defined by other specifications that utilize the LogObject.\nTrue\nSourceName\n0:String\nProvides a description of the source of the LogRecord, this could be the string-part of the BrowseName of the SourceNode.\nTrue\nMessage\n0:LocalizedText\nShall describe the issue that is being represented in the LogRecord.\nFalse\nTraceContext\n0:TraceContextDataType\nThis structure is used to correlate records inside of a Server along with corelating records between other Servers and Clients. The TraceContextDataType is described in[5.5.3](/\u00A7_Ref202363228).\nTrue\nAdditionalData\n0:NameValuePair[]\nAdditional data for the log entry. This field contains the additional event fields of an LogEvent."
+    },
+    {
+      "Id": "0d4fa76a-856a-4fc9-8b6a-77f166aa451e",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.4 LogRecord structure\nCaption: Table 4 - LogRecord structure\n---\n",
+      "Content": "True"
+    },
+    {
+      "Id": "7af233ce-7137-4544-a605-d5ccd5ca86f4",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.4 LogRecord structure\n---\n",
+      "Content": "Severity ranges for Alarms and alerts are discussed further in[OPC 10000-9](/\u00A7Part9). Diagnostic information typically has a Severity below the Alarm threshold of 400.[Table 5](/\u00A7_Ref184950853) provides the Severity ranges that shall be used for LogRecords.\nTable 5- LogRecord Severity Mapping\nRange Name\nSeverity Range\nDiagnostics classification\nEmergency\n401 - 1000\nCritical errors - errors that are fatal. This range can also be associated with Alarms.\nAlert\n300 - 400\nAlerts are errors that are not raised to the Alarm level, but require some actions, typically by maintenance staff and could be recorded as part of an Alarm system.\nCritical\n251 - 300\nErrors that can affect the overall process and need to be addressed.\nError\n201 - 250\nErrors related to important actions that were taken on the Server. They typically do not affect the overall process.\nWarning\n151 - 200\nWarnings are issues that should be noted, but are not failures.\nNotice\n101-150\nThis level is typically used for significant or unusual successful actions that are taken on a Server.\nInformation\n51-100\nGeneral Information related to an application.\nDebug\n1-50\nLow level tracing information that can be used to debug the flow of an application.\n\nThe LogRecord representation in the AddressSpace is formally defined in[Table 6](/\u00A7_Ref184950927)\nTable 6 - LogRecord definition"
+    },
+    {
+      "Id": "b6e8a7c9-b18e-42c6-ab8c-3b0178ee38a2",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.4 LogRecord structure\nCaption: Table 6 - LogRecord definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nLogRecord\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Structure defined in[OPC 10000-5](/\u00A7)\nConformanceUnits\nLogObject Base"
+    },
+    {
+      "Id": "1f437489-e0a1-49d8-8a9d-0495ab0406e0",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.4 LogRecord structure\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "37fb29ee-2433-46c8-a813-1a77a76f0440",
+      "Header": "Document: Part 26 - LogObject\nSection: 5 LogObjectType\n---\n",
+      "Content": "5.5 LogContext Structures"
+    },
+    {
+      "Id": "4a1e7a55-bc8f-40c7-a366-684e4ece494d",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5 LogContext Structures\n---\n",
+      "Content": "5.5.1 Overview"
+    },
+    {
+      "Id": "ba51e1be-4aac-4cdd-8c7d-e84538edc2c8",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5.1 Overview\n---\n",
+      "Content": "The LogContext contains information required to trace distributed transactions or requests made to a distributed system. Such a trace may produce multiple log messages in one OPC UA Application and/or multiple log messages across multiple OPC UA Applications.\nThe TraceId is a unique identifier for a trace. Once assigned it never changes for that trace. If log messages for a given trace are across applications, they have the same TraceId.\nA span represents a unit of work or operation. Spans are the building blocks of traces. A span is local to an OPC UA Application. The SpanId is a unique identifier assigned by an OPC UA Application for a local span in a trace. Spans can be nested. The ParentSpanId provides the reference to the parent span. The ParentSpanId is used to build a tree of spans inside a trace. If a nested span is created, the SpanId of the parent is used as ParentSpanId in the new child span.\nAt the very start (the root span) there is no ParentSpanId, only a new SpanId. This would be the base of a tree. See[C.1](/\u00A7_Ref202308367) for additional discussion on SpanId and ParentSpanId."
+    },
+    {
+      "Id": "466a644f-c605-4306-a59f-64f5fe326a5c",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5 LogContext Structures\n---\n",
+      "Content": "5.5.2 SpanContext Structure"
+    },
+    {
+      "Id": "2e22e3cd-533a-40f9-9b5d-7975a03f069b",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5.2 SpanContext Structure\n---\n",
+      "Content": "The SpanContextDataType Structure is defined in[Table 7](/\u00A7_Ref199767000). It defines a TraceId and SpanId. This Structure can be passed between Clients and Servers(see[5.5.4](/\u00A7_Ref200232743)).\nTable 7 - SpanContextDataType"
+    },
+    {
+      "Id": "157785f4-5f16-4d75-861e-881ff5d376af",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5.2 SpanContext Structure\nCaption: Table 7 - SpanContextDataType\n---\n",
+      "Content": "Name\nType\nDescription\nSpanContextDataType\nStructure\nSubtype of Structure defined in[OPC 10000-5](/\u00A7)\nTraceId\n0:Guid\nA unique identifier assigned to a trace.\nSpanId\n0:UInt64\nIdentifier for a span in a trace. 0 is an invalid value for a SpanId. The value shall be unique within a ParentSpanId within an Application."
+    },
+    {
+      "Id": "ef3a4e3d-6bfd-47b5-a440-b8dce3943610",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5.2 SpanContext Structure\n---\n",
+      "Content": "The SpanContextDataType representation in the AddressSpace is formally defined in[Table 8](/\u00A7_Ref201377403)\nTable 8 - SpanContextDataType definition"
+    },
+    {
+      "Id": "5560c584-954f-45fa-bf4b-ebae6b965bca",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5.2 SpanContext Structure\nCaption: Table 8 - SpanContextDataType definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nSpanContextDataType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Structure defined in[OPC 10000-5](/\u00A7)\nConformanceUnits\nLogObject TraceContext"
+    },
+    {
+      "Id": "206f15ef-4b37-4994-87b6-561ee8505161",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5.2 SpanContext Structure\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "a77c4eb6-4223-4a32-b5b1-3c898ebf29ff",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5 LogContext Structures\n---\n",
+      "Content": "5.5.3 TraceContextDataType Structure"
+    },
+    {
+      "Id": "3311a78d-44e3-4fd8-9e25-bf8ec15d47ad",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5.3 TraceContextDataType Structure\n---\n",
+      "Content": "The TraceContextDataType Structure is defined in[Table 9](/\u00A7_Ref199767238). This structure is a subtype of the SpanContextDataType and is used in the LogRecord. It extends the SpanContextDataType Structure adding two additional fields. The ParentSpanId(together with the SpanId) allows for the creation of a tree of related Log Records. The ParentIdentifier can be used to provide context information related to the parent.\nTable 9 - TraceContextDataType"
+    },
+    {
+      "Id": "54547b8f-9201-41a1-9c29-c5c810cc900e",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5.3 TraceContextDataType Structure\nCaption: Table 9 - TraceContextDataType\n---\n",
+      "Content": "Name\nType\nDescription\nTraceContextDataType\nStructure\nSubtype of SpanContextDataType defined in[5.5.2](/\u00A7_Ref201444731)\nParentSpanId\n0:UInt64\nThe identifier of the parent span. The value is 0 for a root span.\nParentIdentifier\n0:String\nIf the parent span is from another OPC UA Application, the ParentIdentifier contains the ApplicationUri of the other OPC UA Application.\nIf the parent span is an internal span, the ParentIdentifier shall be null or empty.\nIf the ParentSpanId is 0, the ParentIdentifier shall be null or empty."
+    },
+    {
+      "Id": "276a0862-ffdf-42de-877f-8a56e0cf5f10",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5.3 TraceContextDataType Structure\n---\n",
+      "Content": "The TraceContextDataType representation in the AddressSpace is formally defined in[Table 10](/\u00A7_Ref201251849).\nTable 10 - TraceContextDataType definition"
+    },
+    {
+      "Id": "fadd4a3e-8f02-4575-b792-37bb0e316e22",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5.3 TraceContextDataType Structure\nCaption: Table 10 - TraceContextDataType definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nTraceContextDataType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the SpanContextDataType defined in[5.5.2](/\u00A7_Ref201444731)\nConformanceUnits\nLogObject TraceContext"
+    },
+    {
+      "Id": "bdbdc0b2-1b85-4dc4-85c8-2ffc6334ea7e",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5.3 TraceContextDataType Structure\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "e91b1b8f-a234-4e39-9c7a-0d052119b79b",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5 LogContext Structures\n---\n",
+      "Content": "5.5.4 Passing SpanStructure from a Client"
+    },
+    {
+      "Id": "3f654baa-e96a-4e73-bef5-e38ece90dd3f",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.5.4 Passing SpanStructure from a Client\n---\n",
+      "Content": "If the Server is to be part of a Client trace, the Client passes the SpanContextDataType structure to a Server.\nThe SpanContextDataType Structure, defined in[Table 7](/\u00A7_Ref199767000), is passed in the RequestHeader of any OPC UA Service call. The SpanContextDataType is transported with the AdditionalParametersType in the AdditionalHeader field of the RequestHeader(see[OPC 10000-4](/\u00A7Part4)). The Key for the parameter is \u0022SpanContext\u0022 and the Value is the SpanContextDataType Structure.\nIf a Server receives the optional AdditionalHeader, it uses the provided SpanConextDataType Structure when generating any LogRecords that are generated related to the Service invocation that provided the AdditionalHeader. It is possible that lower level functionality that is invoked as part of the Service call, may not have access to the provided AdditionalHeader, in which case it maybe omitted.\nInside the Server, the SpanId from the RequestHeader is used as ParentId for the LogContext structure defined in[Table 9](/\u00A7_Ref199767238)."
+    },
+    {
+      "Id": "424536cb-a2ec-4a3f-828f-3a60ae1e2104",
+      "Header": "Document: Part 26 - LogObject\nSection: 5 LogObjectType\n---\n",
+      "Content": "5.6 NameValuePair Structure"
+    },
+    {
+      "Id": "fc6e5241-fc5a-4227-aac1-c962f8c2fcf8",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.6 NameValuePair Structure\n---\n",
+      "Content": "The NameValuePair structure is formally defined in[Table 11](/\u00A7_Ref201275834). This structure has a Name field that is a name that is associated with the value that is reported in the second field. The Value may be of any DataType. Specifications may define standard names that are used to transport specific values that are to be included in the LogRecord as AdditionalData.\nTable 11 - NameValuePair structure"
+    },
+    {
+      "Id": "9e184e0f-78bb-45e0-a926-967f06332edf",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.6 NameValuePair Structure\nCaption: Table 11 - NameValuePair structure\n---\n",
+      "Content": "Name\nType\nDescription\nNameValuePair\nStructure\nSubtype of Structure defined in[OPC 10000-5](/\u00A7)\nName\nString\nThe name of the value.\nValue\nBaseDataType\nThe value associated with the name."
+    },
+    {
+      "Id": "7d6c0ea5-42b8-4a3d-92a3-bda30f68a1ec",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.6 NameValuePair Structure\n---\n",
+      "Content": "The NameValuePair Structure representation in the AddressSpace is formally defined in[Table 12](/\u00A7_Ref94194530)\nTable 12 - NameValuePair definition"
+    },
+    {
+      "Id": "fc92dfd2-6ea9-4557-bdee-96292f8437fe",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.6 NameValuePair Structure\nCaption: Table 12 - NameValuePair definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nNameValuePair\nIsAbstract\nFalse\nReferences\n\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Structure defined in[OPC 10000-5](/\u00A7)\nConformanceUnits\nLogObject AdditionalData"
+    },
+    {
+      "Id": "2b1e2b09-5b6b-40d8-9055-b44a4d486b49",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.6 NameValuePair Structure\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "0873848a-b0f3-42f1-b2f0-9fde1805e501",
+      "Header": "Document: Part 26 - LogObject\nSection: 5 LogObjectType\n---\n",
+      "Content": "5.7 LogRecordMask DataType"
+    },
+    {
+      "Id": "bf62b3af-9199-4cdf-869b-4b48644223db",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.7 LogRecordMask DataType\n---\n",
+      "Content": "The LogRecordMask is formally defined in[Table 13](/\u00A7_Ref201280540). It indicates which of the optional fields that may be available in a LogRecord are to be returned by GetRecords.\nTable 13 - LogRecordMask Structure"
+    },
+    {
+      "Id": "c745ba98-42a4-4618-8484-736ef05e8a48",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.7 LogRecordMask DataType\nCaption: Table 13 - LogRecordMask Structure\n---\n",
+      "Content": "Value\nBit No.\nDescription\nEventType\n0\nIndicates if the EventType is returned in the LogRecords if available.\nSourceNode\n1\nIndicates if the SourceNode is returned in the LogRecords if available.\nSourceName\n2\nIndicates if the SourceName is returned in the LogRecords if available.\nTraceContext\n3\nIndicates if the TraceContext is returned in the LogRecords if available.\nAdditionalData\n4\nIndicates if the AdditionalData is returned in the LogRecords if available."
+    },
+    {
+      "Id": "aaca4357-489b-423c-a2e1-ebae32d623b7",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.7 LogRecordMask DataType\n---\n",
+      "Content": "The LogRecordMask representation in the AddressSpace is formally defined in[Table 14](/\u00A7_Ref201280549)\nTable 14 - LogRecordMask definition"
+    },
+    {
+      "Id": "22b162b7-c4ba-490a-8ee7-7220e791641a",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.7 LogRecordMask DataType\nCaption: Table 14 - LogRecordMask definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nLogRecordMask\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of UInt32 defined in[OPC 10000-3](/\u00A7Part3)\nHasProperty\nVariable\nOptionSetValues\nLocalizedText []\nPropertyType\n\nConformanceUnits\nLogObject Base"
+    },
+    {
+      "Id": "1395dee2-1e26-4e01-a12a-4ef777940440",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.7 LogRecordMask DataType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "3d60cc80-29ee-4e3f-aee9-1584a847c29c",
+      "Header": "Document: Part 26 - LogObject\nSection: 5 LogObjectType\n---\n",
+      "Content": "5.8 Relationships between LogRecords - A LogRecord Hierarchy"
+    },
+    {
+      "Id": "d8bba2a8-f725-4294-8fc0-73a00e01d006",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.8 Relationships between LogRecords - A LogRecord Hierarchy\n---\n",
+      "Content": "When generating LogRecords it is important that a context be associated with each LogRecord. This context information can be used to show a relationship between various LogRecords in a Server as well as relationships between LogRecords that are in different Servers. This context information is stored in the TraceContext field in the record (see definition in[5.5.2](/\u00A7_Ref201444731)). If a hierarchy of related LogRecords is to be created, SpanId and ParentSpanId fields shall be used. When a function in a Server invokes another function in the same Server or in another Server as part of the same TraceId, the lower level function shall promote the SpanId of the higher level to be the ParentSpanId in the called function and a new SpanId shall be generated in the called function. This daisy chain of SpanId to ParentSpanId will allow a tree to be created for the LogRecords.\n[image007.png](images/image007.png)\nFigure 4- TraceContext hierarchy example\n[Figure 4](/\u00A7_Ref201386780) provides an illustration of the LogRecords that could result from calls between two Applications that include TraceContext information. The first line is each table is a list of the fields in the comma-separated-value records. These field names correspond to the names used in the LogRecord structure.\nThe key points being illustrated for the hierarchy are the TraceId, SpandId, ParentSpanId and ParentIdentifier field, which are the last 4 items in each LogRecord entry. The TraceId is shown as the GUID and is constant for this illustration (it is one action from the Client/Server). Additional actions would result in separate TraceIds, but are not illustrated.\nIn the Client/Server there is no ParentIdentifier, since all action are internal to the Server"
+    },
+    {
+      "Id": "8f1c0589-dc5f-4a1b-9c0f-1151b2229647",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.8 Relationships between LogRecords - A LogRecord Hierarchy\n---\n",
+      "Content": "Server. In the RemoteServer the ParentIdentifier indicates the Client/Server. The ParentIdentifier is the ApplicationUri of the Client that called into the Server. The ApplicationUri of the first Server is \u0022Https:CM1\u2026\u0022( it has been truncated to allow it to fit in the example).\nThe SpanId and ParentSpanId shows where calls have been made. At the beginning of the first table, the ParentSpanId is zero, since this is the root SpanId (see[Annex C](/\u00A7_Ref201631653) for more explanation of SpanId). In the first table, when a sub function is called, the SpanId is promoted to the ParentSpanId and a new SpanId is generated (see the third LogRecord in the table).\nThe large arrow shows that the Client/Server calls into the RemoteServer twice. It passes in the TraceId and the SpanId on each call.  The TraceId is the same, but the SpanId changes on each call.\nThe second table shows the LogRecords that are generated that resulted from the two innovations of the Method in the RemoteServer.  The passed in SpanId becomes the ParentSpanId in the LogRecords and a new SpanId is generated. The RemoteServer also makes a call to a sub-function where the SpanId is promoted to the ParentSpanId."
+    },
+    {
+      "Id": "9499b2d6-b06f-4c47-8bbb-00dae524d110",
+      "Header": "Document: Part 26 - LogObject\nSection: 5 LogObjectType\n---\n",
+      "Content": "5.9 LogRecordsDataType"
+    },
+    {
+      "Id": "b15a1bc0-efcb-40cd-86e6-58ad8a4a8543",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.9 LogRecordsDataType\n---\n",
+      "Content": "This structured DataType is used as the return DataType in the LogObject GetRecords Method call.\nThe structure is formally defined in.\nTable 15 - LogRecordsDataType structure"
+    },
+    {
+      "Id": "84525cc7-5ea4-465e-a9bf-49ff6e13c652",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.9 LogRecordsDataType\nCaption: Table 15 - LogRecordsDataType structure\n---\n",
+      "Content": "Name\nType\nDescription\nLogRecordsDataType\nStructure\nSubtype of Structure defined in[OPC 10000-5](/\u00A7)\nLogRecordArray\nLogRecord[]\nAn array of LogRecords."
+    },
+    {
+      "Id": "601ae148-958b-4e2e-8ed2-0dbfafd6161e",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.9 LogRecordsDataType\n---\n",
+      "Content": "The LogRecordsDataType representation in the AddressSpace is formally defined in[Table 16](/\u00A7_Ref202178128).\nTable 16 - LogRecordsDataType definition"
+    },
+    {
+      "Id": "3f39feec-30d9-4650-a301-fae7fe2178b0",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.9 LogRecordsDataType\nCaption: Table 16 - LogRecordsDataType definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nLogRecordsDataType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:Structure defined in[OPC 10000-5](/\u00A7)\nConformanceUnits\nLogObject Base"
+    },
+    {
+      "Id": "ac46b042-6723-4273-bd46-d38699fc8956",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.9 LogRecordsDataType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "1d49cdc2-c8aa-47bc-bcda-d9460d6ec125",
+      "Header": "Document: Part 26 - LogObject\nSection: 5 LogObjectType\n---\n",
+      "Content": "5.10 LogObject and Security."
+    },
+    {
+      "Id": "dfed78f9-52f0-43c9-82f6-320c44d3167b",
+      "Header": "Document: Part 26 - LogObject\nSection: 5.10 LogObject and Security.\n---\n",
+      "Content": "The LogObject can include information that maybe sensitive or include security related information. For LogObjects that contain security related information should not be made accessible to all users, but only to authorised users.\nA LogObject can restrict a Client\u0027s access to the GetRecords Method using standard OPC UA security features. This all or nothing approach can work well if multiple LogObjects are defined in a Server and security related information is collected in a separate LogObject. It becomes more problematic if a single LogObject collects a mixture of security related information and non-security related information.\nLogObjects should implement permissions similar to what Event systems implement. In Event systems each Event has permissions assigned to it, in a LogObject each LogRecord can have permissions assigned to it. These permissions can be used to determine if a LogRecord should be returned to the Client that is invoking the GetRecords Method."
+    },
+    {
+      "Id": "668764e2-5fd3-4801-a7d0-47ff9f5c62ef",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "6 LogObject and Events"
+    },
+    {
+      "Id": "4879a22a-5d87-4f2e-ac46-ea455c370939",
+      "Header": "Document: Part 26 - LogObject\nSection: 6 LogObject and Events\n---\n",
+      "Content": "6.1 Concepts"
+    },
+    {
+      "Id": "47a15e14-7cf4-422f-87aa-da17032466c5",
+      "Header": "Document: Part 26 - LogObject\nSection: 6.1 Concepts\n---\n",
+      "Content": "A LogObject that supports storing Events as LogRecords extends the behaviour of a LogObject by providing the capability to collect all Events that the parent Object receives that have a ConditionClassId or SubConditionClassId of LogEntryConditionClass.\nFor example, since Events/ Conditions/ Alarms instance can be defined by PLC programs and exposed in a Server, the LogObject can collect Diagnostics or other trace information from PLC user program, not just from Server code.\nThe LogObject can utilize some of the Event reporting hierarchy concepts defined in[OPC 10000-3](/\u00A7Part3) and[OPC 10000-5](/\u00A7Part5).[Figure 5](/\u00A7_Ref185233896) illustrates a Server that includes an Event hierarchy. In the example, LogObjectArea2 would include all Events that would be available from the Area2 Object that have a ConditionClassId or ConditionSubClassId of LogEntryConditionClass. In addition the LogObject could store additional fields from Events in the AdditionalData NameValue pairs. What fields are be stored would be vendor / Server specific, but specifications that define LogObject instances may also define additional fields from defined Events that shall be stored in a LogRecord.\n[image008.png](images/image008.png)\nFigure 5- LogObject Event usage illustration"
+    },
+    {
+      "Id": "af781e8b-e5b7-4b5c-9d81-bfd93d400186",
+      "Header": "Document: Part 26 - LogObject\nSection: 6 LogObject and Events\n---\n",
+      "Content": "6.2 LogEvent EventTypes"
+    },
+    {
+      "Id": "f2914923-5a40-4e5d-82c5-d9997da18d4a",
+      "Header": "Document: Part 26 - LogObject\nSection: 6.2 LogEvent EventTypes\n---\n",
+      "Content": "This specification extends the standard EventType ( see[OPC 10000-3](/\u00A7Part3),[OPC 10000-5](/\u00A7Part5) and[OPC 10000-9](/\u00A7Part9) EventTypes).[Figure 6 - BaseLogEventType](/\u00A7_Ref201327752)[Figure 6](/\u00A7_Ref128453413) illustrates the event fields that are mapped to the LogRecordStructure. Any Object that has a Reference to one of these EventTypes shall generate LogRecords in the LogObject related to the defined BaseLogEventType."
+    },
+    {
+      "Id": "4d40a60c-ae24-4a07-9b6e-9d959d4e6d22",
+      "Header": "Document: Part 26 - LogObject\nSection: 6.2 LogEvent EventTypes\nCaption: Figure 6 - BaseLogEventType\n---\n",
+      "Content": "[image009.png](images/image009.png)"
+    },
+    {
+      "Id": "c992e6d3-d34c-4c71-8733-a6a1c62969fd",
+      "Header": "Document: Part 26 - LogObject\nSection: 6.2 LogEvent EventTypes\n---\n",
+      "Content": "Figure 6 - BaseLogEventType\nAdditional EventTypes can be defined as needed for specific log information. If desired, subtypes of ConditionType or any of the AlarmTypes might also be used. The only requirement for an Event to be recorded in the LogObject is for the Event to have a ConditionClassId or SubConditionClassId of LogEntryConditionClass. The following fields from BaseEventType are mapped to the LogRecord:\nTime- The time associated with this event.\nEventType- as defined in BaseEventType in[OPC 10000-5](/\u00A7Part5)\nSourceNode- identifies the Node that the Event originated from, as defined in BaseEventType in[OPC 10000-5](/\u00A7Part5). For LogObject Events, this node is the node that the LogRecord is related to.\nSourceName- provides a description of the source of the Event, this might be a browse path to a variable under the SourceNode, if the LogRecord is related to the variable, or it might be as defined in BaseEventType in[OPC 10000-5](/\u00A7Part5).\nMessage- shall describe the issue that is being represented in the LogRecord.\nSeverity- in the Event system is defined as a number between 1 and 1000 inclusive. Typically, the full range of numbers is mapped to sub ranges. See[5.3](/\u00A7_Ref168592371) for a description of LogRecord use of this field."
+    },
+    {
+      "Id": "1f878f73-0644-4414-8648-65191be21d30",
+      "Header": "Document: Part 26 - LogObject\nSection: 6 LogObject and Events\n---\n",
+      "Content": "6.3 BaseLogEventType"
+    },
+    {
+      "Id": "1bb8cff2-bbe7-48d6-9640-d55fe303283f",
+      "Header": "Document: Part 26 - LogObject\nSection: 6.3 BaseLogEventType\n---\n",
+      "Content": "This EventType can be used by an application to generate Events that provide log information.\nIts representation in the AddressSpace is formally defined in[Table 17](/\u00A7_Ref172065978).\nTable 17- BaseLogEventType definition\nAttribute\nValue\nBrowseName\n0:BaseLogEventType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:BaseEventType defined in[OPC 10000-5](/\u00A7Part5).\n0:HasProperty\nVariable\nErrorCode\n0:StatusCode\n0:PropertyType\nO\n0:HasProperty\nVariable\nErrorCodeNode\n0:NodeId\n0:PropertyType\nO\n0:HasProperty\nVariable\nConditionClassId\n0:NodeId\n0:PropertyType\nM\n0:HasProperty\nVariable\nConditionClassName\n0:LocalizedText\n0:PropertyType\nM\nConformanceUnits\nLogObject BaseEvent\n\nEvents of this type can be generated by Servers that support LogObjects. The Event may be generated for propagation of this Event to a n external LogObject.\nErrorCode see the definition of ErrorCode in LogRecord Structure([5.4](/\u00A7_Ref184947648)).\nErrorCodeNode see the definition of ErrorCodeNode in LogRecord Structure([5.4](/\u00A7_Ref184947648)).\nThe ConditionClassId and ConditionClassName in BaseEventType are made mandatory in this EventType.\nThe ConditionClassId shall be set to LogEntryConditionClassType."
+    },
+    {
+      "Id": "56ca6b47-342f-4593-9dde-05d9e07bf870",
+      "Header": "Document: Part 26 - LogObject\nSection: 6 LogObject and Events\n---\n",
+      "Content": "6.4 LogOverflowEventType"
+    },
+    {
+      "Id": "a5ea3290-0a4e-4816-9e14-75736523ad25",
+      "Header": "Document: Part 26 - LogObject\nSection: 6.4 LogOverflowEventType\n---\n",
+      "Content": "This Event is generated when the storage in an LogObjectType instance overflows.\nTable 18- LogOverflowEventType definition\nAttribute\nValue\nBrowseName\n0:LogOverflowEventType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the 0:BaseEventType defined in[OPC 10000-5](/\u00A7Part5).\n\n\n\n\n\n\nConformanceUnits\nLogObject Overflow\n\nEvents of this class are generated by Servers that support LogObjects. This Event indicates that the LogObject storage was exceeded before the MaxStorageDuration was reached.\nThe SourceNode Property for Events of this type shall be assigned to the NodeId of the LogObject. The SourceName for Events of this type shall be \u0022LogObject/Overflow\u0022."
+    },
+    {
+      "Id": "f3f07cd3-4169-426a-9e05-86044f37eef9",
+      "Header": "Document: Part 26 - LogObject\nSection: 6 LogObject and Events\n---\n",
+      "Content": "6.5 LogEntryConditionClassType"
+    },
+    {
+      "Id": "579126bc-0c1c-4b94-9518-6c0f8cd57ac1",
+      "Header": "Document: Part 26 - LogObject\nSection: 6.5 LogEntryConditionClassType\n---\n",
+      "Content": "The LogEntryConditionClassType is a ConditionClassType used to classify Events that are to be collected in a LogObject. The LogEntryConditionClassType is formally defined in[Table 19](/\u00A7_Ref182188535).\nTable 19 - LogEntryConditionClassType definition"
+    },
+    {
+      "Id": "27db51d9-e916-4dd5-893c-5f9784d04373",
+      "Header": "Document: Part 26 - LogObject\nSection: 6.5 LogEntryConditionClassType\nCaption: Table 19 - LogEntryConditionClassType definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nLogEntryConditionClassType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the BaseConditionClassType defined in[OPC 10000-9](/\u00A7Part9).\n\n\n\n\nConformanceUnits\nLogObject BaseEvent"
+    },
+    {
+      "Id": "d0e432ad-8c53-48f0-9a27-cbb491109f59",
+      "Header": "Document: Part 26 - LogObject\nSection: 6.5 LogEntryConditionClassType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "e60c9885-209a-4b19-974f-6a6172f3cd42",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "7 Instances"
+    },
+    {
+      "Id": "bf086947-cbb9-4be5-b3f3-28ad3d8840ed",
+      "Header": "Document: Part 26 - LogObject\nSection: 7 Instances\n---\n",
+      "Content": "7.1 Overview"
+    },
+    {
+      "Id": "362b41f8-5a79-445d-9b4a-302bcf4e38ce",
+      "Header": "Document: Part 26 - LogObject\nSection: 7.1 Overview\n---\n",
+      "Content": "The OPC UA LogObject model defines two well-known instances; ServerLog and Logs(see[Table 20](/\u00A7_Ref83396641) and[Table 21](/\u00A7_Ref184917603) and). LogObjects may also exist in other locations in the AddressSpace. The ServerLog is a well-known instance that, if implemented, provides all LogRecords for the Server. The Logs object provides a central folder from which all LogObject instances can be found."
+    },
+    {
+      "Id": "9aa1e677-0425-4ca8-a117-781f12ce31d1",
+      "Header": "Document: Part 26 - LogObject\nSection: 7.1 Overview\nCaption: Figure 7 - ServerLog \u0026 Logs illustration\n---\n",
+      "Content": "[image010.png](images/image010.png)"
+    },
+    {
+      "Id": "109872fc-c758-4e37-981d-262c8854fafa",
+      "Header": "Document: Part 26 - LogObject\nSection: 7.1 Overview\n---\n",
+      "Content": "Figure 7 - ServerLog \u0026 Logs illustration"
+    },
+    {
+      "Id": "9c071917-21b7-4bf9-99f7-737afe8da09d",
+      "Header": "Document: Part 26 - LogObject\nSection: 7 Instances\n---\n",
+      "Content": "7.2 ServerLog"
+    },
+    {
+      "Id": "e15eb58a-b674-46f3-b39d-56f42ab838a5",
+      "Header": "Document: Part 26 - LogObject\nSection: 7.2 ServerLog\n---\n",
+      "Content": "The following instance can exist in Servers if they support LogObjects. It is formally defined in[Table 20](/\u00A7_Ref83396641).\nTable 20 - ServerLog definition"
+    },
+    {
+      "Id": "c783a324-e54e-4ee4-a575-dd67cee67a16",
+      "Header": "Document: Part 26 - LogObject\nSection: 7.2 ServerLog\nCaption: Table 20 - ServerLog definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nServerLog\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOrganized by the Server Object defined in[OPC 10000-5](/\u00A7Part5)\nHasTypeDefinition\nObjectType\n0:LogObjectType\n\nConformanceUnits\nLogObject ServerLog"
+    },
+    {
+      "Id": "83d56199-82a5-4206-9179-e97ec6ae5223",
+      "Header": "Document: Part 26 - LogObject\nSection: 7.2 ServerLog\n---\n",
+      "Content": "The ServerLog is a LogObject that collects diagnostic information for a Server if it is provided. The ServerLog exposes all LogRecords available in the Server(this shall include all LogRecords in all other LogObjects in the Server)."
+    },
+    {
+      "Id": "a77b1c1c-bc29-4020-ab8d-1f623bc3442c",
+      "Header": "Document: Part 26 - LogObject\nSection: 7 Instances\n---\n",
+      "Content": "7.3 Logs"
+    },
+    {
+      "Id": "cb0c413d-1490-42dc-9176-5ea8e6aa447c",
+      "Header": "Document: Part 26 - LogObject\nSection: 7.3 Logs\n---\n",
+      "Content": "This Object provides a folder that when Organize references are followed, will resolve to all LogObjects defined in the Server(I.e. they are either directly or indirectly referenced from this folder as part of the tree). This folder shall only contain reference to instances of LogObjectType(or subtype of LogObjectType) and references to instance of FolderType(or Sub types of FolderType).\nThe Logs Object is the target of an Organizes reference from the Resources Object defined in[OPC 10000-22](/\u00A7Part22).\nIts representation in the AddressSpace is formally defined in[Table 21](/\u00A7_Ref184917603).\nTable 21 - Logs Object Definition"
+    },
+    {
+      "Id": "cee88163-d45d-4abb-ae55-2a59faa2bb4b",
+      "Header": "Document: Part 26 - LogObject\nSection: 7.3 Logs\nCaption: Table 21 - Logs Object Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nLogs\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOrganized by the Resources Object defined in[OPC 10000-22](/\u00A7Part22)\nHasTypeDefinition\nObjectType\n0:FolderType\n\nConformanceUnits\nLogObject Logs"
+    },
+    {
+      "Id": "97b49675-9689-444f-9cbd-b16bba58f730",
+      "Header": "Document: Part 26 - LogObject\nSection: 7.3 Logs\n---\n",
+      "Content": "- LogObject Server Examples (Informative)"
+    },
+    {
+      "Id": "e0bbb9d3-0aae-4954-a16e-48a340a8377e",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "A.1 LogObject Server examples overview"
+    },
+    {
+      "Id": "5a52c42a-cd18-426b-b68b-2cbd6e43e2cf",
+      "Header": "Document: Part 26 - LogObject\nSection: A.1 LogObject Server examples overview\n---\n",
+      "Content": "The LogObject might be added to a specific Object that is part of a device model and stores records in a vendor specific manner (see[A.5](/\u00A7_Ref199710745)). Another example is a Server that also support EventHistory and stores the LogRecords as part of a standard EventHistory(see[A.2](/\u00A7_Ref199710724)). Other examples include a system in which the LogRecords are buffered locally in a single store for several LogObject(see[A.5](/\u00A7_Ref199710745)) or in multiple stores one for each LogObjects(see[A.5](/\u00A7_Ref199710745)). There is an example in which LogRecords are forwarded by the device to an[OpenTelemetry](/\u00A7OpenT) system (see[A.4](/\u00A7_Ref199710808)) and there is also an example for Syslog server (see[A.3](/\u00A7_Ref199710784))."
+    },
+    {
+      "Id": "04850289-5605-4eda-ab52-0d6c3a744372",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "A.2 Event History Illustration"
+    },
+    {
+      "Id": "6b1c111f-7cdc-4452-b4d9-92f1f7daeac8",
+      "Header": "Document: Part 26 - LogObject\nSection: A.2 Event History Illustration\n---\n",
+      "Content": "A Server that supports EventHistory, might just pull LogRecords from the EventHistory storage (i.e. no storage of LogRecords in any LogObject). The Event history storage would include the ConditionClassId( SubConditionClassId) field in an event and a GetRecords call could just be a retrieval from the Event history for fields they are interested in and a filter for records where the ConditionClassId/ SubConditionClassId is LogEntryConditionClassType. The filter might also include restriction for record that are from the appropriate Area."
+    },
+    {
+      "Id": "ed6f810c-6d18-4ca7-99bf-ff499d16e93e",
+      "Header": "Document: Part 26 - LogObject\nSection: A.2 Event History Illustration\nCaption: Figure A. 1 - Event History Illustration\n---\n",
+      "Content": "[image011.png](images/image011.png)"
+    },
+    {
+      "Id": "73d00e80-2f38-4f89-b224-a83a6ed4f107",
+      "Header": "Document: Part 26 - LogObject\nSection: A.2 Event History Illustration\n---\n",
+      "Content": "Figure A. 1 - Event History Illustration"
+    },
+    {
+      "Id": "f6bab925-d2d9-4a62-bfd7-c46198bbe5cc",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "A.3 Syslog storage illustration"
+    },
+    {
+      "Id": "3501bfb8-0bec-4c06-9fca-cb6a079f66e9",
+      "Header": "Document: Part 26 - LogObject\nSection: A.3 Syslog storage illustration\n---\n",
+      "Content": "This example illustrates a possible implementation in which the devices generating LogObject information are sending the information to a central[SYSLOG](/\u00A7Syslog) server. In this illustration, the local LogObject would only contain a minimum buffer of LogRecords."
+    },
+    {
+      "Id": "457821db-38f0-4326-b19c-7e1b4c18817e",
+      "Header": "Document: Part 26 - LogObject\nSection: A.3 Syslog storage illustration\nCaption: Figure A. 2 - SYSLOG illustration\n---\n",
+      "Content": "[image012.png](images/image012.png)"
+    },
+    {
+      "Id": "8b0faa90-f04f-4076-b5a7-34cc9f5d2951",
+      "Header": "Document: Part 26 - LogObject\nSection: A.3 Syslog storage illustration\n---\n",
+      "Content": "Figure A. 2 - SYSLOG illustration\nThis specification provides no mapping to SYSLOG record, but the required fields for[SYSLOG](/\u00A7Syslog) entries can be found in a LogRecord."
+    },
+    {
+      "Id": "77f8a52a-7d49-4996-8965-84a8c2593110",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "A.4 Open telemetry Illustration"
+    },
+    {
+      "Id": "ac372452-3b3a-44ad-9797-0e686b3417b5",
+      "Header": "Document: Part 26 - LogObject\nSection: A.4 Open telemetry Illustration\n---\n",
+      "Content": "This example illustrates a possible implementation in which the device generate LogObject information are deployed in a system which uses OpenTelemetry to collect log or trace information. For more detail on how LogRecords can be imported in OpenTelemetry see[Annex C](/\u00A7_Ref196174778)."
+    },
+    {
+      "Id": "e951c6b5-ce55-47c1-9c17-e3db4b758736",
+      "Header": "Document: Part 26 - LogObject\nSection: A.4 Open telemetry Illustration\nCaption: Figure A. 3 - OpenTelemetry Illustration\n---\n",
+      "Content": "[image013.png](images/image013.png)"
+    },
+    {
+      "Id": "a10028be-8efb-4bd8-81fc-d940a2f0ae00",
+      "Header": "Document: Part 26 - LogObject\nSection: A.4 Open telemetry Illustration\n---\n",
+      "Content": "Figure A. 3 - OpenTelemetry Illustration"
+    },
+    {
+      "Id": "e9051f01-d3df-4e85-b0f9-0b7c6583a0cd",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "A.5 Vendor Specific Storage"
+    },
+    {
+      "Id": "ad3f39b6-887a-4763-9651-52816b3e49f9",
+      "Header": "Document: Part 26 - LogObject\nSection: A.5 Vendor Specific Storage\n---\n",
+      "Content": "The storage can be per LogObject(see[Figure A.4](/\u00A7_Ref201388840)). Each LogObject stores its own its own copy of the LogRecord, even if the LogRecords are the result of an event stream. Each LogObject would have its own limits for storage. This storage would result in some LogRecords being stored multiple time, in separate LogObjects. Also the list of LogRecords in the ServerLog might not include all of the LogRecords that would be available from Area1 LogObject or the Area2 LogObject."
+    },
+    {
+      "Id": "6a49d6b9-c8fa-4c75-a0e9-cc764fe1cd0c",
+      "Header": "Document: Part 26 - LogObject\nSection: A.5 Vendor Specific Storage\nCaption: Figure A. 4 - Vendor Specific LogObject individual Storage\n---\n",
+      "Content": "[image014.png](images/image014.png)"
+    },
+    {
+      "Id": "462cc8d5-969f-453c-bb75-7042301a01fa",
+      "Header": "Document: Part 26 - LogObject\nSection: A.5 Vendor Specific Storage\n---\n",
+      "Content": "Figure A. 4 - Vendor Specific LogObject individual Storage\n\nThe store could also just be a central store, which stores all LogRecords from all LogObjects(see[Figure A.5](/\u00A7_Ref201389630). The GetRecords call on each object could be redirected to the central store (along with the LogObject Identifier) and then the appropriate LogRecords(corresponding to LogObject on which the Method was invoked) would be pulled from the central store.\nIt would be important for this type of architecture that the MaxDuration/ MaxRecords / MinimumSeverity be only set on the parent LogObject since it would be difficult to manage all of the individual LogObjects."
+    },
+    {
+      "Id": "d99f31fd-f218-4f3c-82fc-4a823782632e",
+      "Header": "Document: Part 26 - LogObject\nSection: A.5 Vendor Specific Storage\nCaption: Figure A. 5 - Vendor Specific LogObject central storage\n---\n",
+      "Content": "[image015.png](images/image015.png)"
+    },
+    {
+      "Id": "30c3803d-b313-40dd-a7ee-39f5d158c52f",
+      "Header": "Document: Part 26 - LogObject\nSection: A.5 Vendor Specific Storage\n---\n",
+      "Content": "Figure A. 5 - Vendor Specific LogObject central storage"
+    },
+    {
+      "Id": "509660ed-95db-4501-981e-31d256b2c506",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "Annex\u00A0B LogObject Client Examples (Informative)\nB.1 LogObject Client examples"
+    },
+    {
+      "Id": "1c1d8813-b99e-41e1-bab5-5db74b9113ae",
+      "Header": "Document: Part 26 - LogObject\nSection: B.1 LogObject Client examples\n---\n",
+      "Content": "This section provides some examples of clients that could be using the LogObject. The first example is a possible standard diagnostic Client, the second example is of a possible analytic engine."
+    },
+    {
+      "Id": "51cdb7d9-b915-4bf6-b9d5-a04389c70bde",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "B.2 Diagnostic client"
+    },
+    {
+      "Id": "a2959320-6166-4c27-8572-6c60e3ff77de",
+      "Header": "Document: Part 26 - LogObject\nSection: B.2 Diagnostic client\n---\n",
+      "Content": "The diagnostic Client may monitor the general health of a system through status summary information that is outside of the scope of a LogObject. This might be HealthStatus information defined in the DI specification, or diagnostic information define in the UAFX specifications.\nWhen a maintenance worker or engineer discover some problem, they can access a diagnostic Client to trouble shoot the issue. The diagnostic Client can call GetRecords from the Server(s) that are reporting an issue. The records should provide detailed information allowing the maintenance worker / engineer to diagnose and correct the issue. Typically, this C lient would filter and/or sort the information provided by the GetRecords Calls. It might also combine information from multiple Servers. The Client might allow the maintenance worker / engineer to search for specific information.\nThe Client would only connect to a Server when there is something to troubleshoot."
+    },
+    {
+      "Id": "6777ce0c-7c00-49dc-8de0-9259046aa92e",
+      "Header": "Document: Part 26 - LogObject\nSection: B.2 Diagnostic client\nCaption: Figure B. 1 - Diagnostic Client Illustration\n---\n",
+      "Content": "[image016.png](images/image016.png)"
+    },
+    {
+      "Id": "3c655f8a-95a3-4479-8073-b63cc35fa1d8",
+      "Header": "Document: Part 26 - LogObject\nSection: B.2 Diagnostic client\n---\n",
+      "Content": "Figure B. 1 - Diagnostic Client Illustration\nIf a system contains very small devices (with minimum storage), the diagnostic Client might periodically connect the small devices and collect the LogRecords. As an alternative the small device might just generate Events for the LogRecords and let some larger device or the diagnostic Client collect them. The diagnostic Client could store the collected records for a longer period, allowing the maintenance worker / engineer to review a longer history.\nNote: Time Syncing functionality is required in OPC UA products, but end user might not enable it, in which case any dianostic Client or analytical engine should check the time on devices to which they are communicating and validate the time on that device."
+    },
+    {
+      "Id": "7a73ef65-70d7-4689-bdba-b46ad47d32e8",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "B.3 Analytic engine"
+    },
+    {
+      "Id": "aedba33c-4845-4de5-8877-7cdfcc13257b",
+      "Header": "Document: Part 26 - LogObject\nSection: B.3 Analytic engine\n---\n",
+      "Content": "An analytic engine would periodically collect all LogRecords and store them for analytics.\nThe diagnostic information may be collected in a cloud environment, where it can be analysed. This may be for predictive maintenance or for process optimization. The LogRecord Structure provides fields that can help an analytics engine, by providing correlation information between various Servers(TraceContext), and also the support for the grouping of information inside of a Server( TraceContext)."
+    },
+    {
+      "Id": "c999da2b-d126-46e6-877b-d65f7227b3fd",
+      "Header": "Document: Part 26 - LogObject\nSection: B.3 Analytic engine\nCaption: Figure B. 2 - Analytics client illustration\n---\n",
+      "Content": "[image017.png](images/image017.png)"
+    },
+    {
+      "Id": "b3282c72-a32b-4a03-a9fa-7e1addb91b33",
+      "Header": "Document: Part 26 - LogObject\nSection: B.3 Analytic engine\n---\n",
+      "Content": "Figure B. 2 - Analytics client illustration\n\n\nOpenTelemetry Mapping (Normative)"
+    },
+    {
+      "Id": "7333917b-8389-4664-acfc-3af77b4e829a",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "B.4 Open Telemetry Overview"
+    },
+    {
+      "Id": "97eaf9cb-bcb9-466b-a5e9-8bd5712014b8",
+      "Header": "Document: Part 26 - LogObject\nSection: B.4 Open Telemetry Overview\n---\n",
+      "Content": "[OpenTelemetry](/\u00A7OpenT) is described as \u0022a vendor-neutral open source[observability](https://opentelemetry.io/docs/concepts/observability-primer/) framework for instrumenting, generating, collecting, and exporting telemetry data such as[traces](https://opentelemetry.io/docs/concepts/signals/traces/),[metrics](https://opentelemetry.io/docs/concepts/signals/metrics/), and[logs](https://opentelemetry.io/docs/concepts/signals/logs/).\u0022 This modern system includes an infrastructure for collecting trace / metrics / log data, but this infrastructure may be too resource intensive for constrained devices. In these cases, it would be useful to be able to collect log / trace information and import it into the OpenTelemetry system.\nIn OpenTelemetry, a client triggered action can be assigned a globally unique Trace_Id. This Trace_Id is maintained for all actions related to the client request. In addition, actions are grouped using a unique Span_Id. This Span_Id might be promoted to a Parent_Id, when a tree of related trace / log message needs to be generated. This process is illustrated in[Figure C.1](/\u00A7_Ref195832745). The Span_Id in OPC UA is an UInt64, and it should be unique inside of a TraceId inside of an application. An easy manner of achieving this is to just increment an UInt64 and persist the last value across the application."
+    },
+    {
+      "Id": "0f3d1fa9-454d-4b59-b90c-90c8b95372c4",
+      "Header": "Document: Part 26 - LogObject\nSection: B.4 Open Telemetry Overview\nCaption: Figure C. 1 - OpenTelemetry Mapping to OPC UA\n---\n",
+      "Content": "[image018.png](images/image018.png)"
+    },
+    {
+      "Id": "f8481c72-3f61-44eb-b356-f3e02decba1c",
+      "Header": "Document: Part 26 - LogObject\nSection: B.4 Open Telemetry Overview\n---\n",
+      "Content": "Figure C. 1 - OpenTelemetry Mapping to OPC UA\n\n[Figure C.1](/\u00A7_Ref195832745) also illustrates how an OpenTelemetry system could collect LogRecords from an LogObject[C.2](/\u00A7_Ref195860627) describes part of the mapping an import tool would have to perform to convert LogObject LogRecords to OpenTelemetry records."
+    },
+    {
+      "Id": "9ea2f040-8830-4585-a925-da67997e25ae",
+      "Header": "Document: Part 26 - LogObject\n---\n",
+      "Content": "B.5 Open Telemetry System Import"
+    },
+    {
+      "Id": "aed1cea5-43e9-4b15-b0d0-16ec76eb9c45",
+      "Header": "Document: Part 26 - LogObject\nSection: B.5 Open Telemetry System Import\n---\n",
+      "Content": "If an OpenTelemetry system is ingesting LogObject LogRecord, the collector will need to pull information from the TraceContext field. This structure contains the Trace_ID and SpanId, It might also contain ParentSpanId( if one was provided). The SpanId field is used to group LogRecords together. If the SpanId field is null, then for each unique entry in the GroupingId field, the import tool shall generate a unique SpanId.\nBibliography\nSYSLOG - The Syslog Protocol\n[https://datatracker.ietf.org/doc/html/rfc5424](https://datatracker.ietf.org/doc/html/rfc5424)\nOpenTelemetry - Open Telemetry Overview\n[https://opentelemetry.io/docs/](https://opentelemetry.io/docs/) https://opentelemetry.io/docs/\n__________"
+    }
+  ]
+}

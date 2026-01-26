@@ -68,18 +68,22 @@ Figure 1 - Role management overview
 
 The *RoleSet* *Object defined in* [OPC 10000-5](/§UAPart5) is a *RoleSetType* which is formally defined in [Table 1](/§\_Ref17727931) .  
 
- **Table 1\- RoleSetType definition**   
+Table 1 - RoleSetType definition  
 
 | ***Attribute*** | ***Value*** |
 |---|---|
 |BrowseName|RoleSetType|
 |IsAbstract|False|
+  
 | **References** | ***Node* Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Subtype of *BaseObjectType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Object|\<RoleName\>||RoleType|OptionalPlaceholder|
 |HasComponent|Method|AddRole|Defined in [4.2.2](/§\_Ref468968238) .|Mandatory|
 |HasComponent|Method|RemoveRole|Defined in [4.2.3](/§\_Ref468968256) .|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Base Info ServerType|
   
 
@@ -128,9 +132,7 @@ The *Client* shall use an encrypted channel and shall provide user credentials w
 
 | **ResultCode** | **Description** |
 |---|---|
-|Bad\_InvalidArgument|The *RoleName* or NamespaceUri is not valid.  
-
-The text associated with the error shall indicate the exact problem.|
+|Bad\_InvalidArgument|The *RoleName* or NamespaceUri is not valid.<br>The text associated with the error shall indicate the exact problem.|
 |Bad\_NotSupported|The *Server* does not allow more *Roles* to be added.|
 |Bad\_UserAccessDenied|The caller does not have the necessary *Permissions* .|
 |Bad\_SecurityModeInsufficient|The *SecureChannel* is not encrypted.|
@@ -142,15 +144,19 @@ The text associated with the error shall indicate the exact problem.|
 
 The *AddRole* *Method* representation in the *AddressSpace* is formally defined in [Table 2](/§\_Ref211325856) .  
 
- **Table 2\- AddRole Method AddressSpace definition**   
+Table 2 - AddRole Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AddRole|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |0:HasProperty|Variable|0:InputArguments|0:Argument[]|0:PropertyType|M|
 |0:HasProperty|Variable|0:OutputArguments|0:Argument[]|0:PropertyType|M|
+  
 | **ConformanceUnits** |
+|---|
 |Security Role Server Management|
   
 
@@ -200,14 +206,18 @@ The *Client* shall use an encrypted channel and shall provide user credentials w
 
 The *RemoveRole* *Method* representation in the *AddressSpace* is formally defined in [Table 3](/§\_Ref211325870) .  
 
- **Table 3\- RemoveRole Method AddressSpace definition**   
+Table 3 - RemoveRole Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|RemoveRole|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |0:HasProperty|Variable|0:InputArguments|0:Argument[]|0:PropertyType|M|
+  
 | **ConformanceUnits** |
+|---|
 |Security Role Server Management|
   
 
@@ -217,12 +227,14 @@ The *RemoveRole* *Method* representation in the *AddressSpace* is formally defin
 
 The *RoleSet Object* defined in [Table 4](/§\_Ref51333312) is used to publish all *Roles* supported by the *Server* .  
 
- **Table 4\- RoleSet definition**   
+Table 4 - RoleSet definition  
 
 | ***Attribute*** | ***Value*** |
 |---|---|
 |BrowseName|RoleSet|
+  
 | **References** | ***Node* Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |ComponentOf the *ServerCapabilities* *Object* defined in [OPC 10000-5](/§UAPart5)|
 |HasTypeDefinition|ObjectType|RoleSetType||||
 |HasComponent|Object|Anonymous||RoleType||
@@ -234,7 +246,9 @@ The *RoleSet Object* defined in [Table 4](/§\_Ref51333312) is used to publish a
 |HasComponent|Object|Supervisor||RoleType||
 |HasComponent|Object|ConfigureAdmin||RoleType||
 |HasComponent|Object|SecurityAdmin||RoleType||
+  
 | **Conformance Units** |
+|---|
 |Security Role Server Base 2|
   
 
@@ -254,7 +268,7 @@ A *Server* shall not allow the deletion of the well-known *Roles Anonymous* and 
 
 The additional definition for the conformance units of the instances is defined in [Table 5](/§\_Ref65609805) .  
 
- **Table 5\- RoleSet Additional Conformance Units**   
+Table 5 - RoleSet Additional Conformance Units  
 
 | **BrowsePath** | **Conformance Units** |
 |---|---|
@@ -277,18 +291,18 @@ The additional definition for the conformance units of the instances is defined 
 
 Each *Role* *Object* has the *Properties* and *Methods* defined by the *RoleType* which is formally defined in [Table 6](/§\_Ref33101027) .  
 
- **Table 6\- RoleType definition**   
+Table 6 - RoleType definition  
 
 | ***Attribute*** | **Value** |
 |---|---|
 |BrowseName|RoleType|
 |IsAbstract|False|
+  
 | **References** | ***Node* Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Subtype of BaseObjectType|
 |||||||
-|HasProperty|Variable|Identities|IdentityMapping  
-
-RuleType []|PropertyType|Mandatory|
+|HasProperty|Variable|Identities|IdentityMapping<br>RuleType []|PropertyType|Mandatory|
 |HasProperty|Variable|ApplicationsExclude|Boolean|PropertyType|Optional|
 |HasProperty|Variable|Applications|String []|PropertyType|Optional|
 |HasProperty|Variable|EndpointsExclude|Boolean|PropertyType|Optional|
@@ -300,7 +314,9 @@ RuleType []|PropertyType|Mandatory|
 |HasComponent|Method|RemoveApplication|Defined in [4.4.8](/§\_Ref63178942) .|Optional|
 |HasComponent|Method|AddEndpoint|Defined in [4.4.9](/§\_Ref63178952) .|Optional|
 |HasComponent|Method|RemoveEndpoint|Defined in [4.4.10](/§\_Ref63178964) .|Optional|
+  
 | **Conformance Units** |
+|---|
 |Base Info ServerType|
   
 
@@ -356,38 +372,34 @@ The *RemoveApplication* *Method* removes an *ApplicationInstance Certificate* fr
 
 This *structure describes an Endpoint.* The *EndpointType* is formally defined in [Table 7](/§\_Ref494879919) .  
 
- **Table 7\- EndpointType Structure**   
+Table 7 - EndpointType Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |EndpointType|structure||
 |endpointUrl|String|The URL for the *Endpoint* .|
-|securityMode|MessageSecurityMode|The type of message security.  
-
-The type *MessageSecurityMode* type is defined in [OPC 10000-4](/§UAPart4) .  
-
-The default value is *MessageSecurityMode Invalid.* The field is ignored for comparison if the default value is set.|
-|securityPolicyUri|String|The URI of the *SecurityPolicy* .  
-
-The default value is an empty or null *String.* The field is ignored for comparison if the default value is set.|
-|transportProfileUri|String|The URI of the *Transport* *Profile* .  
-
-The default value is an empty or null *String.* The field is ignored for comparison if the default value is set.|
+|securityMode|MessageSecurityMode|The type of message security.<br>The type *MessageSecurityMode* type is defined in [OPC 10000-4](/§UAPart4) .<br>The default value is *MessageSecurityMode Invalid.* The field is ignored for comparison if the default value is set.|
+|securityPolicyUri|String|The URI of the *SecurityPolicy* .<br>The default value is an empty or null *String.* The field is ignored for comparison if the default value is set.|
+|transportProfileUri|String|The URI of the *Transport* *Profile* .<br>The default value is an empty or null *String.* The field is ignored for comparison if the default value is set.|
   
 
   
 
 The *EndpointType Structure* representation in the *AddressSpace* is defined in [Table 8](/§\_Ref494369053) .  
 
- **Table 8\- EndpointType definition**   
+Table 8 - EndpointType definition  
 
 | **Attributes** | **Value** |
 |---|---|
 |BrowseName|EndpointType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **IsAbstract** | **Description** |
+|---|---|---|---|---|
 |Subtype of Structure defined in [OPC 10000-5](/§UAPart5) .|
+  
 | **Conformance Units** |
+|---|
 |Base Info ServerType|
   
 
@@ -397,14 +409,12 @@ The *EndpointType Structure* representation in the *AddressSpace* is defined in 
 
 The *IdentityMappingRuleType* structure defines a single rule for selecting a *UserIdentityToken* . The structure is described in [Table 9](/§\_Ref33101056) .  
 
- **Table 9\- IdentityMappingRuleType**   
+Table 9 - IdentityMappingRuleType  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |IdentityMappingRuleType|Structure|Specifies a rule used to map a *UserIdentityToken* to a *Role* .|
-|criteriaType|Enumeration  
-
-IdentityCriteriaType|The type of criteria contained in the identity mapping rule. The *IdentityCriteriaType* is defined in [4.4.4](/§\_Ref51329642) .|
+|criteriaType|Enumeration<br>IdentityCriteriaType|The type of criteria contained in the identity mapping rule. The *IdentityCriteriaType* is defined in [4.4.4](/§\_Ref51329642) .|
 |criteria|String|The criteria which the *UserIdentityToken* must meet for a *Session* to be mapped to the *Role* . The meaning of the criteria depends on the *criteriaType* . The *criteria* shall be null or an empty string for *Anonymous,* *AuthenticatedUser* and *TrustedApplication* .|
   
 
@@ -428,7 +438,7 @@ If the *criteriaType* is *Application* , the *criteria* is the *ApplicationUri* 
 
 If the *criteriaType* is *X509Subject* , the criteria is the X509 subject name of a *Certificate* of a user which is trusted by the *Server* or the X509 subject name of an issuer of the user *Certificate* . The format of the subject name criteria consists of a sequence of name value pairs separated by a '/'. The name shall be one of entries in [Table 10](/§\_Ref65678415) and shall be followed by a '=' and then followed by the value, which is always enclosed in double quotes ('"'). The order shall be by the order shown in [Table 10](/§\_Ref65678415) with the lowest number first. Every value from [Table 10](/§\_Ref65678415) present in the *Certificate* shall be included in the criteria, others must not be included. The value may be any printable character except for '"'. For example: CN="User Name"/O="Company". [Table 10](/§\_Ref65678415) contains all subject name attributes where support is required by X509 and some commonly used attributes where support is optional. Additional fields may be added in the future. If one name is used multiple times in the certificate, the name is also repeated in the criteria. The entries with the same name are entered in the order they appear in the *Certificate* . All names listed in [Table 10](/§\_Ref65678415) that are included in the X509 subject name shall match the content of the criteria *String* . Names not included in [Table 10](/§\_Ref65678415) are ignored.  
 
- **Table 10\- Order for subject name criteria**   
+Table 10 - Order for subject name criteria  
 
 | **Order** | **Name** | **Value** |
 |---|---|---|
@@ -447,15 +457,19 @@ If the *criteriaType* is *X509Subject* , the criteria is the X509 subject name o
 
 The *IdentityMappingRuleType Structure* representation in the *AddressSpace* is defined in [Table 11](/§\_Ref497331616) .  
 
- **Table 11\- IdentityMappingRuleType definition**   
+Table 11 - IdentityMappingRuleType definition  
 
 | **Attributes** | **Value** |
 |---|---|
 |BrowseName|IdentityMappingRuleType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **IsAbstract** | **Description** |
+|---|---|---|---|---|
 |Subtype of Structure defined in [OPC 10000-5](/§UAPart5) .|
+  
 | **Conformance Units** |
+|---|
 |Base Info ServerType|
   
 
@@ -465,7 +479,7 @@ The *IdentityMappingRuleType Structure* representation in the *AddressSpace* is 
 
 The *IdentityCriteriaType* Enumeration is defined in [Table 12](/§\_Ref16854259) .  
 
- **Table 12\- IdentityCriteriaType Values**   
+Table 12 - IdentityCriteriaType Values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -484,16 +498,20 @@ The *IdentityCriteriaType* Enumeration is defined in [Table 12](/§\_Ref16854259
 
 Its representation in the *AddressSpace* is defined in [Table 13](/§\_Ref16854453) .  
 
- **Table 13\- IdentityCriteriaType Definition**   
+Table 13 - IdentityCriteriaType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IdentityCriteriaType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumValues|EnumValueType []|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |Base Info ServerType|
   
 
@@ -539,14 +557,18 @@ The *Client* shall use an encrypted channel and shall provide user credentials w
 
 The *AddIdentity* *Method* representation in the *AddressSpace* is formally defined in [Table 14](/§\_Ref83321408) .  
 
- **Table 14\- AddIdentity Method AddressSpace definition**   
+Table 14 - AddIdentity Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AddIdentity|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |0:HasProperty|Variable|0:InputArguments|0:Argument[]|0:PropertyType|M|
+  
 | **ConformanceUnits** |
+|---|
 |Security Role Server IdentityManagement|
   
 
@@ -588,14 +610,18 @@ The *Client* shall use an encrypted channel and shall provide user credentials w
 
 The *RemoveIdentity* *Method* representation in the *AddressSpace* is formally defined in [Table 15](/§\_Ref211325382) .  
 
- **Table 15\- RemoveIdentity Method AddressSpace definition**   
+Table 15 - RemoveIdentity Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|RemoveIdentity|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |0:HasProperty|Variable|0:InputArguments|0:Argument[]|0:PropertyType|M|
+  
 | **ConformanceUnits** |
+|---|
 |Security Role Server IdentityManagement|
   
 
@@ -640,14 +666,18 @@ The *Client* shall use an encrypted channel and shall provide user credentials w
 
 The *AddApplication* *Method* representation in the *AddressSpace* is formally defined in [Table 16](/§\_Ref211326591) .  
 
- **Table 16\- AddApplication Method AddressSpace definition**   
+Table 16 - AddApplication Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AddApplication|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |0:HasProperty|Variable|0:InputArguments|0:Argument[]|0:PropertyType|M|
+  
 | **ConformanceUnits** |
+|---|
 |Security Role Server Restrict Applications|
   
 
@@ -689,14 +719,18 @@ The *Client* shall use an encrypted channel and shall provide user credentials w
 
 The *RemoveApplication Method* representation in the *AddressSpace* is formally defined in [Table 17](/§\_Ref211326605) .  
 
- **Table 17\- RemoveApplication Method AddressSpace definition**   
+Table 17 - RemoveApplication Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|RemoveApplication|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |0:HasProperty|Variable|0:InputArguments|0:Argument[]|0:PropertyType|M|
+  
 | **ConformanceUnits** |
+|---|
 |Security Role Server Restrict Applications|
   
 
@@ -740,14 +774,18 @@ The *Client* shall use an encrypted channel and shall provide user credentials w
 
 The *AddEndpoint Method* representation in the *AddressSpace* is formally defined in [Table 18](/§\_Ref211327189) .  
 
- **Table 18\- AddEndpoint Method AddressSpace definition**   
+Table 18 - AddEndpoint Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AddEndpoint|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |0:HasProperty|Variable|0:InputArguments|0:Argument[]|0:PropertyType|M|
+  
 | **ConformanceUnits** |
+|---|
 |Security Role Server Restrict Endpoints|
   
 
@@ -789,14 +827,18 @@ The *Client* shall use an encrypted channel and shall provide user credentials w
 
 The *RemoveEndpoint Method* representation in the *AddressSpace* is formally defined in [Table 19](/§\_Ref211327172) .  
 
- **Table 19\- RemoveEndpoint Method AddressSpace definition**   
+Table 19 - RemoveEndpoint Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|RemoveEndpoint|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |0:HasProperty|Variable|0:InputArguments|0:Argument[]|0:PropertyType|M|
+  
 | **ConformanceUnits** |
+|---|
 |Security Role Server Restrict Endpoints|
   
 
@@ -812,15 +854,19 @@ It shall be raised when the *AddIdentity, RemoveIdentity, AddApplication, Remove
 
 Its representation in the *AddressSpace* is formally defined in [Table 20](/§\_Ref33101081) .  
 
- **Table 20\- RoleMappingRuleChangedAuditEventType definition**   
+Table 20 - RoleMappingRuleChangedAuditEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|RoleMappingRuleChangedAuditEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditUpdateMethodEventType* defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Security Role Server Base Eventing|
   
 
@@ -848,13 +894,15 @@ Figure 2 - User management overview
 
 The *UserManagement* *Object* defined in *[5.3](/§\_Ref76547889)* is a *UserManagementType* which is formally defined in [Table 21](/§\_Ref76547914) .  
 
- **Table 21\- UserManagementType definition**   
+Table 21 - UserManagementType definition  
 
 | ***Attribute*** | ***Value*** |
 |---|---|
 |BrowseName|UserManagementType|
 |IsAbstract|False|
+  
 | **References** | ***Node* Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Subtype of *BaseObjectType* defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|Users|UserManagementDataType[]|PropertyType|Mandatory|
 |HasProperty|Variable|PasswordLength|Range|PropertyType|Mandatory|
@@ -864,7 +912,9 @@ The *UserManagement* *Object* defined in *[5.3](/§\_Ref76547889)* is a *UserMan
 |HasComponent|Method|ModifyUser|Defined in [5.2.6](/§\_Ref84570505) .|Mandatory|
 |HasComponent|Method|RemoveUser|Defined in [5.2.7](/§\_Ref76552601) .|Mandatory|
 |HasComponent|Method|ChangePassword|Defined in [5.2.8](/§\_Ref76552607) .|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Security User Management Server|
   
 
@@ -886,7 +936,7 @@ The *Property PasswordRestrictions* allows a *Server* to provide additional expl
 
 The *DataType* *PasswordOptionsMask* is formally defined in [Table 22](/§\_Ref469331429) .  
 
- **Table 22\- PasswordOptionsMask values**   
+Table 22 - PasswordOptionsMask values  
 
 | **Value** | **Bit No.** | **Description** |
 |---|---|---|
@@ -905,16 +955,20 @@ The *DataType* *PasswordOptionsMask* is formally defined in [Table 22](/§\_Ref4
 
 The *PasswordOptionsMask* representation in the *AddressSpace* is defined in [Table 23](/§\_Ref469331441) .  
 
- **Table 23\- PasswordOptionsMask definition**   
+Table 23 - PasswordOptionsMask definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|PasswordOptionsMask|
 |IsAbstract|False|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Others** |
+|---|---|---|---|---|---|
 |Subtype of *UInt32* defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|OptionSetValues|LocalizedText []|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |Security User Management Server|
   
 
@@ -924,36 +978,34 @@ The *PasswordOptionsMask* representation in the *AddressSpace* is defined in [Ta
 
 The *DataType* *UserConfigurationMask* is formally defined in [Table 24](/§\_Ref497331617) .  
 
- **Table 24\- UserConfigurationMask values**   
+Table 24 - UserConfigurationMask values  
 
 | **Value** | **Bit No.** | **Description** |
 |---|---|---|
 |NoDelete|0|The user cannot be deleted.|
-|Disabled|1|The user is disabled.  
-
-For *ActivateSession* , a disabled user behaves like a user that does not exist.|
+|Disabled|1|The user is disabled.<br>For *ActivateSession* , a disabled user behaves like a user that does not exist.|
 |NoChangeByUser|2|The user cannot change the password.|
-|MustChangePassword|3|The user must change the password to get the assigned roles.  
-
-The *Method ChangePasssword* is used to set a new password. The *Method* and the behaviour of *ActivateSession* are defined in [5.2.8](/§\_Ref76552607) .  
-
-The *MustChangePassword* bit set is invalid if the *NoChangeByUser* bit is set.|
+|MustChangePassword|3|The user must change the password to get the assigned roles.<br>The *Method ChangePasssword* is used to set a new password. The *Method* and the behaviour of *ActivateSession* are defined in [5.2.8](/§\_Ref76552607) .<br>The *MustChangePassword* bit set is invalid if the *NoChangeByUser* bit is set.|
   
 
   
 
 The *UserConfigurationMask* representation in the *AddressSpace* is defined in [Table 25](/§\_Ref497331618) .  
 
- **Table 25\- UserConfigurationMask definition**   
+Table 25 - UserConfigurationMask definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|UserConfigurationMask|
 |IsAbstract|False|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Others** |
+|---|---|---|---|---|---|
 |Subtype of *UInt32* defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|OptionSetValues|LocalizedText []|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |Security User Management Server|
   
 
@@ -963,7 +1015,7 @@ The *UserConfigurationMask* representation in the *AddressSpace* is defined in [
 
 This *Structure DataType* is used to provide the metadata for a field in a *DataSet* . The *UserManagementDataType* is formally defined in [Table 26](/§\_Ref433696014) .  
 
- **Table 26\- UserManagementDataType structure**   
+Table 26 - UserManagementDataType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -977,7 +1029,7 @@ This *Structure DataType* is used to provide the metadata for a field in a *Data
 
 Its representation in the AddressSpace is defined in [Table 27](/§\_Ref399178532) .  
 
- **Table 27\- DataSetMetaDataType definition**   
+Table 27 - DataSetMetaDataType definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -1039,14 +1091,18 @@ The *Client* shall use an encrypted channel and shall provide user credentials w
 
 The *AddUser Method* representation in the *AddressSpace* is formally defined in [Table 28](/§\_Ref211329049) .  
 
- **Table 28\- AddUser Method AddressSpace definition**   
+Table 28 - AddUser Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AddUser|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |0:HasProperty|Variable|0:InputArguments|0:Argument[]|0:PropertyType|M|
+  
 | **ConformanceUnits** |
+|---|
 |Security User Management Server|
   
 
@@ -1112,14 +1168,18 @@ The *Client* shall use an encrypted channel and shall provide user credentials w
 
 The *ModifyUser Method* representation in the *AddressSpace* is formally defined in [Table 29](/§\_Ref211329050) .  
 
- **Table 29\- ModifyUser Method AddressSpace definition**   
+Table 29 - ModifyUser Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ModifyUser|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |0:HasProperty|Variable|0:InputArguments|0:Argument[]|0:PropertyType|M|
+  
 | **ConformanceUnits** |
+|---|
 |Security User Management Server|
   
 
@@ -1167,14 +1227,18 @@ If the user of the *Session* used to call the *Method* is to be removed, the *Me
 
 The *RemoveUser Method* representation in the *AddressSpace* is formally defined in [Table 30](/§\_Ref211329054) .  
 
- **Table 30\- RemoveUser Method AddressSpace definition**   
+Table 30 - RemoveUser Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|RemoveUser|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |0:HasProperty|Variable|0:InputArguments|0:Argument[]|0:PropertyType|M|
+  
 | **ConformanceUnits** |
+|---|
 |Security User Management Server|
   
 
@@ -1207,9 +1271,7 @@ This *Method* affects security and shall only be browseable and callable through
 | **Argument** | **Description** |
 |---|---|
 |OldPassword|The old password for the *Session* user.|
-|NewPassword|The new password for the *Session* user. It is recommended that the user interface for entering the new password requires to enter the password twice to avoid typos.  
-
-The *Server* can apply additional restrictions to the accepted password in addition to the one indicated by *PasswordOptionMask* .|
+|NewPassword|The new password for the *Session* user. It is recommended that the user interface for entering the new password requires to enter the password twice to avoid typos.<br>The *Server* can apply additional restrictions to the accepted password in addition to the one indicated by *PasswordOptionMask* .|
   
 
   
@@ -1230,14 +1292,18 @@ The *Server* can apply additional restrictions to the accepted password in addit
 
 The *ChangePassword Method* representation in the *AddressSpace* is formally defined in [Table 31](/§\_Ref211329066) .  
 
- **Table 31\- ChangePassword Method AddressSpace definition**   
+Table 31 - ChangePassword Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ChangePassword|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |0:HasProperty|Variable|0:InputArguments|0:Argument[]|0:PropertyType|M|
+  
 | **ConformanceUnits** |
+|---|
 |Security User Management Server|
   
 
@@ -1247,15 +1313,19 @@ The *ChangePassword Method* representation in the *AddressSpace* is formally def
 
 The *UserManagement Object* defined in [Table 32](/§\_Ref76548086) is used to manage users known to the *Server* .  
 
- **Table 32\- UserManagement definition**   
+Table 32 - UserManagement definition  
 
 | ***Attribute*** | ***Value*** |
 |---|---|
 |BrowseName|UserManagement|
+  
 | **References** | ***Node* Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |ComponentOf the *ServerConfiguration Object* defined in [OPC 10000-12](/§UAPart12)|
 |HasTypeDefinition|ObjectType|UserManagementType||||
+  
 | **Conformance Units** |
+|---|
 |Security User Management Server|
   
 

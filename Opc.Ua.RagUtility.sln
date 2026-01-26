@@ -1,10 +1,18 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.5.2.0
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opc.Ua.RagUtility", "Opc.Ua.RagUtility/Opc.Ua.RagUtility.csproj", "{43467013-3318-8844-BB1D-E129784EBBD7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opc.Ua.RagUtility", "Opc.Ua.RagUtility\Opc.Ua.RagUtility.csproj", "{43467013-3318-8844-BB1D-E129784EBBD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opc.Ua.McpServer", "Opc.Ua.McpServer/Opc.Ua.McpServer.csproj", "{8A5C4E2F-1B3D-4F6A-9E7C-2D8B5F0A3C1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opc.Ua.McpServer", "Opc.Ua.McpServer\Opc.Ua.McpServer.csproj", "{8A5C4E2F-1B3D-4F6A-9E7C-2D8B5F0A3C1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D91744A7-CD79-41E6-A6EE-925B7B7CA8E6}"
+	ProjectSection(SolutionItems) = preProject
+		do-mcp-query.ps1 = do-mcp-query.ps1
+		do-rag-operation.ps1 = do-rag-operation.ps1
+		README.md = README.md
+		start-qdrant.ps1 = start-qdrant.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

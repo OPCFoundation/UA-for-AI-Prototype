@@ -390,7 +390,7 @@ This document defines three *DataEncodings* : OPC UA Binary, OPC UA XML and OPC 
 
 All OPC UA *DataEncodings* are based on rules that are defined for a standard set of built-in types. These built-in types are then used to construct structures, arrays and *Messages* . The built-in types are described in [Table 1](/§\_Ref83387521) .  
 
- **Table 1\- Built-in Data Types**   
+Table 1 - Built-in Data Types  
 
 | **ID** | **Name** | **Nullable** | **Default** | **Description** |
 |---|---|---|---|---|
@@ -409,9 +409,7 @@ All OPC UA *DataEncodings* are based on rules that are defined for a standard se
 |13|DateTime|Yes|DateTime.MinValue (see [5.1.4](/§\_Ref43238679) )|An instance in time.|
 |14|Guid|Yes|All zeros|A 16-byte value that can be used as a globally unique identifier.|
 |15|ByteString|Yes|null|A sequence of octets.|
-|16|XmlElement|Yes|null|A sequence of Unicode characters that is an XML element.  
-
-This built-in type shall not have subtypes.|
+|16|XmlElement|Yes|null|A sequence of Unicode characters that is an XML element.<br>This built-in type shall not have subtypes.|
 |17|NodeId|Yes|All fields set to default.|An identifier for a node in the address space of an OPC UA *Server* .|
 |18|ExpandedNodeId|Yes|All fields set to default.|A NodeId that allows the namespace URI to be specified instead of an index.|
 |19|StatusCode|No|Good|A numeric identifier for an error or condition that is associated with a value or an operation.|
@@ -435,7 +433,7 @@ The Default column specifies the default value for the type if a default value i
 
 A *Guid* is a 16-byte globally unique identifier with the layout shown in [Table 2](/§\_Ref179432783) .  
 
- **Table 2\- Guid structure**   
+Table 2 - Guid structure  
 
 | **Component** | **Data Type** |
 |---|---|
@@ -547,23 +545,15 @@ A *Decimal* is a high-precision signed decimal number. It consists of an arbitra
 
 A *Decimal* has the fields described in [Table 3](/§\_Ref473271895) .  
 
- **Table 3\- Layout of Decimal**   
+Table 3 - Layout of Decimal  
 
 | **Field** | **Type** | **Description** |
 |---|---|---|
 |TypeId|NodeId|The identifier for the *Decimal* *DataType* .|
 |Encoding|Byte|This value is always 1.|
 |Length|Int32|The length of the Scale and *Value* fields in bytes.If the length is less than or equal to 2 then the *Decimal* is an invalid value that cannot be used.|
-|Scale|Int16|A signed integer representing scale which is the inverse power of ten that is applied to the unscaled value.  
-
-i.e., the decimal number of the value multiplied by 10\-scale  
-
-The integer is encoded starting with the least significant bit.|
-|Value|OctetString|A 2-complement signed integer representing the unscaled value.  
-
-The number of bytes is the value of the *Length* field minus size of the *Scale* field.  
-
-The integer is encoded with the least significant byte first.|
+|Scale|Int16|A signed integer representing scale which is the inverse power of ten that is applied to the unscaled value.<br>i.e., the decimal number of the value multiplied by 10\-scale<br>The integer is encoded starting with the least significant bit.|
+|Value|OctetString|A 2-complement signed integer representing the unscaled value.<br>The number of bytes is the value of the *Length* field minus size of the *Scale* field.<br>The integer is encoded with the least significant byte first.|
   
 
   
@@ -582,15 +572,14 @@ The terms null, empty and zero-length are used to describe array values ( *Strin
 
 However, there are other scenarios where there is no obvious context that can be used to store the *NamespaceTable* , such as column in a database table, so it is necessary to provide a self-contained representation of these *DataTypes* . This clause defines a normative *String* representation using the ABNF like notation (see [RFC 5234](/§RFC5234) ). [Table 4](/§\_Ref122646535) defines additional core rules used in these definitions.  
 
- **Table 4\- Additional Core Rules**   
+Table 4 - Additional Core Rules  
 
-|UNICODE|Any Unicode character other than a Control character.|
+|||
 |---|---|
+|UNICODE|Any Unicode character other than a Control character.|
 |CONTROL|Any Unicode Control character (includes nulls, carriage returns, tabs and new lines).|
 |URI|A string that conforms to [RFC 3986](/§RFC3986) .|
-|ENCODEDURI|A URI which has the [RFC 3986](/§RFC3986) Percent-Encoding applied to it.  
-
-Any ';' in the URI shall be percent encoded.|
+|ENCODEDURI|A URI which has the [RFC 3986](/§RFC3986) Percent-Encoding applied to it.<br>Any ';' in the URI shall be percent encoded.|
 |BASE64|A Base64 encoded binary value (see [Base64](/§Base64) ).|
   
 
@@ -598,10 +587,11 @@ Any ';' in the URI shall be percent encoded.|
 
 The description for a *NodeId* is found in [Table 5](/§\_Ref122646734) .  
 
- **Table 5\- Description for a NodeId**   
+Table 5 - Description for a NodeId  
 
-|\<node-id\>|= \<identifier\>|
+|||
 |---|---|
+|\<node-id\>|= \<identifier\>|
 |\<node-id\>|=/ \<namespace-index\> ";" \<identifier\>|
 |\<node-id\>|=/ \<namespace-uri\> ";" \<identifier\>|
 |\<namespace-index\>|= "ns=" 1\*DIGIT|
@@ -637,10 +627,11 @@ nsu=tag:acme.com,2023:schemas:data\#off%3B;b=M/RbKBsRVkePCePcx24oRA==
 
 The description for a *ExpandedNodeId* is found in [Table 6](/§\_Ref122649055) .  
 
- **Table 6\- Description for a ExpandedNodeId**   
+Table 6 - Description for a ExpandedNodeId  
 
-|\<expanded-node-id\>|= \<node-id\>|
+|||
 |---|---|
+|\<expanded-node-id\>|= \<node-id\>|
 |\<expanded-node-id\>|=/ \<server-index\> ";" \<node-id\>|
 |\<expanded-node-id\>|=/ \<server-uri\> ";" \<node-id\>|
 |\<server-index\>|= "svr=" \*DIGIT|
@@ -667,10 +658,11 @@ svu=http://smith.com/west/factory;nsu=tag:acme.com,2023:schemas:data\#off%3B;b=M
 
 The description for a *QualifiedName* is found in [Table 7](/§\_Ref122649467) .  
 
- **Table 7\- Description for a QualifiedName**   
+Table 7 - Description for a QualifiedName  
 
-|\<qualified-name\>|= \<name\>|
+|||
 |---|---|
+|\<qualified-name\>|= \<name\>|
 |\<qualified-name\>|=/ 1\*DIGIT ":" \<name\>|
 |\<qualified-name\>|=/ \<namespace-uri\> ";" \<name\>|
 |\<name\>|= 1\*(UNICODE)|
@@ -706,8 +698,9 @@ Text based *DataEncodings* such as UA XML ( [5.3](/§\_Ref131702289) ) or UA JSO
 
 The character restrictions for the XML *DataEncoding* are:  
 
-|\<allowed-name\>|= \<letter\> \*(\<allowed-char\> / "\_" / "-"/ ".")|
+|||
 |---|---|
+|\<allowed-name\>|= \<letter\> \*(\<allowed-char\> / "\_" / "-"/ ".")|
 |\<allowed-char\>|= \<letter\> / DIGIT|
 |\<letter\>|= UNICODE-LETTER|
 |UNICODE-LETTER|Any Unicode character with a general category of 'Letter'|
@@ -719,10 +712,11 @@ There are no restrictions for the JSON encoding other than the general restricti
 
 [Table 8](/§\_Ref130464699) has examples of XML encoded names.  
 
- **Table 8\- Examples of XML Encoded Names**   
+Table 8 - Examples of XML Encoded Names  
 
-|Hello|Hello|
+|||
 |---|---|
+|Hello|Hello|
 |\_Hello|\_Hello|
 |3DHello|\_3DHello|
 |冷水|冷水|
@@ -739,10 +733,11 @@ Values ** of *Structure DataTypes* are sequences of name-value pairs. In many ca
 
 The description for a *Structure FieldPath* is found in [Table 9](/§\_Ref157112060) .  
 
- **Table 9\- Description for a Structure FieldPath**   
+Table 9 - Description for a Structure FieldPath  
 
-|\<path\>|= \<path-element\> \*("." \<path-element\>)|
+|||
 |---|---|
+|\<path\>|= \<path-element\> \*("." \<path-element\>)|
 |\<path-element\>|= \<name\> / \<index\>|
 |\<name\>|= 1\*\<char\> / "'" 1\*\<char\> "'"|
 |\<index\>|= "[" 1\*DIGIT \*("," 1\*DIGIT) "]"|
@@ -764,7 +759,7 @@ The \<index\> is an index in field containing an array value. If an array has mu
 
 The *DataTypeDefinition* for a simple *Structure* is found in [Table 10](/§\_Ref162238229) .  
 
- **Table 10\- DataTypeDefinition for a simple Structure**   
+Table 10 - DataTypeDefinition for a simple Structure  
 
 | **Field Name** | **DataType** | **Description** |
 |---|---|---|
@@ -791,7 +786,7 @@ The value for the simple *Structure* using JSON:
 
 Examples of *FieldPaths* and their values based on the simple *Structure* value are in [Table 11](/§\_Ref162238648) .  
 
- **Table 11\- Examples of FieldPaths for a Simple Structure**   
+Table 11 - Examples of FieldPaths for a Simple Structure  
 
 | **FieldPath** | **Resolved Value** |
 |---|---|
@@ -807,7 +802,7 @@ Examples of *FieldPaths* and their values based on the simple *Structure* value 
 
 The *DataTypeDefinition* for a complex *Structure* is found in [Table 12](/§\_Ref162239346) .  
 
- **Table 12\- DataTypeDefinition for a Complex Structure**   
+Table 12 - DataTypeDefinition for a Complex Structure  
 
 | **Field Name** | **DataType** | **Description** |
 |---|---|---|
@@ -862,44 +857,18 @@ The value for the complex Structure using JSON:
 
 Examples of *FieldPaths* and their values based on the complex Structure value are in [Table 13](/§\_Ref162239373) .  
 
- **Table 13\- Examples of FieldPaths in a Complex Structure**   
+Table 13 - Examples of FieldPaths in a Complex Structure  
 
 | **FieldPath** | **Resolved Value** |
 |---|---|
-|Apple.[0]|\{  
-
-"Red": true,  
-
-"Yellow.One": 42,  
-
-"Green": [ "macintosh", "fuji", "ambrosia" ]  
-
-\}|
+|Apple.[0]|\{<br>"Red": true,<br>"Yellow.One": 42,<br>"Green": [ "macintosh", "fuji", "ambrosia" ]<br>\}|
 |Apple.[0].'Yellow.One'|42|
 |Apple.[0].'Green''s'|["macintosh", "fuji", "ambrosia"]|
 |Apple.[0].'Green''s'.[1]|"fuji"|
-|'[Banana]'|\{  
-
-"TypeId": "\<type-id\>",  
-
-"Body": \{  
-
-"X": 987,  
-
-"Y": 432  
-
-\}  
-
-\}|
+|'[Banana]'|\{<br>"TypeId": "\<type-id\>",<br>"Body": \{<br>"X": 987,<br>"Y": 432<br>\}<br>\}|
 |'[Banana]'.Body|\{ "X": 987, "Y": 432 \}|
 |'[Banana]'.Body.Y|432|
-|Grape|\{  
-
-"Type": 6  
-
-"Body": [ 123, 345, 678 ]  
-
-\}|
+|Grape|\{<br>"Type": 6<br>"Body": [ 123, 345, 678 ]<br>\}|
 |Grape.Body.[1]|345|
   
 
@@ -937,7 +906,7 @@ Figure 2 - Encoding Integers in a binary stream
 
 All floating-point values shall be encoded with the appropriate [IEEE 754](/§IEEE754) binary representation which has three basic components: the sign, the exponent, and the fraction. The bit ranges assigned to each component depend on the width of the type. [Table 14](/§\_Ref105731537) lists the bit ranges for the supported floating-point types.  
 
- **Table 14\- Supported Floating Point Types**   
+Table 14 - Supported Floating Point Types  
 
 | **Name** | **Width (bits)** | **Fraction** | **Exponent** | **Sign** |
 |---|---|---|---|---|
@@ -1035,24 +1004,12 @@ A decoder may choose to parse the XML after decoding; if an unrecoverable parsin
 
 The components of a *NodeId* are described the [Table 15](/§\_Ref105731646) .  
 
- **Table 15\- NodeId components**   
+Table 15 - NodeId components  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|Namespace|UInt16|The index for a namespace URI.  
-
-An index of 0 is used for OPC UA defined *NodeIds.*|
-|IdentifierType|Enumeration|The format and data type of the identifier.  
-
-The value may be one of the following:  
-
-NUMERIC\- the value is an *UInteger;*  
-
-STRING\- the value is *String* ;  
-
-GUID\- the value is a *Guid* ;  
-
-OPAQUE\- the value is a *ByteString* ;|
+|Namespace|UInt16|The index for a namespace URI.<br>An index of 0 is used for OPC UA defined *NodeIds.*|
+|IdentifierType|Enumeration|The format and data type of the identifier.<br>The value may be one of the following:<br>NUMERIC\- the value is an *UInteger;*<br>STRING\- the value is *String* ;<br>GUID\- the value is a *Guid* ;<br>OPAQUE\- the value is a *ByteString* ;|
 |Value|UInt32 or String or Guid or ByteString|The identifier for a node in the address space of an OPC UA *Server* .|
   
 
@@ -1060,7 +1017,7 @@ OPAQUE\- the value is a *ByteString* ;|
 
 The *DataEncoding* of a *NodeId* varies according to the contents of the instance. For that reason, the first byte of the encoded form indicates the format of the rest of the encoded *NodeId* . The possible *DataEncoding* formats are shown in [Table 16](/§\_Ref105731689) . [Table 16](/§\_Ref105731689) through [Table 19](/§\_Ref131423295) describe the structure of each possible format (they exclude the byte which indicates the format).  
 
- **Table 16\- NodeId DataEncoding values**   
+Table 16 - NodeId DataEncoding values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -1078,20 +1035,12 @@ The *DataEncoding* of a *NodeId* varies according to the contents of the instanc
 
 The standard *NodeId* *DataEncoding* has the structure shown in [Table 17](/§\_Ref187488302) . The standard *DataEncoding* is used for all formats that do not have an explicit format defined.  
 
- **Table 17\- Standard NodeId Binary DataEncoding**   
+Table 17 - Standard NodeId Binary DataEncoding  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
 |Namespace|UInt16|The *NamespaceIndex* .|
-|Identifier|\*|The identifier which is encoded according to the following rules:  
-
-|NUMERIC|UInt32|
-|---|---|
-|STRING|String|
-|GUID|Guid|
-|OPAQUE|ByteString|
-  
-
+|Identifier|\*|The identifier which is encoded according to the following rules:<br>NUMERIC|UInt32|STRING|String|GUID|Guid|OPAQUE|ByteString||
   
 
   
@@ -1104,15 +1053,11 @@ Figure 7 - A String NodeId
 
 The Two Byte *NodeId* *DataEncoding* has the structure shown in [Table 18](/§\_Ref131422614) .  
 
- **Table 18\- Two Byte NodeId Binary DataEncoding**   
+Table 18 - Two Byte NodeId Binary DataEncoding  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|Identifier|Byte|The *Namespace* is the default OPC UA namespace (i.e. 0).  
-
-The *Identifier* Type is 'Numeric'.  
-
-The *Identifier* shall be in the range 0 to 255.|
+|Identifier|Byte|The *Namespace* is the default OPC UA namespace (i.e. 0).<br>The *Identifier* Type is 'Numeric'.<br>The *Identifier* shall be in the range 0 to 255.|
   
 
   
@@ -1127,14 +1072,12 @@ Figure 8 - A Two Byte NodeId
 
 The Four Byte *NodeId* *DataEncoding* has the structure shown in [Table 19](/§\_Ref131423295) .  
 
- **Table 19\- Four Byte NodeId Binary DataEncoding**   
+Table 19 - Four Byte NodeId Binary DataEncoding  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
 |Namespace|Byte|The *Namespace* shall be in the range 0 to 255.|
-|Identifier|UInt16|The *Identifier* Type is 'Numeric'.  
-
-The *Identifier* shall be an integer in the range 0 to 65 535.|
+|Identifier|UInt16|The *Identifier* Type is 'Numeric'.<br>The *Identifier* shall be an integer in the range 0 to 65 535.|
   
 
   
@@ -1161,7 +1104,7 @@ An *ExpandedNodeId* may also have a *ServerIndex* which is encoded as a *UInt32*
 
 The *ExpandedNodeId* encoding has the structure shown in [Table 20](/§\_Ref179490138) .  
 
- **Table 20\- ExpandedNodeId Binary DataEncoding**   
+Table 20 - ExpandedNodeId Binary DataEncoding  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
@@ -1184,67 +1127,19 @@ As described in [OPC 10000-4](/§UAPart4) , the *SymbolicId* , *NamespaceUri* , 
 
 *DiagnosticInfo* is recursive and unlimited recursion could result in stack overflow errors even if the message size is less than the maximum allowed. Decoders shall support at least 4 recursion levels and are not expected to support more than 10. Decoders shall report an error if the number of recursion levels exceeds what it supports.  
 
- **Table 21\- DiagnosticInfo Binary DataEncoding**   
+Table 21 - DiagnosticInfo Binary DataEncoding  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|Encoding Mask|Byte|A bit mask that indicates which fields are present in the stream.  
-
-The mask has the following bits:  
-
-|0x01|Symbolic Id|
-|---|---|
-|0x02|Namespace|
-|0x04|LocalizedText|
-|0x08|Locale|
-|0x10|Additional Info|
-|0x20|InnerStatusCode|
-|0x40|InnerDiagnosticInfo|
+|Encoding Mask|Byte|A bit mask that indicates which fields are present in the stream.<br>The mask has the following bits:<br>0x01|Symbolic Id|0x02|Namespace|0x04|LocalizedText|0x08|Locale|0x10|Additional Info|0x20|InnerStatusCode|0x40|InnerDiagnosticInfo||
+|SymbolicId|Int32|A symbolic name for the status code.|
+|NamespaceUri|Int32|A namespace that qualifies the symbolic id.|
+|Locale|Int32|The locale used for the localized text.|
+|LocalizedText|Int32|A human readable summary of the status code.|
+|Additional Info|String|Detailed application specific diagnostic information.|
+|Inner StatusCode|StatusCode|A status code provided by an underlying system.|
+|Inner DiagnosticInfo|DiagnosticInfo|Diagnostic info associated with the inner status code.|
   
-
-  
-
-SymbolicId  
-
-Int32  
-
-A symbolic name for the status code.  
-
-NamespaceUri  
-
-Int32  
-
-A namespace that qualifies the symbolic id.  
-
-Locale  
-
-Int32  
-
-The locale used for the localized text.  
-
-LocalizedText  
-
-Int32  
-
-A human readable summary of the status code.  
-
-Additional Info  
-
-String  
-
-Detailed application specific diagnostic information.  
-
-Inner StatusCode  
-
-StatusCode  
-
-A status code provided by an underlying system.  
-
-Inner DiagnosticInfo  
-
-DiagnosticInfo  
-
-Diagnostic info associated with the inner status code.  
 
   
 
@@ -1254,7 +1149,7 @@ A *QualifiedName* structure is encoded as shown in [Table 22](/§\_Ref166071367)
 
 The abstract *QualifiedName* structure is defined in [OPC 10000-3](/§UAPart3) .  
 
- **Table 22\- QualifiedName Binary DataEncoding**   
+Table 22 - QualifiedName Binary DataEncoding  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
@@ -1270,36 +1165,14 @@ A *LocalizedText* structure contains two fields that could be missing. For that 
 
 The abstract *LocalizedText* structure is defined in [OPC 10000-3](/§UAPart3) .  
 
- **Table 23\- LocalizedText Binary DataEncoding**   
+Table 23 - LocalizedText Binary DataEncoding  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|EncodingMask|Byte|A bit mask that indicates which fields are present in the stream.  
-
-The mask has the following bits:  
-
-|0x01|Locale|
-|---|---|
-|0x02|Text|
+|EncodingMask|Byte|A bit mask that indicates which fields are present in the stream.<br>The mask has the following bits:<br>0x01|Locale|0x02|Text||
+|Locale|String|The locale.<br>Omitted is null or empty.|
+|Text|String|The text in the specified locale.<br>Omitted is null or empty.|
   
-
-  
-
-Locale  
-
-String  
-
-The locale.  
-
-Omitted is null or empty.  
-
-Text  
-
-String  
-
-The text in the specified locale.  
-
-Omitted is null or empty.  
 
   
 
@@ -1315,42 +1188,15 @@ If the *Encoding* is *Binary* the *Body* uses the OPC UA Binary *DataEncoding* .
 
 The serialized form of an *ExtensionObject* is shown in [Table 24](/§\_Ref135154704) .  
 
- **Table 24\- Extension Object Binary DataEncoding**   
+Table 24 - Extension Object Binary DataEncoding  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|TypeId|NodeId|The identifier for the *DataTypeEncoding* node in the *Server's* *AddressSpace* . *ExtensionObjects* defined by the OPC UA specification have a numeric node identifier assigned to them with a *NamespaceIndex* of 0. The numeric identifiers are defined in [A.3](/§\_Ref400571295) .  
-
-Decoders use this field to determine the syntax of the *Body* .|
-|Encoding|Byte|An enumeration that indicates how the body is encoded.  
-
-The parameter may have the following values:  
-
-|0x00|No body is encoded.|
-|---|---|
-|0x01|The body is encoded as a ByteString.|
-|0x02|The body is encoded as an XmlElement.|
+|TypeId|NodeId|The identifier for the *DataTypeEncoding* node in the *Server's* *AddressSpace* . *ExtensionObjects* defined by the OPC UA specification have a numeric node identifier assigned to them with a *NamespaceIndex* of 0. The numeric identifiers are defined in [A.3](/§\_Ref400571295) .<br>Decoders use this field to determine the syntax of the *Body* .|
+|Encoding|Byte|An enumeration that indicates how the body is encoded.<br>The parameter may have the following values:<br>0x00|No body is encoded.|0x01|The body is encoded as a ByteString.|0x02|The body is encoded as an XmlElement.||
+|Length|Int32|The length of the object body.<br>The length shall be specified if the body is encoded.|
+|Body|OctetString|The object encoded with the *DataEncoding* indicated by the *TypeId.*<br>This field contains the raw bytes for *ByteString* bodies.<br>For XmlElement bodies this field contains the XML encoded as a UTF-8 string without any null terminator.|
   
-
-  
-
-Length  
-
-Int32  
-
-The length of the object body.  
-
-The length shall be specified if the body is encoded.  
-
-Body  
-
-OctetString  
-
-The object encoded with the *DataEncoding* indicated by the *TypeId.*  
-
-This field contains the raw bytes for *ByteString* bodies.  
-
-For XmlElement bodies this field contains the XML encoded as a UTF-8 string without any null terminator.  
 
   
 
@@ -1362,69 +1208,16 @@ A *Variant* is a union of the built-in types.
 
 The structure of a *Variant* is shown in [Table 25](/§\_Ref131482954) .  
 
- **Table 25\- Variant Binary DataEncoding**   
+Table 25 - Variant Binary DataEncoding  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|EncodingMask|Byte|The type of data encoded in the stream. A value of 0 specifies a NULL and that no other fields are encoded.The mask has the following bits assigned:  
-
-|0:5|Built-in Type Id (see [Table 1](/§\_Ref83387521) ).|
-|---|---|
-|6|True if the ArrayDimensions field is encoded.|
-|7|True if an array of values is encoded.|
+|EncodingMask|Byte|The type of data encoded in the stream. A value of 0 specifies a NULL and that no other fields are encoded.The mask has the following bits assigned:<br>0:5|Built-in Type Id (see [Table 1](/§\_Ref83387521) ).|6|True if the ArrayDimensions field is encoded.|7|True if an array of values is encoded.|The Built-in Type Ids 26 through 31 are not currently assigned but may be used in the future. Decoders shall accept these IDs, assume the *Value* contains a *ByteString* or an array of *ByteStrings* and pass both onto the application. Encoders shall not use these IDs.The *ArrayDimensions* field shall only be present if the number of dimensions is 2 or greater and all dimensions have a length greater than 0.|
+|ArrayLength|Int32|The number of elements in the array.<br>This field is only present if the array bit is set in the encoding mask.<br>Multi-dimensional arrays are encoded as a one-dimensional array and this field specifies the total number of elements. The original array can be reconstructed from the dimensions that are encoded after the value field.<br>Higher rank dimensions are serialized first. For example, an array with dimensions [2,2,2] is written in this order:<br>[0,0,0], [0,0,1], [0,1,0], [0,1,1], [1,0,0], [1,0,1], [1,1,0], [1,1,1]<br>If one or more dimensions has a length \<= 0 then the ArrayLength is 0.|
+|Value|\*|The value encoded according to its built-in data type.<br>If the array bit is set in the encoding mask, then each element in the array is encoded sequentially. Since many types have variable length encoding each element shall be decoded in order.<br>The value shall not be a *Variant* but it could be an array of *Variants* .<br>Many implementation platforms do not distinguish between one dimensional Arrays of *Bytes* and *ByteStrings* . For this reason, decoders are allowed to automatically convert an Array of *Bytes* to a *ByteString* .|
+|ArrayDimensionsLength|Int32|The number of dimensions.<br>This field is only present if the ArrayDimensions flag is set in the encoding mask.|
+|ArrayDimensions|Int32[]|The length of each dimension encoded as a sequence of Int32 values<br>This field is only present if the ArrayDimensions flag is set in the encoding mask. The lower rank dimensions appear first in the array.<br>All dimensions shall be specified and shall be greater than zero..<br>If *ArrayDimensions* are inconsistent with the *ArrayLength* then the decoder shall stop and raise a *Bad\_DecodingError* .|
   
-
-The Built-in Type Ids 26 through 31 are not currently assigned but may be used in the future. Decoders shall accept these IDs, assume the *Value* contains a *ByteString* or an array of *ByteStrings* and pass both onto the application. Encoders shall not use these IDs.  
-
-The *ArrayDimensions* field shall only be present if the number of dimensions is 2 or greater and all dimensions have a length greater than 0.  
-
-ArrayLength  
-
-Int32  
-
-The number of elements in the array.  
-
-This field is only present if the array bit is set in the encoding mask.  
-
-Multi-dimensional arrays are encoded as a one-dimensional array and this field specifies the total number of elements. The original array can be reconstructed from the dimensions that are encoded after the value field.  
-
-Higher rank dimensions are serialized first. For example, an array with dimensions [2,2,2] is written in this order:  
-
-[0,0,0], [0,0,1], [0,1,0], [0,1,1], [1,0,0], [1,0,1], [1,1,0], [1,1,1]  
-
-If one or more dimensions has a length \<= 0 then the ArrayLength is 0.  
-
-Value  
-
-\*  
-
-The value encoded according to its built-in data type.  
-
-If the array bit is set in the encoding mask, then each element in the array is encoded sequentially. Since many types have variable length encoding each element shall be decoded in order.  
-
-The value shall not be a *Variant* but it could be an array of *Variants* .  
-
-Many implementation platforms do not distinguish between one dimensional Arrays of *Bytes* and *ByteStrings* . For this reason, decoders are allowed to automatically convert an Array of *Bytes* to a *ByteString* .  
-
-ArrayDimensionsLength  
-
-Int32  
-
-The number of dimensions.  
-
-This field is only present if the ArrayDimensions flag is set in the encoding mask.  
-
-ArrayDimensions  
-
-Int32[]  
-
-The length of each dimension encoded as a sequence of Int32 values  
-
-This field is only present if the ArrayDimensions flag is set in the encoding mask. The lower rank dimensions appear first in the array.  
-
-All dimensions shall be specified and shall be greater than zero..  
-
-If *ArrayDimensions* are inconsistent with the *ArrayLength* then the decoder shall stop and raise a *Bad\_DecodingError* .  
 
   
 
@@ -1436,76 +1229,18 @@ A *DataValue* is always preceded by a mask that indicates which fields are prese
 
 The fields of a *DataValue* are described in [Table 26](/§\_Ref105731849) .  
 
- **Table 26\- Data Value Binary DataEncoding**   
+Table 26 - Data Value Binary DataEncoding  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|Encoding Mask|Byte|A bit mask that indicates which fields are present in the stream.  
-
-The mask has the following bits:  
-
-|0x01|False if the Value is *Null.*|
-|---|---|
-|0x02|False if the StatusCode is Good.|
-|0x04|False if the SourceTimestamp is *DateTime* . *MinValue* .|
-|0x08|False if the ServerTimestamp is *DateTime* . *MinValue* .|
-|0x10|False if the SourcePicoseconds is not present.|
-|0x20|False if the ServerPicoseconds is not present.|
+|Encoding Mask|Byte|A bit mask that indicates which fields are present in the stream.<br>The mask has the following bits:<br>0x01|False if the Value is *Null.*|0x02|False if the StatusCode is Good.|0x04|False if the SourceTimestamp is *DateTime* . *MinValue* .|0x08|False if the ServerTimestamp is *DateTime* . *MinValue* .|0x10|False if the SourcePicoseconds is not present.|0x20|False if the ServerPicoseconds is not present.||
+|Value|Variant|The value.<br>Not present if the Value bit in the EncodingMask is False.|
+|Status|StatusCode|The status associated with the value.<br>Not present if the StatusCode bit in the EncodingMask is False.|
+|SourceTimestamp|DateTime|The source timestamp associated with the value.<br>Not present if the SourceTimestamp bit in the EncodingMask is False.|
+|SourcePicoseconds|UInt16|The number of 10 Picosecond intervals for the SourceTimestamp.<br>Not present if the SourcePicoseconds bit in the EncodingMask is False.<br>If the source timestamp is missing the Picoseconds are ignored.|
+|ServerTimestamp|DateTime|The *Server* timestamp associated with the value.<br>Not present if the ServerTimestamp bit in the EncodingMask is False.|
+|ServerPicoseconds|UInt16|The number of 10 Picosecond intervals for the ServerTimestamp.<br>Not present if the ServerPicoseconds bit in the EncodingMask is False.<br>If the *Server* timestamp is missing the Picoseconds are ignored.|
   
-
-  
-
-Value  
-
-Variant  
-
-The value.  
-
-Not present if the Value bit in the EncodingMask is False.  
-
-Status  
-
-StatusCode  
-
-The status associated with the value.  
-
-Not present if the StatusCode bit in the EncodingMask is False.  
-
-SourceTimestamp  
-
-DateTime  
-
-The source timestamp associated with the value.  
-
-Not present if the SourceTimestamp bit in the EncodingMask is False.  
-
-SourcePicoseconds  
-
-UInt16  
-
-The number of 10 Picosecond intervals for the SourceTimestamp.  
-
-Not present if the SourcePicoseconds bit in the EncodingMask is False.  
-
-If the source timestamp is missing the Picoseconds are ignored.  
-
-ServerTimestamp  
-
-DateTime  
-
-The *Server* timestamp associated with the value.  
-
-Not present if the ServerTimestamp bit in the EncodingMask is False.  
-
-ServerPicoseconds  
-
-UInt16  
-
-The number of 10 Picosecond intervals for the ServerTimestamp.  
-
-Not present if the ServerPicoseconds bit in the EncodingMask is False.  
-
-If the *Server* timestamp is missing the Picoseconds are ignored.  
 
   
 
@@ -1531,20 +1266,12 @@ Multi-dimensional *Arrays* have an encoding that depends on where they are used.
 
 When a multi-dimensional *Array* is a field of a *Structure* (see [5.2.6](/§\_Ref80122070) ) it shall be encoded with the inline matrix representation as shown in [Table 27](/§\_Ref80123330) .  
 
- **Table 27\- Inline Matrix DataEncoding**   
+Table 27 - Inline Matrix DataEncoding  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|Dimensions|Int32 []|The length of each dimension.  
-
-If any dimension has a length \<= 0, then no values are encoded.  
-
-The number of dimensions shall be at least 2.|
-|Values|\*|The values encoded sequentially according to its built-in data type.  
-
-The total number of values is the product of the dimensions.  
-
-The mapping of a multidimensional array to a flat list is described in [5.2.2.16](/§\_Ref400568926) .|
+|Dimensions|Int32 []|The length of each dimension.<br>If any dimension has a length \<= 0, then no values are encoded.<br>The number of dimensions shall be at least 2.|
+|Values|\*|The values encoded sequentially according to its built-in data type.<br>The total number of values is the product of the dimensions.<br>The mapping of a multidimensional array to a flat list is described in [5.2.2.16](/§\_Ref400568926) .|
   
 
   
@@ -1601,7 +1328,7 @@ In the C/C++ example above, the Y field is a pointer to an array with a length s
 
 An instance of *Type1* which contains an array of two *Type2* instances would be encoded as 28-byte sequence. If the instance of *Type1* was encoded in an *ExtensionObject* it would have an additional prefix shown in [Table 28](/§\_Ref115456711) which would make the total length 101 bytes The *TypeId* , Encoding and the *Length* are fields defined by the *ExtensionObject* . The encoding of the *Type2* instances do not include any type identifier because it is explicitly defined in *Type1* .  
 
- **Table 28\- Sample OPC UA Binary Encoded structure**   
+Table 28 - Sample OPC UA Binary Encoded structure  
 
 | **Field** | **Bytes** | **Value** |
 |---|---|---|
@@ -1626,7 +1353,7 @@ An instance of *Type1* which contains an array of two *Type2* instances would be
 
 The *Value* of the *DataTypeDefinition* *Attribute* for a *DataType* *Node* describing Type1 is shown in [Table 29](/§\_Ref94015568) .  
 
- **Table 29\- DataTypeDefinition for "Type1" from Sample**   
+Table 29 - DataTypeDefinition for "Type1" from Sample  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1679,7 +1406,7 @@ The *Value* of the *DataTypeDefinition* *Attribute* for a *DataType* *Node* desc
 
 The *Value* of the *DataTypeDefinition* *Attribute* for a *DataType* *Node* describing Type2 is shown in [Table 30](/§\_Ref94016249) .  
 
- **Table 30\- DataTypeDefinition for "Type2" from Sample**   
+Table 30 - DataTypeDefinition for "Type2" from Sample  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1738,7 +1465,7 @@ An instance of *TypeA* which contains two mandatory (X and Y) and two optional (
 
 An instance of *TypeA* where field O2 is available and field O1 is not available would be encoded as a 13-byte sequence. If the instance of *TypeA* was encoded in an *ExtensionObject* it would have the encoded form shown in [Table 31](/§\_Ref531786547) and have a total length of 22 bytes. The length of the *TypeId* , *Encoding* and the *Length* are fields defined by the *ExtensionObject* .  
 
- **Table 31\- Sample OPC UA Binary Encoded Structure with optional fields**   
+Table 31 - Sample OPC UA Binary Encoded Structure with optional fields  
 
 | **Field** | **Bytes** | **Value** |
 |---|---|---|
@@ -1854,7 +1581,7 @@ An instance of *Type1* would be encoded as byte sequence. The length of the byte
 
 An instance of *Type1* where field *Field1* is available would be encoded as 8-byte sequence. If the instance of Type 1 was encoded in an *ExtensionObject* it would have the encoded form shown in [Table 32](/§\_Ref531786635) and it would have a total length of 17 bytes. The *TypeId* , *Encoding* and the *Length* are fields defined by the *ExtensionObject* .  
 
- **Table 32\- Sample OPC UA Binary Encoded Structure**   
+Table 32 - Sample OPC UA Binary Encoded Structure  
 
 | **Field** | **Bytes** | **Value** |
 |---|---|---|
@@ -1945,7 +1672,7 @@ A Boolean value is encoded as an *xs:boolean* value.
 
 Integer values are encoded using one of the subtypes of the *xs:decimal* type. The mappings between the OPC UA integer types and XML schema data types are shown in [Table 33](/§\_Ref131518889) .  
 
- **Table 33\- XML Data Type Mappings for Integers**   
+Table 33 - XML Data Type Mappings for Integers  
 
 | **Name** | **XML Type** |
 |---|---|
@@ -1965,7 +1692,7 @@ Integer values are encoded using one of the subtypes of the *xs:decimal* type. T
 
 Floating point values are encoded using one of the XML floating point types. The mappings between the OPC UA floating point types and XML schema data types are shown in [Table 34](/§\_Ref131519179) .  
 
- **Table 34\- XML Data Type Mappings for Floating Points**   
+Table 34 - XML Data Type Mappings for Floating Points  
 
 | **Name** | **XML Type** |
 |---|---|
@@ -2373,7 +2100,7 @@ The *Value* is a base-10 signed integer with no limit on size. See [5.1.10](/§\
 
 The elements of the syntax are described in [Table 35](/§\_Ref131571897) .  
 
- **Table 35\- Components of Enumeration**   
+Table 35 - Components of Enumeration  
 
 | **Field** | **Type** | **Description** |
 |---|---|---|
@@ -2645,26 +2372,12 @@ When the *ServerIndex* is 0, decoders shall replace a *NamespaceUri* with a *Nam
 
 *StatusCode* values shall be encoded as a JSON object with the fields defined in [Table 36](/§\_Ref457558533) .  
 
- **Table 36\- JSON Object Definition for a StatusCode**   
+Table 36 - JSON Object Definition for a StatusCode  
 
 | **Name** | **Description** |
 |---|---|
-|Code|The numeric code encoded as a JSON number.  
-
-The *Code* is omitted if the numeric code is 0 (Good).|
-|Symbol|The string literal associated with the numeric code encoded as JSON string.  
-
-e.g. 0x80AB0000 has the associated literal "BadInvalidArgument".  
-
-Any *InfoBits* in the *StatusCode* are ignored when looking up the symbol.  
-
-If the string literal is not known to the encoder the field is omitted.  
-
-The field is omitted in the *CompactEncoding.*  
-
-The field is omitted if the numeric code is 0 (Good).  
-
-The recommended string literals are defined in [A.2](/§\_Ref80223065) .|
+|Code|The numeric code encoded as a JSON number.<br>The *Code* is omitted if the numeric code is 0 (Good).|
+|Symbol|The string literal associated with the numeric code encoded as JSON string.<br>e.g. 0x80AB0000 has the associated literal "BadInvalidArgument".<br>Any *InfoBits* in the *StatusCode* are ignored when looking up the symbol.<br>If the string literal is not known to the encoder the field is omitted.<br>The field is omitted in the *CompactEncoding.*<br>The field is omitted if the numeric code is 0 (Good).<br>The recommended string literals are defined in [A.2](/§\_Ref80223065) .|
   
 
   
@@ -2673,45 +2386,17 @@ The recommended string literals are defined in [A.2](/§\_Ref80223065) .|
 
 *DiagnosticInfo* values shall be encoded as a JSON object with the fields shown in [Table 37](/§\_Ref457558616) .  
 
- **Table 37\- JSON Object Definition for a DiagnosticInfo**   
+Table 37 - JSON Object Definition for a DiagnosticInfo  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|SymbolicId|Int32|A symbolic name for the status code.  
-
-The default value is -1.  
-
-It is not encoded if the value is -1.|
-|NamespaceUri|Int32|A namespace that qualifies the symbolic id.  
-
-The default value is -1.  
-
-It is not encoded if the value is -1.|
-|Locale|Int32|The locale used for the localized text.  
-
-The default value is -1.  
-
-It is not encoded if the value is -1.|
-|LocalizedText|Int32|A human readable summary of the status code.  
-
-The default value is -1.  
-
-It is not encoded if the value is -1.|
-|AdditionalInfo|String|Detailed application specific diagnostic information.  
-
-The default value is null.  
-
-It is not encoded if the value is null.|
-|InnerStatusCode|StatusCode|A status code provided by an underlying system.  
-
-The default value is *Good* .  
-
-It is not encoded if the value is *Good* .|
-|InnerDiagnosticInfo|DiagnosticInfo|Diagnostic info associated with the inner status code.  
-
-The default value is null.  
-
-It is not encoded if the value is null.|
+|SymbolicId|Int32|A symbolic name for the status code.<br>The default value is -1.<br>It is not encoded if the value is -1.|
+|NamespaceUri|Int32|A namespace that qualifies the symbolic id.<br>The default value is -1.<br>It is not encoded if the value is -1.|
+|Locale|Int32|The locale used for the localized text.<br>The default value is -1.<br>It is not encoded if the value is -1.|
+|LocalizedText|Int32|A human readable summary of the status code.<br>The default value is -1.<br>It is not encoded if the value is -1.|
+|AdditionalInfo|String|Detailed application specific diagnostic information.<br>The default value is null.<br>It is not encoded if the value is null.|
+|InnerStatusCode|StatusCode|A status code provided by an underlying system.<br>The default value is *Good* .<br>It is not encoded if the value is *Good* .|
+|InnerDiagnosticInfo|DiagnosticInfo|Diagnostic info associated with the inner status code.<br>The default value is null.<br>It is not encoded if the value is null.|
   
 
   
@@ -2732,16 +2417,12 @@ A second abnormal state occurs when the decoder cannot convert a *NamespaceUri* 
 
 *LocalizedText* values shall be encoded as a JSON object with the fields shown in [Table 38](/§\_Ref457559512) .  
 
- **Table 38\- JSON Object Definition for a LocalizedText**   
+Table 38 - JSON Object Definition for a LocalizedText  
 
 | **Name** | **Description** |
 |---|---|
-|Locale|The *Locale* portion of *LocalizedText* values shall be encoded as a JSON string.  
-
-The field is not encoded if it is null or empty.|
-|Text|The *Text* portion of *LocalizedText* values shall be encoded as a JSON string.  
-
-The field is not encoded if it is null or empty.|
+|Locale|The *Locale* portion of *LocalizedText* values shall be encoded as a JSON string.<br>The field is not encoded if it is null or empty.|
+|Text|The *Text* portion of *LocalizedText* values shall be encoded as a JSON string.<br>The field is not encoded if it is null or empty.|
   
 
   
@@ -2764,23 +2445,13 @@ The *UaEncoding* and *UaBody* fields are only used when UA Binary or UA XML enco
 
 The JSON object fields used for an *ExtensionObject* are in [Table 39](/§\_Ref158752135) .  
 
- **Table 39\- JSON Object Fields used for an ExtensionObject**   
+Table 39 - JSON Object Fields used for an ExtensionObject  
 
 | **Name** | **Description** |
 |---|---|
-|UaTypeId|A *NodeId* formatted using the rules in [5.4.2.10](/§\_Ref456142221) .  
-
-This is the *NodeId* of a *DataType Node.*|
-|UaEncoding|A JSON number that represents the format of the *UaBody* field.  
-
-A value of 1 indicates UA Binary data is encoded in the *UaBody* field.  
-
-A value of 2 indicates UA XML data is encoded in the *UaBody* field.  
-
-This field is omitted for JSON encoded *Structures* .|
-|UaBody|A *ByteString* containing an UA Binary or UA XML encoded *Structure.*  
-
-This field is omitted for JSON encoded *Structures* .|
+|UaTypeId|A *NodeId* formatted using the rules in [5.4.2.10](/§\_Ref456142221) .<br>This is the *NodeId* of a *DataType Node.*|
+|UaEncoding|A JSON number that represents the format of the *UaBody* field.<br>A value of 1 indicates UA Binary data is encoded in the *UaBody* field.<br>A value of 2 indicates UA XML data is encoded in the *UaBody* field.<br>This field is omitted for JSON encoded *Structures* .|
+|UaBody|A *ByteString* containing an UA Binary or UA XML encoded *Structure.*<br>This field is omitted for JSON encoded *Structures* .|
   
 
   
@@ -2791,18 +2462,12 @@ Encoders, when allowed by the *DevelopmentPlatform* , should write the *UaTypeId
 
 *Variant* values shall be encoded as a JSON object with the fields shown in [Table 40](/§\_Ref456171710) .  
 
- **Table 40\- JSON Object Definition for a Variant**   
+Table 40 - JSON Object Definition for a Variant  
 
 | **Name** | **Description** |
 |---|---|
 |UaType|The Built-in type for the value contained in the *Body* (see [Table 1](/§\_Ref83387521) ) encoded as JSON number.|
-|Value|If the value is a scalar, it is encoded using the rules for type specified for the *Type* .  
-
-If the value is a one-dimensional array it is encoded as JSON array (see [5.4.5](/§\_Ref457562559) ).  
-
-Multi-dimensional arrays are encoded as a JSON array containing all elements. The mapping of a multidimensional array to a flat list is described in [5.2.2.16](/§\_Ref400568926) .  
-
-The field is not encoded if the value is a NULL for nullable Built-in types (see [Table 1](/§\_Ref83387521) ).|
+|Value|If the value is a scalar, it is encoded using the rules for type specified for the *Type* .<br>If the value is a one-dimensional array it is encoded as JSON array (see [5.4.5](/§\_Ref457562559) ).<br>Multi-dimensional arrays are encoded as a JSON array containing all elements. The mapping of a multidimensional array to a flat list is described in [5.2.2.16](/§\_Ref400568926) .<br>The field is not encoded if the value is a NULL for nullable Built-in types (see [Table 1](/§\_Ref83387521) ).|
 |Dimensions|The dimensions of the array encoded as a JSON array of JSON numbers.|
   
 
@@ -2816,28 +2481,18 @@ Encoders, when allowed by the *DevelopmentPlatform* , should write the *UaType* 
 
 The *DataValue* adds additional fields to a *Variant* (see [5.4.2.17](/§\_Ref123196369) ).  
 
- **Table 41\- JSON Object Definition for a DataValue**   
+Table 41 - JSON Object Definition for a DataValue  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
 |UaType|Byte|See the *UaType* field in the *Variant* .|
 |Value|\*|See the *Value* field in the *Variant* .|
 |Dimensions|UInt32|See the *Dimensions* field in the *Variant* .|
-|Status|StatusCode|The status associated with the value.  
-
-Not encoded if the value is Good (0).|
-|SourceTimestamp|DateTime|The source timestamp associated with the value.  
-
-Not encoded if the value is DateTime.MinValue.|
-|SourcePicoseconds|UInt16|The number of 10 Picosecond intervals for the SourceTimestamp.  
-
-Not encoded if the value is 0.|
-|ServerTimestamp|DateTime|The *Server* timestamp associated with the value.  
-
-Not encoded if the value is DateTime.MinValue.|
-|ServerPicoseconds|UInt16|The number of 10 Picosecond intervals for the ServerTimestamp.  
-
-Not encoded if the value is 0.|
+|Status|StatusCode|The status associated with the value.<br>Not encoded if the value is Good (0).|
+|SourceTimestamp|DateTime|The source timestamp associated with the value.<br>Not encoded if the value is DateTime.MinValue.|
+|SourcePicoseconds|UInt16|The number of 10 Picosecond intervals for the SourceTimestamp.<br>Not encoded if the value is 0.|
+|ServerTimestamp|DateTime|The *Server* timestamp associated with the value.<br>Not encoded if the value is DateTime.MinValue.|
+|ServerPicoseconds|UInt16|The number of 10 Picosecond intervals for the ServerTimestamp.<br>Not encoded if the value is 0.|
   
 
   
@@ -2846,14 +2501,12 @@ Not encoded if the value is 0.|
 
 *Decimal* values shall be encoded as a JSON object with the fields in [Table 42](/§\_Ref482950713) .  
 
- **Table 42\- JSON Object Definition for a Decimal**   
+Table 42 - JSON Object Definition for a Decimal  
 
 | **Name** | **Description** |
 |---|---|
 |Scale|A JSON number with the scale applied to the Value.|
-|Value|A JSON string with the Value encoded as a base-10 signed integer.  
-
-(See the XML encoding of Integer values described in [5.3.1.3](/§\_Ref477957966) ).|
+|Value|A JSON string with the Value encoded as a base-10 signed integer.<br>(See the XML encoding of Integer values described in [5.3.1.3](/§\_Ref477957966) ).|
   
 
   
@@ -2892,7 +2545,7 @@ Otherwise, the element is encoded according to the rules defined for the type.
 
 Multidimensional *Arrays* are encoded as JSON object with the fields defined in [Table 43](/§\_Ref161359461) .  
 
- **Table 43\- JSON Object Definition for an inline Matrix**   
+Table 43 - JSON Object Definition for an inline Matrix  
 
 | **Name** | **Description** |
 |---|---|
@@ -2910,7 +2563,7 @@ Note that JSON objects are unordered sets of name-value pairs. The order specifi
 
 Fields which are NULL or have a default value shall be encoded using the rules shown in [Table 44](/§\_Ref83322286) .  
 
- **Table 44\- JSON Encoding Rules for Structures**   
+Table 44 - JSON Encoding Rules for Structures  
 
 | **Field Value** | **Compact** | **Verbose** |
 |---|---|---|
@@ -2990,27 +2643,19 @@ Note that JSON objects are unordered sets of name-value pairs. The order specifi
 
 In the *VerboseEncoding* the bits in the *EncodingMask* are determined by the presence of a field in the JSON object. In the *CompactEncoding* , *EncodingMask* indicates which fields are specified because fields are omitted because they have a default value.  
 
- **Table 45\- JSON Object Definition for a Structures with Optional Fields**   
+Table 45 - JSON Object Definition for a Structures with Optional Fields  
 
 | **Name** | **Description** |
 |---|---|
-|EncodingMask|A bit mask indicating what fields are encoded in the structure (see [5.2.7](/§\_Ref401507564) )  
-
-This mask is encoded as a JSON number.  
-
-The bits are sequentially assigned to optional fields in the order that they are defined.  
-
-This field is omitted in the *VerboseEncoding*|
-|\<FieldName\>|The field in structure encoded according to the rules defined for their *DataType* .  
-
-One entry may exist for each mandatory field and each optional field that is present.|
+|EncodingMask|A bit mask indicating what fields are encoded in the structure (see [5.2.7](/§\_Ref401507564) )<br>This mask is encoded as a JSON number.<br>The bits are sequentially assigned to optional fields in the order that they are defined.<br>This field is omitted in the *VerboseEncoding*|
+|\<FieldName\>|The field in structure encoded according to the rules defined for their *DataType* .<br>One entry may exist for each mandatory field and each optional field that is present.|
   
 
   
 
 Fields which are NULL or have a default value shall be encoded using the rules shown in [Table 46](/§\_Ref83322467) .  
 
- **Table 46\- JSON Encoding Rules for Structures with Optional Fields**   
+Table 46 - JSON Encoding Rules for Structures with Optional Fields  
 
 | **Field Value** | **Field Type** | **Compact** | **Verbose** |
 |---|---|---|---|
@@ -3072,20 +2717,12 @@ Code generators should ensure that the special field names ( *UaType, UaTypeId* 
 
 Note that JSON objects are unordered sets of name-value pairs. The order specified by the *DataTypeDefinition* is not preserved when a *Union* is serialized in JSON.  
 
- **Table 47\- JSON Object Definition for a Union**   
+Table 47 - JSON Object Definition for a Union  
 
 | **Name** | **Description** |
 |---|---|
-|SwitchField|This field is only present in the *CompactEncoding* .  
-
-The identifier for the field in the *Union* which is encoded as a JSON number.  
-
-The valid values for this field follow the conventions defined in [5.2.8](/§\_Ref35886801) .  
-
-A *Union* with no field specified is encoded as an empty JSON object.|
-|\<FieldName \>|The value of the field encoded using the rules that apply to the *DataType* .  
-
-The name of field in the JSON object is the name of the field in the *DataTypeDefinition* .|
+|SwitchField|This field is only present in the *CompactEncoding* .<br>The identifier for the field in the *Union* which is encoded as a JSON number.<br>The valid values for this field follow the conventions defined in [5.2.8](/§\_Ref35886801) .<br>A *Union* with no field specified is encoded as an empty JSON object.|
+|\<FieldName \>|The value of the field encoded using the rules that apply to the *DataType* .<br>The name of field in the JSON object is the name of the field in the *DataTypeDefinition* .|
   
 
   
@@ -3150,7 +2787,7 @@ A *Stack* is expected to have built in knowledge of the *SecurityPolicies* that 
 
 [Table 48](/§\_Ref130057649) defines the contents of a *SecurityPolicy.* Each *SecurityProtocol* mapping specifies how to use each of the parameters in the *SecurityPolicy. A SecurityProtocol* mapping ** may not make use of all of the parameters.  
 
- **Table 48\- SecurityPolicy**   
+Table 48 - SecurityPolicy  
 
 | **Name** | **Description** |
 |---|---|
@@ -3169,9 +2806,7 @@ A *Stack* is expected to have built in knowledge of the *SecurityPolicies* that 
 |SecureChannelNonceLength|The length, in bytes, of the *Nonces* used when opening a *SecureChannel* .|
 |InitializationVectorLength|The length, in bits, of the data used to initialize the symmetric algorithm.|
 |SymmetricSignatureLength|The length, in bits, of the symmetric signature.|
-|LegacySequenceNumbers|If TRUE, the 1024 based SequenceNumber rules apply to the *SecurityPolicy* ;  
-
-If ** FALSE, the 0 based SequenceNumber rules apply. See [6.7.2.4](/§\_Ref35870750) .|
+|LegacySequenceNumbers|If TRUE, the 1024 based SequenceNumber rules apply to the *SecurityPolicy* ;<br>If ** FALSE, the 0 based SequenceNumber rules apply. See [6.7.2.4](/§\_Ref35870750) .|
   
 
   
@@ -3202,7 +2837,7 @@ An *Application Instance Certificate* is a *ByteString* containing the DER encod
 
 [Table 49](/§\_Ref183310394) also provides a mapping from the [RFC 5280](/§RFC3280) terms to the terms used in the abstract definition of an *Application Instance Certificate* defined in [OPC 10000-4](/§UAPart4) .  
 
- **Table 49\- Application Instance Certificate**   
+Table 49 - Application Instance Certificate  
 
 | **Name** | **[OPC 10000-4](/§UAPart4) Parameter Name** | **Description** |
 |---|---|---|
@@ -3211,61 +2846,15 @@ An *Application Instance Certificate* is a *ByteString* containing the DER encod
 |serialNumber|serialNumber|The serial number assigned by the issuer.|
 |signatureAlgorithm|signatureAlgorithm|The algorithm used to sign the *Certificate* .|
 |signature|signature|The signature created by the Issuer.|
-|issuer|issuer|The distinguished name of the *Certificate* used to create the signature.  
-
-The *issuer* field is completely described in [RFC 5280](/§RFC3280) .|
+|issuer|issuer|The distinguished name of the *Certificate* used to create the signature.<br>The *issuer* field is completely described in [RFC 5280](/§RFC3280) .|
 |validity|validTo, validFrom|When the *Certificate* becomes valid and when it expires.|
-|subject|subject|The distinguished name of the application *Instance* .  
-
-The Common Name attribute shall be specified and should be the *applicationName* or a suitable equivalent. The Organization Name attribute shall be the name of the Organization that executes the application instance. This organization is usually not the vendor of the application.  
-
-Other attributes may be specified.  
-
-The *subject* field is completely described in [RFC 5280](/§RFC3280) .|
-|subjectAltName|applicationUri,  
-
-hostnames|The alternate names for the application *Instance* .  
-
-Shall include a uniformResourceIdentifier which is equal to the *applicationUri* . The URI shall be a valid URL (see [RFC 3986](/§RFC3986) ) or a valid URN (see [RFC 8141](/§RFC2141) ).  
-
-*Servers* shall specify a partial or a fully qualified dNSName *or a* static ** IPAddress ** which identifies the machine where the application *Instance* runs. Additional dNSNames may be specified if the machine has multiple names.  
-
-The *subjectAltName* field ** is completely described in [RFC 5280](/§RFC3280) .|
+|subject|subject|The distinguished name of the application *Instance* .<br>The Common Name attribute shall be specified and should be the *applicationName* or a suitable equivalent. The Organization Name attribute shall be the name of the Organization that executes the application instance. This organization is usually not the vendor of the application.<br>Other attributes may be specified.<br>The *subject* field is completely described in [RFC 5280](/§RFC3280) .|
+|subjectAltName|applicationUri,<br>hostnames|The alternate names for the application *Instance* .<br>Shall include a uniformResourceIdentifier which is equal to the *applicationUri* . The URI shall be a valid URL (see [RFC 3986](/§RFC3986) ) or a valid URN (see [RFC 8141](/§RFC2141) ).<br>*Servers* shall specify a partial or a fully qualified dNSName *or a* static ** IPAddress ** which identifies the machine where the application *Instance* runs. Additional dNSNames may be specified if the machine has multiple names.<br>The *subjectAltName* field ** is completely described in [RFC 5280](/§RFC3280) .|
 |publicKey|publicKey|The public key associated with the *Certificate* .|
-|keyUsage|keyUsage|Specifies how the *Certificate* key may be used.  
-
-For RSA keys, the keyUsage shall include digitalSignature, nonRepudiation, keyEncipherment and dataEncipherment.For ECC keys, the keyUsage shall include digitalSignature.Other keyUsage bits are allowed but not recommended.  
-
-Self-signed *Certificates* shall also include keyCertSign.|
-|extendedKeyUsage|keyUsage|Specifies additional limits on how the *Certificate* key may be used.  
-
-For RSA profiles, the extendedKeyUsage shall specify serverAuth for *Servers* and shall specify clientAuth for *Clients* . The extendedKeyUsage should also specify clientAuth for *Servers* .  
-
-For ECC profiles, serverAuth and clientAuth are optional.  
-
-Other extendedKeyUsage bits are allowed.|
+|keyUsage|keyUsage|Specifies how the *Certificate* key may be used.<br>For RSA keys, the keyUsage shall include digitalSignature, nonRepudiation, keyEncipherment and dataEncipherment.For ECC keys, the keyUsage shall include digitalSignature.Other keyUsage bits are allowed but not recommended.<br>Self-signed *Certificates* shall also include keyCertSign.|
+|extendedKeyUsage|keyUsage|Specifies additional limits on how the *Certificate* key may be used.<br>For RSA profiles, the extendedKeyUsage shall specify serverAuth for *Servers* and shall specify clientAuth for *Clients* . The extendedKeyUsage should also specify clientAuth for *Servers* .<br>For ECC profiles, serverAuth and clientAuth are optional.<br>Other extendedKeyUsage bits are allowed.|
 |authorityKeyIdentifier|(No mapping)|Provides more information about the key used to sign the *Certificate* . It shall be specified for *Certificates* signed by a CA. It should be specified for self-signed *Certificates* .|
-|basicConstraints|(No mapping)|The *basicConstraints* field ** is completely described in [RFC 5280](/§RFC3280) .  
-
-The *cA* flag Identifies whether the subject of the *Certificate* is a CA The *pathLength* specifies the maximum number of intermediate CAs in valid chains that follow this *Certificate* .  
-
-  
-
-The *basicConstraints* extension shall be present and shall not be ignored. The extension shall be validated and marking the extension as critical has no effect. For backward interoperability, any error related to the critical mark produced by software libraries shall be suppressed and logged as a warning.  
-
-  
-
-The *cA* flag shall be FALSE for any *ApplicationInstance* *Certificate* , however, TRUE shall be accepted to ensure backward interoperability when validating *ApplicationInstance* *Certificates,* if revocation checks are enabled. If revocation checks are disabled then a *Certificate* with the cA flag set to TRUE should not be accepted. It should be possible to disable backward interoperability in configuration.  
-
-  
-
-If the cA flag is TRUE for a self-signed *ApplicationInstance* *Certificate,* then the pathLength should be 0.  
-
-If an application accepts an *ApplicationInstance* *Certificate with cA* flag set to TRUE, it shall write a warning to the log.  
-
-  
-
-Note that [RFC 6818](/§RFC6818) updates [RFC 5280](/§RFC3280) and explicitly states that self-signed *Certificates* used as end-entity *Certificates* are outside the scope of [RFC 5280](/§RFC3280) . This means the requirement that the CA flag be FALSE for *ApplicationInstance* *Certificates* does not violate [RFC 5280](/§RFC3280) requirements.|
+|basicConstraints|(No mapping)|The *basicConstraints* field ** is completely described in [RFC 5280](/§RFC3280) .<br>The *cA* flag Identifies whether the subject of the *Certificate* is a CA The *pathLength* specifies the maximum number of intermediate CAs in valid chains that follow this *Certificate* .<br><br>The *basicConstraints* extension shall be present and shall not be ignored. The extension shall be validated and marking the extension as critical has no effect. For backward interoperability, any error related to the critical mark produced by software libraries shall be suppressed and logged as a warning.<br><br>The *cA* flag shall be FALSE for any *ApplicationInstance* *Certificate* , however, TRUE shall be accepted to ensure backward interoperability when validating *ApplicationInstance* *Certificates,* if revocation checks are enabled. If revocation checks are disabled then a *Certificate* with the cA flag set to TRUE should not be accepted. It should be possible to disable backward interoperability in configuration.<br><br>If the cA flag is TRUE for a self-signed *ApplicationInstance* *Certificate,* then the pathLength should be 0.<br>If an application accepts an *ApplicationInstance* *Certificate with cA* flag set to TRUE, it shall write a warning to the log.<br><br>Note that [RFC 6818](/§RFC6818) updates [RFC 5280](/§RFC3280) and explicitly states that self-signed *Certificates* used as end-entity *Certificates* are outside the scope of [RFC 5280](/§RFC3280) . This means the requirement that the CA flag be FALSE for *ApplicationInstance* *Certificates* does not violate [RFC 5280](/§RFC3280) requirements.|
   
 
   
@@ -3276,25 +2865,13 @@ A *User Certificate* is a *Certificate* is issued by certifying authority and id
 
 The X.509 v3 fields in a *User Certificates* with specific requirements are shown in [Table 50](/§\_Ref80044389) .  
 
- **Table 50\- User Certificate**   
+Table 50 - User Certificate  
 
 | **Field** | **Description** |
 |---|---|
-|subject|The distinguished name of the User.  
-
-The Common Name attribute shall be specified and should be name of the user. The Organization should be provided.  
-
-Other attributes may be specified.  
-
-The *subject* field is completely described in [RFC 5280](/§RFC3280) .|
+|subject|The distinguished name of the User.<br>The Common Name attribute shall be specified and should be name of the user. The Organization should be provided.<br>Other attributes may be specified.<br>The *subject* field is completely described in [RFC 5280](/§RFC3280) .|
 |authorityKeyIdentifier|Provides more information about the key used to sign the *Certificate* . It shall be specified.|
-|basicConstraints|The *basicConstraints* field ** is completely described in [RFC 5280](/§RFC3280) .  
-
-The *cA* flag Identifies whether the subject of the *Certificate* is a CA The *pathLength* specifies the maximum depth of valid chains that include this *Certificate* .  
-
-The *cA* flag shall be FALSE for *User* *Certificates* .  
-
-The pathLength shall not be present.|
+|basicConstraints|The *basicConstraints* field ** is completely described in [RFC 5280](/§RFC3280) .<br>The *cA* flag Identifies whether the subject of the *Certificate* is a CA The *pathLength* specifies the maximum depth of valid chains that include this *Certificate* .<br>The *cA* flag shall be FALSE for *User* *Certificates* .<br>The pathLength shall not be present.|
   
 
   
@@ -3305,25 +2882,13 @@ An *Issuer* or CA *Certificate* is an X.509 v3 *Certificate* that identifies an 
 
 The X.509 v3 fields in *Issuer* *Certificates* with specific requirements are shown in [Table 51](/§\_Ref80216997) .  
 
- **Table 51\- Issuer Certificate**   
+Table 51 - Issuer Certificate  
 
 | **Field** | **Description** |
 |---|---|
-|subject|The distinguished name of for the authority.  
-
-The Common Name attribute shall be specified.  
-
-The Organization should be provided.  
-
-Other attributes may be specified.  
-
-The *subject* field is completely described in [RFC 5280](/§RFC3280) .|
+|subject|The distinguished name of for the authority.<br>The Common Name attribute shall be specified.<br>The Organization should be provided.<br>Other attributes may be specified.<br>The *subject* field is completely described in [RFC 5280](/§RFC3280) .|
 |authorityKeyIdentifier|Provides more information about the key used to sign the *Certificate* . It shall be specified.|
-|basicConstraints|The *basicConstraints* field ** is completely described in [RFC 5280](/§RFC3280) .  
-
-The *cA* flag Identifies whether the subject of the *Certificate* is a CA The *pathLength* specifies the maximum depth of valid chains that include this *Certificate* .  
-
-The *cA* flag shall be TRUE for *CA* *Certificates* .|
+|basicConstraints|The *basicConstraints* field ** is completely described in [RFC 5280](/§RFC3280) .<br>The *cA* flag Identifies whether the subject of the *Certificate* is a CA The *pathLength* specifies the maximum depth of valid chains that include this *Certificate* .<br>The *cA* flag shall be TRUE for *CA* *Certificates* .|
   
 
   
@@ -3332,7 +2897,7 @@ The *cA* flag shall be TRUE for *CA* *Certificates* .|
 
 A Certificate Revocation List (CRL) is a *ByteString* containing the DER encoded form (see [X690](/§X690) ) of an X.509 v3 CRL. The CRL is issued by certifying authority and contains the serial numbers of the *Certificates* issued by that authority which are no longer valid. All CRLs shall have the extension defined in [Table 49](/§\_Ref183310394) . The extension is defined completely in [RFC 5280](/§RFC3280) .  
 
- **Table 52\- Certificate Revocation List Extensions**   
+Table 52 - Certificate Revocation List Extensions  
 
 | **Extension** | **Description** |
 |---|---|
@@ -3383,7 +2948,7 @@ JSON Web Token (JWT) *UserIdentityTokens* can be passed to the *Server* using th
 
 *Servers* that support JWT authentication shall provide a *UserTokenPolicy* which specifies the *Authorization Service* which provides the token and the parameters needed to access that service. The parameters are specified by a JSON object specified as the *issuerEndpointUrl* . The contents of this JSON object are described in [Table 54](/§\_Ref472362695) . The general UserTokenPolicy settings for JWT are defined in [Table 53](/§\_Ref472630237) .  
 
- **Table 53\- JWT UserTokenPolicy**   
+Table 53 - JWT UserTokenPolicy  
 
 | **Name** | **Description** |
 |---|---|
@@ -3394,48 +2959,18 @@ JSON Web Token (JWT) *UserIdentityTokens* can be passed to the *Server* using th
 
   
 
- **Table 54\- JWT IssuerEndpointUrl Definition**   
+Table 54 - JWT IssuerEndpointUrl Definition  
 
 | **Name** | **Type** | **Required** | **Description** |
 |---|---|---|---|
 |IssuerEndpointUrl|JSON object|Yes|Specifies the parameters for a JWT UserIdentityToken.|
-|ua:resourceId|String|Yes|The URI identifying the *Server* to the *Authorization Service.*  
-
-The default value is the *Server's* *ApplicationUri* .|
-|ua:authorityUrl|String|Yes|The base URL for the *Authorization Service* .  
-
-This URL may be used to discover additional information about the authority.  
-
-This field is equivalent to the "issuer" defined in [OpenID-Discovery](/§OpenIDDiscovery) .|
-|ua:authorityProfileUri|String|Yes|The profile that defines the interactions with the authority.  
-
-The default URI is "http://opcfoundation.org/UA/Authorization\#OPCUA".  
-
-A set of possible authorities are in the *Profile* : [http://opcfoundation.org/UA-Profile/Security/UserToken/Server/JsonWebToken](http://opcfoundation.org/UA-Profile/Security/UserToken/Server/JsonWebToken)|
-|ua:tokenEndpoint|String|Depends on authorityProfileUri|A path relative to the base URL used to request *Access Tokens* .  
-
-If the *authorityProfileUri* is OPCUA, then this is the *NodeId* of the *AuthorizationService Object* encoded as described in [5.4.2.10](/§\_Ref456142221) .  
-
-This field is equivalent to the "token\_endpoint" defined in [OpenID-Discovery](/§OpenIDDiscovery) .|
-|ua:authorizationEndpoint|String|No|A path relative to the base URL used to validate user credentials.  
-
-If the *authorityProfileUri* is OPCUA, then this is the *NodeId* of the *UserTokenProfile Property* of the *AuthorizationService Object* encoded as described in [5.4.2.10](/§\_Ref456142221) .  
-
-This field is equivalent to the "authorization\_endpoint" defined in [OpenID-Discovery](/§OpenIDDiscovery) .|
-|ua:requestTypes|JSON array  
-
-String|No|The list of request types supported by the authority.  
-
-The possible values are described in [6.5.3.2](/§\_Ref80222022) to [6.5.3.4](/§\_Ref80222025) .  
-
-If not specified the default is "authorization\_code".|
-|ua:scopes|JSON array  
-
-String|No|A list of Scopes that are understood by the *Server* .  
-
-If not specified, the *Client* may be able to access any *Scope* supported by the *Authorization Service* .  
-
-This field is equivalent to the "scopes\_supported" defined in OpenID-Discovery.|
+|ua:resourceId|String|Yes|The URI identifying the *Server* to the *Authorization Service.*<br>The default value is the *Server's* *ApplicationUri* .|
+|ua:authorityUrl|String|Yes|The base URL for the *Authorization Service* .<br>This URL may be used to discover additional information about the authority.<br>This field is equivalent to the "issuer" defined in [OpenID-Discovery](/§OpenIDDiscovery) .|
+|ua:authorityProfileUri|String|Yes|The profile that defines the interactions with the authority.<br>The default URI is "http://opcfoundation.org/UA/Authorization\#OPCUA".<br>A set of possible authorities are in the *Profile* : [http://opcfoundation.org/UA-Profile/Security/UserToken/Server/JsonWebToken](http://opcfoundation.org/UA-Profile/Security/UserToken/Server/JsonWebToken)|
+|ua:tokenEndpoint|String|Depends on authorityProfileUri|A path relative to the base URL used to request *Access Tokens* .<br>If the *authorityProfileUri* is OPCUA, then this is the *NodeId* of the *AuthorizationService Object* encoded as described in [5.4.2.10](/§\_Ref456142221) .<br>This field is equivalent to the "token\_endpoint" defined in [OpenID-Discovery](/§OpenIDDiscovery) .|
+|ua:authorizationEndpoint|String|No|A path relative to the base URL used to validate user credentials.<br>If the *authorityProfileUri* is OPCUA, then this is the *NodeId* of the *UserTokenProfile Property* of the *AuthorizationService Object* encoded as described in [5.4.2.10](/§\_Ref456142221) .<br>This field is equivalent to the "authorization\_endpoint" defined in [OpenID-Discovery](/§OpenIDDiscovery) .|
+|ua:requestTypes|JSON array<br>String|No|The list of request types supported by the authority.<br>The possible values are described in [6.5.3.2](/§\_Ref80222022) to [6.5.3.4](/§\_Ref80222025) .<br>If not specified the default is "authorization\_code".|
+|ua:scopes|JSON array<br>String|No|A list of Scopes that are understood by the *Server* .<br>If not specified, the *Client* may be able to access any *Scope* supported by the *Authorization Service* .<br>This field is equivalent to the "scopes\_supported" defined in OpenID-Discovery.|
   
 
   
@@ -3452,36 +2987,18 @@ All *Access Tokens* shall have a signature created by the token issuer.
 
 The JWT format allows the *Authorization Service* to insert any number of fields. The mandatory fields are defined in [RFC 7519](/§RFC7519) . Some additional fields are defined in [Table 55](/§\_Ref198674147) .  
 
- **Table 55\- JWT Access Token Claims**   
+Table 55 - JWT Access Token Claims  
 
 | **Name** | **JSON Type** | **Required** | **Description** |
 |---|---|---|---|
-|sub|string|Yes|The subject for the token.  
-
-This is the equivalent of a UserName or an X509 subjectName.  
-
-If the field "iss" is not present, it shall be a globally unique identifier. If "iss" is present, it shall be unique within the context of the "iss".|
-|iss|string|No|The URI of the issuer.  
-
-For the authorityProfileUri "http://opcfoundation.org/UA/Authorization\#OPCUA" it shall be the *ServiceUri* of the *Authorization Service* (see [OPC 10000-12](/§UAPart12) ).|
+|sub|string|Yes|The subject for the token.<br>This is the equivalent of a UserName or an X509 subjectName.<br>If the field "iss" is not present, it shall be a globally unique identifier. If "iss" is present, it shall be unique within the context of the "iss".|
+|iss|string|No|The URI of the issuer.<br>For the authorityProfileUri "http://opcfoundation.org/UA/Authorization\#OPCUA" it shall be the *ServiceUri* of the *Authorization Service* (see [OPC 10000-12](/§UAPart12) ).|
 |aud|string|Yes|Shall be the *resourceId* specified in the *UserTokenPolicy* (see [6.5.2.2](/§\_Ref209705948) ). This is usually the *Server ApplicationUri* .|
 |exp|number|Yes|The expiration time of the token. It shall be checked before accepting the token.|
-|groups|array|No|A list of groups which are assigned to the subject.  
-
-Usually, a list of unique identifiers for specific security groups.  
-
-For example, Azure AD user account groups may be returned in this claim.|
-|roles|array|No|A list of roles which are assigned to the subject.  
-
-*Roles* apply to the requestor and describe what the requestor can do with the resource.  
-
-*Roles* are list of unique names for roles known to the *Authorization Service* .  
-
-These values are typically mapped to the *Roles* defined in [OPC 10000-3](/§UAPart3) using the identity mappings defined in [OPC 10000-18](/§UAPart18) .|
+|groups|array|No|A list of groups which are assigned to the subject.<br>Usually, a list of unique identifiers for specific security groups.<br>For example, Azure AD user account groups may be returned in this claim.|
+|roles|array|No|A list of roles which are assigned to the subject.<br>*Roles* apply to the requestor and describe what the requestor can do with the resource.<br>*Roles* are list of unique names for roles known to the *Authorization Service* .<br>These values are typically mapped to the *Roles* defined in [OPC 10000-3](/§UAPart3) using the identity mappings defined in [OPC 10000-18](/§UAPart18) .|
 |nbf|number|No|The time when the token becomes valid. If present, it shall be checked before accepting the token.|
-|cnf|object|No|The thumbprint of the *Certificate* which shall be used with the token. If present, the *Server* shall not accept a token unless the *SecureChannel* has been created with the *Certificate* identified by this field.  
-
-The field is a JSON object with a single "x5t\#S256" field which specifies the thumbprint of the *Certificate* . See [RFC 8705](/§RFC8705) .|
+|cnf|object|No|The thumbprint of the *Certificate* which shall be used with the token. If present, the *Server* shall not accept a token unless the *SecureChannel* has been created with the *Certificate* identified by this field.<br>The field is a JSON object with a single "x5t\#S256" field which specifies the thumbprint of the *Certificate* . See [RFC 8705](/§RFC8705) .|
   
 
   
@@ -3560,40 +3077,14 @@ Figure 12 - MessageChunk for Authenticated Encryption Algorithms
 
 Every *MessageChunk* has a *Message* header with the fields defined in [Table 56](/§\_Ref163954977) .  
 
- **Table 56\- OPC UA Secure Conversation ** Message Header**   
+Table 56 - OPC UA Secure Conversation Message Header  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|MessageType|Byte [3]|A three byte ASCII code that identifies the *Message* type.  
-
-The following values are defined at this time:  
-
-MSG A *Message* secured with the keys associated with a channel.  
-
-OPN OpenSecureChannel *Message* .  
-
-CLO  CloseSecureChannel *Message* .|
-|IsFinal|Byte|A one byte ASCII code that indicates whether the *MessageChunk* is the final chunk in a *Message* .  
-
-The following values are defined at this time:  
-
-C An intermediate chunk.  
-
-F The final chunk.  
-
-A The final chunk (used when an error occurred and the *Message* is aborted).  
-
-This field is only meaningful for MessageType of 'MSG'  
-
-This field is always 'F' for other MessageTypes.|
-|MessageSize|UInt32|The length of the *MessageChunk* , in bytes.  
-
-The length starts from the beginning of the MessageType field.|
-|SecureChannelId|UInt32|A unique identifier for the *SecureChannel* assigned by the *Server* .  
-
-If a *Server* receives a SecureChannelId which it does not recognize it shall return an appropriate transport layer error.  
-
-When a *Server* starts the first *SecureChannelId* used should be a value that is likely to be unique after each restart. This ensures that a *Server* restart does not cause previously connected *Clients* to accidently 'reuse' *SecureChannels* that did not belong to them.|
+|MessageType|Byte [3]|A three byte ASCII code that identifies the *Message* type.<br>The following values are defined at this time:<br>MSG A *Message* secured with the keys associated with a channel.<br>OPN OpenSecureChannel *Message* .<br>CLO  CloseSecureChannel *Message* .|
+|IsFinal|Byte|A one byte ASCII code that indicates whether the *MessageChunk* is the final chunk in a *Message* .<br>The following values are defined at this time:<br>C An intermediate chunk.<br>F The final chunk.<br>A The final chunk (used when an error occurred and the *Message* is aborted).<br>This field is only meaningful for MessageType of 'MSG'<br>This field is always 'F' for other MessageTypes.|
+|MessageSize|UInt32|The length of the *MessageChunk* , in bytes.<br>The length starts from the beginning of the MessageType field.|
+|SecureChannelId|UInt32|A unique identifier for the *SecureChannel* assigned by the *Server* .<br>If a *Server* receives a SecureChannelId which it does not recognize it shall return an appropriate transport layer error.<br>When a *Server* starts the first *SecureChannelId* used should be a value that is likely to be unique after each restart. This ensures that a *Server* restart does not cause previously connected *Clients* to accidently 'reuse' *SecureChannels* that did not belong to them.|
   
 
   
@@ -3602,66 +3093,16 @@ When a *Server* starts the first *SecureChannelId* used should be a value that i
 
 The *Message* header is followed by a security header which specifies what cryptography operations have been applied to the *Message* . There are two versions of the security header which depend on the type of security applied to the *Message* . The security header used for asymmetric algorithms is defined in [Table 57](/§\_Ref163971577) . Asymmetric algorithms are used to secure the *OpenSecureChannel* *Messages* . [PKCS \#1](/§Pkcs1) defines a set of asymmetric algorithms that may be used by UASC implementations. The *AsymmetricKeyWrapAlgorithm* element of the *SecurityPolicy* structure defined in [Table 48](/§\_Ref130057649) is not used by UASC implementations.  
 
- **Table 57\- Asymmetric algorithm Security header**   
+Table 57 - Asymmetric algorithm Security header  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|SecurityPolicyUriLength|Int32|The length of the *SecurityPolicyUri* in bytes.  
-
-This value shall not exceed 255 bytes.  
-
-If a URI is not specified this value may be 0 or -1.  
-
-Other negative values are invalid.|
-|SecurityPolicyUri|Byte []|The URI of the *Security Policy* used to secure the *Message* .  
-
-This field is encoded as a [UTF-8](/§UTF8) string without a null terminator.|
-|SenderCertificateLength|Int32|The length of the *SenderCertificate* in bytes.  
-
-This value shall not exceed *MaxSenderCertificateSize* bytes.  
-
-If a certificate is not specified this value may be 0 or -1.  
-
-Other negative values are invalid.|
-|SenderCertificate|Byte []|The X.509 v3 *Certificate* assigned to the sending application *Instance* .  
-
-This is a DER encoded blob.  
-
-The structure of an X.509 v3 *Certificate* is defined in X.509 v3.  
-
-The DER format for a *Certificate* is defined in [X690](/§X690)  
-
-This indicates what *Private Key* was used to sign the *MessageChunk* .  
-
-The *Stack* shall close the channel and report an error to the application if the *SenderCertificate* is too large for the buffer size supported by the transport layer.  
-
-This field shall be null if the *Message* is not signed.  
-
-If the *Certificate* is signed by a CA, the DER encoded CA *Certificate* may be appended after the Certificate in the byte array. If the CA *Certificate* is also signed by another CA this process is repeated until the entire Certificate chain is in the buffer or if *MaxSenderCertificateSize* limit is reached (the process stops after the last whole *Certificate* that can be added without exceeding the *MaxSenderCertificateSize* limit).  
-
-Receivers can extract the *Certificates* from the byte array by using the *Certificate* size contained in DER header (see [X.509 v3](/§X509) ).  
-
-Receivers that do not handle *Certificate* chains shall ignore the extra bytes.|
-|ReceiverCertificateThumbprintLength|Int32|The length of the *ReceiverCertificateThumbprint* in bytes.  
-
-When using RSA *Public Keys* :  
-
-If encrypted, the value of this field is 20 bytes.  
-
-If not encrypted the value may be 0 or -1.  
-
-When using ECC *Public Keys* :  
-
-The value of this field is 20 bytes.  
-
-Other negative values are invalid.|
-|ReceiverCertificateThumbprint|Byte []|The thumbprint of the X.509 v3 *Certificate* assigned to the receiving application *Instance* .  
-
-The thumbprint is the *CertificateDigest* of the DER encoded form of the *Certificate* .  
-
-When using RSA *Public Keys* it indicates which *Public Key* was used to encrypt the *MessageChunk* .  
-
-When using ECC *Public Keys* it indicates the intended recipient of the *MessageChunk* .|
+|SecurityPolicyUriLength|Int32|The length of the *SecurityPolicyUri* in bytes.<br>This value shall not exceed 255 bytes.<br>If a URI is not specified this value may be 0 or -1.<br>Other negative values are invalid.|
+|SecurityPolicyUri|Byte []|The URI of the *Security Policy* used to secure the *Message* .<br>This field is encoded as a [UTF-8](/§UTF8) string without a null terminator.|
+|SenderCertificateLength|Int32|The length of the *SenderCertificate* in bytes.<br>This value shall not exceed *MaxSenderCertificateSize* bytes.<br>If a certificate is not specified this value may be 0 or -1.<br>Other negative values are invalid.|
+|SenderCertificate|Byte []|The X.509 v3 *Certificate* assigned to the sending application *Instance* .<br>This is a DER encoded blob.<br>The structure of an X.509 v3 *Certificate* is defined in X.509 v3.<br>The DER format for a *Certificate* is defined in [X690](/§X690)<br>This indicates what *Private Key* was used to sign the *MessageChunk* .<br>The *Stack* shall close the channel and report an error to the application if the *SenderCertificate* is too large for the buffer size supported by the transport layer.<br>This field shall be null if the *Message* is not signed.<br>If the *Certificate* is signed by a CA, the DER encoded CA *Certificate* may be appended after the Certificate in the byte array. If the CA *Certificate* is also signed by another CA this process is repeated until the entire Certificate chain is in the buffer or if *MaxSenderCertificateSize* limit is reached (the process stops after the last whole *Certificate* that can be added without exceeding the *MaxSenderCertificateSize* limit).<br>Receivers can extract the *Certificates* from the byte array by using the *Certificate* size contained in DER header (see [X.509 v3](/§X509) ).<br>Receivers that do not handle *Certificate* chains shall ignore the extra bytes.|
+|ReceiverCertificateThumbprintLength|Int32|The length of the *ReceiverCertificateThumbprint* in bytes.<br>When using RSA *Public Keys* :<br>If encrypted, the value of this field is 20 bytes.<br>If not encrypted the value may be 0 or -1.<br>When using ECC *Public Keys* :<br>The value of this field is 20 bytes.<br>Other negative values are invalid.|
+|ReceiverCertificateThumbprint|Byte []|The thumbprint of the X.509 v3 *Certificate* assigned to the receiving application *Instance* .<br>The thumbprint is the *CertificateDigest* of the DER encoded form of the *Certificate* .<br>When using RSA *Public Keys* it indicates which *Public Key* was used to encrypt the *MessageChunk* .<br>When using ECC *Public Keys* it indicates the intended recipient of the *MessageChunk* .|
   
 
   
@@ -3702,13 +3143,11 @@ The *MessageChunkSize* depends on the transport protocol but shall be at least 8
 
 The security header used for symmetric algorithms defined in [Table 58](/§\_Ref163971907) . Symmetric algorithms are used to secure all *Messages* other than the *OpenSecureChannel* *Messages* . [FIPS 197](/§Fips197) define symmetric encryption algorithms that UASC implementations may use. [FIPS 180-4](/§Fips180) and [HMAC](/§Hmac) define some symmetric signature algorithms.  
 
- **Table 58\- Symmetric algorithm Security header**   
+Table 58 - Symmetric algorithm Security header  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|TokenId|UInt32|A unique identifier for the *SecureChannel* *SecurityToken* used to secure the *Message* .  
-
-This identifier is returned by the *Server* in an *OpenSecureChannel* response *Message* . If a *Server* receives a TokenId which it does not recognize it shall return an appropriate transport layer error.|
+|TokenId|UInt32|A unique identifier for the *SecureChannel* *SecurityToken* used to secure the *Message* .<br>This identifier is returned by the *Server* in an *OpenSecureChannel* response *Message* . If a *Server* receives a TokenId which it does not recognize it shall return an appropriate transport layer error.|
   
 
   
@@ -3717,7 +3156,7 @@ This identifier is returned by the *Server* in an *OpenSecureChannel* response *
 
 The security header is always followed by the sequence header which is defined in [Table 59](/§\_Ref171766345) . The sequence header ensures that the first encrypted block of every *Message* sent over a channel will start with different data.  
 
- **Table 59\- Sequence header**   
+Table 59 - Sequence header  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
@@ -3743,20 +3182,14 @@ The sequence header is followed by the *Message* body which is encoded with the 
 
 Each *MessageChunk* when using *SecurityPolicies* with an *Unauthenticated Encryption* algorithms have a footer with the fields defined in [Table 60](/§\_Ref35524563) .  
 
- **Table 60\- ** Message Footer for Unauthenticated Encryption Algorithms**   
+Table 60 - Message Footer for Unauthenticated Encryption Algorithms  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
 |PaddingSize|Byte|The number of padding bytes (not including the byte for the PaddingSize).|
-|Padding|OctetString|Padding added to the end of the *Message* to ensure length of the data to encrypt is an integer multiple of the encryption block size.  
-
-The value of each byte of the padding is equal to PaddingSize.|
+|Padding|OctetString|Padding added to the end of the *Message* to ensure length of the data to encrypt is an integer multiple of the encryption block size.<br>The value of each byte of the padding is equal to PaddingSize.|
 |ExtraPaddingSize|Byte|The most significant byte of a two-byte integer used to specify the padding size when the key used to encrypt the message chunk is larger than 2048 bits. This field is omitted if the key length is less than or equal to 2048 bits.|
-|Signature|OctetString|The signature for the *MessageChunk* .  
-
-The signature includes the headers, all *Message* data, the *PaddingSize* and the *Padding* .  
-
-The signature is encoded as sequence of *Bytes* with a length specified by the *SecurityPolicy.*|
+|Signature|OctetString|The signature for the *MessageChunk* .<br>The signature includes the headers, all *Message* data, the *PaddingSize* and the *Padding* .<br>The signature is encoded as sequence of *Bytes* with a length specified by the *SecurityPolicy.*|
   
 
   
@@ -3785,15 +3218,11 @@ The Signature field is not present if the *MessageChunk* is not signed.
 
 Each *MessageChunk* when using *SecurityPolicies* with an *Authenticated Encryption* algorithms have a footer with the fields defined in [Table 61](/§\_Ref35524528) .  
 
- **Table 61\- ** Message Footer for Authenticated Encryption Algorithms**   
+Table 61 - Message Footer for Authenticated Encryption Algorithms  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|Signature|OctetString|The signature for the *MessageChunk* .  
-
-The signature includes the headers and all *Message* data.  
-
-The signature is encoded as sequence of *Bytes* with a length specified by the *SecurityPolicy.*|
+|Signature|OctetString|The signature for the *MessageChunk* .<br>The signature includes the headers and all *Message* data.<br>The signature is encoded as sequence of *Bytes* with a length specified by the *SecurityPolicy.*|
   
 
   
@@ -3802,20 +3231,12 @@ The signature is encoded as sequence of *Bytes* with a length specified by the *
 
 *MessageChunks* are sent as they are encoded. *MessageChunks* belonging to the same *Message* shall be sent sequentially. If an error occurs creating a *MessageChunk* then the sender shall send a final *MessageChunk* to the receiver that tells the receiver that an error occurred and that it should discard the previous chunks. The sender indicates that the *MessageChunk* contains an error by setting the IsFinal flag to 'A' (for Abort). [Table 62](/§\_Ref187931392) specifies the contents of the *Message* abort *MessageChunk* .  
 
- **Table 62\- OPC UA Secure Conversation ** Message abort body**   
+Table 62 - OPC UA Secure Conversation Message abort body  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|Error|UInt32|The numeric code for the error.  
-
-Possible values are listed in [Table 77](/§\_Ref164020643) .|
-|Reason|String|A more verbose description of the error.  
-
-This string shall not be more than 4096 bytes.  
-
-A *Client* shall ignore strings that are longer than this.  
-
-Any security related information shall not be returned. This includes any indication of the reason that caused *Bad\_SecurityChecksFailed* to be returned.|
+|Error|UInt32|The numeric code for the error.<br>Possible values are listed in [Table 77](/§\_Ref164020643) .|
+|Reason|String|A more verbose description of the error.<br>This string shall not be more than 4096 bytes.<br>A *Client* shall ignore strings that are longer than this.<br>Any security related information shall not be returned. This includes any indication of the reason that caused *Bad\_SecurityChecksFailed* to be returned.|
   
 
   
@@ -3828,11 +3249,13 @@ Most *Messages* require a *SecureChannel* to be established. A *Client* does thi
 
 Note that [OPC 10000-4](/§UAPart4) is an abstract specification which defines interfaces that can work with any protocol. This document provides a concrete implementation for specific protocols. This document is the normative reference for all protocols and takes precedence if there are differences with [OPC 10000-4](/§UAPart4) .  
 
- **Table 63\- OPC UA Secure Conversation OpenSecureChannel Service**   
+Table 63 - OPC UA Secure Conversation OpenSecureChannel Service  
 
 | **Name** | **Data Type** |
 |---|---|
+  
 | **Request** ||
+|---|---|
 |RequestHeader|RequestHeader|
 |ClientProtocolVersion|UInt32|
 |RequestType|SecurityTokenRequestType|
@@ -3840,7 +3263,9 @@ Note that [OPC 10000-4](/§UAPart4) is an abstract specification which defines i
 |ClientNonce|ByteString|
 |RequestedLifetime|UInt32|
 |||
+  
 | **Response** ||
+|---|---|
 |ResponseHeader|ResponseHeader|
 |ServerProtocolVersion|UInt32|
 |SecurityToken|ChannelSecurityToken|
@@ -3905,7 +3330,7 @@ The lengths of the keys that need to be generated depend on the *SecurityPolicy*
 
 The pseudo random function requires a secret and a seed. These values are derived from the *Nonces* exchanged in the *OpenSecureChannel* request and response. [Table 64](/§\_Ref482623701) specifies how to derive the secrets and seeds when using RSA based *SecurityPolicies* .  
 
- **Table 64\- PRF inputs for RSA based SecurityPolicies**   
+Table 64 - PRF inputs for RSA based SecurityPolicies  
 
 | **Name** | **Derivation** |
 |---|---|
@@ -3919,7 +3344,7 @@ The pseudo random function requires a secret and a seed. These values are derive
 
 The parameters passed to the pseudo random function are specified in [Table 65](/§\_Ref164010221) .  
 
- **Table 65\- Cryptography key generation parameters**   
+Table 65 - Cryptography key generation parameters  
 
 | **Key** | **Secret** | **Seed** | **Length** | **Offset** |
 |---|---|---|---|---|
@@ -4089,7 +3514,7 @@ Where
 
 The client keys are extracted from the keying material created with IKM=shared secret, Salt= *ClientSalt* and Info= *ClientSalt* as shown in [Table 66](/§\_Ref2328109) .  
 
- **Table 66\- Deriving Client Keys from Keying Material**   
+Table 66 - Deriving Client Keys from Keying Material  
 
 | **Name** | **Offset** | **Length** |
 |---|---|---|
@@ -4102,7 +3527,7 @@ The client keys are extracted from the keying material created with IKM=shared s
 
 The server keys are extracted from the keying material created with IKM=shared secret, Salt= *ServerSalt* and Info= *ServerSalt* as shown in [Table 67](/§\_Ref525491083) .  
 
- **Table 67\- Deriving Server Keys from Keying Material**   
+Table 67 - Deriving Server Keys from Keying Material  
 
 | **Name** | **Offset** | **Length** |
 |---|---|---|
@@ -4129,18 +3554,12 @@ Figure 15 - Signing and Encryption with Unauthenticated Encryption
 
 In addition, a unique *InitializationVector* is needed for each *Message* . This value constructed from the *ClientInitializationVector* or *ServerInitializationVector* where the first 8 bytes are XORed with the values in [Table 68](/§\_Ref35543669) encoded as described in [5.2.2.2](/§\_Ref90086478) .  
 
- **Table 68\- Creating a Mask for the Initialization Vector**   
+Table 68 - Creating a Mask for the Initialization Vector  
 
 | **Name** | **Bytes** | **Length** |
 |---|---|---|
-|TokenId|4|The *TokenId* specified in the *SecurityHeader* of *MessageChunk* being processed.  
-
-It is encoded as a *UInt32* as described in 5.2.2.2.|
-|LastSequenceNumber|4|The *SequenceNumber* specified in the *SequenceHeader* of last *MessageChunk* sent in the same direction on the *SecureChannel* .  
-
-The value is 0 to indicate there is no *LastSequenceNumber* for the first *MessageChunk* which is always the *OpenSecureChannel Message.*  
-
-It is encoded as a *UInt32* as described in 5.2.2.2.|
+|TokenId|4|The *TokenId* specified in the *SecurityHeader* of *MessageChunk* being processed.<br>It is encoded as a *UInt32* as described in 5.2.2.2.|
+|LastSequenceNumber|4|The *SequenceNumber* specified in the *SequenceHeader* of last *MessageChunk* sent in the same direction on the *SecureChannel* .<br>The value is 0 to indicate there is no *LastSequenceNumber* for the first *MessageChunk* which is always the *OpenSecureChannel Message.*<br>It is encoded as a *UInt32* as described in 5.2.2.2.|
   
 
   
@@ -4171,14 +3590,12 @@ If the *Client* does not provide *SecurityPolicyUri* in the call to *CreateSessi
 
 [OPC 10000-4](/§UAPart4) defines *AdditionalParametersType* which is a list of name-value pairs. An instance of this type is passed in the *AdditionalHeader* field. Instances of the *EphemeralKeyType* defined in [OPC 10000-4](/§UAPart4) are passed as values in the name-value pair list in the response messages. The names used for the parameters defined for the *CreateSession/ActivateSession* exchange are defined in [Table 69](/§\_Ref524457115) .  
 
- **Table 69\- Additional Header Key Names**   
+Table 69 - Additional Header Key Names  
 
 | **Name** | **DataType** | **Description** |
 |---|---|---|
 |ECDHPolicyUri|String|Specifies the *SecurityPolicyUri* used for the *EphemeralKey* s.|
-|ECDHKey|EphemeralKeyType|Specifies an *EphemeralKey* .  
-
-If the *EphemeralKey* could not be created a *StatusCode* indicating the reason for the error is used instead of an instance of *EphemeralKeyType* .|
+|ECDHKey|EphemeralKeyType|Specifies an *EphemeralKey* .<br>If the *EphemeralKey* could not be created a *StatusCode* indicating the reason for the error is used instead of an instance of *EphemeralKeyType* .|
   
 
   
@@ -4213,7 +3630,7 @@ Salt is a sequence of bytes.
 
 The encryption keys are extracted from the keying material created with IKM=shared secret, Salt=SecretSalt and Info=SecretSalt as shown in [Table 70](/§\_Ref525272562) .  
 
- **Table 70\- Deriving Keys from Keying Material**   
+Table 70 - Deriving Keys from Keying Material  
 
 | **Name** | **Offset** | **Length** |
 |---|---|---|
@@ -4247,23 +3664,11 @@ Figure 17 - OPC UA Connection Protocol Message structure
 
 Every OPC UA Connection Protocol *Message* has a header with the fields defined in [Table 71](/§\_Ref165969843) .  
 
- **Table 71\- OPC UA Connection Protocol Message header**   
+Table 71 - OPC UA Connection Protocol Message header  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
-|MessageType|Byte [3]|A three byte ASCII code that identifies the *Message* type.  
-
-The following values are defined at this time:  
-
-HEL  a *Hello* *Message* .  
-
-ACK an *Acknowledge* *Message* .  
-
-ERR an *Error* *Message* .  
-
-RHE  a *ReverseHello* *Message* .  
-
-The *SecureChannel* layer defines additional values which the OPC UA Connection Protocol ** layer shall accept.|
+|MessageType|Byte [3]|A three byte ASCII code that identifies the *Message* type.<br>The following values are defined at this time:<br>HEL  a *Hello* *Message* .<br>ACK an *Acknowledge* *Message* .<br>ERR an *Error* *Message* .<br>RHE  a *ReverseHello* *Message* .<br>The *SecureChannel* layer defines additional values which the OPC UA Connection Protocol ** layer shall accept.|
 |Reserved|Byte [1]|Ignored. shall be set to the ASCII codes for 'F' if the *MessageType* is one of the values supported by the OPC UA Connection Protocol.|
 |MessageSize|UInt32|The length of the *Message* , in bytes. This value includes the 8 bytes for the *Message* header.|
   
@@ -4278,48 +3683,16 @@ The OPC UA Connection Protocol layer shall verify the *MessageType* and make sur
 
 The Hello *Message* has the additional fields shown in [Table 72](/§\_Ref164020144) .  
 
- **Table 72\- OPC UA Connection Protocol ** Hello Message**   
+Table 72 - OPC UA Connection Protocol Hello Message  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|ProtocolVersion|UInt32|The version of the UACP protocol requested by the *Client* .  
-
-If *Server* does not support the requested version or any lower version it rejects the *Client* by returning *Bad\_ProtocolVersionUnsupported* .  
-
-If the *Server* supports the requested version or a lower version it shall return the version it will use in the *Acknowledge* *Message* .  
-
-The *ProtocolVersion* for this version of the standard is 0.|
-|ReceiveBufferSize|UInt32|The largest *MessageChunk* that the sender can receive.  
-
-Shall be at least 1024 bytes if the sender intends to use an ECC *SecurityPolicy* .  
-
-Shall be at least 8192 bytes otherwise.|
-|SendBufferSize|UInt32|The largest *MessageChunk* that the sender will send.  
-
-Shall be at least 1024 bytes if the sender intends to use an ECC *SecurityPolicy* .  
-
-Shall be at least 8192 bytes otherwise.|
-|MaxMessageSize|UInt32|The maximum size for any response *Message* .  
-
-If *MessageChunks* have not been sent, the *Server* shall return an *Error* *Message* with a *Bad\_ResponseTooLarge* error if a response *Message* exceeds this value.  
-
-If *MessageChunks* have already been sent the *Server* shall abort the *Message* as described in [6.7.3](/§\_Ref188022819) .  
-
-The *Message* size is calculated using the unencrypted *Message* body.  
-
-A value of zero indicates that the *Client* has no limit.|
-|MaxChunkCount|UInt32|The maximum number of chunks in any response *Message* .  
-
-The *Server* shall abort the *Message* with a *Bad\_ResponseTooLarge* *Error* *Message* if a response *Message* exceeds this value.  
-
-The mechanism for aborting *Messages* is described fully in [6.7.3](/§\_Ref188022819) .  
-
-A value of zero indicates that the *Client* has no limit.|
-|EndpointUrl|String|The URL of the *Endpoint* which the *Client* wished to connect to.  
-
-The encoded value shall be less than 4096 bytes.  
-
-*Servers* shall return a Bad\_TcpEndpointUrlInvalid *Error* *Message* and close the connection if the length exceeds 4096 or if it does not recognize the resource identified by the URL.|
+|ProtocolVersion|UInt32|The version of the UACP protocol requested by the *Client* .<br>If *Server* does not support the requested version or any lower version it rejects the *Client* by returning *Bad\_ProtocolVersionUnsupported* .<br>If the *Server* supports the requested version or a lower version it shall return the version it will use in the *Acknowledge* *Message* .<br>The *ProtocolVersion* for this version of the standard is 0.|
+|ReceiveBufferSize|UInt32|The largest *MessageChunk* that the sender can receive.<br>Shall be at least 1024 bytes if the sender intends to use an ECC *SecurityPolicy* .<br>Shall be at least 8192 bytes otherwise.|
+|SendBufferSize|UInt32|The largest *MessageChunk* that the sender will send.<br>Shall be at least 1024 bytes if the sender intends to use an ECC *SecurityPolicy* .<br>Shall be at least 8192 bytes otherwise.|
+|MaxMessageSize|UInt32|The maximum size for any response *Message* .<br>If *MessageChunks* have not been sent, the *Server* shall return an *Error* *Message* with a *Bad\_ResponseTooLarge* error if a response *Message* exceeds this value.<br>If *MessageChunks* have already been sent the *Server* shall abort the *Message* as described in [6.7.3](/§\_Ref188022819) .<br>The *Message* size is calculated using the unencrypted *Message* body.<br>A value of zero indicates that the *Client* has no limit.|
+|MaxChunkCount|UInt32|The maximum number of chunks in any response *Message* .<br>The *Server* shall abort the *Message* with a *Bad\_ResponseTooLarge* *Error* *Message* if a response *Message* exceeds this value.<br>The mechanism for aborting *Messages* is described fully in [6.7.3](/§\_Ref188022819) .<br>A value of zero indicates that the *Client* has no limit.|
+|EndpointUrl|String|The URL of the *Endpoint* which the *Client* wished to connect to.<br>The encoded value shall be less than 4096 bytes.<br>*Servers* shall return a Bad\_TcpEndpointUrlInvalid *Error* *Message* and close the connection if the length exceeds 4096 or if it does not recognize the resource identified by the URL.|
   
 
   
@@ -4332,39 +3705,15 @@ If the *Server* does not have sufficient resources to allow the establishment of
 
 The *Acknowledge* *Message* has the additional fields shown in [Table 73](/§\_Ref179131842) .  
 
- **Table 73\- OPC UA Connection Protocol Acknowledge Message**   
+Table 73 - OPC UA Connection Protocol Acknowledge Message  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
-|ProtocolVersion|UInt32|A protocol version supported by the *Server* that is less than or equal to the protocol version requested in the *Hello* *Message* .  
-
-If the *Client* accepts the protocol version it shall ensure that it sends *Messages* that conform to this version.  
-
-The *ProtocolVersion* for this version of the standard is 0.|
-|ReceiveBufferSize|UInt32|The largest *MessageChunk* that the sender can receive.  
-
-This value shall not be larger than the *SendBufferSize* requested in the Hello *Message* .  
-
-Shall be at least 8192 bytes if the *SendBufferSize* requested in the Hello *Message is* \>= 8192 bytes. Shall be at least 1024 bytes otherwise.|
-|SendBufferSize|UInt32|The largest *MessageChunk* that the sender will send.  
-
-This value shall not be larger than the *ReceiveBufferSize* requested in the Hello *Message* .  
-
-Shall be at least 8192 bytes if the *ReceiveBufferSize* requested in the Hello *Message is* \>= 8192 bytes. Shall be at least 1024 bytes otherwise.|
-|MaxMessageSize|UInt32|The maximum size for any request *Message* .  
-
-If a request *Message* exceeds this value the *Client* shall report a *Bad\_* *Bad\_RequestTooLarge* error to the application. If *MessageChunks* have already been sent the *Client* shall also abort the *Message* as described in [6.7.3](/§\_Ref188022819) .  
-
-The *Message* size is calculated using the unencrypted *Message* body.  
-
-A value of zero indicates that the *Server* has no limit.|
-|MaxChunkCount|UInt32|The maximum number of chunks in any request *Message* .  
-
-The *Client* shall abort the *Message* with a *Bad\_RequestTooLarge* *StatusCode* if a request *Message* exceeds this value.  
-
-The mechanism for aborting *Messages* is described fully in [6.7.3](/§\_Ref188022819) .  
-
-A value of zero indicates that the *Server* has no limit.|
+|ProtocolVersion|UInt32|A protocol version supported by the *Server* that is less than or equal to the protocol version requested in the *Hello* *Message* .<br>If the *Client* accepts the protocol version it shall ensure that it sends *Messages* that conform to this version.<br>The *ProtocolVersion* for this version of the standard is 0.|
+|ReceiveBufferSize|UInt32|The largest *MessageChunk* that the sender can receive.<br>This value shall not be larger than the *SendBufferSize* requested in the Hello *Message* .<br>Shall be at least 8192 bytes if the *SendBufferSize* requested in the Hello *Message is* \>= 8192 bytes. Shall be at least 1024 bytes otherwise.|
+|SendBufferSize|UInt32|The largest *MessageChunk* that the sender will send.<br>This value shall not be larger than the *ReceiveBufferSize* requested in the Hello *Message* .<br>Shall be at least 8192 bytes if the *ReceiveBufferSize* requested in the Hello *Message is* \>= 8192 bytes. Shall be at least 1024 bytes otherwise.|
+|MaxMessageSize|UInt32|The maximum size for any request *Message* .<br>If a request *Message* exceeds this value the *Client* shall report a *Bad\_* *Bad\_RequestTooLarge* error to the application. If *MessageChunks* have already been sent the *Client* shall also abort the *Message* as described in [6.7.3](/§\_Ref188022819) .<br>The *Message* size is calculated using the unencrypted *Message* body.<br>A value of zero indicates that the *Server* has no limit.|
+|MaxChunkCount|UInt32|The maximum number of chunks in any request *Message* .<br>The *Client* shall abort the *Message* with a *Bad\_RequestTooLarge* *StatusCode* if a request *Message* exceeds this value.<br>The mechanism for aborting *Messages* is described fully in [6.7.3](/§\_Ref188022819) .<br>A value of zero indicates that the *Server* has no limit.|
   
 
   
@@ -4373,18 +3722,12 @@ A value of zero indicates that the *Server* has no limit.|
 
 The *Error* *Message* has the additional fields shown in [Table 74](/§\_Ref164020837) .  
 
- **Table 74\- OPC UA Connection Protocol Error Message**   
+Table 74 - OPC UA Connection Protocol Error Message  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
-|Error|UInt32|The numeric code for the error.  
-
-Possible values are listed in [Table 77](/§\_Ref164020643) .|
-|Reason|String|A more verbose description of the error.  
-
-This string shall not be more than 4096 bytes.  
-
-A *Client* shall ignore strings that are longer than this.|
+|Error|UInt32|The numeric code for the error.<br>Possible values are listed in [Table 77](/§\_Ref164020643) .|
+|Reason|String|A more verbose description of the error.<br>This string shall not be more than 4096 bytes.<br>A *Client* shall ignore strings that are longer than this.|
   
 
   
@@ -4395,24 +3738,12 @@ The socket is always closed gracefully by the *Client* after it receives an *Err
 
 The *ReverseHello* *Message* has the additional fields shown in [Table 75](/§\_Ref456137651) .  
 
- **Table 75\- OPC UA Connection Protocol ReverseHello Message**   
+Table 75 - OPC UA Connection Protocol ReverseHello Message  
 
 | **Name** | **Data Type** | **Description** |
 |---|---|---|
-|ServerUri|String|The *ApplicationUri* of the *Server* which sent the *Message* .  
-
-The encoded value shall be less than 4096 bytes.  
-
-*Client* shall return a Bad\_TcpEndpointUrlInvalid error and close the connection if the length exceeds 4096 or if it does not recognize the *Server* identified by the URI.|
-|EndpointUrl|String|The URL of the *Endpoint* which the *Client* uses when establishing the *SecureChannel* .  
-
-This value shall be passed back to the *Server* in the *Hello* *Message* .  
-
-The encoded value shall be less than 4096 bytes.  
-
-*Clients* shall return a Bad\_TcpEndpointUrlInvalid error and close the connection if the length exceeds 4096 or if it does not recognize the resource identified by the URL.  
-
-This value is a unique identifier for the *Server* which the *Client* may use to look up configuration information. It should be one of the URLs returned by the *GetEndpoints* *Service* .|
+|ServerUri|String|The *ApplicationUri* of the *Server* which sent the *Message* .<br>The encoded value shall be less than 4096 bytes.<br>*Client* shall return a Bad\_TcpEndpointUrlInvalid error and close the connection if the length exceeds 4096 or if it does not recognize the *Server* identified by the URI.|
+|EndpointUrl|String|The URL of the *Endpoint* which the *Client* uses when establishing the *SecureChannel* .<br>This value shall be passed back to the *Server* in the *Hello* *Message* .<br>The encoded value shall be less than 4096 bytes.<br>*Clients* shall return a Bad\_TcpEndpointUrlInvalid error and close the connection if the length exceeds 4096 or if it does not recognize the resource identified by the URL.<br>This value is a unique identifier for the *Server* which the *Client* may use to look up configuration information. It should be one of the URLs returned by the *GetEndpoints* *Service* .|
   
 
   
@@ -4451,37 +3782,13 @@ For *Server*\-initiated connections, the *Server* needs to be configured and ena
 
 *Servers* shall maintain at least one open socket without an active *Session* with each *Client* it is configured to connect to. *Servers* may delay re-connecting if the *Client* reports an error. [Table 76](/§\_Ref138186180) describes the process in full and how the *Server* is expected to react to different actions by the *Client* .  
 
- **Table 76\- Client and Server Handshake during Reverse Connect**   
+Table 76 - Client and Server Handshake during Reverse Connect  
 
 | **Action** | **Notes** |
 |---|---|
-|Open Connection|*Server* creates a socket to a URL specified in its configuration.  
-
-*Client* shall close the socket after short delay if no *ReverseHello* *Message* received.  
-
-*Server* shall create a new socket because it cannot know if it was a network issue or due to action by the *Client* .|
-|Reverse Hello|*Server* sends *ReverseHello* with its *ApplicationUri* .  
-
-*Client* may check the *ApplicationUri* . If it is not acceptable it shall close the socket.  
-
-*Client* shall send an *Error Message* with the code *Bad\_ServerTooBusy* if it does not have enough resources to keep the socket open.  
-
-*Client* may save socket for use in the future (the sequence may pause here).  
-
-If the *Server* receives an *Error Message* it shall close the socket, log the error and reconnects after a delay specified in its configuration.  
-
-If the socket is closed without an *Error Message* , the *Server* shall create a new socket with or without a delay and sends a new *ReverseHello Message* .|
-|HelloAcknowledgeOpen Secure Channel RequestOpen Secure Channel Response  
-
-|*Client* establishes a *SecureChannel* and verifies that it trusts the *Server* .  
-
-*Client* may save the *SecureChannel* for use in the future (the sequence may pause here).  
-
-*Client* may use *SecureChannel* for *Discovery* or *Session-less Service* invocations.  
-
-Once a *SecureChannel* is established, the *Server* shall create a new socket if there is not already one without an active *SecureChannel* .  
-
-If the *SecureChannel* is closed, the *Server* shall create a new socket if there is not already one without an active *SecureChannel* .|
+|Open Connection|*Server* creates a socket to a URL specified in its configuration.<br>*Client* shall close the socket after short delay if no *ReverseHello* *Message* received.<br>*Server* shall create a new socket because it cannot know if it was a network issue or due to action by the *Client* .|
+|Reverse Hello|*Server* sends *ReverseHello* with its *ApplicationUri* .<br>*Client* may check the *ApplicationUri* . If it is not acceptable it shall close the socket.<br>*Client* shall send an *Error Message* with the code *Bad\_ServerTooBusy* if it does not have enough resources to keep the socket open.<br>*Client* may save socket for use in the future (the sequence may pause here).<br>If the *Server* receives an *Error Message* it shall close the socket, log the error and reconnects after a delay specified in its configuration.<br>If the socket is closed without an *Error Message* , the *Server* shall create a new socket with or without a delay and sends a new *ReverseHello Message* .|
+|HelloAcknowledgeOpen Secure Channel RequestOpen Secure Channel Response<br>|*Client* establishes a *SecureChannel* and verifies that it trusts the *Server* .<br>*Client* may save the *SecureChannel* for use in the future (the sequence may pause here).<br>*Client* may use *SecureChannel* for *Discovery* or *Session-less Service* invocations.<br>Once a *SecureChannel* is established, the *Server* shall create a new socket if there is not already one without an active *SecureChannel* .<br>If the *SecureChannel* is closed, the *Server* shall create a new socket if there is not already one without an active *SecureChannel* .|
 |Create Session|*Client* establishes a *Session* .|
   
 
@@ -4507,39 +3814,17 @@ When a protocol level error occurs that cannot be recovered, the *Server* shall 
 
 The possible OPC UA Connection Protocol errors are defined in [Table 77](/§\_Ref164020643) .  
 
- **Table 77\- OPC UA Connection Protocol ** error codes**   
+Table 77 - OPC UA Connection Protocol error codes  
 
 | **Name** | **Description** |
 |---|---|
-|Bad\_TcpServerTooBusy|The *Server* cannot process the request because it is too busy.  
-
-It is up to the *Server* to determine when it needs to return this *Message* .  
-
-A *Server* can control the how frequently a *Client* reconnects by waiting to return this error.|
-|Bad\_TcpMessageTypeInvalid|The type of the *Message* specified in the header invalid.  
-
-Each *Message* starts with a 4-byte sequence of ASCII values that identifies the *Message* type.  
-
-The *Server* returns this error if the *Message* type is not accepted.  
-
-Some of the *Message* types are defined by the *SecureChannel* layer.|
-|Bad\_TcpSecureChannelUnknown|The SecureChannelId and/or TokenId are not currently in use.  
-
-This error is reported by the *SecureChannel* layer.|
-|Bad\_TcpMessageTooLarge|The size of the *MessageChunk* specified in the header is too large.  
-
-The *Server* returns this error if the *MessageChunk* size exceeds its maximum buffer size or the receive buffer size negotiated during the Hello/Acknowledge exchange.|
-|Bad\_Timeout|A timeout occurred while accessing a resource.  
-
-It is up to the *Server* to determine when a timeout occurs.|
-|Bad\_TcpNotEnoughResources|There are not enough resources to process the request.  
-
-The *Server* returns this error when it runs out of memory or encounters similar resource problems.  
-
-A *Server* can control the how frequently a *Client* reconnects by waiting to return this error.|
-|Bad\_TcpInternalError|An internal error occurred.  
-
-This should only be returned if an unexpected configuration or programming error occurs.|
+|Bad\_TcpServerTooBusy|The *Server* cannot process the request because it is too busy.<br>It is up to the *Server* to determine when it needs to return this *Message* .<br>A *Server* can control the how frequently a *Client* reconnects by waiting to return this error.|
+|Bad\_TcpMessageTypeInvalid|The type of the *Message* specified in the header invalid.<br>Each *Message* starts with a 4-byte sequence of ASCII values that identifies the *Message* type.<br>The *Server* returns this error if the *Message* type is not accepted.<br>Some of the *Message* types are defined by the *SecureChannel* layer.|
+|Bad\_TcpSecureChannelUnknown|The SecureChannelId and/or TokenId are not currently in use.<br>This error is reported by the *SecureChannel* layer.|
+|Bad\_TcpMessageTooLarge|The size of the *MessageChunk* specified in the header is too large.<br>The *Server* returns this error if the *MessageChunk* size exceeds its maximum buffer size or the receive buffer size negotiated during the Hello/Acknowledge exchange.|
+|Bad\_Timeout|A timeout occurred while accessing a resource.<br>It is up to the *Server* to determine when a timeout occurs.|
+|Bad\_TcpNotEnoughResources|There are not enough resources to process the request.<br>The *Server* returns this error when it runs out of memory or encounters similar resource problems.<br>A *Server* can control the how frequently a *Client* reconnects by waiting to return this error.|
+|Bad\_TcpInternalError|An internal error occurred.<br>This should only be returned if an unexpected configuration or programming error occurs.|
 |Bad\_TcpEndpointUrlInvalid|The *Server* does not recognize the EndpointUrl specified.|
 |Bad\_SecurityChecksFailed|The *Message* was rejected because it could not be verified.|
 |Bad\_RequestInterrupted|The request could not be sent because of a network interruption.|
@@ -4627,7 +3912,7 @@ The HTTP Accept-Language header is used to specify the locales to use for the re
 
 The Content-Type header in the HTTP request and response shall specify the *DataEncoding* of the message. Well known media types should be used to ensure interoperability with standard HTTP infrastructure. The application/opcua+uabinary media type is also defined, however, it is not registered with IANA and is only specified for backward compatibility.  
 
- **Table 78\- HTTP Content-Type Header**   
+Table 78 - HTTP Content-Type Header  
 
 | **Content-Type** | **Description** |
 |---|---|
@@ -4808,22 +4093,14 @@ The default *UserIdentity* for any *Session-less Service* calls made over the We
 
 The WebSocket protocol allows clients to request that servers use specific sub-protocols with the "Sec-WebSocket-Protocol" header in the WebSocket handshake defined in [RFC 6455](/§RFC6455) . The sub-protocols defined by this document are shown in [Table 79](/§\_Ref468606127) .  
 
- **Table 79\- WebSocket Sub-Protocols**   
+Table 79 - WebSocket Sub-Protocols  
 
 | **Sub-Protocol** | **Description** |
 |---|---|
-|opcua+uacp|Each WebSocket frame is a *MessageChunk* as defined in [6.7.2](/§\_Ref164007251) . After the WebSocket is created, the handshake described in [7.1.3](/§\_Ref468608921) is used to negotiate the maximum size of the *MessageChunk* . The maximum size for a buffer needed to receive a WebSocket frame is the maximum length of a *MessageChunk* plus the maximum size for the WebSocket frame header.  
-
-When using this sub-protocol, the payload in each frame is binary (OpCode 0x2 in [RFC 6455](/§RFC6455) ).|
-|opcua+uajson|Each WebSocket frame is a Message encoded using the JSON encoding described in [5.4.9](/§\_Ref468608977) . There is no mechanism to negotiate the maximum frame size. If the receiver encounters a frame that exceeds its internal limits it shall close the WebSocket connection and provide a 1009 status code as described in [RFC 6455](/§RFC6455) .  
-
-This sub-protocol is not recommended. The opcua+openapi sub-protocol should be used instead.|
-|opcua+openapi|Each WebSocket frame is a *ServiceMessageEnvelope de* scribed in [G.3](/§\_Ref175651074) . There is no mechanism to negotiate the maximum frame size. If the receiver encounters a frame that exceeds its internal limits it shall close the WebSocket connection and provide a 1009 status code as described in [RFC 6455](/§RFC6455) .  
-
-When using this sub-protocol, the payload in each frame is text (OpCode 0x1 in [RFC 6455](/§RFC6455) ) if the frame contains UTF8 encoded JSON. If the frame contains JSON compressed with [RFC 1952](/§RFC1952) then the frame is binary (OpCode 0x2 in [RFC 6455](/§RFC6455) ).|
-|opcua+openapi+\<accesstoken\>|This sub-protocol is only used in addition to the opcua+openapi sub-protocol.and specifies the default *UserIdentity* for all *Requests* sent over the WebSocket. The \<accesstoken\> is the JSON WebToken (see [6.5.2](/§\_Ref473652750) ) and is normally passed in the HTTPS Authentication header.  
-
-Using a sub-protocol to provide an AccessToken is a widely used design pattern needed to deal with limitations of common WebSocket implementations.|
+|opcua+uacp|Each WebSocket frame is a *MessageChunk* as defined in [6.7.2](/§\_Ref164007251) . After the WebSocket is created, the handshake described in [7.1.3](/§\_Ref468608921) is used to negotiate the maximum size of the *MessageChunk* . The maximum size for a buffer needed to receive a WebSocket frame is the maximum length of a *MessageChunk* plus the maximum size for the WebSocket frame header.<br>When using this sub-protocol, the payload in each frame is binary (OpCode 0x2 in [RFC 6455](/§RFC6455) ).|
+|opcua+uajson|Each WebSocket frame is a Message encoded using the JSON encoding described in [5.4.9](/§\_Ref468608977) . There is no mechanism to negotiate the maximum frame size. If the receiver encounters a frame that exceeds its internal limits it shall close the WebSocket connection and provide a 1009 status code as described in [RFC 6455](/§RFC6455) .<br>This sub-protocol is not recommended. The opcua+openapi sub-protocol should be used instead.|
+|opcua+openapi|Each WebSocket frame is a *ServiceMessageEnvelope de* scribed in [G.3](/§\_Ref175651074) . There is no mechanism to negotiate the maximum frame size. If the receiver encounters a frame that exceeds its internal limits it shall close the WebSocket connection and provide a 1009 status code as described in [RFC 6455](/§RFC6455) .<br>When using this sub-protocol, the payload in each frame is text (OpCode 0x1 in [RFC 6455](/§RFC6455) ) if the frame contains UTF8 encoded JSON. If the frame contains JSON compressed with [RFC 1952](/§RFC1952) then the frame is binary (OpCode 0x2 in [RFC 6455](/§RFC6455) ).|
+|opcua+openapi+\<accesstoken\>|This sub-protocol is only used in addition to the opcua+openapi sub-protocol.and specifies the default *UserIdentity* for all *Requests* sent over the WebSocket. The \<accesstoken\> is the JSON WebToken (see [6.5.2](/§\_Ref473652750) ) and is normally passed in the HTTPS Authentication header.<br>Using a sub-protocol to provide an AccessToken is a widely used design pattern needed to deal with limitations of common WebSocket implementations.|
   
 
   
@@ -4852,7 +4129,7 @@ Clients that support the WebSocket transport shall support explicit configuratio
 
 The *Local Discovery Server* (LDS) is an OPC UA *Server* that implements the *Discovery Service Set* defined in [OPC 10000-4](/§UAPart4) . If an LDS is installed on a machine, it shall use one or more of the well-known addresses defined in [Table 80](/§\_Ref211729160) .  
 
- **Table 80\- Well known addresses for Local Discovery Servers**   
+Table 80 - Well known addresses for Local Discovery Servers  
 
 | **Transport Mapping** | **URL** | **Notes** |
 |---|---|---|
@@ -4909,7 +4186,7 @@ Links to the WSDL and XML Schema files can be found in [Annex D](/§\_Ref2011379
 
 [Table A.1](/§\_Ref468632488) shows Identifiers assigned to Attributes  
 
- **Table A. 1\- Identifiers assigned to Attributes**   
+Table A. 1 - Identifiers assigned to Attributes  
 
 | **Attribute** | **Identifier** |
 |---|---|
@@ -4994,7 +4271,7 @@ Globally defined media types are assigned by IANA. This clause lists the media t
 
 [Table A.2](/§\_Ref80139874) has media types assigned to OPC UA document formats.  
 
- **Table A. 2\- Media Types Assigned to OPC UA Document Formats**   
+Table A. 2 - Media Types Assigned to OPC UA Document Formats  
 
 | **Media Type** | **Description** |
 |---|---|
@@ -5221,143 +4498,27 @@ The *SecuredApplication* element may reference X.509 v3 Certificates which are c
 
 The import/export utility does not export private keys. If the administrator wishes to assign a new public-private key to the application the administrator places the private key in a store where it can be accessed by the import/export utility. The import/export utility is then responsible for ensuring it is securely moved to a location where the application can access it.  
 
- **Table E. 1\- SecuredApplication**   
+Table E. 1 - SecuredApplication  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
-|ApplicationName|String|A human readable name for the application.  
-
-Applications allow this value to be read or changed.|
-|ApplicationUri|String|A globally unique identifier for the instance of the application.  
-
-Applications allow this value to be read or changed.|
-|ApplicationType|ApplicationType|The type of application.  
-
-May be one of  
-
-* Server\_0;  
-
-* Client\_1;  
-
-* ClientAndServer\_2;  
-
-* DiscoveryServer\_3;  
-
-Applications do not provide this value.  
-
-Applications do not allow this value to be changed.|
-|ProductName|String|A name for the product.  
-
-Applications provide this value.  
-
-Applications do not allow this value to be changed.|
-|ConfigurationMode|String|Indicates how the application should be configured.  
-
-An empty or missing value indicates that the configuration file can be edited directly. The location of the configuration file is not provided in this case.  
-
-Any other value is a URI that identifies the configuration utility. The vendor documentation explains how to use this utility.  
-
-Applications provide this value.  
-
-Applications do not allow this value to be changed.|
-|LastExportTime|UtcTime|When the configuration was exported by the import/export utility.  
-
-It may be omitted if applications allow direct editing of the security configuration.|
-|ConfigurationFile|String|The full path to a configuration file used by the application.  
-
-Applications do not provide this value if an import/export utility is used.  
-
-Applications do not allow this value to be changed.  
-
-Permissions set on this file control who has rights to change the configuration of the application.|
-|ExecutableFile|String|The full path to an executable file for the application.  
-
-Applications may not provide this value.  
-
-Applications do not allow this value to be changed.  
-
-Permissions set on this file control who has rights to launch the application.|
-|ApplicationCertificate|CertificateIdentifier|The identifier for the *Application Instance Certificate* .  
-
-Applications allow this value to be read or changed.  
-
-This identifier may reference a *Certificate* store that contains the private key. If the private key is not accessible to outside applications this value contain the X.509 v3 *Certificate* for the application.  
-
-If the configuration utility assigns a new private key this value reference the store where the private key is placed. The import/export utility may delete this private key if it moves it to a secure location accessible to the application.  
-
-Applications allow Administrators to enter the password required to access the private key during the import operation. The exact mechanism depends on the application.  
-
-Applications report an error if the ApplicationCertificate is not valid.|
-|TrustedCertificateStore|CertificateStoreIdentifier|The location of the CertificateStore containing the Certificates of applications or *Certificate* Authorities (CAs) which can be trusted.  
-
-Applications allow this value to be read or changed.  
-
-This value is a reference to a physical store which can be managed separately from the application. applications that support shared physical stores check this store for changes whenever they validate a *Certificate* .  
-
-The Administrator is responsible for verifying the signature on all Certificates placed in this store. This means the application may trust Certificates in this store even if they cannot be verified back to a trusted root.  
-
-Administrators place any CA certificates used to verify the signature in the IssuerStore or the IssuerList. This will allow applications to properly verify the signatures.  
-
-The application check the revocation status of the Certificates in this store if the *Certificate* was issued by a CA. The application looks for the offline *Certificate* Revocation List (CRL) for a CA in the store where it found the CA *Certificate* .  
-
-The location of an online CRL for CA is specified with the CRLDistributionPoints (OID= 2.5.29.31) X.509 v3 *Certificate* extension.  
-
-The ValidationOptions parameter is used to specify which revocation list should be used for CAs in this store.|
-|TrustedCertificates|CertificateList|A list of Certificates for applications for CAs that can be trusted.  
-
-Applications allow this value to be read or changed.  
-
-The value is an explicit list of Certificates which is private to the application. It is used when the application does not support shared physical *Certificate* stores or when Administrators need to specify ValidationOptions for individual Certificates.  
-
-If the TrustedCertificateStore and the TrustedCertificates parameters are both specified, then the application uses the TrustedCertificateStore for checking trust relationships. The TrustedCertificates parameter is only used to lookup ValidationOptions for individual Certificates. It may also be used to provide CRLs for CA certificates.  
-
-If the TrustedCertificateStore is not specified, then TrustedCertificates parameter contains the complete X.509 v3 *Certificate* for each entry.|
-|IssuerStore|CertificateStoreIdentifier|The location of the CertificateStore containing CA Certificates which are not trusted but are needed to check signatures on Certificates.  
-
-Applications allow this value to be read or changed.  
-
-This value is a reference to a physical store which can be managed separately from the application. Applications that support shared physical stores check this store for changes whenever they validate a *Certificate* .  
-
-This store may also contain CRLs for the CAs.|
-|IssuerCertificates|CertificateList|A list of Certificates for CAs which are not trusted but are needed to check signatures on Certificates.  
-
-Applications allow this value to be read or changed.  
-
-The value is an explicit list of Certificates which is private to the application. It is used when the application does not support shared physical *Certificate* stores or when Administrators need to specify ValidationOptions for individual Certificates.  
-
-If the IssuerStore and the IssuerCertificates parameters are both specified, then the application uses the IssuerStore for checking signatures. The IssuerCertificates parameter is only used to lookup ValidationOptions for individual Certificates. It may also be used to provide CRLs for CA certificates.|
-|RejectedCertificatesStore|CertificateStoreIdentifier|The location of the shared CertificateStore containing the Certificates of applications which were rejected.  
-
-Applications allow this value to be read or changed.  
-
-Applications add the DER encoded *Certificate* into this store whenever it rejects a *Certificate* because it is untrusted or if it failed one of the validation rules which can be suppressed (see Clause [E.6](/§\_Ref221458960) ).  
-
-Applications do not add a *Certificate* to this store if it was rejected for a reason that cannot be suppressed (e.g. *Certificate* revoked).|
-|BaseAddresses|String []|A list of URLs for the *Endpoints* supported by a *Server* .  
-
-Applications allow these values to be read or changed.  
-
-If a *Server* does not support the scheme for a URL it ignores it.  
-
-This list can have multiple entries for the same URL scheme. The first entry for a scheme is the base URL. The rest are assumed to be DNS aliases that point to the first URL.  
-
-It is the responsibility of the Administrator to configure the network to route these aliases correctly.|
-|SecurityProfileUris|SecurityProfile []  
-
-|A list of *SecurityPolicyUris* supported by a *Server.* The URIs are defined as security *Profiles* in [OPC 10000-7](/§UAPart7) .  
-
-Applications allow these values to be read or changed.  
-
-Applications allow the Enabled flag to be changed for each *SecurityProfile* that it supports.  
-
-If the Enabled flag is false, the *Server* do not allow connections using the *SecurityProfile* .  
-
-If a *Server* does not support a SecurityProfile it ignores it.|
-|Extensions|xs:any []|A list of vendor defined Extensions attached to the security settings.  
-
-Applications ignore Extensions that they do not recognize.  
-
-Applications that update a file containing Extensions do not delete or modify extensions that they do not recognize.|
+|ApplicationName|String|A human readable name for the application.<br>Applications allow this value to be read or changed.|
+|ApplicationUri|String|A globally unique identifier for the instance of the application.<br>Applications allow this value to be read or changed.|
+|ApplicationType|ApplicationType|The type of application.<br>May be one of<br>* Server\_0;<br>* Client\_1;<br>* ClientAndServer\_2;<br>* DiscoveryServer\_3;<br>Applications do not provide this value.<br>Applications do not allow this value to be changed.|
+|ProductName|String|A name for the product.<br>Applications provide this value.<br>Applications do not allow this value to be changed.|
+|ConfigurationMode|String|Indicates how the application should be configured.<br>An empty or missing value indicates that the configuration file can be edited directly. The location of the configuration file is not provided in this case.<br>Any other value is a URI that identifies the configuration utility. The vendor documentation explains how to use this utility.<br>Applications provide this value.<br>Applications do not allow this value to be changed.|
+|LastExportTime|UtcTime|When the configuration was exported by the import/export utility.<br>It may be omitted if applications allow direct editing of the security configuration.|
+|ConfigurationFile|String|The full path to a configuration file used by the application.<br>Applications do not provide this value if an import/export utility is used.<br>Applications do not allow this value to be changed.<br>Permissions set on this file control who has rights to change the configuration of the application.|
+|ExecutableFile|String|The full path to an executable file for the application.<br>Applications may not provide this value.<br>Applications do not allow this value to be changed.<br>Permissions set on this file control who has rights to launch the application.|
+|ApplicationCertificate|CertificateIdentifier|The identifier for the *Application Instance Certificate* .<br>Applications allow this value to be read or changed.<br>This identifier may reference a *Certificate* store that contains the private key. If the private key is not accessible to outside applications this value contain the X.509 v3 *Certificate* for the application.<br>If the configuration utility assigns a new private key this value reference the store where the private key is placed. The import/export utility may delete this private key if it moves it to a secure location accessible to the application.<br>Applications allow Administrators to enter the password required to access the private key during the import operation. The exact mechanism depends on the application.<br>Applications report an error if the ApplicationCertificate is not valid.|
+|TrustedCertificateStore|CertificateStoreIdentifier|The location of the CertificateStore containing the Certificates of applications or *Certificate* Authorities (CAs) which can be trusted.<br>Applications allow this value to be read or changed.<br>This value is a reference to a physical store which can be managed separately from the application. applications that support shared physical stores check this store for changes whenever they validate a *Certificate* .<br>The Administrator is responsible for verifying the signature on all Certificates placed in this store. This means the application may trust Certificates in this store even if they cannot be verified back to a trusted root.<br>Administrators place any CA certificates used to verify the signature in the IssuerStore or the IssuerList. This will allow applications to properly verify the signatures.<br>The application check the revocation status of the Certificates in this store if the *Certificate* was issued by a CA. The application looks for the offline *Certificate* Revocation List (CRL) for a CA in the store where it found the CA *Certificate* .<br>The location of an online CRL for CA is specified with the CRLDistributionPoints (OID= 2.5.29.31) X.509 v3 *Certificate* extension.<br>The ValidationOptions parameter is used to specify which revocation list should be used for CAs in this store.|
+|TrustedCertificates|CertificateList|A list of Certificates for applications for CAs that can be trusted.<br>Applications allow this value to be read or changed.<br>The value is an explicit list of Certificates which is private to the application. It is used when the application does not support shared physical *Certificate* stores or when Administrators need to specify ValidationOptions for individual Certificates.<br>If the TrustedCertificateStore and the TrustedCertificates parameters are both specified, then the application uses the TrustedCertificateStore for checking trust relationships. The TrustedCertificates parameter is only used to lookup ValidationOptions for individual Certificates. It may also be used to provide CRLs for CA certificates.<br>If the TrustedCertificateStore is not specified, then TrustedCertificates parameter contains the complete X.509 v3 *Certificate* for each entry.|
+|IssuerStore|CertificateStoreIdentifier|The location of the CertificateStore containing CA Certificates which are not trusted but are needed to check signatures on Certificates.<br>Applications allow this value to be read or changed.<br>This value is a reference to a physical store which can be managed separately from the application. Applications that support shared physical stores check this store for changes whenever they validate a *Certificate* .<br>This store may also contain CRLs for the CAs.|
+|IssuerCertificates|CertificateList|A list of Certificates for CAs which are not trusted but are needed to check signatures on Certificates.<br>Applications allow this value to be read or changed.<br>The value is an explicit list of Certificates which is private to the application. It is used when the application does not support shared physical *Certificate* stores or when Administrators need to specify ValidationOptions for individual Certificates.<br>If the IssuerStore and the IssuerCertificates parameters are both specified, then the application uses the IssuerStore for checking signatures. The IssuerCertificates parameter is only used to lookup ValidationOptions for individual Certificates. It may also be used to provide CRLs for CA certificates.|
+|RejectedCertificatesStore|CertificateStoreIdentifier|The location of the shared CertificateStore containing the Certificates of applications which were rejected.<br>Applications allow this value to be read or changed.<br>Applications add the DER encoded *Certificate* into this store whenever it rejects a *Certificate* because it is untrusted or if it failed one of the validation rules which can be suppressed (see Clause [E.6](/§\_Ref221458960) ).<br>Applications do not add a *Certificate* to this store if it was rejected for a reason that cannot be suppressed (e.g. *Certificate* revoked).|
+|BaseAddresses|String []|A list of URLs for the *Endpoints* supported by a *Server* .<br>Applications allow these values to be read or changed.<br>If a *Server* does not support the scheme for a URL it ignores it.<br>This list can have multiple entries for the same URL scheme. The first entry for a scheme is the base URL. The rest are assumed to be DNS aliases that point to the first URL.<br>It is the responsibility of the Administrator to configure the network to route these aliases correctly.|
+|SecurityProfileUris|SecurityProfile []<br>|A list of *SecurityPolicyUris* supported by a *Server.* The URIs are defined as security *Profiles* in [OPC 10000-7](/§UAPart7) .<br>Applications allow these values to be read or changed.<br>Applications allow the Enabled flag to be changed for each *SecurityProfile* that it supports.<br>If the Enabled flag is false, the *Server* do not allow connections using the *SecurityProfile* .<br>If a *Server* does not support a SecurityProfile it ignores it.|
+|Extensions|xs:any []|A list of vendor defined Extensions attached to the security settings.<br>Applications ignore Extensions that they do not recognize.<br>Applications that update a file containing Extensions do not delete or modify extensions that they do not recognize.|
   
 
   
@@ -5366,44 +4527,18 @@ Applications that update a file containing Extensions do not delete or modify ex
 
 The *CertificateIdentifier* element describes an X.509 v3 *Certificate* . The *Certificate* can be provided explicitly within the element or the element can specify the location of the *CertificateStore* that contains the *Certificate* . The elements contained in a *CertificateIdentifier* are described in [Table E.2](/§\_Ref382473076) .  
 
- **Table E. 2\- CertificateIdentifier**   
+Table E. 2 - CertificateIdentifier  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
-|StoreType|String|The type of CertificateStore that contains the *Certificate* .  
-
-Predefined values are "Windows" and "Directory".  
-
-If not specified, the RawData element is specified.|
-|StorePath|String|The path to the CertificateStore.  
-
-The syntax depends on the StoreType.  
-
-If not specified, the RawData element is specified.|
-|SubjectName|String|The SubjectName for the *Certificate* .  
-
-The Common Name (CN) component of the SubjectName.  
-
-The SubjectName represented as a string that complies with Section 3 of [RFC 4514](/§RFC4514) .  
-
-Values that do not contain '=' characters are presumed to be the Common Name component.|
-|Thumbprint|String|The *CertificateDigest* for the *Certificate* formatted as a hexadecimal string.  
-
-Case is not significant.|
-|RawData|ByteString|The DER encoded *Certificate* .  
-
-The CertificateIdentifier is invalid if the information in the DER *Certificate* conflicts with the information specified in other fields. Import utilities reject configurations containing invalid Certificates.  
-
-This field is not specified if the StoreType and StorePath are specified.|
+|StoreType|String|The type of CertificateStore that contains the *Certificate* .<br>Predefined values are "Windows" and "Directory".<br>If not specified, the RawData element is specified.|
+|StorePath|String|The path to the CertificateStore.<br>The syntax depends on the StoreType.<br>If not specified, the RawData element is specified.|
+|SubjectName|String|The SubjectName for the *Certificate* .<br>The Common Name (CN) component of the SubjectName.<br>The SubjectName represented as a string that complies with Section 3 of [RFC 4514](/§RFC4514) .<br>Values that do not contain '=' characters are presumed to be the Common Name component.|
+|Thumbprint|String|The *CertificateDigest* for the *Certificate* formatted as a hexadecimal string.<br>Case is not significant.|
+|RawData|ByteString|The DER encoded *Certificate* .<br>The CertificateIdentifier is invalid if the information in the DER *Certificate* conflicts with the information specified in other fields. Import utilities reject configurations containing invalid Certificates.<br>This field is not specified if the StoreType and StorePath are specified.|
 |ValidationOptions|Int32|The options to use when validating the *Certificate* . The possible options are described in [E.6](/§\_Ref221458960) .|
-|OfflineRevocationList|ByteString|A *Certificate* Revocation List (CRL) associated with an Issuer *Certificate* .  
-
-The format of a CRL is defined by [RFC 5280](/§RFC3280) .  
-
-This field is only meaningful for Issuer Certificates.|
-|OnlineRevocationList|String|A URL for an Online Revocation List associated with an Issuer *Certificate* .  
-
-This field is only meaningful for Issuer Certificates.|
+|OfflineRevocationList|ByteString|A *Certificate* Revocation List (CRL) associated with an Issuer *Certificate* .<br>The format of a CRL is defined by [RFC 5280](/§RFC3280) .<br>This field is only meaningful for Issuer Certificates.|
+|OnlineRevocationList|String|A URL for an Online Revocation List associated with an Issuer *Certificate* .<br>This field is only meaningful for Issuer Certificates.|
   
 
   
@@ -5440,25 +4575,13 @@ A "Directory" StoreType specifies a directory on disk which contains files with 
 
 If a "Directory" store contains a 'certs' subdirectory, then it is presumed to be a structured store with the subdirectories described in [Table E.3](/§\_Ref397329771) .  
 
- **Table E. 3\- Structured directory store**   
+Table E. 3 - Structured directory store  
 
 | **Subdirectory** | **Description** |
 |---|---|
-|certs|Contains the DER encoded X.509 v3 Certificates.  
-
-The files have a .der file extension.|
-|private|Contains the private keys.  
-
-The format of the file may be application specific.  
-
-PEM encoded files should have a .pem extension.  
-
-PKCS\#12 encoded files should have a .pfx extension.  
-
-The root file name is the same as the corresponding public key file in the certs directory.|
-|crl|Contains the DER encoded CRL for any CA Certificates found in the certs or ca directories.  
-
-The files have a .crl file extension.|
+|certs|Contains the DER encoded X.509 v3 Certificates.<br>The files have a .der file extension.|
+|private|Contains the private keys.<br>The format of the file may be application specific.<br>PEM encoded files should have a .pem extension.<br>PKCS\#12 encoded files should have a .pfx extension.<br>The root file name is the same as the corresponding public key file in the certs directory.|
+|crl|Contains the DER encoded CRL for any CA Certificates found in the certs or ca directories.<br>The files have a .crl file extension.|
   
 
   
@@ -5475,21 +4598,13 @@ Offline CRLs are placed in a local *Certificate* store with the Issuer *Certific
 
 The *CertificateStoreIdentifier* element describes a physical store containing X.509 v3 Certificates. The elements contained in a *CertificateStoreIdentifier* are described in [Table E.4](/§\_Ref397329759) .  
 
- **Table E. 4\- CertificateStoreIdentifier**   
+Table E. 4 - CertificateStoreIdentifier  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
-|StoreType|String|The type of CertificateStore that contains the *Certificate* .  
-
-Predefined values are "Windows" and "Directory".|
-|StorePath|String|The path to the CertificateStore.  
-
-The syntax depends on the StoreType.  
-
-See [E.3](/§\_Ref90961021) for a description of the syntax for different StoreTypes.|
-|ValidationOptions|CertificateValidationOptions|The options to use when validating the Certificates contained in the store.  
-
-The possible options are described in [E.6](/§\_Ref221458960) .|
+|StoreType|String|The type of CertificateStore that contains the *Certificate* .<br>Predefined values are "Windows" and "Directory".|
+|StorePath|String|The path to the CertificateStore.<br>The syntax depends on the StoreType.<br>See [E.3](/§\_Ref90961021) for a description of the syntax for different StoreTypes.|
+|ValidationOptions|CertificateValidationOptions|The options to use when validating the Certificates contained in the store.<br>The possible options are described in [E.6](/§\_Ref221458960) .|
   
 
   
@@ -5502,14 +4617,12 @@ Each *Certificate* store is identified by a *StoreType* and a *StorePath* . The 
 
 The *CertificateList* element is a list of *Certificates* . The elements contained in a *CertificateList* are described in [Table E.5](/§\_Ref397329749) .  
 
- **Table E. 5\- CertificateList**   
+Table E. 5 - CertificateList  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
 |Certificates|CertificateIdentifier []|The list of Certificates contained in the Trust List|
-|ValidationOptions|CertificateValidationOptions|The options to use when validating the Certificates contained in the store.  
-
-These options only apply to *Certificates* that have *ValidationOptions* with the *UseDefaultOptions* bit set. The possible options are described in [E.6](/§\_Ref221458960) .|
+|ValidationOptions|CertificateValidationOptions|The options to use when validating the Certificates contained in the store.<br>These options only apply to *Certificates* that have *ValidationOptions* with the *UseDefaultOptions* bit set. The possible options are described in [E.6](/§\_Ref221458960) .|
   
 
   
@@ -5518,30 +4631,16 @@ These options only apply to *Certificates* that have *ValidationOptions* with th
 
 The *CertificateValidationOptions* control the process used to validate a *Certificate* . Any *Certificate* can have validation options associated. If none are specified, the *ValidationOptions* for the store or list containing the *Certificate* are used. The possible options are shown in [Table E.6](/§\_Ref397329736) . Note that suppressing any validation step can create security risks which are discussed in more detail in [OPC 10000-2](/§UAPart2) . An audit log entry is created if any error is ignored because a validation option is suppressed.  
 
- **Table E. 6\- CertificateValidationOptions**   
+Table E. 6 - CertificateValidationOptions  
 
 | **Field** | **Bit** | **Description** |
 |---|---|---|
 |SuppressCertificateExpired|0|Ignore errors related to the validity time of the *Certificate* or its issuers.|
 |SuppressHostNameInvalid|1|Ignore mismatches between the host name or *ApplicationUri* .|
 |SuppressRevocationStatusUnknown|2|Ignore errors if the issuer's revocation list cannot be found.|
-|CheckRevocationStatusOnline|3|Check the revocation status online.  
-
-If set, the validator will look for the authorityInformationAccess extension to find an OCSP (RFC 6960) endpoint which can be used to determine if the *Certificate* has been revoked.  
-
-If the OCSP endpoint is not reachable then the validator will look for offline CRLs if the *CheckRevocationStatusOffline* bit is set. Otherwise, validation fails.  
-
-This option is specified for Issuer *Certificates* and used when validating Certificates issued by that Issuer.|
-|CheckRevocationStatusOffline|4|Check the revocation status offline.  
-
-If set the validator will look a CRL in the *Certificate Store* where the CA *Certificate* was found.  
-
-Validation fails if a CRL is not found.  
-
-This option is specified for Issuer *Certificates* and used when validating *Certificates* issued by that *Issuer* .|
-|UseDefaultOptions|5|If set the *CertificateValidationOptions* from the *CertificateList* is used.  
-
-If a *Certificate* does not belong to a *CertificateList* then the default is 0 for all bits.|
+|CheckRevocationStatusOnline|3|Check the revocation status online.<br>If set, the validator will look for the authorityInformationAccess extension to find an OCSP (RFC 6960) endpoint which can be used to determine if the *Certificate* has been revoked.<br>If the OCSP endpoint is not reachable then the validator will look for offline CRLs if the *CheckRevocationStatusOffline* bit is set. Otherwise, validation fails.<br>This option is specified for Issuer *Certificates* and used when validating Certificates issued by that Issuer.|
+|CheckRevocationStatusOffline|4|Check the revocation status offline.<br>If set the validator will look a CRL in the *Certificate Store* where the CA *Certificate* was found.<br>Validation fails if a CRL is not found.<br>This option is specified for Issuer *Certificates* and used when validating *Certificates* issued by that *Issuer* .|
+|UseDefaultOptions|5|If set the *CertificateValidationOptions* from the *CertificateList* is used.<br>If a *Certificate* does not belong to a *CertificateList* then the default is 0 for all bits.|
   
 
 ## Annex F (normative)Information Model XML Schema  
@@ -5576,73 +4675,25 @@ The *UANodeSet* is the root of the document. It defines a set of *Nodes* , their
 
 The structure of a *UANodeSet* is shown in [Table F.1](/§\_Ref397325999) .  
 
- **Table F. 1\- UANodeSet**   
+Table F. 1 - UANodeSet  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
-|NamespaceUris|UriTable|A list of *NamespaceUris* used in the *UANodeSet* .  
-
-This array shall have at least one entry which is equal to the ModelUri for each entry in the Models array.  
-
-All entries in this list shall have an entry in *Model* array or an entry in the *RequiredModel* arrays.|
+|NamespaceUris|UriTable|A list of *NamespaceUris* used in the *UANodeSet* .<br>This array shall have at least one entry which is equal to the ModelUri for each entry in the Models array.<br>All entries in this list shall have an entry in *Model* array or an entry in the *RequiredModel* arrays.|
 |ServerUris|UriTable|A list of *ServerUris* used in the *UANodeSet* .|
 |Models|ModelTableEntry []|A list of models that are defined in the UANodeSet along with any dependencies these models have.|
-|ModelUri|String|The URI for the model.  
-
-This URI shall be one of the entries in the NamespaceUris table.|
-|XmlSchemaUri|String|The URI for the XML schema namespace used to serialize values of the *DataTypes* defined by the Model.  
-
-The field is required if *DataTypes* are defined in the *UANodeSet* .  
-
-The UA XML Encoding ( [5.3](/§\_Ref131702289) ) rules implicitly define the XML schema for any *DataType* described by a *DataTypeDefinition* ( [F.12](/§\_Ref472366023) ).|
-|Version|String|The version of the model defined in the *UANodeSet.*  
-
-This is a human readable string and not intended for programmatic comparisons.|
-|PublicationDate|DateTime|When the model was published.  
-
-This value is used for comparisons if the Model is defined in multiple *UANodeSet* files when the *ModelVersion* is not provided *.*|
-|ModelVersion|VersionString|The version of the *UANodeSet* expressed as a string which conforms to the syntax defined in the [SemVer](/§SemVer) specification. The comparison rules from the specification are used to determine which *UANodeSet* precedes another.  
-
-When comparing two UANodeSets the following rules apply:  
-
-When the *ModelVersion* is specified in both UANodeSets it is used for the comparison and if they are the same then the *PublicationDate* is used.  
-
-When the *ModelVersion* is specified in only one *UANodeSet* it is considered newer than the one without the *ModelVersion* . The *PublicationDate* is ignored.  
-
-When the *ModelVersion* is not specified in either *UANodeSet* the *PublicationDate* is used for comparison.  
-
-The *ModelVersion* is mandatory for all *UANodeSets* conforming to version 1.05.02 or later of this specification.|
+|ModelUri|String|The URI for the model.<br>This URI shall be one of the entries in the NamespaceUris table.|
+|XmlSchemaUri|String|The URI for the XML schema namespace used to serialize values of the *DataTypes* defined by the Model.<br>The field is required if *DataTypes* are defined in the *UANodeSet* .<br>The UA XML Encoding ( [5.3](/§\_Ref131702289) ) rules implicitly define the XML schema for any *DataType* described by a *DataTypeDefinition* ( [F.12](/§\_Ref472366023) ).|
+|Version|String|The version of the model defined in the *UANodeSet.*<br>This is a human readable string and not intended for programmatic comparisons.|
+|PublicationDate|DateTime|When the model was published.<br>This value is used for comparisons if the Model is defined in multiple *UANodeSet* files when the *ModelVersion* is not provided *.*|
+|ModelVersion|VersionString|The version of the *UANodeSet* expressed as a string which conforms to the syntax defined in the [SemVer](/§SemVer) specification. The comparison rules from the specification are used to determine which *UANodeSet* precedes another.<br>When comparing two UANodeSets the following rules apply:<br>When the *ModelVersion* is specified in both UANodeSets it is used for the comparison and if they are the same then the *PublicationDate* is used.<br>When the *ModelVersion* is specified in only one *UANodeSet* it is considered newer than the one without the *ModelVersion* . The *PublicationDate* is ignored.<br>When the *ModelVersion* is not specified in either *UANodeSet* the *PublicationDate* is used for comparison.<br>The *ModelVersion* is mandatory for all *UANodeSets* conforming to version 1.05.02 or later of this specification.|
 |RolePermissions|RolePermission []|The list of default *RolePermissions* for all *Nodes* in the model.|
-|AccessRestrictions|AccessRestriction|The default *AccessRestrictions* that apply to all *Nodes* in the model.  
-
-The default value is 0.|
-|RequiredModels|ModelTableEntry []|A list of dependencies for the model.  
-
-If the model requires a minimum version, the *ModelVersion* and *PublicationDate* shall be specified. Tools which attempt to resolve these dependencies may accept any model with the same or later *ModelVersion* and if *ModelVersion* is the same then accept the same or later *PublicationDate* .  
-
-The *RolePermission* and *AccessRestrictions* elements shall not be specified for any entry in this list.  
-
-A dependency shall only be specified if the *ModelUri* is in the *NamespaceUris* list.  
-
-Entries in this list shall not have any *RequiredModels* .|
+|AccessRestrictions|AccessRestriction|The default *AccessRestrictions* that apply to all *Nodes* in the model.<br>The default value is 0.|
+|RequiredModels|ModelTableEntry []|A list of dependencies for the model.<br>If the model requires a minimum version, the *ModelVersion* and *PublicationDate* shall be specified. Tools which attempt to resolve these dependencies may accept any model with the same or later *ModelVersion* and if *ModelVersion* is the same then accept the same or later *PublicationDate* .<br>The *RolePermission* and *AccessRestrictions* elements shall not be specified for any entry in this list.<br>A dependency shall only be specified if the *ModelUri* is in the *NamespaceUris* list.<br>Entries in this list shall not have any *RequiredModels* .|
 |Aliases|AliasTable|A list of *UANodeSet* aliases used in the *UANodeSet* .|
 |Extensions|xs:any []|An element containing a list of vendor defined extensions to the *UANodeSet* .|
 |LastModified|DateTime|The last time a document was modified.|
-|\<choice\>|UAObject  
-
-UAVariable  
-
-UAMethod  
-
-UAView  
-
-UAObjectType  
-
-UAVariableType  
-
-UADataType  
-
-UAReferenceType|The *Nodes* in the *UANodeSet* .|
+|\<choice\>|UAObject<br>UAVariable<br>UAMethod<br>UAView<br>UAObjectType<br>UAVariableType<br>UADataType<br>UAReferenceType|The *Nodes* in the *UANodeSet* .|
   
 
 The *NamespaceUris* is a list of URIs for namespaces used in the *UANodeSet* . The *NamespaceIndexes* used in *NodeIds, ExpandedNodeIds* and *QualifiedNames* identify an element in this list. The first index is always 1 (0 is always the OPC UA namespace).  
@@ -5689,55 +4740,23 @@ The *Extensions* are free form XML data that can be used to attach vendor define
 
 A *UANode* is an abstract base type for all *Nodes* . It defines the base set of *Attributes* and the *References* . There are subtypes for each *NodeClass* defined in [OPC 10000-4](/§UAPart4) . Each of these subtypes defines XML elements and attributes for the OPC UA *Attributes* specific to the *NodeClass* . The fields in the *UANode* type are defined in [Table F.2](/§\_Ref397326059) .  
 
- **Table F. 2\- UANode**   
+Table F. 2 - UANode  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
-|NodeId|NodeId|A *NodeId* serialized as a *String* .  
-
-The syntax of the serialized *String* is defined in [5.3.1.10](/§\_Ref293890313) .|
-|BrowseName|QualifiedName|A *QualifiedName* serialized as a *String* with the form:  
-
-\<namespace index\>:\<name\>  
-
-Where the *NamespaceIndex* refers to the *NamespaceUris* table.|
-|SymbolicName|String|A symbolic name for the *Node* that can be used as a class/field name in auto generated code. It should only be specified if the *BrowseName* cannot be used for this purpose.  
-
-This field does not appear in the *AddressSpace* and is intended for use by design tools. Only letters, digits or the underscore ('\_') are permitted and the first character shall be a letter.|
+|NodeId|NodeId|A *NodeId* serialized as a *String* .<br>The syntax of the serialized *String* is defined in [5.3.1.10](/§\_Ref293890313) .|
+|BrowseName|QualifiedName|A *QualifiedName* serialized as a *String* with the form:<br>\<namespace index\>:\<name\><br>Where the *NamespaceIndex* refers to the *NamespaceUris* table.|
+|SymbolicName|String|A symbolic name for the *Node* that can be used as a class/field name in auto generated code. It should only be specified if the *BrowseName* cannot be used for this purpose.<br>This field does not appear in the *AddressSpace* and is intended for use by design tools. Only letters, digits or the underscore ('\_') are permitted and the first character shall be a letter.|
 |WriteMask|WriteMask|The value of the *WriteMask* Attribute.|
 |UserWriteMask|WriteMask|Not used. Kept in schema for backward compatibility.|
-|AccessRestrictions|AccessRestriction|The *AccessRestrictions* that apply to the *Node* .  
-
-This attribute is optional.  
-
-If not specified the *AccessRestrictions* for the *Model* are applied.|
-|DisplayName|LocalizedText []|A list of *DisplayNames* for the *Node* in different locales.  
-
-There shall be only one entry per locale.|
-|Description|LocalizedText []|The list of the *Descriptions* for the *Node* in different locales.  
-
-There shall be only one entry per locale.|
-|Category|String []|A list of *ConformanceUnits* associated with the *Node* .  
-
-The *ConformanceUnits* are specified by the authors of the *UANodeSet* and allow users of the *UANodeSet* to exclude *Nodes* based on a selection of *ConformanceUnits* .  
-
-When an *UAInstance* has the *ParentNodeId* specified, the *UAInstance* inherits the *ConformanceUnits* from its parent in addition to any *ConformanceUnits* explicitly specified on the instance.|
+|AccessRestrictions|AccessRestriction|The *AccessRestrictions* that apply to the *Node* .<br>This attribute is optional.<br>If not specified the *AccessRestrictions* for the *Model* are applied.|
+|DisplayName|LocalizedText []|A list of *DisplayNames* for the *Node* in different locales.<br>There shall be only one entry per locale.|
+|Description|LocalizedText []|The list of the *Descriptions* for the *Node* in different locales.<br>There shall be only one entry per locale.|
+|Category|String []|A list of *ConformanceUnits* associated with the *Node* .<br>The *ConformanceUnits* are specified by the authors of the *UANodeSet* and allow users of the *UANodeSet* to exclude *Nodes* based on a selection of *ConformanceUnits* .<br>When an *UAInstance* has the *ParentNodeId* specified, the *UAInstance* inherits the *ConformanceUnits* from its parent in addition to any *ConformanceUnits* explicitly specified on the instance.|
 |Documentation|String|Additional non-localized documentation for use by tools that create/edit UANodeSet files.|
-|ReleaseStatus|ReleaseStatus|An enumeration specifying the release status for the UANode.  
-
-Valid values are:  
-
-Released: The type is released. Changes require errata;  
-
-Draft:  The type is draft and subject to change;  
-
-Deprecated: The type should not be used;  
-
-This field is for use on UATypes and static UAInstances. The field shall not be specified for UAInstances that are *InstanceDeclarations* .|
+|ReleaseStatus|ReleaseStatus|An enumeration specifying the release status for the UANode.<br>Valid values are:<br>Released: The type is released. Changes require errata;<br>Draft:  The type is draft and subject to change;<br>Deprecated: The type should not be used;<br>This field is for use on UATypes and static UAInstances. The field shall not be specified for UAInstances that are *InstanceDeclarations* .|
 |References|Reference []|The list of *References* for the *Node* .|
-|RolePermissions|RolePermission []|The list of *RolePermissions* for the *Node* .  
-
-If the list is not specified or has zero length the default *RolePermissions* from the *Model* are used unless *HasNoPermissions* is TRUE.|
+|RolePermissions|RolePermission []|The list of *RolePermissions* for the *Node* .<br>If the list is not specified or has zero length the default *RolePermissions* from the *Model* are used unless *HasNoPermissions* is TRUE.|
 |HasNoPermissions|Boolean|If TRUE, the UANode has no *RolePermissions* and the contents of the *RolePermissions* array and the default *RolePermissions* for the model are ignored. The default value is FALSE.|
 |Extensions|xs:any []|An element containing a list of vendor defined extensions to the *UANode* .|
   
@@ -5756,20 +4775,12 @@ Similarly, the *AccessRestrictions* are the minimum required. For example, a *No
 
 The *Reference* type specifies a *Reference* for a *Node* . The *Reference* can be forward or inverse. Only one direction for each *Reference* needs to be in a *UANodeSet* . The other direction shall be added automatically during any import operation. The fields in the *Reference* type are defined in [Table F.3](/§\_Ref397326073) .  
 
- **Table F. 3\- Reference**   
+Table F. 3 - Reference  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
-|NodeId|NodeId|The *NodeId* of the target of the *Reference* serialized as a *String* .  
-
-The syntax of the serialized *String* is defined in [5.3.1.11](/§\_Ref293890208) ( *ExpandedNodeId* ).  
-
-This value can be replaced by an *Alias* .|
-|ReferenceType|NodeId|The NodeId of the *ReferenceType* serialized as a *String* .  
-
-The syntax of the serialized *String* is defined in [5.3.1.10](/§\_Ref293890313) ( *NodeId* ).  
-
-This value can be replaced by an *Alias* .|
+|NodeId|NodeId|The *NodeId* of the target of the *Reference* serialized as a *String* .<br>The syntax of the serialized *String* is defined in [5.3.1.11](/§\_Ref293890208) ( *ExpandedNodeId* ).<br>This value can be replaced by an *Alias* .|
+|ReferenceType|NodeId|The NodeId of the *ReferenceType* serialized as a *String* .<br>The syntax of the serialized *String* is defined in [5.3.1.10](/§\_Ref293890313) ( *NodeId* ).<br>This value can be replaced by an *Alias* .|
 |IsForward|Boolean|If TRUE, the *Reference* is a forward reference.|
   
 
@@ -5779,14 +4790,12 @@ This value can be replaced by an *Alias* .|
 
 The *RolePermission* type specifies the *Permissions* granted to *Role* for a *Node* . The fields in the *RolePermission* type are defined in [Table F.4](/§\_Ref469512740) .  
 
- **Table F. 4\- RolePermission**   
+Table F. 4 - RolePermission  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
 |NodeId|NodeId|The *NodeId* of the Role which has the *Permissions* .|
-|Permissions|UInt32|A bitmask specifying the Permissions granted to the Role.  
-
-The bitmask values the Permissions bits defined in [OPC 10000-3](/§UAPart3) .|
+|Permissions|UInt32|A bitmask specifying the Permissions granted to the Role.<br>The bitmask values the Permissions bits defined in [OPC 10000-3](/§UAPart3) .|
   
 
   
@@ -5795,7 +4804,7 @@ The bitmask values the Permissions bits defined in [OPC 10000-3](/§UAPart3) .|
 
 A *UAType* is a subtype of the *UANode* defined in [F.3](/§\_Ref311621445) . It is the base type for the types defined in [Table F.5](/§\_Ref382473263) .  
 
- **Table F. 5\- UANodeSet Type Nodes**   
+Table F. 5 - UANodeSet Type Nodes  
 
 | **Subtype** | **Description** |
 |---|---|
@@ -5811,7 +4820,7 @@ A *UAType* is a subtype of the *UANode* defined in [F.3](/§\_Ref311621445) . It
 
 A *UAInstance* is a subtype of the *UANode* defined in [F.3](/§\_Ref311621445) . It is the base type for the types defined in [Table F.6](/§\_Ref397326113) . The fields in the *UAInstance* type are defined in [Table F.7](/§\_Ref397326129) . Subtypes of *UAInstance* which have fields in addition to those defined in [OPC 10000-3](/§UAPart3) are described in detail below.  
 
- **Table F. 6\- UANodeSet Instance Nodes**   
+Table F. 6 - UANodeSet Instance Nodes  
 
 | **Subtype** | **Description** |
 |---|---|
@@ -5823,21 +4832,13 @@ A *UAInstance* is a subtype of the *UANode* defined in [F.3](/§\_Ref311621445) 
 
   
 
- **Table F. 7\- UAInstance**   
+Table F. 7 - UAInstance  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
 |All of the fields from the *UANode* type described in [F.3](/§\_Ref311621445) .|
-|ParentNodeId|NodeId|The *NodeId* of the *Node* that is the parent of the *Node* within the information model. This field is used to indicate that a tight coupling exists between the *Node* and its parent (e.g., when the parent is deleted, the child is deleted as well). This information does not appear in the *AddressSpace* and is intended for use by design tools.  
-
-This field shall be specified for all *InstanceDeclarations* and shall reference a *UANode* which is the source of a *HierarchicalReference* to the *Node.*|
-|DesignToolOnly|Boolean|If TRUE the instance is a placeholder for use by design tools and does not appear in the *AddressSpace.* For example, well-known *Properties* or *Objects.*  
-
-Only *UAObject* and *UAVariable Nodes* may have *DesignToolOnly* is TRUE.  
-
-If *DesignToolOnly* is TRUE, the *ParentNodeId* shall not be specified and the *UAInstance* may not be the target of references from other *Nodes* and may not be the *ParentNodeId* for other instances. This implies that child *Nodes* , even *Mandatory* ones, are not added to the *Node.*  
-
-The *HasTypeDefinition* reference shall be specified.|
+|ParentNodeId|NodeId|The *NodeId* of the *Node* that is the parent of the *Node* within the information model. This field is used to indicate that a tight coupling exists between the *Node* and its parent (e.g., when the parent is deleted, the child is deleted as well). This information does not appear in the *AddressSpace* and is intended for use by design tools.<br>This field shall be specified for all *InstanceDeclarations* and shall reference a *UANode* which is the source of a *HierarchicalReference* to the *Node.*|
+|DesignToolOnly|Boolean|If TRUE the instance is a placeholder for use by design tools and does not appear in the *AddressSpace.* For example, well-known *Properties* or *Objects.*<br>Only *UAObject* and *UAVariable Nodes* may have *DesignToolOnly* is TRUE.<br>If *DesignToolOnly* is TRUE, the *ParentNodeId* shall not be specified and the *UAInstance* may not be the target of references from other *Nodes* and may not be the *ParentNodeId* for other instances. This implies that child *Nodes* , even *Mandatory* ones, are not added to the *Node.*<br>The *HasTypeDefinition* reference shall be specified.|
   
 
   
@@ -5846,31 +4847,17 @@ The *HasTypeDefinition* reference shall be specified.|
 
 A *UAVariable* is a subtype of the *UAInstance* defined in. It represents a Variable Node. The fields in the *UAVariable* type are defined in [Table F.8](/§\_Ref397326141) .  
 
- **Table F. 8\- UAVariable**   
+Table F. 8 - UAVariable  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
 |All of the fields from the *UAInstance* type described in [F.7](/§\_Ref472619842) .|
-|Value|Variant|The Value of the Node encoding using the UA XML wire encoding defined in [5.3](/§\_Ref131702289) .  
-
-If a *Value* is not provided and a *UANodeSet* is used to initialize a *Server AddressSpace* then the *Server* shall report a *StatusCode* of *Bad\_NoValue* or choose a default *Value* consistent with the *DataType* and *ValueRank* .|
-|Translation|TranslationType []|A list of translations for the Value if the Value is a LocalizedText or a structure containing LocalizedTexts.  
-
-This field may be omitted.  
-
-If the Value is an array the number of elements in this array shall match the number of elements in the Value. Extra elements are ignored.  
-
-If the Value is a scalar, then there is one element in this array.  
-
-If the Value is a structure, then each element contains translations for one or more fields identified by a name. See the TranslationType for more information.|
+|Value|Variant|The Value of the Node encoding using the UA XML wire encoding defined in [5.3](/§\_Ref131702289) .<br>If a *Value* is not provided and a *UANodeSet* is used to initialize a *Server AddressSpace* then the *Server* shall report a *StatusCode* of *Bad\_NoValue* or choose a default *Value* consistent with the *DataType* and *ValueRank* .|
+|Translation|TranslationType []|A list of translations for the Value if the Value is a LocalizedText or a structure containing LocalizedTexts.<br>This field may be omitted.<br>If the Value is an array the number of elements in this array shall match the number of elements in the Value. Extra elements are ignored.<br>If the Value is a scalar, then there is one element in this array.<br>If the Value is a structure, then each element contains translations for one or more fields identified by a name. See the TranslationType for more information.|
 |DataType|NodeId|The data type of the value.|
-|ValueRank|ValueRank|The value rank.  
-
-If not specified, the default value is -1 (Scalar).|
+|ValueRank|ValueRank|The value rank.<br>If not specified, the default value is -1 (Scalar).|
 |ArrayDimensions|ArrayDimensions|The number of dimensions in an array value.|
-|AccessLevel|AccessLevel|The access level.  
-
-This value is a *UInt32* that includes all of the bits exposed by the *AccessLevelEx* . *Servers* which do not support the additional bits in *AccessLevelEx* should ignore them.|
+|AccessLevel|AccessLevel|The access level.<br>This value is a *UInt32* that includes all of the bits exposed by the *AccessLevelEx* . *Servers* which do not support the additional bits in *AccessLevelEx* should ignore them.|
 |UserAccessLevel|AccessLevel|Not used. Kept in schema for backward compatibility.|
 |MinimumSamplingInterval|Duration|The minimum sampling interval.|
 |Historizing|Boolean|Whether history is being archived.|
@@ -5882,23 +4869,15 @@ This value is a *UInt32* that includes all of the bits exposed by the *AccessLev
 
 A *UAMethod* is a subtype of the *UAInstance* defined in [F.7](/§\_Ref472619842) . It represents a Method Node. The fields in the *UAMethod* type are defined in [Table F.9](/§\_Ref397326155) .  
 
- **Table F. 9\- UAMethod**   
+Table F. 9 - UAMethod  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
 |All of the fields from the *UAInstance* type described in [F.7](/§\_Ref472619859) .|
-|MethodDeclarationId|NodeId|May be specified for *Method* *Nodes* that are a target of a *HasComponent* reference from a single *Object* *Node* . It is the *NodeId* of the *UAMethod* with the same *BrowseName* contained in the *TypeDefinition* associated with the *Object* *Node* .  
-
-If the *TypeDefinition* overrides a *Method* inherited from a base *ObjectType* then this attribute shall reference the *Method* *Node* in the subtype.|
-|Executable|Boolean|Indicates that the *Method* is executable.  
-
-The default value is TRUE.|
+|MethodDeclarationId|NodeId|May be specified for *Method* *Nodes* that are a target of a *HasComponent* reference from a single *Object* *Node* . It is the *NodeId* of the *UAMethod* with the same *BrowseName* contained in the *TypeDefinition* associated with the *Object* *Node* .<br>If the *TypeDefinition* overrides a *Method* inherited from a base *ObjectType* then this attribute shall reference the *Method* *Node* in the subtype.|
+|Executable|Boolean|Indicates that the *Method* is executable.<br>The default value is TRUE.|
 |UserExecutable|Boolean|Not used. Kept in schema for backward compatibility.|
-|ArgumentDescription|UAMethodArgument []|A list of *Descriptions* for the *Method Node Arguments* .  
-
-Each entry has a Name which uniquely identifies the *Argument* that the *Descriptions* apply to. There shall only be one entry per *Name* .  
-
-Each entry also has a list of *Descriptions* for the *Argument* in different locales. There shall be only one entry per locale per *Argument* .|
+|ArgumentDescription|UAMethodArgument []|A list of *Descriptions* for the *Method Node Arguments* .<br>Each entry has a Name which uniquely identifies the *Argument* that the *Descriptions* apply to. There shall only be one entry per *Name* .<br>Each entry also has a list of *Descriptions* for the *Argument* in different locales. There shall be only one entry per locale per *Argument* .|
   
 
   
@@ -5971,21 +4950,13 @@ The following example illustrates how translations for the Description field in 
 
 If multiple Arguments existed there would be a Translation element for each Argument.  
 
- **Table F. 10\- TranslationType**   
+Table F. 10 - TranslationType  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
-|Text|LocalizedText []|An array of translations for the Value.  
-
-It only appears if the *Value* is a *LocalizedText* or an array of *LocalizedText* .|
-|Field|StructureTranslationType []|An array of structure fields which have translations.  
-
-It only appears if the Value is a *Structure* or an array of *Structures* .|
-|Name|String|The name of the field.  
-
-This uniquely identifies the field within the structure.  
-
-The exact mapping depends on the encoding of the structure.|
+|Text|LocalizedText []|An array of translations for the Value.<br>It only appears if the *Value* is a *LocalizedText* or an array of *LocalizedText* .|
+|Field|StructureTranslationType []|An array of structure fields which have translations.<br>It only appears if the Value is a *Structure* or an array of *Structures* .|
+|Name|String|The name of the field.<br>This uniquely identifies the field within the structure.<br>The exact mapping depends on the encoding of the structure.|
 |Text|LocalizedText []|An array of translations for the structure field.|
   
 
@@ -5995,27 +4966,13 @@ The exact mapping depends on the encoding of the structure.|
 
 A *UADataType* is a subtype of the *UAType* defined in [Table F.5](/§\_Ref382473263) . It defines a *DataType Node* . The fields in the *UADataType* type are defined in [Table F.11](/§\_Ref397326192) .  
 
- **Table F. 11\- UADataType**   
+Table F. 11 - UADataType  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
 |All of the fields from the *UANode* type described in [F.3](/§\_Ref311621445) .|
 |Definition|DataTypeDefinition|An abstract definition of the data type that can be used by design tools to create code that can serialize the data type in XML and/or Binary forms. This is only used to define subtypes of the *Structure* , *Enumeration* or *UInteger DataTypes* . *UInteger DataTypes* only have this field if they represent an *OptionSet* .|
-|Purpose|DataTypePurpose|An enumeration that indicates the purpose of the *DataType* .  
-
-It can be used by modelling tools and code generators to exclude *DataTypes* that are not needed.  
-
-  
-
-Possible values are:  
-
-Normal - The *DataType* is used in the *AddressSpace* .  
-
-ServicesOnly - The *DataType* is only used as *Service* parameters.  
-
-CodeGenerator - The *DataType* is only used by code generation tools.  
-
-This field is only specified for the OPC UA NodeSet. Other NodeSets shall omit this field and the value of "Normal" is assumed.|
+|Purpose|DataTypePurpose|An enumeration that indicates the purpose of the *DataType* .<br>It can be used by modelling tools and code generators to exclude *DataTypes* that are not needed.<br><br>Possible values are:<br>Normal - The *DataType* is used in the *AddressSpace* .<br>ServicesOnly - The *DataType* is only used as *Service* parameters.<br>CodeGenerator - The *DataType* is only used by code generation tools.<br>This field is only specified for the OPC UA NodeSet. Other NodeSets shall omit this field and the value of "Normal" is assumed.|
   
 
   
@@ -6026,47 +4983,23 @@ A *DataTypeDefinition* defines a representation of a *UADataType* that can be us
 
 This field may not be present for *DataTypes* that have no fields. Code generators may choose to create a class with no fields if the programming environment supports the concept.  
 
- **Table F. 12\- DataTypeDefinition**   
+Table F. 12 - DataTypeDefinition  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
-|Name|QualifiedName|A unique name for the data type.  
-
-This name should be the same as the *BrowseName* for the containing *DataType.*|
-|SymbolicName|String|A symbolic name for the data type that can be used as a class/structure name in autogenerated code. It should only be specified if the *Name* cannot be used for this purpose.  
-
-Only letters, digits or the underscore ('\_') are permitted and the first character shall be a letter.  
-
-This field is only specified for nested *DataTypeDefinitions* .  
-
-The *SymbolicName* of the *DataType Node* is used otherwise.|
+|Name|QualifiedName|A unique name for the data type.<br>This name should be the same as the *BrowseName* for the containing *DataType.*|
+|SymbolicName|String|A symbolic name for the data type that can be used as a class/structure name in autogenerated code. It should only be specified if the *Name* cannot be used for this purpose.<br>Only letters, digits or the underscore ('\_') are permitted and the first character shall be a letter.<br>This field is only specified for nested *DataTypeDefinitions* .<br>The *SymbolicName* of the *DataType Node* is used otherwise.|
 |BaseType|QualifiedName|Not used. Kept in schema for backward compatibility.|
-|IsUnion|Boolean|This flag indicates if the data type represents a union.  
-
-Only one of the Fields defined for the data type is encoded into a value.  
-
-This field is optional. The default value is false.  
-
-If this value is true, the first field is the switch value.|
-|IsOptionSet|Boolean|This flag indicates that the data type defines the *OptionSetValues Property* .  
-
-This field is optional. The default value is false.|
-|Fields|DataTypeField []|The list of fields that make up the data type.  
-
-This definition assumes the structure has a sequential layout.  
-
-For enumerations, the fields are simply a list of values.  
-
-This list does not include fields inherited from a base *DataType* .  
-
-When *Applications* ingest a *UANodeSet* they need to follow the *HasSubtype* *References* between *DataType Nodes* to collect all of the fields needed to fill in the *DataTypeDefinition Attribute.*|
+|IsUnion|Boolean|This flag indicates if the data type represents a union.<br>Only one of the Fields defined for the data type is encoded into a value.<br>This field is optional. The default value is false.<br>If this value is true, the first field is the switch value.|
+|IsOptionSet|Boolean|This flag indicates that the data type defines the *OptionSetValues Property* .<br>This field is optional. The default value is false.|
+|Fields|DataTypeField []|The list of fields that make up the data type.<br>This definition assumes the structure has a sequential layout.<br>For enumerations, the fields are simply a list of values.<br>This list does not include fields inherited from a base *DataType* .<br>When *Applications* ingest a *UANodeSet* they need to follow the *HasSubtype* *References* between *DataType Nodes* to collect all of the fields needed to fill in the *DataTypeDefinition Attribute.*|
   
 
   
 
 The *DataTypeDefinition Attribute* maybe populated from the *DataTypeDefinition* belonging to a *UADataType* . If the *UADataType* is a subtype of *Structure* the mapping to the *StructureType* *Enumeration* is specified in [Table F.13](/§\_Ref123078572) .  
 
- **Table F. 13\- StructureType Enumeration Mapping**   
+Table F. 13 - StructureType Enumeration Mapping  
 
 | **Value** | **IsUnion** | **Field.IsOptional** | **Field.AllowSubTypes** |
 |---|---|---|---|
@@ -6085,65 +5018,21 @@ Any combination of flags that does have a mapping is invalid and an error should
 
 A *DataTypeField* defines an abstract representation of a field within a *UADataType* that can be used by design tools to automatically create serialization code. The fields in the *DataTypeField* type are defined in [Table F.14](/§\_Ref397326220) .  
 
- **Table F. 14\- DataTypeField**   
+Table F. 14 - DataTypeField  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
 |Name|String|A name for the field that is unique within the *DataTypeDefinition* .|
-|SymbolicName|String|A symbolic name for the field that can be used in autogenerated code.  
-
-It should only be specified if the *Name* cannot be used for this purpose.  
-
-Only letters, digits or the underscore ('\_') are permitted.|
+|SymbolicName|String|A symbolic name for the field that can be used in autogenerated code.<br>It should only be specified if the *Name* cannot be used for this purpose.<br>Only letters, digits or the underscore ('\_') are permitted.|
 |DisplayName|LocalizedText []|A display name for the field in multiple locales.|
-|DataType|NodeId|The *NodeId* of the *DataType* for the field.  
-
-This *NodeId* can refer to another *Node* with its own *DataTypeDefinition* .  
-
-This field is not specified for *Enumeration* or *OptionSet* *DataTypes* .|
-|ValueRank|Int32|The value rank for the field.  
-
-It shall be *Scalar* (-1) or a fixed rank *Array* (\>=1).  
-
-This field is not specified for *Enumeration* or *OptionSet* *DataTypes* .|
-|ArrayDimensions|String|The maximum length of an array.  
-
-This field is a comma separated list of unsigned integer values. The list has a number of elements equal to the *ValueRank* .  
-
-The value is 0 if the maximum is not known for a dimension.  
-
-This field is not specified if the *ValueRank* \<= 0.  
-
-This field is not specified for *Enumeration* or *OptionSet* *DataTypes* .|
-|MaxStringLength|UInt32|The maximum length of a *String* or *ByteString* value.  
-
-If not known the value is 0.  
-
-The value is 0 if the *DataType* is not *String* or *ByteString* .  
-
-If the *ValueRank* \> 0 the maximum applies to each element in the array.  
-
-This field is not specified for *Enumeration* or *OptionSet* *DataTypes* .|
+|DataType|NodeId|The *NodeId* of the *DataType* for the field.<br>This *NodeId* can refer to another *Node* with its own *DataTypeDefinition* .<br>This field is not specified for *Enumeration* or *OptionSet* *DataTypes* .|
+|ValueRank|Int32|The value rank for the field.<br>It shall be *Scalar* (-1) or a fixed rank *Array* (\>=1).<br>This field is not specified for *Enumeration* or *OptionSet* *DataTypes* .|
+|ArrayDimensions|String|The maximum length of an array.<br>This field is a comma separated list of unsigned integer values. The list has a number of elements equal to the *ValueRank* .<br>The value is 0 if the maximum is not known for a dimension.<br>This field is not specified if the *ValueRank* \<= 0.<br>This field is not specified for *Enumeration* or *OptionSet* *DataTypes* .|
+|MaxStringLength|UInt32|The maximum length of a *String* or *ByteString* value.<br>If not known the value is 0.<br>The value is 0 if the *DataType* is not *String* or *ByteString* .<br>If the *ValueRank* \> 0 the maximum applies to each element in the array.<br>This field is not specified for *Enumeration* or *OptionSet* *DataTypes* .|
 |Description|LocalizedText []|A description for the field in multiple locales.|
-|Value|Int32|The value associated with the field.  
-
-This field is only specified for *Enumeration* or *OptionSet* *DataTypes* .|
-|IsOptional|Boolean|The field indicates if a data type field in a structure is optional.  
-
-The default value is false.  
-
-This field is not specified for *Enumeration,* *Union* or *OptionSet DataTypes.*|
-|AllowSubTypes|Boolean|For backward compatibility, this field shall be omitted if the *DataType* is *BaseDataType, Structure, Number, Integer or UInteger* or if the *DataType* is a subtype of simple built-in types such as a *String* or *Int32* .  
-
-This field shall be TRUE for all abstract *DataTypes* except for *BaseDataType, Structure, Number, Integer or UInteger* or if the *DataType* is a subtype of simple built-in types such as a *String* or *Int32* .  
-
-When TRUE, the field's value is allowed to contain subtypes of the *DataType* .  
-
-If TRUE, all subtypes of *Structure* are encoded as an *ExtensionObject* (see [5.1.6](/§\_Ref293469420) ) and all *DataTypes* that are not subtypes of *Structure* are encoded as a *Variant* (see [5.1.9](/§\_Ref64146623) ).  
-
-The default value is FALSE.  
-
-This field is omitted for *Enumeration* or *OptionSet* *DataTypes* .|
+|Value|Int32|The value associated with the field.<br>This field is only specified for *Enumeration* or *OptionSet* *DataTypes* .|
+|IsOptional|Boolean|The field indicates if a data type field in a structure is optional.<br>The default value is false.<br>This field is not specified for *Enumeration,* *Union* or *OptionSet DataTypes.*|
+|AllowSubTypes|Boolean|For backward compatibility, this field shall be omitted if the *DataType* is *BaseDataType, Structure, Number, Integer or UInteger* or if the *DataType* is a subtype of simple built-in types such as a *String* or *Int32* .<br>This field shall be TRUE for all abstract *DataTypes* except for *BaseDataType, Structure, Number, Integer or UInteger* or if the *DataType* is a subtype of simple built-in types such as a *String* or *Int32* .<br>When TRUE, the field's value is allowed to contain subtypes of the *DataType* .<br>If TRUE, all subtypes of *Structure* are encoded as an *ExtensionObject* (see [5.1.6](/§\_Ref293469420) ) and all *DataTypes* that are not subtypes of *Structure* are encoded as a *Variant* (see [5.1.9](/§\_Ref64146623) ).<br>The default value is FALSE.<br>This field is omitted for *Enumeration* or *OptionSet* *DataTypes* .|
   
 
 ### F.14 Variant  
@@ -6350,7 +5239,7 @@ The *UANodeSetChanges* is the root of a document that contains a set of changes 
 
 The elements of the type are defined in [Table F.15](/§\_Ref397326259) .  
 
- **Table F. 15\- UANodeSetChanges**   
+Table F. 15 - UANodeSetChanges  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
@@ -6380,25 +5269,11 @@ The *NodesToAdd* type specifies a list of *Nodes* to add to an *AddressSpace* . 
 
 The elements of the type are defined in [Table F.16](/§\_Ref397326301) .  
 
- **Table F. 16\- NodesToAdd**   
+Table F. 16 - NodesToAdd  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
-|\<choice\>|UAObject  
-
-UAVariable  
-
-UAMethod  
-
-UAView  
-
-UAObjectType  
-
-UAVariableType  
-
-UADataType  
-
-UAReferenceType|The *Nodes* to add to the *AddressSpace* .|
+|\<choice\>|UAObject<br>UAVariable<br>UAMethod<br>UAView<br>UAObjectType<br>UAVariableType<br>UADataType<br>UAReferenceType|The *Nodes* to add to the *AddressSpace* .|
   
 
 When adding *Nodes* , *References* can be specified as part of the *Node* definition or as a separate *ReferencesToAdd* .  
@@ -6413,7 +5288,7 @@ The *ReferencesToChange* type specifies a list of *References* to add to or remo
 
 The elements of the type are defined in [Table F.17](/§\_Ref397326324) .  
 
- **Table F. 17\- ReferencesToChange**   
+Table F. 17 - ReferencesToChange  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
@@ -6426,7 +5301,7 @@ The *ReferenceToChange* type specifies a single *Reference* to add to or remove 
 
 The elements of the type are defined in [Table F.18](/§\_Ref397326334) .  
 
- **Table F. 18\- ReferencesToChange**   
+Table F. 18 - ReferencesToChange  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
@@ -6448,7 +5323,7 @@ The *NodesToDelete* type specifies a list of *Nodes* to remove from an *AddressS
 
 The elements of the type are defined in [Table F.19](/§\_Ref397326344) .  
 
- **Table F. 19\- NodesToDelete**   
+Table F. 19 - NodesToDelete  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
@@ -6461,7 +5336,7 @@ The *NodeToDelete* type specifies a *Node* to remove from an *AddressSpace* .
 
 The elements of the type are defined in [Table F.20](/§\_Ref397326386) .  
 
- **Table F. 20\- ReferencesToChange**   
+Table F. 20 - ReferencesToChange  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
@@ -6477,7 +5352,7 @@ The *UANodeSetChangesStatus* is the root of a document that is produced when a *
 
 The elements of the type are defined in [Table F.21](/§\_Ref397326399) .  
 
- **Table F. 21\- UANodeSetChangesStatus**   
+Table F. 21 - UANodeSetChangesStatus  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
@@ -6488,18 +5363,10 @@ The elements of the type are defined in [Table F.21](/§\_Ref397326399) .
 |Version|String|Same as described in [Table F.1](/§\_Ref397325999) .|
 |LastModified|DateTime|Same as described in [Table F.1](/§\_Ref397325999) .|
 |TransactionId|String|A globally unique identifier from the original *UANodeSetChanges* document.|
-|NodesToAdd|NodeSetStatusList|A list of results for the *NodesToAdd* specified in the original document.  
-
-The list is empty if all elements were processed successfully.|
-|ReferencesToAdd|NodeSetStatusList|A list of results for the *ReferencesToAdd* specified in the original document.  
-
-The list is empty if all elements were processed successfully.|
-|NodesToDelete|NodeSetStatusList|A list of results for the *NodesToDelete* specified in the original document.  
-
-The list is empty if all elements were processed successfully.|
-|ReferencesToDelete|NodeSetStatusList|A list of results for the *ReferencesToDelete* specified in the original document.  
-
-The list is empty if all elements were processed successfully.|
+|NodesToAdd|NodeSetStatusList|A list of results for the *NodesToAdd* specified in the original document.<br>The list is empty if all elements were processed successfully.|
+|ReferencesToAdd|NodeSetStatusList|A list of results for the *ReferencesToAdd* specified in the original document.<br>The list is empty if all elements were processed successfully.|
+|NodesToDelete|NodeSetStatusList|A list of results for the *NodesToDelete* specified in the original document.<br>The list is empty if all elements were processed successfully.|
+|ReferencesToDelete|NodeSetStatusList|A list of results for the *ReferencesToDelete* specified in the original document.<br>The list is empty if all elements were processed successfully.|
   
 
 ### F.23 NodeSetStatusList  
@@ -6512,7 +5379,7 @@ If one or more errors occur, then this list contains one element for each operat
 
 The elements of the type are defined in [Table F.22](/§\_Ref397326506) .  
 
- **Table F. 22\- NodeSetStatusList**   
+Table F. 22 - NodeSetStatusList  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
@@ -6525,16 +5392,12 @@ The *NodeSetStatus* type specifies a single result produced when applying an ope
 
 The elements of the type are defined in [Table F.23](/§\_Ref397326515) .  
 
- **Table F. 23\- NodeSetStatus**   
+Table F. 23 - NodeSetStatus  
 
 | **Element** | **Type** | **Description** |
 |---|---|---|
-|Code|StatusCode|The result of the operation.  
-
-The possible StatusCodes are defined in [OPC 10000-4](/§UAPart4) .|
-|Details|String|A string providing information that is not conveyed by the StatusCode.  
-
-This is not a human readable string for the StatusCode.|
+|Code|StatusCode|The result of the operation.<br>The possible StatusCodes are defined in [OPC 10000-4](/§UAPart4) .|
+|Details|String|A string providing information that is not conveyed by the StatusCode.<br>This is not a human readable string for the StatusCode.|
   
 
   
@@ -6579,17 +5442,13 @@ The [OpenAPI](/§OpenAPI) mapping defines path for each *Service* . The *Request
 
 The OpenAPI schema is intended for use with HTTPS, however, the schema definitions are useful in other contexts, such as when using WebSockets or MQTT. When a *Service* message is sent via protocols other than HTTPS, the messages are wrapped in an envelope that defines the information sent in the HTTPS headers. The envelope is defined in [Table G.1](/§\_Ref162246186) .  
 
- **Table G. 1\- OpenAPI Message Envelope**   
+Table G. 1 - OpenAPI Message Envelope  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |ServiceId|NodeId|The *DataTypeId* for the *Body* .|
-|LocaleIds []|LocaleId|List of locale ids to use when creating a *Response* to a Request.  
-
-Not specified for *Response* messages.|
-|Body|\*|The *Request* or *Response* associated with the *Service* .  
-
-The *ServiceId* indicates the content of the Body.|
+|LocaleIds []|LocaleId|List of locale ids to use when creating a *Response* to a Request.<br>Not specified for *Response* messages.|
+|Body|\*|The *Request* or *Response* associated with the *Service* .<br>The *ServiceId* indicates the content of the Body.|
   
 
   
@@ -6632,29 +5491,13 @@ The expectation is that all encoders used for *Publishers* support all four enco
 
 Decoders that support the deprecated encodings use the JSON datatype to detect which encoding is used. A JSON string is the current encoding; a JSON object means it is the deprecated encoding.  
 
- **Table H. 1\- JSON Object Definition for a NodeId**   
+Table H. 1 - JSON Object Definition for a NodeId  
 
 | **Name** | **Description** |
 |---|---|
-|IdType|The *IdentifierType* encoded as a JSON number.  
-
-Allowed values are:  
-
-0 - *UInt32* identifier encoded as a JSON number.  
-
-1 - A *String* identifier encoded as a JSON string.  
-
-2 - A *Guid* identifier encoded as described in [5.4.2.7](/§\_Ref472620952) .  
-
-3 - A *ByteString* identifier encoded as described in [5.4.2.8](/§\_Ref432359677) .  
-
-This field is omitted for UInt32 identifiers.|
-|Id|The identifier.  
-
-The value of the *IdType* field specifies the encoding of this field.|
-|Namespace|This field is a JSON number with the *NamespaceIndex* . The field is omitted if the NamespaceIndex is 0.  
-
-For *NonReversibleEncoding* this field is the JSON string containing the *NamespaceUri* associated with the *NamespaceIndex* unless the *NamespaceIndex* is 0. If the *NamespaceIndex* is 0 the field is omitted.|
+|IdType|The *IdentifierType* encoded as a JSON number.<br>Allowed values are:<br>0 - *UInt32* identifier encoded as a JSON number.<br>1 - A *String* identifier encoded as a JSON string.<br>2 - A *Guid* identifier encoded as described in [5.4.2.7](/§\_Ref472620952) .<br>3 - A *ByteString* identifier encoded as described in [5.4.2.8](/§\_Ref432359677) .<br>This field is omitted for UInt32 identifiers.|
+|Id|The identifier.<br>The value of the *IdType* field specifies the encoding of this field.|
+|Namespace|This field is a JSON number with the *NamespaceIndex* . The field is omitted if the NamespaceIndex is 0.<br>For *NonReversibleEncoding* this field is the JSON string containing the *NamespaceUri* associated with the *NamespaceIndex* unless the *NamespaceIndex* is 0. If the *NamespaceIndex* is 0 the field is omitted.|
   
 
   
@@ -6665,32 +5508,14 @@ For *NonReversibleEncoding* this field is the JSON string containing the *Namesp
 
 Decoders that support the deprecated encodings use the JSON datatype to detect which encoding is used. A JSON string is the current encoding; a JSON object means it is the deprecated encoding.  
 
- **Table H. 2\- JSON Object Definition for an ExpandedNodeId**   
+Table H. 2 - JSON Object Definition for an ExpandedNodeId  
 
 | **Name** | **Description** |
 |---|---|
-|IdType|The *IdentifierType* encoded as a JSON number.  
-
-Allowed values are:  
-
-0 - *UInt32* *Identifier* encoded as a JSON number.  
-
-1 - A *String* Identifier encoded as a JSON string.  
-
-2 - A *Guid* *Identifier* encoded as described in [5.4.2.7](/§\_Ref472620952) .  
-
-3 - A *ByteString* *Identifier* encoded as described in [5.4.2.8](/§\_Ref432359677) .  
-
-This field is omitted for UInt32 identifiers.|
-|Id|The *Identifier* .  
-
-The value of the *IdType* field specifies the encoding of this field.|
-|Namespace|For *ReversibleEncoding* this field is a JSON string with the *NamespaceUri* if the *NamespaceUri* is specified. Otherwise, it is a JSON number with the *NamespaceIndex.* The field is omitted if the NamespaceIndex is 0.  
-
-For *NonReversibleEncoding* this field is the JSON string containing the *NamespaceUri* or the *NamespaceUri* associated with the *NamespaceIndex* unless the *NamespaceIndex* is 0 or 1. If the *NamespaceIndex* is 0 the field is omitted.|
-|ServerUri|For *ReversibleEncoding* this field is a JSON number with the *ServerIndex* . The field is omitted if the *ServerIndex* is 0.  
-
-For *NonReversibleEncoding* this field is the JSON string containing the *ServerUri* associated with the *ServerIndex* unless the *ServerIndex* is 0. If the *ServerIndex* is 0 the field is omitted.|
+|IdType|The *IdentifierType* encoded as a JSON number.<br>Allowed values are:<br>0 - *UInt32* *Identifier* encoded as a JSON number.<br>1 - A *String* Identifier encoded as a JSON string.<br>2 - A *Guid* *Identifier* encoded as described in [5.4.2.7](/§\_Ref472620952) .<br>3 - A *ByteString* *Identifier* encoded as described in [5.4.2.8](/§\_Ref432359677) .<br>This field is omitted for UInt32 identifiers.|
+|Id|The *Identifier* .<br>The value of the *IdType* field specifies the encoding of this field.|
+|Namespace|For *ReversibleEncoding* this field is a JSON string with the *NamespaceUri* if the *NamespaceUri* is specified. Otherwise, it is a JSON number with the *NamespaceIndex.* The field is omitted if the NamespaceIndex is 0.<br>For *NonReversibleEncoding* this field is the JSON string containing the *NamespaceUri* or the *NamespaceUri* associated with the *NamespaceIndex* unless the *NamespaceIndex* is 0 or 1. If the *NamespaceIndex* is 0 the field is omitted.|
+|ServerUri|For *ReversibleEncoding* this field is a JSON number with the *ServerIndex* . The field is omitted if the *ServerIndex* is 0.<br>For *NonReversibleEncoding* this field is the JSON string containing the *ServerUri* associated with the *ServerIndex* unless the *ServerIndex* is 0. If the *ServerIndex* is 0 the field is omitted.|
   
 
   
@@ -6701,20 +5526,12 @@ For *NonReversibleEncoding* this field is the JSON string containing the *Server
 
 For the *NonReversibleEncoding* , *StatusCode* values shall be encoded as a JSON object with the fields defined in [Table H.3](/§\_Ref183036304) .  
 
- **Table H. 3\- JSON Object Definition for a StatusCode**   
+Table H. 3 - JSON Object Definition for a StatusCode  
 
 | **Name** | **Description** |
 |---|---|
-|Code|The numeric code encoded as a JSON number.  
-
-The *Code* is omitted if the numeric code is 0 (Good).|
-|Symbol|The string literal associated with the numeric code encoded as JSON string.  
-
-e.g. 0x80AB0000 has the associated literal "Bad\_InvalidArgument".  
-
-The *Symbol* is omitted if the numeric code is 0 (Good).  
-
-If the string literal is not known to the encoder the field is omitted.|
+|Code|The numeric code encoded as a JSON number.<br>The *Code* is omitted if the numeric code is 0 (Good).|
+|Symbol|The string literal associated with the numeric code encoded as JSON string.<br>e.g. 0x80AB0000 has the associated literal "Bad\_InvalidArgument".<br>The *Symbol* is omitted if the numeric code is 0 (Good).<br>If the string literal is not known to the encoder the field is omitted.|
   
 
   
@@ -6729,14 +5546,12 @@ The *CompactEncoding* and *VerboseEncoding* use the same JSON object as the *Non
 
 Decoders that support the deprecated encodings use the JSON datatype to detect which encoding is used. A JSON string is the current encoding; a JSON object means it is the deprecated encoding.  
 
- **Table H. 4\- JSON Object Definition for a QualifiedName**   
+Table H. 4 - JSON Object Definition for a QualifiedName  
 
 | **Name** | **Description** |
 |---|---|
 |Name|The Name component of the *QualifiedName* .|
-|Uri|For *ReversibleEncoding* this field is a JSON number with the *NamespaceIndex* . The field is omitted if the NamespaceIndex is 0.  
-
-For *NonReversibleEncoding* this field is the JSON string containing the *NamespaceUri* associated with the *NamespaceIndex* unless the *NamespaceIndex* is 0. If the *NamespaceIndex* is 0 the field is omitted.|
+|Uri|For *ReversibleEncoding* this field is a JSON number with the *NamespaceIndex* . The field is omitted if the NamespaceIndex is 0.<br>For *NonReversibleEncoding* this field is the JSON string containing the *NamespaceUri* associated with the *NamespaceIndex* unless the *NamespaceIndex* is 0. If the *NamespaceIndex* is 0 the field is omitted.|
   
 
   
@@ -6745,7 +5560,7 @@ For *NonReversibleEncoding* this field is the JSON string containing the *Namesp
 
 For the *ReversibleEncoding, LocalizedText* values shall be encoded as a JSON object with the fields shown in [Table H.5](/§\_Ref176660725) .  
 
- **Table H. 5\- JSON Object Definition for a LocalizedText**   
+Table H. 5 - JSON Object Definition for a LocalizedText  
 
 | **Name** | **Description** |
 |---|---|
@@ -6763,23 +5578,13 @@ Decoders that support the *NonReversibleEncoding* use the JSON datatype to detec
 
 For the *ReversibleEncoding* , *ExtensionObject* values shall be encoded as a JSON object with the fields shown in [Table H.6](/§\_Ref432359532) .  
 
- **Table H. 6\- JSON Object Definition for an ExtensionObject**   
+Table H. 6 - JSON Object Definition for an ExtensionObject  
 
 | **Name** | **Description** |
 |---|---|
 |TypeId|The *NodeId* of a *DataTypeEncoding Node* or a *DataType Node* formatted using the rules in [H.2](/§\_Ref176660998) .|
-|Encoding|The format of the *Body* field encoded as a JSON number.  
-
-This value is 0 if the body is *Structure* encoded as a JSON object.  
-
-This value is 1 if the body is a *ByteString* value encoded as a JSON string.  
-
-This value is 2 if the body is a *XmlElement* value encoded as a JSON string.  
-
-This field is omitted if the value is 0.|
-|Body|*Body* of the *ExtensionObject* . The type of this field is specified by the *Encoding* field.  
-
-If the Body is empty, the *ExtensionObject* is NULL and is omitted or encoded as a JSON null.|
+|Encoding|The format of the *Body* field encoded as a JSON number.<br>This value is 0 if the body is *Structure* encoded as a JSON object.<br>This value is 1 if the body is a *ByteString* value encoded as a JSON string.<br>This value is 2 if the body is a *XmlElement* value encoded as a JSON string.<br>This field is omitted if the value is 0.|
+|Body|*Body* of the *ExtensionObject* . The type of this field is specified by the *Encoding* field.<br>If the Body is empty, the *ExtensionObject* is NULL and is omitted or encoded as a JSON null.|
   
 
   
@@ -6792,21 +5597,13 @@ Decoders that support the *NonReversibleEncoding* need to have out of band knowl
 
 For the *ReversibleEncoding,* *Variant* values shall be encoded as a JSON object with the fields shown in [Table H.7](/§\_Ref183036235) .  
 
- **Table H. 7\- JSON Object Definition for a Variant**   
+Table H. 7 - JSON Object Definition for a Variant  
 
 | **Name** | **Description** |
 |---|---|
-|Type|The Built-in type for the value contained in the *Body* (see [Table 1](/§\_Ref83387521) ) encoded as JSON number.  
-
-If type is 0 (NULL) the *Variant* contains a NULL value and the containing JSON object shall be omitted or replaced by the JSON literal 'null' (when an element of a JSON array).|
-|Body|If the value is a scalar, it is encoded using the rules for type specified for the *Type* .  
-
-If the value is a one-dimensional array it is encoded as JSON array (see [H.9](/§\_Ref173677219) ).  
-
-Multi-dimensional arrays are encoded as a one-dimensional JSON array which is reconstructed using the value of the *Dimensions* field (see [5.2.2.16](/§\_Ref400568926) ).|
-|Dimensions|The dimensions of the array encoded as a JSON array of JSON numbers.  
-
-The *Dimensions* are omitted for scalar and one-dimensional array values.|
+|Type|The Built-in type for the value contained in the *Body* (see [Table 1](/§\_Ref83387521) ) encoded as JSON number.<br>If type is 0 (NULL) the *Variant* contains a NULL value and the containing JSON object shall be omitted or replaced by the JSON literal 'null' (when an element of a JSON array).|
+|Body|If the value is a scalar, it is encoded using the rules for type specified for the *Type* .<br>If the value is a one-dimensional array it is encoded as JSON array (see [H.9](/§\_Ref173677219) ).<br>Multi-dimensional arrays are encoded as a one-dimensional JSON array which is reconstructed using the value of the *Dimensions* field (see [5.2.2.16](/§\_Ref400568926) ).|
+|Dimensions|The dimensions of the array encoded as a JSON array of JSON numbers.<br>The *Dimensions* are omitted for scalar and one-dimensional array values.|
   
 
 For the *NonReversibleEncoding,* *Variant* values shall be encoded as a JSON value containing only the value of the *Body* field. The *Type* and *Dimensions* fields are dropped. Multi-dimensional arrays are encoded as a multi-dimensional JSON array as described in [H.9](/§\_Ref173677219) .  
@@ -6823,8 +5620,9 @@ Otherwise, the element is encoded according to the rules defined for the type.
 
 In the deprecated encodings, Multi-dimensional *Arrays* are encoded as nested JSON arrays. The outer array is the first dimension and the innermost array is the last dimension. For example, the following matrix  
 
-|0 2 3|
+||
 |---|
+|0 2 3|
 |1 3 4|
   
 
@@ -6844,15 +5642,11 @@ Encoders that support the deprecated encoding rely on a switch set by the applic
 
 Note that JSON objects are unordered sets of name-value pairs. The order specified by the *DataTypeDefinition* is not preserved when a *Union* is serialized in JSON. The *SwitchField* may not appear as the first field.  
 
- **Table H. 8\- JSON Object Definition for a Union**   
+Table H. 8 - JSON Object Definition for a Union  
 
 | **Name** | **Description** |
 |---|---|
-|SwitchField|The identifier for the field in the Union which is encoded as a JSON number.  
-
-The valid values for this field follow the conventions defined in [5.2.8](/§\_Ref35886801) .  
-
-If the *SwitchField* value is its *DefaultValue* of 0, then the *SwitchField* and the *Value* field are not present.|
+|SwitchField|The identifier for the field in the Union which is encoded as a JSON number.<br>The valid values for this field follow the conventions defined in [5.2.8](/§\_Ref35886801) .<br>If the *SwitchField* value is its *DefaultValue* of 0, then the *SwitchField* and the *Value* field are not present.|
 |Value|The value of the field encoded using the rules that apply to the data type.|
   
 

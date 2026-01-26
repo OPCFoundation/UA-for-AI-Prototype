@@ -388,7 +388,7 @@ Most states defined in this document are simple - i.e. they are either True or F
 
 The *TwoStateVariableType* is derived from the *StateVariableType* defined in [10000-16](/§UAPart16) . and formally defined in [Table 11](/§\_Ref224963603) .  
 
- **Table 11\- TwoStateVariableType definition**   
+Table 11 - TwoStateVariableType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -396,17 +396,19 @@ The *TwoStateVariableType* is derived from the *StateVariableType* defined in [1
 |DataType|LocalizedText|
 |ValueRank|\-1 (-1 = Scalar)|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
-|Subtype of the *StateVariableType* defined in [10000-16](/§) .  
-
-Note that a *Reference* to this subtype is not shown in the definition of the *StateVariableType*|
+|---|---|---|---|---|---|
+|Subtype of the *StateVariableType* defined in [10000-16](/§) .<br>Note that a *Reference* to this subtype is not shown in the definition of the *StateVariableType*|
 |HasProperty|Variable|Id|Boolean|PropertyType|Mandatory|
 |HasProperty|Variable|TransitionTime|UtcTime|PropertyType|Optional|
 |HasProperty|Variable|EffectiveTransitionTime|UtcTime|PropertyType|Optional|
 |HasProperty|Variable|TrueState|LocalizedText|PropertyType|Optional|
 |HasProperty|Variable|FalseState|LocalizedText|PropertyType|Optional|
 ||||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Basic|
   
 
@@ -442,7 +444,7 @@ Various information elements of a *Condition* are not considered to be states. H
 
 *ConditionVariables* are represented by a *ConditionVariableType,* formally defined in [Table 22](/§\_Ref225692989) .  
 
- **Table 22\- ConditionVariableType definition**   
+Table 22 - ConditionVariableType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -450,10 +452,14 @@ Various information elements of a *Condition* are not considered to be states. H
 |DataType|BaseDataType|
 |ValueRank|\-2 (-2 = Any)|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseDataVariableType* defined in [10000-5](/§UAPart5) .|
 |HasProperty|Variable|SourceTimestamp|UtcTime|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Basic|
   
 
@@ -479,7 +485,7 @@ The *SourceNode* of the *Reference* shall be an instance of a *TwoStateVariableT
 
 It is not required to provide the *HasTrueSubState Reference* from super state to sub state, but it is required that the sub state provides the inverse *Reference* ( *IsTrueSubStateOf* ) to its super state.  
 
- **Table 33\- HasTrueSubState ReferenceType**   
+Table 33 - HasTrueSubState ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -487,9 +493,13 @@ It is not required to provide the *HasTrueSubState Reference* from super state t
 |InverseName|IsTrueSubStateOf|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Basic|
   
 
@@ -505,7 +515,7 @@ The *SourceNode* of the *Reference* shall be an instance of a *TwoStateVariableT
 
 It is not required to provide the *HasFalseSubState Reference* from super state to sub state, but it is required that the sub state provides the inverse *Reference* (IsFalseSubStateOf) to its super state.  
 
- **Table 44\- HasFalseSubState ReferenceType**   
+Table 44 - HasFalseSubState ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -513,9 +523,13 @@ It is not required to provide the *HasFalseSubState Reference* from super state 
 |InverseName|IsFalseSubStateOf|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Basic|
   
 
@@ -529,7 +543,7 @@ This *ReferenceType* binds an AlarmSuppressionGroup to an *Alarm* .
 
 The *SourceNode* of the *Reference* shall be an instance of an *AlarmConditionType* or sub type. The *TargetNode* shall be an instance of an *AlarmGroupType* .  
 
- **Table 55\- HasAlarmSuppressionGroup ReferenceType**   
+Table 55 - HasAlarmSuppressionGroup ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -537,9 +551,13 @@ The *SourceNode* of the *Reference* shall be an instance of an *AlarmConditionTy
 |InverseName|IsAlarmSuppressionGroupOf|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Suppression Group|
   
 
@@ -553,7 +571,7 @@ This *ReferenceType* is used to indicate the *Alarm* instances that are part of 
 
 The *SourceNode* of the *Reference* shall be an instance of an *AlarmGroupType* or sub type of it. The *TargetNode* shall be an instance of an *AlarmConditionType* or a subtype of it.  
 
- **Table 66\- AlarmGroupMember ReferenceType**   
+Table 66 - AlarmGroupMember ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -561,16 +579,16 @@ The *SourceNode* of the *Reference* shall be an instance of an *AlarmGroupType* 
 |InverseName|MemberOfAlarmGroup|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **ConformanceUnits** |
-|A & C Suppression Group|
 |---|
+A & C Suppression Group||
+|A & C First in Group Alarm|
   
-
-  
-
-A & C First in Group Alarm  
 
   
 
@@ -582,7 +600,7 @@ This *ReferenceType* is used to indicate the *Alarm* instances or *Boolean* *Var
 
 The *SourceNode* of the *Reference* shall be an instance of an *AlarmGroupType* or sub type of it. The *TargetNode* shall be an instance of an *AlarmConditionType* or a subtype of it, or an instance of *BaseDataVariableType* that has a *DataType* of *Boolean* .  
 
- **Table 77\- AlarmSuppressionGroupMember ReferenceType**   
+Table 77 - AlarmSuppressionGroupMember ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -590,15 +608,15 @@ The *SourceNode* of the *Reference* shall be an instance of an *AlarmGroupType* 
 |InverseName|MemberOfAlarmSuppressionGroup|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **ConformanceUnits** |
-|A & C Suppression Group|
 |---|
-  
-
-  
-
+A & C Suppression Group||
+||
   
 
   
@@ -619,13 +637,15 @@ Figure 1010 - Condition model
 
 The *ConditionType* defines all general characteristics of a *Condition* . All other *ConditionTypes* derive from it. It is formally defined in [Table 88](/§\_Ref396821621) and [Table 99](/§\_Ref83723741) . The False state of the *EnabledState* shall not be extended with a sub state machine.  
 
- **Table 88\- ConditionType definition**   
+Table 88 - ConditionType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ConditionType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseEventType* defined in [10000-5](/§UAPart5)|
 |HasSubtype|ObjectType|DialogConditionType|Defined in Clause [5.6.2](/§\_Ref226353105)|
 |HasSubtype|ObjectType|AcknowledgeableConditionType|Defined in Clause [5.7.2](/§\_Ref173042653)|
@@ -647,13 +667,15 @@ The *ConditionType* defines all general characteristics of a *Condition* . All o
 |HasComponent|Method|AddComment|Defined in Clause [5.5.6](/§\_Ref224968700)|Mandatory|
 |HasComponent|Method|ConditionRefresh|Defined in Clause [5.5.7](/§\_Ref224968635)||
 |HasComponent|Method|ConditionRefresh2|Defined in Clause [5.5.8](/§\_Ref414963698)||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Basic|
   
 
   
 
- **Table 99\- ConditionType Additional Subcomponents**   
+Table 99 - ConditionType Additional Subcomponents  
 
 | **BrowsePath** | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Others** |
 |---|---|---|---|---|---|---|
@@ -721,7 +743,7 @@ In the event of a restart of an *AlarmManager* , the *AlarmManager* shall recove
 
 The *NodeId* of the *Condition* instance is used as *ConditionId* . It is not explicitly modelled as a component of the *ConditionType* . However, it can be requested with the following *SimpleAttributeOperand* (see [Table 1010](/§\_Ref396824507) ) in the *SelectClause* of the *EventFilter* : See [10000-4](/§UAPart4) for a detailed definition of the *SelectClause* in an *Event* *Subscription* .  
 
- **Table 1010\- ConditionId SimpleAttributeOperand Illustration**   
+Table 1010 - ConditionId SimpleAttributeOperand Illustration  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -757,7 +779,7 @@ The *Disable* *Method* is used to change a *Condition* instance to the *Disabled
 
  **Method Result Codes in [Table 1111](/§\_Ref396824523) (defined in Call Ser *v* ice)**   
 
- **Table 1111\- Disable result codes**   
+Table 1111 - Disable result codes  
 
 | **Result Code** | **Description** |
 |---|---|
@@ -768,14 +790,18 @@ The *Disable* *Method* is used to change a *Condition* instance to the *Disabled
 
 [Table 1212](/§\_Ref396824556) specifies the *AddressSpace* representation for the *Disable* *Method* .  
 
- **Table 1212\- Disable Method AddressSpace definition**   
+Table 1212 - Disable Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Disable|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionEnableEventType|Defined in [5.10.2](/§\_Ref225876158)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Enable|
   
 
@@ -795,7 +821,7 @@ The *Enable* *Method* is used to change a *Condition* instance to the enabled st
 
  ***Method* result codes in [Table 1313](/§\_Ref396824583) (defined in Call Ser *v* ice)**   
 
- **Table 1313\- Enable result codes**   
+Table 1313 - Enable result codes  
 
 | **Result Code** | **Description** |
 |---|---|
@@ -806,14 +832,18 @@ The *Enable* *Method* is used to change a *Condition* instance to the enabled st
 
 [Table 1414](/§\_Ref151441502) specifies the *AddressSpace* representation for the *Enable* *Method* .  
 
- **Table 1414\- Enable Method AddressSpace definition**   
+Table 1414 - Enable Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Enable|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionEnableEventType|Defined in [5.10.2](/§\_Ref225876158)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Enable|
   
 
@@ -839,7 +869,7 @@ The *AddComment* *Method* is used to apply a comment to a specific state of a *C
 
 The parameters are defined in [Table 1515](/§\_Ref396824615)  
 
- **Table 1515\- AddComment arguments**   
+Table 1515 - AddComment arguments  
 
 | **Argument** | **Description** |
 |---|---|
@@ -851,15 +881,13 @@ The parameters are defined in [Table 1515](/§\_Ref396824615)
 
  ***Method* result codes in [Table 1616](/§\_Ref396824634) (defined in Call Service)**   
 
- **Table 1616\- AddComment result codes**   
+Table 1616 - AddComment result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the *ObjectId* provided. See [10000-4](/§UAPart4) for the general description of this result code.|
 |Bad\_EventIdUnknown|See [Table 137137](/§\_Ref90539276) for the description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the ConditionType *Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the ConditionType *Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
 |Bad\_InvalidArgument|The Comment string provided exceeds the allowed length for the comment or is invalid in some other manner.|
   
 
@@ -875,15 +903,19 @@ A *ConditionEvent* with all *Condition* values, where the *Comment* *Variable* c
 
 [Table 1717](/§\_Ref174163279) specifies the *AddressSpace* representation for the *AddComment* *Method* .  
 
- **Table 1717\- AddComment Method AddressSpace definition**   
+Table 1717 - AddComment Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AddComment|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionCommentEventType|Defined in [5.10.4](/§\_Ref225150516)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Comment|
   
 
@@ -907,7 +939,7 @@ If *Auditing* is supported, this *Method* shall generate an *Event* of *AuditCon
 
 The parameters are defined in [Table 1818](/§\_Ref396824670)  
 
- **Table 1818\- ConditionRefresh parameters**   
+Table 1818 - ConditionRefresh parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -918,16 +950,14 @@ The parameters are defined in [Table 1818](/§\_Ref396824670)
 
  ***Method* result codes in [Table 1919](/§\_Ref396824689) (defined in Call Ser *v* ice)**   
 
- **Table 1919\- ConditionRefresh result codes**   
+Table 1919 - ConditionRefresh result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_SubscriptionIdInvalid|See [10000-4](/§UAPart4) for the description of this result code|
 |Bad\_NothingToDo|The *ConditionRefresh* *Method* was called on a *SubscriptionId* that has no event *MonitoredItems.*|
 |Bad\_RefreshInProgress|See [Table 137137](/§\_Ref90539276) for the description of this result code|
-|Bad\_UserAccessDenied|The *Method* was not called in the context of the *Session* that owns the *Subscription*  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_UserAccessDenied|The *Method* was not called in the context of the *Session* that owns the *Subscription*<br>See [10000-4](/§UAPart4) for the general description of this result code.|
   
 
   
@@ -954,16 +984,20 @@ As mentioned above, *ConditionRefresh* shall also issue *Event* *Notifications* 
 
 [Table 2020](/§\_Ref225740142) specifies the *AddressSpace* representation for the *ConditionRefresh* *Method* .  
 
- **Table 2020\- ConditionRefresh Method AddressSpace definition**   
+Table 2020 - ConditionRefresh Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ConditionRefresh|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
 |AlwaysGeneratesEvent|ObjectType|RefreshStartEventType|Defined in [5.11.2](/§\_Ref225210757)|
 |AlwaysGeneratesEvent|ObjectType|RefreshEndEventType|Defined in [5.11.3](/§\_Ref225210850)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Refresh|
   
 
@@ -989,7 +1023,7 @@ This *Method* is optional and as such *Clients* shall be prepared to handle *Ser
 
 The parameters are defined in [Table 2121](/§\_Ref87989470)  
 
- **Table 2121\- ConditionRefresh2 parameters**   
+Table 2121 - ConditionRefresh2 parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -1001,16 +1035,14 @@ The parameters are defined in [Table 2121](/§\_Ref87989470)
 
 *Method* result codes in [Table 2222](/§\_Ref87989493) (defined in Call Ser *v* ice)  
 
- **Table 2222\- ConditionRefresh2 result codes**   
+Table 2222 - ConditionRefresh2 result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_SubscriptionIdInvalid|See [10000-4](/§UAPart4) for the description of this result code|
 |Bad\_MonitoredItemIdInvalid|See [10000-4](/§UAPart4) for the description of this result code|
 |Bad\_RefreshInProgress|See [Table 137137](/§\_Ref90539276) for the description of this result code|
-|Bad\_UserAccessDenied|The *Method* was not called in the context of the Session that owns the *Subscription*  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_UserAccessDenied|The *Method* was not called in the context of the Session that owns the *Subscription*<br>See [10000-4](/§UAPart4) for the general description of this result code.|
 |Bad\_MethodInvalid|See [10000-4](/§UAPart4) for the description of this result code|
   
 
@@ -1036,16 +1068,20 @@ As mentioned above, *ConditionRefresh2* shall also issue *Event* *Notifications*
 
 [Table 2323](/§\_Ref87989562) specifies the *AddressSpace* representation for the *ConditionRefresh2* *Method* .  
 
- **Table 2323\- ConditionRefresh2 Method AddressSpace definition**   
+Table 2323 - ConditionRefresh2 Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ConditionRefresh2|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
 |AlwaysGeneratesEvent|ObjectType|RefreshStartEventType|Defined in [5.11.2](/§\_Ref225210757)|
 |AlwaysGeneratesEvent|ObjectType|RefreshEndEventType|Defined in [5.11.3](/§\_Ref225210850)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Refresh2|
   
 
@@ -1065,13 +1101,15 @@ The *DialogConditionType* is used to represent *Conditions* as dialogs. It is il
 
 Figure 1212 - DialogConditionType Overview  
 
- **Table 2424\- DialogConditionType definition**   
+Table 2424 - DialogConditionType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|DialogConditionType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the ConditionType defined in clause [5.5.2](/§\_Ref151457588)|
 |HasComponent|Variable|DialogState|LocalizedText|TwoStateVariableType|Mandatory|
 |HasProperty|Variable|Prompt|LocalizedText|PropertyType|Mandatory|
@@ -1082,13 +1120,15 @@ Figure 1212 - DialogConditionType Overview
 |HasProperty|Variable|CancelResponse|Int32|PropertyType|Mandatory|
 |HasComponent|Method|Respond|Defined in Clause [5.6.3](/§\_Ref228802874) .|Mandatory|
 |HasComponent|Method|Respond2|Defined in Clause [5.6.4](/§\_Ref78268128) .|Optional|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Dialog|
   
 
   
 
- **Table 2525\- DialogConditionType Additional Subcomponents**   
+Table 2525 - DialogConditionType Additional Subcomponents  
 
 | **BrowsePath** | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Others** |
 |---|---|---|---|---|---|---|
@@ -1144,7 +1184,7 @@ Typical combinations of response options are
 
 The parameters are defined in [Table 2626](/§\_Ref396824722)  
 
- **Table 2626\- Respond parameters**   
+Table 2626 - Respond parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -1155,7 +1195,7 @@ The parameters are defined in [Table 2626](/§\_Ref396824722)
 
  ***Method* result codes in [Table 2727](/§\_Ref396824748) (defined in Call Ser *v* ice)**   
 
- **Table 2727\- Respond Result Codes**   
+Table 2727 - Respond Result Codes  
 
 | **Result Code** | **Description** |
 |---|---|
@@ -1167,17 +1207,19 @@ The parameters are defined in [Table 2626](/§\_Ref396824722)
 
 [Table 2828](/§\_Ref225740746) specifies the *AddressSpace* representation for the *Respond* *Method* .  
 
- **Table 2828\- Respond Method AddressSpace definition**   
+Table 2828 - Respond Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Respond|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
-|AlwaysGeneratesEvent|ObjectType|AuditConditionRespondEventType|Defined in [5.10.5](/§\_Ref234205372)  
-
-|
+|AlwaysGeneratesEvent|ObjectType|AuditConditionRespondEventType|Defined in [5.10.5](/§\_Ref234205372)<br>|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Dialog|
   
 
@@ -1201,7 +1243,7 @@ If *Auditing* is supported, this *Method* shall generate an *Event* of *AuditCon
 
 The parameters are defined in [Table 2929](/§\_Ref78264658)  
 
- **Table 2929\- Respond2 parameters**   
+Table 2929 - Respond2 parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -1215,7 +1257,7 @@ If the *Comment* argument is NULL (both locale and text are empty) it shall be i
 
  ***Method* result codes in [Table 3030](/§\_Ref78264692) (defined in Call Ser *v* ice)**   
 
- **Table 3030\- Respond2 Result Codes**   
+Table 3030 - Respond2 Result Codes  
 
 | **Result Code** | **Description** |
 |---|---|
@@ -1228,17 +1270,19 @@ If the *Comment* argument is NULL (both locale and text are empty) it shall be i
 
 [Table 3131](/§\_Ref78264720) specifies the *AddressSpace* representation for the *Respond2* *Method* .  
 
- **Table 3131\- Respond2 Method AddressSpace definition**   
+Table 3131 - Respond2 Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Respond2|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
-|AlwaysGeneratesEvent|ObjectType|AuditConditionRespondEventType|Defined in [5.10.5](/§\_Ref234205372)  
-
-|
+|AlwaysGeneratesEvent|ObjectType|AuditConditionRespondEventType|Defined in [5.10.5](/§\_Ref234205372)<br>|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Dialog2|
   
 
@@ -1264,13 +1308,15 @@ The *AcknowledgeableConditionType* extends the *ConditionType* by defining ackno
 
 Figure 1313 - AcknowledgeableConditionType overview  
 
- **Table 3232\- AcknowledgeableConditionType definition**   
+Table 3232 - AcknowledgeableConditionType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AcknowledgeableConditionType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *ConditionType* defined in ** clause [5.5.2](/§\_Ref225571688) .|
 |HasSubtype|ObjectType|AlarmConditionType|Defined in Clause [5.8.2](/§\_Ref150677970)|
 |||||||
@@ -1279,13 +1325,15 @@ Figure 1313 - AcknowledgeableConditionType overview
 |||||||
 |HasComponent|Method|Acknowledge|Defined in Clause [5.7.3](/§\_Ref224987672)|Mandatory|
 |HasComponent|Method|Confirm|Defined in Clause [5.7.4](/§\_Ref287396027)|Optional|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Acknowledge|
   
 
   
 
- **Table 3333\- AcknowledgeableConditionType Additional Subcomponents**   
+Table 3333 - AcknowledgeableConditionType Additional Subcomponents  
 
 | **BrowsePath** | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Others** |
 |---|---|---|---|---|---|---|
@@ -1323,13 +1371,11 @@ The *Acknowledge* *Method* is used to acknowledge an *Event Notification* for a 
 
 The parameters are defined in [Table 3434](/§\_Ref396824772)  
 
- **Table 3434\- Acknowledge parameters**   
+Table 3434 - Acknowledge parameters  
 
 | **Argument** | **Description** |
 |---|---|
-|EventId|EventId identifying a particular *Event Notification* .  
-
-Only *Event Notifications* where AckedState/Id was False can be acknowledged.|
+|EventId|EventId identifying a particular *Event Notification* .<br>Only *Event Notifications* where AckedState/Id was False can be acknowledged.|
 |Comment|A localized text that shall be applied to the *Condition* .|
   
 
@@ -1337,7 +1383,7 @@ Only *Event Notifications* where AckedState/Id was False can be acknowledged.|
 
  ***Method* result codes in [Table 3535](/§\_Ref396824787) (defined in Call Service)**   
 
- **Table 3535\- Acknowledge result codes**   
+Table 3535 - Acknowledge result codes  
 
 | **Result Code** | **Description** |
 |---|---|
@@ -1358,17 +1404,19 @@ The *EventId* identifies a specific *Event Notification* with an acknowledgeable
 
 A valid *EventId* will result in an *Event Notification* where *AckedState* /Id is set to True and the *Comment Property* contains the text of the optional comment argument. If a previous state is acknowledged, the *BranchId* and all *Condition* values of this branch will be reported. [Table 3636](/§\_Ref173035324) specifies the *AddressSpace* representation for the *Acknowledge* *Method* .  
 
- **Table 3636\- Acknowledge Method AddressSpace definition**   
+Table 3636 - Acknowledge Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Acknowledge|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
-|AlwaysGeneratesEvent|ObjectType|AuditConditionAcknowledge  
-
-EventType|Defined in [5.10.5](/§\_Ref225150898)|
+|AlwaysGeneratesEvent|ObjectType|AuditConditionAcknowledge<br>EventType|Defined in [5.10.5](/§\_Ref225150898)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Acknowledge|
   
 
@@ -1392,13 +1440,11 @@ The *Confirm* *Method* is used to confirm an *Event Notifications* for a *Condit
 
 The parameters are defined in [Table 3737](/§\_Ref387162162)  
 
- **Table 3737\- Confirm Method parameters**   
+Table 3737 - Confirm Method parameters  
 
 | **Argument** | **Description** |
 |---|---|
-|EventId|*EventId* identifying a particular *Event Notification* .  
-
-Only *Event Notifications* where the Id property of the *ConfirmedState* is False can be confirmed.|
+|EventId|*EventId* identifying a particular *Event Notification* .<br>Only *Event Notifications* where the Id property of the *ConfirmedState* is False can be confirmed.|
 |Comment|A localized text that shall be applied to the *Conditions* .|
   
 
@@ -1406,18 +1452,14 @@ Only *Event Notifications* where the Id property of the *ConfirmedState* is Fals
 
  ***Method* result codes in [Table 3838](/§\_Ref396824818) (defined in Call Service)**   
 
- **Table 3838\- Confirm result codes**   
+Table 3838 - Confirm result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_ConditionBranchAlreadyConfirmed|See [Table 137137](/§\_Ref90539276) for the description of this result code.|
-|Bad\_MethodInvalid|The method id does not refer to a method for the specified object or *ConditionId* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_MethodInvalid|The method id does not refer to a method for the specified object or *ConditionId* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
 |Bad\_EventIdUnknown|See [Table 137137](/§\_Ref90539276) for the description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AcknowledgeableConditionType* *Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AcknowledgeableConditionType* *Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
 |Bad\_InvalidArgument|The Comment string provided exceeds the allowed length for the comment or is invalid in some other manner.|
   
 
@@ -1435,17 +1477,19 @@ A valid *EventId* will result in an *Event Notification* where *ConfirmedState* 
 
 [Table 3939](/§\_Ref225748196) specifies the *AddressSpace* representation for the *Confirm* *Method* .  
 
- **Table 3939\- Confirm Method AddressSpace definition**   
+Table 3939 - Confirm Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Confirm|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
-|AlwaysGeneratesEvent|ObjectType|AuditConditionConfirmEventType|Defined in [5.10.7](/§\_Ref234205503)  
-
-|
+|AlwaysGeneratesEvent|ObjectType|AuditConditionConfirmEventType|Defined in [5.10.7](/§\_Ref234205503)<br>|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Confirm|
   
 
@@ -1471,13 +1515,15 @@ The *AlarmConditionType* extends the *AcknowledgeableConditionType* by introduci
 
 Figure 1515 - Alarm Model  
 
- **Table 4040\- AlarmConditionType definition**   
+Table 4040 - AlarmConditionType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AlarmConditionType|
 |IsAbstract|False|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Subtype of the *AcknowledgeableConditionType* defined in clause [5.7.2](/§\_Ref173042653)|
 |HasComponent|Variable|ActiveState|LocalizedText|TwoStateVariableType|Mandatory|
 |HasProperty|Variable|InputNode|NodeId|PropertyType|Mandatory|
@@ -1518,13 +1564,15 @@ Figure 1515 - Alarm Model
 |HasSubtype|ObjectType|LimitAlarmType||||
 |HasSubtype|ObjectType|DiscrepancyAlarmType||||
 ||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Alarm|
   
 
   
 
- **Table 4141\- AlarmConditionType Additional Subcomponents**   
+Table 4141 - AlarmConditionType Additional Subcomponents  
 
 | **BrowsePath** | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Others** |
 |---|---|---|---|---|---|---|
@@ -1598,16 +1646,20 @@ More details about the *Alarm* Model and the various states can be found in Sub 
 
 The *AlarmGroupType* provides a simple manner of grouping *Alarms* . This grouping can be used for *Alarm* suppression or for identifying related *Alarms* . The actual usage of the *AlarmGroupType* is specified where it is used.  
 
- **Table 4242\- AlarmGroupType definition**   
+Table 4242 - AlarmGroupType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AlarmGroupType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *FolderType* defined in [10000-5](/§UAPart5)|
 |AlarmGroupMember|Object|\<AlarmConditionInstance\>||AlarmConditionType|OptionalPlaceholder|
+  
 | **ConformanceUnits** |
+|---|
 |A & C First in Group Alarm|
 |A & C Suppression Group|
   
@@ -1622,17 +1674,21 @@ The *AlarmGroupType* instance will contain a list of instances of *AlarmConditio
 
 This is a subtype of *AlarmGroupType* that can be used to suppress other alarms. This subtype of *AlarmGroup* extends the *AlarmGroupType* to allow the addition of *Variables* that have a *Boolean* *DataType* . The *Variable* can be thought of as representing the *Id* of the *ActiveState* of an *Alarm* , i.e. when any of the included *Variables* have a value of true the *AlarmSuppressionGroup* is active.  
 
- **Table 4343\- AlarmSuppressionGroupType definition**   
+Table 4343 - AlarmSuppressionGroupType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AlarmSuppressionGroupType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AlarmGroupType*|
 |AlarmSuppressionGroupMember|Variable|\<DigitalVariable\>|Boolean|BaseDataVariableType|OptionalPlaceholder|
 |AlarmSuppressionGroupMember|Object|\<AlarmCondition\>||AlarmConditionType|OptionalPlaceholder|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Suppression Group|
   
 
@@ -1656,14 +1712,12 @@ This method has no arguments.
 
 *Method* result codes in [Table 4444](/§\_Ref29302832) (defined in *Call* service)  
 
- **Table 4444\- Reset result codes**   
+Table 4444 - Reset result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the *ObjectId* provided. See [10000-4](/§UAPart4) for the general description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
 |Bad\_InvalidState|The *Alarm* instance was not latched or is still active or still requires acknowledgement / confirmation. To reset an *Alarm* instance shall have been in *Alarm* ,  returned to normal and have been acknowledged/confirmed prior to being reset.|
   
 
@@ -1671,16 +1725,20 @@ See [10000-4](/§UAPart4) for the general description of this result code.|
 
 [Table 4545](/§\_Ref29302861) specifies the *AddressSpace* representation for the *Reset* *Method* .  
 
- **Table 4545\- Reset Method AddressSpace definition**   
+Table 4545 - Reset Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Reset|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |||||||
 |AlwaysGeneratesEvent|ObjectType|AuditConditionResetEventType|Defined in [5.10.11](/§\_Ref484550563)|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Latched State|
   
 
@@ -1704,7 +1762,7 @@ The *Reset2* *Method* extends the *Reset* *Method* , by adding an optional *Comm
 
 The parameters are defined in [Table 4646](/§\_Ref78282190) .  
 
- **Table 4646\- Reset2 Method parameters**   
+Table 4646 - Reset2 Method parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -1717,14 +1775,12 @@ If the *Comment* argument is NULL (both locale and text are empty) it shall be i
 
  ***Method* result codes in [Table 4747](/§\_Ref78282206) (defined in *Call* service)**   
 
- **Table 4747\- Reset2 result codes**   
+Table 4747 - Reset2 result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the *ObjectId* provided. See [10000-4](/§UAPart4) for the general description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
 |Bad\_InvalidState|The *Alarm* instance was not latched or is still active or still requires acknowledgement / confirmation. To reset an *Alarm* Instance it shall have been in *Alarm* , and returned to normal and have been acknowledged/confirmed prior to being reset.|
 |Bad\_InvalidArgument|The Comment string provided exceeds the allowed length for the comment or is invalid in some other manner.|
   
@@ -1733,15 +1789,19 @@ See [10000-4](/§UAPart4) for the general description of this result code.|
 
 [Table 4848](/§\_Ref78282301) specifies the *AddressSpace* representation for the *Reset2* *Method* .  
 
- **Table 4848\- Reset2 Method AddressSpace definition**   
+Table 4848 - Reset2 Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Reset2|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionResetEventType|Defined in [5.10.11](/§\_Ref484550563)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Latched State|
   
 
@@ -1763,14 +1823,12 @@ This method has no arguments.
 
  ***Method* result codes in [Table 4949](/§\_Ref463025259) (defined in *Call* service)**   
 
- **Table 4949\- Silence result codes**   
+Table 4949 - Silence result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the *ObjectId* provided. See [10000-4](/§UAPart4) for the general description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
   
 
   
@@ -1781,14 +1839,18 @@ If the instance is not currently in an audible state, the command is ignored.
 
 [Table 5050](/§\_Ref463025275) specifies the *AddressSpace* representation for the *Silence* *Method* .  
 
- **Table 5050\- Silence Method AddressSpace definition**   
+Table 5050 - Silence Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Silence|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionSilenceEventType|Defined in [5.10.10](/§\_Ref472941288)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Silencing|
   
 
@@ -1810,14 +1872,12 @@ Normally, the *NodeId* of the object instance is passed as the *ObjectId* to the
 
  **Method Result Codes in [Table 5151](/§\_Ref463025326) (defined in Call Service)**   
 
- **Table 5151\- Suppress result codes**   
+Table 5151 - Suppress result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the ObjectId provided. See [10000-4](/§UAPart4) for the general description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
   
 
   
@@ -1828,15 +1888,19 @@ See [10000-4](/§UAPart4) for the general description of this result code.|
 
 [Table 5252](/§\_Ref463025354) specifies the *AddressSpace* representation for the *Suppress* *Method* .  
 
- **Table 5252\- Suppress Method AddressSpace definition**   
+Table 5252 - Suppress Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Suppress|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |||||||
 |AlwaysGeneratesEvent|ObjectType|AuditConditionSuppressionEventType|Defined in [5.10.4](/§\_Ref225150516)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Suppression by Operator|
   
 
@@ -1860,7 +1924,7 @@ The *Suppress2* *Method* extends the *Suppress* *Method* , by adding an optional
 
 The parameters are defined in [Table 5353](/§\_Ref74215995)  
 
- **Table 5353\- Suppress2 Method parameters**   
+Table 5353 - Suppress2 Method parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -1873,14 +1937,12 @@ If the *Comment* argument is NULL (both locale and text are empty) it shall be i
 
  **Method Result Codes in [Table 5151](/§\_Ref463025326) (defined in Call Service)**   
 
- **Table 5454\- Suppress result codes**   
+Table 5454 - Suppress result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the ObjectId provided. See [10000-4](/§UAPart4) for the general description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
 |Bad\_InvalidArgument|The Comment string provided exceeds the allowed length for the comment or is invalid in some other manner.|
   
 
@@ -1888,17 +1950,19 @@ See [10000-4](/§UAPart4) for the general description of this result code.|
 
 [Table 5555](/§\_Ref74216038) specifies the *AddressSpace* representation for the *Suppress2* *Method* .  
 
- **Table 5555\- Suppress2 Method AddressSpace definition**   
+Table 5555 - Suppress2 Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Suppress2|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
-|AlwaysGeneratesEvent|ObjectType|AuditConditionSuppressionEventType|Defined in [5.10.4](/§\_Ref225150516)  
-
-|
+|AlwaysGeneratesEvent|ObjectType|AuditConditionSuppressionEventType|Defined in [5.10.4](/§\_Ref225150516)<br>|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Suppression2 by Operator|
   
 
@@ -1920,14 +1984,12 @@ Normally, the *NodeId* of the ObjectInstance is passed as the *ObjectId* to the 
 
  **Method Result Codes in [Table 5656](/§\_Ref87994789) (defined in Call Service).**   
 
- **Table 5656\- Unsuppress result codes**   
+Table 5656 - Unsuppress result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the *ObjectId* provided. See [10000-4](/§UAPart4) for the general description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
   
 
   
@@ -1938,15 +2000,19 @@ See [10000-4](/§UAPart4) for the general description of this result code.|
 
 [Table 5757](/§\_Ref87994828) specifies the *AddressSpace* representation for the *Suppress* *Method* .  
 
- **Table 5757\- Unsuppress Method AddressSpace definition**   
+Table 5757 - Unsuppress Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Unsuppress|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |||||||
 |AlwaysGeneratesEvent|ObjectType|AuditConditionSuppressionEventType|Defined in [5.10.4](/§\_Ref225150516)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Suppression by Operator|
   
 
@@ -1970,7 +2036,7 @@ The *Unsuppress2* *Method* extends the *Suppress* *Method* , by adding an option
 
 The parameters are defined in [Table 5858](/§\_Ref74216090) .  
 
- **Table 5858\- Unsuppress2 Method parameters**   
+Table 5858 - Unsuppress2 Method parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -1985,14 +2051,12 @@ If the *Comment* argument is NULL (both locale and text are empty) it shall be i
 
  **Method Result Codes in [Table 5656](/§\_Ref87994789) (defined in Call Service).**   
 
- **Table 5959\- Unsuppress result codes**   
+Table 5959 - Unsuppress result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the *ObjectId* provided. See [10000-4](/§UAPart4) for the general description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
 |Bad\_InvalidArgument|The Comment string provided exceeds the allowed length for the comment or is invalid in some other manner.|
   
 
@@ -2000,15 +2064,19 @@ See [10000-4](/§UAPart4) for the general description of this result code.|
 
 [Table 6060](/§\_Ref87994881) specifies the *AddressSpace* representation for the *Unsuppress2* *Method* .  
 
- **Table 6060\- Unsuppress2 Method AddressSpace definition**   
+Table 6060 - Unsuppress2 Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Unsuppress2|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionSuppressionEventType|Defined in [5.10.4](/§\_Ref225150516)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Suppression2 by Operator|
   
 
@@ -2028,14 +2096,12 @@ The *RemoveFromService* *Method* is used to suppress a specific *Alarm* instance
 
  ***Method* result codes in [Table](/§\_Ref463025387) 6161 (defined in *Call* *Service* ).**   
 
- **Table 6161\- RemoveFromService result codes**   
+Table 6161 - RemoveFromService result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the *ObjectId* provided. See [10000-4](/§UAPart4) for the general description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
   
 
   
@@ -2046,14 +2112,18 @@ Instances that do not expose the *OutOfServiceState* shall reject *RemoveFromSer
 
 [Table 6262](/§\_Ref463025405) specifies the *AddressSpace* representation for the *RemoveFromService* *Method* .  
 
- **Table 6262\- RemoveFromService Method AddressSpace definition**   
+Table 6262 - RemoveFromService Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|RemoveFromService|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionOutOfServiceEventType|Defined in [5.10.12](/§\_Ref472941344)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C OutOfService|
   
 
@@ -2077,7 +2147,7 @@ The *RemoveFromService2* *Method* extends the *RemoveFromService* *Method* , by 
 
 The parameters are defined in [Table 6363](/§\_Ref74216206)  
 
- **Table 6363\- RemoveFromService2 Method parameters**   
+Table 6363 - RemoveFromService2 Method parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -2090,14 +2160,12 @@ If the *Comment* argument is NULL (both locale and text are empty) it shall be i
 
  ***Method* result codes in [Table 6464](/§\_Ref74216106) (defined in *Call* *Service* )**   
 
- **Table 6464\- RemoveFromService2 result codes**   
+Table 6464 - RemoveFromService2 result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the *ObjectId* provided. See [10000-4](/§UAPart4) for the general description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
 |Bad\_InvalidArgument|The Comment string provided exceeds the allowed length for the comment or is invalid in some other manner.|
   
 
@@ -2109,15 +2177,19 @@ Instances that do not expose the *OutOfServiceState* shall reject *RemoveFromSer
 
 [Table 6565](/§\_Ref87994967) specifies the *AddressSpace* representation for the *RemoveFromService2* *Method* .  
 
- **Table 6565\- RemoveFromService2 Method AddressSpace definition**   
+Table 6565 - RemoveFromService2 Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|RemoveFromService2|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionOutOfServiceEventType|Defined in [5.10.12](/§\_Ref472941344)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C OutOfService2|
   
 
@@ -2137,14 +2209,12 @@ The *PlaceInService* *Method* is used to set the OutOfServiceState to False of a
 
  ***Method* result codes in [Table 6666](/§\_Ref88003150) (defined in *Call* *Service* ).**   
 
- **Table 6666\- PlaceInService result codes**   
+Table 6666 - PlaceInService result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the *ObjectId* provided. See [10000-4](/§UAPart4) for the general description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
   
 
   
@@ -2155,15 +2225,19 @@ The *PlaceInService* *Method* applies to an *Alarm* instance, even if it is not 
 
 [Table 6767](/§\_Ref88002433) specifies the *AddressSpace* representation for the *PlaceInService* *Method* .  
 
- **Table 6767\- PlaceInService Method AddressSpace definition**   
+Table 6767 - PlaceInService Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|PlaceInService|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |||||||
 |AlwaysGeneratesEvent|ObjectType|AuditConditionOutOfServiceEventType|Defined in [5.10.12](/§\_Ref472941344)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C OutOfService|
   
 
@@ -2187,7 +2261,7 @@ The *PlaceInService2* *Method* extends the *PlaceInService* *Method* , by adding
 
 The parameters are defined in [Table 6868](/§\_Ref74216512) .  
 
- **Table 6868\- PlaceInService2 Method parameters**   
+Table 6868 - PlaceInService2 Method parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -2200,14 +2274,12 @@ If the *Comment* argument is NULL (both locale and text are empty) it shall be i
 
  ***Method* result codes in [Table 6969](/§\_Ref74216546) (defined in *Call* *Service* )**   
 
- **Table 6969\- PlaceInService2 result codes**   
+Table 6969 - PlaceInService2 result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the *ObjectId* provided. See [10000-4](/§UAPart4) for the general description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
 |Bad\_InvalidArgument|The Comment string provided exceeds the allowed length for the comment or is invalid in some other manner.|
   
 
@@ -2219,15 +2291,19 @@ The *PlaceInService2* *Method* applies to an *Alarm* instance, even if it is not
 
 [Table 7070](/§\_Ref88003570) specifies the *AddressSpace* representation for the *PlaceInService2* *Method* .  
 
- **Table 7070\- PlaceInService2 Method AddressSpace definition**   
+Table 7070 - PlaceInService2 Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|PlaceInService2|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionOutOfServiceEventType|Defined in [5.10.12](/§\_Ref472941344)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C OutOfService2|
   
 
@@ -2251,14 +2327,12 @@ The *GetGroupMemberships* *Method* is used to find the list of AlarmGroups that 
 
  ***Method* result codes in [Table](/§\_Ref50452391) 7171 (defined in *Call* *Service* )**   
 
- **Table 7171\- GetGroupMemberships result codes**   
+Table 7171 - GetGroupMemberships result codes  
 
 | **Result Code** | **Description** |
 |---|---|
 |Bad\_MethodInvalid|The *MethodId* provided does not correspond to the *ObjectId* provided. See [10000-4](/§UAPart4) for the general description of this result code.|
-|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .  
-
-See [10000-4](/§UAPart4) for the general description of this result code.|
+|Bad\_NodeIdInvalid|Used to indicate that the specified *ObjectId* is not valid or that the *Method* was called on the *AlarmConditionType* *Node* .<br>See [10000-4](/§UAPart4) for the general description of this result code.|
   
 
   
@@ -2269,15 +2343,19 @@ The *GetGroupMemberships* *Method* applies to an *Alarm* instance, even if it is
 
 [Table 7272](/§\_Ref50452410) specifies the *AddressSpace* representation for the *GetGroupMemberships* *Method* .  
 
- **Table 7272\- GetGroupMemberships Method AddressSpace definition**   
+Table 7272 - GetGroupMemberships Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|GetGroupMemberships|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|OutputArguments|Argument[]|PropertyType|Mandatory|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C GetGroupMemberships|
   
 
@@ -2311,13 +2389,15 @@ The state machine is illustrated in [Figure 1717](/§\_Ref209428072) and formall
 
 Figure 1717 - ShelvedStateMachineType model  
 
- **Table 7373\- ShelvedStateMachineType definition**   
+Table 7373 - ShelvedStateMachineType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ShelvedStateMachineType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *FiniteStateMachineType* defined in [10000-16](/§UAPart16)||
 |||||||
 |HasProperty|Variable|UnshelveTime|Duration|PropertyType|Mandatory|
@@ -2340,7 +2420,9 @@ Figure 1717 - ShelvedStateMachineType model
 |HasComponent|Method|OneShotShelve2|Defined in Clause [5.8.17.7](/§\_Ref78234701)|Optional|
 |HasComponent|Method|Unshelve2|Defined in Clause [5.8.17.3](/§\_Ref78234712)|Optional|
 ||||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Shelving|
   
 
@@ -2350,7 +2432,7 @@ Figure 1717 - ShelvedStateMachineType model
 
 This *FiniteStateMachine* supports three *Active* states; *Unshelved* , *TimedShelved* and *OneShotShelved* . It also supports six transitions. The states and transitions are described in [Table 7474](/§\_Ref151451913) . This *FiniteStateMachine* also supports three *Method* s; *TimedShelve* , *OneShotShelve* and *Unshelve* .  
 
- **Table 7474\- ShelvedStateMachineType Additional References**   
+Table 7474 - ShelvedStateMachineType Additional References  
 
 | **SourceBrowsePath** | **References** | **IsForward** | **TargetBrowsePath** |
 |---|---|---|---|
@@ -2390,86 +2472,16 @@ The component *Variables* of the ShelvedStateMachineType ** have additional *Att
 
 | **BrowsePath** | **Value Attribute** |
 |---|---|
-|Unshelved|
-|---|
-|0:StateNumber|
+Unshelved|0:StateNumber||1|
+TimedShelved|0:StateNumber||2|
+OneShotShelved|0:StateNumber||3|
+UnshelvedToTimedShelved|0:TransitionNumber||12|
+TimedShelvedToUnshelved|0:TransitionNumber||21|
+TimedShelvedToOneShotShelved|0:TransitionNumber||23|
+UnshelvedToOneShotShelved|0:TransitionNumber||13|
+OneShotShelvedToUnshelved|0:TransitionNumber||31|
+OneShotShelvedToTimedShelved|0:TransitionNumber||32|
   
-
-  
-
-1  
-
-|TimedShelved|
-|---|
-|0:StateNumber|
-  
-
-  
-
-2  
-
-|OneShotShelved|
-|---|
-|0:StateNumber|
-  
-
-  
-
-3  
-
-|UnshelvedToTimedShelved|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-12  
-
-|TimedShelvedToUnshelved|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-21  
-
-|TimedShelvedToOneShotShelved|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-23  
-
-|UnshelvedToOneShotShelved|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-13  
-
-|OneShotShelvedToUnshelved|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-31  
-
-|OneShotShelvedToTimedShelved|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-32  
 
   
 
@@ -2485,7 +2497,7 @@ The *Unshelve* *Method* sets the instance of *AlarmConditionType* to the *Unshel
 
  **Method Result Codes in [Table 7676](/§\_Ref396824855) (defined in Call Service)**   
 
- **Table 7676\- Unshelve result codes**   
+Table 7676 - Unshelve result codes  
 
 | **Result Code** | **Description** |
 |---|---|
@@ -2496,14 +2508,18 @@ The *Unshelve* *Method* sets the instance of *AlarmConditionType* to the *Unshel
 
 [Table 7777](/§\_Ref151452359) specifies the *AddressSpace* representation for the *Unshelve* *Method* .  
 
- **Table 7777\- Unshelve Method AddressSpace definition**   
+Table 7777 - Unshelve Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Unshelve|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionShelvingEventType|Defined in [5.10.7](/§\_Ref225310464)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Shelving|
   
 
@@ -2529,7 +2545,7 @@ The *Unshelve2* *Method* extends the *Unshelve* *Method* , by adding an optional
 
 The parameters are defined in [Table 7878](/§\_Ref78187305)  
 
- **Table 7878\- Unshelve2 Method parameters**   
+Table 7878 - Unshelve2 Method parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -2542,7 +2558,7 @@ If the *Comment* argument is NULL (both locale and text are empty) it shall be i
 
  **Method Result Codes in [Table 7979](/§\_Ref78234607) (defined in Call Service)**   
 
- **Table 7979\- Unshelve2 result codes**   
+Table 7979 - Unshelve2 result codes  
 
 | **Result Code** | **Description** |
 |---|---|
@@ -2554,15 +2570,19 @@ If the *Comment* argument is NULL (both locale and text are empty) it shall be i
 
 [Table 8080](/§\_Ref78264623) specifies the *AddressSpace* representation for the *Unshelve2* *Method* .  
 
- **Table 8080\- Unshelve2 Method AddressSpace definition**   
+Table 8080 - Unshelve2 Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Unshelve2|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionShelvingEventType|Defined in [5.10.7](/§\_Ref225310464)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Shelving2|
   
 
@@ -2590,7 +2610,7 @@ The parameters are defined in [Table 8181](/§\_Ref396824898)
 
   
 
- **Table 8181\- TimedShelve parameters**   
+Table 8181 - TimedShelve parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -2601,13 +2621,11 @@ The parameters are defined in [Table 8181](/§\_Ref396824898)
 
  **Method Result Codes (defined in Call Service)**   
 
- **Table 8282\- TimedShelve result codes**   
+Table 8282 - TimedShelve result codes  
 
 | **Result Code** | **Description** |
 |---|---|
-|Bad\_ConditionAlreadyShelved|See [Table 137137](/§\_Ref90539276) for the description of this result code.  
-
-The *Alarm* is already in *TimedShelved* state and the system does not allow a reset of the shelved timer.|
+|Bad\_ConditionAlreadyShelved|See [Table 137137](/§\_Ref90539276) for the description of this result code.<br>The *Alarm* is already in *TimedShelved* state and the system does not allow a reset of the shelved timer.|
 |Bad\_ShelvingTimeOutOfRange|See [Table 137137](/§\_Ref90539276) for the description of this result code.|
   
 
@@ -2621,15 +2639,19 @@ In some systems the length of time covered by this duration may be limited and t
 
 [Table 8383](/§\_Ref151452639) specifies the *AddressSpace* representation for the *TimedShelve* *Method* .  
 
- **Table 8383\- TimedShelve Method AddressSpace definition**   
+Table 8383 - TimedShelve Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TimedShelve|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|InputArguments|Argument[]|PropertyType|Mandatory|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionShelvingEventType|Defined in [5.10.7](/§\_Ref225310464)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Shelving|
   
 
@@ -2655,7 +2677,7 @@ The *TimedShelve Method* extends the *TimedShelve* *Method* , by adding an optio
 
 The parameters are defined in [Table 8484](/§\_Ref78282734) .  
 
- **Table 8484\- TimedShelve2 parameters**   
+Table 8484 - TimedShelve2 parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -2667,13 +2689,11 @@ The parameters are defined in [Table 8484](/§\_Ref78282734) .
 
  ***Method* Result Codes in [Table 8585](/§\_Ref78282657) (defined in Call Service)**   
 
- **Table 8585\- TimedShelve2 result codes**   
+Table 8585 - TimedShelve2 result codes  
 
 | **Result Code** | **Description** |
 |---|---|
-|Bad\_ConditionAlreadyShelved|See [Table 137137](/§\_Ref90539276) for the description of this result code.  
-
-The *Alarm* is already in *TimedShelved* state and the system does not allow a reset of the shelved timer.|
+|Bad\_ConditionAlreadyShelved|See [Table 137137](/§\_Ref90539276) for the description of this result code.<br>The *Alarm* is already in *TimedShelved* state and the system does not allow a reset of the shelved timer.|
 |Bad\_ShelvingTimeOutOfRange|See [Table 137137](/§\_Ref90539276) for the description of this result code.|
 |Bad\_InvalidArgument|The Comment string provided exceeds the allowed length for the comment or is invalid in some other manner.|
   
@@ -2690,15 +2710,19 @@ If the *Comment* argument is NULL (both locale and text are empty) it shall be i
 
 [Table 8686](/§\_Ref78282678) specifies the *AddressSpace* representation for the *TimedShelve2* *Method* .  
 
- **Table 8686\- TimedShelve2 Method AddressSpace definition**   
+Table 8686 - TimedShelve2 Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TimedShelve2|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|InputArguments|Argument[]|PropertyType|Mandatory|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionShelvingEventType|Defined in [5.10.7](/§\_Ref225310464)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Shelving2|
   
 
@@ -2718,27 +2742,29 @@ The *OneShotShelve Method* sets the instance of *AlarmConditionType* to the *One
 
  **Method Result Codes are defined in [Table 8787](/§\_Ref396824972) (status code field is defined in *Call* Ser *v* ice)**   
 
- **Table 8787\- OneShotShelve result codes**   
+Table 8787 - OneShotShelve result codes  
 
 | **Result Code** | **Description** |
 |---|---|
-|Bad\_ConditionAlreadyShelved|See [Table 137137](/§\_Ref90539276) for the description of this result code.  
-
-The *Alarm* is already in *OneShotShelved* state.|
+|Bad\_ConditionAlreadyShelved|See [Table 137137](/§\_Ref90539276) for the description of this result code.<br>The *Alarm* is already in *OneShotShelved* state.|
   
 
   
 
 [Table 8888](/§\_Ref151452885) specifies the *AddressSpace* representation for the *OneShotShelve* *Method* .  
 
- **Table 8888\- OneShotShelve Method AddressSpace definition**   
+Table 8888 - OneShotShelve Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|OneShotShelve|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionShelvingEventType|Defined in [5.10.7](/§\_Ref225310464)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Shelving|
   
 
@@ -2762,7 +2788,7 @@ The *OneShotShelve2 Method*
 
 The parameters are defined in [Table 8989](/§\_Ref78204784) .  
 
- **Table 8989\- OneShotShelve2 Method parameters**   
+Table 8989 - OneShotShelve2 Method parameters  
 
 | **Argument** | **Description** |
 |---|---|
@@ -2773,13 +2799,11 @@ If the *Comment* argument is NULL (both locale and text are empty) it shall be i
 
  **Method Result Codes are defined in [Table 9090](/§\_Ref78282911) (status code field is defined in *Call* Ser *v* ice)**   
 
- **Table 9090\- OneShotShelve2 result codes**   
+Table 9090 - OneShotShelve2 result codes  
 
 | **Result Code** | **Description** |
 |---|---|
-|Bad\_ConditionAlreadyShelved|See [Table 137137](/§\_Ref90539276) for the description of this result code.  
-
-The *Alarm* is already in *OneShotShelved* state.|
+|Bad\_ConditionAlreadyShelved|See [Table 137137](/§\_Ref90539276) for the description of this result code.<br>The *Alarm* is already in *OneShotShelved* state.|
 |Bad\_InvalidArgument|The Comment string provided exceeds the allowed length for the comment or is invalid in some other manner.|
   
 
@@ -2787,15 +2811,19 @@ The *Alarm* is already in *OneShotShelved* state.|
 
 [Table 9191](/§\_Ref78282932) specifies the *AddressSpace* representation for the *OneShotShelve2* *Method* .  
 
- **Table 9191\- OneShotShelve2 Method AddressSpace definition**   
+Table 9191 - OneShotShelve2 Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|OneShotShelve2|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|*Variable*|InputArguments|Argument[]|PropertyType|Mandatory|
 |AlwaysGeneratesEvent|ObjectType|AuditConditionShelvingEventType|Defined in [5.10.7](/§\_Ref225310464)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Shelving2|
   
 
@@ -2815,13 +2843,15 @@ Figure 1818 - LimitAlarmType
 
 The *LimitAlarmType* is formally defined in [Table 9292](/§\_Ref228806084) .  
 
- **Table 9292\- LimitAlarmType definition**   
+Table 9292 - LimitAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|LimitAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the AlarmConditionType defined in clause [5.8.2](/§\_Ref150677970) .|
 |HasSubtype|ObjectType|ExclusiveLimitAlarmType|Defined in Clause [5.8.19.3](/§\_Ref225302622)|
 |HasSubtype|ObjectType|NonExclusiveLimitAlarmType|Defined in Clause [5.8.20](/§\_Ref225753238)|
@@ -2841,7 +2871,9 @@ The *LimitAlarmType* is formally defined in [Table 9292](/§\_Ref228806084) .
 |HasProperty|Variable|HighDeadband|Double|PropertyType|Optional|
 |HasProperty|Variable|LowDeadband|Double|PropertyType|Optional|
 |HasProperty|Variable|LowLowDeadband|Double|PropertyType|Optional|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Exclusive Limit|
 |A & C Non-Exclusive Limit|
   
@@ -2894,13 +2926,15 @@ Figure 1919 - ExclusiveLimitStateMachineType
 
 It is created by extending the *FiniteStateMachineType* . It is formally defined in [Table 9393](/§\_Ref226350139) and the state transitions are described in [Table 9494](/§\_Ref226350156) .  
 
- **Table 9393\- ExclusiveLimitStateMachineType definition**   
+Table 9393 - ExclusiveLimitStateMachineType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ExclusiveLimitStateMachineType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *FiniteStateMachineType*|
 |HasComponent|Object|HighHigh||StateType||
 |HasComponent|Object|High||StateType||
@@ -2910,13 +2944,15 @@ It is created by extending the *FiniteStateMachineType* . It is formally defined
 |HasComponent|Object|LowLowToLow||TransitionType||
 |HasComponent|Object|HighToHighHigh||TransitionType||
 |HasComponent|Object|HighHighToHigh||TransitionType||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Exclusive Limit|
   
 
   
 
- **Table 9494\- ExclusiveLimitStateMachineType Additional References**   
+Table 9494 - ExclusiveLimitStateMachineType Additional References  
 
 | **SourceBrowsePath** | **References** | **IsForward** | **TargetBrowsePath** |
 |---|---|---|---|
@@ -2942,77 +2978,15 @@ The component *Variables* of the ExclusiveLimitStateMachineType ** have addition
 
 | **BrowsePath** | **Value Attribute** |
 |---|---|
-|HighHigh|
-|---|
-|0:StateNumber|
+HighHigh|0:StateNumber||1|
+High|0:StateNumber||2|
+Low|0:StateNumber||3|
+LowLow|0:StateNumber||4|
+LowToLowLow|0:TransitionNumber||34|
+LowLowToLow|0:TransitionNumber||43|
+HighToHighHigh|0:TransitionNumber||21|
+HighHighToHigh|0:TransitionNumber||12|
   
-
-  
-
-1  
-
-|High|
-|---|
-|0:StateNumber|
-  
-
-  
-
-2  
-
-|Low|
-|---|
-|0:StateNumber|
-  
-
-  
-
-3  
-
-|LowLow|
-|---|
-|0:StateNumber|
-  
-
-  
-
-4  
-
-|LowToLowLow|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-34  
-
-|LowLowToLow|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-43  
-
-|HighToHighHigh|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-21  
-
-|HighHighToHigh|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-12  
 
   
 
@@ -3030,19 +3004,23 @@ Figure 2020 - ExclusiveLimitAlarmType
 
 The *ExclusiveLimitAlarmType* is formally defined in [Table 9696](/§\_Ref225873588) .  
 
- **Table 9696\- ExclusiveLimitAlarmType definition**   
+Table 9696 - ExclusiveLimitAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ExclusiveLimitAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the LimitAlarmType defined in clause [5.8.18](/§\_Ref228806910) .|
 |HasSubtype|ObjectType|ExclusiveLevelAlarmType|Defined in Clause [5.8.21.3](/§\_Ref227985667)|
 |HasSubtype|ObjectType|ExclusiveDeviationAlarmType|Defined in Clause [5.8.22.3](/§\_Ref227985685)|
 |HasSubtype|ObjectType|ExclusiveRateOfChangeAlarmType|Defined in Clause [5.8.23.3](/§\_Ref227985705)|
 |HasComponent|Object|LimitState||*ExclusiveLimitStateMachineType*|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Exclusive Limit|
   
 
@@ -3060,13 +3038,15 @@ Figure 2121 - NonExclusiveLimitAlarmType
 
 The *NonExclusiveLimitAlarmType* is formally defined in [Table 9797](/§\_Ref225751821) and [Table 9898](/§\_Ref83725007) .  
 
- **Table 9797\- NonExclusiveLimitAlarmType definition**   
+Table 9797 - NonExclusiveLimitAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|NonExclusiveLimitAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the LimitAlarmType defined in clause [5.8.18](/§\_Ref228806910) .|
 |HasSubtype|ObjectType|NonExclusiveLevelAlarmType|Defined in Clause [5.8.21.2](/§\_Ref227985930)|
 |HasSubtype|ObjectType|NonExclusiveDeviationAlarmType|Defined in Clause [5.8.22.2](/§\_Ref227985941)|
@@ -3076,13 +3056,15 @@ The *NonExclusiveLimitAlarmType* is formally defined in [Table 9797](/§\_Ref225
 |HasComponent|Variable|LowState|LocalizedText|TwoStateVariableType|Optional|
 |HasComponent|Variable|LowLowState|LocalizedText|TwoStateVariableType|Optional|
 ||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Non-Exclusive Limit|
   
 
   
 
- **Table 9898\- NonExclusiveLimitAlarmType Additional Subcomponents**   
+Table 9898 - NonExclusiveLimitAlarmType Additional Subcomponents  
 
 | **BrowsePath** | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Others** |
 |---|---|---|---|---|---|---|
@@ -3116,16 +3098,20 @@ The *NonExclusiveLevelAlarmType* is a special level *Alarm* utilized with one or
 
 The *NonExclusiveLevelAlarmType* is based on the *NonExclusiveLimitAlarmType* . It is formally defined in [Table 9999](/§\_Ref150615883) .  
 
- **Table 9999\- NonExclusiveLevelAlarmType definition**   
+Table 9999 - NonExclusiveLevelAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|NonExclusiveLevelAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the NonExclusiveLimitAlarmType defined in clause [5.8.20](/§\_Ref225753238) .|
 |||||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Non-Exclusive Level|
   
 
@@ -3137,16 +3123,20 @@ No additional *Properties* to the *NonExclusiveLimitAlarmType* are defined.
 
 The *ExclusiveLevelAlarmType* is a special level *Alarm* utilized with multiple mutually exclusive limits. It is formally defined in [Table 100100](/§\_Ref150616045) .  
 
- **Table 100100\- ExclusiveLevelAlarmType definition**   
+Table 100100 - ExclusiveLevelAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ExclusiveLevelAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Inherits the Properties of the ExclusiveLimitAlarmType defined in clause [5.8.19.3](/§\_Ref225302622) .|
 |||||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Exclusive Level|
   
 
@@ -3178,18 +3168,22 @@ The *NonExclusiveDeviationAlarmType* is based on the *NonExclusiveLimitAlarmType
 
   
 
- **Table 101101\- NonExclusiveDeviationAlarmType definition**   
+Table 101101 - NonExclusiveDeviationAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|NonExclusiveDeviationAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the NonExclusiveLimitAlarmType defined in clause [5.8.20](/§\_Ref225753238) .|
 |HasProperty|Variable|SetpointNode|NodeId|PropertyType|Mandatory|
 |HasProperty|Variable|BaseSetpointNode|NodeId|PropertyType|Optional|
 ||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Non-Exclusive Deviation|
   
 
@@ -3203,18 +3197,22 @@ The *BaseSetpointNode* *Property* provides the *NodeId* of the original or base 
 
 The *ExclusiveDeviationAlarmType* is utilized with multiple mutually exclusive limits. It is formally defined in [Table 102102](/§\_Ref225303077) .  
 
- **Table 102102\- ExclusiveDeviationAlarmType definition**   
+Table 102102 - ExclusiveDeviationAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ExclusiveDeviationAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Inherits the *Properties* of the *ExclusiveLimitAlarmType* defined in clause [5.8.19.3](/§\_Ref225302622) .|
 |HasProperty|Variable|SetpointNode|NodeId|PropertyType|Mandatory|
 |HasProperty|Variable|BaseSetpointNode|NodeId|PropertyType|Optional|
 ||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Exclusive Deviation|
   
 
@@ -3238,17 +3236,21 @@ The *NonExclusiveRateOfChangeAlarmType* is a special level *Alarm* utilized with
 
 The *NonExclusiveRateOfChangeAlarmType* is based on the *NonExclusiveLimitAlarmType* . It is formally defined in [Table 103103](/§\_Ref225753828) .  
 
- **Table 103103\- NonExclusiveRateOfChangeAlarmType definition**   
+Table 103103 - NonExclusiveRateOfChangeAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|NonExclusiveRateOfChangeAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the NonExclusiveLimitAlarmType defined in clause [5.8.20](/§\_Ref225753238) .|
 |HasProperty|Variable|EngineeringUnits|EUInformation|PropertyType|Optional|
 ||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Non-Exclusive RateOfChange|
   
 
@@ -3260,17 +3262,21 @@ EngineeringUnits provides the engineering units associated with the limits value
 
 *ExclusiveRateOfChangeAlarmType* is utilized with multiple mutually exclusive limits. It is formally defined in [Table 104104](/§\_Ref209429668) .  
 
- **Table 104104\- ExclusiveRateOfChangeAlarmType definition**   
+Table 104104 - ExclusiveRateOfChangeAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ExclusiveRateOfChangeAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Inherits the *Properties* of the *ExclusiveLimitAlarmType* defined in clause [5.8.19.3](/§\_Ref225302622) .|
 |HasProperty|Variable|EngineeringUnits|EUInformation|PropertyType|Optional|
 ||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Exclusive RateOfChange|
   
 
@@ -3288,16 +3294,20 @@ The *DiscreteAlarmType* is used to classify *Types* into *Alarm Conditions* wher
 
 Figure 2222 - DiscreteAlarmType Hierarchy  
 
- **Table 105105\- DiscreteAlarmType definition**   
+Table 105105 - DiscreteAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|DiscreteAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the AlarmConditionType defined in clause [5.8.2](/§\_Ref150677970) .|
 |HasSubtype|*ObjectType*|OffNormalAlarmType|Defined in Clause [5.8.22](/§\_Ref139172265)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Discrete|
   
 
@@ -3307,19 +3317,23 @@ Figure 2222 - DiscreteAlarmType Hierarchy
 
 The *OffNormalAlarmType* is a specialization of the *DiscreteAlarmType* intended to represent a discrete *Condition* that is considered to be not normal. It is formally defined in [Table 106106](/§\_Ref182132242) . This sub type is usually used to indicate that a discrete value is in an *Alarm* state, it is active as long as a non-normal value is present.  
 
- **Table 106106\- OffNormalAlarmType definition**   
+Table 106106 - OffNormalAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|OffNormalAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the DiscreteAlarmType defined in clause [5.8.24.1](/§\_Ref182132552)|
 |HasSubtype|*ObjectType*|TripAlarmType|Defined in Clause [5.8.24.4](/§\_Ref182132315)|
 |HasSubtype|*ObjectType*|SystemOffNormalAlarmType|Defined in Clause [5.8.24.3](/§\_Ref416728296)|
 |||||
 |HasProperty|*Variable*|NormalState|NodeId|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |A & C OffNormal|
   
 
@@ -3331,16 +3345,20 @@ The *NormalState Property* is a *Property* that points to a *Variable* which has
 
 This *Condition* is used by a *Server* to indicate that an underlying system that is providing *Alarm* information is having a communication problem and that the *Server* may have invalid or incomplete *Condition* state in the *Subscription* . Its representation in the *AddressSpace* is formally defined in [Table 107107](/§\_Ref315421822) .  
 
- **Table 107107\- SystemOffNormalAlarmType definition**   
+Table 107107 - SystemOffNormalAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|SystemOffNormalAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasSubtype|*ObjectType*|CertificateExpirationAlarmType|Defined in Clause [5.8.24.7](/§\_Ref96258312)|
 |Subtype of the *OffNormalAlarmType* , i.e. it has HasProperty *References* to the same *Nodes* .|
+  
 | **ConformanceUnits** |
+|---|
 |A & C SystemOffNormal|
   
 
@@ -3350,16 +3368,20 @@ This *Condition* is used by a *Server* to indicate that an underlying system tha
 
 The *TripAlarmType* is a specialization of the *OffNormalAlarmType* intended to represent an equipment trip *Condition* . The *Alarm* becomes active when the monitored piece of equipment experiences some abnormal fault such as a motor shutting down due to an overload condition. It is formally defined in [Table 108108](/§\_Ref182132677) . This *Type* is mainly used for categorization.  
 
- **Table 108108\- TripAlarmType definition**   
+Table 108108 - TripAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TripAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the OffNormalAlarmType defined in clause [5.8.24.2](/§\_Ref182132730) .|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Trip|
   
 
@@ -3369,16 +3391,20 @@ The *TripAlarmType* is a specialization of the *OffNormalAlarmType* intended to 
 
 The *InstrumentDiagnosticAlarmType* is a specialization of the *OffNormalAlarmType* intended to represent a fault in a field device. The *Alarm* becomes active when the monitored device experiences a fault such as a sensor failure. It is formally defined in [Table 108108](/§\_Ref182132677) . This *Type* is mainly used for categorization.  
 
- **Table 109109\- InstrumentDiagnosticAlarmType definition**   
+Table 109109 - InstrumentDiagnosticAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|InstrumentDiagnosticAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the OffNormalAlarmType defined in clause [5.8.24.2](/§\_Ref182132730) .|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C InstrumentDiagnostic|
   
 
@@ -3388,16 +3414,20 @@ The *InstrumentDiagnosticAlarmType* is a specialization of the *OffNormalAlarmTy
 
 The *SystemDiagnosticAlarmType* is a specialization of the *OffNormalAlarmType* intended to represent a fault in a system or sub-system. The *Alarm* becomes active when the monitored system experiences a fault. It is formally defined in [Table 108108](/§\_Ref182132677) . This *Type* is mainly used for categorization.  
 
- **Table 110110\- SystemDiagnosticAlarmType definition**   
+Table 110110 - SystemDiagnosticAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|SystemDiagnosticAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the OffNormalAlarmType defined in clause [5.8.24.2](/§\_Ref182132730) .|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C SystemDiagnostic|
   
 
@@ -3407,19 +3437,23 @@ The *SystemDiagnosticAlarmType* is a specialization of the *OffNormalAlarmType* 
 
 This *SystemOffNormalAlarmType* is raised by the *Server* when the *Server's* Certificate is within the *ExpirationLimit* of expiration. This *Alarm* automatically returns to normal when the certificate is updated.  
 
- **Table 111111\- CertificateExpirationAlarmType definition**   
+Table 111111 - CertificateExpirationAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|CertificateExpirationAlarmType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the SystemOffNormalAlarmType defined in clause [5.8.24.3](/§\_Ref416728525)|
 |HasProperty|Variable|ExpirationDate|DateTime|PropertyType|Mandatory|
 |HasProperty|Variable|ExpirationLimit|Duration|PropertyType|Optional|
 |HasProperty|Variable|CertificateType|NodeId|PropertyType|Mandatory|
 |HasProperty|Variable|Certificate|ByteString|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |A & C CertificateExpiration|
   
 
@@ -3439,18 +3473,22 @@ The *DiscrepancyAlarmType* is commonly used to report an action that did not occ
 
 The *DiscrepancyAlarmType* is based on the *AlarmConditionType* . It is formally defined in [Table 112112](/§\_Ref442734762) .  
 
- **Table 112112\- DiscrepancyAlarmType definition**   
+Table 112112 - DiscrepancyAlarmType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|DiscrepancyAlarmType|
 |IsAbstract|False |
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AlarmConditionType* defined in [5.8.2](/§\_Ref150677970) .|
 |HasProperty|Variable|TargetValueNode|NodeId|PropertyType|Mandatory|
 |HasProperty|Variable|ExpectedTime|Duration|PropertyType|Mandatory|
 |HasProperty|Variable|Tolerance|Double|PropertyType|Optional|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Discrepancy|
   
 
@@ -3482,16 +3520,20 @@ Figure 2323 - ConditionClass type hierarchy
 
 *BaseConditionClassType* is used as class whenever a *Condition* cannot be assigned to a more concrete class. *Servers* should use a more specific *ConditionClass* , if possible. All *ConditionClass* *Types* derive from *BaseConditionClassType* . It is formally defined in [Table 113113](/§\_Ref234827430) .  
 
- **Table 113113\- BaseConditionClassType definition**   
+Table 113113 - BaseConditionClassType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|BaseConditionClassType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType defined in [10000-5](/§UAPart5) .|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C ConditionClasses|
   
 
@@ -3501,16 +3543,20 @@ Figure 2323 - ConditionClass type hierarchy
 
 The *ProcessConditionClassType* is used to classify *Conditions* related to the process itself. Examples of a process would be a control system in a boiler or the instrumentation associated with a chemical plant or paper machine. The *ProcessConditionClassType* is formally defined in [Table 114114](/§\_Ref150615728) .  
 
- **Table 114114\- ProcessConditionClassType definition**   
+Table 114114 - ProcessConditionClassType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ProcessConditionClassType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the BaseConditionClassType defined in clause [5.9.2](/§\_Ref234213273) .|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C ConditionClasses|
   
 
@@ -3520,16 +3566,20 @@ The *ProcessConditionClassType* is used to classify *Conditions* related to the 
 
 The *MaintenanceConditionClassType* is used to classify *Conditions* related to maintenance. Examples of maintenance would be Asset Management systems or conditions, which occur in process control systems, which are related to calibration of equipment. The *MaintenanceConditionClassType* is formally defined in [Table 115115](/§\_Ref182188535) . No further definition is provided here. It is expected that other standards groups will define domain-specific sub-types.  
 
- **Table 115115\- MaintenanceConditionClassType definition**   
+Table 115115 - MaintenanceConditionClassType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|MaintenanceConditionClassType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the BaseConditionClassType defined in clause [5.9.2](/§\_Ref234213273) .|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C ConditionClasses|
   
 
@@ -3539,16 +3589,20 @@ The *MaintenanceConditionClassType* is used to classify *Conditions* related to 
 
 The *SystemConditionClassType* is used to classify *Conditions* related to the System. It is formally defined in [Table 116116](/§\_Ref182188834) . System *Conditions* occur in the controlling or monitoring system process. Examples of System related items could include available disk space on a computer, Archive media availability, network loading issues or a controller error. It is expected that other standards groups or vendors will define domain-specific sub-types.  
 
- **Table 116116\- SystemConditionClassType definition**   
+Table 116116 - SystemConditionClassType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|SystemConditionClassType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseConditionClassType* defined in clause [5.9.2](/§\_Ref234213273) .|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C ConditionClasses|
   
 
@@ -3560,16 +3614,20 @@ The *SafetyConditionClassType* is used to classify *Conditions* related to safet
 
 Safety *Conditions* occur in the controlling or monitoring system process. Examples of safety related items could include, emergency shutdown systems or fire suppression systems.  
 
- **Table 117117\- SafetyConditionClassType definition**   
+Table 117117 - SafetyConditionClassType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|SafetyConditionClassType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseConditionClassType* defined in clause [5.9.2](/§\_Ref234213273) .|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C ConditionClasses|
   
 
@@ -3579,16 +3637,20 @@ Safety *Conditions* occur in the controlling or monitoring system process. Examp
 
 In *Alarm* systems some *Alarms* may be classified as *HighlyManagedAlarms* . This class of *Alarm* requires special handling that varies according to the individual requirements. It might require individual acknowledgement or not allow suppression or any number of other special behaviours. The *HighlyManagedAlarmConditionClassType* is used to classify *Conditions* as highly managed *Alarms* . It is formally defined in [Table 118118](/§\_Ref472809285) .  
 
- **Table 118118\- HighlyManagedAlarmConditionClassType definition**   
+Table 118118 - HighlyManagedAlarmConditionClassType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|HighlyManagedAlarmConditionClassType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseConditionClassType* defined in clause [5.9.2](/§\_Ref234213273) .|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C ConditionClasses|
   
 
@@ -3598,16 +3660,20 @@ In *Alarm* systems some *Alarms* may be classified as *HighlyManagedAlarms* . Th
 
 The *TrainingConditionClassType* is used to classify *Conditions* related to training system or training exercises. It is formally defined in [Table 119119](/§\_Ref440993979) . These *Conditions* typically occur in a training system or are generated as part of a simulation for a training exercise. Training *Conditions* might be process or system conditions. It is expected that other standards groups or vendors will define domain-specific sub-types.  
 
- **Table 119119\- TrainingConditionClassType definition**   
+Table 119119 - TrainingConditionClassType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TrainingConditionClassType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseConditionClassType* defined in clause.|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C ConditionClasses|
   
 
@@ -3617,16 +3683,20 @@ The *TrainingConditionClassType* is used to classify *Conditions* related to tra
 
 The *StatisticalConditionClassType* is used to classify *Conditions* related that are based on statistical calculations. It is formally defined in [Table 120120](/§\_Ref484551575) . These *Conditions* are generated as part of a statistical analysis. They might be any of an *Alarm* number of types.  
 
- **Table 120120\- StatisticalConditionClassType definition**   
+Table 120120 - StatisticalConditionClassType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|StatisticalConditionClassType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseConditionClassType* defined in clause.|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C ConditionClasses|
   
 
@@ -3636,16 +3706,20 @@ The *StatisticalConditionClassType* is used to classify *Conditions* related tha
 
 The *TestingConditionClassType* is used to classify *Conditions* related to testing of an *Alarm* system or *Alarm* function. It is formally defined in [Table 121121](/§\_Ref440994268) . Testing *Conditions* might include a condition to test an alarm annunciation such as a horn or other panel. It might also be used to temporarily reclassify a *Condition* to check response times or suppression logic. It is expected that other standards groups or vendors will define domain-specific sub-types.  
 
- **Table 121121\- TestingConditionClassType definition**   
+Table 121121 - TestingConditionClassType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TestingConditionClassType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseConditionClassType* defined in clause [5.9.2](/§\_Ref234213273) .|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C ConditionClasses|
   
 
@@ -3667,15 +3741,19 @@ Figure 2424 - AuditEvent hierarchy
 
 This *EventType* is used to subsume all *AuditConditionEventTypes* . It is formally defined in [Table 122122](/§\_Ref314765332) .  
 
- **Table 122122\- AuditConditionEventType definition**   
+Table 122122 - AuditConditionEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditConditionEventType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditUpdateMethodEventType* defined in [10000-5](/§UAPart5)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Auditing|
   
 
@@ -3693,15 +3771,19 @@ This *EventType* can be further customized to reflect particular *Condition* rel
 
 This *EventType* is used to indicate a change in the enabled state of a *Condition* instance. It is formally defined in [Table 123123](/§\_Ref136833130) .  
 
- **Table 123123\- AuditConditionEnableEventType definition**   
+Table 123123 - AuditConditionEnableEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditConditionEnableEventType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditConditionEventType* defined in [5.10.2](/§\_Ref314849794) that is, inheriting the InstanceDeclarations of that Node.|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Auditing|
   
 
@@ -3713,17 +3795,21 @@ The SourceName shall indicate Method/Enable or Method/Disable. If the audit *Eve
 
 This *EventType* is used to report an *AddComment* action. It is formally defined in [Table 124124](/§\_Ref225149437) .  
 
- **Table 124124\- AuditConditionCommentEventType definition**   
+Table 124124 - AuditConditionCommentEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditConditionCommentEventType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|ConditionEventId|ByteString|PropertyType|Mandatory|
 |HasProperty|Variable|Comment|LocalizedText|PropertyType|Mandatory|
 |Subtype of the *AuditConditionEventType* defined in [5.10.2](/§\_Ref314849794) that is, inheriting the InstanceDeclarations of that Node.|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Auditing|
   
 
@@ -3737,17 +3823,21 @@ The *Comment* contains the actual comment that was added.
 
 This *EventType* is used to report a *Respond* action (see [5.6](/§\_Ref446843833) ). It is formally defined in [Table 125125](/§\_Ref234204333) .  
 
- **Table 125125\- AuditConditionRespondEventType definition**   
+Table 125125 - AuditConditionRespondEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditConditionRespondEventType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|SelectedResponse|UInt32|PropertyType|Mandatory|
 |||||||
 |Subtype of the *AuditConditionEventType* defined in [5.10.2](/§\_Ref314849794) that is, inheriting the InstanceDeclarations of that Node.|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Dialog Auditing|
   
 
@@ -3759,17 +3849,21 @@ The SelectedResponse field shall contain the response that was selected.
 
 This *EventType* is used to indicate acknowledgement or confirmation of one or more *Conditions* . It is formally defined in [Table 126126](/§\_Ref225149504) .  
 
- **Table 126126\- AuditConditionAcknowledgeEventType definition**   
+Table 126126 - AuditConditionAcknowledgeEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditConditionAcknowledgeEventType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|ConditionEventId|ByteString|PropertyType|Mandatory|
 |HasProperty|Variable|Comment|LocalizedText|PropertyType|Mandatory|
 |Subtype of the *AuditConditionEventType* defined in [5.10.2](/§\_Ref314849794) that is, inheriting the InstanceDeclarations of that Node.|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Acknowledge Auditing|
   
 
@@ -3783,17 +3877,21 @@ The *Comment* contains the actual comment that was added, it may be a blank comm
 
 This *EventType* is used to report a *Confirm* action. It is formally defined in [Table 127127](/§\_Ref234204313) .  
 
- **Table 127127\- AuditConditionConfirmEventType definition**   
+Table 127127 - AuditConditionConfirmEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditConditionConfirmEventType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|ConditionEventId|ByteString|PropertyType|Mandatory|
 |HasProperty|Variable|Comment|LocalizedText|PropertyType|Mandatory|
 |Subtype of the *AuditConditionEventType* defined in [5.10.2](/§\_Ref314849794) that is, inheriting the InstanceDeclarations of that Node.|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Confirm Auditing|
   
 
@@ -3807,17 +3905,21 @@ The *Comment* contains the actual comment that was added, it may be a blank comm
 
 This *EventType* is used to indicate a change to the *Shelving* state of a *Condition* instance. It is formally defined in [Table 128128](/§\_Ref225151317) .  
 
- **Table 128128\- AuditConditionShelvingEventType definition**   
+Table 128128 - AuditConditionShelvingEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditConditionShelvingEventType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|ShelvingTime|Duration|PropertyType|Optional|
 |||||||
 |Subtype of the *AuditConditionEventType* defined in [5.10.2](/§\_Ref314849794) that is, inheriting the InstanceDeclarations of that Node.|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Shelving Auditing|
   
 
@@ -3829,15 +3931,19 @@ If the *Method* indicates a *TimedShelve* operation, the *ShelvingTime* field sh
 
 This *EventType* is used to indicate a change to the *Suppression* state of a *Condition* instance. It is formally defined in [Table 129129](/§\_Ref446869097) .  
 
- **Table 129129\- AuditConditionSuppressionEventType definition**   
+Table 129129 - AuditConditionSuppressionEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditConditionSuppressionEventType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditConditionEventType* defined in [5.10.2](/§\_Ref314849794) that is, inheriting the InstanceDeclarations of that Node.|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Suppression Auditing|
   
 
@@ -3849,15 +3955,19 @@ This *Event* indicates an *Alarm* suppression operation. An audit *Event* of thi
 
 This *EventType* is used to indicate a change to the *Silence* state of a *Condition* instance. It is formally defined in [Table 130130](/§\_Ref446869313) .  
 
- **Table 130130\- AuditConditionSilenceEventType definition**   
+Table 130130 - AuditConditionSilenceEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditConditionSilenceEventType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditConditionEventType* defined in [5.10.2](/§\_Ref314849794) that is, inheriting the InstanceDeclarations of that Node.|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Silencing Auditing|
   
 
@@ -3869,15 +3979,19 @@ This event indicates that an *Alarm* was silenced, but not acknowledged. An audi
 
 This *EventType* is used to indicate a change to the *Latched* state of a *Condition* instance. It is formally defined in [Table 130130](/§\_Ref446869313) .  
 
- **Table 131131\- AuditConditionResetEventType definition**   
+Table 131131 - AuditConditionResetEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditConditionResetEventType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditConditionEventType* defined in [5.10.2](/§\_Ref314849794) that is, inheriting the InstanceDeclarations of that Node.|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Latching Auditing|
   
 
@@ -3889,15 +4003,19 @@ This event indicates that an *Alarm* was reset. An audit event of this type shal
 
 This *EventType* is used to indicate a change to the *OutOfService State* of a *Condition* instance. It is formally defined in [Table 132132](/§\_Ref463041287) .  
 
- **Table 132132\- AuditConditionOutOfServiceEventType definition**   
+Table 132132 - AuditConditionOutOfServiceEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditConditionOutOfServiceEventType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditConditionEventType* defined in [5.10.2](/§\_Ref314849794) that is, inheriting the InstanceDeclarations of that Node.|
+  
 | **ConformanceUnits** |
+|---|
 |A & C OutOfService Auditing|
   
 
@@ -3919,16 +4037,20 @@ Figure 2525 - Refresh Related Event Hierarchy
 
 This *EventType* is used by a *Server* to mark the beginning of a *Refresh* *Notification* cycle. Its representation in the *AddressSpace* is formally defined in [Table 133133](/§\_Ref174251141) .  
 
- **Table 133133\- RefreshStartEventType definition**   
+Table 133133 - RefreshStartEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|RefreshStartEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |||||
 |Subtype of the *SystemEventType* defined in [10000-5](/§UAPart5) , i.e. it has HasProperty *References* to the same *Nodes* .|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Refresh|
 |A & C Refresh2|
   
@@ -3939,16 +4061,20 @@ This *EventType* is used by a *Server* to mark the beginning of a *Refresh* *Not
 
 This *EventType* is used by a *Server* to mark the end of a *Refresh* *Notification* cycle. Its representation in the *AddressSpace* is formally defined in [Table 134134](/§\_Ref174251126) .  
 
- **Table 134134\- RefreshEndEventType definition**   
+Table 134134 - RefreshEndEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|RefreshEndEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |||||
 |Subtype of the *SystemEventType* defined in [10000-5](/§UAPart5) , i.e. it has HasProperty *References* to the same *Nodes* .|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Refresh|
 |A & C Refresh2|
   
@@ -3959,16 +4085,20 @@ This *EventType* is used by a *Server* to mark the end of a *Refresh* *Notificat
 
 This *EventType* is used by a *Server* to indicate that a significant change has occurred in the *Server* or in the subsystem below the *Server* that could or does invalidate the *Condition* state of a *Subscription* . Its representation in the *AddressSpace* is formally defined in [Table 135135](/§\_Ref174252897) .  
 
- **Table 135135\- RefreshRequiredEventType definition**   
+Table 135135 - RefreshRequiredEventType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|RefreshRequiredEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |||||
 |Subtype of the *SystemEventType* defined in [10000-5](/§UAPart5) , i.e. it has HasProperty *References* to the same *Nodes* .|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Refresh|
 |A & C Refresh2|
   
@@ -3991,7 +4121,7 @@ The semantic of this *ReferenceType* is to specify the relationship between a *C
 
 *HasCondition* *References* can be used solely in the instance space when they are not available in *Type* definitions. In this case the *SourceNode* of this *ReferenceType* shall be an *Object* , *Variable* or *Method* *Node* . The *TargetNode* shall be a *Condition* instance or a *ConditionType* .  
 
- **Table 136136\- HasCondition *ReferenceType* Definition**   
+Table 136136 - HasCondition ReferenceType Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -3999,9 +4129,13 @@ The semantic of this *ReferenceType* is to specify the relationship between a *C
 |InverseName|IsConditionOf|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Basic|
   
 
@@ -4011,7 +4145,7 @@ The semantic of this *ReferenceType* is to specify the relationship between a *C
 
 [Table 137137](/§\_Ref90539276) defines the *StatusCodes* defined for *Alarm* & *Conditions* .  
 
- **Table 137137\- Alarm & Condition result codes**   
+Table 137137 - Alarm & Condition result codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -4136,7 +4270,7 @@ The *SourceNode* of this *ReferenceType* shall be an *Object* of the *ObjectType
 
 The representation of the *HasEffectDisable* *ReferenceType* in the *AddressSpace* is specified in [Table 138138](/§\_Ref150317372)  
 
- **Table 138138\- HasEffectDisable ReferenceType**   
+Table 138138 - HasEffectDisable ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -4144,9 +4278,13 @@ The representation of the *HasEffectDisable* *ReferenceType* in the *AddressSpac
 |InverseName|MayBeDisabledBy|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C StateMachine Trigger|
   
 
@@ -4168,7 +4306,7 @@ The *SourceNode* of this *ReferenceType* shall be an *Object* of the *ObjectType
 
 The representation of the *HasEffectEnable* *ReferenceType* in the *AddressSpace* is specified in [Table 139139](/§\_Ref472804917)  
 
- **Table 139139\- HasEffectEnable ReferenceType**   
+Table 139139 - HasEffectEnable ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -4176,9 +4314,13 @@ The representation of the *HasEffectEnable* *ReferenceType* in the *AddressSpace
 |InverseName|MayBeEnabledBy|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Statemachine Trigger|
   
 
@@ -4200,7 +4342,7 @@ The *SourceNode* of this *ReferenceType* shall be an *Object* of the *ObjectType
 
 The representation of the *HasEffectSuppressed* *ReferenceType* in the *AddressSpace* is specified in [Table 140140](/§\_Ref472804937)  
 
- **Table 140140\- HasEffectSuppressed ReferenceType**   
+Table 140140 - HasEffectSuppressed ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -4208,9 +4350,13 @@ The representation of the *HasEffectSuppressed* *ReferenceType* in the *AddressS
 |InverseName|MayBeSuppressedBy|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Statemachine Suppression Trigger|
   
 
@@ -4232,7 +4378,7 @@ The *SourceNode* of this *ReferenceType* shall be an *Object* of the *ObjectType
 
 The representation of the *HasEffectUnsuppressed* *ReferenceType* in the *AddressSpace* is specified in [Table 141141](/§\_Ref472804978) .  
 
- **Table 141141\- HasEffectUnsuppressed ReferenceType**   
+Table 141141 - HasEffectUnsuppressed ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -4240,9 +4386,13 @@ The representation of the *HasEffectUnsuppressed* *ReferenceType* in the *Addres
 |InverseName|MayBeUnsuppressedBy|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Statemachine Suppression Trigger|
   
 
@@ -4270,7 +4420,7 @@ All of these sub-objects might have unique alarms associated with them, such as 
 
 An instance of *AlarmStateVariableType* can be assigned to any *Object* or *Variable* . The instance will provide a summary of the *Alarms* associated with the parent *Variable* or *Object* (the *Source* of the *HasComponent Reference* for this instance)  
 
- **Table 142142\- AlarmStateVariableType definition**   
+Table 142142 - AlarmStateVariableType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -4278,7 +4428,9 @@ An instance of *AlarmStateVariableType* can be assigned to any *Object* or *Vari
 |DataType|AlarmMask|
 |ValueRank|\-1 (-1 = Scalar)|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseDataVariableType* defined in [10000-5](/§UAPart5) .|
 |HasProperty|Variable|HighestActiveSeverity|UInt16|PropertyType|Mandatory|
 |HasProperty|Variable|HighestUnackSeverity|UInt16|PropertyType|Mandatory|
@@ -4286,7 +4438,9 @@ An instance of *AlarmStateVariableType* can be assigned to any *Object* or *Vari
 |HasProperty|Variable|UnacknowledgedCount|UInt32|PropertyType|Mandatory|
 |HasProperty|Variable|UnconfirmedCount|UInt32|PropertyType|Mandatory|
 |HasProperty|Variable|Filter|ContentFilter|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Summary|
   
 
@@ -4308,7 +4462,7 @@ This *OptionSet* defines flags indicating the summary of alarm states *.*
 
 The *AlarmMask* values are formally defined in [Table 143143](/§\_Ref83395188) .  
 
- **Table 143143\- AlarmMask values**   
+Table 143143 - AlarmMask values  
 
 | **Value** | **Bit No.** | **Description** |
 |---|---|---|
@@ -4321,16 +4475,20 @@ The *AlarmMask* values are formally defined in [Table 143143](/§\_Ref83395188) 
 
 The *AlarmMask* representation in the *AddressSpace* is formally defined in [Table 144144](/§\_Ref86746108) .  
 
- **Table 144144\- AlarmMask definition**   
+Table 144144 - AlarmMask definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AlarmMask|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the UInt16 type defined in [10000-5](/§UAPart5)|
 |0:HasProperty|Variable|0:OptionSetValues|0:LocalizedText[]|0:PropertyType||
+  
 | **ConformanceUnits** |
+|---|
 |A & C Summary|
   
 
@@ -4348,13 +4506,15 @@ This section defines a standard structure for metrics. This structure can be imp
 
 This Object *Type* is used for metric information. The *ObjectType* is formally defined in [Table 145145](/§\_Ref134949815) .  
 
- **Table 145145\- AlarmMetricsType Definition**   
+Table 145145 - AlarmMetricsType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AlarmMetricsType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType defined in [10000-5](/§UAPart5) .|
 |HasComponent|Variable|AlarmCount|UInt32|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|StartTime|UtcTime|BaseDataVariableType|Mandatory|
@@ -4365,7 +4525,9 @@ This Object *Type* is used for metric information. The *ObjectType* is formally 
 |HasComponent|Variable|MaximumReAlarmCount|UInt32|BaseDataVariableType|Mandatory|
 |HasComponent|Variable|AverageAlarmRate|Double|AlarmRateVariableType|Mandatory|
 |HasComponent|Method|Reset|||Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Alarm Metrics|
   
 
@@ -4393,7 +4555,7 @@ StartTime is the time at which the *Server* started or the time of the last *Res
 
 This variable type provides a unit field for the rate for which the *Alarm* diagnostic applies.  
 
- **Table 146146\- AlarmRateVariableType Definition**   
+Table 146146 - AlarmRateVariableType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -4401,9 +4563,13 @@ This variable type provides a unit field for the rate for which the *Alarm* diag
 |IsAbstract|False|
 |ValueRank|Scalar|
 |DataType|Double|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|Rate|UInt16|PropertyType|Mandatory|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Alarm Metrics|
   
 
@@ -4421,7 +4587,7 @@ The *Reset* *Method* is used reset all of the counters, rates and time in the *O
 
  **Method Result Codes in [Table 5151](/§\_Ref463025326) (defined in Call Service)**   
 
- **Table 147147\- Suppress result codes**   
+Table 147147 - Suppress result codes  
 
 | **Result Code** | **Description** |
 |---|---|
@@ -4437,15 +4603,19 @@ The *Reset* *Method* is used reset all of the counters, rates and time in the *O
 
 [Table 148148](/§\_Ref478026915) specifies the *AddressSpace* representation for the *Reset* *Method* .  
 
- **Table 148148\- Reset Method AddressSpace Definition**   
+Table 148148 - Reset Method AddressSpace Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Reset|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |||||||
 |AlwaysGeneratesEvent|ObjectType|AuditUpdateMethodEventType|Defined in [10000-5](/§UAPart5)|
+  
 | **ConformanceUnits** |
+|---|
 |A & C Alarm Metrics|
   
 
@@ -4459,15 +4629,13 @@ If *Auditing* is supported, this *Method* shall generate an *Event* of *AuditCon
 
 The recommended state display values for the LocaleId "en" are listed in [Table A.11](/§\_Ref382998163) and the recommended *DisplayNames* are listed in [Table A.22](/§\_Ref382998170)  
 
- **Table A. 11\- Recommended state names for LocaleId "en"**   
+Table A. 11 - Recommended state names for LocaleId "en"  
 
 | **ConditionType** | **State Variable** | **False State Name** | **True State Name** |
 |---|---|---|---|
 |ConditionType|EnabledState|Disabled|Enabled|
 |DialogConditionType|DialogState|Inactive|Active|
-|AcknowledgeableConditionType  
-
-|AckedState|Unacknowledged|Acknowledged|
+|AcknowledgeableConditionType<br>|AckedState|Unacknowledged|Acknowledged|
 ||ConfirmedState|Unconfirmed|Confirmed|
 |AlarmConditionType|ActiveState|Inactive|Active|
 ||SuppressedState|Unsuppressed|Suppressed|
@@ -4482,7 +4650,7 @@ The recommended state display values for the LocaleId "en" are listed in [Table 
 
   
 
- **Table A. 22\- Recommended DisplayNames for LocaleId "en"**   
+Table A. 22 - Recommended DisplayNames for LocaleId "en"  
 
 | **ConditionType** | **BrowseName** | **DisplayName** |
 |---|---|---|
@@ -4501,15 +4669,13 @@ The recommended state display values for the LocaleId "en" are listed in [Table 
 
 The recommended state display values for the LocaleId "de" are listed in [Table A.33](/§\_Ref382998178) and the recommended *DisplayNames* are listed in [Table A.44](/§\_Ref382998185) .  
 
- **Table A. 33\- Recommended state names for LocaleId "de"**   
+Table A. 33 - Recommended state names for LocaleId "de"  
 
 | **ConditionType** | **State Variable** | **False State Name** | **True State Name** |
 |---|---|---|---|
 |ConditionType|EnabledState|Ausgeschaltet|Eingeschaltet|
 |DialogConditionType|DialogState|Inaktiv|Aktiv|
-|AcknowledgeableConditionType  
-
-|AckedState|Unquittiert|Quittiert|
+|AcknowledgeableConditionType<br>|AckedState|Unquittiert|Quittiert|
 ||ConfirmedState|Unbestätigt|Bestätigt|
 |AlarmConditionType|ActiveState|Inaktiv|Aktiv|
 ||SuppressedState|Nicht unterdrückt|Unterdrückt|
@@ -4522,7 +4688,7 @@ The recommended state display values for the LocaleId "de" are listed in [Table 
 ||LowLowState|LowLow inaktiv|LowLow aktiv|
   
 
- **Table A. 44\- Recommended DisplayNames for LocaleId "de"**   
+Table A. 44 - Recommended DisplayNames for LocaleId "de"  
 
 | **ConditionType** | **BrowseName** | **DisplayName** |
 |---|---|---|
@@ -4541,15 +4707,13 @@ The recommended state display values for the LocaleId "de" are listed in [Table 
 
 The recommended state display values for the LocaleId "fr" are listed in [Table A.55](/§\_Ref382998216) and the recommended *DisaplayNames* are listed in [Table A.66](/§\_Ref382998225) .  
 
- **Table A. 55\- Recommended state names for LocaleId "fr"**   
+Table A. 55 - Recommended state names for LocaleId "fr"  
 
 | **ConditionType** | **State Variable** | **False State Name** | **True State Name** |
 |---|---|---|---|
 |ConditionType|EnabledState|Hors Service|En Service|
 |DialogConditionType|DialogState|Inactive|Active|
-|AcknowledgeableConditionType  
-
-|AckedState|Non-acquitté|Acquitté|
+|AcknowledgeableConditionType<br>|AckedState|Non-acquitté|Acquitté|
 ||ConfirmedState|Non-Confirmé|Confirmé|
 |AlarmConditionType|ActiveState|Inactive|Active|
 ||SuppressedState|Présent|Supprimé|
@@ -4562,7 +4726,7 @@ The recommended state display values for the LocaleId "fr" are listed in [Table 
 ||LowLowState|Très basse inactive|Très basse active|
   
 
- **Table A. 66\- Recommended DisplayNames for LocaleId "fr"**   
+Table A. 66 - Recommended DisplayNames for LocaleId "fr"  
 
 | **ConditionType** | **BrowseName** | **DisplayName** |
 |---|---|---|
@@ -4581,7 +4745,7 @@ The recommended state display values for the LocaleId "fr" are listed in [Table 
 
 The recommended *Dialog* response option names in different locales are listed in [Table A.77](/§\_Ref382998235) .  
 
- **Table A. 77\- Recommended dialog response options**   
+Table A. 77 - Recommended dialog response options  
 
 | **Locale "en"** | **Locale "de"** | **Locale "fr"** |
 |---|---|---|
@@ -4618,7 +4782,7 @@ This example is for *Servers* that do not support previous states and therefore 
 
 Figure B. 11 - Single state example  
 
- **Table B. 11\- Example of a Condition that only keeps the latest state**   
+Table B. 11 - Example of a Condition that only keeps the latest state  
 
 | **EventId** | **BranchId** | **Active** | **Acked** | **Confirmed** | **Retain** | **Description** |
 |---|---|---|---|---|---|---|
@@ -4646,7 +4810,7 @@ This example is for *Servers* that are able to maintain previous states of a *Co
 
 Figure B. 22 - Previous state example  
 
- **Table B. 22\- Example of a *Condition* that maintains previous states via branches**   
+Table B. 22 - Example of a Condition that maintains previous states via branches  
 
 | **EventId** | **BranchId** | **Active** | **Acked** | **Confirmed** | **Retain** | **Description** |
 |---|---|---|---|---|---|---|
@@ -4665,19 +4829,7 @@ Figure B. 22 - Previous state example
 |12 c)|1|True|True|True|False|Prior state confirmed. Branch \#1 deleted.|
 |13|2|True|True|True|False|Prior state acknowledged, Auto Confirmed by system Branch \#2 deleted. f)|
 |14|NULL|False|True|True|False|No longer of interest.|
-|a) *The first row* is included to illustrate the initial state of the *Condition* . This state will not be reported by an *Event* .  
-
-  
-
-b) ** If the current state of the *Condition* is acknowledged then the *Acked* flag is set and the new state is reported ( *Event* \#2). If the *Condition* state changes before it can be acknowledged ( *Event* \#6) then a branch state is reported ( *Event* \#7). Timestamps for the *Events* \#6 and \#7 is identical.  
-
-c) ** The branch state can be updated several times ( *Events* \#9) before it is cleared ( *Event* \#12).  
-
-d) ** A single *Condition* can have many branch states active ( *Events* \#11)  
-
-e) *It is recommended* as in this table to leave Retain=True as long as there exist previous states (branches).  
-
-f) The system Auto confirms this event, since a confirmation is that the operator has taken some action. The confirmation of the previous state (line 12) indicates that the operator has taken an action and this transition does not require a separate confirmation.|
+|a) *The first row* is included to illustrate the initial state of the *Condition* . This state will not be reported by an *Event* .<br><br>b) ** If the current state of the *Condition* is acknowledged then the *Acked* flag is set and the new state is reported ( *Event* \#2). If the *Condition* state changes before it can be acknowledged ( *Event* \#6) then a branch state is reported ( *Event* \#7). Timestamps for the *Events* \#6 and \#7 is identical.<br>c) ** The branch state can be updated several times ( *Events* \#9) before it is cleared ( *Event* \#12).<br>d) ** A single *Condition* can have many branch states active ( *Events* \#11)<br>e) *It is recommended* as in this table to leave Retain=True as long as there exist previous states (branches).<br>f) The system Auto confirms this event, since a confirmation is that the operator has taken some action. The confirmation of the previous state (line 12) indicates that the operator has taken an action and this transition does not require a separate confirmation.|
   
 
 #### B.1.4 Server current-State Model with Suppression  
@@ -4694,15 +4846,9 @@ Figure B. 33 - SuppressedState and OutOfServiceState example
 
   
 
- **Table B. 33\- Example of a Condition that is Suppressed / OutOfService**   
+Table B. 33 - Example of a Condition that is Suppressed / OutOfService  
 
-| **EventId** | **Active** | **Suppressed**   
-
- **State** | **OutOf**   
-
- **Service**   
-
- **State** | **Retain** | **Retain sent** | **Event Deliver with Filter** | **Description** |
+| **EventId** | **Active** | **Suppressed** <br> **State** | **OutOf** <br> **Service** <br> **State** | **Retain** | **Retain sent** | **Event Deliver with Filter** | **Description** |
 |---|---|---|---|---|---|---|---|
 |\-\*)|False|False|False|False|False|\-|Initial state of Condition.|
 |1|True|False|False|True|True|Yes|Alarm goes active.|
@@ -4775,27 +4921,21 @@ Figure B. 77 - HasCondition used with an instance declaration
 
 [Table C.11](/§\_Ref382998350) lists [EEMUA Publication 191](/§EEMUA) terms and how OPC UA terms map to them.  
 
- **Table C. 11\- EEMUA Terms**   
+Table C. 11 - EEMUA Terms  
 
 | **EEMUA Term** | **OPC UA Term** | **EEMUA Definition** |
 |---|---|---|
-|Accepted|Acknowledged = True|An *Alarm* is accepted when the *Operator* has indicated awareness of its presence.  
-
-In OPC UA this can be accomplished with the *Acknowledge* *Method* .|
+|Accepted|Acknowledged = True|An *Alarm* is accepted when the *Operator* has indicated awareness of its presence.<br>In OPC UA this can be accomplished with the *Acknowledge* *Method* .|
 |Active Alarm|Active = True|An *Alarm* *Condition* which is on (i.e. limit has been exceeded and *Condition* continues to exist).|
 |Alarm Message|Message Property (defined in [10000-5](/§UAPart5) .)|Text information presented to the *Operator* that describes the *Alarm* *Condition* .|
 |Alarm Priority|Severity Property (defined in [10000-5](/§UAPart5) .)|The relative importance assigned to an alarm within the alarm system to indicate the urgency of response|
-|Alert|\-|A lower priority *Notification* than an *Alarm* that has no serious consequence if ignored or missed. In some Industries also referred to as a Prompt or Warning.  
-
-No direct mapping\! In UA the concept of alerts can be accomplished by the use of severity. E.g., *Alarms* that have a severity below 400 may be considered as alerts.|
+|Alert|\-|A lower priority *Notification* than an *Alarm* that has no serious consequence if ignored or missed. In some Industries also referred to as a Prompt or Warning.<br>No direct mapping\! In UA the concept of alerts can be accomplished by the use of severity. E.g., *Alarms* that have a severity below 400 may be considered as alerts.|
 |Cleared|Active = False|An *Alarm* state that indicates the *Condition* has returned to normal.|
 |Disable|Enabled = False|An *Alarm* is disabled when the system is configured such that the *Alarm* will not be generated even though the base *Alarm* *Condition* is present.|
 |Prompt|Dialog|A request from the control system that the *Operator* perform some process action that the system cannot perform or that requires *Operator* authority to perform.|
 |Raised|Active = True|An *Alarm* is *Raised* or initiated when the *Condition* creating the *Alarm* has occurred.|
 |Release|OneShotShelving|A 'release' is a facility that can be applied to a standing (UA = active) *Alarm* in a similar way to which *Shelving* is applied. A released *Alarm* is temporarily removed from the *Alarm* list and put on the shelf. There is no indication to the *Operator* when the *Alarm* clears, but it is taken off the shelf. Hence, when the *Alarm* is raised again it appears on the *Alarm* list in the normal way.|
-|Reset|Retain = False|An *Alarm* is Reset when it is in a state that can be removed from the Display list.  
-
-OPC UA includes *Retain* flag which as part of its definition states: "when a *Client* receives an *Event* with the *Retain* flag set to False, the *Client* should consider this as a *Condition* /Branch that is no longer of interest, in the case of a "current *Alarm* display" the *Condition* /Branch would be removed from the display"|
+|Reset|Retain = False|An *Alarm* is Reset when it is in a state that can be removed from the Display list.<br>OPC UA includes *Retain* flag which as part of its definition states: "when a *Client* receives an *Event* with the *Retain* flag set to False, the *Client* should consider this as a *Condition* /Branch that is no longer of interest, in the case of a "current *Alarm* display" the *Condition* /Branch would be removed from the display"|
 |Shelving|Shelving|*Shelving* is a facility where the *Operator* is able to temporarily prevent an *Alarm* from being displayed to the *Operator* when it is causing the *Operator* a nuisance. A Shelved *Alarm* will be removed from the list and will not re-annunciate until un-shelved.|
 |Standing|Active = True|An *Alarm* is *Standing* whilst the *Condition* persists ( *Raised* and *Standing* are often used interchangeably).|
 |Suppress|Suppress|An *Alarm* is suppressed when logical criteria are applied to determine that the *Alarm* should not occur, even though the base *Alarm* *Condition* (e.g. *Alarm* setting exceeded) is present.|
@@ -4842,7 +4982,7 @@ The Sources are discovered by calling BrowseOPCAreas and the GetQualifiedSourceN
 
 These *ObjectType* *Nodes* have a super type which depends on the A&E *Event* Type, the *Event* Category Description and the *Condition* Name; however, the best mapping requires knowledge of the semantics associated with the *Event* Categories and *Condition* Names. If an A&E COM UA Wrapper does not know these semantics then Simple *Event* Types are subtypes of *BaseEventType* , Tracking *Event* Types are subtypes of *AuditEventType* and *Condition* *Event* Types are subtypes of the *AlarmType* . [Table D.11](/§\_Ref382998669) defines mappings for a set of "well known" Category description and *Condition* Names to a standard super type.  
 
- **Table D. 11\- Mapping from standard Event categories to OPC UA Event types**   
+Table D. 11 - Mapping from standard Event categories to OPC UA Event types  
 
 | **COM A&E Event Type** | **Category Description** | **Condition Name** | **OPC UA EventType** |
 |---|---|---|---|
@@ -4892,24 +5032,12 @@ A simple A&E COM UA Wrapper will always request all *Attributes* for all *Event*
 
 [Table D.22](/§\_Ref382998688) lists how the fields in the ONEVENTSTRUCT that are used by the A&E COM UA Wrapper are mapped to UA BaseEventType *Variable* s.  
 
- **Table D. 22\- Mapping from ONEVENTSTRUCT fields to UA BaseEventType Variables**   
+Table D. 22 - Mapping from ONEVENTSTRUCT fields to UA BaseEventType Variables  
 
 | **UA Event Variable** | **ONEVENTSTRUCT Field** | **Notes** |
 |---|---|---|
-|EventId|szSource  
-
-szConditionName  
-
-ftTime  
-
-ftActiveTime  
-
-dwCookie|A ByteString constructed by appending the fields together.|
-|EventType|dwEventType  
-
-dwEventCategory  
-
-szConditionName|The NodeId for the corresponding *ObjectType* *Node* . The szConditionName could be omitted by some implementations.|
+|EventId|szSource<br>szConditionName<br>ftTime<br>ftActiveTime<br>dwCookie|A ByteString constructed by appending the fields together.|
+|EventType|dwEventType<br>dwEventCategory<br>szConditionName|The NodeId for the corresponding *ObjectType* *Node* . The szConditionName could be omitted by some implementations.|
 |SourceNode|szSource|The *NodeId* of the corresponding Source *Object* *Node* .|
 |SourceName|szSource|\-|
 |Time|ftTime|\-|
@@ -4921,7 +5049,7 @@ szConditionName|The NodeId for the corresponding *ObjectType* *Node* . The szCon
 
 [Table D.33](/§\_Ref382998698) lists how the fields in the ONEVENTSTRUCT that are used by the A&E COM UA Wrapper are mapped to UA *AuditEventType* *Variable* s.  
 
- **Table D. 33\- Mapping from ONEVENTSTRUCT fields to UA AuditEventType Variables**   
+Table D. 33 - Mapping from ONEVENTSTRUCT fields to UA AuditEventType Variables  
 
 | **UA Event Variable** | **ONEVENTSTRUCT Field** | **Notes** |
 |---|---|---|
@@ -4934,7 +5062,7 @@ szConditionName|The NodeId for the corresponding *ObjectType* *Node* . The szCon
 
 [Table D.44](/§\_Ref382998718) lists how the fields in the ONEVENTSTRUCT that are used by the A&E COM UA Wrapper are mapped to UA AlarmType Variables.  
 
- **Table D. 44\- Mapping from ONEVENTSTRUCT fields to UA AlarmType Variables**   
+Table D. 44 - Mapping from ONEVENTSTRUCT fields to UA AlarmType Variables  
 
 | **UA Event Variable** | **ONEVENTSTRUCT Field** | **Notes** |
 |---|---|---|
@@ -4945,36 +5073,16 @@ szConditionName|The NodeId for the corresponding *ObjectType* *Node* . The szCon
 |Retain|wNewState|Set to True if the OPC\_CONDITION\_ACKED bit is not set or OPC\_CONDITION\_ACTIVE bit is set.|
 |EnabledState|wNewState|Set to "Enabled" or "Disabled"|
 |EnabledState.Id|wNewState|Set to True if OPC\_CONDITION\_ENABLED is set|
-|EnabledState.  
-
-EffectiveDisplayName|wNewState|A string constructed from the bits in the wNewState flag.  
-
-The following rules are applied in order to select the string:  
-
-"Disabled" if OPC\_CONDITION\_ENABLED is not set.  
-
-"Unacknowledged" if OPC\_CONDITION\_ACKED is not set.  
-
-"Active" if OPC\_CONDITION\_ACKED is set.  
-
-"Enabled" if OPC\_CONDITION\_ENABLED is set.|
+|EnabledState.<br>EffectiveDisplayName|wNewState|A string constructed from the bits in the wNewState flag.<br>The following rules are applied in order to select the string:<br>"Disabled" if OPC\_CONDITION\_ENABLED is not set.<br>"Unacknowledged" if OPC\_CONDITION\_ACKED is not set.<br>"Active" if OPC\_CONDITION\_ACKED is set.<br>"Enabled" if OPC\_CONDITION\_ENABLED is set.|
 |Quality|wQuality|The COM DA Quality converted to a UA StatusCode.|
-|Severity|dwSeverity|Set based on the last *Event* received for the *Condition* instance.  
-
-Set to the current value if the last *Event* is not available.|
+|Severity|dwSeverity|Set based on the last *Event* received for the *Condition* instance.<br>Set to the current value if the last *Event* is not available.|
 |Comment|\-|The value of the ACK\_COMMENT *Attribute*|
 |ClientUserId|szActorID|\-|
 |AckedState|wNewState|Set to "Acknowledged" or "Unacknowledged"|
 |AckedState.Id|wNewState|Set to True if OPC\_CONDITION\_ACKED is set|
 |ActiveState|wNewState|Set to "Active" or "Inactive"|
 |ActiveState.Id|wNewState|Set to True if OPC\_CONDITION\_ACTIVE is set|
-|ActiveState.TransitionTime|ftActiveTime|This time is set when the *ActiveState* transitions from False to True.  
-
-Additional logic applies to exclusive limit alarms, in that the LimitState.TransitionTime also is set, but this is set each time a limit is crossed (multiple limits might exist). For the initial transition to True the ftActiveTime is used for both LimitState.TransitionTime and ActiveState.TransitionTime. For subsequent transition the ActiveState.Transition time does not change, but the LimitState.TransitionTime is updated with the new ftActiveTime.  
-
-For example, if an alarm has Hi and HiHi limits, when the Hi limit is crossed and the alarm goes active the ftActiveTime is used for both times, but when the HiHi limit is later crossed, the ftActiveTime is only be used for the LimitState.TransitionTime.  
-
-The ftActiveTime is part of the key for identifying the unique event in the A&E server and is saved for processing any commands back to the A&E Server.|
+|ActiveState.TransitionTime|ftActiveTime|This time is set when the *ActiveState* transitions from False to True.<br>Additional logic applies to exclusive limit alarms, in that the LimitState.TransitionTime also is set, but this is set each time a limit is crossed (multiple limits might exist). For the initial transition to True the ftActiveTime is used for both LimitState.TransitionTime and ActiveState.TransitionTime. For subsequent transition the ActiveState.Transition time does not change, but the LimitState.TransitionTime is updated with the new ftActiveTime.<br>For example, if an alarm has Hi and HiHi limits, when the Hi limit is crossed and the alarm goes active the ftActiveTime is used for both times, but when the HiHi limit is later crossed, the ftActiveTime is only be used for the LimitState.TransitionTime.<br>The ftActiveTime is part of the key for identifying the unique event in the A&E server and is saved for processing any commands back to the A&E Server.|
 ||||
   
 
@@ -5048,11 +5156,13 @@ The A&E COM UA Proxy assigns Category IDs.
 
 The collection of *Attributes* associated with any given A&E *Event* is encapsulated within the ONEVENTSTRUCT. Therefore, the A&E COM UA Proxy populates the *Attribute* fields within the ONEVENTSTRUCT using corresponding values from UA *Event* *Notifications* either directly (e.g., Source, Time, Severity) or indirectly (e.g., OPC COM *Event* category determined by way of the UA *Event* type). [Table D.55](/§\_Ref382998749) lists the *Attributes* currently defined in the ONEVENTSTRUCT in the leftmost column. The rightmost column of [Table D.55](/§\_Ref382998749) indicates how the A&E COM UA proxy defines that *Attribute* .  
 
- **Table D. 55\- Event category attribute mapping table**   
+Table D. 55 - Event category attribute mapping table  
 
 | **A&E ONEVENTSTRUCT "attribute"** | **A&E COM UA Proxy Mapping** |
 |---|---|
+  
 | **The following items are present for all A&E event types** |
+|---|
 |szSource|UA BaseEventType Property: SourceName|
 |ftTime|UA BaseEventType Property: Time|
 |szMessage|UA BaseEventType Property: Message|
@@ -5061,73 +5171,31 @@ The collection of *Attributes* associated with any given A&E *Event* is encapsul
 |dwSeverity|UA BaseEventType Property: Severity|
 |dwNumEventAttrs|Calculated within A&E COM UA Proxy|
 |pEventAttributes|Constructed within A&E COM UA Proxy|
+  
 | **The following items are present only for A&E Condition-Related Events** |
+|---|
 |szConditionName|UA ConditionType Property: ConditionName|
 |szSubConditionName|UA ActiveState Property: EffectiveDisplayName|
 |wChangeMask|Calculated within Alarms and Events COM UA proxy|
-|wNewState: OPC\_CONDITION\_ACTIVE|A & C AlarmConditionType Property: ActiveState  
-
-Events mapped as non-Condition Events and those that do not derive from AlarmConditionType are set to ACTIVE by default.|
-|wNewState: OPC\_CONDITION\_ENABLED|A & C ConditionType Property: EnabledState  
-
-Events mapped as non-Condition Events are set to ENABLED (state bit mask = 0x1) by default.|
-|wNewState: OPC\_CONDITION\_ACKED|A & C AcknowledgeableConditionType Property: AckedState  
-
-A & C Events mapped as non-Condition Events or which do not derive from AcknowledgeableConditionType are set to UNACKNOWLEDGED and AckRequired = False by default.|
-|wQuality|A & C ConditionType Property: Quality  
-
-Events mapped as non-Condition Events are set to OPC\_QUALITY\_GOOD by default.  
-
-  
-
-In general, the Severity field of the StatusCode is used to map COM status codes OPC\_QUALITY\_BAD, OPC\_QUALITY\_GOOD and OPC\_QUALITY\_UNCERTAIN. When possible, specific status' are mapped directly. These include (UA =\> COM):  
-
-  
-
-Bad status codes  
-
-Bad\_ConfigurationError =\> OPC\_QUALITY\_CONFIG\_ERROR  
-
-Bad\_NotConnected =\> OPC\_QUALITY\_NOT\_CONNECTED  
-
-Bad\_DeviceFailure =\> OPC\_QUALITY\_DEVICE\_FAILURE  
-
-Bad\_SensorFailure =\> OPC\_QUALITY\_SENSOR\_FAILURE  
-
-Bad\_NoCommunication =\> OPC\_QUALITY\_COMM\_FAILURE  
-
-Bad\_OutOfService =\> OPC\_QUALITY\_OUT\_OF\_SERVICE  
-
-  
-
-Uncertain status codes  
-
-Uncertain\_NoCommunicationLastUsableValue =\> OPC\_QUALITY\_LAST\_USABLE  
-
-Uncertain\_LastUsableValue =\> OPC\_QUALITY\_LAST\_USABLE  
-
-Uncertain\_SensorNotAccurate =\> OPC\_QUALITY\_SENSOR\_CAL  
-
-Uncertain\_EngineeringUnitsExceeded =\> OPC\_QUALITY\_EGU\_EXCEEDED  
-
-Uncertain\_SubNormal =\> OPC\_QUALITY\_SUB\_NORMAL  
-
-  
-
-Good status codes  
-
-Good\_LocalOverride =\> OPC\_QUALITY\_LOCAL\_OVERRIDE|
+|wNewState: OPC\_CONDITION\_ACTIVE|A & C AlarmConditionType Property: ActiveState<br>Events mapped as non-Condition Events and those that do not derive from AlarmConditionType are set to ACTIVE by default.|
+|wNewState: OPC\_CONDITION\_ENABLED|A & C ConditionType Property: EnabledState<br>Events mapped as non-Condition Events are set to ENABLED (state bit mask = 0x1) by default.|
+|wNewState: OPC\_CONDITION\_ACKED|A & C AcknowledgeableConditionType Property: AckedState<br>A & C Events mapped as non-Condition Events or which do not derive from AcknowledgeableConditionType are set to UNACKNOWLEDGED and AckRequired = False by default.|
+|wQuality|A & C ConditionType Property: Quality<br>Events mapped as non-Condition Events are set to OPC\_QUALITY\_GOOD by default.<br><br>In general, the Severity field of the StatusCode is used to map COM status codes OPC\_QUALITY\_BAD, OPC\_QUALITY\_GOOD and OPC\_QUALITY\_UNCERTAIN. When possible, specific status' are mapped directly. These include (UA =\> COM):<br><br>Bad status codes<br>Bad\_ConfigurationError =\> OPC\_QUALITY\_CONFIG\_ERROR<br>Bad\_NotConnected =\> OPC\_QUALITY\_NOT\_CONNECTED<br>Bad\_DeviceFailure =\> OPC\_QUALITY\_DEVICE\_FAILURE<br>Bad\_SensorFailure =\> OPC\_QUALITY\_SENSOR\_FAILURE<br>Bad\_NoCommunication =\> OPC\_QUALITY\_COMM\_FAILURE<br>Bad\_OutOfService =\> OPC\_QUALITY\_OUT\_OF\_SERVICE<br><br>Uncertain status codes<br>Uncertain\_NoCommunicationLastUsableValue =\> OPC\_QUALITY\_LAST\_USABLE<br>Uncertain\_LastUsableValue =\> OPC\_QUALITY\_LAST\_USABLE<br>Uncertain\_SensorNotAccurate =\> OPC\_QUALITY\_SENSOR\_CAL<br>Uncertain\_EngineeringUnitsExceeded =\> OPC\_QUALITY\_EGU\_EXCEEDED<br>Uncertain\_SubNormal =\> OPC\_QUALITY\_SUB\_NORMAL<br><br>Good status codes<br>Good\_LocalOverride =\> OPC\_QUALITY\_LOCAL\_OVERRIDE|
 |bAckRequired|If the ACKNOWLEDGED bit (OPC\_CONDITION\_ACKED) is set then the Ack Required Boolean is set to False, otherwise the Ack Required Boolean is set to True. If the *Event* is not of type *AcknowledgeableConditionType* or subtype then the AckRequired Boolean is set to False.|
-|ftActiveTime|If the *Event* is of type *AlarmConditionType* or subtype and a transition from *ActiveState* of False to *ActiveState* to True is being processed then the *TransitionTime* *Property* of *ActiveState* is used. If the *Event* is not of type *AlarmConditionType* or subtype then this field is set to current time.  
-
-Additional logic applies to exclusive limit alarms, This value should be mapped to the LimitState.TransitionTime.|
+|ftActiveTime|If the *Event* is of type *AlarmConditionType* or subtype and a transition from *ActiveState* of False to *ActiveState* to True is being processed then the *TransitionTime* *Property* of *ActiveState* is used. If the *Event* is not of type *AlarmConditionType* or subtype then this field is set to current time.<br>Additional logic applies to exclusive limit alarms, This value should be mapped to the LimitState.TransitionTime.|
 |dwCookie|Generated by the A&E COM UA Proxy. These unique *Condition* *Event* cookies are not associated with any related identifier from the address space of the UA A & C *Server* .|
+  
 | **The following is used only for A&E tracking events and for A&E condition-related events which are acknowledgement notifications** |
+|---|
 |szActorID||
+  
 | **Vendor specific *Attributes*\- ALL** |
+|---|
 |ACK Comment||
 |AREAS|All A&E Events are assumed to support the "Areas" Attribute. However, no Attribute or Property of an A & C Event is available which provides this value. Therefore, the A&E COM UA Proxy initializes the value of the Areas Attribute based on the MonitoredItem producing the Event. If the A&E COM Client has applied no area filtering to a Subscription, the corresponding A & C Subscription will contain just one MonitoredItem - that of the UA A & C Server Object. Events forwarded to the A&E COM Client on behalf of this Subscription will carry an Areas Attribute value of empty string. If the A&E COM Client has applied an area filter to a Subscription then the related UA A & C Subscription will contain one or more MonitoredItems for each notifier Node identified by the area string(s). Events forwarded to the A&E COM Client on behalf of such a Subscription will carry an areas Attribute whose value is the relative path to the notifier which produced the Event (i.e., the fully qualified area name).|
+  
 | **Vendor specific *Attributes*\- based on category** |
+|---|
 |SubtypeProperty1|All the UA A & C subtype *Properties* that are not part of the standard set exposed by *BaseEventType* or *ConditionType*|
 |SubtypeProperty *n*||
   
@@ -5226,7 +5294,9 @@ IEC 62682 defines a large number of terms that are covered by the OPC UA model b
 
 | **IEC 62682** | **OPC UA Mapping / Related Concept** | **IEC 62682 Definition** |
 |---|---|---|
+  
 ||| **OPC UA Application of** |
+|---|---|---|
 |absolute alarm|ExclusiveDeviationAlarmType NonExclusiveDeviationAlarmType|an alarm generated when the alarm setpoint is exceeded.|
 |||Both OPC UA models expose a setpoint and process the Alarm as an absolute Alarm requires, the only difference is the interaction between relative states (High, HighHigh...)|
 |adaptive alarm||alarm for which the setpoint is changed by an algorithm (e.g., rate based).|
@@ -5239,9 +5309,7 @@ IEC 62682 defines a large number of terms that are covered by the OPC UA model b
 |||OPC UA provides an Alarm model that includes concepts such as re-alarming, Alarm silence and Alarm delays, but it is up to the Client application to make use of these features to generate both audible and visual annunciation to the Operator. OPC UA does not provide visual indication but it does provide priority information on which the client can be configured to provide the appropriate visual display. A key concept for alarm display is the concept of Alarm states and a Retain bit (see [Annex B](/§\_Ref463033976) for more details).|
 |alarm attribute|Various Alarm Properties|the setting for an alarm within the process control system.|
 |||OPC UA defines a number of Properties that reflect what would be termed alarm attributes in IEC 62682 such as Alarm setpoint which maps to the setpoint property in an ExclusiveDeviationAlarmType.|
-|alarm class|ConditionClass,  
-
-ConditionSubClass|a group of alarms with a common set of alarm management requirements (e.g., testing, training, monitoring, and audit requirements).|
+|alarm class|ConditionClass,<br>ConditionSubClass|a group of alarms with a common set of alarm management requirements (e.g., testing, training, monitoring, and audit requirements).|
 |||OPC UA provides ConditionClasses, but also provides other groupings, like ConditionSubClass. OPC UA also specifies a number of predefined classes, but it is expected that vendors, other standards group or even end users will define their own extensions to these classes. The OPC concepts allow Alarms to be categorized as needed.|
 |alarm Deadband|ExclusiveDeviationAlarmType NonExclusiveDeviationAlarmType|a change in signal from the alarm setpoint necessary for the alarm to return to normal.|
 |||In OPC UA, an alarm Deadband is optionally provided for all limit based alarms. It provides the same functionality as described in IEC 62682.|
@@ -5255,9 +5323,7 @@ ConditionSubClass|a group of alarms with a common set of alarm management requir
 |||[10000-11](/§UAPart11) describes historical Events.|
 |alarm log||short term repository for alarm records.|
 |||This part does not specify repositories for Alarms. Alarm logging is a Client function.|
-|alarm management  
-
-alarm system management||collection of processes and practices for determining, documenting, designing, operating, monitoring, and maintaining alarm systems.|
+|alarm management<br>alarm system management||collection of processes and practices for determining, documenting, designing, operating, monitoring, and maintaining alarm systems.|
 |||OPC UA provides an infrastructure to allow vendors and Operators to provide Alarm management, as such it should be an integral part of an alarm management system.|
 |alarm message|Events|text string displayed with the alarm indication that provides additional information to the Operator (e.g., Operator action).|
 |||OPC UA provides an Event structure that includes many different pieces of information (see [10000-5](/§UAPart5) for additional details). Clients can subscribe for as much of this information as desired and display this as an Alarm message. All typical fields that would be associated with an Alarm message are available. In addition, OPC UA provides significant additional information.|
@@ -5301,41 +5367,25 @@ alarm system management||collection of processes and practices for determining, 
 |||OPC UA does not provide enforcement, but it enables enforcement by providing an information model that includes default setting for Alarm types as well as original settings for dynamic Alarms. These features can be used by a Client application to provide enforcement.|
 |fleeting alarm|Suppression, Shelving|an alarm that transitions between an active alarm state and an inactive alarm state in a short period of time.|
 |||OPC UA provides Alarm Suppression and Shelving which an Operator might use to control fleeting Alarms.|
-|first-out alarm  
-
-first-up alarm|FirstInGroup  
-
-FirstInGroupFlag|an alarm determined (i.e., by first-out logic) to be the first, in a multiple-alarm scenario.|
+|first-out alarm<br>first-up alarm|FirstInGroup<br>FirstInGroupFlag|an alarm determined (i.e., by first-out logic) to be the first, in a multiple-alarm scenario.|
 |||OPC UA can support first-up/first-out Alarms as part of the Alarm information model, including definition of the group of Alarms.|
 |instrument diagnostic alarm|InstrumentDiagnosticAlarmType|an alarm generated by a field device to indicate a fault (e.g., sensor failure).|
 |||OPC UA provides support for InstrumentDiagnostic Alarms that can be used to represent a failed sensor or an instrument diagnostic.|
 |monitoring|Alarm Diagnostics|measurement and reporting of quantitative (objective) aspects of alarm system performance.|
 |||OPC UA provides diagnostic collection capabilities that can be used to measure and reports quantitative information related to alarm system performance.|
-|nuisance alarm|Alarm Diagnostics  
-
-|an alarm that annunciates excessively, unnecessarily, or does not return to normal after the Operator response is taken. EXAMPLE: Chattering alarm, fleeting alarm, or stale alarm.|
+|nuisance alarm|Alarm Diagnostics<br>|an alarm that annunciates excessively, unnecessarily, or does not return to normal after the Operator response is taken. EXAMPLE: Chattering alarm, fleeting alarm, or stale alarm.|
 |||The OPC UA model provides Alarm Diagnostics for tracking the information needed to identify if an Alarm is a nuisance Alarm (i.e. has been in an Alarm state excessively or does not return to normal).|
-|plant state  
-
-plant mode|StateMachines|defined set of operational conditions for a process plant.|
+|plant state<br>plant mode|StateMachines|defined set of operational conditions for a process plant.|
 |||OPC UA provides an example StateMachine (see [Annex F](/§\_Ref473919840) ) that can be customized or adapted to provide process information. This StateMachine could also be used to affect alarming.|
-|process area|Event Hierarchies  
-
-Object References (Part 5)|physical, geographical or logical grouping of resources determined by the site.|
+|process area|Event Hierarchies<br>Object References (Part 5)|physical, geographical or logical grouping of resources determined by the site.|
 |||OPC UA provides multiple manners in which an information model can be displayed, this includes grouping objects into process areas or any other desired grouping. This is an inherent part of the OPC UA information model.|
-|re-alarming alarm, re-triggering alarm|ReAlarmTime  
-
-ReAlarmRepeatCount|alarm that is automatically re-annunciated to the Operator under certain conditions.|
+|re-alarming alarm, re-triggering alarm|ReAlarmTime<br>ReAlarmRepeatCount|alarm that is automatically re-annunciated to the Operator under certain conditions.|
 |||OPC UA supports re-alarming as part of its base AlarmConditionType.|
-|recipe-driven alarm|StateMachines  
-
-Alarm Limits|alarm with setpoints that depend on the recipe that is currently being executed.|
+|recipe-driven alarm|StateMachines<br>Alarm Limits|alarm with setpoints that depend on the recipe that is currently being executed.|
 |||OPC UA provides support for adjustable Alarm limits. It also provides support for programs and other functionality that could be used to drive recipes. [Annex F](/§\_Ref474967965) provides an example of a StateMachine and how it could be used to adjust Alarm settings.|
 |Reset|LatchedState / Reset|operator action that unlatches a latched alarm.|
 |||OPC UA provides an optional StateMachine to indicate an Alarm is capable of being latched and is in a latched state. It also provides a Reset Method for clearing the latched state.|
-|safety related alarm  
-
-safety alarm|SafetyConditionClassType|an alarm that is classified as critical to process safety for the protection of human life or the environment.|
+|safety related alarm<br>safety alarm|SafetyConditionClassType|an alarm that is classified as critical to process safety for the protection of human life or the environment.|
 |||OPC UA defines a safety ConditionClass for grouping safety related alarms.|
 |stale alarm|Alarm Diagnostics|alarm that remains annunciated for an extended period of time (e.g., 24 hours).|
 |||OPC UA Alarm Diagnostics can track the length of time an Alarm is active.|
@@ -5427,13 +5477,15 @@ The state machine is illustrated in [Figure F.22](/§\_Ref477365597) and formall
 
 Figure F. 22 - SystemStateStateMachineType Model  
 
- **Table F. 11\- SystemStateStateMachineType definition**   
+Table F. 11 - SystemStateStateMachineType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|SystemStateStateMachineType|
 |IsAbstract|False|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Subtype of the F *initeStateMachineType* defined in [10000-16](/§UAPart16)|
 |||||||
 |HasComponent|Object|Operating||StateType||
@@ -5469,7 +5521,7 @@ The actual selection of *States* and *Transitions* would depend on the deploymen
 
 The *StateMachine* supports six possible states including: *Operating* , *ShuttingDown* , *StartingUp* , *Shutdown* , *OutOfService* , *Maintenance* . It supports 12 possible *Transitions* and 7 possible *Methods* .  
 
- **Table F. 22\- SystemStateStateMachineType additional references**   
+Table F. 22 - SystemStateStateMachineType additional references  
 
 | **SourceBrowsePath** | **References** | **IsForward** | **TargetBrowsePath** |
 |---|---|---|---|
@@ -5517,167 +5569,25 @@ The component *Variables* of the SystemStateStateMachineType have additional *At
 
 | **BrowsePath** | **Value Attribute** |
 |---|---|
-|Operating|
-|---|
-|0:StateNumber|
+Operating|0:StateNumber||1|
+ShuttingDown|0:StateNumber||2|
+StartingUp|0:StateNumber||3|
+Shutdown|0:StateNumber||4|
+OutOfService|0:StateNumber||5|
+Maintenance|0:StateNumber||6|
+ShutdownToOperating|0:TransitionNumber||41|
+OperatingToShutdown|0:TransitionNumber||14|
+ShuttingDownToShutdown|0:TransitionNumber||24|
+OperatingToShuttingDown|0:TransitionNumber||12|
+StartingUpToOperating|0:TransitionNumber||31|
+ShutdownToStartingUp|0:TransitionNumber||42|
+OutOfServiceToShutdown|0:TransitionNumber||54|
+ShutdownToOutOfService|0:TransitionNumber||45|
+OutOfServiceToOperating|0:TransitionNumber||51|
+OperatingToOutOfService|0:TransitionNumber||15|
+MaintenanceToOutOfService|0:TransitionNumber||65|
+OutOfServiceToMaintenance|0:TransitionNumber||56|
   
-
-  
-
-1  
-
-|ShuttingDown|
-|---|
-|0:StateNumber|
-  
-
-  
-
-2  
-
-|StartingUp|
-|---|
-|0:StateNumber|
-  
-
-  
-
-3  
-
-|Shutdown|
-|---|
-|0:StateNumber|
-  
-
-  
-
-4  
-
-|OutOfService|
-|---|
-|0:StateNumber|
-  
-
-  
-
-5  
-
-|Maintenance|
-|---|
-|0:StateNumber|
-  
-
-  
-
-6  
-
-|ShutdownToOperating|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-41  
-
-|OperatingToShutdown|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-14  
-
-|ShuttingDownToShutdown|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-24  
-
-|OperatingToShuttingDown|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-12  
-
-|StartingUpToOperating|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-31  
-
-|ShutdownToStartingUp|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-42  
-
-|OutOfServiceToShutdown|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-54  
-
-|ShutdownToOutOfService|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-45  
-
-|OutOfServiceToOperating|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-51  
-
-|OperatingToOutOfService|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-15  
-
-|MaintenanceToOutOfService|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-65  
-
-|OutOfServiceToMaintenance|
-|---|
-|0:TransitionNumber|
-  
-
-  
-
-56  
 
   
 

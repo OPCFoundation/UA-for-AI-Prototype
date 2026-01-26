@@ -1,0 +1,765 @@
+{
+  "Title": "Part 25 - ObjectSerialization",
+  "Chunks": [
+    {
+      "Id": "18ca2f22-f954-4eb9-829d-d8c603347aec",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "1 Scope"
+    },
+    {
+      "Id": "ba4faf6e-3a4d-4ce9-9365-af556a91a6ef",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 1 Scope\n---\n",
+      "Content": "This part of OPC 10000 is part of the overall OPC Unified Architecture (OPC UA) standard series and defines the information model associated with Object Serialization.\nThe purpose of Object Serialization is to provide a merged compact representation of the selected subtree of a root Node."
+    },
+    {
+      "Id": "20fe6a46-9129-4c56-bb53-97b81ae59737",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "2 Normative references"
+    },
+    {
+      "Id": "1cb4dab0-4545-403b-8fb3-0169d6fbefb7",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 2 Normative references\n---\n",
+      "Content": "The following referenced documents are indispensable for the application of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments and errata) applies.\nOPC 10000-1, OPC Unified Architecture - Part 1: Overview and Concepts\n[http://www.opcfoundation.org/UA/Part1/](http://www.opcfoundation.org/UA/Part1/)\nOPC 10000-3, OPC Unified Architecture - Part 3: Address Space Model\n[http://www.opcfoundation.org/UA/Part3/](http://www.opcfoundation.org/UA/Part3/)\nOPC 10000-4, OPC Unified Architecture - Part 4: Services\n[http://www.opcfoundation.org/UA/Part4/](http://www.opcfoundation.org/UA/Part4/)\nOPC 10000-5, OPC Unified Architecture - Part 5: Information Model\n[http://www.opcfoundation.org/UA/Part5/](http://www.opcfoundation.org/UA/Part5/)\nOPC 10000-6, OPC Unified Architecture - Part 6: Mappings\n[http://www.opcfoundation.org/UA/Part6/](http://www.opcfoundation.org/UA/Part6/)\nOPC 10000-14, OPC Unified Architecture - Part 14: PubSub\n[http://www.opcfoundation.org/UA/Part14/](http://www.opcfoundation.org/UA/Part14/)\nOPC 10000-19, OPC Unified Architecture- Part 19: Dictionary Reference"
+    },
+    {
+      "Id": "1879fd8a-8d4d-4d5d-b690-8ff0a487b7f8",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 2 Normative references\n---\n",
+      "Content": "[http://www.opcfoundation.org/UA/Part19/](http://www.opcfoundation.org/UA/Part19/)\nOPC 10000-100, OPC Unified Architecture - Part 100: Devices\n[http://www.opcfoundation.org/UA/Part100/](http://www.opcfoundation.org/UA/Part100/)\nOPC RIO, OPC UA for PROFINET Remote IO - Release V1.0 - Date: May 2022\nOrder No.: 30142\nOPC PE, OPC UA for PROFIenergy - Release V1.00 - Date: March 2021\nOrder No.: 30141"
+    },
+    {
+      "Id": "1fb2d56b-f6bc-42bb-b8d7-5fe6155a4148",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "3 Terms, definitions, and abbreviated terms"
+    },
+    {
+      "Id": "766299ac-7aef-41b8-9880-37314aba3f8b",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3 Terms, definitions, and abbreviated terms\n---\n",
+      "Content": "3.1 Terms and definitions"
+    },
+    {
+      "Id": "b01b31cc-2afb-4717-a7e9-5ee95b5c96d9",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "For the purposes of this document, the terms and definitions given in[OPC 10000-1](/\u00A7UAPart1),[OPC 10000-3](/\u00A7UAPart3),[OPC 10000-4](/\u00A7UAPart4),[OPC 10000-5](/\u00A7UAPart5),[OPC 10000-6](/\u00A7UAPart6),[OPC 10000-14](/\u00A7UAPart14),[OPC 10000-19](/\u00A7UAPart19),[OPC 10000-100](/\u00A7UAPart100),\nOPC RIO,[OPC PE](/\u00A7OPCPE) and the following apply.\n3.1.1 SerializationStartNode"
+    },
+    {
+      "Id": "59a3cd59-6bea-4a0d-831a-d851eeab9a36",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1.1 SerializationStartNode\n---\n",
+      "Content": "an Object or Variable that is the root Node of the Node-tree containing the Serialization Scope.\nNote 1 to entry: The SerializationStartNode is the SourceNode of the HasSerializationEntity ReferenceType.\nNote 2 to entry: The SerializationStartNode can also be an ObjectType or VariableType to use the InstanceDeclaration mechanism when creating instances of these types."
+    },
+    {
+      "Id": "b223428b-2c2e-49ec-b98e-2dae8b1b67d4",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.2 SerializationEntity"
+    },
+    {
+      "Id": "4b1b0b55-26e8-48b6-a1c2-da9041da1973",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1.2 SerializationEntity\n---\n",
+      "Content": "the TargetNode of the HasSerializationEntity ReferenceType.\nNote 1 to entry: The parent Object of the SerializedData Variable containing the SerializationValue and allows the configuration of the SerializationScope and the Serialization DataTypes."
+    },
+    {
+      "Id": "c05bcac6-f44c-4c42-af48-c83d24ceaec5",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.3 SerializationScope"
+    },
+    {
+      "Id": "98b1ea16-a00c-4b83-8abe-c4dbac4c733c",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1.3 SerializationScope\n---\n",
+      "Content": "the subset of Nodes directly or indirectly referenced by the SerializationStartNode, selected by the SerializationConfiguration."
+    },
+    {
+      "Id": "febdcded-23fa-4c63-852d-49c14c9db248",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.4 SerializationConfiguration"
+    },
+    {
+      "Id": "bb019bf9-6141-44be-b984-eb22dd6b505c",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1.4 SerializationConfiguration\n---\n",
+      "Content": "the set of Properties of the SerializationEntity influencing the SerializationProcess and the SerializationScope."
+    },
+    {
+      "Id": "a52a6ec9-2ae4-4514-bfba-2ec3489872f8",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.5 SerializationValue"
+    },
+    {
+      "Id": "d0680619-fde5-4fa3-9632-bf14000e3439",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1.5 SerializationValue\n---\n",
+      "Content": "the merged compact aggregation of the Values of all serialized Nodes belonging to the SerializationScope and is the Value of the SerializedData Variable."
+    },
+    {
+      "Id": "3af5f28b-3aa5-44be-9559-3310366666bb",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.6 SerializationFieldDataType"
+    },
+    {
+      "Id": "219925bb-b8d9-4959-8846-2382e7fdcdf4",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1.6 SerializationFieldDataType\n---\n",
+      "Content": "the DataType of a field of the SerializationFieldDataType or the SerializationValue DataType to represent a serialized Node inside the SerializationValue.\nNote 1 to entry: The serialized Node is the Value or the structure following the rules defined in[6.4](/\u00A7_Ref171513372).\nNote 2 to entry: The SerializationFieldDataType of a Node may be nested (this means it can contain fields which are Structures) and contain the SerializationFieldDataType s of child Nodes. The SerializationFieldDataType s are Structure DataTypes created by the Server."
+    },
+    {
+      "Id": "ba74bf99-ce6f-4c3f-afd6-d60b6eb2bea9",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.7 SerializationProperties"
+    },
+    {
+      "Id": "c04ab787-fa38-48c4-bd34-8e67f1d1dc70",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1.7 SerializationProperties\n---\n",
+      "Content": "Properties of the SerializationEntity which allow the configuration of the SerializationProcess and the SerializationScope."
+    },
+    {
+      "Id": "94321bea-7010-4cac-b7dc-e473cf7beddf",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.8 SerializationProcess"
+    },
+    {
+      "Id": "9f3ce4cc-8397-4660-907f-a3e8b716c310",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.1.8 SerializationProcess\n---\n",
+      "Content": "the mapping of the SerializationValue from and to the Values in the SerializationScope.\nNote 1 to entry: This can imply the creation or re-creation of the SerializationFieldDataType used for the SerializationValue."
+    },
+    {
+      "Id": "7f132b2b-5513-4875-8a8e-7fc6a506ef0d",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3 Terms, definitions, and abbreviated terms\n---\n",
+      "Content": "3.2 Abbreviated terms"
+    },
+    {
+      "Id": "d15f9b8c-669b-46c8-b2a7-ed610cb01914",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 3.2 Abbreviated terms\n---\n",
+      "Content": "UA Unified Architecture\nGUID 128-bit value used to identify objects in computer systems\nJSON Text based data interchange format to represent structured data"
+    },
+    {
+      "Id": "ff2a901b-5eb3-4855-8cea-f28ae99a7148",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "4 Concepts"
+    },
+    {
+      "Id": "fb161032-1fc2-4068-9037-096cba1ff9d3",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4 Concepts\n---\n",
+      "Content": "4.1 Object Serialization Basic Concept"
+    },
+    {
+      "Id": "89083411-5334-4f35-8962-ac7ec6369efb",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4.1 Object Serialization Basic Concept\n---\n",
+      "Content": "Object Serialization is understood in this specification as the aggregation of the Values of different Variables belonging to a subset of the Information Model( SerializationScope) into the Value (SerializationValue) of a single Variable( SerializedData). Clients gain access to all Values in the SerializationScope at once by accessing the SerializationValue."
+    },
+    {
+      "Id": "e03273ec-96ad-41ad-b200-64dc0351a59e",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4 Concepts\n---\n",
+      "Content": "4.2 Read Access to the SerializationValue"
+    },
+    {
+      "Id": "956dad66-f636-45e2-9d32-3c23e917380d",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4.2 Read Access to the SerializationValue\n---\n",
+      "Content": "[Figure 1](/\u00A7_Ref171672930) illustrates the relationship between SerializationScope, SerializationValue, and the SerializationProcess between them."
+    },
+    {
+      "Id": "38dc9a98-1d6e-49fa-9cc9-a57b296a8a2e",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4.2 Read Access to the SerializationValue\nCaption: Figure 1 - Relationship of SerializationScope and SerializationValue\n---\n",
+      "Content": "[image004.png](images/image004.png)"
+    },
+    {
+      "Id": "daf5f051-b840-46a2-8d41-8ddd3428d234",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4.2 Read Access to the SerializationValue\n---\n",
+      "Content": "Figure 1 - Relationship of SerializationScope and SerializationValue\nThe SerializationProcess taking place during read access creates the SerializationValue. The DataType of the SerializationValue is provided by the DataType Attribute. The Server may create the DataType information at the time when the SerializationValue DataType is accessed.\nThe Value of the SerializedData Variable may only be generated (serialized) when requested by the Read Service, by a Subscription or in PubSub publishing."
+    },
+    {
+      "Id": "c4a795dc-8f3d-4992-918e-a24f50d49fc4",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4 Concepts\n---\n",
+      "Content": "4.3 Write Access to the SerializationValue"
+    },
+    {
+      "Id": "8b61f088-2efa-4411-94cf-159df19966bb",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4.3 Write Access to the SerializationValue\n---\n",
+      "Content": "[Figure 2](/\u00A7_Ref172103901) illustrates the SerializationProcess taking place for serving a write access to the SerializationValue."
+    },
+    {
+      "Id": "1fca76c6-6348-4ffb-947a-78bcf1646617",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4.3 Write Access to the SerializationValue\nCaption: Figure 2 - SerializationProcess for write access\n---\n",
+      "Content": "[image005.png](images/image005.png)"
+    },
+    {
+      "Id": "08477042-7573-42aa-8c2b-8a91d4d38717",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4.3 Write Access to the SerializationValue\n---\n",
+      "Content": "Figure 2 - SerializationProcess for write access\nThe creation of the SerializationValue for write access at the Client site needs the knowledge of the SerializationValue DataType."
+    },
+    {
+      "Id": "10ea09e2-f29e-4a78-ae1a-0bd20a570723",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4 Concepts\n---\n",
+      "Content": "4.4 SerializationScope and SerializationEntity"
+    },
+    {
+      "Id": "1df0575e-6a2a-451c-9d00-49f4015de3de",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4.4 SerializationScope and SerializationEntity\n---\n",
+      "Content": "A SerializationScope is a subset of Nodes in the Information Model which are mapped into the SerializationValue, and which shall take part in a SerializationProcess. A SerializationScope consists of Nodes reachable from a start Node and the start Node itself ( SerializationStartNode) if the start Node is a Variable. There may exist an arbitrary number of SerializationScopes.\nSince the SerializationScope potentially comprises many Nodes reachable from the SerializationStartNode down to an arbitrary depth, the possibility of limiting the number of Nodes which shall be part of the SerializationScope is needed (see SerializationProperties and[6.2](/\u00A7_Ref169253593)). As shown in[Figure 3](/\u00A7_Ref171354457), \u0022Property2\u0022 is reachable from the SerializationStartNode, but is excluded from the SerializationScope.\nThe Object providing an interface for the configuration of a SerializationScope is the SerializationEntity. It allows settings regarding the content of the DataType representing Variables( SerializationFieldDataType) inside the SerializationValue also and is the parent Object of the SerializedData Variable. The SerializationValue is the Value of the SerializedData Variable. The DataType of the SerializationValue maps all Values of the Variables in the SerializationScope(see[Figure 3](/\u00A7_Ref171354457)).\nThe SerializationProperties are provided by the SerializationEntity(see[Figure 3](/\u00A7_Ref171354457)) and allow the configuration of the SerializationScope and the handling of metadata. Including or excluding Nodes referenced using certain ReferenceTypes, limiting the depth of the SerializationScope and settings which companion values like statusCodes shall be part of the SerializationFieldDataType of Variables is also possible (see[6.2](/\u00A7_Ref169253593) also).\nThe SerializationStartNode refers to one or more SerializationEntity Objects with a"
+    },
+    {
+      "Id": "d5bdb1a8-a102-4692-be51-b6e24f6daca0",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4.4 SerializationScope and SerializationEntity\n---\n",
+      "Content": "SerializationEntity Objects with a HasSerializationEntity ReferenceType.\n[Figure 3](/\u00A7_Ref171354457) shows the relationship of the SerializationStartNode, the SerializationEntity Object, the SerializedData Variable and the SerializationValue containing the serialized Values of the Nodes in the SerializationScope."
+    },
+    {
+      "Id": "982eb0b9-daaa-4d58-8bc9-3381b8ae66a6",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4.4 SerializationScope and SerializationEntity\nCaption: Figure 3 - SerializationEntity and SerializationValue\n---\n",
+      "Content": "[image006.png](images/image006.png)"
+    },
+    {
+      "Id": "39e2a64c-6ae6-4852-809a-3d337b77bc41",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4.4 SerializationScope and SerializationEntity\n---\n",
+      "Content": "Figure 3 - SerializationEntity and SerializationValue\nThe SerializationFieldDataType of Variables is the DataType used to represent Variables of the SerializationScope inside the SerializationValue. Variables can be represented by the DataType of the Variable itself.\nDependent on SerializationProperties, Variables can be represented by Structure DataTypes also (see[6.4.2](/\u00A7_Ref177481211)). If the Variable has children in the SerializationScope, the SerializationFieldDataType for the Variable is always a Structure DataType(see[6.4.3](/\u00A7_Ref172027937)).\nThe SerializationFieldDataType of Objects is the Structure DataType used to represent Objects and the child Nodes of these Objects in the SerializationScope(see[6.4.4](/\u00A7_Ref177481275)).\nThe SerializationFieldDataTypes and the SerializationValue DataType are generated by the Server."
+    },
+    {
+      "Id": "1dd1e4b8-e5d4-403e-be2e-2bdaa99a36c4",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4 Concepts\n---\n",
+      "Content": "4.5 General Features"
+    },
+    {
+      "Id": "b829dc00-008f-4d3d-922c-5247d10159d0",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 4.5 General Features\n---\n",
+      "Content": "The general concepts laid out above enable the following features and advantages:\nThe Structure of the SerializationScope is preserved. This means that the relationship of the Objects and Variables contributing to the SerializationValue is preserved.\nServers can provide different serializations by providing different SerializationEntities, e.g. for process values or for configuration data as shown in[Figure 4](/\u00A7_Ref168417056). Different SerializationScopes defined on the same data can be tailored to serve different use cases.\nSerializationScopes can comprise other SerializationScopes for one SerializationValue as described in chapter[6.3.6](/\u00A7_Ref172037231) and shown in[Figure 9](/\u00A7_Ref143678546).\nAccess to the SerializationValue is guaranteed to yield a consistent Value unless the NonatomicRead and NonatomicWrite flags of the AccessLevelExType part of the SerializedData Variable\u0027s Attributes are set to 1 ( Server specific, see[OPC 10000-3](/\u00A7UAPart3)).\nWhen writing of the SerializationValue with NonatomicWrite flag set to 0, the update of the original Values in the SerializationScope is like a transaction. This means if update of one original Values fails, all previously written Values are restored, and no change takes place. Note: Servers unable to support this shall set the NonatomicWrite flag of the SerializedData Variable to 1.\nWriting of the SerializationValue yields one Result Code which is Good only if all original Values in the SerializationScope are successfully updated, otherwise the Result Code is Bad."
+    },
+    {
+      "Id": "5fcbaf04-eb1d-4433-a685-365b34d58680",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "5 Use Cases"
+    },
+    {
+      "Id": "c09d4ea5-a27f-48a8-a6c1-e54e7d822581",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 5 Use Cases\n---\n",
+      "Content": "5.1 Example Serialize RIO Channel Groups"
+    },
+    {
+      "Id": "9284e520-0a01-4605-b0fe-7ad3d413f461",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 5.1 Example Serialize RIO Channel Groups\n---\n",
+      "Content": "OPC UA for PROFINET Remote IO (see [\nOPC RIO]) defines Channel Group Objects aggregating the IO Data of subordinated IO Channel Objects and organizing the channel Objects representing single IO Channels themselves.[Figure 4](/\u00A7_Ref168417056) shows a Channel Group containing two output channel Objects, a configuration Object and Process Values."
+    },
+    {
+      "Id": "32903a56-9a9c-479c-9d7b-f7c19a24242c",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 5.1 Example Serialize RIO Channel Groups\nCaption: Figure 4 - RIO Channel Group\n---\n",
+      "Content": "[image007.png](images/image007.png)"
+    },
+    {
+      "Id": "774870d9-2af6-4717-8c7a-3ff3275316d8",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 5.1 Example Serialize RIO Channel Groups\n---\n",
+      "Content": "Figure 4 - RIO Channel Group\nFrom the Clients\u0027 perspective, certain use cases when accessing a Channel Group Object become much more convenient and less error prone if compact representations of entire Object hierarchies or single subtrees are supported by the Server.\nA Client might be interested in the Process Values provided in the \u0022Values\u0022 array and the associated Process Value Qualifiers(see [\nOPC RIO]) provided in the \u0022Qualifiers\u0022 array. When using the \u0022ChannelGroup\u0022 Object as SerializationStartNode(see \u0022SerializationStartNode 1\u0022 in[Figure 4](/\u00A7_Ref168417056)), the \u0022SerializationEntity 1\u0022 Object configures the \u0022SerializationScope 1\u0022 by limiting the Variables belonging to the SerializationScope to those connected with HasRioProcessVariable References to the SerializationStartNode.\nA Client only interested in the Channel Group configuration uses a compact representation of the components of the \u0022ChannelGroupConfig\u0022 Object. The \u0022SerializationEntity 2\u0022 configures a separate SerializationScope. This \u0022SerializationScope 2\u0022 is defined using the \u0022ChannelGroupConfig\u0022 Object as SerializationStartNode(see \u0022SerializationStartNode 2\u0022 in[Figure 4](/\u00A7_Ref168417056)). When reading the Value of the \u0022SerializedData 2\u0022, Clients gain access to a consistent snapshot of the Values of all Properties which are components of the \u0022ChannelGroupConfig\u0022 Object.\nA Client only interested in the IO Data provided by channel Objects and their components uses a compact representation of the \u0022OutputChannel_1\u0022 and \u0022OutputChannel_2\u0022 Objects. \u0022The SerializationEntity 3\u0022 Objects configure the \u0022SerializationScope 3\u0022 by including only Objects connected with HasRioOutputChannel ReferenceTypes to the \u0022ChannelGroup\u0022 Object used as SerializationStartNode as shown in"
+    },
+    {
+      "Id": "0c1288b9-c1ec-4fc9-9a3f-07856543f59b",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 5.1 Example Serialize RIO Channel Groups\n---\n",
+      "Content": "as shown in[Figure 4](/\u00A7_Ref168417056). Since the \u0022ProcessValue\u0022 and \u0022QualifierValue\u0022 Variables are part of this compact representation, reading the IO Data of all channels aggregated by the Channel Group Object using one single read operation is possible (see[6.3.6](/\u00A7_Ref172037231) and[A.3](/\u00A7_Ref185350092) for explanations). This supports time consistency of the obtained IO Data.\nThe compact representation of these SerializationValues can be serialized into the JSON format by applying already established OPC UA encoding rules to support web Clients also."
+    },
+    {
+      "Id": "343dcd67-48d8-4e71-bea8-40297fcebbff",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 5 Use Cases\n---\n",
+      "Content": "5.2 Example Serialization of PROFIenergy Data"
+    },
+    {
+      "Id": "eb1b5c6d-0390-4e57-9cd6-e206715d98d2",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 5.2 Example Serialization of PROFIenergy Data\n---\n",
+      "Content": "OPC UA for PROFIenergy (see [[OPC PE](/\u00A7OPCPE)) specifies the structure of energy data provided by a Server as shown in[Figure 5](/\u00A7_Ref168413369). The SerializationScope shown in[Figure 5](/\u00A7_Ref168413369) comprises all MeasurementValueType Variables which are components of the EnergyMeasurementType Objects organized in the \u0022EnergyManagement\u0022 Folder Object. The SerializationScope is configured to exclude the constant metadata contained in the Properties belonging to each MeasurementValueType Variable."
+    },
+    {
+      "Id": "64026cce-fe30-446d-b253-fe8dcba10f5c",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 5.2 Example Serialization of PROFIenergy Data\nCaption: Figure 5 - PROFIenergy measurement values\n---\n",
+      "Content": "[image008.png](images/image008.png)"
+    },
+    {
+      "Id": "4ffa1113-41cf-477f-9c67-5e431ee12647",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 5.2 Example Serialization of PROFIenergy Data\n---\n",
+      "Content": "Figure 5 - PROFIenergy measurement values\nWhen accessing the Value of the SerializedData Variable, a Client obtains all measurement values of all subordinated \u0022Metering Point\u0022 Objects in one single read operation. This supports time consistency of the collection of measurement values the Client gains access to at once."
+    },
+    {
+      "Id": "f3ceffe3-34fd-4ca3-8b33-68dc77d0a52c",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 5 Use Cases\n---\n",
+      "Content": "5.3 Semantic Property handling"
+    },
+    {
+      "Id": "427c4d1d-c748-44b9-b025-c98c8e1c5dfc",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 5.3 Semantic Property handling\n---\n",
+      "Content": "Especially in OPC UA PubSub scenarios, the transmission of semantic Properties like \u0022EngineeringUnits\u0022, \u0022AccuracyDomain\u0022 and \u0022PeMeasurementID\u0022 along with actual values is not desirable since this data does not change and can substantially increase the amount of transmitted data. Although the metadata constitutes an indispensable part of the data by enabling its correct interpretation, repeated transmissions of unchanged data are not necessary.\nIn a Client/ Server scenario, Clients can obtain the metadata initially by separate browse and read operations. Metadata changes can be notified using ModelChange and SemanticChange Events.\nWhen using Subscriptions, the Server can inform the Clients about metadata changes by setting the SemanticsChanged bit in the StatusCodes returned as part of data change Notifications. In PubSub scenarios, if the metadata of the subscribed DataSet changes, the Client receives a new ConfigurationVersion in the DataSetMetaData of the affected DataSet.\nConsidering possible application failure due to usage of outdated metadata, invoking the Read Service to obtain the Value of a merged compact representation not containing the associated metadata is appropriate for low-frequency data refresh scenarios imposing little additional bandwidth usage. If metadata change due to reconfiguring is possible, the metadata should be obtained by separate read accesses each time the Value of the merged compact representation is read.\nAlternatively, the merged compact representation could be configured to contain the metadata in such scenarios. Another possibility is the establishment of Subscriptions comprising only the metadata( ModelChange or SemanticChange Events, see above).\nTo enable each of the possible scenarios for metadata handling outlined above, the SerializationScope can be adjusted in various ways (see chapter[6.2](/\u00A7_Ref169253593))."
+    },
+    {
+      "Id": "29df7747-5968-4681-a8fe-a30ff60cfdc9",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "6 Model"
+    },
+    {
+      "Id": "4f3bce41-1b07-48a2-ac6a-dcd579523680",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6 Model\n---\n",
+      "Content": "6.1 Overview"
+    },
+    {
+      "Id": "899a6788-7b47-482e-86bd-578313eee8c4",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.1 Overview\n---\n",
+      "Content": "Object Serialization provides a consistent, compact representation of the Variable Values in the SerializationScope. Objects or Variables that are the root of such a serialization are called SerializationStartNodes and have HasSerializationEntity References to one or more SerializationEntities. The SerializationEntities are of ObjectType SerializationEntityType, see[6.2](/\u00A7_Ref169253593). The SerializationProcess is controlled by Properties of this ObjectType.\nThe DataType of the SerializedData Variable is the SerializationValue DataType mapping all Values in the SerializationScope. It is the serialization DataType of the SerializationStartNode. The Values themselves each have their own SerializationFieldDataType. In the example shown in[Figure 6](/\u00A7_Ref168910107), the SerializationFieldDataTypes of the Variables in the SerializationScope equal the DataTypes of the original Values."
+    },
+    {
+      "Id": "5a191eb1-7d75-456f-952a-1b423f16d04a",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.1 Overview\nCaption: Figure 6 - Example: Instance-specific serialization for the Object \u0022MyObject\u0022\n---\n",
+      "Content": "[image009.png](images/image009.png)"
+    },
+    {
+      "Id": "8a8e62e3-0bbd-4e93-92c2-3c5dd1a3f04c",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.1 Overview\n---\n",
+      "Content": "Figure 6 - Example: Instance-specific serialization for the Object \u0022MyObject\u0022\nIn the example above, the \u0022MyObjectSerialization\u0022 instance of SerializationEntityType has the IncludeReferenceTypes Property set to \u0022HasChild\u0022. This selects all Variables and Properties.\nBecause it is instance-specific, the SerializationValue DataType Node is dynamically created. Its BrowseName and NodeId are Server-specific and could be GUID-based.\nIn the Type-based serialization the SerializationValue DataType Node is defined in the subtype of the SerializationEntityType."
+    },
+    {
+      "Id": "eb15992a-1f7a-4a1d-8e73-c0fbd1508ebe",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6 Model\n---\n",
+      "Content": "6.2 Limitations"
+    },
+    {
+      "Id": "c160bbfe-d602-42dd-9693-fb29d4ca89a3",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.2 Limitations\n---\n",
+      "Content": "Since the BrowseNames of the Variables in the SerializationScope are used as field names for the SerializationFieldDataType fields in the SerializationValue DataType, limitations for BrowseNames arise: The characters used for the BrowseNames must be permissible in field names of Structure DataTypes. To achieve this, it is recommended to limit the characters used in BrowseNames to letters (lower- and uppercase), digits and the underscore (\u0027_\u0027). The BrowseName must not start with a digit. Special characters (e.g. \u0027@\u0027, \u0027*\u0027, etc.) shall not be used.\nIf a non-allowed character is encountered, this character will be replaced according to the name encoding rules defined in the[OPC 10000-6](/\u00A7UAPart6).\nIf conflicting BrowseNames(e.g. duplicate BrowseNames on the same hierarchy level) are encountered, the SerializationProcess fails and the StatusCode for access yields Bad_BrowseNameDuplicated."
+    },
+    {
+      "Id": "0d9e56f3-57f5-474e-8295-3f53a011ce52",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6 Model\n---\n",
+      "Content": "6.3 SerializationEntityType ObjectType"
+    },
+    {
+      "Id": "58ef704b-1426-46da-ae14-d91213b9ba4f",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3 SerializationEntityType ObjectType\n---\n",
+      "Content": "6.3.1 Definition"
+    },
+    {
+      "Id": "110f6cbd-7037-4298-b0d4-1b518aeb7539",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.1 Definition\n---\n",
+      "Content": "The SerializationEntityType ObjectType defines the SerializationProcess. It has SerializationProperties which allow the configuration of the SerializationProcess and the SerializationScope.\nThe SerializationEntityType is formally defined in[Table 1](/\u00A7_Ref415602315) and illustrated in[Figure 7](/\u00A7_Ref143185408)."
+    },
+    {
+      "Id": "a172c20b-c326-488b-bc2d-f18d45fea1f9",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.1 Definition\nCaption: Figure 7 - SerializationEntityType components\n---\n",
+      "Content": "[image010.png](images/image010.png)"
+    },
+    {
+      "Id": "62b0fb2d-7536-40f1-99ee-bf0356251030",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.1 Definition\n---\n",
+      "Content": "Figure 7 - SerializationEntityType components\n\nTable 1 - SerializationEntityType definition"
+    },
+    {
+      "Id": "bd260956-f3b2-4ae9-906d-793c7a9e08be",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.1 Definition\nCaption: Table 1 - SerializationEntityType definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nSerializationEntityType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nHasComponent\nVariable\nSerializedData\nStructure\nBaseDataVariableType\nM\n\nSerialization filter Properties\nHasProperty\nVariable\nIncludeReferenceTypes\nNodeId[]\nPropertyType\nO,R\nHasProperty\nVariable\nExcludeReferenceTypes\nNodeId[]\nPropertyType\nO,R\nHasProperty\nVariable\nSerializationDepth\nUInt16\nPropertyType\nO,R\nHasProperty\nVariable\nConsiderSubElementSerializationProperties\nBoolean\nPropertyType\nO,R\nHasProperty\nVariable\nCustomMetaDataProperties\nKeyValuePair[]\nPropertyType\nO,R\nHasProperty\nVariable\nCustomMetaDataRef\nNodeId\nPropertyType\nO,R\nHasProperty\nVariable\nIncludeStatus\nBoolean\nPropertyType\nO,R\nHasProperty\nVariable\nIncludeSourceTimestamp\nBoolean\nPropertyType\nO,R\nHasProperty\nVariable\nIncludeDictionaryReference\nBoolean\nPropertyType\nO,R\n\nConfiguration of the SerializationEntity (requires locking)\nHasComponent\nMethod\nConfigureSerialization\nsee[6.3.3](/\u00A7_Ref168568845)\nO\nConformance Units\nObjectSerialization Base"
+    },
+    {
+      "Id": "81f30ce4-52c8-4fd0-9610-a1a742a4f0db",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.1 Definition\n---\n",
+      "Content": "The SerializationProperties are described starting with clause[6.3.4](/\u00A7_Ref168568980). The default settings in[Table 2](/\u00A7_Ref168568765) apply for Properties that are not provided on a SerializationEntityType instance.\nTable 2 - Default values for serialization filter Properties"
+    },
+    {
+      "Id": "fe4f625e-e7c5-4d92-b8c5-bc1f5212cf95",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.1 Definition\nCaption: Table 2 - Default values for serialization filter Properties\n---\n",
+      "Content": "Property Name\nDefault setting\nIncludeReferenceTypes\n[HasChild]\nExcludeReferenceTypes\n[] //empty array\nSerializationDepth\n1\nConsiderSubElementSerializationProperties\nFalse\nCustomMetaDataProperties\n[] //empty array\nCustomMetaDataRef\n{0}\nIncludeStatus\nFalse\nIncludeSourceTimestamp\nFalse\nIncludeDictionaryReference\nFalse"
+    },
+    {
+      "Id": "054394b2-0839-41b6-acc2-d3af1bda086b",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.1 Definition\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "5aa69223-f23e-4301-8a9b-35969dcb4734",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3 SerializationEntityType ObjectType\n---\n",
+      "Content": "6.3.2 SerializedData Variable"
+    },
+    {
+      "Id": "4b3cd23c-4f8c-48d5-b7b0-eaef77b57dfd",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.2 SerializedData Variable\n---\n",
+      "Content": "The SerializedData Variable holds the SerializationValue, customized by the SerializationProperties.\nThe DataType of the SerializationValue is the SerializationValue DataType and is a subtype of Structure where the DataTypeDefinition Attribute of this DataType provides the metadata and encoding information.\nThe DataType Node including the DataTypeDefinition Attribute is dynamically created. It only has an inverse Reference to its supertype Structure. Clients must obtain the NodeId by reading the DataType Attribute of the SerializedData Variable. Then they must read the DataTypeDefinition Attribute of the DataType to be able to decode the SerializationValue.\nThe Value of the SerializedData Variable is only generated (serialized) when requested by the Read Service, by a Subscription or in PubSub publishing.\nThe SerializationValue is typically read-only. If the Server supports write access, the Client\u0027s Session shall be able to successfully write all original Variables in the SerializationScope. If the write for any Variable fails, the write call shall fail and return a proper result code (e.g., Bad_NotWritable, Bad_InvalidArgument, and Bad_ConfigurationError).\nIf the SerializationScope contains nested subtrees, each element that has children itself has its own DataType Node describing these direct children of this element.\nThe SerializationValue can change in the following ways:\nBy changing the SerializationProperties with the ConfigureSerialization Method.\nBy other changes of the AddressSpace, for instance insertion or deletion of child nodes on any level of the subtree in the SerializationScope.\nIn case of such changes, a new DataType shall be created with a new DataType NodeId and encoding NodeId. This DataType Attribute of the SerializedData Variable shall refer to this new DataType.\nIn case of PubSub, a change of the DataType NodeId causes a change of the metadata.\nServers may not be able to save dynamically created Nodes. In addition, the AddressSpace"
+    },
+    {
+      "Id": "0a3ddbb9-4c74-456a-9e26-39cdd7380e09",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.2 SerializedData Variable\n---\n",
+      "Content": "AddressSpace may have changed (reconfigured) during shutdown.\nIf the SerializationEntity is an InstanceDeclaration, accessing the SerializedData Variable is not possible. Reading attempts are answered with the StatusCode Bad_NoValue.\nNote 1: It may be useful to use GUID NodeIds due to the dynamic of the process.\nNote 2: It is recommended, that Servers persist DataType NodeIds so that these NodeIds remain in place after restart, if the SerializationScope has not changed."
+    },
+    {
+      "Id": "334975a9-2a1b-401a-8c50-7567662bed9b",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3 SerializationEntityType ObjectType\n---\n",
+      "Content": "6.3.3 ConfigureSerialization Method"
+    },
+    {
+      "Id": "59407184-288c-497e-8b63-a39f763f9ad3",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.3 ConfigureSerialization Method\n---\n",
+      "Content": "ConfigureSerialization is an optional Method to set the SerializationProperties of the parent SerializationEntity.\nThe DI:LockingServicesType is an AddIn defined in[OPC 10000-100](/\u00A7UAPart100). This AddIn shall be added as instance with the instance name \u0022Lock\u0022 if the Server implements the ConfigureSerialization Method.\nBefore invoking this Method, Clients shall lock the SerializationEntity using the Lock Object instance.\nWhen successful, the Server will create a new DataType for the SerializedData Variable with the DataTypeDefinition Attribute for the metadata and encoding information.\nThe signature of this Method is specified below.[Table 3](/\u00A7_Ref276121038) and[Table 4](/\u00A7_Ref260826325) specify the arguments and AddressSpace representation, respectively.\nSignature\nConfigureSerialization\nKeyValuePair[] SerializationFilterProperties,\nInt32[] Results\n);\n\nTable 3 - ConfigureSerialization Method arguments"
+    },
+    {
+      "Id": "80f1a990-fb60-4794-9917-f33d2e02e2c3",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.3 ConfigureSerialization Method\nCaption: Table 3 - ConfigureSerialization Method arguments\n---\n",
+      "Content": "Argument\nDescription\nSerializationFilterProperties\nArray of KeyValuePair Structures containing the desired settings. The key field of each Structure contains the BrowseName of a serialization filter Property. The value field contains the desired value to set for this component and must have the same DataType as the serialization filter Property.\nA Property can be reset by setting the default Value for the Property.\nResults\nList of results for the Properties to set (see below). The size and order of the list matches the size and order of the SerializationFilterProperties argument. There is one entry in this list for each Property contained in the SerializationFilterProperties argument.\nThis array is empty if the Method execution was successful ( Method result code Good).\nPossible result values.\n0 - OK\n-1 - E_InvalidProperty - the Property name is unknown\n-2 - E_Duplicate - the Property is not unique in SerializationFilterProperties\n-3- E_NotConfigurable - the Property cannot be changed\n-4 - E_InvalidType - the DataType is not the same as the one of the Property\n-5 - E_UnknownValue - the value provided is not appropriate for the Property\n-6 - E_InvalidSetting - the value provided is not allowed as serialization filter\nAn example is that non-hierarchical References are not allowed to be included"
+    },
+    {
+      "Id": "4d60afec-55c2-4a1b-ad7d-9ccfaebeb2d9",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.3 ConfigureSerialization Method\n---\n",
+      "Content": "Table 4 - ConfigureSerialization Method AddressSpace definition"
+    },
+    {
+      "Id": "4a4d88db-ef60-4123-b935-b01f3dee679d",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.3 ConfigureSerialization Method\nCaption: Table 4 - ConfigureSerialization Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nConfigureSerialization\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nM\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nM\nConformance Units\nObjectSerialization Configuration Support"
+    },
+    {
+      "Id": "19b52636-09f0-47e3-be17-9be6aef29852",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.3 ConfigureSerialization Method\n---\n",
+      "Content": "The Method result codes (defined in Call Service) are defined in[Table 5](/\u00A7_Ref107507764). The configuration is applied if a result code with severity Good is returned. Otherwise, no Property is changed.\nTable 5 - Possible Method Result Codes"
+    },
+    {
+      "Id": "f621d356-8c65-4934-a4bb-24189de42746",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.3 ConfigureSerialization Method\nCaption: Table 5 - Possible Method Result Codes\n---\n",
+      "Content": "Result Code\nDescription\nGood\nThe Method execution was successful. The Results array is empty.\nUncertain\nThe Server is not able to apply the requested changes due to invalid parameters.\nThe Results argument provides more details.\nBad_InvalidArgument\nThe SerializationFilterProperties argument array is empty.\nBad_Locked\nThe SerializationEntity is locked by a different Client\u0027s Session.\nBad_RequiresLock\nThe SerializationEntity is not locked. Clients must lock the SerializationEntity before invoking a Method.\nBad_UserAccessDenied\nThe user has not the right to execute the Method.\nBad_UnexpectedError\nThe Server is not able to execute the function because an unexpected error occurred."
+    },
+    {
+      "Id": "a9c2a5a4-71c9-46ad-93b8-3481326cc6f4",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.3 ConfigureSerialization Method\n---\n",
+      "Content": "If the desired settings do not deviate from the actual settings, the Method shall do nothing and return Good as result code."
+    },
+    {
+      "Id": "8c9f4c6c-f788-47e3-9a29-6e1424e54602",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3 SerializationEntityType ObjectType\n---\n",
+      "Content": "6.3.4 Include- and ExcludeReferenceTypes Properties"
+    },
+    {
+      "Id": "0813b8a4-1ea6-47f1-bb56-abafd11a2f64",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.4 Include- and ExcludeReferenceTypes Properties\n---\n",
+      "Content": "These Properties allow to select which ReferenceTypes are followed to create the SerializationScope: The IncludeReferenceTypes Property contains an array of ReferenceType NodeIds. Any Reference of each ReferenceType NodeId of the array including their subtypes is considered. The ExcludeReferenceTypes Property contains an array of ReferenceType NodeIds. Any Reference of each ReferenceType NodeId of the array including their subtypes is removed from the results out of the IncludeReferenceType Property.\nThe exclude rules determined by the ExcludeReferenceTypes Property have priority against the include rules determined by the IncludeReferenceTypes Property. The HasSerializationEntity ReferenceType is always excluded.\n[Figure 8](/\u00A7_Ref143590012) shows a usage example for the ReferenceType Properties. IncludeReferenceTypes contains HierarchicalReferences. This selects Variable1, Object1 and Property3. ExcludeReferenceTypes contains HasComponent. This removes Variable1 and Object1 from the selection. Therefore, only Property3 referenced by HasProperty is mapped to a field of the SerializationValue DataType."
+    },
+    {
+      "Id": "5d132779-278c-4a7f-a239-865f003ab8fb",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.4 Include- and ExcludeReferenceTypes Properties\nCaption: Figure 8 - ReferenceType Properties Usage\n---\n",
+      "Content": "[image011.png](images/image011.png)"
+    },
+    {
+      "Id": "3775a3a4-fa83-46a0-9f2d-49ce9a048980",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.4 Include- and ExcludeReferenceTypes Properties\n---\n",
+      "Content": "Figure 8 - ReferenceType Properties Usage"
+    },
+    {
+      "Id": "34d441f4-2691-42e3-a097-1359ab08a117",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3 SerializationEntityType ObjectType\n---\n",
+      "Content": "6.3.5 SerializationDepth Property"
+    },
+    {
+      "Id": "3f92362c-323e-44b8-b49b-f519241370a2",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.5 SerializationDepth Property\n---\n",
+      "Content": "The SerializationDepth Property allows to limit the serialization levels of the SerializationScope.\nA SerializationDepth Value of 0 implies no limit. A Value of 1 implies direct children of the Object, and so on.\nIf SerializationDepth is equal to zero and the SerializationScope contains circular References, the process of serialization into a Structure does not stop. The modelling or the implementation shall contain countermeasures to prevent this."
+    },
+    {
+      "Id": "0bdda26f-9b3f-4d82-9e80-617397f26e2f",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3 SerializationEntityType ObjectType\n---\n",
+      "Content": "6.3.6 ConsiderSubElementSerializationProperties Property"
+    },
+    {
+      "Id": "df00c93f-f284-465f-8d52-c954e85f76f8",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.6 ConsiderSubElementSerializationProperties Property\n---\n",
+      "Content": "The ConsiderSubElementSerializationProperties Property contains a Boolean Value. If set to True, SerializationEntities referenced by elements of the SerializationScope which have the same BrowseName as the SerializationEntity referenced by the SerializationStartNode are considered for the SerializationProcess. If false, only the SerializationEntity referenced by the SerializationStartNode is used.\n[Figure 9](/\u00A7_Ref143678546) demonstrates the usage of the ConsiderSubElementSerializationProperties Property. The IncludeReferenceTypes and ExcludeReferenceTypes Properties of the \u0022ObjectSerialization\u0022 SerializationEntity are set according to[Figure 8](/\u00A7_Ref143590012). The ConsiderSubElementSerializationProperties Property contains the Value\u0022True\u0022. So, any SerializationEntity of a child node in the subtree originating from the SerializationStartNode with the BrowseName\u0022ObjectSerialization\u0022 will be considered. \u0022Variable2\u0022 has such a SerializationEntity. This SerializationEntity sets the ReferenceTypes to select all hierarchical References but no HasComponent References. As result, \u0022Property1\u0022 and \u0022Property1.1\u0022 are excluded by the \u0022ObjectSerialization\u0022 Properties referenced by \u0022MyObject\u0022. \u0022Variable2.1\u0022 is excluded and \u0022Property2.1\u0022 is included by the \u0022ObjectSerialization\u0022 Properties referenced by \u0022Variable2\u0022."
+    },
+    {
+      "Id": "343f0778-f509-471b-a0b4-2c49fd46f3bf",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.6 ConsiderSubElementSerializationProperties Property\nCaption: Figure 9 - ConsiderSubElementSerializationProperties Example\n---\n",
+      "Content": "[image012.png](images/image012.png)"
+    },
+    {
+      "Id": "df2ab70f-f4fa-4604-8864-b842ee2fec65",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.6 ConsiderSubElementSerializationProperties Property\n---\n",
+      "Content": "Figure 9 - ConsiderSubElementSerializationProperties Example"
+    },
+    {
+      "Id": "360bbe63-3b71-4e86-bbe3-b49b576083b9",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3 SerializationEntityType ObjectType\n---\n",
+      "Content": "6.3.7 CustomMetaDataProperties Property"
+    },
+    {
+      "Id": "e6a22c5a-3349-474f-8c3f-c71cae534599",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.7 CustomMetaDataProperties Property\n---\n",
+      "Content": "DataSetMetaData describe the content and the semantics of a DataSet. Subscribers use this metadata to interpret the DataSet from the DataSetMessage and can evaluate the Properties field of the FieldMetaData Structure(see[OPC 10000-14](/\u00A7UAPart14)).\nThe CustomMetaDataProperties Property contains an array of KeyValuePairs. The purpose of this Property is the enhancement of the DataSetMetaData if the SerializedData Variable is serialized in a PubSub scenario. If the SerializedData Variable is used in a published DataSet, the KeyValuePairs of the CustomMetaDataProperties Property shall be added to the Properties field in the FieldMetaData Structure representing the SerializedData Variable in the containing DataSetMetaDataType Structure comprising the DataSetMetaData(see[OPC 10000-14](/\u00A7UAPart14)).\nThe field names from the structures containing the Values the semantic Properties belong to are qualified with the OPC UA Namespace. This allows the encoder to omit the NamespaceIndex when serializing the QualifiedName inside the KeyValuePair.\n[Figure 10](/\u00A7_Ref151978699) shows the structure of the CustomMetaDataProperties for a SerializationScope excluding the metadata comprising the EUInformation and EngineeringUnits Properties of the AnalogUnitType and AnalogUnitRangeType Variables in the SerializationScope."
+    },
+    {
+      "Id": "4697c209-af57-4d07-a048-babc3571b4d4",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.7 CustomMetaDataProperties Property\nCaption: Figure 10 - CustomMetaDataProperties example\n---\n",
+      "Content": "[image013.png](images/image013.png)"
+    },
+    {
+      "Id": "262ac7cd-ebb7-4555-a021-6c9eb431955a",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.7 CustomMetaDataProperties Property\n---\n",
+      "Content": "Figure 10 - CustomMetaDataProperties example\nThe content of the CustomMetaDataProperties Property of the SerializedData Variable describes the semantic Properties for all Values mapped into the SerializationValue DataType of the SerializedData. It is used as Properties field of the FieldMetaData Structure representing the SerializedData Variable in the DataSet.\nThe KeyValuePair elements at the lowest indices contain the semantic Properties(e.g. key=\u0022EngineeringUnits\u0022, value=EUInformation) for the Value of the represented Variable. Sub- Variables are represented with elements containing KeyValuePairs with keys equal to the BrowseNames of the Variables(see \u0022Variable1\u0022, \u0022Variable2\u0022 and \u0022Variable3\u0022 elements) and arrays of KeyValuePairs for the semantic Properties of those Variables as values."
+    },
+    {
+      "Id": "14a5eb8d-7b68-4d21-b5c6-064383544a47",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3 SerializationEntityType ObjectType\n---\n",
+      "Content": "6.3.8 CustomMetaDataRef Property"
+    },
+    {
+      "Id": "52abc52b-28c7-4b40-8437-5683db79d293",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.8 CustomMetaDataRef Property\n---\n",
+      "Content": "The CustomMetaDataRef Property references another SerializedData Variable. The Value of this Property is the NodeId of this other Variable. A KeyValuePair with the BrowseName of this Variable as key and the NodeId of this Variable as value is added to the content of the Properties KeyValuePair array in the FieldMetaData.\nIf the CustomMetaDataProperties and the CustomMetaDataRef Properties are both provided, the contents of both are combined in the Properties KeyValuePair array in the FieldMetaData Structure.\nNote: As all metadata created by the PubSub mechanism are omitted, the metadata does not contain type information."
+    },
+    {
+      "Id": "ce4e8cf0-7e4e-4c42-81d2-3a6c735d0128",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3 SerializationEntityType ObjectType\n---\n",
+      "Content": "6.3.9 IncludeStatus, IncludeSourceTimestamp, and IncludeDictionaryReference Properties"
+    },
+    {
+      "Id": "8646c8c4-b000-4a2e-9c8a-0b338e02c8ec",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.9 IncludeStatus, IncludeSourceTimestamp, and IncludeDictionaryReference Properties\n---\n",
+      "Content": "The IncludeStatus Property is a Boolean indicating how the StatusCodes of the serialized Variables are serialized themselves.\nIf True, the SerializationFieldDataType of the Variable shall always be a Structure DataType which shall contain a \u0022Value\u0022 field for the Value of the Variable and a \u0022Status\u0022 field for the statusCode. The DataType of the field shall be StatusCode. If False, the DataType representing the Variable shall contain no \u0022Status\u0022 field.\nThe IncludeSourceTimestamp Property is a Boolean indicating how the sourceTimestamps of the serialized Variables are serialized themselves.\nIf True, the SerializationFieldDataType of the Variable shall always be a Structure DataType which shall contain a \u0022Value\u0022 field for the Value of the Variable and a \u0022SourceTimestamp\u0022 field for the sourceTimestamp. The DataType of the field shall be UtcTime. If False, the DataType representing the Variable shall contain no \u0022SourceTimestamp\u0022 field.\nThe IncludeDictionaryReference Property is a Boolean indicating whether the HasDictionaryEntry References of the serialized Variables are included into the SerializationValue.\nIf True, the SerializationFieldDataType of the Variable shall be structure DataType which shall contain a \u0022Value\u0022 field for the Value of the Variable and a \u0022DictionaryReferences\u0022 field. The DataType of the field shall be an array of QualifiedName. The array shall have as many elements as there are HasDictionaryEntry References(see[OPC 10000-19](/\u00A7UAPart19)) with the Variable as SourceNode. The QualifiedName element shall contain the NodeId of the referenced DictionaryEntryType Object.\nIf False, the structure DataType representing the Variable shall contain no \u0022DictionaryReferences\u0022 field.\n[Figure 11](/\u00A7_Ref172557454) demonstrates the effect of the IncludeStatus, IncludeSourceTimestamp and IncludeDictionaryReference Properties"
+    },
+    {
+      "Id": "5e3d7d9f-b60e-4c54-ab53-2b5cd3b5514b",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.3.9 IncludeStatus, IncludeSourceTimestamp, and IncludeDictionaryReference Properties\n---\n",
+      "Content": "and IncludeDictionaryReference Properties on the SerializationFieldDataTypes used for the serialization of a Variable without child nodes.\n[Figure 12](/\u00A7_Ref172557459) shows the effect of the IncludeStatus, IncludeSourceTimestamp and IncludeDictionaryReference Properties on the SerializationFieldDataTypes used for the serialization of a Variable with one Variable as child node.\nNote: Setting these Properties to False leads to a leaner result when the JSON EncodingFormat\u0022compact\u0022 is used."
+    },
+    {
+      "Id": "9d1cf348-e9ea-44dc-aea9-824e972d653d",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6 Model\n---\n",
+      "Content": "6.4 SerializationValue Structure rules"
+    },
+    {
+      "Id": "524be52b-b4e6-4275-b7f1-cfb35b410dd0",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4 SerializationValue Structure rules\n---\n",
+      "Content": "The following rules describe how the SerializationScope and the SerializationProperties impact the layout of the SerializationFieldDataType.\n6.4.1 SerializationFieldDataType of Variables"
+    },
+    {
+      "Id": "0e184185-1164-45b7-a322-368d5d366651",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.1 SerializationFieldDataType of Variables\n---\n",
+      "Content": "If Variables are serialized, the Value of the Variable is mapped also into the SerializationValue DataType of the SerializedData Variable. The Value is inserted as field into the Structure DataType of the SerializedData Variable which has the SerializationFieldDataType of the Variable."
+    },
+    {
+      "Id": "796f7d82-f749-450b-8c40-5a36be00632b",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4 SerializationValue Structure rules\n---\n",
+      "Content": "6.4.2 SerializationFieldDataType of Variables without Children"
+    },
+    {
+      "Id": "29f04795-252d-4855-bd94-3436f659d2a8",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.2 SerializationFieldDataType of Variables without Children\n---\n",
+      "Content": "If the Variable has no children, the Variable is represented by a single Structure field with the BrowseName of the Variable as field name. The SerializationFieldDataType of the Variable equals the DataType of the Variable. As shown in, the Variable V1 is mapped into the Structure field V1 with the SerializationFieldDataType V1DataType (left column with IncludeStatus, IncludeSourceTimestamp and IncludeDictionaryReference Properties equal to False)."
+    },
+    {
+      "Id": "180f62d3-c532-4983-91c7-3cc839ce2985",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.2 SerializationFieldDataType of Variables without Children\nCaption: Figure 11 - IncludeStatus and IncludeSourceTimestamp Properties Example for Variable without child Node\n---\n",
+      "Content": "[image014.png](images/image014.png)"
+    },
+    {
+      "Id": "7d8f41e9-5d56-45b7-92cc-243e99904bf3",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.2 SerializationFieldDataType of Variables without Children\n---\n",
+      "Content": "Figure 11 - IncludeStatus and IncludeSourceTimestamp Properties Example for Variable without child Node\nIf some of the IncludeStatus, IncludeSourceTimestamp and IncludeDictionaryReference Properties(\u0022 Include-Properties\u0022) are True, the Variable is also represented by a single Structure field, but the SerializationFieldDataType is a Structure DataType.\nThis Structure contains a \u0022Value\u0022 field which has the same DataType as the Value of the Variable. Dependent on the Value of the \u0022 Include-Properties\u0022, the Structure can contain a \u0022Status\u0022 field with the DataType StatusCode, a \u0022SourceTimestamp\u0022 field with the DataType UtcTime and an entry in the DictionaryReferences array field as shown in[Figure 11](/\u00A7_Ref172557454) IncludeStatus, IncludeSourceTimestamp and IncludeDictionaryReference Properties).\nNote: The SerializationValue DataType for a SerializationScope only consisting of one Variable and a SerializationScope consisting of one Object with this Variable as child Node are identical."
+    },
+    {
+      "Id": "b47363a4-1d10-4d6e-8a56-a279565c0709",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4 SerializationValue Structure rules\n---\n",
+      "Content": "6.4.3 SerializationFieldDataType of Variables with Children"
+    },
+    {
+      "Id": "489fffbc-4f68-4cc0-9d1b-4e050b79ef91",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.3 SerializationFieldDataType of Variables with Children\n---\n",
+      "Content": "If the Variable has child nodes, the fields of the SerializationFieldDataType representing the Variable are generated as shown in[Figure 12](/\u00A7_Ref172557459) Variable(V1Type):\nThe Value of the Variable is mapped into a field with the name \u0022Value\u0022 with the DataType of the Value of the V1 Variable.\nA field with name \u0022Children\u0022 is inserted after the \u0022Value\u0022 field. Its DataType is a new Structure DataType containing as many fields as there are children of the serialized Variable. The name of each of those fields equals the BrowseName of the mapped child. Servers shall make sure that field names are unique (e.g., two BrowseNames can have the same text field but different namespaces). The SerializationFieldDataType of each of those fields equals the DataType of the mapped child Variable if the respective child is a \u0022leaf\u0022 of the Object tree. This is the case for Properties and \u0022childless\u0022 Variables(see[Figure 12](/\u00A7_Ref172557459), left column, V1Type and V1ChildrenType with \u0022 Include-Properties\u0022 set to False). If the child Variable itself has child nodes, the SerializationFieldDataType of the field representing the Variable is a Structure DataType generated according to the same rules which were applied to the parent Variable(recursiveness).\nIf \u0022 Include-Properties\u0022 are True, the SerializationFieldDataType is always a Structure DataType and contains additional fields mapping the corresponding Properties as shown in[Figure 12](/\u00A7_Ref172557459) IncludeStatus and IncludeSourceTimestamp Properties)."
+    },
+    {
+      "Id": "6b692969-8969-4c5f-bd57-27046524f932",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.3 SerializationFieldDataType of Variables with Children\nCaption: Figure 12 - IncludeStatus and IncludeSourceTimestamp Properties Example with child Node\n---\n",
+      "Content": "[image015.png](images/image015.png)"
+    },
+    {
+      "Id": "4e5df451-7090-4e25-af1f-ce5a19a37a68",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.3 SerializationFieldDataType of Variables with Children\n---\n",
+      "Content": "Figure 12 - IncludeStatus and IncludeSourceTimestamp Properties Example with child Node\n[Figure 13](/\u00A7_Ref147325140),[Figure 14](/\u00A7_Ref148447667) and[Figure 15](/\u00A7_Ref140053369) demonstrate the SerializationFieldDataType generated if the \u0022 Include-Properties\u0022(see[6.3.9](/\u00A7_Ref153981064)) are set to False, which allows representing \u0022leaves\u0022 of the Object tree as \u0022simple\u0022 fields.\n[Figure 13](/\u00A7_Ref147325140) shows the SerializationFieldDataType for Variables with Properties and Variables."
+    },
+    {
+      "Id": "ff93fd87-95b3-4147-ac82-d5a4ec6d746e",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.3 SerializationFieldDataType of Variables with Children\nCaption: Figure 13 - Serialization of Variables with children\n---\n",
+      "Content": "[image016.png](images/image016.png)"
+    },
+    {
+      "Id": "dc1056ca-2c82-4303-9299-3e10227135ee",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.3 SerializationFieldDataType of Variables with Children\n---\n",
+      "Content": "Figure 13 - Serialization of Variables with children"
+    },
+    {
+      "Id": "05046922-c5cf-49c6-ba49-90ca01437fad",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4 SerializationValue Structure rules\n---\n",
+      "Content": "6.4.4 SerializationFieldDataType of Objects with children"
+    },
+    {
+      "Id": "925d863b-b3ea-4420-b2b7-9b59b6919a03",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.4 SerializationFieldDataType of Objects with children\n---\n",
+      "Content": "The rules described above apply in the same way to Objects, with the exception that the Object level itself has no Value and therefore the SerializationFieldDataTypes do not contain a \u0022Value\u0022-field.[Figure 14](/\u00A7_Ref148447667) shows the SerializationFieldDataType needed to serialize an Object and its children. The fields representing the children are inserted directly into the SerializationFieldDataType of the Object, without an intermediate \u0022Children\u0022 structure used in case of Variables with children.\nThe SerializationFieldDataType for Variables with children are created according to chapter[6.4.3](/\u00A7_Ref172027937)"
+    },
+    {
+      "Id": "826b9bd7-099c-4b04-85e9-89da01742bd9",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.4 SerializationFieldDataType of Objects with children\nCaption: Figure 14 - Serialization of Objects with children\n---\n",
+      "Content": "[image017.png](images/image017.png)"
+    },
+    {
+      "Id": "28505013-8c45-4f63-a464-6789e9446edc",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.4 SerializationFieldDataType of Objects with children\n---\n",
+      "Content": "Figure 14 - Serialization of Objects with children"
+    },
+    {
+      "Id": "62eee3b3-30ba-4b8b-aa37-b22259c5a055",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4 SerializationValue Structure rules\n---\n",
+      "Content": "6.4.5 SerializationFieldDataType of nested Object subtrees"
+    },
+    {
+      "Id": "1fce5381-864a-43dd-95be-eb1f02a18e48",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.5 SerializationFieldDataType of nested Object subtrees\n---\n",
+      "Content": "[Figure 15](/\u00A7_Ref140053369) shows a nested subtree where members of the subtree are again subtrees. Each subtree has its own DataTypeDefinition Node. Since\u0022Variable1\u0022 has no children, it is mapped to the field \u0022Variable1\u0022 with the same DataType. Since \u0022Object1\u0022 has children, it is mapped to the \u0022Object1DataType\u0022 Structure DataType with the field \u0022Property1\u0022."
+    },
+    {
+      "Id": "c96e21c7-64f6-42b9-9070-0fa088608bc8",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.5 SerializationFieldDataType of nested Object subtrees\nCaption: Figure 15 - Nested subtrees represented by one SerializationValue\n---\n",
+      "Content": "[image018.png](images/image018.png)"
+    },
+    {
+      "Id": "2cf804c8-4572-4a15-b4ec-d1f8e7777caa",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.4.5 SerializationFieldDataType of nested Object subtrees\n---\n",
+      "Content": "Figure 15 - Nested subtrees represented by one SerializationValue"
+    },
+    {
+      "Id": "5054e01f-6e0c-402a-ae3b-32b86a91af94",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6 Model\n---\n",
+      "Content": "6.5 HasSerializationEntity ReferenceType"
+    },
+    {
+      "Id": "292e8a1a-36bb-4c99-b3de-bc77454cb496",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: 6.5 HasSerializationEntity ReferenceType\n---\n",
+      "Content": "The HasSerializationEntity ReferenceType is a concrete ReferenceType that can be used directly. It is a subtype of the HierarchicalReferences ReferenceType.\nThe semantic of this ReferenceType is to reference the serialized data of the SourceNode of the Reference.\nThe SourceNode of this ReferenceType shall be an Object, ObjectType, Variable or VariableType. The TargetNode of this ReferenceType shall be an Object of SerializationEntityType or a subtype.\nThe HasSerializationEntity is formally defined in[Table 6](/\u00A7_Ref16854066).\nTable 6- HasSerializationEntity definition\nAttributes\nValue\nBrowseName\nHasSerializationEntity\nInverseName\nSerializationEntityOf\nSymmetric\nFalse\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of HierarchicalReferences defined in[OPC 10000-5](/\u00A7UAPart5).\nConformance Units\nObjectSerialization Base"
+    },
+    {
+      "Id": "66d15b06-de6b-4dd0-8cb4-639976441eaf",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "Annex\u00A0A(informative)Examples\nA.1 Model Instance: Variable with Components"
+    },
+    {
+      "Id": "08ee3986-984b-47f8-80e2-4ed8c833b63d",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.1 Model Instance: Variable with Components\n---\n",
+      "Content": "[Figure A.1](/\u00A7_Ref186815938) shows the SerializationValue DataType structure generated by the Server for a SerializationScope with a Variable having other Variables as components, and one of these Variables also has Variables as components. The illustration shows how the descend into the depth of the subtree originating from the SerializationStartNode causes the SerializationValue DataType to exhibit nested sub-structures mapping the corresponding part of the subtree.\nOn top level, the Value of \u0022MyVariable\u0022 is mapped into the \u0022Value\u0022 field, whereas the components of \u0022MyVariable\u0022 are mapped into the MyVariableChildrenDataType\u0022Children\u0022 field. Since each field of this structure represents one component of \u0022MyVariable\u0022, the two fields are \u0022Variable1\u0022 and \u0022Property1\u0022. Since \u0022Variable1\u0022 has itself children, it is represented by the Variable1DataType structure with an Int32\u0022Value\u0022 field for the Value of \u0022Variable1\u0022 and a Variable1ChildrenDataType\u0022Children\u0022 field for the descendants of \u0022Variable1\u0022. This \u0022Children\u0022 structure field has an Int32\u0022Variable1.1\u0022 field representing the Value of \u0022Variable1.1\u0022 and a Duration\u0022Property1.1\u0022 field representing the Value of \u0022Property1.1\u0022.\nIf all sub-components in turn had sub-components themselves (great depth of the subtree), the recursive descend when constructing the SerializationValue DataType is limited by the SerializationConfiguration(e.g. SerializationDepth Property, see[6.3.5](/\u00A7_Ref185327657)), by limitations of the structure DataType or finally by the Server resources."
+    },
+    {
+      "Id": "1f55e29a-4845-4e1e-bf03-9c1132b0ba84",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.1 Model Instance: Variable with Components\nCaption: Figure A. 1 - Nested SerializationFieldDataTypes for subtrees\n---\n",
+      "Content": "[image019.png](images/image019.png)"
+    },
+    {
+      "Id": "8c1062a5-eea1-4930-bcf1-9e0051471406",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.1 Model Instance: Variable with Components\n---\n",
+      "Content": "Figure A. 1 - Nested SerializationFieldDataTypes for subtrees"
+    },
+    {
+      "Id": "03707ec1-d696-4773-aa36-984749d2a7f5",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "A.2 RIO Channel Group Configuration"
+    },
+    {
+      "Id": "9c124132-4763-4008-8a87-971f4fe61242",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.2 RIO Channel Group Configuration\n---\n",
+      "Content": "[Figure A.2](/\u00A7_Ref184920692) shows how a set of Properties belonging to a single Object as SerializationStartNode are serialized into the SerializationValue DataType, and how this DataType is serialized by the JSON encoder.\nIf the SerializationProperties have default values, the Properties of the ChannelGroupConfig Object(see\nOPC RIO) are mapped into fields of the SerializationValue DataType which have the same DataType as the Property they represent. The JSON encoding of this structure only contains the field names as keys and the Values of the serialized fields as JSON literals when using VerboseEncoding(see[OPC 10000-6](/\u00A7UAPart6)) and RawData field encoding (see[OPC 10000-14](/\u00A7UAPart14)) in a PubSub scenario. The Enumeration Values are encoded as string literals as specified in[OPC 10000-6](/\u00A7UAPart6)."
+    },
+    {
+      "Id": "5da84018-f428-4c45-baa8-0a4088b86c8a",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.2 RIO Channel Group Configuration\nCaption: Figure A. 2 - JSON encoding of SerializationValue DataType Structure\n---\n",
+      "Content": "[image020.png](images/image020.png)"
+    },
+    {
+      "Id": "6ac9747a-a862-430e-b13b-5294f3ff406a",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.2 RIO Channel Group Configuration\n---\n",
+      "Content": "Figure A. 2 - JSON encoding of SerializationValue DataType Structure"
+    },
+    {
+      "Id": "c5ee3ba0-cfb4-44cc-aa8f-d21bb6af77e2",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "A.3 RIO Channel Process Values"
+    },
+    {
+      "Id": "d136870b-fd40-4c78-84be-0804d1ecedc1",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.3 RIO Channel Process Values\n---\n",
+      "Content": "[Figure A.3](/\u00A7_Ref184986756) shows how Process Values(see\nOPC RIO) belonging to RioChannelType Objects are mapped into the SerializationValue DataType.\nThe \u0022SerializationEntity\u0022 referenced by the SerializationStartNode directs the SerializationProcess to follow only HasRioOutputChannel ReferenceTypes. Although the SerializationDepth is configured as \u0022no limit\u0022 (see[6.3.5](/\u00A7_Ref185319327)), the SerializationProcess would stop as soon as a RioChannelType Object is reached, since these Objects only have components referenced using the HasComponent ReferenceType. To include the components of the RioChannelType Objects into the SerializationScope, each Channel Object references a \u0022SerializationEntity\u0022 Object which has the IncludeReferenceType array Property containing the HasComponent ReferenceType. The ConsiderSubElementSerializationProperties SerializationProperty of the \u0022SerializationEntity\u0022 (see[6.3.6](/\u00A7_Ref172037231)) referenced by the SerializationStartNode causes the settings of the \u0022SerializationEntity\u0022 Objects referenced by the Channel Objects to be applied, effectively extending of SerializationScope with all components of the subtrees originating from the Channel Objects.\nThe JSON snipped shows how the Values in the SerializationScope are serialized using VerboseEncoding(see[OPC 10000-6](/\u00A7UAPart6)) and RawData field encoding (see[OPC 10000-14](/\u00A7UAPart14)) in a PubSub scenario.\nIn[Figure A.3](/\u00A7_Ref184986756) the details of the generated QualifierValueStructureDataType structures are not shown in the table visualizing the nested structure DataTypes, whereas the JSON snippet shows these structures in-depth."
+    },
+    {
+      "Id": "9b7e3915-f2bb-4e3f-8cab-fb62f9ce1e68",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.3 RIO Channel Process Values\nCaption: Figure A. 3 - RIO Channel Process Values\n---\n",
+      "Content": "[image021.png](images/image021.png)"
+    },
+    {
+      "Id": "3b0fc337-43d5-4fad-886d-cfe818686cfa",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.3 RIO Channel Process Values\n---\n",
+      "Content": "Figure A. 3 - RIO Channel Process Values"
+    },
+    {
+      "Id": "a098c6f4-24a0-48f8-8868-cbc0ecccced9",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "A.4 Energy Measurement Values"
+    },
+    {
+      "Id": "0665f76e-f560-4d6c-ad1c-92eea48efe1b",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.4 Energy Measurement Values\n---\n",
+      "Content": "[Figure A.4](/\u00A7_Ref185000500) shows a SerializationScope configured to exclude the metadata Properties of the Objects and Variables reachable from the SerializationStartNode.\nThe EnergyMeasurementType Object has a mandatory PeObjectNumber Property which is not part of the SerializationScope since the ExcludeReferenceTypes SerializationProperty contains the HasProperty ReferenceType. The same applies to the PeMeasurementID, AccuracyDomain, AccuracyClass and EngineeringUnits Properties of the MeasurementValueType Variables(see[OPC PE](/\u00A7OPCPE)) The SerializationValue DataType structure contains only fields for the Values of the MeasurementValueType Variables.\nThe JSON snipped shows how the energy data in the SerializationScope are serialized using VerboseEncoding(see[OPC 10000-6](/\u00A7UAPart6)) and RawData field encoding (see[OPC 10000-14](/\u00A7UAPart14)) in a PubSub scenario."
+    },
+    {
+      "Id": "3dd463af-571d-4352-bd26-999037534352",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.4 Energy Measurement Values\nCaption: Figure A. 4 - PROFIenergy Energy Measurement Values\n---\n",
+      "Content": "[image022.png](images/image022.png)"
+    },
+    {
+      "Id": "97fb44bc-c865-449d-a879-14708c1e41f7",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.4 Energy Measurement Values\n---\n",
+      "Content": "Figure A. 4 - PROFIenergy Energy Measurement Values"
+    },
+    {
+      "Id": "ad3c064e-138a-4079-bbf0-90264b8c15e3",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "A.5 Semantic Property Metadata in PubSub Scenarios"
+    },
+    {
+      "Id": "c4fcd7a0-c20a-4b6d-9feb-30efad0a3c1d",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.5 Semantic Property Metadata in PubSub Scenarios\n---\n",
+      "Content": "[Figure A.5](/\u00A7_Ref185003979) shows how semantic Properties(see[5.3](/\u00A7_Ref185319840) also) can be added to the FieldMetaData structure (see[OPC 10000-14](/\u00A7UAPart14)) describing the SerializedData Variable if added to a DataSet.\nAs shown in[A.4](/\u00A7_Ref185004183), the SerializationConfiguration excludes the metadata Properties attached to the EnergyMeasurementType Objects as well as to the MeasurementValueType Variables. The metadata can be conveyed to a PubSub Subscriber by coding this information into the Properties field of the FieldMetaData structure (see[6.3.7](/\u00A7_Ref168416101)). If PubSub is configured accordingly, the information is available for the Subscriber through a DataSetMetaData Message."
+    },
+    {
+      "Id": "8fc7e7d0-28dc-4ec4-a57e-964b0e843f24",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.5 Semantic Property Metadata in PubSub Scenarios\nCaption: Figure A. 5 - Semantic Properties in the FieldMetaData\n---\n",
+      "Content": "[image023.png](images/image023.png)"
+    },
+    {
+      "Id": "2fda3374-5654-4211-a418-f81c27497967",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.5 Semantic Property Metadata in PubSub Scenarios\n---\n",
+      "Content": "Figure A. 5 - Semantic Properties in the FieldMetaData"
+    },
+    {
+      "Id": "7fe3be79-8e50-4a02-baea-c23239609ece",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "A.6 JSON encoding of FieldMetaData Properties"
+    },
+    {
+      "Id": "ceedc191-fa09-4fc6-944c-51e4f80ebe33",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.6 JSON encoding of FieldMetaData Properties\n---\n",
+      "Content": "[Figure A.6](/\u00A7_Ref185263168) shows the resulting JSON encoding for the Properties field of the FieldMetaData structure according to[Figure A.5](/\u00A7_Ref185003979) in[A.5](/\u00A7_Ref185263316).\nThe amount of metadata associated with the \u0027pure\u0027 data exceeds the data values it describes by far (the JSON snippet only shows the metadata for 2 Variables), demonstrating the usefulness of excluding the metadata from the SerializationScope especially for low-bandwidth requirements."
+    },
+    {
+      "Id": "cd364034-7ceb-4ca7-afb4-6da749c8b673",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.6 JSON encoding of FieldMetaData Properties\nCaption: Figure A. 6 - JSON encoding of FieldMetaData Properties\n---\n",
+      "Content": "[image024.png](images/image024.png)"
+    },
+    {
+      "Id": "328b43a3-76c7-44aa-9923-5e335acedd42",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.6 JSON encoding of FieldMetaData Properties\n---\n",
+      "Content": "Figure A. 6 - JSON encoding of FieldMetaData Properties"
+    },
+    {
+      "Id": "1bdc2b44-8a40-4cbc-8ee7-8216c4ad3fa8",
+      "Header": "Document: Part 25 - ObjectSerialization\n---\n",
+      "Content": "A.7 Combining SerializationScopes"
+    },
+    {
+      "Id": "73099c1b-8cce-4995-b563-a80406f26b44",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.7 Combining SerializationScopes\n---\n",
+      "Content": "[Figure A.7](/\u00A7_Ref185266726) shows a SerializationScope configured by the SerializationEntity referenced by the \u0022EnergyManagement\u0022 folder (see[OPC PE](/\u00A7OPCPE)) which is modified by a second SerializationScope.\nThe ConsiderSubElementSerializationProperties SerializationProperty set to true directs the SerializationProcess to evaluate the SerializationProperties of the SerializationEntity Object referenced by the \u0022MeasurementY1\u0022 Variable, which is already part of the \u0022enveloping\u0022 SerializationScope.\nThe IncludeStatus SerializationProperty of this second SerializationEntity is set to true, causing the StatusCode of the \u0022MeasurementY1\u0022 Variable Value to be part of the SerializationValue DataType.\nThe ExcludeReferenceTypes array containing one element with the value HasProperty ReferenceType excludes all Properties of the \u0022MeasurementY1\u0022 Variable.\nThe JSON snipped shows how the resulting SerializationValue structure DataType is serialized using VerboseEncoding(see[OPC 10000-6](/\u00A7UAPart6)) and RawData field encoding (see[OPC 10000-14](/\u00A7UAPart14)) in a PubSub scenario. If the StatusCode of the \u0022MeasurementY1\u0022 Variable Value is Good, an empty \u0022Status\u0022 is generated by the encoder. If the StatusCode is Uncertain or Bad, the StatusCode and the corresponding symbol are generated by the encoder, as shown in[Figure A.7](/\u00A7_Ref185266726). In contrast, the StatusCode of the \u0022MeasurementX1\u0022, \u0022MeasurementX2\u0022 and \u0022MeasurementXn\u0022 Variable Values is never encoded into JSON."
+    },
+    {
+      "Id": "1706a9c1-3924-472c-84a9-e3b34aeaaac6",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.7 Combining SerializationScopes\nCaption: Figure A. 7 - Combining Serialization Scopes\n---\n",
+      "Content": "[image025.png](images/image025.png)"
+    },
+    {
+      "Id": "150800ab-c59f-4f6e-9fcb-a5a191b9239a",
+      "Header": "Document: Part 25 - ObjectSerialization\nSection: A.7 Combining SerializationScopes\n---\n",
+      "Content": "Figure A. 7 - Combining Serialization Scopes\n_________"
+    }
+  ]
+}

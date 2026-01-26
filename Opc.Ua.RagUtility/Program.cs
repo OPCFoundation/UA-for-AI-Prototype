@@ -13,10 +13,13 @@ static class Program
         rootCommand.Subcommands.Add(EmbedSpecification());
         rootCommand.Subcommands.Add(PromptModel());
 
+#if DEBUG
+        // var result = rootCommand.Parse(args);
+
         //var result = rootCommand.Parse([
         //    "markdown",
-        //    "--input", @"D:\Work\OPC\OPC-UA-for-AI\data\OPC 10000-6 - UA Specification Part 6 - Mappings 1.05.06.xml",
-        //    "--output", @"D:\Work\OPC\OPC-UA-for-AI\data\Part6"
+        //    "--input", @"D:\Work\OPC\UA-for-AI-Prototype\specifications\Core\Part5\OPC 10000-5 - UA Specification Part 5 - Information Model 1.05.06.xml",
+        //    "--output", @"D:\Work\OPC\UA-for-AI-Prototype\specifications\Core\Part5"
         //]);
 
         //var result = rootCommand.Parse([
@@ -27,23 +30,26 @@ static class Program
 
         //var result = rootCommand.Parse([
         //    "generate-chunks",
-        //    "--input", @"D:\Work\OPC\OPC-UA-for-AI\data\OPC 10000-6 - UA Specification Part 6 - Mappings 1.05.06.xml",
-        //    "--output", @"D:\Work\OPC\OPC-UA-for-AI\data\Part6\rag-chunks.json",
-        //    "--images", @"D:\Work\OPC\OPC-UA-for-AI\data\Part6\image-descriptions.json"
+        //    "--input", @"D:\Work\OPC\UA-for-AI-Prototype\specifications\Core\Part5\OPC 10000-5 - UA Specification Part 5 - Information Model 1.05.06.xml",
+        //    "--output", @"D:\Work\OPC\UA-for-AI-Prototype\specifications\Core\Part5\rag-chunks.json",
+        //    //"--images", @"D:\Work\OPC\OPC-UA-for-AI\specifications\Core\Part5\image-descriptions.json"
         //]);
 
-        //var result = rootCommand.Parse([
-        //    "embed",
-        //    "--input", @"D:\Work\OPC\UA-for-AI-Prototype\specifications\Core\Part1\rag-chunks.json"
-        //]);
+        var result = rootCommand.Parse([
+            "embed",
+            "--input", @"D:\Work\OPC\UA-for-AI-Prototype\specifications\Core\Part9\rag-chunks.json"
+        ]);
 
         //var result = rootCommand.Parse([
         //    "prompt",
-        //    "--input", @"D:\Work\OPC\OPC-UA-for-AI\data\Part1\queries.json"
+        //    "--input", @"D:\Work\OPC\UA-for-AI-Prototype\sample-queries.json"
         //]);
-
+#else
         var result = rootCommand.Parse(args);
-        return await result.InvokeAsync();
+#endif
+
+        await result.InvokeAsync();
+        return Environment.ExitCode;
     }
 
     static Command GenerateMarkdown()
@@ -97,6 +103,7 @@ static class Program
             catch (Exception e)
             {
                 Console.WriteLine($"Error: [{e.GetType().Name}] {e.Message}");
+                Environment.ExitCode = 1;
             }
         });
 
@@ -225,6 +232,7 @@ static class Program
             catch (Exception e)
             {
                 Console.WriteLine($"Error: [{e.GetType().Name}] {e.Message}");
+                Environment.ExitCode = 1;
             }
         }));
 
@@ -329,6 +337,7 @@ static class Program
             catch (Exception e)
             {
                 Console.WriteLine($"Error: [{e.GetType().Name}] {e.Message}");
+                Environment.ExitCode = 1;
             }
         }));
 
@@ -434,15 +443,16 @@ static class Program
                         chunk.Id,
                         chunk.Header + chunk.Content).ConfigureAwait(false);
 
-                    if ((count++ % 16) == 0)
+                    if ((count++ % 100) == 0)
                     {
-                        Console.WriteLine($"Embedded {count}/{document.Chunks.Count} chunks.");
+                        Console.WriteLine($"Embedded {count-1}/{document.Chunks.Count} chunks.");
                     }
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Error: [{e.GetType().Name}] {e.Message}");
+                Environment.ExitCode = 1;
             }
         }));
 
@@ -509,13 +519,6 @@ static class Program
             DefaultValueFactory = (result) => "opcua-specifications"
         };
 
-        var deletedExistingOption = new Option<bool>("--delete", ["-d"])
-        {
-            Arity = ArgumentArity.Zero,
-            Required = false,
-            DefaultValueFactory = (result) => false
-        };
-
         command.Options.Add(inputOption);
         command.Options.Add(ollamaUrlOption);
         command.Options.Add(embeddingModelOption);
@@ -523,7 +526,6 @@ static class Program
         command.Options.Add(qdrantUrlOption);
         command.Options.Add(timeoutOption);
         command.Options.Add(collectionNameOption);
-        command.Options.Add(deletedExistingOption);
 
         command.SetAction((Func<ParseResult, Task>)(async result =>
         {
@@ -556,15 +558,13 @@ static class Program
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"{query.Prompt}");
                     
-                    query.Actual = await rag.AskAsync(query.Prompt).ConfigureAwait(false);
+                    query.Response = await rag.AskAsync(query.Prompt).ConfigureAwait(false);
 
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($"Expected: {query.Actual}");
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"Actual: {query.Actual}");
+                    Console.WriteLine($"Actual: {query.Response}");
                 }
 
-                using var ostrm = File.OpenWrite(input);
+                using var ostrm = File.Create(input);
 
                 await JsonSerializer.SerializeAsync(ostrm, document, new JsonSerializerOptions()
                 {
@@ -575,6 +575,7 @@ static class Program
             catch (Exception e)
             {
                 Console.WriteLine($"Error: [{e.GetType().Name}] {e.Message}");
+                Environment.ExitCode = 1;
             }
         }));
 

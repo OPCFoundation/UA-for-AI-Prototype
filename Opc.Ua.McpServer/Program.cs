@@ -18,7 +18,7 @@ var options = new OpcUaServerOptions
     QdrantUrl = Environment.GetEnvironmentVariable("QDRANT_URL") ?? "http://localhost:6333",
     CollectionName = Environment.GetEnvironmentVariable("QDRANT_COLLECTION") ?? "opcua-specifications",
     EmbeddingModel = Environment.GetEnvironmentVariable("EMBEDDING_MODEL") ?? "mxbai-embed-large",
-    QueryModel = Environment.GetEnvironmentVariable("QUERY_MODEL") ?? "llama3",
+    QueryModel = Environment.GetEnvironmentVariable("QUERY_MODEL") ?? "gpt-oss:120b-cloud", // "llama3",
     TimeoutSeconds = int.TryParse(Environment.GetEnvironmentVariable("TIMEOUT_SECONDS"), out var timeout) ? timeout : 300
 };
 

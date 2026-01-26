@@ -4,6 +4,16 @@ using System.Text.Json;
 
 namespace Opc.Ua.RagUtility
 {
+    public class EmbeddingServerException : Exception
+    {
+        public int StatusCode { get; }
+
+        public EmbeddingServerException(int statusCode, string message) : base(message)
+        {
+            StatusCode = statusCode;
+        }
+    }
+
     public class OllamaEmbeddingResponse
     {
         public float[] Embedding { get; set; }
@@ -51,6 +61,12 @@ namespace Opc.Ua.RagUtility
                 model,
                 prompt = text
             });
+
+            if ((int)response.StatusCode == 500)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                throw new EmbeddingServerException(500, $"Embedding server returned HTTP 500: {errorContent}");
+            }
 
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<OllamaEmbeddingResponse>();

@@ -18,21 +18,29 @@ Contains the official OPC UA specification source files and pre-generated inputs
 | Part | Title | README |
 |------|-------|--------|
 | Part 1 | Overview and Concepts | [View](specifications/Core/Part1/README.md) |
+| Part 2 | Security | [View](specifications/Core/Part2/README.md) |
+| Part 3 | Address Space Model | [View](specifications/Core/Part3/README.md) |
 | Part 4 | Services | [View](specifications/Core/Part4/README.md) |
+| Part 5 | Address Space Model | [View](specifications/Core/Part5/README.md) |
 | Part 6 | Mappings | [View](specifications/Core/Part6/README.md) |
-| Part 7 | Profiles | [View](specifications/Core/Part7/README.md) |
 | Part 8 | DataAccess | [View](specifications/Core/Part8/README.md) |
 | Part 9 | Alarms and Conditions | [View](specifications/Core/Part9/README.md) |
+| Part 10 | Programs | [View](specifications/Core/Part10/README.md) |
 | Part 11 | Historical Access | [View](specifications/Core/Part11/README.md) |
+| Part 12 | Discovery and Global Services | [View](specifications/GDS/v105/README.md) |
 | Part 13 | Aggregates | [View](specifications/Core/Part13/README.md) |
+| Part 14 | PubSub | [View](specifications/Core/Part14/README.md) |
 | Part 16 | State Machines | [View](specifications/Core/Part16/README.md) |
 | Part 17 | Alias Names | [View](specifications/Core/Part17/README.md) |
 | Part 18 | Role-Based Security | [View](specifications/Core/Part18/README.md) |
 | Part 19 | Dictionary Reference | [View](specifications/Core/Part19/README.md) |
 | Part 20 | File Transfer | [View](specifications/Core/Part20/README.md) |
-| Part 21 | Device Onboarding | [View](specifications/Core/Onboarding/README.md) |
+| Part 21 | Device Onboarding | [View](specifications/Onboarding/v105/README.md) |
 | Part 22 | Base Network Model | [View](specifications/Core/Part22/README.md) |
 | Part 23 | Common ReferenceTypes | [View](specifications/Core/Part23/README.md) |
+| Part 24 | Scheduler | [View](specifications/Scheduler/v105/README.md) |
+| Part 25 | Object Serilizations | [View](specifications/Core/Part25/README.md) |
+| Part 26 | LogObject | [View](specifications/Core/Part26/README.md) |
 
 ### Vector Database (`db/`)
 
@@ -84,8 +92,11 @@ ollama pull mxbai-embed-large
 # Vision model for image descriptions
 ollama pull llava
 
-# LLM for query answering
+# Local LLM for query answering
 ollama pull llama3
+
+# Cloud LLM for query answering with better results
+ollama pull gpt-oss:120b-cloud
 ```
 
 ### Qdrant

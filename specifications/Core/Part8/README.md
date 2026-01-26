@@ -128,7 +128,7 @@ The *StatusCode* also contains an informational bit called *SemanticsChanged* .
 
 This *VariableType* defines the general characteristics of a *DataItem* . All other *DataItem* Types derive from it. The *DataItemType* derives from the *BaseDataVariableType* and therefore shares the variable model as described in [OPC 10000-3](/§UAPart3) and [OPC 10000-5](/§UAPart5) . It is formally defined in [Table 1](/§\_Ref415602315) .  
 
- **Table 1\- DataItemType definition**   
+Table 1 - DataItemType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -136,14 +136,18 @@ This *VariableType* defines the general characteristics of a *DataItem* . All ot
 |IsAbstract|False|
 |ValueRank|−2  (−2 = 'Any')|
 |DataType|BaseDataType|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseDataVariableType* defined in [OPC 10000-5](/§UAPart5) ; i.e the *Properties* of that type are inherited.|
 |HasSubtype|VariableType|BaseAnalogType|Defined in [5.3.2.2](/§\_Ref529348900)|
 |HasSubtype|VariableType|DiscreteItemType|Defined in [5.3.3](/§\_Ref15046443)|
 |HasSubtype|VariableType|ArrayItemType|Defined in [5.3.4](/§\_Ref323824410)|
 |HasProperty|Variable|Definition|String|PropertyType|Optional|
 |HasProperty|Variable|ValuePrecision|Double|PropertyType|Optional|
+  
 | **Conformance Units** |
+|---|
 |Data Access DataItems|
   
 
@@ -185,7 +189,7 @@ The *Properties* are only described once - in [5.3.2.2](/§\_Ref529348900) . The
 
 This *VariableType* is the base type for analog items. All *Properties* are optional. Subtypes of this base type will mandate some of the *Properties* . The *BaseAnalogType* derives from the *DataItemType* . It is formally defined in [Table 2](/§\_Ref529347602) .  
 
- **Table 2\- BaseAnalogType definition**   
+Table 2 - BaseAnalogType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -193,14 +197,18 @@ This *VariableType* is the base type for analog items. All *Properties* are opti
 |IsAbstract|False|
 |ValueRank|−2  (−2 = 'Any')|
 |DataType|Number|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *DataItemType* defined in [5.3.1](/§\_Ref529349203) ; i.e. the *Properties* of that type are inherited.|
 |HasSubtype|VariableType|AnalogItemType|Defined in [5.3.2.3](/§\_Ref529348913)|
 |HasSubtype|VariableType|AnalogUnitType|Defined in [5.3.2.4](/§\_Ref529348941)|
 |HasProperty|Variable|InstrumentRange|Range|PropertyType|Optional|
 |HasProperty|Variable|EURange|Range|PropertyType|Optional|
 |HasProperty|Variable|EngineeringUnits|EUInformation|PropertyType|Optional|
+  
 | **Conformance Units** |
+|---|
 |Data Access BaseAnalogType|
   
 
@@ -250,7 +258,7 @@ The *StatusCode SemanticsChanged* bit shall be set if any of the *EURange* (coul
 
 This *VariableType* requires the *EURange Property* . The *AnalogItemType* derives from the *BaseAnalogType* . It is formally defined in [Table 3](/§\_Ref529349250) .  
 
- **Table 3\- AnalogItemType definition**   
+Table 3 - AnalogItemType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -258,11 +266,15 @@ This *VariableType* requires the *EURange Property* . The *AnalogItemType* deriv
 |IsAbstract|False|
 |ValueRank|−2  (−2 = 'Any')|
 |DataType|Number|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseAnalogType* defined in [5.3.2.2](/§\_Ref529348900) ; i.e. the *Properties* of that type are inherited.|
 |HasSubtype|VariableType|AnalogUnitRangeType|Defined in [5.3.2.5](/§\_Ref529349073)|
 |HasProperty|Variable|EURange|Range|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access AnalogItemType|
   
 
@@ -272,7 +284,7 @@ This *VariableType* requires the *EURange Property* . The *AnalogItemType* deriv
 
 This *VariableType* requires the *EngineeringUnits* *Property* . The *AnalogUnitType* derives from the *BaseAnalogType* . It is formally defined in [Table 4](/§\_Ref529347562) .  
 
- **Table 4\- AnalogUnitType definition**   
+Table 4 - AnalogUnitType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -280,10 +292,14 @@ This *VariableType* requires the *EngineeringUnits* *Property* . The *AnalogUnit
 |IsAbstract|False|
 |ValueRank|−2  (−2 = 'Any')|
 |DataType|Number|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseAnalogType* defined in [5.3.2.2](/§\_Ref529348900) ; i.e. the *Properties* of that type are inherited.|
 |HasProperty|Variable|EngineeringUnits|EUInformation|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access AnalogUnitType|
   
 
@@ -293,7 +309,7 @@ This *VariableType* requires the *EngineeringUnits* *Property* . The *AnalogUnit
 
 The *AnalogUnitRangeType* derives from the *AnalogItemType* and additionally requires the *EngineeringUnits* *Property* . It is formally defined in [Table 5](/§\_Ref529347546) .  
 
- **Table 5\- AnalogUnitRangeType definition**   
+Table 5 - AnalogUnitRangeType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -301,10 +317,14 @@ The *AnalogUnitRangeType* derives from the *AnalogItemType* and additionally req
 |IsAbstract|False|
 |ValueRank|−2  (−2 = 'Any')|
 |DataType|Number|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AnalogItemType* defined in [5.3.2.3](/§\_Ref529348913) ; i.e. the *Properties* of that type are inherited.|
 |HasProperty|Variable|EngineeringUnits|EUInformation|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access AnalogUnitRangeType|
   
 
@@ -316,7 +336,7 @@ The *AnalogUnitRangeType* derives from the *AnalogItemType* and additionally req
 
 This VariableType is an abstract type. That is, no instances of this type can exist. However, it can be used in a filter when browsing or querying. The *DiscreteItemType* derives from the *DataItemType* and therefore shares all of its characteristics. It is formally defined in [Table 6](/§\_Ref141513620) .  
 
- **Table 6\- DiscreteItemType definition**   
+Table 6 - DiscreteItemType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -324,12 +344,16 @@ This VariableType is an abstract type. That is, no instances of this type can ex
 |IsAbstract|True|
 |ValueRank|−2 (−2 = 'Any')|
 |DataType|BaseDataType|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *DataItemType* defined in [5.2](/§\_Ref141512882) ; i.e. the *Properties* of that type are inherited.|
 |HasSubtype|VariableType|TwoStateDiscreteType|Defined in [5.3.3.2](/§\_Ref141512766)|
 |HasSubtype|VariableType|MultiStateDiscreteType|Defined in [5.3.3.3](/§\_Ref201048997)|
 |HasSubtype|VariableType|MultiStateValueDiscreteType|Defined in [5.3.3.4](/§\_Ref330306636)|
+  
 | **Conformance Units** |
+|---|
 |Data Access DiscreteItemType|
   
 
@@ -339,7 +363,7 @@ This VariableType is an abstract type. That is, no instances of this type can ex
 
 This *VariableType* defines the general characteristics of a *DiscreteItem* that can have two states. The *TwoStateDiscreteType* derives from the *DiscreteItemType* . It is formally defined in [Table 7](/§\_Ref141295768) .  
 
- **Table 7\- TwoStateDiscreteType definition**   
+Table 7 - TwoStateDiscreteType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -347,11 +371,15 @@ This *VariableType* defines the general characteristics of a *DiscreteItem* that
 |IsAbstract|False|
 |ValueRank|−2  (−2 = 'Any')|
 |DataType|Boolean|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *DiscreteItemType* defined in [5.3.3](/§\_Ref15046443) ; i.e. the *Properties* of that type are inherited.|
 |HasProperty|Variable|TrueState|LocalizedText|PropertyType|Mandatory|
 |HasProperty|Variable|FalseState|LocalizedText|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access TwoState|
   
 
@@ -373,7 +401,7 @@ The *StatusCode SemanticsChanged* bit shall be set if any of the *FalseState or 
 
 This *VariableType* defines the general characteristics of a *DiscreteItem* that can have more than two states. The *MultiStateDiscreteType* derives from the *DiscreteItemType* . It is formally defined in [Table 8](/§\_Ref141296262) .  
 
- **Table 8\- MultiStateDiscreteType definition**   
+Table 8 - MultiStateDiscreteType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -381,10 +409,14 @@ This *VariableType* defines the general characteristics of a *DiscreteItem* that
 |IsAbstract|False|
 |ValueRank|−2 (−2 = 'Any')|
 |DataType|UInteger|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *DiscreteItemType* defined in [5.3.3](/§\_Ref15046475) ; i.e. the *Properties* of that type are inherited.|
 |HasProperty|Variable|EnumStrings|LocalizedText[]|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access MultiState|
   
 
@@ -414,7 +446,7 @@ The *StatusCode SemanticsChanged* bit shall be set if the *EnumStrings Property*
 
 This *VariableType* defines the general characteristics of a *DiscreteItem* that can have more than two states and where the state values (the enumeration) do not consist of consecutive numeric values (can have gaps) or where the enumeration is not zero-based. The *MultiStateValueDiscreteType* derives from the *DiscreteItemType* . It is formally defined in [Table 9](/§\_Ref251594633) .  
 
- **Table 9\- MultiStateValueDiscreteType definition**   
+Table 9 - MultiStateValueDiscreteType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -422,13 +454,15 @@ This *VariableType* defines the general characteristics of a *DiscreteItem* that
 |IsAbstract|False|
 |ValueRank|−2  (−2 = 'Any')|
 |DataType|Number|
-| **References** | **NodeClass** | **BrowseName** | **DataType**   
-
- **TypeDefinition** | **ModellingRule** |
+  
+| **References** | **NodeClass** | **BrowseName** | **DataType** <br> **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|
 |Subtype of the *DiscreteItemType* defined in [5.3.3](/§\_Ref15046505) ; i.e. the *Properties* of that type are inherited.|
 |HasProperty|Variable|EnumValues|EnumValueType[]PropertyType|Mandatory|
 |HasProperty|Variable|ValueAsText|LocalizedTextPropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access MultiStateValueDiscrete|
   
 
@@ -450,7 +484,7 @@ This abstract *VariableType* defines the general characteristics of an *ArrayIte
 
 *ArrayItemType* or its subtype shall only be used when the *Title* and *AxisScaleType* *Properties* can be filled with reasonable values. If this is not the case *DataItemType* and subtypes like *AnalogItemType,* which also support arrays, shall be used. The *ArrayItemType* is formally defined in [Table 10](/§\_Ref231803900) .  
 
- **Table 10\- ArrayItemType definition**   
+Table 10 - ArrayItemType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -458,7 +492,9 @@ This abstract *VariableType* defines the general characteristics of an *ArrayIte
 |IsAbstract|True|
 |ValueRank|0 (0 = OneOrMoreDimensions)|
 |DataType|BaseDataType|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *DataItemType* defined in [5.3.1](/§\_Ref330306706) ; i.e. the *Properties* of that type are inherited.|
 |HasSubtype|VariableType|YArrayItemType|Defined in [5.3.4.2](/§\_Ref323828495)|
 |HasSubtype|VariableType|XYArrayItemType|Defined in [5.3.4.3](/§\_Ref323828757)|
@@ -470,7 +506,9 @@ This abstract *VariableType* defines the general characteristics of an *ArrayIte
 |HasProperty|Variable|EngineeringUnits|EUInformation|PropertyType|Mandatory|
 |HasProperty|Variable|Title|LocalizedText|PropertyType|Mandatory|
 |HasProperty|Variable|AxisScaleType|AxisScaleEnumeration|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access ArrayItem2Type|
   
 
@@ -494,7 +532,7 @@ The *StatusCode SemanticsChanged* bit shall be set if any of the *InstrumentRang
 
 *YArrayItemType* represents a single-dimensional array of numerical values used to represent spectra or distributions where the x axis intervals are constant. *YArrayItemType* is formally defined in [Table 11](/§\_Ref217730127) .  
 
- **Table 11\- YArrayItemType definition**   
+Table 11 - YArrayItemType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -503,11 +541,15 @@ The *StatusCode SemanticsChanged* bit shall be set if any of the *InstrumentRang
 |ValueRank|1|
 |DataType|BaseDataType|
 |ArrayDimensions|\{0\} (0 = UnknownSize)|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *ArrayItemType* defined in [5.3.4.1](/§\_Ref323828323)|
 |||||||
 |HasProperty|Variable|XAxisDefinition|AxisInformation|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access YArrayItemType|
   
 
@@ -529,7 +571,7 @@ Figure 3 - Graphical view of a YArrayItem
 
 [Table 12](/§\_Ref231804163) describes the values of each element presented in [Figure 3](/§\_Ref231783825) .  
 
- **Table 12\- *YArrayItem* item description**   
+Table 12 - YArrayItem item description  
 
 | **Attribute / Property** | **Item value** |
 |---|---|
@@ -569,7 +611,7 @@ Interpretation notes:
 
 *XYArrayItemType* represents a vector of XVType values like a list of peaks, where XVType.x is the position of the peak and XVType.value is its intensity. *XYArrayItemType* is formally defined in [Table 13](/§\_Ref232390760) .  
 
- **Table 13\- XYArrayItemType definition**   
+Table 13 - XYArrayItemType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -577,11 +619,15 @@ Interpretation notes:
 |IsAbstract|False|
 |ValueRank|1|
 |DataType|XVType|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *ArrayItemType* defined in [5.3.4.1](/§\_Ref323828323)|
 |||||||
 |HasProperty|Variable|XAxisDefinition|AxisInformation|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access XYArrayItemType|
   
 
@@ -601,7 +647,7 @@ The *StatusCode SemanticsChanged* bit shall be set if any of the *InstrumentRang
 
 *ImageItemType* is formally defined in [Table 14](/§\_Ref217730401) .  
 
- **Table 14\- ImageItemType definition**   
+Table 14 - ImageItemType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -609,12 +655,16 @@ The *StatusCode SemanticsChanged* bit shall be set if any of the *InstrumentRang
 |IsAbstract|False|
 |ValueRank|2 (2 = two dimensional array)|
 |DataType|BaseDataType|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *ArrayItemType* defined in [5.3.4.1](/§\_Ref323828323)|
 |||||||
 |HasProperty|Variable|XAxisDefinition|AxisInformation|PropertyType|Mandatory|
 |HasProperty|Variable|YAxisDefinition|AxisInformation|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access ImageItemType|
   
 
@@ -636,7 +686,7 @@ The *StatusCode.SemanticsChanged* bit shall be set if any of the *InstrumentRang
 
 *CubeItemType* represents a cube of values like a spatial particle distribution, where the particle position is given by X which is the column, Y the row and Z the depth. In the example of a spatial partical distribution, the value is the particle size. *CubeItemType* is formally defined in [Table 15](/§\_Ref232390475) .  
 
- **Table 15\- CubeItemType definition**   
+Table 15 - CubeItemType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -644,13 +694,17 @@ The *StatusCode.SemanticsChanged* bit shall be set if any of the *InstrumentRang
 |IsAbstract|False|
 |ValueRank|3 (3 = three dimensional array)|
 |DataType|BaseDataType|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *ArrayItemType* defined in [5.3.4.1](/§\_Ref323828323)|
 |||||||
 |HasProperty|Variable|XAxisDefinition|AxisInformation|PropertyType|Mandatory|
 |HasProperty|Variable|YAxisDefinition|AxisInformation|PropertyType|Mandatory|
 |HasProperty|Variable|ZAxisDefinition|AxisInformation|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access CubeItemType|
   
 
@@ -678,7 +732,7 @@ This approach minimizes the number of types however it can be proved more diffic
 
 *NDimensionArrayItemType* is formally defined in [Table 16](/§\_Ref327430559) .  
 
- **Table 16\- NDimensionArrayItemType definition**   
+Table 16 - NDimensionArrayItemType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -686,11 +740,15 @@ This approach minimizes the number of types however it can be proved more diffic
 |IsAbstract|False|
 |ValueRank|0 (0 = OneOrMoreDimensions)|
 |DataType|BaseDataType|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *ArrayItemType* defined in [5.3.4.1](/§\_Ref323828323)|
 |||||||
 |HasProperty|Variable|AxisDefinition|AxisInformation []|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access NDimensionArrayItemType|
   
 
@@ -744,7 +802,7 @@ Following is a description of the *DataTypes* defined in this specification.
 
 This structure defines the *Range* for a value. Its elements are defined in [Table 17](/§\_Ref131473417) .  
 
- **Table 17\- *Range* DataType structure**   
+Table 17 - Range DataType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -761,15 +819,19 @@ If a limit is not known a NaN shall be used.
 
 Its representation in the *AddressSpace* is defined in [Table 18](/§\_Ref141297703)  
 
- **Table 18\- *Range* definition**   
+Table 18 - Range definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Range|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of Structure defined in [OPC 10000-5](/§UAPart5) .|
+  
 | **Conformance Units** |
+|---|
 |Base Info Range DataType|
   
 
@@ -797,15 +859,13 @@ Figure 5 - Enhanced EUInformation example
 
 The *EUInformation* elements are defined in [Table 19](/§\_Ref534206692) .  
 
- **Table 19\- *EUInformation* DataType structure**   
+Table 19 - EUInformation DataType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
 |EUInformation|structure||
 |namespaceUri|String|Identifies the organization (company, standards organization) that defines the *EUInformation* .|
-|unitId|Int32|Identifier for programmatic lookup.  
-
-−1 is used if a *unitId* is not available.|
+|unitId|Int32|Identifier for programmatic lookup.<br>−1 is used if a *unitId* is not available.|
 |displayName|LocalizedText|The *displayName* of the engineering unit is typically the abbreviation of the engineering unit, for example "h" for hour or "m/s" for meter per second.|
 |description|LocalizedText|Contains the full name of the engineering unit such as "hour" or "meter per second".|
   
@@ -814,15 +874,19 @@ The *EUInformation* elements are defined in [Table 19](/§\_Ref534206692) .
 
 Its representation in the *AddressSpace* is defined in [Table 20](/§\_Ref27400244) .  
 
- **Table 20\- *EUInformation* definition**   
+Table 20 - EUInformation definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|EUInformation|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of Structure defined in [OPC 10000-5](/§UAPart5) .|
+  
 | **Conformance Units** |
+|---|
 |Base Info EUInformation|
   
 
@@ -834,11 +898,13 @@ This clause specifies how to apply the **"**  **"** [ REF UNECE \\h UNECE](https
 
 [Table 21](/§\_Ref27400298) contains a small excerpt of the relevant columns in the UNECE recommendation:  
 
- **Table 21\- Examples from the UNECE Recommendation**   
+Table 21 - Examples from the UNECE Recommendation  
 
 | **Excerpt from Recommendation N°. 20, Annex 1** |
 |---|
+  
 | **Common Code** | **Name** | **Symbol** |
+|---|---|---|
 |C81|radian|rad|
 |C25|milliradian|mrad|
 |MMT|millimetre|mm|
@@ -888,11 +954,13 @@ Figure 6 - Searching Units in the IEC Common Data Dictionary
 
 [Table 21](/§\_Ref27400298) contains a small excerpt of the relevant columns in IEC 62720:  
 
- **Table 22\- Examples from the IEC CDD**   
+Table 22 - Examples from the IEC CDD  
 
 | **Excerpt of Units from IEC/TS 62720** |
 |---|
+  
 | **Code** | **Symbol** | **Name** |
+|---|---|---|
 |UAA017|Ω|ohm|
 |UAA033|°C|degree Celsius|
 |UAA070|μN|micronewton|
@@ -934,7 +1002,7 @@ c = UnitCode[i] 0x1f;  unitId = unitId \<\< 5;  unitId = unitId | c; \}
 
 This structure defines float IEEE 32 bits complex value. Its elements are defined in [Table 23](/§\_Ref323822921) .  
 
- **Table 23\- ComplexNumberType DataType structure**   
+Table 23 - ComplexNumberType DataType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -945,15 +1013,19 @@ This structure defines float IEEE 32 bits complex value. Its elements are define
 
 Its representation in the *AddressSpace* is defined in [Table 24](/§\_Ref323822979)  
 
- **Table 24\- ComplexNumberType definition**   
+Table 24 - ComplexNumberType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ComplexNumberType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of Structure defined in [OPC 10000-5](/§UAPart5) .|
+  
 | **Conformance Units** |
+|---|
 |Data Access Complex Number|
   
 
@@ -963,7 +1035,7 @@ Its representation in the *AddressSpace* is defined in [Table 24](/§\_Ref323822
 
 This structure defines double IEEE 64 bits complex value. Its elements are defined in [Table 25](/§\_Ref323823954) .  
 
- **Table 25\- DoubleComplexNumberType DataType structure**   
+Table 25 - DoubleComplexNumberType DataType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -976,15 +1048,19 @@ This structure defines double IEEE 64 bits complex value. Its elements are defin
 
 Its representation in the *AddressSpace* is defined in [Table 26](/§\_Ref323824011) .  
 
- **Table 26\- DoubleComplexNumberType definition**   
+Table 26 - DoubleComplexNumberType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|DoubleComplexNumberType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of Structure defined in [OPC 10000-5](/§UAPart5) .|
+  
 | **Conformance Units** |
+|---|
 |Data Access DoubleComplex Number|
   
 
@@ -1004,7 +1080,7 @@ The step between points is not constant and changes at every update. In this cas
 
 Its elements are defined in [Table 27](/§\_Ref323831091) .  
 
- **Table 27\- AxisInformation DataType structure**   
+Table 27 - AxisInformation DataType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1020,15 +1096,19 @@ Its elements are defined in [Table 27](/§\_Ref323831091) .
 
 Its representation in the *AddressSpace* is defined in [Table 28](/§\_Ref64811091) .  
 
- **Table 28\- AxisInformation definition**   
+Table 28 - AxisInformation definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AxisInformation|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of Structure defined in [OPC 10000-5](/§UAPart5) .|
+  
 | **Conformance Units** |
+|---|
 |Data Access AxisInformationType|
   
 
@@ -1040,7 +1120,7 @@ When the steps in the axis are constant, *axisSteps* can be set to "Null" and in
 
 This enumeration identifies on which type of axis the data shall be displayed. Its values are defined in [Table 29](/§\_Ref323831181) .  
 
- **Table 29\- AxisScaleEnumeration values**   
+Table 29 - AxisScaleEnumeration values  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -1053,16 +1133,20 @@ This enumeration identifies on which type of axis the data shall be displayed. I
 
 Its representation in the *AddressSpace* is defined in [Table 30](/§\_Ref323826436) .  
 
- **Table 30\- AxisScaleEnumeration definition**   
+Table 30 - AxisScaleEnumeration definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AxisScaleEnumeration|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumStrings|LocalizedText[]|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |Data Access ArrayItem2Type|
   
 
@@ -1076,7 +1160,7 @@ Many devices can produce values that can perfectly be represented with a float I
 
 Its elements are defined in [Table 31](/§\_Ref323831223) .  
 
- **Table 31\- XVType DataType structure**   
+Table 31 - XVType DataType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1089,15 +1173,19 @@ Its elements are defined in [Table 31](/§\_Ref323831223) .
 
 Its representation in the *AddressSpace* is defined in [Table 32](/§\_Ref327355285) .  
 
- **Table 32\- XVType definition**   
+Table 32 - XVType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|XVType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of Structure defined in [OPC 10000-5](/§UAPart5) .|
+  
 | **Conformance Units** |
+|---|
 |Data Access XYArrayItemType|
   
 
@@ -1121,16 +1209,20 @@ Figure 7 - Quantity model overview
 
 *Quantities* is a standardized entry point to access all *Quantities* and their *Units* managed in the *Server* . It is formally defined in [Table 33](/§\_Ref103077676) . All *Objects* of the *QuantityType* defined in clause [6.4.1](/§\_Ref96441342) , that are managed in the *Server* , shall be referenced directly from this *Object* with *Organizes* or a subtype of *Organizes* .  
 
- **Table 33\- Quantities definition**   
+Table 33 - Quantities definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Quantities|
 |Description|This *Object* is the entry point to quantities and their units managed in the *Server* .|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** |
+|---|---|---|---|---|
 |OrganizedBy by the *Server Object* defined in OPC 10000-5|
 |HasTypeDefinition|ObjectType|FolderType||
+  
 | **Conformance Units** |
+|---|
 |Data Access Quantities Base|
   
 
@@ -1148,7 +1240,7 @@ The Quantities and Unit Model provides a powerful way to relate quantities and u
 
 An overview for each *Syntax Reference* in this table is provided in [Annex C](/§\_Ref108945559) .  
 
- **Table 34\- List of Syntax References**   
+Table 34 - List of Syntax References  
 
 | **Common Name** | **Syntax Reference URI** | **Full Name** |
 |---|---|---|
@@ -1167,11 +1259,13 @@ An overview for each *Syntax Reference* in this table is provided in [Annex C](/
 
 Instances of *SyntaxReferenceEntryType* have a well-defined *NodeId* as defined in [Table 35](/§\_Ref108950871) .  
 
- **Table 35\- Definition of NodeId for instances of the SyntaxReferenceEntryType**   
+Table 35 - Definition of NodeId for instances of the SyntaxReferenceEntryType  
 
 | **Name** | **Type** | **Definition for instances of the SyntaxReferenceEntryType** |
 |---|---|---|
+  
 | **NodeId** | **structure** ||
+|---|---|---|
 |namespaceIndex|UInt16|The *NamespaceTable* index for the Syntax Reference URI (see [Table 34](/§\_Ref108946590) ).|
 |IdType|Enum|String|
 |identifier|\*|The *Syntax Reference* identifier ( *SyntaxReferenceId* ), see [6.3.3](/§\_Ref108949631)|
@@ -1191,58 +1285,20 @@ Figure 8 - References to external works
 
 [Table 36](/§\_Ref108946673) defines the identifiers for each *Syntax Reference* .  
 
- **Table 36\- List of Syntax Reference Identifiers**   
+Table 36 - List of Syntax Reference Identifiers  
 
 | **Common Name** | **Identifier** |
 |---|---|
-|UCUM|QuantityType instances:  
-
-The UCUM *Syntax ReferenceID* for quantities shall include the prefix "quantityKind:" followed by the name of the quantity.|
-||UnitType instances:  
-
-The UCUM *SyntaxReferenceId* for units shall include an expression based on the UCUM syntax making use of the symbols named in the "C/S" entry of the UCUM spec ( [https://ucum.org/ucum.html](https://ucum.org/ucum.html) ).  
-
-Codes (expressions) for common units are defined in [Annex B](/§\_Ref107050010) .|
-|QUDT|QuantityType instances:  
-
-The QUDT *Syntax ReferenceID* for quantities shall include the prefix "quantityKind:" followed by the name of the quantity as in [https://www.qudt.org/doc/DOC\_VOCAB-QUANTITY-KINDS.html](https://www.qudt.org/doc/DOC\_VOCAB-QUANTITY-KINDS.html) .  
-
-Example quantities are in [C.2](/§\_Ref171247650) .|
-||UnitType instances:  
-
-The QUDT *Syntax ReferenceID* for units shall include the prefix "unit:" followed by the name of the unit as in [https://www.qudt.org/doc/DOC\_VOCAB-UNITS.html](https://www.qudt.org/doc/DOC\_VOCAB-UNITS.html) .  
-
-Example units are in [C.2](/§\_Ref171247650) .|
-|IEC CDD|QuantityType instances:  
-
-The IEC CDD *SyntaxReferenceId* shall include the IRDI of the respective quantity.  
-
-Example quantities are in [C.4](/§\_Ref171247652) .|
-||UnitType instances:  
-
-The IEC CDD *SyntaxReferenceId* shall include the IRDI of the respective unit.  
-
-Example units are in [C.4](/§\_Ref171247653) .|
-|UNECE|QuantityType instances:  
-
-There are no UNECE *Syntax References* for quantities.|
-||UnitType instances:  
-
-The UNECE *SyntaxReferenceId* shall include the common code from **"Codes for Units of Measurement"** [UNECE](https://www.unece.org/cefact/codesfortrade/codes\_index.html) ).  
-
-  
-
-Example units are in [C.3](/§\_Ref171247656) .|
-|LATEX\_SIUNITX|QuantityType instances:  
-
-There are no LATEX\_SIUNITX *Syntax References* for quantities.|
-||UnitType instances:  
-
-The LATEX\_SIUNITX SyntaxReferenceId shall include the leading slash, the keyword of the macro as well as the entire argument.  
-
-  
-
-Example units are in [C.5](/§\_Ref171247677) .|
+|UCUM|QuantityType instances:<br>The UCUM *Syntax ReferenceID* for quantities shall include the prefix "quantityKind:" followed by the name of the quantity.|
+||UnitType instances:<br>The UCUM *SyntaxReferenceId* for units shall include an expression based on the UCUM syntax making use of the symbols named in the "C/S" entry of the UCUM spec ( [https://ucum.org/ucum.html](https://ucum.org/ucum.html) ).<br>Codes (expressions) for common units are defined in [Annex B](/§\_Ref107050010) .|
+|QUDT|QuantityType instances:<br>The QUDT *Syntax ReferenceID* for quantities shall include the prefix "quantityKind:" followed by the name of the quantity as in [https://www.qudt.org/doc/DOC\_VOCAB-QUANTITY-KINDS.html](https://www.qudt.org/doc/DOC\_VOCAB-QUANTITY-KINDS.html) .<br>Example quantities are in [C.2](/§\_Ref171247650) .|
+||UnitType instances:<br>The QUDT *Syntax ReferenceID* for units shall include the prefix "unit:" followed by the name of the unit as in [https://www.qudt.org/doc/DOC\_VOCAB-UNITS.html](https://www.qudt.org/doc/DOC\_VOCAB-UNITS.html) .<br>Example units are in [C.2](/§\_Ref171247650) .|
+|IEC CDD|QuantityType instances:<br>The IEC CDD *SyntaxReferenceId* shall include the IRDI of the respective quantity.<br>Example quantities are in [C.4](/§\_Ref171247652) .|
+||UnitType instances:<br>The IEC CDD *SyntaxReferenceId* shall include the IRDI of the respective unit.<br>Example units are in [C.4](/§\_Ref171247653) .|
+|UNECE|QuantityType instances:<br>There are no UNECE *Syntax References* for quantities.|
+||UnitType instances:<br>The UNECE *SyntaxReferenceId* shall include the common code from **"Codes for Units of Measurement"** [UNECE](https://www.unece.org/cefact/codesfortrade/codes\_index.html) ).<br><br>Example units are in [C.3](/§\_Ref171247656) .|
+|LATEX\_SIUNITX|QuantityType instances:<br>There are no LATEX\_SIUNITX *Syntax References* for quantities.|
+||UnitType instances:<br>The LATEX\_SIUNITX SyntaxReferenceId shall include the leading slash, the keyword of the macro as well as the entire argument.<br><br>Example units are in [C.5](/§\_Ref171247677) .|
   
 
   
@@ -1259,13 +1315,15 @@ Figure 9 - QuantityType
 
 It is illustrated in [Figure 9](/§\_Ref108953451) and formally defined in [Table 37](/§\_Ref106799998) .  
 
- **Table 37\- QuantityType definition**   
+Table 37 - QuantityType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|QuantityType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|Symbol|LocalizedText|PropertyType|O|
 |||||||
@@ -1273,7 +1331,9 @@ It is illustrated in [Figure 9](/§\_Ref108953451) and formally defined in [Tabl
 |HasProperty|Variable|ConversionService|UriString|PropertyType|O|
 |HasProperty|Variable|Dimension|QuantityDimension|PropertyType|M|
 |HasComponent|Object|ServerUnits||BaseObjectType|M|
+  
 | **Conformance Units** |
+|---|
 |Data Access Quantities Base|
   
 
@@ -1307,7 +1367,7 @@ For example, a V AC RMS measurement is the quadratic mean measurement of an AC v
 
 The components of the *QuantityType* have additional subcomponents which are defined in [Table 38](/§\_Ref26525827) .  
 
- **Table 38\- QuantityType Additional Subcomponents**   
+Table 38 - QuantityType Additional Subcomponents  
 
 | **BrowsePath** | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Others** |
 |---|---|---|---|---|---|---|
@@ -1334,19 +1394,23 @@ Figure 10 - Units model
 
 It is formally defined in [Table 39](/§\_Ref106800295) .  
 
- **Table 39\- UnitType definition**   
+Table 39 - UnitType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|UnitType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|Symbol|LocalizedText|PropertyType|M|
 |||||||
 |HasProperty|Variable|UnitSystem|String|PropertyType|M|
 |HasProperty|Variable|Discipline|String|PropertyType|O|
+  
 | **Conformance Units** |
+|---|
 |Data Access Quantities Base|
   
 
@@ -1360,13 +1424,11 @@ The *Symbol* *Property* is used for the symbol of the unit (e.g. "h" for hour or
 
 The *UnitSystem* *Property* describes the system of units (e.g. ISQ) in which the unit is specified. If any of the well-known systems defined in [Table 40](/§\_Ref103326945) is used, the acronym in the column "UnitSystem" shall be used for the value of this *Property* .  
 
- **Table 40\- Non-exhaustive list of well-known systems of units**   
+Table 40 - Non-exhaustive list of well-known systems of units  
 
 | **UnitSystem** | **System of units** |
 |---|---|
-|ISQ|International System of Quantities (ISO/IEC 80000)  
-
-Fully covers and thus replaces SI (ISO 1000)|
+|ISQ|International System of Quantities (ISO/IEC 80000)<br>Fully covers and thus replaces SI (ISO 1000)|
 |USCS|US Customary Unit System|
 |ISU|British imperial system of units|
 |MSU|Myanmar Units of measurement|
@@ -1384,18 +1446,22 @@ Fully covers and thus replaces SI (ISO 1000)|
 
 Instances of *ServerUnitType* define the units utilizes in the *Server* . They are assigned to the proper *Quantities* . *EngineeringUnit Properties* can refer to it. It is formally defined in [Table 41](/§\_Ref106800331) .  
 
- **Table 41\- ServerUnitType definition**   
+Table 41 - ServerUnitType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ServerUnitType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the UnitType|
 |HasComponent|Object|AlternativeUnits||BaseObjectType|O|
 |HasProperty|Variable|ConversionLimit|ConversionLimitEnum|PropertyType|M|
 |HasComponent|Object|CoherentUnit||UnitType|O|
+  
 | **Conformance Units** |
+|---|
 |Data Access Quantities Base|
   
 
@@ -1415,7 +1481,7 @@ The *CoherentUnit* of a value is a derived unit that, for a given system of quan
 
 The components of the *ServerUnitType* have additional subcomponents which are defined in [Table 42](/§\_Ref108878243) .  
 
- **Table 42\- ServerUnitType Additional Subcomponents**   
+Table 42 - ServerUnitType Additional Subcomponents  
 
 | **BrowsePath** | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
 |---|---|---|---|---|---|---|
@@ -1432,18 +1498,22 @@ The use of conversions enables that a server and a client can work with differen
 
 As a single server can distribute values to a number of clients with different needs the actual conversion has to be performed at client side.  
 
- **Table 43\- AlternativeUnitType definition**   
+Table 43 - AlternativeUnitType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AlternativeUnitType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the UnitType|
 |HasProperty|Variable|LinearConversion|LinearConversionDataType|PropertyType|O|
 |HasProperty|Variable|MathMLConversion|String|PropertyType|O|
 |HasProperty|Variable|MathMLInverseConversion|String|PropertyType|O|
+  
 | **Conformance Units** |
+|---|
 |Data Access Alternative Units|
   
 
@@ -1475,16 +1545,20 @@ The *SyntaxReferenceEntryType* defined in [Table 44](/§\_Ref108877933) is used 
 
 Because of their well-defined NodeIds (see [6.3.2](/§\_Ref108950324) ), instances of this type are not required in the *AddressSpace* .  
 
- **Table 44\- SyntaxReferenceEntryType Definition**   
+Table 44 - SyntaxReferenceEntryType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|SyntaxReferenceEntryType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the DictionaryEntryType defined in [OPC 10000-19](/§UAPart19)|
 |HasProperty|Variable|CommonName|String|PropertyType|M|
+  
 | **Conformance Units** |
+|---|
 |Data Access Quantity Syntax Reference|
   
 
@@ -1510,7 +1584,7 @@ The *Reference* has to change if the value (the concrete *EngineeringUnit* ) is 
 
 The *HasEngineeringUnitDetails* is formally defined in [Table 45](/§\_Ref16854066) .  
 
- **Table 45\- HasEngineeringUnitDetails definition**   
+Table 45 - HasEngineeringUnitDetails definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -1518,9 +1592,13 @@ The *HasEngineeringUnitDetails* is formally defined in [Table 45](/§\_Ref168540
 |InverseName|EngineeringUnitDetailsOf|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of *NonHierarchicalReferences* defined in [OPC 10000-5](/§UAPart5) .|
+  
 | **Conformance Units** |
+|---|
 |Data Access Quantities Base|
   
 
@@ -1538,7 +1616,7 @@ The *TargetNode* of this *ReferenceType* shall be an *Instance* of the *Quantity
 
 The *HasQuantity* is formally defined in [Table 46](/§\_Ref106800420) .  
 
- **Table 46\- HasQuantity definition**   
+Table 46 - HasQuantity definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -1546,9 +1624,13 @@ The *HasQuantity* is formally defined in [Table 46](/§\_Ref106800420) .
 |InverseName|QuantityOf|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of *NonHierarchicalReferences* defined in [OPC 10000-5](/§UAPart5) .|
+  
 | **Conformance Units** |
+|---|
 |Data Access Quantities Base|
   
 
@@ -1560,7 +1642,7 @@ The *HasQuantity* is formally defined in [Table 46](/§\_Ref106800420) .
 
 This structure contains additions as explanation and specification of the physical quantity such as "relative" for a relative velocity. The structure is defined in [Table 47](/§\_Ref109726409) .  
 
- **Table 47\- AnnotationDataType Structure**   
+Table 47 - AnnotationDataType Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1574,7 +1656,7 @@ This structure contains additions as explanation and specification of the physic
 
 Examples are given in [Table 48](/§\_Ref106800459) .  
 
- **Table 48\- AnnotationDataType examples**   
+Table 48 - AnnotationDataType examples  
 
 | **Name** | **Values for a linear acceleration** | **Values for AC voltage** | **Values for DC voltage** | **Values for AC RMS voltage** |
 |---|---|---|---|---|
@@ -1588,15 +1670,19 @@ Examples are given in [Table 48](/§\_Ref106800459) .
 
 Its representation in the *AddressSpace* is defined in [Table 49](/§\_Ref46498488) .  
 
- **Table 49\- AnnotationDataType definition**   
+Table 49 - AnnotationDataType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AnnotationDataType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Structure defined in OPC 10000-5|
+  
 | **Conformance Units** |
+|---|
 |Data Access Quantities Base|
   
 
@@ -1612,7 +1698,7 @@ The values of the structure can also be used for a simple inverse conversion. It
 
 ![image019.png](images/image019.png)  
 
- **Table 50\- LinearConversionDataType Structure**   
+Table 50 - LinearConversionDataType Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1627,15 +1713,19 @@ The values of the structure can also be used for a simple inverse conversion. It
 
 Its representation in the *AddressSpace* is defined in [Table 49](/§\_Ref46498488) .  
 
- **Table 51\- LinearConversionDataType Definition**   
+Table 51 - LinearConversionDataType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|LinearConversionDataType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Structure defined in OPC 10000-5|
+  
 | **Conformance Units** |
+|---|
 |Data Access Alternative Units|
   
 
@@ -1645,7 +1735,7 @@ Its representation in the *AddressSpace* is defined in [Table 49](/§\_Ref464984
 
 *ConversionLimitEnum* indicates whether the *ServerUnit* can be converted. A distinction is made between NO\_CONVERSION, LIMITED and UNLIMITED. NO\_CONVERSION means that no conversion is allowed (e.g. for statistical values). LIMITED conversion means that either only the conversions mentioned in the *AlternativeUnits* are to be used or the client requires specific know-how for the conversion. UNLIMITED means the conversion is simple and possible if the client knows the *UnitSystem* . The enumeration is defined in [Table 52](/§\_Ref16854259) .  
 
- **Table 52\- ConversionLimitEnum Items**   
+Table 52 - ConversionLimitEnum Items  
 
 | **Name** | **Value** | **Description** |
 |---|---|---|
@@ -1658,16 +1748,20 @@ Its representation in the *AddressSpace* is defined in [Table 49](/§\_Ref464984
 
 Its representation in the AddressSpace is defined in [Table 53](/§\_Ref46498546) .  
 
- **Table 53\- ConversionLimitEnum Definition**   
+Table 53 - ConversionLimitEnum Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ConversionLimitEnum|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the Enumeration type defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|EnumStrings|LocalizedText []|PropertyType||
+  
 | **Conformance Units** |
+|---|
 |Data Access Alternative Units|
   
 
@@ -1685,7 +1779,7 @@ An additional dimensionless exponent is used for countable things that have no p
 
 The *QuantityDimension* elements are defined in [Table 54](/§\_Ref106800656) .  
 
- **Table 54\- QuantityDimension DataType structure**   
+Table 54 - QuantityDimension DataType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -1704,15 +1798,19 @@ The *QuantityDimension* elements are defined in [Table 54](/§\_Ref106800656) .
 
 Its representation in the *AddressSpace* is defined in [Table 55](/§\_Ref106800951) .  
 
- **Table 55\- QuantityDimension definition**   
+Table 55 - QuantityDimension definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|QuantityDimension|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of Structure defined in [OPC 10000-5](/§UAPart5) .|
+  
 | **Conformance Units** |
+|---|
 |Data Access Quantities Base|
   
 
@@ -1732,7 +1830,7 @@ and the dimension of the physical quantity kind "things (e.g., screws) per time"
 
   
 
- **Table 56\- QuantityDimension examples**   
+Table 56 - QuantityDimension examples  
 
 | **Name** | **Values for speed** | **Values for force** | **Values for "things per time"** |
 |---|---|---|---|
@@ -1807,7 +1905,7 @@ Table 59 contains GOOD (success) codes.
 
 Note again, that these are the codes that are specific for Data Access and supplement the codes that apply to all types of data which are defined in [OPC 10000-4](/§UAPart4) .  
 
- **Table 57\- Operation level result codes for BAD data quality**   
+Table 57 - Operation level result codes for BAD data quality  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1825,17 +1923,13 @@ Note again, that these are the codes that are specific for Data Access and suppl
 
   
 
- **Table 58\- Operation level result codes for UNCERTAIN data quality**   
+Table 58 - Operation level result codes for UNCERTAIN data quality  
 
 | **Symbolic Id** | **Description** |
 |---|---|
 |Uncertain|Defined in [OPC 10000-4](/§UAPart4) . It shall be used when there is no special reason why the Value is uncertain.|
-|Uncertain\_ NoCommunicationLastUsable|Communication to the data source has failed. The variable value is the last value that had a good quality and it is uncertain whether this value is still current.  
-
-The server timestamp in this case is the last time that the communication status was checked. The time at which the value was last verified to be true is no longer available.|
-|Uncertain\_LastUsableValue|Whatever was updating this value has stopped doing so. This happens when an input variable is configured to receive its value from another variable and this configuration is cleared after one or more values have been received.  
-
-This status/substatus is not used to indicate that a value is stale. Stale data can be detected by the client looking at the timestamps.|
+|Uncertain\_ NoCommunicationLastUsable|Communication to the data source has failed. The variable value is the last value that had a good quality and it is uncertain whether this value is still current.<br>The server timestamp in this case is the last time that the communication status was checked. The time at which the value was last verified to be true is no longer available.|
+|Uncertain\_LastUsableValue|Whatever was updating this value has stopped doing so. This happens when an input variable is configured to receive its value from another variable and this configuration is cleared after one or more values have been received.<br>This status/substatus is not used to indicate that a value is stale. Stale data can be detected by the client looking at the timestamps.|
 |Uncertain\_SubstituteValue|The value is an operational value that was manually overwritten.|
 |Uncertain\_InitialValue|The value is an initial value for a variable that normally receives its value from another variable. This status/substatus is set only during configuration while the variable is not operational (while it is out-of-service).|
 |Uncertain\_SensorNotAccurate|The value is at one of the sensor limits. The Limits bits define which limit has been reached. Also set if the device can determine that the sensor has reduced accuracy (e.g. degraded analyzer), in which case the Limits bits indicate that the value is not limited.|
@@ -1848,7 +1942,7 @@ This status/substatus is not used to indicate that a value is stale. Stale data 
 
   
 
- **Table 59\- Operation level result codes for GOOD data quality**   
+Table 59 - Operation level result codes for GOOD data quality  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -1984,7 +2078,7 @@ Below are mappings of the property details to the OPC UA Property:
 
 [Table A.](/§\_Ref115266577) shows the mapping between the common OPC COM DA properties to the OPC UA Node attributes/properties.  
 
- **Table A. 1\- OPC COM DA to OPC UA Properties mapping**   
+Table A. 1 - OPC COM DA to OPC UA Properties mapping  
 
 | **Property Name (PropertyID) of OPC COM DA** | **OPC UA Information Model** | **OPC UA DataType** |
 |---|---|---|
@@ -2048,13 +2142,9 @@ Figure A. 2 - OPC COM DA to OPC UA data and error mapping
 
 The data values in the DA server are represented as Variant data type. The COM UA Wrapper converts them to the corresponding OPC UA *DataType* . The mapping is shown in [Table A.2](/§\_Ref115266683) :  
 
- **Table A. 2\- DataTypes and mapping**   
+Table A. 2 - DataTypes and mapping  
 
-| **Variant Data Type**   
-
- **(In DA server)** | **OPC UA Data type Mapping in COM UA Server**   
-
- **(DataValue structure)** |
+| **Variant Data Type** <br> **(In DA server)** | **OPC UA Data type Mapping in COM UA Server** <br> **(DataValue structure)** |
 |---|---|
 |VT\_I2|Int16|
 |VT\_I4|Int32|
@@ -2091,7 +2181,7 @@ Please note that the Vendor quality is currently discarded.
 
 [Table A.3](/§\_Ref115266749) shows a mapping of the OPC COM DA primary quality mapping to OPC UA status code  
 
- **Table A. 3\- Quality mapping**   
+Table A. 3 - Quality mapping  
 
 | **OPC DA Primary Quality (Quality & Sub status QQSSSS)** | **OPC UA Status Code** |
 |---|---|
@@ -2133,7 +2223,7 @@ If there are errors for the items in the Read from the DA server, then these are
 
 The mapping of the OPC COM DA Read Errors code to OPC UA Status code (in the COM UA Wrapper) is shown in [Table A.4](/§\_Ref115266902) :  
 
- **Table A. 4\- OPC DA Read error mapping**   
+Table A. 4 - OPC DA Read error mapping  
 
 | **OPC DA Error ID** | **OPC UA Status Code** |
 |---|---|
@@ -2161,7 +2251,7 @@ If there are errors for the items in the Write from the DA server, then these ar
 
 The mapping of the OPC COM DA Write Errors code to OPC UA Status code (in the COM UA Wrapper) is shown in [Table A.5](/§\_Ref115266864) :  
 
- **Table A. 5\- OPC DA Write error code mapping**   
+Table A. 5 - OPC DA Write error code mapping  
 
 | **OPC DA Error ID** | **OPC UA Status Code** |
 |---|---|
@@ -2346,7 +2436,7 @@ Figure A. 5 - OPC UA to OPC DA data & error mapping
 
 The COM UA Proxy converts the OPC UA Data Value to the corresponding OPC DA Variant type. The mapping is shown in [Table A.6](/§\_Ref115267323) . For DataTypes that are subtypes of an existing base DataType the conversion for the Base DataType is used.  
 
- **Table A. 6\- DataTypes and Mapping**   
+Table A. 6 - DataTypes and Mapping  
 
 | **OPC UA Data type (In UA Server)** | **Variant Data Type (In DA server)** |
 |---|---|
@@ -2391,7 +2481,7 @@ The Severity field of the Status code is mapped to the primary quality. The SubC
 
 [Table A.7](/§\_Ref115267377) shows a mapping of the OPC UA status code to OPC DA primary quality  
 
- **Table A. 7\- Quality mapping**   
+Table A. 7 - Quality mapping  
 
 | **OPC UA Status Code** | **OPC DA Primary Quality (Quality & Sub status QQSSSS)** |
 |---|---|
@@ -2428,7 +2518,7 @@ If the Read Service call fails or If there are errors for some of the Nodes, the
 
 The mapping of the OPC UA Status code to OPC DA Read Error code (in the COM UA Proxy) is shown in [Table A.8](/§\_Ref115267461) :  
 
- **Table A. 8\- OPC UA Read error mapping**   
+Table A. 8 - OPC UA Read error mapping  
 
 | **OPC UA Status Code** | **OPC DA Error ID** |
 |---|---|
@@ -2454,7 +2544,7 @@ If the Write Service call fails or if there are errors for some of the Nodes, th
 
 The mapping of the OPC UA Status code to OPC DA Write Error code (in the COM UA Proxy) is shown in [Table A.9](/§\_Ref115267510) :  
 
- **Table A. 9\- OPC UA Write error code mapping**   
+Table A. 9 - OPC UA Write error code mapping  
 
 | **OPC UA Status Code** | **OPC DA Error ID** |
 |---|---|
@@ -2537,8 +2627,9 @@ candela (cd, luminous intensity)
 
   
 
-|\< *sign* \>|::=|"+" | "-"|
+||||
 |---|---|---|
+|\< *sign* \>|::=|"+" | "-"|
 |\< *digit* \>|::=|"0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"|
 |\< *digits* \>|::=|\< *digit* \>\< *digits* \> | \< *digit* \>|
 |\< *factor* \>|::=|\< *digits* \>|
@@ -2579,7 +2670,9 @@ Full name and print symbol are defined by other bodies and are out of scope of T
 
 | **The prefix symbols** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **value** |
+|---|---|---|---|
 |Y|yotta|Y|1 × 1024|
 |Z|zetta|Z|1 × 1021|
 |E|exa|E|1 × 1018|
@@ -2606,11 +2699,12 @@ Full name and print symbol are defined by other bodies and are out of scope of T
 
   
 
-|The special prefix symbols for powers of 2  
-
-NOTE These symbols are for use in information technology as proposed by the IEEE.|
+||
 |---|
+|The special prefix symbols for powers of 2<br>NOTE These symbols are for use in information technology as proposed by the IEEE.|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **value** |
+|---|---|---|---|
 |Ki|kibi|Ki|1 × 10241|
 |Mi|mebi|Mi|1 × 10242|
 |Gi|gibi|Gi|1 × 10243|
@@ -2646,11 +2740,12 @@ The selection of the base and the order of the units in the base are not normati
 
   
 
-| ***Dimensionless units***   
-
-NOTE The units ppb and ppt are deprecated because the names "billion" and "trillion" are ambiguous.|
+||
 |---|
+| ***Dimensionless units*** <br>NOTE The units ppb and ppt are deprecated because the names "billion" and "trillion" are ambiguous.|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |10\*|the number ten for arbitrary powers|10n||no|
 |10^|the number ten for arbitrary powers|10n||no|
 |[pi]|the number pi|π||no|
@@ -2665,11 +2760,12 @@ NOTE The units ppb and ppt are deprecated because the names "billion" and "trill
 
   
 
-| **SI units**   
-
-NOTE Defined by CGPM (General Conference on Weights and Measures).|
+||
 |---|
+| **SI units** <br>NOTE Defined by CGPM (General Conference on Weights and Measures).|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |mol|mole|mol|amount of substance|yes|
 |sr|steradian|sr|solid angle|yes|
 |Hz|hertz|Hz|frequency|yes|
@@ -2699,7 +2795,9 @@ NOTE Defined by CGPM (General Conference on Weights and Measures).|
 
 | **Other units from ISO 1000, ISO 2955, and some from ANSI X3.50.** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |gon|gon, grade|□g|plane angle|no|
 |deg|degree|°|plane angle|no|
 |'|minute|'|plane angle|no|
@@ -2731,11 +2829,12 @@ NOTE Defined by CGPM (General Conference on Weights and Measures).|
 
   
 
-| **Natural unit**   
-
-NOTE ** Fundamental constants of nature and units derived from these constants.|
+||
 |---|
+| **Natural unit** <br>NOTE ** Fundamental constants of nature and units derived from these constants.|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |[c]|velocity of light|c|velocity|yes|
 |[h]|Planck constant|h|action|yes|
 |[k]|Boltzmann constant|k|(unclassified)|yes|
@@ -2756,11 +2855,12 @@ NOTE ** Fundamental constants of nature and units derived from these constants.|
 
   
 
-| **CGS units**   
-
-NOTE The units of the older Centimeter-Gram-Second (CGS) system.|
+||
 |---|
+| **CGS units** <br>NOTE The units of the older Centimeter-Gram-Second (CGS) system.|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |Ky|Kayser|K|lineic number|yes|
 |Gal|Gal|Gal|acceleration|yes|
 |dyn|dyne|dyn|force|yes|
@@ -2787,11 +2887,12 @@ NOTE The units of the older Centimeter-Gram-Second (CGS) system.|
 
 .  
 
-| **International customary units**   
-
-NOTE The unified U.S. and British Imperial customary units, so called "international" customary units|
+||
 |---|
+| **International customary units** <br>NOTE The unified U.S. and British Imperial customary units, so called "international" customary units|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |[in\_i]|inch|in|length|no|
 |[ft\_i]|foot|ft|length|no|
 |[yd\_i]|yard|yd|length|no|
@@ -2816,11 +2917,12 @@ NOTE The unified U.S. and British Imperial customary units, so called "internati
 
   
 
-| **Older U.S. "survey" lengths**   
-
-NOTE also called "statute" lengths|
+||
 |---|
+| **Older U.S. "survey" lengths** <br>NOTE also called "statute" lengths|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |[ft\_us]|foot|ft (US survey)|length|no|
 |[yd\_us]|yard||length|no|
 |[in\_us]|inch||length|no|
@@ -2846,7 +2948,9 @@ NOTE also called "statute" lengths|
 
 | **British Imperial lengths** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |[in\_br]|inch||length|no|
 |[ft\_br]|foot||length|no|
 |[rd\_br]|rod||length|no|
@@ -2865,11 +2969,12 @@ NOTE also called "statute" lengths|
 
   
 
-| **U.S. volumes**   
-
-NOTE Including so-called "dry measures"|
+||
 |---|
+| **U.S. volumes** <br>NOTE Including so-called "dry measures"|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |[gal\_us]|Queen Anne's wine gallon||fluid volume|no|
 |[bbl\_us]|barrel|barrel (US)|fluid volume|no|
 |[qt\_us]|quart|liq qt (US)|fluid volume|no|
@@ -2899,7 +3004,9 @@ NOTE Including so-called "dry measures"|
 
 | **British Imperial volumes** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |[gal\_br]|gallon|gal (UK)|volume|no|
 |[pk\_br]|peck|pk (UK)|volume|no|
 |[bu\_br]|bushel|bushel (UK)|volume|no|
@@ -2917,7 +3024,9 @@ NOTE Including so-called "dry measures"|
 
 | **Avoirdupois weights** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |[gr]|grain||mass|no|
 |[lb\_av]|pound||mass|no|
 |[oz\_av]|ounce||mass|no|
@@ -2935,7 +3044,9 @@ NOTE Including so-called "dry measures"|
 
 | **Troy weights** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |[pwt\_tr]|pennyweight||mass|no|
 |[oz\_tr]|ounce||mass|no|
 |[lb\_tr]|pound||mass|no|
@@ -2947,7 +3058,9 @@ NOTE Including so-called "dry measures"|
 
 | **Units used in typesetting** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |[lne]|line||length|no|
 |[pnt]|point||length|no|
 |[pca]|pica||length|no|
@@ -2968,7 +3081,9 @@ NOTE Including so-called "dry measures"|
 
 | **Legacy Units for Heat and Temperature** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |[degF]|degree Fahrenheit|°F|temperature|no|
 |[degR]|degree Rankine|°R|temperature|no|
 |[degRe]|degree Réaumur|°Ré|temperature|no|
@@ -2997,7 +3112,9 @@ NOTE Including so-called "dry measures"|
 
 | **Units Used Predominantly in Clinical Medicine** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |m[H2O]|meter of water column|m H2O|pressure|yes|
 |m[Hg]|meter of mercury column|m Hg|pressure|yes|
 |[in\_i'H2O]|inch of water column|in H2O|pressure|no|
@@ -3032,7 +3149,9 @@ NOTE Including so-called "dry measures"|
 
 | **Units used in Chemical and Biomedical Laboratories** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |eq|equivalents|eq|amount of substance|yes|
 |osm|osmole|osm|amount of substance (dissolved particles)|yes|
 |[pH]|pH|pH|acidity|no|
@@ -3081,11 +3200,12 @@ NOTE Including so-called "dry measures"|
 
 .  
 
-| **Levels**   
-
-NOTE Pseudo-units defined to express logarithms of ratios between two quantities of the same kind|
+||
 |---|
+| **Levels** <br>NOTE Pseudo-units defined to express logarithms of ratios between two quantities of the same kind|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |Np|neper|Np|level|yes|
 |B|bel|B|level|yes|
 |B[SPL]|bel sound pressure|B(SPL)|pressure level|yes|
@@ -3103,7 +3223,9 @@ NOTE Pseudo-units defined to express logarithms of ratios between two quantities
 
 | **Miscellaneous Units** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |st|stere|st|volume|yes|
 |Ao|Ångström|Å|length|no|
 |b|barn|b|action area|no|
@@ -3124,7 +3246,9 @@ NOTE Pseudo-units defined to express logarithms of ratios between two quantities
 
 | **Units used in Information Science and Technology** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |bit\_s|bit|bits|amount of information|no|
 |bit|bit|bit|amount of information|yes|
 |By|byte|B|amount of information|yes|
@@ -3137,7 +3261,9 @@ NOTE Pseudo-units defined to express logarithms of ratios between two quantities
 
 | **Examples for Non-Units** |
 |---|
+  
 | **Symbol (c/s)** | **Display Name** | **Print Symbol** | **Kind of Quantity** | **Metric** |
+|---|---|---|---|---|
 |\{tot\}|particles total count|tot.|number|no|
 |\{tbl\}|tablets|tbl.|number|no|
 |\{rbc\}|red blood cell count|R.B.C.|number|no|
@@ -3159,9 +3285,15 @@ NOTE Pseudo-units defined to express logarithms of ratios between two quantities
 
 | **Type** |Language / syntactical evaluation of unit expressions|
 |---|---|
+  
 | **Coverage** |Unlimited / is able to express any imaginable unit of measure|
+|---|---|
+  
 | **Hosted by** |Regenstrief Institute|
+|---|---|
+  
 | **Homepage** |[https://ucum.org](https://ucum.org/)|
+|---|---|
   
 
   
@@ -3192,11 +3324,15 @@ UCUM defines
 
 | **Type** |Ontology|
 |---|---|
+  
 | **Coverage** |Limited / around 1750 Units originating from 10 systems of units for 880 quantity kinds|
+|---|---|
+  
 | **Hosted by** |public charity non-profit organization|
-| **Homepage** |[https://qudt.org](https://qudt.org/)  
-
-[https://github.com/qudt/qudt-public-repo](https://github.com/qudt/qudt-public-repo)|
+|---|---|
+  
+| **Homepage** |[https://qudt.org](https://qudt.org/)<br>[https://github.com/qudt/qudt-public-repo](https://github.com/qudt/qudt-public-repo)|
+|---|---|
   
 
   
@@ -3243,9 +3379,15 @@ Unit examples:
 
 | **Type** |Dictionary|
 |---|---|
+  
 | **Coverage** |A single list of code elements for units of measure for use worldwide in administration, commerce, transport, science and technology.|
+|---|---|
+  
 | **Hosted by** |The United Nations, through its Centre for Trade Facilitation and Electronic Business (UN/CEFACT).|
+|---|---|
+  
 | **Homepage** |[https://www.unece.org/cefact/](https://www.unece.org/cefact/)|
+|---|---|
   
 
   
@@ -3290,9 +3432,15 @@ Unit examples:
 
 | **Type** |Dictionary|
 |---|---|
+  
 | **Coverage** |A registry for metadata used for classification and description of products in all industrial/technical domains.|
+|---|---|
+  
 | **Hosted by** |International Electrotechnical Commission (IEC)|
+|---|---|
+  
 | **Homepage** |https://cdd.iec.ch/|
+|---|---|
   
 
   
@@ -3327,13 +3475,15 @@ Unit examples:
 
 | **Type** |Typesetting Rules|
 |---|---|
+  
 | **Coverage** |Limited / Focuses on the SI units and provides rules to create complex units|
+|---|---|
+  
 | **Hosted by** |Joseph Wright|
-| **Homepage** |siunitx is free at  
-
-[https://ctan.org/pkg/siunitx](https://ctan.org/pkg/siunitx)  
-
-[https://www.texdev.net/](https://www.texdev.net/)|
+|---|---|
+  
+| **Homepage** |siunitx is free at<br>[https://ctan.org/pkg/siunitx](https://ctan.org/pkg/siunitx)<br>[https://www.texdev.net/](https://www.texdev.net/)|
+|---|---|
   
 
   

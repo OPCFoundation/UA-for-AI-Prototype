@@ -1,0 +1,1040 @@
+{
+  "Title": "Part 10 - Programs",
+  "Chunks": [
+    {
+      "Id": "97381026-c8e6-458a-ab2c-26ef927e9e34",
+      "Header": "Document: Part 10 - Programs\n---\n",
+      "Content": "1 Scope"
+    },
+    {
+      "Id": "5a1bd4ec-aefc-48e6-bbe8-0797bd2a3b4c",
+      "Header": "Document: Part 10 - Programs\nSection: 1 Scope\n---\n",
+      "Content": "This part of OPC 10000 defines the Information Model associated with Programs in OPC Unified Architecture (OPC UA). This includes the description of the NodeClasses, standard Properties, Methods and Events and associated behaviour and information for Programs.\nThe complete AddressSpace model including all NodeClasses and Attributes is specified in[OPC 10000-3](/\u00A7UAPart3). The Services such as those used to invoke the Methods used to manage Programs are specified in[OPC 10000-4](/\u00A7UAPart4)."
+    },
+    {
+      "Id": "7cdb5610-2542-446b-8323-e9cf5fca6cb3",
+      "Header": "Document: Part 10 - Programs\n---\n",
+      "Content": "2 Normative references"
+    },
+    {
+      "Id": "8a3ac56a-5c2b-41b3-9241-0c206b4f213f",
+      "Header": "Document: Part 10 - Programs\nSection: 2 Normative references\n---\n",
+      "Content": "The following documents, in whole or in part, are normatively referenced in this document and are indispensable for its application. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments and errata) applies.\nOPC 10000-1, OPC Unified Architecture - Part 1: Overview and Concepts\nhttp://www.opcfoundation.org/UA/Part1/\nOPC 10000-3, OPC Unified Architecture - Part 3: Address Space Model\nhttp://www.opcfoundation.org/UA/Part3/\nOPC 10000-4, OPC Unified Architecture - Part 4: Services\nhttp://www.opcfoundation.org/UA/Part4/\nOPC 10000-5, OPC Unified Architecture - Part 5: Information Model\nhttp://www.opcfoundation.org/UA/Part5/\nOPC 10000-7, OPC Unified Architecture - Part 7: Profiles\nhttp://www.opcfoundation.org/UA/Part7/\nOPC 10000-16, OPC Unified Architecture - Part 16: State Machines\n[http://www.opcfoundation.org/UA/Part16/](http://www.opcfoundation.org/UA/Part16/)"
+    },
+    {
+      "Id": "823e3db6-ae42-440d-8400-7566236ed731",
+      "Header": "Document: Part 10 - Programs\n---\n",
+      "Content": "3 Terms, definitions and conventions"
+    },
+    {
+      "Id": "8fbd6c1d-1cc6-4777-ac87-b5486bca51d4",
+      "Header": "Document: Part 10 - Programs\nSection: 3 Terms, definitions and conventions\n---\n",
+      "Content": "3.1 Terms and definitions"
+    },
+    {
+      "Id": "b3e345fb-d302-4cfc-b304-43ed2f71dc0e",
+      "Header": "Document: Part 10 - Programs\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "For the purposes of this document, the terms and definitions given in[OPC 10000-1](/\u00A7UAPart1),[OPC 10000-3](/\u00A7UAPart3), as well as the following apply.\n3.1.1 Function"
+    },
+    {
+      "Id": "18f01af7-0f25-4967-a2b3-22d6be0782a3",
+      "Header": "Document: Part 10 - Programs\nSection: 3.1.1 Function\n---\n",
+      "Content": "programmatic task performed by a Server or device, usually accomplished by computer code execution"
+    },
+    {
+      "Id": "820521f5-0819-48ed-9053-d1091d613ddd",
+      "Header": "Document: Part 10 - Programs\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.2 Finite State Machine"
+    },
+    {
+      "Id": "b6c78be3-e28b-47d8-bde0-83c55515f128",
+      "Header": "Document: Part 10 - Programs\nSection: 3.1.2 Finite State Machine\n---\n",
+      "Content": "sequence of states and valid state transitions along with the causes and effects of those state transitions that define the actions of a Program in terms of discrete stages"
+    },
+    {
+      "Id": "274330d5-264d-49f0-88d1-0d98120df5dd",
+      "Header": "Document: Part 10 - Programs\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.3 ProgramStateMachineType"
+    },
+    {
+      "Id": "9964ced4-600b-42a6-b8f3-b55449514c56",
+      "Header": "Document: Part 10 - Programs\nSection: 3.1.3 ProgramStateMachineType\n---\n",
+      "Content": "type definition of a Program and is a subtype of the FiniteStateMachineType"
+    },
+    {
+      "Id": "85c9ffbd-e8fd-4600-ab79-5ebbd697a1db",
+      "Header": "Document: Part 10 - Programs\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.4 Program Control Method"
+    },
+    {
+      "Id": "a104f759-9ac1-425e-ad9c-c5fa93ea464d",
+      "Header": "Document: Part 10 - Programs\nSection: 3.1.4 Program Control Method\n---\n",
+      "Content": "Method having specific semantics designed for the control of a Program by causing a state transition"
+    },
+    {
+      "Id": "f828bad5-ae66-47fc-a99b-c9f5733de99f",
+      "Header": "Document: Part 10 - Programs\nSection: 3.1 Terms and definitions\n---\n",
+      "Content": "3.1.5 Program Invocation"
+    },
+    {
+      "Id": "003c2f84-528c-4dd2-be68-5032da791a42",
+      "Header": "Document: Part 10 - Programs\nSection: 3.1.5 Program Invocation\n---\n",
+      "Content": "unique Object instance of a Program existing on a Server\nNote 1 to entry: A Program Invocation is distinguished from other Object instances of the same ProgramStateMachineType by the object node\u0027s unique browse path."
+    },
+    {
+      "Id": "1f271984-8de4-4e56-af21-cdbd8f9a5b33",
+      "Header": "Document: Part 10 - Programs\nSection: 3 Terms, definitions and conventions\n---\n",
+      "Content": "3.2 Abbreviations"
+    },
+    {
+      "Id": "2347dcbd-d955-4009-acbc-7e93043f1f45",
+      "Header": "Document: Part 10 - Programs\nSection: 3.2 Abbreviations\n---\n",
+      "Content": "DA Data Access\nFSM Machine\nHMI Human Machine Interfaces\nUA Unified Architecture"
+    },
+    {
+      "Id": "6ada405c-a1e7-40b6-9d3f-67804e57b124",
+      "Header": "Document: Part 10 - Programs\n---\n",
+      "Content": "4 Concepts"
+    },
+    {
+      "Id": "eccb0012-2318-49ad-a2c2-bf2d9ee11d9c",
+      "Header": "Document: Part 10 - Programs\nSection: 4 Concepts\n---\n",
+      "Content": "4.1 General"
+    },
+    {
+      "Id": "a24c049c-10d8-478d-8440-74c976fda2ff",
+      "Header": "Document: Part 10 - Programs\nSection: 4.1 General\n---\n",
+      "Content": "Integrated automation facilities manage their operations through the exchange of data and the coordinated invocation of system Functions as illustrated in[Figure 1](/\u00A7_Ref273042017). Services are required to perform the data exchanges and to invoke the Functions that constitute system operation. These Functions may be invoked through Human Machine Interfaces, cell controllers, or other supervisory control and data acquisition type systems.  UA defines Methods and Programs as an interoperable way to advertise, discover, and request these Functions. They provide a normalizing mechanism for the semantic description, invocation, and result reporting of these Functions. Together Methods and Programs complement the other  UA Services and ObjectTypes to facilitate the operation of an automation environment using a client-server hierarchy."
+    },
+    {
+      "Id": "3a31c8ca-4952-4286-a853-aa38df0427df",
+      "Header": "Document: Part 10 - Programs\nSection: 4.1 General\nCaption: Figure 1 - Automation facility control\n---\n",
+      "Content": "[image004.png](images/image004.png)"
+    },
+    {
+      "Id": "c9016dbe-286f-4ea9-95e2-e9ee38749ead",
+      "Header": "Document: Part 10 - Programs\nSection: 4.1 General\n---\n",
+      "Content": "Figure 1 - Automation facility control\nMethods and Programs model Functions typically have different scopes, behaviours, lifetimes, and complexities in Servers and the underlying systems. These Functions are not normally characterized by the reading or writing of data which is accomplished with the  UA A ttribute service set.\nMethods represent basic Functions in the Server that can be invoked by a Client. Programs, by contrast, model more complex and stateful functionality in the system. For example, a method call may be used to perform a calculation or reset a counter. A Program is used to run and control a batch process, execute a machine tool part program, or manage a domain download. Methods and their invocation mechanism are described in[OPC 10000-3](/\u00A7UAPart3) and[OPC 10000-4](/\u00A7UAPart4).\nThis standard describes the extensions to, or specific use of, the core capabilities defined in[OPC 10000-5](/\u00A7UAPart5) and[OPC 10000-16](/\u00A7UAPart16) as required for Programs."
+    },
+    {
+      "Id": "2852f37a-cfcb-4ce9-9af1-c0082f297078",
+      "Header": "Document: Part 10 - Programs\nSection: 4 Concepts\n---\n",
+      "Content": "4.2 Programs"
+    },
+    {
+      "Id": "a39ff8c9-d7ae-4dc0-9269-a3032999d7d7",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2 Programs\n---\n",
+      "Content": "4.2.1 Overview"
+    },
+    {
+      "Id": "0974e29f-514b-4402-9884-e9c84e5ebf1f",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.1 Overview\n---\n",
+      "Content": "Programs are complex Functions in a Server or underlying system that can be invoked and managed by a Client. Programs can represent any level of functionality within a system or process in which Client control or intervention is required and progress monitoring is desired.[Figure 2](/\u00A7_Ref273042130) illustrates the model."
+    },
+    {
+      "Id": "95f99e6e-a3e6-4bcc-a44f-e866e6e4373c",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.1 Overview\nCaption: Figure 2 - Program illustration\n---\n",
+      "Content": "[image005.png](images/image005.png)"
+    },
+    {
+      "Id": "3c4f0121-fb86-4e7e-87de-13afcb6306da",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.1 Overview\n---\n",
+      "Content": "Figure 2 - Program illustration\nPrograms are stateful and transition through a prescribed sequence of states as they execute. Their behaviour is defined by a Program Finite State Machine (PFSM). The elements of the PFSM describe the phases of a Program\u0027s execution in terms of valid transitions between a set of states, the stimuli or causes of those transitions, and the resultant effects of the transitions."
+    },
+    {
+      "Id": "602c728f-21eb-48c2-b76e-832e37f6e4ec",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2 Programs\n---\n",
+      "Content": "4.2.2 Security considerations"
+    },
+    {
+      "Id": "a06faffa-a0e7-4fd5-8796-7b7f66a13c17",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.2 Security considerations\n---\n",
+      "Content": "Since Programs can be used to perform advanced control algorithms or other actions, their use should be restricted to personnel with appropriate access rights. It is recommended that AuditUpdateMethodEvents are generated to allow monitoring the number of running Programs in addition to their execution frequency."
+    },
+    {
+      "Id": "59291a5c-d7a4-4f71-8631-7faddda9e88a",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2 Programs\n---\n",
+      "Content": "4.2.3 Machine"
+    },
+    {
+      "Id": "fea267bb-f51d-4921-b39b-3281528fbf07",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.3 Machine\n---\n",
+      "Content": "The states, transitions, causes and effects that compose the Program Finite State Machine are listed in[Table 1](/\u00A7_Ref146359298) and illustrated in[Figure 3](/\u00A7_Ref144113395).\nTable 1 - Program   Machine"
+    },
+    {
+      "Id": "45258ceb-9056-4cd6-ba94-ab21cbb1eb5b",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.3 Machine\nCaption: Table 1 - Program   Machine\n---\n",
+      "Content": "No.\nTransition name\nCause\nFrom state\nTo state\nEffect\n1\nHaltedToReady\nReset Method\nHalted\nReady\nReport Transition 1 Event/Result\n2\nReadyToRunning\nStart Method\nReady\nRunning\nReport Transition 2 Event/Result\n3\nRunningToHalted\nHalt Method or Internal (Error)\nRunning\nHalted\nReport Transition 3 Event/Result\n4\nRunningToReady\nInternal\nRunning\nReady\nReport Transition 4 Event/Result\n5\nRunningToSuspended\nSuspend Method\nRunning\nSuspended\nReport Transition 5 Event/Result\n6\nSuspendedToRunning\nResume Method\nSuspended\nRunning\nReport Transition 6 Event/Result\n7\nSuspendedToHalted\nHalt Method\nSuspended\nHalted\nReport Transition 7 Event/Result\n8\nSuspendedToReady\nInternal\nSuspended\nReady\nReport Transition 8 Event/Result\n9\nReadyToHalted\nHalt Method\nReady\nHalted\nReport Transition 9 Event/Result"
+    },
+    {
+      "Id": "52094236-4444-46a8-a825-30e32898f0d1",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.3 Machine\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "37b9883b-e2d2-4d9e-9ded-45a6d86eec5e",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.3 Machine\nCaption: Figure 3 - Program states and transitions\n---\n",
+      "Content": "[image006.png](images/image006.png)"
+    },
+    {
+      "Id": "ec5cf71c-c2aa-409f-8d3e-78d397fb30ab",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.3 Machine\n---\n",
+      "Content": "Figure 3 - Program states and transitions"
+    },
+    {
+      "Id": "ef511515-2b2d-4b26-8fe6-ff880d085fbb",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2 Programs\n---\n",
+      "Content": "4.2.4 Program states"
+    },
+    {
+      "Id": "25dcca99-abe9-4bde-b9ab-658bf9e2922f",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.4 Program states\n---\n",
+      "Content": "A standard set of base states is defined for Programs as part of the Program Finite State Machine. These states represent the stages in which a Program can exist at an instant in time as viewed by a Client. This state is the Program\u0027s current state. All Programs shall support this base set. A Program may or may not require a Client action to cause the state to change. The states are formally defined in[Table 2](/\u00A7_Ref273042569).\nTable 2 - Program states"
+    },
+    {
+      "Id": "24017770-0497-4869-b0f5-8c06c472ee31",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.4 Program states\nCaption: Table 2 - Program states\n---\n",
+      "Content": "State\nDescription\nReady\nThe Program is properly initialized and may be started.\nRunning\nThe Program is executing making progress towards completion.\nSuspended\nThe Program has been stopped prior to reaching a terminal state but may be resumed.\nHalted\nThe Program is in a terminal or failed state, and it cannot be started or resumed without being reset."
+    },
+    {
+      "Id": "1eb3f619-7d17-48f6-b579-5dad36587031",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.4 Program states\n---\n",
+      "Content": "The set of states defined to describe a Program can be expanded. Program substates can be defined for the base states to provide more resolution of a process and to describe the cause and effect(s) of additional stimuli and transitions. Standards bodies and industry groups may extend the base Program Finite State Model to conform to various industry models. For example, the Halted state can include the substates \u0022Aborted\u0022 and \u0022Completed\u0022 to indicate if the Function achieved a successful conclusion prior to the transition to Halted. Transitional states such as \u0022Starting\u0022 or \u0022Suspending\u0022 might also be extensions of the Running state, for example."
+    },
+    {
+      "Id": "34a7a161-aea6-436d-9039-3202a4eba613",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2 Programs\n---\n",
+      "Content": "4.2.5 State transitions"
+    },
+    {
+      "Id": "1c8d7f01-d7e5-412f-a0b8-f6926e80dafc",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.5 State transitions\n---\n",
+      "Content": "A standard set of state transitions is defined for the Machine. These transitions define the valid changes to the Program\u0027s current state in terms of an initial state and a resultant state. The transitions are formally defined in[Table 3](/\u00A7_Ref273042592).\nTable 3 - Program state transitions"
+    },
+    {
+      "Id": "ac587992-d3ed-41b8-8215-c768d97de588",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.5 State transitions\nCaption: Table 3 - Program state transitions\n---\n",
+      "Content": "Transition no.\nTransition name\nInitial state\nResultant state\n1\nHaltedToReady\nHalted\nReady\n2\nReadyToRunning\nReady\nRunning\n3\nRunningToHalted\nRunning\nHalted\n4\nRunningToReady\nRunning\nReady\n5\nRunningToSuspended\nRunning\nSuspended\n6\nSuspendedToRunning\nSuspended\nRunning\n7\nSuspendedToHalted\nSuspended\nHalted\n8\nSuspendedToReady\nSuspended\nReady\n9\nReadyToHalted\nReady\nHalted"
+    },
+    {
+      "Id": "445bf32a-40e0-4eba-a53e-710150c5b8b1",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.5 State transitions\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "b9f9ce46-6ce6-43db-90af-239e2e4061f4",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2 Programs\n---\n",
+      "Content": "4.2.6 Program state transition stimuli"
+    },
+    {
+      "Id": "be037842-3a79-4fec-843e-55ffd0e7ae04",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.6 Program state transition stimuli\n---\n",
+      "Content": "The stimuli or causes for a Program\u0027s state transitions can be internal to the Server or external. The completion of machining steps, the detection of an alarm condition, or the transmission of a data packet are examples of internal stimuli. Methods are an example of external stimuli. Standard Methods are defined which act as stimuli for the control of a Program."
+    },
+    {
+      "Id": "2158b5c6-9e4a-43c7-8c34-071bdc6c7911",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2 Programs\n---\n",
+      "Content": "4.2.7 Program Control Methods"
+    },
+    {
+      "Id": "5dd30eb9-d4b6-43c5-980f-a74d8f7844bc",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.7 Program Control Methods\n---\n",
+      "Content": "Clients manage a Program by calling Methods. The Methods impact a Program\u0027s behaviour by causing specified state transitions. The state transitions dictate the actions performed by the Program. This standard defines a set of standard Program Control Methods. These Methods provide sufficient means for a Client to run a Program.\n[Table 4](/\u00A7_Ref144627392) lists the set of defined Program Control Methods. Each Method causes transitions from specified states and shall be called when the Program is in one of those states.\nIndividual Programs can optionally support any subset of the Program Control Methods. For example, some Programs may not be permitted to suspend and so would not provide the Suspend and Resume Methods.\nPrograms can support additional user defined Methods. User defined Methods shall not change the behaviour of the base Program Finite State Machine.\nTable 4 - Program Control Methods"
+    },
+    {
+      "Id": "05002323-1d43-478b-a171-c78bdffc5960",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.7 Program Control Methods\nCaption: Table 4 - Program Control Methods\n---\n",
+      "Content": "Method Name\nDescription\nStart\nCauses the Program to transition from the Ready state to the Running state.\nSuspend\nCauses the Program to transition from the Running state to the Suspended state.\nResume\nCauses the Program to transition from the Suspended state to the Running state.\nHalt\nCauses the Program to transition from the Ready, Running or Suspended state to the Halted state.\nReset\nCauses the Program to transition from the Halted state to the Ready state."
+    },
+    {
+      "Id": "1faa8659-5352-4924-92fe-8557b1f28a94",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.7 Program Control Methods\n---\n",
+      "Content": "All Program Control Methods are defined with their BrowseName on the ProgramStateMachineType with the OptionalPlaceholder ModellingRule. As defined in[OPC 10000-3](/\u00A7UAPart3), this rule allows the inclusion of Arguments to these Methods on sub-types or on instances. For example, a Start Method may include an options argument that specifies dynamic options used to determine some program behaviour. The Method Call service specified in[OPC 10000-4](/\u00A7UAPart4) defines a return status. This return status indicates the success of the Program Control Method or a reason for its failure."
+    },
+    {
+      "Id": "40fe3398-e04e-433b-8c4e-aa9e00ca0831",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2 Programs\n---\n",
+      "Content": "4.2.8 Program state transition effects"
+    },
+    {
+      "Id": "fd490369-d7df-4147-903c-9f18525e1388",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.8 Program state transition effects\n---\n",
+      "Content": "A Program\u0027s state transition generally has a cause and also yields an effect. The effect is a by product of a Program state transition that can be used by a Client to monitor the progress of the Program. Effects can be internal or external. An external effect of a state transition is the generation of an Event notification. Each Program state transition is associated with a unique Event. These Events reflect the progression and trajectory of the Program through its set of defined states. The internal effects of a state transition can be the performance of some programmatic action such as the generation of data."
+    },
+    {
+      "Id": "3f577db3-adf9-406e-810e-c58292997ba7",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2 Programs\n---\n",
+      "Content": "4.2.9 Program result data"
+    },
+    {
+      "Id": "9d4908af-ccc2-4da8-8456-b0f9a023976a",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.9 Program result data\n---\n",
+      "Content": "4.2.9.1 Overview"
+    },
+    {
+      "Id": "7353637c-72a9-467f-9d52-fec67271af02",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.9.1 Overview\n---\n",
+      "Content": "Result data is generated by a running Program. The result data can be intermediate or final. Result data may be associated with specific Program state transitions."
+    },
+    {
+      "Id": "5cd05afc-7d52-4790-8011-ed2f6abd1e87",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.9 Program result data\n---\n",
+      "Content": "4.2.9.2 Intermediate result data"
+    },
+    {
+      "Id": "26674e23-809f-4298-8cf7-f77130cb5b0e",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.9.2 Intermediate result data\n---\n",
+      "Content": "Intermediate result data is transient and is generated by the Program in conjunction with non- terminal state transitions. The data items that compose the intermediate results are defined in association with specific Program state transitions. Their values are relevant only at the transition level.\nEach Program state transition can be associated with different result data items. Alternately, a set of transitions can share a result data item. Percentage complete is an example of intermediate result data. The value of percentage complete is produced when the state transition occurs and is available to the Client.\nClients acquire intermediate result data by subscribing to Program state transition Events. The Events specify the data items for each transition. When the transition occurs, the generated Event conveys the result data values captured to the subscribed Clients. If no Client is monitoring the Program, intermediate result data may be discarded."
+    },
+    {
+      "Id": "8ab17063-00c0-4312-a9e0-344f14eff27d",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.9 Program result data\n---\n",
+      "Content": "4.2.9.3 Terminal result data"
+    },
+    {
+      "Id": "d4f50361-46e4-4964-8300-c855059f5e9b",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.9.3 Terminal result data\n---\n",
+      "Content": "Terminal result data is the final data generated by the Program as it ceases execution. Total execution time, number of widgets produced, and fault condition encountered are examples of terminal result data. When the Program enters the terminal state, this result data can be conveyed to the Client by the transition Event. Terminal result data is also available within the Program to be read by a Client after the program stops. This data persists until the Program Instance is rerun or deleted."
+    },
+    {
+      "Id": "69546d5a-fdd2-439d-b6fc-b92cf1aa6faa",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.9 Program result data\n---\n",
+      "Content": "4.2.9.4 Monitoring Programs"
+    },
+    {
+      "Id": "f7e814fa-2e5f-4092-8839-ac753dc45a9a",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.9.4 Monitoring Programs\n---\n",
+      "Content": "Clients can monitor the activities associated with a Program\u0027s execution. These activities include the invocation of the management Methods, the generation of result data, and the progression of the Program through its states. Audit Events are provided for Method Calls and state transitions. These Events allow a record to be maintained of the Clients that interacted with any Program and the Program state transitions that resulted from that interaction."
+    },
+    {
+      "Id": "46a439e8-ad88-4986-b64a-f94969203918",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2 Programs\n---\n",
+      "Content": "4.2.10 Program lifetime"
+    },
+    {
+      "Id": "c2bdae1e-9f4a-415c-b9e6-b5ee38ed7b06",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.10 Program lifetime\n---\n",
+      "Content": "4.2.10.1 Overview"
+    },
+    {
+      "Id": "c8bbc91a-acc1-4984-8c4e-26f1ab1f69c5",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.10.1 Overview\n---\n",
+      "Content": "Programs can have different lifetimes. Some Programs may always be present on a Server while others are created and removed. Creation and removal can be controlled by a Client or may be restricted to local means.\nA Program can be Client creatable. If a Program is Client creatable, then the Client can add the Program to the Server. The Object Create Method defined in[OPC 10000-3](/\u00A7UAPart3), is used to create the Program instance. The initial state of the Program can be Halted or Ready. Some Programs, for example, may require that a resource becomes available after its creation and before it is ready to run. In this case, it would be initialized in the Halted state and transition to Ready when the resource is delivered.\nA Program can be Client removable. If the Program is Client removable, then the Client can delete the Program instance from the Server. The DeleteNodes Service defined in[OPC 10000-4](/\u00A7UAPart4) is used to remove the Program Instance. The Program shall be in a Halted state to be removed. A Program may also be auto removable. An auto removable Program deletes itself when execution has terminated."
+    },
+    {
+      "Id": "67b354b7-610f-415e-9641-9457aa3ffb83",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.10 Program lifetime\n---\n",
+      "Content": "4.2.10.2 Program instances"
+    },
+    {
+      "Id": "5ebd586d-3c5d-43f6-9e28-d1f00483001d",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.10.2 Program instances\n---\n",
+      "Content": "Programs can be multiple instanced or single instanced. A Server can support multiple instances of a Program if these Program Instances can be run in parallel. For example, the Program may define a Start Method that has an input argument to specify which resource is acted upon by its Functions. Each instance of the Program is then started designating use of different resources. The Client can discover all instances of a Program that are running on a Server. Each instance of a Program is uniquely identified on the Server and is managed independently by the Client."
+    },
+    {
+      "Id": "6c36010f-ceb9-4bd4-ab52-5ddba5cfb90f",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.10 Program lifetime\n---\n",
+      "Content": "4.2.10.3 Program recycling"
+    },
+    {
+      "Id": "ca47422b-2eae-47e9-a586-fa2b23ac1e8c",
+      "Header": "Document: Part 10 - Programs\nSection: 4.2.10.3 Program recycling\n---\n",
+      "Content": "Programs can be run once or run multiple times (recycled). A Program that is run once will remain in the Halted state indefinitely once it has run. The normal course of action would be to delete it following the inspection of its terminal results.\nRecyclable Programs may have a limited or unlimited cycle count. These Programs may require a reset step to transition from the Halted state to the Ready state. This allows for replenishing resources or reinitializing parameters prior to restarting the Program. The Program Control Method\u0022 Reset\u0022 triggers this state transition and any associated actions or effects."
+    },
+    {
+      "Id": "52c8b78e-1b19-41c5-86f3-5c38917dc9fb",
+      "Header": "Document: Part 10 - Programs\n---\n",
+      "Content": "5 Model"
+    },
+    {
+      "Id": "aa9b659c-3fef-4e9b-ae1b-97f778ea56a8",
+      "Header": "Document: Part 10 - Programs\nSection: 5 Model\n---\n",
+      "Content": "5.1 General"
+    },
+    {
+      "Id": "44c980ef-45bc-4e35-a6be-41e130da4b72",
+      "Header": "Document: Part 10 - Programs\nSection: 5.1 General\n---\n",
+      "Content": "The Program model extends the FiniteStateMachineType and basic ObjectType models presented in[OPC 10000-16](/\u00A7UAPart16). Each Program has a Type Definition that is the subtype of the FiniteStateMachineType. The ProgramStateMachineType describes the Finite State Machine model supported by any Program Invocation of that type. The ProgramStateMachineType also defines the property set that characterizes specific aspects of that Program\u0027s behaviour such as lifetime and recycling as well as specifying the result data that is produced by the Program."
+    },
+    {
+      "Id": "0524701e-77e7-42d5-8c8f-ed5f64e1e6dd",
+      "Header": "Document: Part 10 - Programs\nSection: 5.1 General\nCaption: Figure 4 - Program Type\n---\n",
+      "Content": "[image007.png](images/image007.png)"
+    },
+    {
+      "Id": "94b50cc4-6f80-4a00-81af-3550ace8b2f8",
+      "Header": "Document: Part 10 - Programs\nSection: 5.1 General\n---\n",
+      "Content": "Figure 4 - Program Type\nThe base ProgramStateMachineType defines the standard Finite State Machine specified for all Programs. This includes the states, transitions, and transition causes ( Methods) and effects ( Events). Subtypes of the base ProgramStateMachineType can be defined to extend or more specifically characterize the behaviour of an individual Program as illustrated with \u0022MyProgramType\u0022 in[Figure 4](/\u00A7_Ref144521344)."
+    },
+    {
+      "Id": "e65fe9f2-1997-4e69-b5ca-7e7dd9bd4a00",
+      "Header": "Document: Part 10 - Programs\nSection: 5 Model\n---\n",
+      "Content": "5.2 ProgramStateMachineType"
+    },
+    {
+      "Id": "ddcf695c-cde6-4d97-9e80-8fc1b4d7c429",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2 ProgramStateMachineType\n---\n",
+      "Content": "5.2.1 Overview"
+    },
+    {
+      "Id": "9d7b041f-1ba8-4e77-9604-a7ccfe938d8f",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.1 Overview\n---\n",
+      "Content": "The additional properties and components that compose the ProgramStateMachineType are listed in[Table 5](/\u00A7_Ref303807446). No ProgramStateMachineType specific semantics are assigned to the other base ObjectType or FiniteStateMachineType Attributes or Properties.\nTable 5 - ProgramStateMachineType"
+    },
+    {
+      "Id": "4052da90-0c1d-4b44-9c87-ec2e41c1dad9",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.1 Overview\nCaption: Table 5 - ProgramStateMachineType\n---\n",
+      "Content": "Attribute\nValue\n\nIncludes all attributes specified for the FiniteStateMachineType\nBrowseName\nProgramStateMachineType\nIsAbstract\nFalse\n\n\nReferences\nNodeClass\nBrowseName\nData Type\nTypeDefinition\nOther\nHasProperty\nVariable\nCreatable\nBoolean\nPropertyType\n\nHasProperty\nVariable\nDeletable\nBoolean\nPropertyType\nM\nHasProperty\nVariable\nAutoDelete\nBoolean\nPropertyType\nM\nHasProperty\nVariable\nRecycleCount\nInt32\nPropertyType\nM\nHasProperty\nVariable\nInstanceCount\nUInt32\nPropertyType\n\nHasProperty\nVariable\nMaxInstanceCount\nUInt32\nPropertyType\n\nHasProperty\nVariable\nMaxRecycleCount\nUInt32\nPropertyType\n\n\n\n\n\n\n\nHasComponent\nVariable\nProgramDiagnostic\nProgramDiagnostic2DataType\nProgramDiagnostic2Type\nO\n\n\n\n\n\n\nHasComponent\nObject\nHalted\n\nStateType\n\nHasComponent\nObject\nReady\n\nStateType\n\nHasComponent\nObject\nRunning\n\nStateType\n\nHasComponent\nObject\nSuspended\n\nStateType\n\n\n\n\n\n\n\nHasComponent\nObject\nHaltedToReady\n\nTransitionType\n\nHasComponent\nObject\nReadyToRunning\n\nTransitionType\n\nHasComponent\nObject\nRunningToHalted\n\nTransitionType\n\nHasComponent\nObject\nRunningToReady\n\nTransitionType\n\nHasComponent\nObject\nRunningToSuspended\n\nTransitionType\n\nHasComponent\nObject\nSuspendedToRunning\n\nTransitionType\n\nHasComponent\nObject\nSuspendedToHalted\n\nTransitionType\n\nHasComponent\nObject\nSuspendedToReady\n\nTransitionType\n\nHasComponent\nObject\nReadyToHalted"
+    },
+    {
+      "Id": "d8c2f527-7a0b-46e3-af53-2731bf6f309c",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.1 Overview\nCaption: Table 5 - ProgramStateMachineType\n---\n",
+      "Content": "ReadyToHalted\n\nTransitionType\n\n\n\n\n\n\n\nHasComponent\nMethod\nStart\n\n\nOP\nHasComponent\nMethod\nSuspend\n\n\nOP\nHasComponent\nMethod\nReset\n\n\nOP\nHasComponent\nMethod\nHalt\n\n\nOP\nHasComponent\nMethod\nResume\n\n\nOP\n\n\n\n\n\n\nHasComponent\nObject\nFinalResultData\n\nBaseObjectType\nO\nConformance Units\nProgram Basic"
+    },
+    {
+      "Id": "17c262e2-2282-4b0c-af7c-ef3037283c51",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.1 Overview\n---\n",
+      "Content": "The component Variables of the ProgramStateMachineType have additional Attributes defined in[Table 6](/\u00A7_Ref53493741).\nTable 6 - ProgramStateMachineType Attribute values for child Nodes"
+    },
+    {
+      "Id": "2acf833a-9ca5-458d-8b9d-c71c93747cbd",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.1 Overview\nCaption: Table 6 - ProgramStateMachineType Attribute values for child Nodes\n---\n",
+      "Content": "BrowsePath\nValue Attribute\nHalted\nStateNumber\n\n11\nReady\nStateNumber\n\n12\nRunning\nStateNumber\n\n13\nSuspended\nStateNumber\n\n14\nHaltedToReady\nTransitionNumber\n\n1\nReadyToRunning\nTransitionNumber\n\n2\nRunningToHalted\nTransitionNumber\n\n3\nRunningToReady\nTransitionNumber\n\n4\nRunningToSuspended\nTransitionNumber\n\n5\nSuspendedToRunning\nTransitionNumber\n\n6\nSuspendedToHalted\nTransitionNumber\n\n7\nSuspendedToReady\nTransitionNumber\n\n8\nReadyToHalted\nTransitionNumber\n\n9"
+    },
+    {
+      "Id": "f79fd66b-bc60-4463-b913-92918da5b095",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.1 Overview\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "3d0c5978-d52e-4ea5-b8fc-eb67789d709a",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2 ProgramStateMachineType\n---\n",
+      "Content": "5.2.2 ProgramStateMachineType Properties"
+    },
+    {
+      "Id": "d91564d9-a6ab-4a2b-8456-57cb701ae4af",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.2 ProgramStateMachineType Properties\n---\n",
+      "Content": "The Creatable Property is a boolean that specifies if Program Invocations of this ProgramStateMachineType can be created by a Client. If False, these Program Invocations are persistent or may only be created by the Server.\nThe Deletable Property is a boolean that specifies if a Program Invocation of this ProgramStateMachineType can be deleted by a Client. If False, these Program Invocations can only be deleted by the Server.\nThe AutoDelete Property is a boolean that specifies if Program Invocations of this ProgramStateMachineType are removed by the Server when execution terminates. If False, these Program Invocations persist on the Server until they are deleted by the Client. When the Program Invocation is deleted, any result data associated with the instance is also removed.\nThe RecycleCount Property is an unsigned integer that specifies the number of times a Program Invocation of this type has been recycled or restarted from its starting point (not resumed). Note that the Reset Method may be required to prepare a Program to be restarted.\nThe MaxRecycleCount Property is an integer that specifies the maximum number of times a Program Invocation of this type can be recycled or restarted from its starting point (not resumed). If the value is less than 0, then there is no limit to the number of restarts. If the value is zero, then the Program may not be recycled or restarted.\nThe InstanceCount Property is an unsigned integer that specifies the number of Program Invocations of this type that currently exist.\nThe MaxInstanceCount Property is an integer that specifies the maximum number of Program Invocations of this type that can exist simultaneously on this Server. If the value is less than 0, then there is no limit."
+    },
+    {
+      "Id": "16c3912a-e4c4-4606-8bb9-90892f6c44c2",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2 ProgramStateMachineType\n---\n",
+      "Content": "5.2.3 ProgramStateMachineType components"
+    },
+    {
+      "Id": "cb73c8d9-a587-4ab5-b66a-42430ffb0016",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3 ProgramStateMachineType components\n---\n",
+      "Content": "5.2.3.1 Overview"
+    },
+    {
+      "Id": "3cfc13f5-7b00-4f10-8a7b-d3b8d838c88d",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3.1 Overview\n---\n",
+      "Content": "The ProgramStateMachineType components consist of a set of References to the Object instances of StateTypes, TransitionTypes, EventTypes and the Methods that collectively define the Program FiniteStateMachine."
+    },
+    {
+      "Id": "9e40e62e-30d7-4110-a826-d791dc6de7ed",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3.1 Overview\nCaption: Figure 5 - Program  References\n---\n",
+      "Content": "[image008.png](images/image008.png)"
+    },
+    {
+      "Id": "ad3ace66-f20c-4e5e-b018-2ffa102e251c",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3.1 Overview\n---\n",
+      "Content": "Figure 5 - Program  References\n[Figure 5](/\u00A7_Ref144541448) illustrates the component References that define the associations between two of the ProgramStateMachineType\u0027s states, Ready and Running. The complementary ReferenceTypes have been omitted to simplify the illustration."
+    },
+    {
+      "Id": "a94337bf-c4cd-4bc7-b8de-ee14777c4a9b",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3 ProgramStateMachineType components\n---\n",
+      "Content": "5.2.3.2 ProgramStateMachineType states"
+    },
+    {
+      "Id": "62bb1705-d86b-472e-a443-77ede4d595c5",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3.2 ProgramStateMachineType states\n---\n",
+      "Content": "The state Objects are instances of the StateType defined in[OPC 10000-16](/\u00A7UAPart16). Each state is assigned a unique StateNumber value defined in[Table 6](/\u00A7_Ref53493741). Subtypes of the ProgramStateMachineType can add references from any state to a subordinate or nested StateMachine Object to extend the FiniteStateMachine.\nThe Halted state is the idle state for a Program. It can be an initial state or a terminal state. As an initial state, the Program Invocation cannot begin execution due to conditions at the Server. As a terminal state, Halted can indicate either a failed or completed Program. A subordinate state or result can be used to distinguish the nature of the termination. The Halted state references four Transition Objects, which identify the allowed state transitions to the Ready state and from the Ready, Running, and Suspended states.\nThe Ready state indicates that the Program is prepared to begin execution. Programs that are ready to begin upon their creation may transition immediately to the Ready state. The Ready state references four Transition Objects, which identify the allowed state transitions to the Running and Halted states and from the Halted and Ready states.\nThe Running state indicates that the Program is actively performing its Function. The Running state references five Transition Objects, which identify the allowed state transitions to the Halted, Ready, and Suspended states and from the Ready and Suspended states.\nThe Suspended state indicates that the Program has stopped performing its Function, but retains the ability to resume the Function at the point at which it was executing when suspended. The Suspended state references four Transition Objects, which identify the allowed state transitions to the Ready, Running, and Halted state and from the Ready state."
+    },
+    {
+      "Id": "0e3e4a2d-0216-4918-b8c4-a0da19d791ad",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3 ProgramStateMachineType components\n---\n",
+      "Content": "5.2.3.3 ProgramStateMachineTypetransitions"
+    },
+    {
+      "Id": "61012abf-b274-4858-b06c-642da506bd26",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3.3 ProgramStateMachineTypetransitions\n---\n",
+      "Content": "ProgramStateMachineType Transitions are instances of the TransitionType defined in[OPC 10000-16](/\u00A7UAPart16) which also includes the definitions of the ToState, FromState, HasCause, and HasEffect references used.[Table 7](/\u00A7_Ref144609527) specifies the transitions defined for the ProgramStateMachineType. Each transition is assigned a unique TransitionNumber defined in[Table 6](/\u00A7_Ref53493741).\nTable 7 - ProgramStateMachineType Additional References"
+    },
+    {
+      "Id": "e5482a67-f44b-4c76-b39f-59845308c392",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3.3 ProgramStateMachineTypetransitions\nCaption: Table 7 - ProgramStateMachineType Additional References\n---\n",
+      "Content": "SourceBrowsePath\nReference Type\nIs Forward\nTargetBrowsePath\nHaltedToReady\nToState\nTrue\nReady\n\nFromState\nTrue\nHalted\n\nHasCause\nTrue\nReset\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nReadyToRunning\nToState\nTrue\nRunning\n\nFromState\nTrue\nReady\n\nHasCause\nTrue\nStart\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nRunningToHalted\nToState\nTrue\nHalted\n\nFromState\nTrue\nRunning\n\nHasCause\nTrue\nHalt\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nRunningToReady\nToState\nTrue\nReady\n\nFromState\nTrue\nRunning\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nRunningToSuspended\nToState\nTrue\nRunning\n\nFromState\nTrue\nSuspended\n\nHasCause\nTrue\nSuspend\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nSuspendedToRunning\nToState\nTrue\nRunning\n\nFromState\nTrue\nSuspended\n\nHasCause\nTrue\nResume\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nSuspendedToHalted\nToState\nTrue\nHalted\n\nFromState\nTrue\nSuspended\n\nHasCause\nTrue\nHalt"
+    },
+    {
+      "Id": "3c594116-d17f-49b1-9938-c08d73b40834",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3.3 ProgramStateMachineTypetransitions\nCaption: Table 7 - ProgramStateMachineType Additional References\n---\n",
+      "Content": "Halt\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nSuspendedToReady\nToState\nTrue\nReady\n\nFromState\nTrue\nSuspended\n\nHasCause\nTrue\nReset\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nReadyToHalted\nToState\nTrue\nHalted\n\nFromState\nTrue\nReady\n\nHasCause\nTrue\nHalt\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType"
+    },
+    {
+      "Id": "c896bd0c-fcae-4da8-b693-6a9f7c922181",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3.3 ProgramStateMachineTypetransitions\n---\n",
+      "Content": "The HaltedToReady transition specifies the transition from the Halted to Ready states. It may be caused by the Reset Method.\nThe ReadyToRunning transition specifies the transition from the Ready to Running states. It is caused by the Start Method.\nThe RunningToHalted transition specifies the transition from the Running to Halted states. It is caused by the Halt Method.\nThe RunningToReady transition specifies the transition from the Running to Ready states. The RunningToSuspended transition specifies the Transition from the Running to Suspended states. It is caused by the Suspend Method.\nThe SuspendedToRunning transition specifies the transition from the Suspended to Running states. It is caused by the Resume Method.\nThe SuspendedToHalted transition specifies the transition from the Suspended to Halted states. It is caused by the Halt Method.\nThe SuspendedToReady transition specifies the transition from the Suspended to Ready states. It is caused internally.\nThe ReadyToHalted transition specifies the transition from the Ready to Halted states. It is caused by the Halt Method.\nTwo HasEffect References are specified for each Program transition. These effects are Events of ProgramTransitionEventType and AuditProgramTransitionEventType defined in[5.2.5](/\u00A7_Ref181071965). The ProgramTransitionEventType notifies Clients of the Program transition and conveys result data. The AuditProgramTransitionEventType is used to audit transitions that result from Program Control Methods."
+    },
+    {
+      "Id": "bb0dac3e-1a8b-4c9d-a804-0ce485881f76",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3.3 ProgramStateMachineTypetransitions\nCaption: Figure 6 - ProgramStateMachineType causes and effects\n---\n",
+      "Content": "[image009.png](images/image009.png)"
+    },
+    {
+      "Id": "5914d059-8a6e-40f0-bf1c-f22591f3ba55",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.3.3 ProgramStateMachineTypetransitions\n---\n",
+      "Content": "Figure 6 - ProgramStateMachineType causes and effects"
+    },
+    {
+      "Id": "aaf3b7be-4303-4865-822a-8ab3b55d273a",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2 ProgramStateMachineType\n---\n",
+      "Content": "5.2.4 ProgramStateMachineType causes (Methods)"
+    },
+    {
+      "Id": "1cf37aae-fdcb-4a80-ae16-824c116804c8",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.4 ProgramStateMachineType causes (Methods)\n---\n",
+      "Content": "5.2.4.1 Overview"
+    },
+    {
+      "Id": "34f7adb5-b3e0-4ce9-b303-740947b5611e",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.4.1 Overview\n---\n",
+      "Content": "The ProgramStateMachineType includes references to the Causes of specific Program state transitions. These causes refer to Method instances. Programs that do not support a Program Control Method will omit the Causes reference to that Method from the ProgramStateMachineType references. If a Method\u0027s Causes reference is omitted from the ProgramStateMachineType then a Client cannot cause the associated state transition. The Method instances referenced by the ProgramStateMachineType identify the InputArguments and OutputArguments required for the Method calls to Program Invocations of that ProgramStateMachineType.[Table 8](/\u00A7_Ref273042624) specifies the Methods defined as Causes for ProgramStateMachineTypes.[Figure 6](/\u00A7_Ref273606986) illustrates the References associating the components and Properties of Methods and Events with Program transitions.\nTable 8 - ProgramStateMachineType causes"
+    },
+    {
+      "Id": "02aa7f60-a54d-4eaa-be4f-45430177e737",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.4.1 Overview\nCaption: Table 8 - ProgramStateMachineType causes\n---\n",
+      "Content": "BrowseName\nReferences\nTarget BrowseName\nValue\nTarget TypeDefinition\nNOTES\nCauses\nStart\nHasProperty\nInputArguments\n\nPropertyType\nOptional\n\nHasProperty\nOutputArguments\n\nPropertyType\nOptional\n\n\n\n\n\n\nSuspend\nHasProperty\nInputArguments\n\nPropertyType\nOptional\n\nHasProperty\nOutputArguments\n\nPropertyType\nOptional\n\n\n\n\n\n\nResume\nHasProperty\nInputArguments\n\nPropertyType\nOptional\n\nHasProperty\nOutputArguments\n\nPropertyType\nOptional\n\n\n\n\n\n\nHalt\nHasProperty\nInputArguments\n\nPropertyType\nOptional\n\nHasProperty\nOutputArguments\n\nPropertyType\nOptional\n\n\n\n\n\n\nReset\nHasProperty\nInputArguments\n\nPropertyType\nOptional\n\nHasProperty\nOutputArguments\n\nPropertyType\nOptional"
+    },
+    {
+      "Id": "d70ad310-aa4e-4f30-a6fe-79d8549c73a8",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.4.1 Overview\n---\n",
+      "Content": "The Start Method causes the ReadyToRunning Program transition.\nThe Suspend Method causes the RunningToSuspended Program transition.\nThe Resume Method causes the SuspendedToRunning Program transition.\nThe Halt Method causes the RunningToHalted, SuspendedToHalted, or ReadyToHalted   Program transition depending on the current state of the Program.\nThe Reset Method causes the HaltedToReady Program transition."
+    },
+    {
+      "Id": "b92de284-3b93-49ba-9901-9992a29d2fe1",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.4 ProgramStateMachineType causes (Methods)\n---\n",
+      "Content": "5.2.4.2 Standard attributes"
+    },
+    {
+      "Id": "0887b540-55c7-4de0-91d4-fc53e022a21f",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.4.2 Standard attributes\n---\n",
+      "Content": "The Executable Method attribute indicates if a method can currently be executed. For Program Control Methods, this means that the owning Program has a current state that supports the transition caused by the Method."
+    },
+    {
+      "Id": "7e26931d-08bf-47f4-8d6e-bb597fe0384f",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.4 ProgramStateMachineType causes (Methods)\n---\n",
+      "Content": "5.2.4.3 Standard properties"
+    },
+    {
+      "Id": "59e7771c-265b-4d92-9665-21a9b9e8d8ac",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.4.3 Standard properties\n---\n",
+      "Content": "Methods can reference a set of InputArguments. For each ProgramStateMachineType, a set of InputArguments may be defined for the supported Program Control Methods. The data passed in the arguments supplements the information required by the Program to perform its Function. All calls to a Program Control Method for each Program Invocation of that ProgramStateMachineType shall pass the specified arguments.\nMethods can reference a set of OutputArguments. For each ProgramStateMachineType, a set of OutputArguments is defined for the supported Program Control Methods. All calls to a Program Control Method for each Program Invocation of that ProgramStateMachineType shall pass the specified arguments."
+    },
+    {
+      "Id": "eac6e7d4-d831-44a2-8ca8-c493edc77bc2",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2 ProgramStateMachineType\n---\n",
+      "Content": "5.2.5 ProgramStateMachineType effects (Events)"
+    },
+    {
+      "Id": "c9c47a27-f594-41ed-9cb7-f24bd0f5db2a",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.5 ProgramStateMachineType effects (Events)\n---\n",
+      "Content": "5.2.5.1 Overview"
+    },
+    {
+      "Id": "c58f1f65-177c-49ce-83e5-e325e2d22965",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.5.1 Overview\n---\n",
+      "Content": "The ProgramStateMachineType includes component references to the Effects of each of the Program\u0027s state transitions. These Effects are Events. Each Transition shall have a HasEffect Reference to a ProgramTransitionEventType and can have an AuditProgramTransitionEventType. When the transition occurs, Event notifications of the referenced type are generated for subscribed Clients. The Program Invocation may serve as the EventNotifier for these Events or an owning Object or the Server Object may provide the notifications.\nProgramTransitionEventTypes provide the means for delivering result data and confirming state transitions for subscribed Clients on each defined Program State Transition. The AuditProgramTransitionEventType allows the auditing of changes to the Program\u0027s state in conjunction with Client Method Calls."
+    },
+    {
+      "Id": "5e5ff7fc-7de3-4f0d-9444-4dad3db7775b",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.5 ProgramStateMachineType effects (Events)\n---\n",
+      "Content": "5.2.5.2 ProgramTransitionEventType"
+    },
+    {
+      "Id": "d2737ef7-0090-44c7-93d5-3df17c841225",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.5.2 ProgramTransitionEventType\n---\n",
+      "Content": "The ProgramTransitionEventType is a subtype of the TransitionEventType. It is used with Programs to acquire intermediate or final results or other data associated with a state transition. A Program can have a unique ProgramTransitionEventType definition for any transition. Each ProgramTransitionEventType specifies the IntermediateResult data specific to the designated state transition on that ProgramStateMachineType. Each transition can yield different intermediate result data.[Table 9](/\u00A7_Ref144806928) specifies the ProgramTransitionEventType.\n[Table 9](/\u00A7_Ref144806928) identifies the ProgramTransitionEventTypes that are specified for ProgramStateMachineTypes.\nTable 9 - ProgramTransitionEventType"
+    },
+    {
+      "Id": "8e9301aa-5a3f-43eb-a963-6a2be96988a8",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.5.2 ProgramTransitionEventType\nCaption: Table 9 - ProgramTransitionEventType\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nProgramTransitionEventType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the base TransitionEventType defined in[OPC 10000-16](/\u00A7UAPart16).\nHasComponent\nVariable\nIntermediateResult\nBaseDataType\nBaseDataVariableType\nMandatory\nConformance Units\nProgram Basic"
+    },
+    {
+      "Id": "b0d29461-64a8-4e31-b803-14f1c5d477c0",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.5.2 ProgramTransitionEventType\n---\n",
+      "Content": "TransitionNumber identifies the Program transition that triggered the Event.\nFromStateNumber identifies the state before the Program transition.\nToStateNumber identifies the state after the Program transition.\nThe IntermediateResult is an Object that aggregates a set of Variables whose values are relevant for the Program at the instant of the associated transition. The ObjectType for the IntermediateResult specifies the collection of Variables using a set of HasComponent References."
+    },
+    {
+      "Id": "77ce5de2-ad88-4ffb-a5ee-7274fea12c42",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2 ProgramStateMachineType\n---\n",
+      "Content": "5.2.6 AuditProgramTransitionEventType"
+    },
+    {
+      "Id": "29933853-ea21-4758-88ef-fa4d67c01f55",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.6 AuditProgramTransitionEventType\n---\n",
+      "Content": "The AuditProgramTransitionEventType is a subtype of the AuditUpdateStateEventType. It is used with Programs to provide a means to audit the Program State transitions associated with any Client invoked Program Control Method. Servers shall generate AuditProgramTransitionEvents if auditing is supported.\n[Table 10](/\u00A7_Ref144886151) specifies the definition of the AuditProgramTransitionEventType.\nTable 10 - AuditProgramTransitionEventType"
+    },
+    {
+      "Id": "62b85574-b7e5-4d5a-8b34-fce35276a2bf",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.6 AuditProgramTransitionEventType\nCaption: Table 10 - AuditProgramTransitionEventType\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nAuditProgramTransitionEventType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the AuditUpdateStateEventType defined in[OPC 10000-16](/\u00A7UAPart16).\nHasProperty\nVariable\nTransitionNumber\nUInt32\nPropertyType\nMandatory\nConformance Units\nProgram Auditing"
+    },
+    {
+      "Id": "62422f2d-91eb-4b71-a317-a2bbb019bf8b",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.6 AuditProgramTransitionEventType\n---\n",
+      "Content": "This EventType inherits all Properties of the AuditUpdateStateEventType defined in[OPC 10000-5](/\u00A7UAPart5), except as noted below.\nThe Status Property, specified in[OPC 10000-5](/\u00A7UAPart5),, identifies whether the state transition resulted from a Program Control Method call (set Status to ) or not (set Status to FALSE).\nThe SourceName specified in[OPC 10000-5](/\u00A7UAPart5), identifies the Method causing the Program transition when it is the result of a Client invoked ProgramControlMethod. The SourceName is prefixed with \u0022Method/\u0022 and the name of the ProgramControlMethod, \u0022Method/Start\u0022 for example.\nThe ClientUserId Property, specified in[OPC 10000-5](/\u00A7UAPart5), identifies the user of the Client that issued the Program Control Method if it is associated with this Program state transition.\nThe ActionTimeStamp Property, specified in[OPC 10000-5](/\u00A7UAPart5)\u0022AuditEventType\u0022, identifies when the time the Program state transition that resulted in the Event being generated occurred.\nThe TransitionNumber Property is a Variable that identifies the transition that triggered the Event."
+    },
+    {
+      "Id": "e624db5e-f44d-43ee-bbf9-b1375fe3ec30",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2 ProgramStateMachineType\n---\n",
+      "Content": "5.2.7 FinalResultData"
+    },
+    {
+      "Id": "d8cb752b-ecd8-4174-8f08-786ead411c6b",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.7 FinalResultData\n---\n",
+      "Content": "The FinalResultData ObjectType specifies the VariableTypes that are preserved when the Program has completed its Function. The ObjectType includes a HasComponent for a VariableType of each Variable that comprises the final result data."
+    },
+    {
+      "Id": "ce679fd9-c6a2-452d-b168-1a65867567c1",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2 ProgramStateMachineType\n---\n",
+      "Content": "5.2.8 ProgramDiagnostic2 DataType"
+    },
+    {
+      "Id": "e3fb925a-8d10-44cb-90f0-1cd3c954f6eb",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.8 ProgramDiagnostic2 DataType\n---\n",
+      "Content": "This structure contains elements that chronicle the Program Invocation\u0027s activity and can be used to aid in the diagnosis of Program problems.\nNote The original ProgramDiagnosticDataType had flaws. To avoid collisions with existing implementations, a new version with name ProgramDiagnostic2DataType has been created.\nIts composition is defined in[Table 11](/\u00A7_Ref96333599).\nTable 11 - ProgramDiagnostic2DataType structure"
+    },
+    {
+      "Id": "115ff0f1-3959-4ef6-9b7f-592d2ede3a29",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.8 ProgramDiagnostic2 DataType\nCaption: Table 11 - ProgramDiagnostic2DataType structure\n---\n",
+      "Content": "Name\nType\nDescription\nProgramDiagnostic2DataType\nstructure\n\ncreateSessionId\nNodeId\nThe CreateSessionId contains the SessionId of the Session on which the call to the Create Method was issued to create the Program Invocation.\ncreateClientName\nString\nThe CreateClientName is the name of the Client of the Session that created the Program Invocation.\ninvocationCreationTime\nUtcTime\nThe InvocationCreationTime identifies the time the Program Invocation was created.\nlastTransitionTime\nUtcTime\nThe LastTransitionTime identifies the time of the last Program state transition that occurred.\nlastMethodCall\nString\nThe LastMethodCall identifies the last Program Method called on the Program Invocation.\nlastMethodSessionId\nNodeId\nThe LastMethodSessionId contains the SessionId of the Session on which the last Program Control Method call to the Program Invocation was issued.\nlastMethodInputArguments\nArgument[]\nThe LastMethodInputArguments provides the input arguments on the last Program Method call.\nlastMethodOutputArguments\nArgument[]\nThe LastMethodOutputArguments provides the output arguments on the last Program Method call.\nlastMethodInputValues\nBaseDataType[]\nThe LastMethodInputValues preserves the values of the input arguments on the last Program Method call. The size and order of this list matches the size and order of the lastMethodInputArguments field.\nlastMethodOutputValues\nBaseDataType[]\nThe LastMethodOutputValues preserves the values of the output arguments on the last Program Method call. The size and order of this list matches the size and order of the lastMethodOutputArguments field.\nlastMethodCallTime\nUtcTime\nThe LastMethodCallTime identifies the time of the last Method call to the Program Invocation.\nlastMethodReturnStatus\nStatusCode"
+    },
+    {
+      "Id": "67ef50b8-f739-4b44-953f-ff8d6141eaf1",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.8 ProgramDiagnostic2 DataType\nCaption: Table 11 - ProgramDiagnostic2DataType structure\n---\n",
+      "Content": "StatusCode\nThe LastMethodReturnStatus preserves the value of the return status for the last Program Control Method requested for this Program Invocation."
+    },
+    {
+      "Id": "c725ce66-1a36-4c8c-9d7b-5e99b1c7647e",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.8 ProgramDiagnostic2 DataType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 12](/\u00A7_Ref129505573).\nTable 12 - ProgramDiagnostic2DataType definition"
+    },
+    {
+      "Id": "4b5439fd-1e5c-4271-8f98-650cf5a30668",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.8 ProgramDiagnostic2 DataType\nCaption: Table 12 - ProgramDiagnostic2DataType definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nProgramDiagnostic2DataType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOther\nSubtype of Structure defined in[OPC 10000-5](/\u00A7UAPart5).\nConformance Units\nProgram Basic"
+    },
+    {
+      "Id": "7bbe2dee-1d9f-496c-b707-9e65401ae208",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.8 ProgramDiagnostic2 DataType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "55863d50-72ba-4d30-91e4-d254264baff9",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2 ProgramStateMachineType\n---\n",
+      "Content": "5.2.9 ProgramDiagnostic2Type VariableType"
+    },
+    {
+      "Id": "0fa842f1-a1e8-45f1-a869-c52dd5da0f2d",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.9 ProgramDiagnostic2Type VariableType\n---\n",
+      "Content": "This VariableType aggregates simple Variables using simple DataTypes that reflect the elements of the ProgramDiagnosticDataType structure. Its DataVariables have the same semantic as defined in in[5.2.8](/\u00A7_Ref361763023).\nNote The original ProgramDiagnosticType VariableType had the same flaws as the structure. To avoid collisions with existing implementations, a new version with name ProgramDiagnostic2Type has been created.\nThe VariableType is formally defined in[Table 13](/\u00A7_Ref149549247).\nTable 13 - ProgramDiagnostic2Type VariableType"
+    },
+    {
+      "Id": "d3f6cf5f-cdf9-427e-a719-19767dfb570f",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.9 ProgramDiagnostic2Type VariableType\nCaption: Table 13 - ProgramDiagnostic2Type VariableType\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nProgramDiagnostic2Type\nDataType\nProgramDiagnostic2DataType\nValueRank\n-1 (Scalar)\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType / TypeDefinition\nModellingRule\nSubtype of the BaseDataVariableType defined in[OPC 10000-5](/\u00A7UAPart5).\nHasComponent\nVariable\nCreateSessionId\nNodeId\nMandatory\nHasComponent\nVariable\nCreateClientName\nString\nMandatory\nHasComponent\nVariable\nInvocationCreationTime\nUtcTime\nMandatory\nHasProperty\nVariable\nLastTransitionTime\nUtcTime\nMandatory\nHasComponent\nVariable\nLastMethodCall\nString\nMandatory\nHasComponent\nVariable\nLastMethodSessionId\nNodeId\nMandatory\nHasComponent\nVariable\nLastMethodInputArguments\nArgument[]\nMandatory\nHasComponent\nVariable\nLastMethodOutputArguments\nArgument[]\nMandatory\nHasComponent\nVariable\nLastMethodInputValues\nBaseDataType[]\nMandatory\nHasComponent\nVariable\nLastMethodOutputValues\nBaseDataType[]\nMandatory\nHasComponent\nVariable\nLastMethodCallTime\nUtcTime\nMandatory\nHasComponent\nVariable\nLastMethodReturnStatus\nStatusCode\nMandatory\nConformance Units\nProgram Basic"
+    },
+    {
+      "Id": "2fa730cb-5299-4ad1-9489-18f1b06bcb6a",
+      "Header": "Document: Part 10 - Programs\nSection: 5.2.9 ProgramDiagnostic2Type VariableType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "9277b653-8917-457d-858c-3481b96cb464",
+      "Header": "Document: Part 10 - Programs\n---\n",
+      "Content": "Annex\u00A0A(informative)Program example\nA.1 Overview"
+    },
+    {
+      "Id": "a9e81f8f-04e7-4192-88d6-780c9ee50639",
+      "Header": "Document: Part 10 - Programs\nSection: A.1 Overview\n---\n",
+      "Content": "This example illustrates the use of a Program to manage a domain download into a control system as depicted in[Figure A.1](/\u00A7_Ref157491288). The download requires the segmented transfer of control operation data from a secondary storage device to the local memory within a control system."
+    },
+    {
+      "Id": "cc1b40db-4365-4387-8822-e2750feaeb55",
+      "Header": "Document: Part 10 - Programs\nSection: A.1 Overview\nCaption: Figure A. 1 - Program example\n---\n",
+      "Content": "[image010.png](images/image010.png)"
+    },
+    {
+      "Id": "e5de935c-deb2-419a-b0af-397202414eea",
+      "Header": "Document: Part 10 - Programs\nSection: A.1 Overview\n---\n",
+      "Content": "Figure A. 1 - Program example\nThe domain download has a source and a target location which are identified when the download is initiated. Each time a segment of the domain is successfully transferred the Client is notified and informed of the amount of data that has been downloaded. The Client is also notified when the download is finished. The percentage of the total data received is reported periodically while the download continues. If the download fails, the cause of the failure is reported. At the completion of the download, the performance information is kept at the Server."
+    },
+    {
+      "Id": "63b7cba5-d4ab-4203-9467-d1daead57f7f",
+      "Header": "Document: Part 10 - Programs\n---\n",
+      "Content": "A.2 DomainDownload Program"
+    },
+    {
+      "Id": "d423b9a2-bc8c-46a1-a436-b1814d92403a",
+      "Header": "Document: Part 10 - Programs\nSection: A.2 DomainDownload Program\n---\n",
+      "Content": "A.2.1 General"
+    },
+    {
+      "Id": "b96405be-29b0-4b19-b486-725cdbd58cad",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.1 General\n---\n",
+      "Content": "The Client uses the \u0022DomainDownload\u0022 Program to manage and monitor the download of a domain at the Server."
+    },
+    {
+      "Id": "90756415-9331-466f-b773-a2660b86c133",
+      "Header": "Document: Part 10 - Programs\nSection: A.2 DomainDownload Program\n---\n",
+      "Content": "A.2.2 DomainDownload states"
+    },
+    {
+      "Id": "91ea35fd-17cd-4716-8df2-deecf6217030",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.2 DomainDownload states\n---\n",
+      "Content": "The basic state model for the DomainDownload Program is presented in[Figure A.2](/\u00A7_Ref303808400). The Program has three primary states, Ready, Running, and Halted which are aligned with the standard states of a ProgramStateMachineType. Additionally, the DomainDownloadType extends the ProgramStateMachineType by defining subordinate State Machines for the Program\u0027s Running and Halted states. The subordinate states describe the download operations in greater detail and allow the Client to monitor the activity of the download at a finer resolution.\nAn instance ( Program Invocation) of a DomainDownload Program is created by the Client each time a download is to be performed. The instance exists until explicitly removed by the Client. The initial state of the Program is Ready and the terminal state is Halted. The DomainDownload can be temporarily suspended and then resumed or aborted. Once halted, the program may not be restarted."
+    },
+    {
+      "Id": "71fdb7bc-1fb9-4084-ac0d-bdc955b7c102",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.2 DomainDownload states\nCaption: Figure A. 2 - DomainDownload state diagram\n---\n",
+      "Content": "[image011.png](images/image011.png)"
+    },
+    {
+      "Id": "a50dba9a-d61b-499f-ba3c-2199acf95dbd",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.2 DomainDownload states\n---\n",
+      "Content": "Figure A. 2 - DomainDownload state diagram\nThe sequence of state transitions is illustrated in[Figure A.2](/\u00A7_Ref303808400). Once the download is started, The Program progresses to the Opening state. After the source of the data is opened, a sequence of transfers occurs in the Sending state.  When the transfer completes the Objects are closed in the Closing state. If the transfer is terminated before all of the data is downloaded or an error is encountered then the download is halted and the Program transitions to the Aborted state; otherwise the Program halts in the Completed state. The states are presented in[Table A.1](/\u00A7_Ref157504917) along with the state transitions."
+    },
+    {
+      "Id": "f2406f13-baf0-488c-b72d-57a9823d261f",
+      "Header": "Document: Part 10 - Programs\nSection: A.2 DomainDownload Program\n---\n",
+      "Content": "A.2.3 DomainDownload transitions"
+    },
+    {
+      "Id": "49337fa5-b992-4002-873e-95426457250b",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.3 DomainDownload transitions\n---\n",
+      "Content": "The valid state transitions specified for the DomainDownload Program are specified in[Table A.1](/\u00A7_Ref157504917). Each of the transitions defines a start state and end state for the transition and is identified by a unique number. Five of the transitions are from the base ProgramStateMachineType and retain the transition identifier numbers specified for Programs. The additional transitions relate the base Program states with the subordinate states defined for the DomainDownload. These states have been assigned unique transition identifier numbers that distinguish them from the base Program transition identifiers. In cases where transitions occur between substates and the Program\u0027s base states, two transitions are specified. One transition identifies the base state change and a second substate change. For example, ReadyToRunning and ToOpening occur at the same time.\nTable A.1 also specifies the defined states, causes for the transitions, and the effects of each transition. Program Control Methods are used by the Client to \u0022run\u0022 the DomainDownload. The Methods cause or trigger the specified transitions. The transition effects are the specified EventTypes which notify the Client of Program activity.\nTable A. 1 - DomainDownload states"
+    },
+    {
+      "Id": "6fa2d1b6-8e24-4502-90e6-6b673c6b76ee",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.3 DomainDownload transitions\nCaption: Table A. 1 - DomainDownload states\n---\n",
+      "Content": "No.\nTransition name\nCause\nFrom State\nTo State\nEffect\n2\nReadyToRunning\nStart Method\nReady\nRunning\nReport Transition 2 Event/Result\n3\nRunningToHalted\nHalt Method/Error or Internal.\nRunning\nHalted\nReport Transition 3 Event/Result\n5\nRunningToSuspended\nSuspend Method\nRunning\nSuspended\nReport Transition 5 Event/Result\n6\nSuspendedToRunning\nResume Method\nSuspended\nRunning\nReport Transition 6 Event/Result\n7\nSuspendedToHalted\nHalt Method\nSuspended\nHalted\nReport Transition 7 Event/Result\n10\nOpeningToSending\nInternal\nOpening\nSending\nReport Transition 10 Event/Result\n11\nSendingToSending\nInternal\nSending\nSending\nReport Transition 11 Event/Result\n12\nSendingToClosing\nInternal\nSending\nClosing\nReport Transition 12 Event/Result\n13\nSendingToAborted\nHalt Method/Error\nOpening\nAborted\nReport Transition 13 Event/Result\n14\nClosingToCompleted\nInternal\nClosing\nCompleted\nReport Transition 14 Event/Result\n15\nSendingToSuspended\nSuspend Method\nSending\nSuspended\nReport Transition 16 Event/Result\n16\nSuspendedToSending\nResume Method\nSuspended\nSending\nReport Transition 17 Event/Result\n18\nSuspendedToAborted\nHalt Method\nSuspended\nAborted\nReport Transition 18 Event/Result\n17\nToOpening\nInternal\nReady\nOpening\nReport Transition 19 Event/Result"
+    },
+    {
+      "Id": "98e5b216-6752-480f-b715-c9f020fbce4d",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.3 DomainDownload transitions\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "ea04b4cb-7b85-4aa5-9046-9c3ce8a94315",
+      "Header": "Document: Part 10 - Programs\nSection: A.2 DomainDownload Program\n---\n",
+      "Content": "A.2.4 DomainDownload Methods"
+    },
+    {
+      "Id": "1b2ba605-de44-44cc-831e-f2b21b0df27f",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.4 DomainDownload Methods\n---\n",
+      "Content": "A.2.4.1 General"
+    },
+    {
+      "Id": "c63d099f-ceea-445d-aa52-e45bb87612ee",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.4.1 General\n---\n",
+      "Content": "Four standard Program Methods are specified for running the DomainDownload Program, Start, Suspend, Resume, and Halt. No additional Methods are specified. The base behaviours of these Methods are defined by the ProgramStateMachineType. The Start Method initiates the download activity and passes the source and destination locations for the transfer. The Suspend Method is used to pause the activity temporarily. The Resume Method reinitiates the download, when paused. The Halt Method aborts the download. Each of the Methods causes a Program state transition and a substate transition. The specific state transition depends on the current state at the time the Method is called. If a Method Call is made when the DomainDownload is in a state for which that Method has no associated transition, the Method returns an error status indicating invalid state for the Method."
+    },
+    {
+      "Id": "99966641-4ba2-4009-a9e3-a0d33491cab7",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.4 DomainDownload Methods\n---\n",
+      "Content": "A.2.4.2 Method Arguments"
+    },
+    {
+      "Id": "c53ea6cc-6240-45c3-bbbf-50ebf75bf1b2",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.4.2 Method Arguments\n---\n",
+      "Content": "The Start Method specifies three input arguments to be passed when it is called: Domain Name, DomainSource, and DomainDestination. The other Methods require no input arguments. No output arguments are specified for the DomainDownload Methods. The resultant error status for the Program is part of the Call Service."
+    },
+    {
+      "Id": "1df06b98-bc02-482f-af5f-88bcb4cc5ded",
+      "Header": "Document: Part 10 - Programs\nSection: A.2 DomainDownload Program\n---\n",
+      "Content": "A.2.5 DomainDownload Events"
+    },
+    {
+      "Id": "7316ad10-4c90-456e-af00-23d1680887c7",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.5 DomainDownload Events\n---\n",
+      "Content": "A.2.5.1 General"
+    },
+    {
+      "Id": "c16e3fae-109c-449f-8f57-ab80dac039d2",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.5.1 General\n---\n",
+      "Content": "A ProgramTransitionEventType is specified for each of the DomainDownload Program transitions. The EventTypes trigger a specific Event notification to the Client when the associated state transition occurs in the running Program Instance. The Event notification identifies the transition. The SendingToSending state transition also includes intermediate result data."
+    },
+    {
+      "Id": "b6801954-7915-4558-aa36-267840c1ef24",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.5 DomainDownload Events\n---\n",
+      "Content": "A.2.5.2 Event information"
+    },
+    {
+      "Id": "63ec6585-f284-4c24-a2bf-d3c184e89507",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.5.2 Event information\n---\n",
+      "Content": "The SendingToSending Program transition Event relays intermediate result data to the Client along with the notification. Each time the transition occurs, data items describing the amount and percentage of data transferred are sent to the Client."
+    },
+    {
+      "Id": "3d303f97-84ee-406f-b1ab-f9505b57f3e6",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.5 DomainDownload Events\n---\n",
+      "Content": "A.2.5.3 Final result data"
+    },
+    {
+      "Id": "462fbba4-12b0-4f49-9f81-54c90304d7a4",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.5.3 Final result data\n---\n",
+      "Content": "The DomainDownload Program retains final result data following a completed or aborted download. The data includes the total transaction time and the size of the domain. In the event of an aborted download, the reason for the termination is retained."
+    },
+    {
+      "Id": "c7bb780c-c0be-4980-9043-52101bad8ae1",
+      "Header": "Document: Part 10 - Programs\nSection: A.2 DomainDownload Program\n---\n",
+      "Content": "A.2.6 DomainDownload model"
+    },
+    {
+      "Id": "164860bd-09ea-421b-ba1a-2d0184bbeaa1",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6 DomainDownload model\n---\n",
+      "Content": "A.2.6.1 Overview"
+    },
+    {
+      "Id": "39683cbd-1905-4645-a7d5-75f9f51f54db",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.1 Overview\n---\n",
+      "Content": "The  UA model for the DomainDownload Program is presented in Clause[A.2.6.2](/\u00A7_Ref33177552). Collectively they define the components that constitute this Program. For clarity, the figures present a progression of portions of the model that complement the contents of the tables and illustrate the Program\u0027s composition.\nThe type definition for the DomainDownload Program precisely represents the behaviour of the Program in terms of  UA components. These components can be browsed by a Client to interpret or validate the actions of the Program."
+    },
+    {
+      "Id": "a7e98838-103c-43ba-835e-19f287b67bf5",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6 DomainDownload model\n---\n",
+      "Content": "A.2.6.2 DomainDownloadType"
+    },
+    {
+      "Id": "ce6476e4-3413-43b7-89aa-c1ace656b694",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "The DomainDownloadType is a subtype derived from the ProgramStateMachineType. It specifies the use or non-use of optional ProgramStateMachineType components, valid extensions such as subordinate State Machines, and constrained attribute values applied to instances of DomainDownload Programs.\n[Table A.2](/\u00A7_Ref157589360) specifies the optional and extended components defined by the DomainDownload Type. Note the references to two sub State Machine Types, TransferStateMachine and FinishStateMachine. The DomainDownloadType omits references to the Reset Program Control Method and its associated state transition (HaltedToReady), which it does not support.\nTable A. 2 - DomainDownloadType"
+    },
+    {
+      "Id": "a0e21076-4138-4d90-adab-ad03b89523fd",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 2 - DomainDownloadType\n---\n",
+      "Content": "Attribute\nValue\n\nIncludes all non-optional attributes specified for the ProgramStateMachineType\nBrowseName\nDomainDownloadType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasComponent\nObject\nTransferStateMachine\n\nStateMachineType\nMandatory\nHasComponent\nObject\nFinishStateMachine\n\nStateMachineType\nMandatory\nHasComponent\nVariable\nProgramDiagnostic\n\nProgramDiagnostic2Type\nMandatory\nHasComponent\nObject\nReadyToRunning\n\nTransitionType\n\nHasComponent\nObject\nRunningToHalted\n\nTransitionType\n\nHasComponent\nObject\nRunningToSuspended\n\nTransitionType\n\nHasComponent\nObject\nSuspendedToRunning\n\nTransitionType\n\nHasComponent\nObject\nSuspendedToHalted\n\nTransitionType\n\nHasComponent\nMethod\nStart\n\n\nMandatory\nHasComponent\nMethod\nSuspend\n\n\nMandatory\nHasComponent\nMethod\nHalt\n\n\nMandatory\nHasComponent\nMethod\nResume\n\n\nMandatory\nHasComponent\nObject\nFinalResultData\n\nBaseObjectType\nMandatory"
+    },
+    {
+      "Id": "0b2e1357-07b9-4570-863c-26d36fa10dc9",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "[Table A.3](/\u00A7_Ref157591504) specifies the Transfer State Machine type that is a sub State Machine of the DomainDownload Program Type. This definition identifies the StateTypes that compose the substates for the Program\u0027s Running StateType.\nTable A. 3 - TransferStateMachineType"
+    },
+    {
+      "Id": "356095a8-cb77-4267-9047-eee017464fa3",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 3 - TransferStateMachineType\n---\n",
+      "Content": "Attribute\nValue\n\nIncludes all attributes specified for the FiniteStateMachineType\nBrowseName\nTransferStateMachineType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasComponent\nObject\nOpening\n\nStateType\n\nHasComponent\nObject\nSending\n\nStateType\n\nHasComponent\nObject\nClosing\n\nStateType\n\n\n\n\n\n\n\nHasComponent\nObject\nReadyToOpening\n\nTransitionType\n\nHasComponent\nObject\nOpeningToSending\n\nTransitionType\n\nHasComponent\nObject\nSendingToClosing\n\nTransitionType\n\nHasComponent\nObject\nSendingToAborted\n\nTransitionType\n\nHasComponent\nObject\nSendingToSuspended\n\nTransitionType\n\nHasComponent\nObject\nSuspendedToSending\n\nTransitionType\n\n\n\n\n\n\n\nHasComponent\nMethod\nStart\n\n\nMandatory\nHasComponent\nMethod\nSuspend\n\n\nMandatory\nHasComponent\nMethod\nHalt\n\n\nMandatory\nHasComponent\nMethod\nResume\n\n\nMandatory"
+    },
+    {
+      "Id": "ace282ce-e416-4e32-8d20-518ae181a4c0",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "[Table A.3](/\u00A7_Ref157591504) specifies the StateTypes associated with the Transfer State Machine Type. All of these states are substates of the Running state of the base ProgramStateMachineType.\nThe Opening state is the preparation state for the domain download.\nThe Sending state is the activity state for the transfer in which the data is moved from the source to destination.\nThe Closing state is the cleanup phase of the download.\nThe component Variables of the TransferStateMachineType have additional Attributes defined in Table A.4.\nTable A. 4 - TransferStateMachineType Attribute values for child Nodes"
+    },
+    {
+      "Id": "acdeeec7-ebe2-4dd2-a901-62d59cc19ac2",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 4 - TransferStateMachineType Attribute values for child Nodes\n---\n",
+      "Content": "Source Path\nValue Attribute\nDescription Attribute\nStatenumbers\nOpening\nStateNumber\n\n1\n\nSending\nStateNumber\n\n2\n\nClosing\nStateNumber\n\n3\n\nTransitionnumbers\nReadyToOpening\nTransitionNumber\n\n1\n\nOpeningToSending\nTransitionNumber\n\n2\n\nSendingToClosing\nTransitionNumber\n\n3\n\nSendingToAborted\nTransitionNumber\n\n4\n\nSendingToSuspended\nTransitionNumber\n\n5\n\nSuspendedToSending\nTransitionNumber\n\n6"
+    },
+    {
+      "Id": "a18afe4e-61cd-4f80-b378-4a4701d8061e",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "[Table A.5](/\u00A7_Ref157591662) specifies the Finish State Machine Type that is a sub State Machine of the DomainDownload ProgramStateMachineType. This definition identifies the StateTypes that compose the substate for the Program\u0027s Halted StateType.\nTable A. 5 - Finish State Machine Type"
+    },
+    {
+      "Id": "d60137fc-8059-4abe-a7b3-601a39c117c1",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 5 - Finish State Machine Type\n---\n",
+      "Content": "Attribute\nValue\n\nIncludes all attributes specified for the FiniteStateMachineType\nBrowseName\nFinishStateMachineType\nIsAbstract\nFalse\n\n\nReferences\nNodeClass\nBrowseName\nData\nType\nTypeDefinition\nModelling\nRule\n\n\n\n\n\n\nHasComponent\nObject\nCompleted\n\nStateType\n\nHasComponent\nObject\nAborted\n\nStateType"
+    },
+    {
+      "Id": "d3008c4f-744c-4391-970d-eeb85a81c7c1",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "The Aborted state is the terminal state that indicates an incomplete or failed domain download operation.\nThe Completed state is the terminal state that indicates a successful domain download.\nThe component Variables of the FinishStateMachineType have additional Attributes defined in Table A.6.\nTable A. 6 - FinishStateMachineType Attribute values for child Nodes"
+    },
+    {
+      "Id": "ddee3201-7616-442a-93db-26f4f28e97a6",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 6 - FinishStateMachineType Attribute values for child Nodes\n---\n",
+      "Content": "Source Path\nValue Attribute\nDescription Attribute\nStatenumbers\nAborted\nStateNumber\n\n8\n\nCompleted\nStateNumber\n\n9"
+    },
+    {
+      "Id": "3811bbab-7922-43df-a67a-0060fa8d644c",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "[Table A.7](/\u00A7_Ref157589675) specifies the constraining behaviour of a DomainDownload.\nTable A. 7 - DomainDownloadType Property Attributes variable values"
+    },
+    {
+      "Id": "c1e404b8-ce28-44bc-a844-ab7eb89d76a3",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 7 - DomainDownloadType Property Attributes variable values\n---\n",
+      "Content": "NodeClass\nBrowseName\nData\nType\nData Value\nModelling\nRule\nVariable\nCreatable\nBoolean\nTrue\n\nVariable\nDeletable\nBoolean\nTrue\nMandatory\nVariable\nAutoDelete\nBoolean\nFalse\nMandatory\nVariable\nRecycleCount\nInt32\n0\nMandatory\nVariable\nInstanceCount\nUInt32\nPropertyType\n\nVariable\nMaxInstanceCount\nUInt32\n500\n\nVariable\nMaxRecycleCount\nUInt32\n0"
+    },
+    {
+      "Id": "919a8998-68fa-4ba4-8e6c-dfb6e39041c4",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "A DomainDownload Program Invocation can be created and also destroyed by a Client. The Program Invocation will not delete itself when halted, but will persist until explicitly removed by the Client. A DomainDownload Program Invocation cannot be reset to restart. The Server will support up to 500 concurrent DomainDownload Program Invocation s.\n[Figure A.3](/\u00A7_Ref157847032) presents a partial DomainDownloadType model that illustrates the association between the states and the DomainDownload, Transfer, and Finish State Machines. Note that the current state number for the sub State Machines is only valid when the DomainDownload active base state references the sub State Machine, Running for the Transfer current state and Halted for the Finish current state."
+    },
+    {
+      "Id": "edc21543-cdbf-4677-8242-c70114f45242",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Figure A. 3 - DomainDownloadType partial state model\n---\n",
+      "Content": "[image012.png](images/image012.png)"
+    },
+    {
+      "Id": "9ef25cf6-1107-4659-afb9-5e59f48aeb22",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "Figure A. 3 - DomainDownloadType partial state model\n[Table A.8](/\u00A7_Ref157747766) specifies the ProgramTransitionTypes that are defined in addition to the ProgramTransitionTypes specified for Programs in[Table 7](/\u00A7_Ref144609527). These types associate the Transfer and Finish sub State Machine states with the states of the base Program.\nTable A. 8 - TransferStateMachineType Additional References"
+    },
+    {
+      "Id": "6e02dd35-664a-4f2b-bf23-09ac6ff3e23a",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 8 - TransferStateMachineType Additional References\n---\n",
+      "Content": "Source Path\nReference Type\nIs Forward\nTarget Path\n\n\n\n\nToSending\nToState\nTrue\nSending\n\nFromState\nTrue\nOpening\n\nHasCause\nTrue\nStart\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nSendingToSending\nToState\nTrue\nSending\n\nFromState\nTrue\nSending\n\nHasEffect\nTrue\nProgramTransitionEventType\n\n\n\n\nSendingToClosing\nToState\nTrue\nClosing\n\nFromState\nTrue\nSending\n\nHasEffect\nTrue\nProgramTransitionEventType\n\n\n\n\nSendingToAborted\nToState\nTrue\nAborted\n\nFromState\nTrue\nSending\n\nHasCause\nTrue\nHalt\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nClosingToCompleted\nToState\nTrue\nCompleted\n\nFromState\nTrue\nClosing\n\nHasEffect\nTrue\nProgramTransitionEventType\n\n\n\n\nSendingToSuspended\nToState\nTrue\nSuspended\n\nFromState\nTrue\nSending\n\nHasCause\nTrue\nSuspend\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nSuspendedToSending\nToState\nTrue\nSending\n\nFromState\nTrue\nSuspended\n\nHasCause\nTrue\nResume\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nSuspendedToAborted\nToState\nTrue\nAborted\n\nFromState\nTrue\nSuspended\n\nHasCause\nTrue\nHalt"
+    },
+    {
+      "Id": "5a624726-b9a5-400c-862a-d4f63edc20e0",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 8 - TransferStateMachineType Additional References\n---\n",
+      "Content": "Halt\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType\n\n\n\n\nReadyToOpening\nToState\nTrue\nOpening\n\nFromState\nTrue\nReady\n\nHasCause\nTrue\nStart\n\nHasEffect\nTrue\nProgramTransitionEventType\n\nHasEffect\nTrue\nAuditProgramTransitionEventType"
+    },
+    {
+      "Id": "aa166922-79b0-47f6-b841-8e994b4c5bc4",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "[Figure A.4](/\u00A7_Ref303808600) through[Figure A.10](/\u00A7_Ref303808615) illustrate portions of the DomainDownloadType model. In each figure, the referenced tates, Methods, transitions, and EventTypes are identified for one or two state transitions."
+    },
+    {
+      "Id": "8cbb8e9a-3cf2-4f1a-a1cb-f0cabaee4a85",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Figure A. 4 - Ready To Running model\n---\n",
+      "Content": "[image013.png](images/image013.png)"
+    },
+    {
+      "Id": "68c3c832-d9da-4c91-837c-f933c2a394ec",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "Figure A. 4 - Ready To Running model\n[Figure A.4](/\u00A7_Ref303808600) illustrates the model for the ReadyToRunning Program transition. The transition is caused by the Start Method. The Start Method requires three input arguments. The Method Call service is used by the Client to invoke the Start Method and pass the arguments. When successful, the Program Invocation enters the Running state and the subordinate Transfer Opening state. The Server issues two Event notifications, ReadyToRunning (2), and ToOpening (19).\nTable A. 9 - Start Method additions"
+    },
+    {
+      "Id": "84dc51bd-1920-4372-aa89-a641cc6ee339",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 9 - Start Method additions\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nStart\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType"
+    },
+    {
+      "Id": "41e3a1ba-782f-42bb-9dca-58d6b88ee4ff",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "[Table A.9](/\u00A7_Ref157854278) specifies that the Start Method for the DomainDownloadType requires input arguments.[Table A.10](/\u00A7_Ref157853363) identifies the Start Arguments required.\nTable A. 10 - StartArguments"
+    },
+    {
+      "Id": "2a756e16-51f4-454c-b782-35d64ef2266b",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 10 - StartArguments\n---\n",
+      "Content": "Name\nType\nValue\nArgument 1\nstructure\n\nname\nString\nSourcePath\ndataType\nNodeId\nStringNodeId\nvalueRank\nInt32\n-1 (-1 = scalar)\narrayDimensions\nUInt32[]\nnull\ndescription\nLocalizedText\nThe source specifier for the domain\nArgument 2\nstructure\n\nName\nString\nDestinationPath\ndataType\nNodeId\nStringNodeId\nvalueRank\nInt32\n-1  (-1 = scalar)\narrayDimensions\nUInt32[]\nnull\ndescription\nLocalizedText\nThe destination specifier for the domain\nArgument 3\nstructure\n\nname\nString\nDomainName\ndataType\nNodeId\nStringNodeId\narrayDimensions\nUInt32[]\nnull\nvalueRank\nInt32\n-1  (-1 = scalar)\ndescription\nLocalizedText\nThe name of the domain"
+    },
+    {
+      "Id": "4c7a362a-9a79-4e4b-b712-6f7a3f906d3b",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "[Figure A.5](/\u00A7_Ref303808683) illustrates the model for the Opening To Sending and the Sending to Closing Program transitions. As specified in the transition table, these state transitions require no Methods to occur, but rather are driven by the internal actions of the Server. Events are generated for each state transition (10 to 12), when they occur."
+    },
+    {
+      "Id": "a499f2a5-f8c3-4f75-80fb-5ff57dcc9c52",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Figure A. 5 - Opening To Sending To Closing model\n---\n",
+      "Content": "[image014.png](images/image014.png)"
+    },
+    {
+      "Id": "060dd34d-cf00-45ac-bc68-e1fe5c0f0f65",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "Figure A. 5 - Opening To Sending To Closing model\nNotice that a state transition can initiate and terminate at the same state (Sending). In this case the transition serves a purpose. The ProgramTransitionEventType effect referenced by   the SendingToSending state transition has an IntermediateResultData Object Reference. The IntermediateResultData Object serves to identify two Variables whose values are obtained each time the state transition occurs. The values are sent to the Client with the Event notification.[Table A.11](/\u00A7_Ref273043270) defines the IntermediateResults ObjectType and Table A.12 defines the Variables of the ObjectType.\nTable A. 11 - IntermediateResults Object"
+    },
+    {
+      "Id": "e2e24e38-74e1-4dd0-b35f-cd8f18f1556d",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 11 - IntermediateResults Object\n---\n",
+      "Content": "Attribute\nValue\n\nIncludes all attributes specified for the ObjectType\nBrowseName\nIntermediateResults\nIsAbstract\nFalse\n\n\nReferences\nNodeClass\nBrowseName\nData\nType\nTypeDefinition\nModelling\nRule\nHasComponent\nVariable\nAmountTransferred\nLong\nVariableType\nMandatory\nHasComponent\nVariable\nPercentageTransferred\nLong\nVariableType\nMandatory"
+    },
+    {
+      "Id": "5b9cbcbf-7c58-44c2-8e75-2a7a2ba6f816",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "Table A. 12 - Intermediate result data Variables"
+    },
+    {
+      "Id": "136059dd-33bb-420f-afd6-c018720cba14",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 12 - Intermediate result data Variables\n---\n",
+      "Content": "Intermediate Result Variables\nType\nValue\nVariable 1\nStructure\n\nName\nString\nAmountTransferred\ndataType\nNodeId\nStringNodeId\ndescription\nLocalizedText\nBytes of domain data transferred.\nVariable 2\nStructure\n\nName\nString\nPercentageTransferred\ndataType\nNodeId\nStringNodeId\ndescription\nLocalizedText\nPercentage of domain data transferred."
+    },
+    {
+      "Id": "ff737d69-f581-4940-85ff-a9fbb734e3c8",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "The model for the Running To Suspended state transition is illustrated in. The cause for this transition is the Suspend Method. The Client can pause the download of domain data to the control. The transition from Running to Suspended invokes the Event generation for TransitionEventTypes 5 and 16. Note that there is no longer a valid current state for the Transfer State Machine."
+    },
+    {
+      "Id": "8a8ef1a7-1367-48a1-91ff-46fab8db86cb",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Figure A. 6 - Running To Suspended model\n---\n",
+      "Content": "[image015.png](images/image015.png)"
+    },
+    {
+      "Id": "b23e40e5-99dc-46f8-8ec6-b8a0c1114cf5",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "Figure A. 6 - Running To Suspended model\nThe model for the SuspendedToRunning state transition is illustrated in[Figure A.7](/\u00A7_Ref303808759). The cause for this transition is the Resume Method. The Client can resume the download of domain data to the control. The transition from Suspended to Running generates the Event for TransitionEventTypes 6 and 17. Now that the Running state is active, the Sending state of the Transfer State Machine is again specified for the CurrentStateNumber."
+    },
+    {
+      "Id": "4e814a92-84e5-49fa-9fad-fa2324d38735",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Figure A. 7 - Suspended To Running model\n---\n",
+      "Content": "[image016.png](images/image016.png)"
+    },
+    {
+      "Id": "3fcc56d4-ae80-4bfc-916f-2cb539a4c853",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "Figure A. 7 - Suspended To Running model\nThe model for the Running To Halted state transition for an abnormal termination of the domain download is illustrated in[Figure A](/\u00A7_Ref157866654) Halt Method. The Client can terminate the download of domain data to the control. The transition from Running To Halted generates the Event for TransitionEventTypes 3 and 15. The TransitionEventType 15 indicates the transition from the Sending state as the Running State ends and then to the Aborted state as the Halted state is entered."
+    },
+    {
+      "Id": "9c57f32a-f383-4add-ac66-b9ace5354da1",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Figure A. 8 - Running To Halted - Aborted model\n---\n",
+      "Content": "[image017.png](images/image017.png)"
+    },
+    {
+      "Id": "566f1068-0018-41e8-9937-72fead18422d",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "Figure A. 8 - Running To Halted - Aborted model\n[Figure A.9](/\u00A7_Ref157867545) illustrates the model for the Suspended To Halted state transition for an abnormal termination of the domain download. The cause for this transition is the Halt Method. The Client can terminate the download of domain data to the control while it is suspended. The transition from SuspendedToHalted invokes the Event notifiers for TransitionEventTypes 7 and 18."
+    },
+    {
+      "Id": "b6c650e2-9d7d-4b1f-a11f-af6e5fd12f3d",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Figure A. 9 - Suspended To Aborted model\n---\n",
+      "Content": "[image018.png](images/image018.png)"
+    },
+    {
+      "Id": "6e527452-2833-41a6-89ff-a338072e98da",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "Figure A. 9 - Suspended To Aborted model\nThe model for the Running To Completed state transition for a normal termination of the domain download is illustrated in[Figure A.10](/\u00A7_Ref303808615). The cause for this transition is internal. The transition from Closing To Halted generates the Event for TransitionEventTypes 3 and 14. The TransitionEventType 14 indicates the transition from the Closing state as the Running state ends and then to the Completed state as the Halted state is entered.\nThe DomainDownloadType includes a component reference to a FinalResultData Object. This Object references Variables that persists information about the domain download once it has completed. This data can be read by Clients who are not subscribed to Event notifications. The result data is described in[Table A.13](/\u00A7_Ref273043395).\nTable A. 13 - FinalResultData"
+    },
+    {
+      "Id": "851401a6-390d-4a72-9a7b-f6935636e0e0",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Table A. 13 - FinalResultData\n---\n",
+      "Content": "Attribute\nValue\n\nIncludes all attributes specified for the ObjectType\nBrowseName\nFinalResultData\nIsAbstract\nFalse\n\n\nReferences\nNodeClass\nBrowseName\nData\nType\nTypeDefinition\nModelling\nRule\nHasComponent\nVariable\nDownloadPerformance\nDouble\nBaseDataVariableType\nMandatory\nHasComponent\nVariable\nFailureDetails\nString\nBaseDataVariableType\nMandatory"
+    },
+    {
+      "Id": "32c6539f-6b9b-4702-8b95-cd47ab39ac10",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "The Domain Download net transfer data rate and detailed reason for aborted downloads is retained as final result data for each Program Invocation.\nDownloadPerformance provides the data rate in seconds for domain data transferred.\nFailureDetails provides a descriptive reason for an abort."
+    },
+    {
+      "Id": "0c7e8bd8-d08b-4a5d-8e31-193b0dd7efd9",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\nCaption: Figure A. 10 - Running To Completed model\n---\n",
+      "Content": "[image019.png](images/image019.png)"
+    },
+    {
+      "Id": "980d80da-e065-4f18-bcb7-8db3d387efda",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.2 DomainDownloadType\n---\n",
+      "Content": "Figure A. 10 - Running To Completed model"
+    },
+    {
+      "Id": "6f0462cb-5cd0-4d4a-848a-e628ef2d9d3c",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6 DomainDownload model\n---\n",
+      "Content": "A.2.6.3 Sequence of operations"
+    },
+    {
+      "Id": "59ce7ccc-af25-4a91-8f64-7e9821581d70",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.3 Sequence of operations\n---\n",
+      "Content": "[Figure A.11](/\u00A7_Ref157876536) illustrates a normal sequence of service exchanges between a Client and Server that would occur during the life cycle of a DomainDownloadType Program Invocation."
+    },
+    {
+      "Id": "0966c212-cbb9-4b02-9b36-c2fbfe0928ef",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.3 Sequence of operations\nCaption: Figure A. 11 - Sequence of operations\n---\n",
+      "Content": "[image020.png](images/image020.png)"
+    },
+    {
+      "Id": "6988d487-c31f-4c02-8fbe-40b9296fc32f",
+      "Header": "Document: Part 10 - Programs\nSection: A.2.6.3 Sequence of operations\n---\n",
+      "Content": "Figure A. 11 - Sequence of operations\n____________"
+    }
+  ]
+}

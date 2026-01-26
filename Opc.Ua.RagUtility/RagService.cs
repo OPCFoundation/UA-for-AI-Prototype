@@ -53,6 +53,67 @@
 
         public async Task IndexDocumentAsync(object id, string content)
         {
+            try
+            {
+                await EmbedAndStoreAsync(id.ToString(), content);
+            }
+            catch (EmbeddingServerException ex) when (ex.StatusCode == 500)
+            {
+                // Split the chunk and retry
+                const string headerTerminator = "---\n";
+                var terminatorIndex = content.IndexOf(headerTerminator);
+
+                if (terminatorIndex < 0)
+                {
+                    throw new InvalidOperationException($"Chunk {id} failed with HTTP 500 and cannot be split: no header terminator found.");
+                }
+
+                var header = content.Substring(0, terminatorIndex + headerTerminator.Length);
+                var body = content.Substring(terminatorIndex + headerTerminator.Length);
+
+                // Split body in half with 100 char overlap
+                var midpoint = body.Length / 2;
+                var overlapStart = Math.Max(0, midpoint - 100);
+
+                var firstBody = body.Substring(0, midpoint);
+                var secondBody = body.Substring(overlapStart);
+
+                var firstContent = header + firstBody;
+                var secondContent = header + secondBody;
+
+                string secondId;
+
+                if (Guid.TryParse(id.ToString(), out Guid guid))
+                {
+                    var bytes = guid.ToByteArray();
+
+                    for (int ii = 1; ii < bytes.Length; ii++)
+                    {
+                        bytes[ii] ^= bytes[ii-1];
+                    }
+
+                    secondId = new Guid(bytes).ToString();
+                }
+                else
+                {
+                    secondId = Guid.NewGuid().ToString();
+                }
+
+                try
+                {
+                    await EmbedAndStoreAsync(id.ToString(), firstContent);
+                    await EmbedAndStoreAsync(secondId, secondContent);
+                    Console.WriteLine($"WARNING: Chunk {id} was split into two chunks ({id} and {secondId}).");
+                }
+                catch (EmbeddingServerException)
+                {
+                    throw new InvalidOperationException($"Chunk {id} failed embedding after split. Original error: {ex.Message}");
+                }
+            }
+        }
+
+        private async Task EmbedAndStoreAsync(string id, string content)
+        {
             var vector = await m_ollama.EmbedAsync(content, m_embeddingModel);
 
             // Ensure collection exists
@@ -61,7 +122,7 @@
             // Upsert
             await m_qdrant.UpsertAsync(m_collectionName, new QdrantPoint
             {
-                Id = id.ToString(),
+                Id = id,
                 Vector = vector,
                 Payload = new() { { "content", content } }
             });

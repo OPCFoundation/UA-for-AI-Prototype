@@ -283,55 +283,99 @@ namespace Opc.Ua.RagUtility
 
             string style = paragraph.Attribute("Style")?.Value;
 
-            if (style == "FIGURE-title")
+            if (style == "TABLE-title")
             {
-                string name = null;
+                string name, caption;
+                ExtractCaption(words, out name, out caption);
 
-                StringBuilder sb = new();
-
-                foreach (var word in words)
+                if (!String.IsNullOrEmpty(caption))
                 {
-                    if (!SpecialChars.IsSpecialChar(word))
-                    {
-                        var text = word.TrimStart();
+                    words.Clear();
+                    words.Add(caption);
 
-                        if (name == null && text[0] == '-')
-                        {
-                            name = sb.ToString().Trim();
-                            sb.Clear();
-                            sb.Append(name);
-                            sb.Append(" ");
-                            sb.Append(word.TrimStart());
-                            continue;
-                        }
-
-                        if (sb.Length > 0)
-                        {
-                            sb.Append(" ");
-                        }
-
-                        sb.Append(word);
-                    }
+                    document.Links[name] = caption;
+                    newParagraph.Number = name;
+                    newParagraph.ParagraphType = SpecialChars.TableStart;
                 }
+            }
 
-                string caption = sb.ToString().Trim();
+            if (style == "FIGURE-title" && paragraphType != SpecialChars.Figure)
+            {
+                string name, caption;
+                ExtractCaption(words, out name, out caption);
 
-                words.Clear();
-                words.Add(caption);
-
-                document.Links[name] = caption;
-                newParagraph.Number = name;
-                newParagraph.ParagraphType = SpecialChars.FigureTitle;
-
-                if (document.Paragraphs.Count > 0)
+                if (!String.IsNullOrEmpty(caption))
                 {
-                    var last = document.Paragraphs[^1];
-                    document.Links[last.Number] = $"{name} - {caption}";
-                    last.Caption = newParagraph;
+                    words.Clear();
+                    words.Add(caption);
+
+                    document.Links[name] = caption;
+                    newParagraph.Number = name;
+                    newParagraph.ParagraphType = SpecialChars.FigureTitle;
+
+                    if (document.Paragraphs.Count > 0)
+                    {
+                        for (int ii = document.Paragraphs.Count - 1; ii >= 0; ii--)
+                        {
+                            var last = document.Paragraphs[ii];
+
+                            if (last.Number != null)
+                            {
+                                document.Links[last.Number] = $"{name} - {caption}";
+                                last.Caption = newParagraph;
+                                break;
+                            }
+                        }
+                    }
                 }
             }
 
             document.Paragraphs.Add(newParagraph);
+        }
+
+        private static void ExtractCaption(List<string> words, out string name, out string caption)
+        {
+            name = null;
+            StringBuilder sb = new();
+
+            foreach (var word in words)
+            {
+                if (!SpecialChars.IsSpecialChar(word))
+                {
+                    var text = word.TrimStart();
+
+                    if (text.Length == 0)
+                    {
+                        continue;
+                    }
+
+                    int index = text.IndexOf('-');
+
+                    if (name == null && index >= 0)
+                    {
+                        if (index > 0)
+                        {
+                            sb.Append(text.Substring(0, index));
+                        }
+
+                        name = sb.ToString().Trim();
+                        sb.Clear();
+                        sb.Append(name);
+                        sb.Append(" ");
+                        sb.Append(text.Substring(index));
+                        continue;
+                    }
+
+                    if (sb.Length > 0)
+                    {
+                        sb.Append(" ");
+                    }
+
+                    sb.Append(word);
+                }
+            }
+
+            caption = sb.ToString().Trim();
         }
 
         public static Document Parse(string xmlPath)
@@ -382,7 +426,9 @@ namespace Opc.Ua.RagUtility
                         if (enumerator.MoveNext())
                         {
                             paragraph = enumerator.Current;
-                            p.Words.Add(ToSimpleText(paragraph)?.Trim());
+                            var title = ToSimpleText(paragraph)?.Trim();
+                            document.Links[$"{SpecialChars.SectionStart}{number}"] = title;
+                            p.Words.Add(title);
                         }
                     }
 
@@ -401,7 +447,71 @@ namespace Opc.Ua.RagUtility
                 ProcessParagraph(document, section, paragraph);
             }
 
+            CollectTables(document);
+
             return document;
+        }
+
+        private static void CollectTables(Document document)
+        {
+            bool inTable = false;
+            bool skippingTable = false;
+            bool outTable = false;
+
+            for (int ii = 0; ii < document.Paragraphs.Count; ii++)
+            {
+                var paragraph = document.Paragraphs[ii];
+
+                if (paragraph.ParagraphType == SpecialChars.TableStart)
+                {
+                    for (int jj = ii + 1; jj < document.Paragraphs.Count; jj++)
+                    {
+                        var content = document.Paragraphs[jj];
+
+                        foreach (var item in content.Words)
+                        {
+                            if (item == SpecialChars.TableStart)
+                            {
+                                if (inTable)
+                                {
+                                    skippingTable = true;
+                                }
+                                else if (!skippingTable)
+                                {
+                                    inTable = true;
+                                    break;
+                                }
+                            }
+
+                            if (item == SpecialChars.TableEnd)
+                            {
+                                if (skippingTable)
+                                {
+                                    skippingTable = false;
+                                }
+                                else if (inTable)
+                                {
+                                    outTable = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (inTable)
+                        {
+                            content.Caption = paragraph;
+                        }
+
+                        if (outTable)
+                        {
+                            inTable = false;
+                            outTable = false;
+                            skippingTable = false;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         private static Paragraph AddSection(Document document, XElement paragraph, string number)

@@ -128,18 +128,22 @@ Subtypes may add components which are instances of *StateMachineTypes* . These c
 
 The *StateMachineType* is formally defined in [Table 1](/§\_Ref17727931) .  
 
- **Table 1\- StateMachineType definition**   
+Table 1 - StateMachineType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|StateMachineType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType defined in [OPC 10000-5](/§UAPart5)|
 |HasSubtype|ObjectType|FiniteStateMachineType|Defined in [4.4.6](/§\_Ref33078906)|
 |HasComponent|Variable|CurrentState|LocalizedText|StateVariableType|Mandatory|
 |HasComponent|Variable|LastTransition|LocalizedText|TransitionVariableType|Optional|
+  
 | **Conformance Units** |
+|---|
 |Base Info State Machine Instance|
   
 
@@ -155,7 +159,7 @@ The *StateVariableType* is the base *VariableType* for *Variables* that store th
 
 The *StateVariableType* is formally defined in [Table 2](/§\_Ref33077859) .  
 
- **Table 2\- StateVariableType definition**   
+Table 2 - StateVariableType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -163,7 +167,9 @@ The *StateVariableType* is formally defined in [Table 2](/§\_Ref33077859) .
 |DataType|LocalizedText|
 |ValueRank|−1 (−1 = Scalar)|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseDataVariableType* defined in [OPC 10000-5](/§UAPart5)|
 |HasSubtype|VariableType|FiniteStateVariableType|Defined in [4.4.7](/§\_Ref33078936)|
 |HasProperty|Variable|Id|BaseDataType|PropertyType|Mandatory|
@@ -173,7 +179,9 @@ The *StateVariableType* is formally defined in [Table 2](/§\_Ref33077859) .
 |HasProperty|Variable|ContinuationOptions|DescriptionNodeIdDataType[]|PropertyType|Optional|
 |HasProperty|Variable|ExtendedInformation|LocalizedText|PropertyType|Optional|
 |HasProperty|Variable|VendorCode|String|PropertyType|Optional|
+  
 | **Conformance Units** |
+|---|
 |Base Info State Machine Instance|
   
 
@@ -199,7 +207,7 @@ The *StateVariableType* is formally defined in [Table 2](/§\_Ref33077859) .
 
 This structure contains the description and optionally a *NodeId* . It is used to provide a human-readable description of something plus optionally the *NodeId* in case the something is represented in the *AddressSpace* . The structure is defined in [Table 3](/§\_Ref169162623) .  
 
- **Table 3\- DescriptionNodeIdDataType Structure**   
+Table 3 - DescriptionNodeIdDataType Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -212,16 +220,20 @@ This structure contains the description and optionally a *NodeId* . It is used t
 
 Its representation in the *AddressSpace* is defined in [Table 4](/§\_Ref76309315) .  
 
- **Table 4\- DescriptionNodeIdDataType Definition**   
+Table 4 - DescriptionNodeIdDataType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|DescriptionNodeIdDataType|
 |IsAbstract|False|
 |Description|A human-readable description of something plus optionally the NodeId in case the something is represented in the AddressSpace|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of Structure defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Base Info State Machine DescriptionNodeIdDataType|
   
 
@@ -235,7 +247,7 @@ The *SourceTimestamp* for the value specifies when the *Transition* occurred. Th
 
 The *TransitionVariableType* is formally defined in [Table 5](/§\_Ref33077888) .  
 
- **Table 5\- TransitionVariableType definition**   
+Table 5 - TransitionVariableType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -243,7 +255,9 @@ The *TransitionVariableType* is formally defined in [Table 5](/§\_Ref33077888) 
 |DataType|LocalizedText|
 |ValueRank|−1 (−1 = Scalar)|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseDataVariableType* defined in [OPC 10000-5](/§UAPart5)|
 |HasSubtype|VariableType|FiniteTransitionVariableType|Defined in [4.4.8](/§\_Ref33078981)|
 |HasProperty|Variable|Id|BaseDataType|PropertyType|Mandatory|
@@ -251,7 +265,9 @@ The *TransitionVariableType* is formally defined in [Table 5](/§\_Ref33077888) 
 |HasProperty|Variable|Number|UInt32|PropertyType|Optional|
 |HasProperty|Variable|TransitionTime|UtcTime|PropertyType|Optional|
 |HasProperty|Variable|EffectiveTransitionTime|UtcTime|PropertyType|Optional|
+  
 | **Conformance Units** |
+|---|
 |Base Info State Machine Instance|
   
 
@@ -287,19 +303,23 @@ A *FiniteStateMachineType* may have sub-state-machines which are represented as 
 
 The *FiniteStateMachineType* is formally defined in [Table 6](/§\_Ref33077969) .  
 
- **Table 6\- FiniteStateMachineType definition**   
+Table 6 - FiniteStateMachineType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|FiniteStateMachineType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the StateMachineType defined in [4.4.2](/§\_Ref33079031)|
 |HasComponent|Variable|CurrentState|LocalizedText|FiniteStateVariableType|Mandatory|
 |HasComponent|Variable|LastTransition|LocalizedText|FiniteTransitionVariableType|Optional|
 |HasComponent|Variable|AvailableStates|NodeId[]|BaseDataVariableType|Optional|
 |HasComponent|Variable|AvailableTransitions|NodeId[]|BaseDataVariableType|Optional|
+  
 | **Conformance Units** |
+|---|
 |Base Info Finite State Machine Instance|
 |Base Info Available States and Transitions|
   
@@ -330,7 +350,7 @@ The *FiniteStateVariableType* is a subtype of *StateVariableType* and is used to
 
 The *FiniteStateVariableType* is formally defined in [Table 7](/§\_Ref33078097) .  
 
- **Table 7\- FiniteStateVariableType definition**   
+Table 7 - FiniteStateVariableType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -338,10 +358,14 @@ The *FiniteStateVariableType* is formally defined in [Table 7](/§\_Ref33078097)
 |DataType|LocalizedText|
 |ValueRank|−1 (−1 = Scalar)|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *StateVariableType* defined [4.4.3](/§\_Ref33079118)|
 |HasProperty|Variable|Id|NodeId|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Base Info Finite State Machine Instance|
   
 
@@ -359,7 +383,7 @@ The *FiniteTransitionVariableType* is a subtype of *TransitionVariableType* and 
 
 The *FiniteTransitionVariableType* is formally defined in [Table 8](/§\_Ref33078134) .  
 
- **Table 8\- FiniteTransitionVariableType definition**   
+Table 8 - FiniteTransitionVariableType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -367,10 +391,14 @@ The *FiniteTransitionVariableType* is formally defined in [Table 8](/§\_Ref3307
 |DataType|LocalizedText|
 |ValueRank|−1 (−1 = Scalar)|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the TransitionVariableType ** defined in [4.4.5](/§\_Ref33079141)|
 |HasProperty|Variable|Id|NodeId|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Base Info Finite State Machine Instance|
   
 
@@ -388,18 +416,22 @@ The *Number Property* is ** inherited from the *TransitionVariableType.* Its *Va
 
 The *StateType* is formally defined in [Table 9](/§\_Ref33078163) .  
 
- **Table 9\- StateType definition**   
+Table 9 - StateType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|StateType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|StateNumber|UInt32|PropertyType|Mandatory|
 |HasSubtype|ObjectType|InitialStateType|Defined in [4.4.10](/§\_Ref33079186)|
 |HasSubtype|ObjectType|ChoiceStateType|Defined in [4.6.2](/§\_Ref33079242)|
+  
 | **Conformance Units** |
+|---|
 |Base Info Finite State Machine Instance|
   
 
@@ -417,15 +449,19 @@ Figure 6 - Example of an initial State in a sub-machine
 
 If no initial state for a *SubStateMachine* exists and the *State* having the *SubStateMachine* is entered directly, then the *State* of the *SubStateMachine* is server-specific.  
 
- **Table 10\- InitialStateType definition**   
+Table 10 - InitialStateType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|InitialStateType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *StateType* defined in [4.4.9](/§\_Ref33076422)|
+  
 | **Conformance Units** |
+|---|
 |Base Info Finite State Machine Instance|
   
 
@@ -441,16 +477,20 @@ Each *Transition* can have one or more *HasCause* *References* pointing to the c
 
 Each *Transition* can have one or more *HasEffect* *References* pointing to the effects that occur when the *Transition* was triggered.  
 
- **Table 11\- TransitionType definition**   
+Table 11 - TransitionType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TransitionType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|TransitionNumber|UInt32|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Base Info Finite State Machine Instance|
   
 
@@ -466,7 +506,7 @@ The *SourceNode* of this *ReferenceType* shall be an *Object* of the *ObjectType
 
 The representation of the *FromState* *ReferenceType* in the *AddressSpace* is specified in [Table 12](/§\_Ref33078212) .  
 
- **Table 12\- FromState ReferenceType**   
+Table 12 - FromState ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -474,9 +514,13 @@ The representation of the *FromState* *ReferenceType* in the *AddressSpace* is s
 |InverseName|ToTransition|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **Conformance Units** |
+|---|
 |Base Info Finite State Machine Instance|
   
 
@@ -494,7 +538,7 @@ The *SourceNode* of this *ReferenceType* shall be an *Object* of the *ObjectType
 
 The representation of the *ToState* *ReferenceType* in the *AddressSpace* is specified in [Table 13](/§\_Ref33078236) .  
 
- **Table 13\- ToState ReferenceType**   
+Table 13 - ToState ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -502,9 +546,13 @@ The representation of the *ToState* *ReferenceType* in the *AddressSpace* is spe
 |InverseName|FromTransition|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **Conformance Units** |
+|---|
 |Base Info Finite State Machine Instance|
   
 
@@ -520,7 +568,7 @@ The *SourceNode* of this *ReferenceType* shall be an *Object* of the *ObjectType
 
 The representation of the *HasCause* *ReferenceType* in the *AddressSpace* is specified in [Table 14](/§\_Ref33078257) .  
 
- **Table 14\- HasCause ReferenceType**   
+Table 14 - HasCause ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -528,9 +576,13 @@ The representation of the *HasCause* *ReferenceType* in the *AddressSpace* is sp
 |InverseName|MayBeCausedBy|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **Conformance Units** |
+|---|
 |Base Info Finite State Machine Instance|
   
 
@@ -548,7 +600,7 @@ If the *TargetNode* is an *EventType* , each time the *Transition* is triggered 
 
 The representation of the *HasEffect* *ReferenceType* in the *AddressSpace* is specified in [Table 15](/§\_Ref33078273) .  
 
- **Table 15\- HasEffect ReferenceType**   
+Table 15 - HasEffect ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -556,9 +608,13 @@ The representation of the *HasEffect* *ReferenceType* in the *AddressSpace* is s
 |InverseName|MayBeEffectedBy|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **Conformance Units** |
+|---|
 |Base Info Finite State Machine Instance|
   
 
@@ -576,7 +632,7 @@ The *SourceNode* (the state) and the *TargetNode* (the *SubStateMachine* ) shall
 
 The representation of the *HasSubStateMachine ReferenceType* in the *AddressSpace* is specified in [Table 16](/§\_Ref33078293) .  
 
- **Table 16\- HasSubStateMachine ReferenceType**   
+Table 16 - HasSubStateMachine ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -584,9 +640,13 @@ The representation of the *HasSubStateMachine ReferenceType* in the *AddressSpac
 |InverseName|SubStateMachineOf|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |||||
+  
 | **Conformance Units** |
+|---|
 |Base Info Finite State Machine Instance|
   
 
@@ -596,18 +656,22 @@ The representation of the *HasSubStateMachine ReferenceType* in the *AddressSpac
 
 The *TransitionEventType* is a subtype of the *BaseEventType* . It can be used to generate an *Event* identifying that a *Transition* of a *StateMachine* was triggered. It is formally defined in [Table 17](/§\_Ref33078308) .  
 
- **Table 17\- TransitionEventType**   
+Table 17 - TransitionEventType  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TransitionEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the base *BaseEventType* defined in [OPC 10000-5](/§UAPart5)|
 |HasComponent|Variable|Transition|LocalizedText|TransitionVariableType|Mandatory|
 |HasComponent|Variable|FromState|LocalizedText|StateVariableType|Mandatory|
 |HasComponent|Variable|ToState|LocalizedText|StateVariableType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Base Info Finite State Machine Instance|
   
 
@@ -627,17 +691,21 @@ The inherited *Property* *SourceNode* shall be filled with the *NodeId* of the *
 
 The *AuditUpdateStateEventType* is a subtype of the *AuditUpdateMethodEventType* . It can be used to generate an *Event* identifying that a *Transition* of a *StateMachine* was triggered. It is formally defined in [Table 18](/§\_Ref33078332) .  
 
- **Table 18\- AuditUpdateStateEventType**   
+Table 18 - AuditUpdateStateEventType  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AuditUpdateStateEventType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *AuditUpdateMethodEventType* defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|OldStateId|BaseDataType|PropertyType|Mandatory|
 |HasProperty|Variable|NewStateId|BaseDataType|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Auditing UpdateStates|
   
 
@@ -665,7 +733,7 @@ If a StateMachine type is not abstract, subtypes of it shall not change the beha
 
 In [Table 19](/§\_Ref33078422) specific *StatusCodes* used for *StateMachines* are defined.  
 
- **Table 19\- Specific StatusCodes for StateMachines**   
+Table 19 - Specific StatusCodes for StateMachines  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -776,15 +844,19 @@ Figure 16 - Example of a ChoiceState
 
 As the *ChoiceState* is directly exited after it is entered there shall be no trigger (using the *HasCause* *ReferenceType* or a subtype) defined on any leaving *Transition* ( *Transitions* referencing the *ChoiceState* with the *FromState* *Reference* or a subtype).  
 
- **Table 20\- ChoiceStateType**   
+Table 20 - ChoiceStateType  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ChoiceStateType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the State *Type* defined in [4.4.9](/§\_Ref33076422)|
+  
 | **Conformance Units** |
+|---|
 |Base Info Choice States|
   
 
@@ -800,7 +872,7 @@ The *SourceNode* of this *ReferenceType* shall be an *Object* of the *ObjectType
 
 The representation of the *HasGuard* *ReferenceType* in the *AddressSpace* is specified in [Table 21](/§\_Ref33078513) .  
 
- **Table 21\- HasGuard ReferenceType**   
+Table 21 - HasGuard ReferenceType  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -808,9 +880,13 @@ The representation of the *HasGuard* *ReferenceType* in the *AddressSpace* is sp
 |InverseName|GuardOf|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the HasComponent ReferenceType defined in **** |
+  
 | **Conformance Units** |
+|---|
 |Base Info Choice States|
   
 
@@ -824,7 +900,7 @@ This base *GuardVariableType* does not define a machine-readable semantic of the
 
 The *GuardVariableType* is formally defined in [Table 22](/§\_Ref33078526) .  
 
- **Table 22\- GuardVariableType definition**   
+Table 22 - GuardVariableType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -832,11 +908,15 @@ The *GuardVariableType* is formally defined in [Table 22](/§\_Ref33078526) .
 |DataType|LocalizedText|
 |ValueRank|−1 (−1 = Scalar)|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the BaseDataVariableType defined in [OPC 10000-5](/§UAPart5)|
 |HasSubtype|VariableType|ElseGuardVariableType|Defined in [4.6.6](/§\_Ref535594246)|
 |HasSubtype|VariableType|ExpressionGuardVariableType|Defined in [4.6.5](/§\_Ref535594261)|
+  
 | **Conformance Units** |
+|---|
 |Base Info Choice States|
   
 
@@ -848,7 +928,7 @@ The *ExpressionGuardVariableType* provides, in addition to the human-readable se
 
 The *ExpressionGuardVariableType* is formally defined in [Table 23](/§\_Ref33078561) .  
 
- **Table 23\- ExpressionGuardVariableType definition**   
+Table 23 - ExpressionGuardVariableType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -856,10 +936,14 @@ The *ExpressionGuardVariableType* is formally defined in [Table 23](/§\_Ref3307
 |DataType|LocalizedText|
 |ValueRank|−1 (−1 = Scalar)|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the GuardVariableType defined in [4.6.4](/§\_Ref535591767)|
 |HasProperty|Variable|Expression|ContentFilter|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Base Info Choice States|
   
 
@@ -879,7 +963,7 @@ The semantic of the *ElseGuardVariableType* is, that if a pseudo state is reache
 
 The *ElseGuardVariableType* is formally defined in [Table 24](/§\_Ref33078599) .  
 
- **Table 24\- ElseGuardVariableType definition**   
+Table 24 - ElseGuardVariableType definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -887,9 +971,13 @@ The *ElseGuardVariableType* is formally defined in [Table 24](/§\_Ref33078599) 
 |DataType|LocalizedText|
 |ValueRank|−1 (−1 = Scalar)|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the GuardVariableType defined in [4.6.4](/§\_Ref535591767)|
+  
 | **Conformance Units** |
+|---|
 |Base Info Choice States|
   
 

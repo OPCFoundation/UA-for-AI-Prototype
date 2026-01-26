@@ -5,20 +5,123 @@ namespace Opc.Ua.RagUtility
 {
     internal class MarkdownExporter
     {
+        private class RowInfo
+        {
+            public int Paragraph { get; set; }
+
+            public int Word { get; set; }
+
+            public bool IsHeader { get; set; }
+
+            public int ColumnCount { get; set; }
+        }
+
+        private static List<RowInfo> GetRowColumnCount(IList<Paragraph> paragraphs, int index)
+        {
+            List<RowInfo> rows = new();
+            bool started = false;
+            bool ended = false;
+            bool skipping = false;
+            bool isBold = false;
+            RowInfo row = null;
+
+            for (int jj = index; jj < paragraphs.Count; jj++)
+            {
+                var paragraph = paragraphs[jj];
+
+                for (int ii = 0; ii < paragraph.Words.Count; ii++)
+                {
+                    var word = paragraph.Words[ii];
+
+                    if (started && word == SpecialChars.TableStart)
+                    {
+                        skipping = true;
+                        continue;
+                    }
+
+                    if (skipping && word == SpecialChars.TableEnd)
+                    {
+                        skipping = false;
+                        continue;
+                    }
+
+                    if (!started)
+                    {
+                        if (word == SpecialChars.TableStart)
+                        {
+                            started = true;
+                        }
+
+                        continue;
+                    }
+
+                    if (word == SpecialChars.TableEnd)
+                    {
+                        ended = true;
+                        break;
+                    }
+
+                    if (word == SpecialChars.RowStart)
+                    {
+                        row = new RowInfo() { Paragraph = jj, Word = ii, ColumnCount = 0 };
+                        continue;
+                    }
+
+                    if (word == SpecialChars.RowEnd)
+                    {
+                        rows.Add(row);
+                        continue;
+                    }
+
+                    if (word == SpecialChars.CellStart)
+                    {
+                        if (ii < paragraph.Words.Count - 1)
+                        {
+                            isBold = paragraph.Words[ii + 1] == SpecialChars.BoldStart;
+                        }
+
+                        row.ColumnCount++;
+                        continue;
+                    }
+
+                    if (word == SpecialChars.CellEnd)
+                    {
+                        if (isBold && ii > 0)
+                        {
+                            row.IsHeader = paragraph.Words[ii - 1] == SpecialChars.BoldEnd;
+                        }
+
+                        continue;
+                    }
+                }
+
+                if (!skipping && ended)
+                {
+                    break;
+                }
+            }
+                            
+            return rows;
+        }
+
+
         public static async Task SaveAsMarkdown(Document document, string directory)
         {
             using var writer = new StreamWriter(Path.Combine(directory, "README.md"));
 
             string documentTitle = document.Title;
-            List<string> words = new List<string>();
+            List<string> words = new();
+            List<RowInfo> rows = new();
 
             bool inTable = false;
+            bool skippingTable = false;
             bool inTableCell = false;
-            bool tableHeaderProcessed = false;
-            int columnCount = 0;
+            int rowCount = 0;
 
-            foreach (var paragraph in document.Paragraphs)
+            for (int jj = 0; jj < document.Paragraphs.Count; jj++)
             {
+                var paragraph = document.Paragraphs[jj];
+          
                 bool nospace = true;
 
                 for (int ii = 0; ii < paragraph.Words.Count; ii++)
@@ -43,11 +146,22 @@ namespace Opc.Ua.RagUtility
                         continue;
                     }
 
+                    if (inTable && word == SpecialChars.TableStart)
+                    {                        
+                        skippingTable = true;
+                        continue;
+                    }
+
+                    if (skippingTable && word == SpecialChars.TableEnd)
+                    {
+                        skippingTable = false;
+                        continue;
+                    }
+
                     if (word == SpecialChars.TableStart)
                     {
+                        rows = GetRowColumnCount(document.Paragraphs, jj);
                         inTable = true;
-                        tableHeaderProcessed = false;
-                        columnCount = 0;
                         continue;
                     }
 
@@ -56,7 +170,6 @@ namespace Opc.Ua.RagUtility
                         if (inTable)
                         {
                             inTableCell = true;
-                            columnCount++;
                         }
 
                         continue;
@@ -75,38 +188,74 @@ namespace Opc.Ua.RagUtility
 
                     if (word == SpecialChars.RowStart)
                     {
-                        if (inTable)
+                        if (skippingTable || !inTable)
                         {
-                            await writer.WriteAsync("|");
+                            continue;
                         }
 
+                        if (rowCount == 0 && rows.Count > rowCount && !rows[rowCount].IsHeader)
+                        {
+                            for (int column = 0; column < rows[rowCount].ColumnCount; column++)
+                            {
+                                await writer.WriteAsync("|");
+                            }
+
+                            await writer.WriteAsync("|\n");
+
+                            for (int column = 0; column < rows[rowCount].ColumnCount; column++)
+                            {
+                                await writer.WriteAsync("|---");
+                            }
+
+                            await writer.WriteAsync("|\n");
+                        }
+
+                        if (rows.Count > rowCount && rows[rowCount].IsHeader)
+                        {
+                            if (rowCount > 0)
+                            {
+                                await writer.WriteAsync("  \n");
+                            }
+                        }
+
+                        await writer.WriteAsync("|");
                         continue;
                     }
 
                     if (word == SpecialChars.RowEnd)
                     {
-                        if (inTable)
+                        if (skippingTable || !inTable)
                         {
-                            await writer.WriteAsync("\n");
-
-                            if (!tableHeaderProcessed)
-                            {
-                                for (int i = 0; i < columnCount; i++)
-                                {
-                                    await writer.WriteAsync("|---");
-                                }
-
-                                await writer.WriteAsync("|\n");
-                                tableHeaderProcessed = true;
-                            }
+                            continue;
                         }
 
+                        await writer.WriteAsync("\n");
+
+                        if (rows.Count > rowCount && rows[rowCount].IsHeader)
+                        {
+                            for (int column = 0; column < rows[rowCount].ColumnCount; column++)
+                            {
+                                await writer.WriteAsync("|---");
+                            }
+
+                            await writer.WriteAsync("|\n");
+                        }
+
+                        rowCount++;
                         continue;
                     }
 
                     if (word == SpecialChars.TableEnd)
                     {
+                        if (skippingTable || !inTable)
+                        {
+                            skippingTable = false;
+                            continue;
+                        }
+
                         inTable = false;
+                        rowCount = 0;
+                        rows = null;
                         continue;
                     }
 
@@ -171,9 +320,13 @@ namespace Opc.Ua.RagUtility
                     nospace = false;
                 }
 
-                if (!inTable || inTableCell)
+                if (!inTable)
                 {
                     await writer.WriteAsync("  \n\n");
+                }
+                else if (inTableCell)
+                {
+                    await writer.WriteAsync("<br>");
                 }
             }
 

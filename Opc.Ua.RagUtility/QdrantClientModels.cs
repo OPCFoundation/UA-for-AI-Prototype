@@ -18,7 +18,7 @@ namespace Opc.Ua.RagUtility
     public class QdrantScoredPoint
     {
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public object Id { get; set; }
         [JsonPropertyName("score")]
         public float Score { get; set; }
         [JsonPropertyName("payload")]

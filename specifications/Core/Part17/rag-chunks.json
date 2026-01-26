@@ -2,482 +2,582 @@
   "Title": "Part 17 - Alias Names",
   "Chunks": [
     {
-      "Id": "7815081d-8dd4-4ed0-bc31-1d4799aefb72",
+      "Id": "56777129-eaa5-4b3e-9d8f-7bbd47360970",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "1 Scope"
     },
     {
-      "Id": "3836538f-978b-4c9d-93c4-310365409834",
+      "Id": "8f03b219-ced5-4d8c-ab97-97f072d40962",
       "Header": "Document: Part 17 - Alias Names\nSection: 1 Scope\n---\n",
       "Content": "This part of the OPC UA Standard provides a definition of AliasNames functionality. AliasNames provide a manner of configuring and exposing an alternate well-defined name for any Node in the system. This is analogous to the way domain names are used as an alias to IP addresses in IP networks. Like a DNS Server, an OPC UA Server that supports AliasNames provides a lookup Method that will translate an AliasName to a NodeId of the related Node on a Server. An aggregating Server can collect these AliasNames from multiple Servers and provide a lookup Method to allow Client applications to discover NodeIds on a system wide basis. An aggregating Server could also define AliasNames for Nodes in other Servers that do not support AliasNames. A GDS may be constructed that would automatically aggregate all AliasNames that are defined on any Server that has registered with the GDS. In this case the GDS also provides the lookup mechanism for Clients at a well-known endpoint and address. Examples for the use of AliasNames are in[Annex A](/\u00A7_Ref172721279). The GDS functionality for AliasNames is formally defined in[Annex B](/\u00A7_Ref20155769)."
     },
     {
-      "Id": "3275573f-c1fa-4ec1-810b-71f82c2304e2",
+      "Id": "80d44a2e-d584-4b12-b7dd-680594e750ea",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "2 Normative references"
     },
     {
-      "Id": "ded86b2e-1868-45b4-b6d7-587f393dac11",
+      "Id": "7fcb2707-fa17-4666-b6f8-04a6bbfb3e7c",
       "Header": "Document: Part 17 - Alias Names\nSection: 2 Normative references\n---\n",
       "Content": "The following referenced documents are indispensable for the application of this specification. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments and errata) applies.\nOPC 10000-1, OPC Unified Architecture - Part 1: Overview and Concepts\n[http://www.opcfoundation.org/UA/Part1/](http://www.opcfoundation.org/UA/Part1/)\nOPC 10000-3, OPC Unified Architecture - Part 3: Address Space Model\n[http://www.opcfoundation.org/UA/Part3/](http://www.opcfoundation.org/UA/Part3/)\nOPC 10000-4, OPC Unified Architecture - Part 4: Services\n[http://www.opcfoundation.org/UA/Part4/](http://www.opcfoundation.org/UA/Part4/)\nOPC 10000-5, OPC Unified Architecture - Part 5: Information Model\n[http://www.opcfoundation.org/UA/Part5/](http://www.opcfoundation.org/UA/Part5/)\nOPC 10000-7, OPC Unified Architecture - Part 7: Profiles\n[http://www.opcfoundation.org/UA/Part7/](http://www.opcfoundation.org/UA/Part7/)\nOPC 10000-12, OPC Unified Architecture - Part 12: Discovery and Global Services\n[http://www.opcfoundation.org/UA/Part12/](http://www.opcfoundation.org/UA/Part12)\nOPC 10000-14, OPC Unified Architecture - Part 14: PubSub\n[](http://www.opcfoundation.org/UA/Part14)"
     },
     {
-      "Id": "cc1ee7f3-8c7b-4e89-a095-4735a6fb1e71",
+      "Id": "324d4ed9-69de-42ae-9a1d-e476f800fc2a",
       "Header": "Document: Part 17 - Alias Names\nSection: 2 Normative references\n---\n",
       "Content": "http://www.opcfoundation.org/UA/Part14/"
     },
     {
-      "Id": "259d2b76-2950-4003-8da0-ae58211a7ba2",
+      "Id": "469b27ec-fae5-46bb-829d-5203ea93abf9",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "3 Terms, definitions and abbreviated terms"
     },
     {
-      "Id": "43621082-d93c-4e5d-a82d-444f22f682d0",
+      "Id": "d77f7120-6429-4634-9546-cfcdce268e5d",
       "Header": "Document: Part 17 - Alias Names\nSection: 3 Terms, definitions and abbreviated terms\n---\n",
       "Content": "3.1 Terms and definitions"
     },
     {
-      "Id": "fb0db9c4-ad68-465f-a4ee-f0aec56575c4",
+      "Id": "76713fbd-ff24-48c8-b2c1-27b877e0bc99",
       "Header": "Document: Part 17 - Alias Names\nSection: 3.1 Terms and definitions\n---\n",
       "Content": "For the purposes of this document, the terms and definitions given in[OPC 10000-1](/\u00A7UAPart1),[OPC 10000-3](/\u00A7UAPart3),[OPC 10000-4](/\u00A7UAPart4),[OPC 10000-5](/\u00A7UAPart5),[OPC 10000-7](/\u00A7UAPart7),[OPC 10000-12](/\u00A7UAPart12), and[OPC 10000-14](/\u00A7UAPart14) apply.\nAll used terms are italicized in the specification.\n3.1.1 AliasName"
     },
     {
-      "Id": "b7455c88-31d0-4196-b355-5e76e6a95c18",
+      "Id": "9b87de2b-963d-491e-97d4-f54b594d67e7",
       "Header": "Document: Part 17 - Alias Names\nSection: 3.1.1 AliasName\n---\n",
       "Content": "alternate well-defined name for any Node in the system"
     },
     {
-      "Id": "9ba81959-347e-42f8-9e0c-d226f7d10fa8",
+      "Id": "d9d1c8bb-6c77-4092-9224-d8ed98cf1e98",
       "Header": "Document: Part 17 - Alias Names\nSection: 3 Terms, definitions and abbreviated terms\n---\n",
       "Content": "3.2 Abbreviated terms"
     },
     {
-      "Id": "c68bd3b0-f5fc-4fbc-8122-92c5a5751814",
+      "Id": "397b82a4-21ee-46b6-b717-1a91ccbe6804",
       "Header": "Document: Part 17 - Alias Names\nSection: 3.2 Abbreviated terms\n---\n",
       "Content": "GDS Global Discovery Server"
     },
     {
-      "Id": "6a555b76-cca0-45c8-bb67-a230e4feb4d8",
+      "Id": "45f546e0-8f99-45f6-9f53-eeb9735afd1b",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "4 Use cases"
     },
     {
-      "Id": "ae75516d-85c0-4de4-a63e-4d3ca0f29eb2",
+      "Id": "4b9dd19b-5675-4579-bf7c-6fc6d79a58aa",
       "Header": "Document: Part 17 - Alias Names\nSection: 4 Use cases\n---\n",
       "Content": "4.1 Complex configuration"
     },
     {
-      "Id": "dc136703-8789-47eb-99e1-971fbc337adf",
+      "Id": "021605d7-1f3f-4252-bf94-7054f6b0fcbd",
       "Header": "Document: Part 17 - Alias Names\nSection: 4.1 Complex configuration\n---\n",
       "Content": "For systems that are large and complex, engineering is often done in multiple tools and by multiple individuals. The separate configurations are required to work together, but resolving the references between these different configurations can be a significant task. A common solution to simplify this task is a naming convention for the items that are being referenced. Providing an automatic lookup capability for these names would greatly simplify configuration. Each system can specify its own names and configurations can be built to just use the names, without having to know the exact address of the items. The exact address would include the address of the Server, the address of the tag in the Server, the required protocol for connecting to the Server, security settings etc. OPC UA defines a GDS that can provide information about what Servers are available in a system and how to connect to them, but it does not currently provide information about the tags that are available in a given Server."
     },
     {
-      "Id": "1cf648a9-1a19-406e-8e62-20d3a7ac1316",
+      "Id": "b73d9a2a-1dc3-49f0-9aad-54bc7a0d91aa",
       "Header": "Document: Part 17 - Alias Names\nSection: 4 Use cases\n---\n",
       "Content": "4.2 Automatic reconfiguration"
     },
     {
-      "Id": "2256a851-47af-4e68-9247-1eac5ac93fb8",
+      "Id": "1161614f-f758-4077-a1af-51e583e99a96",
       "Header": "Document: Part 17 - Alias Names\nSection: 4.2 Automatic reconfiguration\n---\n",
       "Content": "In a system where many smaller Servers exist and these Servers could be dynamic, in that new Servers can appear and disappear. Configuration could move between Servers. The automatic resolution of where a specific piece of information is located would greatly simplify these systems."
     },
     {
-      "Id": "17e86f63-b062-498b-a933-0f664f8cb686",
+      "Id": "81c80ab1-4580-4786-84e0-f9ec876be18a",
       "Header": "Document: Part 17 - Alias Names\nSection: 4 Use cases\n---\n",
       "Content": "4.3 Cloud based system"
     },
     {
-      "Id": "2c6c5594-51fb-468f-a5cf-59a9897c27e1",
+      "Id": "7171b7f8-e30c-480e-b7de-4adddc8348aa",
       "Header": "Document: Part 17 - Alias Names\nSection: 4.3 Cloud based system\n---\n",
       "Content": "Much like the previous use case, a cloud-based system, where Servers can be spun up in a new cloud system or adjusted and split based on loading to multiple Servers. The automatic resolution of where a specific piece of information is located would greatly simplify these systems."
     },
     {
-      "Id": "73085445-73f9-4215-bc29-8792d9f905af",
+      "Id": "8459272b-4022-4fbc-b2aa-866951da3dc3",
       "Header": "Document: Part 17 - Alias Names\nSection: 4 Use cases\n---\n",
       "Content": "4.4 Aggregated systems"
     },
     {
-      "Id": "42846e31-61d8-4461-9974-3f943ba6470f",
+      "Id": "747e26f8-1a99-45c3-aaec-ed43a083f401",
       "Header": "Document: Part 17 - Alias Names\nSection: 4.4 Aggregated systems\n---\n",
       "Content": "In systems where many simple devices exist, any given simple device could not have the ability to provide name resolution, yet these systems can be much like systems in one of the previous use cases. In a system such as this an aggregating Server could exist, where the aggregating Server would provide the names as well as the lookup for the underlying Server. This aggregating Server could also provide other functionality such as aggregation of values, but it could only provide the name definitions and resolutions. The underlying Server could have no knowledge of the name."
     },
     {
-      "Id": "989d5925-e502-46a2-9153-c778b2e35503",
+      "Id": "25ef232a-3cf5-48e2-9beb-ef809acdde20",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "5 AliasNames Information Model overview"
     },
     {
-      "Id": "cf60fe30-55d1-4572-b81e-d76586748da5",
+      "Id": "1b88f77c-8370-44c3-8c92-2d88a6880cf6",
       "Header": "Document: Part 17 - Alias Names\nSection: 5 AliasNames Information Model overview\n---\n",
       "Content": "The AliasNames functionality (illustrated in[Figure 1](/\u00A7_Ref19041616)) defines a number of ObjectTypes, Methods, DataTypes and References.[Figure 2](/\u00A7_Ref18992396) illustrates an example of the Object model defined for AliasNames."
     },
     {
-      "Id": "c643e2bc-16d9-4c1d-a50b-1070e2098b11",
+      "Id": "376bf694-3762-47e2-91c8-223054eee64f",
       "Header": "Document: Part 17 - Alias Names\nSection: 5 AliasNames Information Model overview\nCaption: Figure 1 - AliasNames Overview\n---\n",
       "Content": "[image004.png](images/image004.png)"
     },
     {
-      "Id": "5dfe5648-6824-4678-9b29-4fba1eb9a98e",
+      "Id": "daa048d7-ea91-420e-9ce0-d54314e2d3de",
       "Header": "Document: Part 17 - Alias Names\nSection: 5 AliasNames Information Model overview\n---\n",
       "Content": "Figure 1 - AliasNames Overview\n\nThe model also includes some well-known fixed instances. The key functionality of AliasNames is to reference the information that an AliasName is assigned to. These can be any Node. The AliasNames can be grouped according to types of functionality. The OPC Foundation defines some initial groups, but the groups can be extended by companion specifications, vendors or end users to meet their needs.\n[image005.png](images/image005.png)\nFigure 2- AliasNames Example"
     },
     {
-      "Id": "6d07a1fe-6aca-40b2-87b0-f2693f5d02c9",
+      "Id": "77b715b6-4c53-4525-866e-da69dbc79760",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "6 OPC UA ObjectTypes"
     },
     {
-      "Id": "424e3a04-477a-4149-aa62-961f33fff1bd",
+      "Id": "ad4aab32-0a6c-494a-8c40-b3f1848f0e8e",
       "Header": "Document: Part 17 - Alias Names\nSection: 6 OPC UA ObjectTypes\n---\n",
       "Content": "6.1 Overview"
     },
     {
-      "Id": "8304ff1e-c4da-44e8-9449-caf8582cf5ae",
+      "Id": "9ec5fcff-5ce7-40b1-8533-52fff15bbec4",
       "Header": "Document: Part 17 - Alias Names\nSection: 6.1 Overview\n---\n",
       "Content": "An overview of this object model is provided in Clause[5](/\u00A7_Ref24885546).[Figure 1](/\u00A7_Ref19041616) illustrates the overall AliasName Object Model"
     },
     {
-      "Id": "9a49d4f1-43d0-4e88-a2ba-3f566b1f8c6e",
+      "Id": "18be4162-6250-4a0a-b2ad-754bf925df54",
       "Header": "Document: Part 17 - Alias Names\nSection: 6 OPC UA ObjectTypes\n---\n",
       "Content": "6.2 AliasNameType ObjectType Definition"
     },
     {
-      "Id": "c779fe6c-01c9-4717-bf37-014f0e5cbe10",
+      "Id": "8ca4829b-754a-4204-bea2-a20b6733675b",
       "Header": "Document: Part 17 - Alias Names\nSection: 6.2 AliasNameType ObjectType Definition\n---\n",
-      "Content": "Instances of the AliasNameType ObjectType provide alternate names for Nodes. The AliasNameType is formally defined in[Table 1](/\u00A7_Ref96249224).\nTable 1- AliasNameType Definition\nAttribute\nValue\nBrowseName\nAliasNameType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nConformanceUnits\nAliasName Base\n\nThis ObjectType has no Properties or Variables. The BrowseName of the Object is used as the alias name. The string part of the BrowseName shall be the DisplayName with an empty locale id and no other locale shall be provided. This Object shall have at least one AliasFor Reference(or sub-type).\nA Client shall always ignore the namespace associated with an AliasName for comparison with other AliasNames.\nThe AliasName Object\u0027s BrowseName shall not be modified once it is defined. If an AliasName needs to be changed, it is considered as a deletion of the old AliasName and the addition of new AliasName. This requirement allows AggregatingServers to detect new AliasNames."
+      "Content": "Instances of the AliasNameType ObjectType provide alternate names for Nodes. The AliasNameType is formally defined in[Table 1](/\u00A7_Ref96249224).\nTable 1 - AliasNameType Definition"
     },
     {
-      "Id": "1b0ae747-0f59-4ca7-9360-8be2b2c64541",
+      "Id": "179136e9-2c47-4b42-9a07-0654fb1e0454",
+      "Header": "Document: Part 17 - Alias Names\nSection: 6.2 AliasNameType ObjectType Definition\nCaption: Table 1 - AliasNameType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nAliasNameType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5)\nConformanceUnits\nAliasName Base"
+    },
+    {
+      "Id": "13e363bb-4aa5-41a3-b341-b1b902837b56",
+      "Header": "Document: Part 17 - Alias Names\nSection: 6.2 AliasNameType ObjectType Definition\n---\n",
+      "Content": "This ObjectType has no Properties or Variables. The BrowseName of the Object is used as the alias name. The string part of the BrowseName shall be the DisplayName with an empty locale id and no other locale shall be provided. This Object shall have at least one AliasFor Reference(or sub-type).\nA Client shall always ignore the namespace associated with an AliasName for comparison with other AliasNames.\nThe AliasName Object\u0027s BrowseName shall not be modified once it is defined. If an AliasName needs to be changed, it is considered as a deletion of the old AliasName and the addition of new AliasName. This requirement allows AggregatingServers to detect new AliasNames."
+    },
+    {
+      "Id": "e66e19ad-6a20-4ced-8f55-20826bfb8880",
       "Header": "Document: Part 17 - Alias Names\nSection: 6 OPC UA ObjectTypes\n---\n",
       "Content": "6.3 AliasNameCategoryType ObjectType Definition"
     },
     {
-      "Id": "2fcaae0b-dc7a-48f1-ad25-10dddc71faf7",
+      "Id": "5bcbcf82-49b1-4d21-a514-0c3dcc0ddb41",
       "Header": "Document: Part 17 - Alias Names\nSection: 6.3 AliasNameCategoryType ObjectType Definition\n---\n",
       "Content": "6.3.1 Definition"
     },
     {
-      "Id": "6810cf66-52d4-4e24-b4ba-111613921d5c",
+      "Id": "74d665c2-445d-4d81-bf2c-7ce2addd8719",
       "Header": "Document: Part 17 - Alias Names\nSection: 6.3.1 Definition\n---\n",
-      "Content": "AliasNameCategoryType instances are used to organize the AliasNameType instances that a Server defines. They can also include instances of AliasNameCategoryType to allow hierarchical groupings of AliasNames. It includes a mandatory Method for finding instances of AliasNameType in the AliasName hierarchy, starting at this instance of AliasNameCategoryType. For example, if the Method call is made on the Aliases AliasNameCategoryType instance (see[9.2](/\u00A7_Ref19038039)), it would apply the AliasNameSearchPattern to all AliasNames that are defined under TagVariables, Topics and any other AliasNameCategoryType instance in the hierarchy.\nThe AliasNameCategoryType is a subtype of FolderType and is formally defined in[Table 2](/\u00A7_Ref19038245).\nTable 2- AliasNameCategoryType Definition\nAttribute\nValue\nBrowseName\nAliasNameCategoryType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the FolderType from[OPC 10000-5](/\u00A7UAPart5)\nOrganizes\nObject\n\u003CAlias\u003E\n\nAliasNameType\nOptionalPlaceholder\nOrganizes\nObject\n\u003CSubAliasNameCategories\u003E\n\nAliasNameCategoryType\nOptionalPlaceholder\nHasComponent\nMethod\nFindAlias\nDefined in[6.3.2](/\u00A7_Ref19038345)\nMandatory\nHasProperty\nVariable\nLastChange\nVersionTime\nPropertyType\nOptional\nConformanceUnits\nAliasName Base\n\nThe list of AliasNames that an Object contains could be dynamic. For example, AliasNames could be added in an aggregating Server as underlying Servers become available or could be removed if a Server is no longer available.\n\u003CAlias\u003E represents any number of instances of"
+      "Content": "AliasNameCategoryType instances are used to organize the AliasNameType instances that a Server defines. They can also include instances of AliasNameCategoryType to allow hierarchical groupings of AliasNames. It includes a mandatory Method for finding instances of AliasNameType in the AliasName hierarchy, starting at this instance of AliasNameCategoryType. For example, if the Method call is made on the Aliases AliasNameCategoryType instance (see[9.2](/\u00A7_Ref19038039)), it would apply the AliasNameSearchPattern to all AliasNames that are defined under TagVariables, Topics and any other AliasNameCategoryType instance in the hierarchy.\nThe AliasNameCategoryType is a subtype of FolderType and is formally defined in[Table 2](/\u00A7_Ref19038245).\nTable 2 - AliasNameCategoryType Definition"
     },
     {
-      "Id": "fa0cd9bd-e4d4-4d84-867c-2c4bbf315214",
-      "Header": "Document: Part 17 - Alias Names\nSection: 6.3.1 Definition\n---\n",
-      "Content": "AliasNameType. Each instance shall have at least one AliasFor Reference to a Node. Multiple \u003C Alias \u003E instances can point to the same Node.\n\u003CSubAliasNameCategories\u003E allows the nesting or structuring of AliasNames into hierarchical groupings.\nAn \u003CAlias\u003E can appear in more than one place in the hierarchy of AliasNameCategories.\nLastChange is the most recent time for any of the following activities:\nThe last time an AliasName was added to or deleted from the AliasNameCategory,\nThe last time an AliasNameCategory was added or deleted,\nThe last time the referenced Nodes of an AliasName in the AliasNameCategory changed.\nFor AliasNameCategoryType instances that are nested, the value of LastChange shall always be the latest VersionTime of all Organized AliasName and AliasNameCategories.\nThe LastChange shall be persisted. A Client that detects a LastChange that is older than what it has cached, shall clear all cached AliasNameCategories and related AliasNames."
+      "Id": "5d709865-82b8-4d7b-98d8-790713948c31",
+      "Header": "Document: Part 17 - Alias Names\nSection: 6.3.1 Definition\nCaption: Table 2 - AliasNameCategoryType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nAliasNameCategoryType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the FolderType from[OPC 10000-5](/\u00A7UAPart5)\nOrganizes\nObject\n\u003CAlias\u003E\n\nAliasNameType\nOptionalPlaceholder\nOrganizes\nObject\n\u003CSubAliasNameCategories\u003E\n\nAliasNameCategoryType\nOptionalPlaceholder\nHasComponent\nMethod\nFindAlias\nDefined in[6.3.2](/\u00A7_Ref19038345)\nMandatory\nHasProperty\nVariable\nLastChange\nVersionTime\nPropertyType\nOptional\nConformanceUnits\nAliasName Base"
     },
     {
-      "Id": "c38b4118-4a72-4346-bd47-3eb742372419",
+      "Id": "0da05242-c73b-4a94-879e-17f61bdecbd4",
+      "Header": "Document: Part 17 - Alias Names\nSection: 6.3.1 Definition\n---\n",
+      "Content": "The list of AliasNames that an Object contains could be dynamic. For example, AliasNames could be added in an aggregating Server as underlying Servers become available or could be removed if a Server is no longer available.\n\u003CAlias\u003E represents any number of instances of AliasNameType. Each instance shall have at least one AliasFor Reference to a Node. Multiple \u003C Alias \u003E instances can point to the same Node.\n\u003CSubAliasNameCategories\u003E allows the nesting or structuring of AliasNames into hierarchical groupings.\nAn \u003CAlias\u003E can appear in more than one place in the hierarchy of AliasNameCategories.\nLastChange is the most recent time for any of the following activities:\nThe last time an AliasName was added to or deleted from the AliasNameCategory,\nThe last time an AliasNameCategory was added or deleted,\nThe last time the referenced Nodes of an AliasName in the AliasNameCategory changed.\nFor AliasNameCategoryType instances that are nested, the value of LastChange shall always be the latest VersionTime of all Organized AliasName and AliasNameCategories.\nThe LastChange shall be persisted. A Client that detects a LastChange that is older than what it has cached, shall clear all cached AliasNameCategories and related AliasNames."
+    },
+    {
+      "Id": "297261fc-2688-4166-8864-b6e93e87095d",
       "Header": "Document: Part 17 - Alias Names\nSection: 6.3 AliasNameCategoryType ObjectType Definition\n---\n",
       "Content": "6.3.2 FindAlias Method"
     },
     {
-      "Id": "09d39385-3d31-4250-9e57-59909d18aa4a",
+      "Id": "058a8caf-28a0-4633-955d-8ce88f41153b",
       "Header": "Document: Part 17 - Alias Names\nSection: 6.3.2 FindAlias Method\n---\n",
-      "Content": "The FindAlias Method allows a Client to obtain the list of Nodes that match the provided AliasName search string. The signature of this Method is specified below, the arguments are defined in[Table 3](/\u00A7_Ref18985459).\n\nSignature\nFindAlias(\n[in]  String AliasNameSearchPattern,\n[in]  NodeId ReferenceTypeFilter,\n[out] AliasNameDataType[]   AliasNodeList\n);\nTable 3- FindAlias Method Arguments\nArgument\nDescription\nAliasNameSearchPattern\nA string that can contain wild cards, use to find a list of AliasNames(see[OPC 10000-4](/\u00A7UAPart4)- \u0022Wildcard Characters\u0022 table for supported wildcards, see the \u0022Like\u0022 FilterOperator in[OPC 10000-4](/\u00A7UAPart4) for more details)\nReferenceTypeFilter\nA NodeId that represent a ReferenceType(i.e. AliasFor or one of its subtypes) that restricts the search. Any ReferenceType includes all subtypes of that ReferenceType.\nAliasNodeList\nThe returned list of AliasNameDataType. If no Nodes match the search string or have the appropriate ReferenceType, the list shall be empty.\n\nMethod result codes are defined in\nTable 4- FindAlias Method Error Codes\nResult Code\nDescription\nBad_InvalidArgument\nThe input string is not a valid search string\nBad_UserAccessDenied\nThe current user does not have the rights required.\nBad_ResponseToLarge\nThe response was too large to be returned, try new filter and repeat find\n\nThe Method is formally defined in[Table 5](/\u00A7_Ref18985657).\nTable 5- FindAlias Method AddressSpace definition\nAttribute\nValue\nBrowseName\nFindAlias\nReferences\nNode Class"
+      "Content": "The FindAlias Method allows a Client to obtain the list of Nodes that match the provided AliasName search string. The signature of this Method is specified below, the arguments are defined in[Table 3](/\u00A7_Ref18985459).\n\nSignature\nFindAlias(\n[in]  String AliasNameSearchPattern,\n[in]  NodeId ReferenceTypeFilter,\n[out] AliasNameDataType[]   AliasNodeList\n);\nTable 3 - FindAlias Method Arguments"
     },
     {
-      "Id": "3a83e710-5fcc-41f2-ae86-38596bb03cd5",
-      "Header": "Document: Part 17 - Alias Names\nSection: 6.3.2 FindAlias Method\n---\n",
-      "Content": "References\nNode Class\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory\n\nIt is important to note that there could be more than one entry for every AliasName. Multiple Servers could provide a Node that represents an equivalent object (such as a temperature sensor). An aggregating Server could also provide the Node. This Method will return the AliasNames in order of preference. That is the Server will return what it recommends as the best match first followed by the next best match etc. The criteria for ordering are Server specific. The criteria could be based on the ServerStatus of the Server that contains the referenced Node, it could be load balancing of Servers, it could be for off-loading of small device Servers, or it could be some other algorithm.\nClients should use the first usable entry in the list."
+      "Id": "e0e4b0f5-5ed4-44a6-a5e0-67febb06bfb1",
+      "Header": "Document: Part 17 - Alias Names\nSection: 6.3.2 FindAlias Method\nCaption: Table 3 - FindAlias Method Arguments\n---\n",
+      "Content": "Argument\nDescription\nAliasNameSearchPattern\nA string that can contain wild cards, use to find a list of AliasNames(see[OPC 10000-4](/\u00A7UAPart4)- \u0022Wildcard Characters\u0022 table for supported wildcards, see the \u0022Like\u0022 FilterOperator in[OPC 10000-4](/\u00A7UAPart4) for more details)\nReferenceTypeFilter\nA NodeId that represent a ReferenceType(i.e. AliasFor or one of its subtypes) that restricts the search. Any ReferenceType includes all subtypes of that ReferenceType.\nAliasNodeList\nThe returned list of AliasNameDataType. If no Nodes match the search string or have the appropriate ReferenceType, the list shall be empty."
     },
     {
-      "Id": "eae8d9ff-e632-4ae1-b8b6-6b8728a7a2ce",
+      "Id": "8497015d-0ccf-44ab-a8bc-dee405a1fc79",
+      "Header": "Document: Part 17 - Alias Names\nSection: 6.3.2 FindAlias Method\n---\n",
+      "Content": "Method result codes are defined in\nTable 4 - FindAlias Method Error Codes"
+    },
+    {
+      "Id": "4f358137-794e-4c9e-a7ed-e32a2ced4e39",
+      "Header": "Document: Part 17 - Alias Names\nSection: 6.3.2 FindAlias Method\nCaption: Table 4 - FindAlias Method Error Codes\n---\n",
+      "Content": "Result Code\nDescription\nBad_InvalidArgument\nThe input string is not a valid search string\nBad_UserAccessDenied\nThe current user does not have the rights required.\nBad_ResponseToLarge\nThe response was too large to be returned, try new filter and repeat find"
+    },
+    {
+      "Id": "4df990b6-ae12-4fdc-a94c-d9b2fe9cf70f",
+      "Header": "Document: Part 17 - Alias Names\nSection: 6.3.2 FindAlias Method\n---\n",
+      "Content": "The Method is formally defined in[Table 5](/\u00A7_Ref18985657).\nTable 5 - FindAlias Method AddressSpace definition"
+    },
+    {
+      "Id": "441cf652-f4b2-4dc0-8acc-0c572ab6ab4a",
+      "Header": "Document: Part 17 - Alias Names\nSection: 6.3.2 FindAlias Method\nCaption: Table 5 - FindAlias Method AddressSpace definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nFindAlias\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nHasProperty\nVariable\nInputArguments\nArgument[]\nPropertyType\nMandatory\nHasProperty\nVariable\nOutputArguments\nArgument[]\nPropertyType\nMandatory"
+    },
+    {
+      "Id": "6e0a3463-e5b0-4ae8-8a86-3f9751f1d8d2",
+      "Header": "Document: Part 17 - Alias Names\nSection: 6.3.2 FindAlias Method\n---\n",
+      "Content": "It is important to note that there could be more than one entry for every AliasName. Multiple Servers could provide a Node that represents an equivalent object (such as a temperature sensor). An aggregating Server could also provide the Node. This Method will return the AliasNames in order of preference. That is the Server will return what it recommends as the best match first followed by the next best match etc. The criteria for ordering are Server specific. The criteria could be based on the ServerStatus of the Server that contains the referenced Node, it could be load balancing of Servers, it could be for off-loading of small device Servers, or it could be some other algorithm.\nClients should use the first usable entry in the list."
+    },
+    {
+      "Id": "379dd421-00b8-430e-99b1-c8abeb7ceda7",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "7 OPC UA DataTypes"
     },
     {
-      "Id": "215abde4-4598-4f6c-a4ad-6844a593b0f0",
+      "Id": "9a890f37-c72c-4383-94f5-5bef9cb64d50",
       "Header": "Document: Part 17 - Alias Names\nSection: 7 OPC UA DataTypes\n---\n",
       "Content": "7.1 Overview"
     },
     {
-      "Id": "d3bea593-8cb3-4c2d-8446-ea9a6355f693",
+      "Id": "22505644-14ac-4e7f-b279-aa2d612b6f1f",
       "Header": "Document: Part 17 - Alias Names\nSection: 7.1 Overview\n---\n",
       "Content": "The following DataTypes are defined for the AliasNames model."
     },
     {
-      "Id": "da5231c1-ceff-42eb-8f39-ca3fe4422d92",
+      "Id": "d409897e-717a-48ed-bf5b-3e572834dd7b",
       "Header": "Document: Part 17 - Alias Names\nSection: 7 OPC UA DataTypes\n---\n",
       "Content": "7.2 AliasNameDataType"
     },
     {
-      "Id": "fbb6fbe1-4766-4fa4-a362-f5d581bd7dae",
+      "Id": "cc5e3cbb-c407-4f57-b9e2-2a912db7b703",
       "Header": "Document: Part 17 - Alias Names\nSection: 7.2 AliasNameDataType\n---\n",
-      "Content": "This DataType defines a structure that can contain an array of ExpandedNodeId for a single AliasName. Its elements are defined in[Table 6](/\u00A7_Ref19038546). It will always have at least one entry in the ReferencedNodes array.\nTable 6- AliasNameDataType DataType structure\nName\nType\nDescription\nAliasNameDataType\nStructure\n\nAliasName\nQualifiedName\nThe AliasName( BrowseName of the Node)\nReferencedNodes\nExpandedNodeId[]\nThe Nodes referenced by the AliasName\n\nIts representation in the AddressSpace is defined in[Table 7](/\u00A7_Ref194391093).\nTable 7- AliasNameDataType Definition\nAttribute\nValue\nBrowseName\nAliasNameDataType\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the Structure defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nAliasName Base"
+      "Content": "This DataType defines a structure that can contain an array of ExpandedNodeId for a single AliasName. Its elements are defined in[Table 6](/\u00A7_Ref19038546). It will always have at least one entry in the ReferencedNodes array.\nTable 6 - AliasNameDataType DataType structure"
     },
     {
-      "Id": "5584b316-bb95-4a55-bd1b-9ee9f85cb5c1",
+      "Id": "156b173d-4460-4127-bd32-ed3d5a3bb790",
+      "Header": "Document: Part 17 - Alias Names\nSection: 7.2 AliasNameDataType\nCaption: Table 6 - AliasNameDataType DataType structure\n---\n",
+      "Content": "Name\nType\nDescription\nAliasNameDataType\nStructure\n\nAliasName\nQualifiedName\nThe AliasName( BrowseName of the Node)\nReferencedNodes\nExpandedNodeId[]\nThe Nodes referenced by the AliasName"
+    },
+    {
+      "Id": "01ce4866-2800-4369-a758-fbc2cd51f548",
+      "Header": "Document: Part 17 - Alias Names\nSection: 7.2 AliasNameDataType\n---\n",
+      "Content": "Its representation in the AddressSpace is defined in[Table 7](/\u00A7_Ref194391093).\nTable 7 - AliasNameDataType Definition"
+    },
+    {
+      "Id": "a1c10094-6995-4331-b7fb-7fcdd5e9044e",
+      "Header": "Document: Part 17 - Alias Names\nSection: 7.2 AliasNameDataType\nCaption: Table 7 - AliasNameDataType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nAliasNameDataType\nReferences\nNode Class\nBrowseName\nDataType\nTypeDefinition\nModelling Rule\nSubtype of the Structure defined in[OPC 10000-5](/\u00A7UAPart5)\nConformance Units\nAliasName Base"
+    },
+    {
+      "Id": "efb37a8e-2a81-4db0-a3df-4076c10454b1",
+      "Header": "Document: Part 17 - Alias Names\nSection: 7.2 AliasNameDataType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "801add70-62c4-484d-aa05-573ae486108f",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "8 Reference Types"
     },
     {
-      "Id": "1a9dac55-4dc5-4fba-9170-35ccc11a2725",
+      "Id": "c53f3cc5-9e70-4dd3-bf34-23a247bb1bbd",
       "Header": "Document: Part 17 - Alias Names\nSection: 8 Reference Types\n---\n",
       "Content": "8.1 Overview"
     },
     {
-      "Id": "f5262edb-c23e-44cb-a1f2-b6f0cb5078ba",
+      "Id": "6d182a0b-f004-4d9e-99fc-777f020ad886",
       "Header": "Document: Part 17 - Alias Names\nSection: 8.1 Overview\n---\n",
       "Content": "The following References are defined for the AliasNames model."
     },
     {
-      "Id": "955c5591-1f81-4d39-a176-7fb68695da0b",
+      "Id": "b50a678d-32c6-4636-bcb5-106599756483",
       "Header": "Document: Part 17 - Alias Names\nSection: 8 Reference Types\n---\n",
       "Content": "8.2 AliasFor ReferenceType"
     },
     {
-      "Id": "4fda995c-222b-49cc-935b-da54ae41ddcd",
+      "Id": "81164aa7-d544-4e57-867e-5a65a057b233",
       "Header": "Document: Part 17 - Alias Names\nSection: 8.2 AliasFor ReferenceType\n---\n",
-      "Content": "This reference is a subtype of NonHierarchicalReferences.\nThe semantic of this ReferenceType is to link AliasNameType instances to the Nodes they represent. The inverse reference is not required, i.e. the Nodes might not have a reference back to instance of AliasNameType.\nThe SourceNode of References of this type shall be an Object of type AliasNameType.\nThe TargetNode of this ReferenceType can be of any NodeClass.\n[Figure 2](/\u00A7_Ref18992396) provides an illustration of how this ReferenceType is used. It is defined in[Table 8](/\u00A7_Ref16854066).\nTable 8- AliasFor Definition\nAttributes\nValue\nBrowseName\nAliasFor\nInverseName\nHasAlias\nSymmetric\nFalse\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of NonHierarchicalReferences ReferenceType defined in[OPC 10000-5](/\u00A7UAPart5)\nConformanceUnits\nAliasName Base"
+      "Content": "This reference is a subtype of NonHierarchicalReferences.\nThe semantic of this ReferenceType is to link AliasNameType instances to the Nodes they represent. The inverse reference is not required, i.e. the Nodes might not have a reference back to instance of AliasNameType.\nThe SourceNode of References of this type shall be an Object of type AliasNameType.\nThe TargetNode of this ReferenceType can be of any NodeClass.\n[Figure 2](/\u00A7_Ref18992396) provides an illustration of how this ReferenceType is used. It is defined in[Table 8](/\u00A7_Ref16854066).\nTable 8 - AliasFor Definition"
     },
     {
-      "Id": "752b2493-7003-494b-9c03-44dca2dc5675",
+      "Id": "f10531d1-7ebe-44b7-961b-895df706d7e8",
+      "Header": "Document: Part 17 - Alias Names\nSection: 8.2 AliasFor ReferenceType\nCaption: Table 8 - AliasFor Definition\n---\n",
+      "Content": "Attributes\nValue\nBrowseName\nAliasFor\nInverseName\nHasAlias\nSymmetric\nFalse\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of NonHierarchicalReferences ReferenceType defined in[OPC 10000-5](/\u00A7UAPart5)\nConformanceUnits\nAliasName Base"
+    },
+    {
+      "Id": "b300ed99-3649-49c3-92a5-4e2eb282c0f1",
+      "Header": "Document: Part 17 - Alias Names\nSection: 8.2 AliasFor ReferenceType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "39d03c73-c7cc-4366-a4bc-a60d6187dbba",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "9 Instances"
     },
     {
-      "Id": "530dfe7e-2a30-42b9-8ef0-a3ccaa512650",
+      "Id": "209ab487-b2eb-4924-91c6-abb67fa64b62",
       "Header": "Document: Part 17 - Alias Names\nSection: 9 Instances\n---\n",
       "Content": "9.1 Overview"
     },
     {
-      "Id": "39e225e7-3463-4a91-bdba-48db95ad9744",
+      "Id": "062a4743-675c-4227-9f90-0bb153469fbe",
       "Header": "Document: Part 17 - Alias Names\nSection: 9.1 Overview\n---\n",
       "Content": "The following standard Objects are defined for maintaining the hierarchical structure of AliasNameCategories in a Server. Server vendors are free to add additional instances of AliasNameCategoryType under this hierarchy."
     },
     {
-      "Id": "1373fcff-80ae-4107-9771-072be22e9229",
+      "Id": "c1ef351a-c7bc-4aec-b200-903c4c322c92",
       "Header": "Document: Part 17 - Alias Names\nSection: 9 Instances\n---\n",
       "Content": "9.2 Aliases"
     },
     {
-      "Id": "5f6ad942-8d27-4167-8197-7af3b56401f8",
+      "Id": "266708f4-113d-4b3d-856e-a62930614f3e",
       "Header": "Document: Part 17 - Alias Names\nSection: 9.2 Aliases\n---\n",
-      "Content": "The Aliases Node is formally defined in[Table 9](/\u00A7_Ref20220998).\nTable 9- Aliases definition\nAttribute\nValue\nBrowseName\nAliases\n\n\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOrganizedBy by the Objects Folder defined in[OPC 10000-5](/\u00A7UAPart5)\nHasTypeDefinition\nObjectType\nAliasNameCategoryType\nDefined in[6.3](/\u00A7_Ref19038894)\nHasProperty\nVariable\nLastChange\nVersionTime\nPropertyType\nConformanceUnits\nAliasName Hierarchy\n\nThis is the root folder for all alias related Objects. It can contain instances of AliasNameType Objects and / or instances of AliasNameCategoryType Objects.\nThe LastChange Property, which is optional in the AliasNameCategoryType, shall be present for the root Aliases instance. This property shall reflect the last time any changes to AliasName occurred (see[6.3](/\u00A7_Ref19038894))."
+      "Content": "The Aliases Node is formally defined in[Table 9](/\u00A7_Ref20220998).\nTable 9 - Aliases definition"
     },
     {
-      "Id": "329b2004-d87e-4330-975d-76b7434d8aa5",
+      "Id": "a632d4e0-ab6b-4616-8441-4e66dd2ac57b",
+      "Header": "Document: Part 17 - Alias Names\nSection: 9.2 Aliases\nCaption: Table 9 - Aliases definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nAliases\n\n\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOrganizedBy by the Objects Folder defined in[OPC 10000-5](/\u00A7UAPart5)\nHasTypeDefinition\nObjectType\nAliasNameCategoryType\nDefined in[6.3](/\u00A7_Ref19038894)\nHasProperty\nVariable\nLastChange\nVersionTime\nPropertyType\nConformanceUnits\nAliasName Hierarchy"
+    },
+    {
+      "Id": "3b8fd33d-02d4-44c3-ab6a-3bdf90b532c0",
+      "Header": "Document: Part 17 - Alias Names\nSection: 9.2 Aliases\n---\n",
+      "Content": "This is the root folder for all alias related Objects. It can contain instances of AliasNameType Objects and / or instances of AliasNameCategoryType Objects.\nThe LastChange Property, which is optional in the AliasNameCategoryType, shall be present for the root Aliases instance. This property shall reflect the last time any changes to AliasName occurred (see[6.3](/\u00A7_Ref19038894))."
+    },
+    {
+      "Id": "0b90d428-32c0-4600-b032-16389a025fef",
       "Header": "Document: Part 17 - Alias Names\nSection: 9 Instances\n---\n",
       "Content": "9.3 TagVariables"
     },
     {
-      "Id": "dca10c36-aeed-4c83-a9b6-ed93bf4d38a1",
+      "Id": "8669115f-1ac8-4e18-b7d3-ab7f2235a324",
       "Header": "Document: Part 17 - Alias Names\nSection: 9.3 TagVariables\n---\n",
-      "Content": "TagVariables is an instance of AliasNameCategoryType. TagVariables shall restrict instances of AliasNameType to those that have an AliasFor References that point to Variables. The TagVariables instance is formally defined in[Table 10](/\u00A7_Ref20118447).\nTable 10- TagVariables definition\nAttribute\nValue\nBrowseName\nTagVariables\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOrganizedBy by the Aliases defined in[9.2](/\u00A7_Ref19038039)\nHasTypeDefinition\nObjectType\nAliasNameCategoryType\nDefined in[6.3](/\u00A7_Ref19038894)\nConformanceUnits\nAliasName Category Tags\n\nThis is the root folder for AliasNameType instances that contain an AliasFor reference to Variables. It can contain additional AliasNameCategoryType Objects, which could be used to create a hierarchy. A single instance of AliasNameType can exist in more than one location in the Alias hierarchy."
+      "Content": "TagVariables is an instance of AliasNameCategoryType. TagVariables shall restrict instances of AliasNameType to those that have an AliasFor References that point to Variables. The TagVariables instance is formally defined in[Table 10](/\u00A7_Ref20118447).\nTable 10 - TagVariables definition"
     },
     {
-      "Id": "772b4f66-a4d4-43b6-b136-6f0f49188bb8",
+      "Id": "ec72d374-263f-45ab-bb6f-eced1231a3fa",
+      "Header": "Document: Part 17 - Alias Names\nSection: 9.3 TagVariables\nCaption: Table 10 - TagVariables definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nTagVariables\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOrganizedBy by the Aliases defined in[9.2](/\u00A7_Ref19038039)\nHasTypeDefinition\nObjectType\nAliasNameCategoryType\nDefined in[6.3](/\u00A7_Ref19038894)\nConformanceUnits\nAliasName Category Tags"
+    },
+    {
+      "Id": "53a2c35a-c3ab-4ad8-bba3-30426b7f790c",
+      "Header": "Document: Part 17 - Alias Names\nSection: 9.3 TagVariables\n---\n",
+      "Content": "This is the root folder for AliasNameType instances that contain an AliasFor reference to Variables. It can contain additional AliasNameCategoryType Objects, which could be used to create a hierarchy. A single instance of AliasNameType can exist in more than one location in the Alias hierarchy."
+    },
+    {
+      "Id": "fe609f14-2533-4fea-9520-16e938e1d91a",
       "Header": "Document: Part 17 - Alias Names\nSection: 9 Instances\n---\n",
       "Content": "9.4 Topics"
     },
     {
-      "Id": "033341a3-f977-480c-8725-9b8a99fa0732",
+      "Id": "fac0a839-2ece-49a6-aa28-69720416de29",
       "Header": "Document: Part 17 - Alias Names\nSection: 9.4 Topics\n---\n",
-      "Content": "Topics is an instance of AliasNameCategoryType. Topics shall restrict instances of AliasNameType to only have AliasFor References that point to PublishedDataSetType(or subtypes) instances (PublishedDataSetType is defined in[OPC 10000-14](/\u00A7UAPart14)). The Topics Node instance is formally defined in[Table 11](/\u00A7_Ref19039559).\nTable 11- Topics definition\nAttribute\nValue\nBrowseName\nTopics\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOrganizedBy by the Aliases defined in[9.2](/\u00A7_Ref19038039)\nHasTypeDefinition\nObjectType\nAliasNameCategoryType\nDefined in[6.3](/\u00A7_Ref19038894)\nConformanceUnits\nAliasName Category Topics\n\nIt can contain additional AliasNameCategoryType Objects, which could be used to create a hierarchy or other structure. A single instance of AliasNameType can exist in more than one location in the hierarchy, but all instances in the Topics hierarchy must point to an instance of a PublishedDataSetType."
+      "Content": "Topics is an instance of AliasNameCategoryType. Topics shall restrict instances of AliasNameType to only have AliasFor References that point to PublishedDataSetType(or subtypes) instances (PublishedDataSetType is defined in[OPC 10000-14](/\u00A7UAPart14)). The Topics Node instance is formally defined in[Table 11](/\u00A7_Ref19039559).\nTable 11 - Topics definition"
     },
     {
-      "Id": "1d628400-fde2-4b53-9af2-44656eb65b12",
+      "Id": "15eb756f-2342-492b-9215-1a8bb9f71b05",
+      "Header": "Document: Part 17 - Alias Names\nSection: 9.4 Topics\nCaption: Table 11 - Topics definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nTopics\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nOrganizedBy by the Aliases defined in[9.2](/\u00A7_Ref19038039)\nHasTypeDefinition\nObjectType\nAliasNameCategoryType\nDefined in[6.3](/\u00A7_Ref19038894)\nConformanceUnits\nAliasName Category Topics"
+    },
+    {
+      "Id": "4013507b-35c5-49b3-9df9-9c1bd9d527d2",
+      "Header": "Document: Part 17 - Alias Names\nSection: 9.4 Topics\n---\n",
+      "Content": "It can contain additional AliasNameCategoryType Objects, which could be used to create a hierarchy or other structure. A single instance of AliasNameType can exist in more than one location in the hierarchy, but all instances in the Topics hierarchy must point to an instance of a PublishedDataSetType."
+    },
+    {
+      "Id": "a1fbaded-44a1-4130-a6b1-c87cdbe4536f",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "Annex\u00A0A(informative): Examples\nA.1 Overview"
     },
     {
-      "Id": "dbef91bf-1e4a-467b-8f6b-3ce1b83c2b52",
+      "Id": "58f47d3b-e1d4-40a1-afea-0c1adb2c256d",
       "Header": "Document: Part 17 - Alias Names\nSection: A.1 Overview\n---\n",
       "Content": "A number of examples are provided to help illustrate how AliasNames function. This includes a Client using an AliasName Server, inside of a Server, in an aggregating Server and in a GDS."
     },
     {
-      "Id": "cfb448cc-88e6-4173-9567-fd41def704e3",
+      "Id": "aeb761f2-6ed5-47ff-b2b4-9930517efc7d",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "A.2 AliasNames used within a single Server"
     },
     {
-      "Id": "2ea98777-5768-4b03-9907-1bb1a80dada9",
+      "Id": "6b082d6f-615a-45e8-bd7f-b6dc971f1ce8",
       "Header": "Document: Part 17 - Alias Names\nSection: A.2 AliasNames used within a single Server\n---\n",
       "Content": "[Figure A.1](/\u00A7_Ref169278543) illustrates how this model can be used inside of a Server. This sample includes multiple instances of AliasNameCategoryType. The figure illustrates that Objects could be referenced by more than one instance of AliasNameType."
     },
     {
-      "Id": "da5ee338-0845-47a7-bccf-6c887a4cdb0e",
+      "Id": "2687438d-0b07-4b6b-974e-c222290752b4",
       "Header": "Document: Part 17 - Alias Names\nSection: A.2 AliasNames used within a single Server\nCaption: Figure A. 1 - AliasNames in a Server example\n---\n",
       "Content": "[image006.png](images/image006.png)"
     },
     {
-      "Id": "5783a38e-e0db-4192-9b43-f6f34f9beaf8",
+      "Id": "0baae41d-855a-4685-9c43-4ce63e40d079",
       "Header": "Document: Part 17 - Alias Names\nSection: A.2 AliasNames used within a single Server\n---\n",
       "Content": "Figure A. 1 - AliasNames in a Server example\n\nThe figure describes an information model for a well. This model contains a number of other Objects, which have Variables that are to be available via a standardized naming scheme. The model also includes a configuration for a Pub/Sub dataset that provides the Variables defined in the well.\nThe AliasName model includes the standard organization items that are required in this document. In addition, the model also defines an extra organizational item for grouping the well information. The example illustrates AliasNames that are both TagVariables and Topics."
     },
     {
-      "Id": "4d757870-2570-4a91-9f28-642f44311782",
+      "Id": "ecfc737c-2a71-4865-94e2-32c28a6723f9",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "A.3 AliasNames in an aggregating Server"
     },
     {
-      "Id": "cf7b8c3f-e159-4a88-9d3e-c3b89b678204",
+      "Id": "6e436f68-dd5f-4410-b7eb-ab3f85948efa",
       "Header": "Document: Part 17 - Alias Names\nSection: A.3 AliasNames in an aggregating Server\n---\n",
       "Content": "An aggregating Server would have much the same structure as the Server in the first example, with the exception that in the aggregating Server the target Nodes referenced by the AliasFor Reference could be in other Servers.[Figure A.2](/\u00A7_Ref169278577) provides an illustration of an example aggregating Server. The Server could have a much more complex AddressSpace than provided in the example."
     },
     {
-      "Id": "418fd4c7-c6f9-4884-8249-a459b152491a",
+      "Id": "e594983b-e932-4f31-a83b-41f88e6de9b4",
       "Header": "Document: Part 17 - Alias Names\nSection: A.3 AliasNames in an aggregating Server\nCaption: Figure A. 2 - Aggregating AliasNames Server example\n---\n",
       "Content": "[image007.png](images/image007.png)"
     },
     {
-      "Id": "09a26bcc-e8f7-46f0-b567-400e0a08fd5d",
+      "Id": "f8c4d290-ffd7-426c-8408-7ee4f76b92c7",
       "Header": "Document: Part 17 - Alias Names\nSection: A.3 AliasNames in an aggregating Server\n---\n",
       "Content": "Figure A. 2 - Aggregating AliasNames Server example\n\nThe aggregating Server has a choice in that it could just provide the link to the underlying Node(blue lines) or it could provide a link to the replicated Node in the aggregated Server\u0027s AddressSpace(red lines)."
     },
     {
-      "Id": "a7f8346e-1d4d-4761-a689-f351a015c9ef",
+      "Id": "568d521d-5be5-44f2-802e-77540f6537ef",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "A.4 Standalone AliasNames Server"
     },
     {
-      "Id": "fa9884ff-6bbc-4357-b05d-8c9a60732cad",
+      "Id": "0a53725b-caba-45d1-bd14-e6307a7a7333",
       "Header": "Document: Part 17 - Alias Names\nSection: A.4 Standalone AliasNames Server\n---\n",
       "Content": "The standalone AliasNames Server illustrated in[Figure](/\u00A7_Ref169278625) A.3 provides a list of AliasNames that reference Nodes in multiple separate Servers. This type of configuration could be used for Servers that do not have the resources to manage AliasNames on their own. It could also be used in a system where the configuration of AliasNames occurs after the devices that are represented by the Servers have already been deployed or if a Server just does not have support for AliasNames. The standalone AliasNames Server can function as a lookup Server for all of the AliasNames defined in the system. It is the responsibility of the standalone AliasNames Server to ensure that the mapping of AliasNames to actual Nodes is correct."
     },
     {
-      "Id": "5d61a44d-f23c-49f3-ab34-52ae836a56a3",
+      "Id": "de7b5055-fd56-479d-9e3c-822b76aba353",
       "Header": "Document: Part 17 - Alias Names\nSection: A.4 Standalone AliasNames Server\nCaption: Figure A. 3 - AliasNames Server example\n---\n",
       "Content": "[image008.png](images/image008.png)"
     },
     {
-      "Id": "9f9fd475-5903-4934-8fe1-788270a2bfc5",
+      "Id": "e6b927e9-1455-48c5-9795-675bfcc42617",
       "Header": "Document: Part 17 - Alias Names\nSection: A.4 Standalone AliasNames Server\n---\n",
       "Content": "Figure A. 3 - AliasNames Server example"
     },
     {
-      "Id": "bc5745de-e68e-475e-8912-1fc6a3744df6",
+      "Id": "fa043c52-176d-4678-ad79-73befdfd0c7a",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "A.5 Aggregating Server with a collection of Aggregates"
     },
     {
-      "Id": "fa616a96-c9a4-4e4c-9873-33cb4682f6c3",
+      "Id": "d49d3329-a3ba-4909-b288-691af7fd88a2",
       "Header": "Document: Part 17 - Alias Names\nSection: A.5 Aggregating Server with a collection of Aggregates\n---\n",
       "Content": "An aggregating Server as shown in[Figure A.4](/\u00A7_Ref169278755) could also collect all of the AliasNames defined in underlying Servers and just build a composite list of these AliasNames. Since all of the AliasNames are required to exist under the mandatory Aliases Object, it is simple for a Server to browse the AddressSpace and build a list. The aggregating Server would be required to merge all AliasNames listed under the well-known Objects. Some information models could define their own well known AliasNameCategoryType Objects, which would then also need to be merged. An aggregating Server could easily have the same AliasNames with multiple NodeIds. For example, if a temperature sensor were to be connected to two Servers for redundancy, the same AliasName TI101 could exist in both Servers. The aggregating Server would simple report two ExpandedNodeIds to any Client that requested TI101."
     },
     {
-      "Id": "d0a4cb6c-0bbe-4ad8-8085-027f33f508e6",
+      "Id": "74e17dde-67f8-45db-aad6-d0b9971fc14f",
       "Header": "Document: Part 17 - Alias Names\nSection: A.5 Aggregating Server with a collection of Aggregates\nCaption: Figure A. 4 - Aggregating AliasNames Server example\n---\n",
       "Content": "[image009.png](images/image009.png)"
     },
     {
-      "Id": "927816d3-3d52-4507-aa9f-a9839040f674",
+      "Id": "517b2bed-b5ca-4db4-8dc9-37bd51784f48",
       "Header": "Document: Part 17 - Alias Names\nSection: A.5 Aggregating Server with a collection of Aggregates\n---\n",
       "Content": "Figure A. 4 - Aggregating AliasNames Server example\n\nIn the above example, if the Temperatures AliasNameCategoryType instance were defined locally in the Server and not defined in a standard namespace then two instances of the Temperatures AliasNameCategoryType will exist in the aggregating Server with different namespaces."
     },
     {
-      "Id": "0d547d26-dab9-472a-85f1-32b27bfc2a37",
+      "Id": "77508354-0e65-483f-ad6f-d4f717ec03a5",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "A.6 GDS"
     },
     {
-      "Id": "eb5db955-66b6-4b6a-9158-706eb910de05",
+      "Id": "6bd01e37-5772-498e-a336-19198e575df0",
       "Header": "Document: Part 17 - Alias Names\nSection: A.6 GDS\n---\n",
       "Content": "The GDS could include additional optional behaviour which this example illustrates. What is required is the availability of all AliasNames in the mandatory TagVariables and Topics folder, but a GDS could also choose to replicate or even merge the additional AliasNameCategoryType instances from the Servers that have registered.[Figure A.5](/\u00A7_Ref169278776) provides an illustration of a GDS that merged the AliasNameCategory instance into a tree. It is required that AliasNameCategories be aggregated by the GDS, but the structure of these categories is not defined."
     },
     {
-      "Id": "cdefe1e9-9202-4ff7-aa62-f20b7a8f2134",
+      "Id": "0063a6c3-5798-418f-b4f5-97054d27e7b2",
       "Header": "Document: Part 17 - Alias Names\nSection: A.6 GDS\nCaption: Figure A. 5 - GDS with merged AliasNames example\n---\n",
       "Content": "[image010.png](images/image010.png)"
     },
     {
-      "Id": "af4fca7c-4a74-461a-ab98-ead4f79e8b8a",
+      "Id": "73b8e198-6156-46b9-8ce9-401a20a5209d",
       "Header": "Document: Part 17 - Alias Names\nSection: A.6 GDS\n---\n",
       "Content": "Figure A. 5 - GDS with merged AliasNames example\n\nFor additional information about a GDS and AliasNames see[Annex B](/\u00A7_Ref20155769)."
     },
     {
-      "Id": "7eb104c1-b7d3-453f-b372-13fdbcc4126f",
+      "Id": "0928a09d-8c96-4482-9909-94567fb01970",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "A.7 Client use of an AliasName Server"
     },
     {
-      "Id": "d669f3c3-d68b-4bf0-bcc7-6a7d7e8191f2",
+      "Id": "af4c9615-d81d-486f-a025-65e76c8fb237",
       "Header": "Document: Part 17 - Alias Names\nSection: A.7 Client use of an AliasName Server\n---\n",
       "Content": "AliasNames allow a Client to find TagVariables or Topics easily. Many industrial systems assign tags to specific measurement or sensors. These tags follow established nomenclatures. An example tag is TI101, which is a temperature indicator at a specific location in a plant. The example nomenclature is defined in[ANSI/ISA-S5.1-1984 (R 1992)](/\u00A7ANSI), but this specification does not provide or even suggest any nomenclature. A Client could be configured to display or use the information provided by the sensor TI101, but the actual address/location of this sensor is often not known when the Client is configured. AliasNames can be used to resolve this tag to the actual sensor in the system.\nThe Client, on start-up or when it needs to access the tag, would call FindAlias on a local Server, aggregating Server or GDS depending on how a system is configured. A Client could select which AliasName source to call via a configuration setting. The FindAlias Method call would return a list of all ExpandedNodeIds that the AliasName References. It is important to note that there could be more than one Node referenced by an AliasName and that the Client must be prepared for this. The first Node in the list of referenced Nodes returned by FindAlias Method is the Node that the Server feels is the best match for the requested tag. The returned list could also return more than one instance of AliasNameType and each could have their own list of referenced Nodes. If the Method call was on a GDS or aggregating Server, the Client would need to read the ServerArray to resolve which Server the ExpandedNodeId was referencing. This would be the last piece of information that a Client would need to be able to follow a normal connection pattern to obtain values from the Node.\nAliasName"
     },
     {
-      "Id": "961633c9-e7ef-4ab2-953c-0150da8412e7",
+      "Id": "24fa32b2-d968-4921-9228-5975dd383474",
       "Header": "Document: Part 17 - Alias Names\nSection: A.7 Client use of an AliasName Server\n---\n",
       "Content": "Node.\nAliasName could also be configured to provide other information, such as Pub/Sub information, but again it would only be the information that is needed to initially subscribe to an item."
     },
     {
-      "Id": "eab815d3-4546-444f-9767-24012731e43d",
+      "Id": "29592912-96ee-490a-a977-20a4a7a78790",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "Annex\u00A0B GDS functionality (normative)\nB.1 Overview"
     },
     {
-      "Id": "28e719e5-38d4-4019-a798-807d217a3208",
+      "Id": "301af019-e217-4b47-a6b7-69207014bdda",
       "Header": "Document: Part 17 - Alias Names\nSection: B.1 Overview\n---\n",
       "Content": "A Global Discovery Server (GDS) that supports AliasNames, provides AliasNames functionality, but the target Nodes referenced are in other Servers. The AliasNames are aggregated from the Servers that have registered with the GDS that expose the \u0022Alias\u0022 capability (for information on capabilities see[OPC 10000-12](/\u00A7UAPart12)). Additional examples on aggregating AliasNames can be found in the aggregating Server example -[A.3](/\u00A7_Ref19041937). A GDS implementation also requires additional behaviour. This section describes automatic behaviour that is required by all implementations of a GDS that supports AliasNames. An example of a GDS that supports AliasNames is illustrated in[Figure B.1](/\u00A7_Ref172752990)."
     },
     {
-      "Id": "de01f541-a87e-49ef-968a-789d7d33c003",
+      "Id": "1ec59dd0-d94e-42ca-884a-152b4d1cbdcb",
       "Header": "Document: Part 17 - Alias Names\nSection: B.1 Overview\nCaption: Figure B. 1 - Example GDS aggregating AliasNames\n---\n",
       "Content": "[image011.png](images/image011.png)"
     },
     {
-      "Id": "97c931bc-046a-44ff-a005-dd6a3d5229fb",
+      "Id": "6c5c3cc1-654c-422e-a6b5-0e022fc3f919",
       "Header": "Document: Part 17 - Alias Names\nSection: B.1 Overview\n---\n",
       "Content": "Figure B. 1 - Example GDS aggregating AliasNames\n\nThe following sections describe this required behaviour:\nWhen a Server registers with the GDS, the GDS shall merge the AliasNames of the registering Server into a master AliasNames list on the GDS.\nPull all AliasNameCategory instances, merge any that have identical Name part of the BrowseNames.\nThe GDS will provide the ExpandedNodeId of all of the referenced NodeIds and the ServerUri of the Server containing the NodeId.\nThe details of the expected behaviour of a GDS that supports AliasNames is described in[B.2](/\u00A7_Ref172753057),[B.3](/\u00A7_Ref172753062) and[B.4](/\u00A7_Ref172753065)."
     },
     {
-      "Id": "97a1da73-2e0d-46b5-9f33-7780fa45c74d",
+      "Id": "acd191dc-92b4-402c-9942-24f4599abc12",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "B.2 Register a Server"
     },
     {
-      "Id": "eda08af9-4585-4213-96fa-d2ef13d4637b",
+      "Id": "af0eda48-1748-43b3-a415-c4a868351669",
       "Header": "Document: Part 17 - Alias Names\nSection: B.2 Register a Server\n---\n",
       "Content": "A GDS that includes support for AliasNames shall automatically aggregate all instances of AliasNameType that are available in any Server that has registered with the GDS. If the same AliasName is registered from different Servers, the GDS shall combine the AliasName within its Alias structure. The GDS shall add the ServerUri of the registered Server into its ServerArray Property. It shall provide a single merged tree list for any of the well-known AliasNameCategoryType Objects defined in[9.3](/\u00A7_Ref19061836)(i.e. TagVariables or Topics). The organization of the actual structure of the AliasNameCategoryType hierarchy is specific to the GDS vendor and/or the configuration of the GDS, but all AliasNameCategoryType instances shall be aggregated into the GDS. This hierarchy allows for a single instance of the AliasNameType to appear in more than one location in the tree.[Figure B.2](/\u00A7_Ref169278841) illustrates the process a GDS that supports AliasNames would follow."
     },
     {
-      "Id": "34dfb677-07f2-47b5-a03c-31c4177b3615",
+      "Id": "a5e9b7f3-1a9c-49d1-849e-f0edf247ff5f",
       "Header": "Document: Part 17 - Alias Names\nSection: B.2 Register a Server\nCaption: Figure B. 2 - Server Registration Process\n---\n",
       "Content": "[image012.png](images/image012.png)"
     },
     {
-      "Id": "c6105f01-b513-4b75-969e-019f843f7e54",
+      "Id": "74e63d78-fa48-4814-9103-ad8a5557a662",
       "Header": "Document: Part 17 - Alias Names\nSection: B.2 Register a Server\n---\n",
       "Content": "Figure B. 2 - Server Registration Process\n\n[Note: a GDS could encounter a large list of AliasNames and it is important that an efficient storage of AliasName is provided to allow for fast AliasName resolution ( FindAlias)]"
     },
     {
-      "Id": "ca69abd6-6b06-4c18-8028-db1ab38eb18e",
+      "Id": "75a5fe9d-924b-43c9-88d6-0e0a1946f5f3",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "B.3 Unregister a Server"
     },
     {
-      "Id": "e0a86063-d271-4be5-beeb-90ef7fb9c64c",
+      "Id": "d65f8046-869e-4c01-a9b4-8dda9a0a1250",
       "Header": "Document: Part 17 - Alias Names\nSection: B.3 Unregister a Server\n---\n",
       "Content": "The GDS should automatically remove any instances of AliasNameType and AliasNameCategoryType that are associated with an unregistered Server. However, the AliasName instance or AliasNameCategory instance could be from multiple Servers and should only be removed if all of the Servers that referenced it have been removed. The GDS shall remove any AliasFor References that point to the unregistered Server. The GDS shall delete the ServerUri of the unregistered Server from the ServerArray Property.[Figure B.3](/\u00A7_Ref169278857) illustrate the unregister process in a GDS."
     },
     {
-      "Id": "f812faca-3d8d-4756-b7fd-030e6e1982cf",
+      "Id": "ec2d5268-2fcf-4d9a-90cd-e0a1cb5250e5",
       "Header": "Document: Part 17 - Alias Names\nSection: B.3 Unregister a Server\nCaption: Figure B. 3 - Unregister Server Process\n---\n",
       "Content": "[image013.png](images/image013.png)"
     },
     {
-      "Id": "bedef3e0-092a-459c-8af7-a513d7aeb358",
+      "Id": "097a708e-0d8c-4449-a7ea-e7fd3fd8832d",
       "Header": "Document: Part 17 - Alias Names\nSection: B.3 Unregister a Server\n---\n",
       "Content": "Figure B. 3 - Unregister Server Process"
     },
     {
-      "Id": "403b0547-c5c4-4b7d-bc86-7a69f9244fb2",
+      "Id": "5769ff0e-2027-48b4-8cfe-1c79f44dfcac",
       "Header": "Document: Part 17 - Alias Names\n---\n",
       "Content": "B.4 Disconnect between a Client and an AliasName Server"
     },
     {
-      "Id": "93ac0825-7a0d-44b0-b42b-aa8293b1e790",
+      "Id": "eef2cb72-bbc7-4bdb-bc33-e2d6aad521b9",
       "Header": "Document: Part 17 - Alias Names\nSection: B.4 Disconnect between a Client and an AliasName Server\n---\n",
       "Content": "When a Client that uses aliased Nodes detects a communication problem with the Server, the Client can return to the GDS and request a new AliasNodeList for the AliasName. The original Server could recover and again be listed in the GDS, but the Client is not required to switch back.[Figure B.4](/\u00A7_Ref169278877) provides an overview of this process."
     },
     {
-      "Id": "8a91a90e-9adb-4abd-b8b9-cabe2c2a0e88",
+      "Id": "fa4c9126-603c-47da-abaa-eeb9bd64ad58",
       "Header": "Document: Part 17 - Alias Names\nSection: B.4 Disconnect between a Client and an AliasName Server\nCaption: Figure B. 4 - Example Client Process for Server subscription with errors\n---\n",
       "Content": "[image014.png](images/image014.png)"
     },
     {
-      "Id": "6467b6fc-080c-497c-93d6-6a3ae6df80b4",
+      "Id": "66c55c9e-c6ac-4de8-bc55-8da7416dabce",
       "Header": "Document: Part 17 - Alias Names\nSection: B.4 Disconnect between a Client and an AliasName Server\n---\n",
       "Content": "Figure B. 4 - Example Client Process for Server subscription with errors\n\nIt is important to remember that the FindAlias Method will return a list of NodeIds(and Servers) that meet the requested AliasName search string. It is up to the Client to determine if the NodeId that is returned is the same Server or on a different Server or if the next NodeId should be used instead of the first.\nBibliography\nANSI/ISA-S5.1-1984 (R 1992), Instrumentation Symbols and Identification\n[https://webstore.ansi.org/standards/isa/isa1984r1992](https://webstore.ansi.org/standards/isa/isa1984r1992)\n__________"
     }

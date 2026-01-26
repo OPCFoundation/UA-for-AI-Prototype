@@ -72,7 +72,7 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* or
 
 *IsExecutableOn* is formally defined in [Table 1](/§\_Ref16854066) .  
 
- **Table 1\- IsExecutableOn Definition**   
+Table 1 - IsExecutableOn Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -80,9 +80,13 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* or
 |InverseName|CanExecute|
 |Symmetric|FALSE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of NonHierarchicalReferences defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Base Info IsExecutableOn|
   
 
@@ -106,7 +110,7 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* or
 
 *IsExecutingOn* is formally defined in [Table 2](/§\_Ref65671227) .  
 
- **Table 2\- IsExecutingOn Definition**   
+Table 2 - IsExecutingOn Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -114,9 +118,13 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* or
 |InverseName|Executes|
 |Symmetric|FALSE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of Utilizes defined in [4.5](/§\_Ref74311914)|
+  
 | **Conformance Units** |
+|---|
 |Base Info IsExecutingOn|
   
 
@@ -142,7 +150,7 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* re
 
 *Controls* is formally defined in [Table 3](/§\_Ref56421582) .  
 
- **Table 3\- Controls Definition**   
+Table 3 - Controls Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -150,9 +158,13 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* re
 |InverseName|IsControlledBy|
 |Symmetric|FALSE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of HierarchicalReferences defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Base Info Controls|
   
 
@@ -176,7 +188,7 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* or
 
 *Requires* is formally defined in [Table 4](/§\_Ref56421591) .  
 
- **Table 4\- Utilizes Definition**   
+Table 4 - Utilizes Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -184,9 +196,13 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* or
 |InverseName|IsUtilizedBy|
 |Symmetric|FALSE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of NonHierarchicalReferences defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Base Info Utilizes|
   
 
@@ -214,7 +230,7 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* re
 
 *Requires* is formally defined in [Table 5](/§\_Ref74312079) .  
 
- **Table 5\- Requires Definition**   
+Table 5 - Requires Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -222,9 +238,13 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* re
 |InverseName|IsRequiredBy|
 |Symmetric|FALSE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of HierarchicalReferences defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Base Info Requires|
   
 
@@ -248,7 +268,7 @@ The *TargetNode* of this *ReferenceType* shall be an *Object* representing a pie
 
 *IsPhysicallyConnectedTo* is formally defined in [Table 6](/§\_Ref56421598) .  
 
- **Table 6\- IsPhysicallyConnectedTo Definition**   
+Table 6 - IsPhysicallyConnectedTo Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -256,9 +276,13 @@ The *TargetNode* of this *ReferenceType* shall be an *Object* representing a pie
 |InverseName|\-|
 |Symmetric|TRUE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of NonHierarchicalReferences defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Base Info IsPhysicallyConnectedTo|
   
 
@@ -284,7 +308,7 @@ Both, *SourceNode* and *TargetNode* shall represent the same entity in the real 
 
 *RepresentsSameEntityAs* is formally defined in [Table 7](/§\_Ref74312091) .  
 
- **Table 7\- RepresentsSameEntityAs Definition**   
+Table 7 - RepresentsSameEntityAs Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -292,9 +316,13 @@ Both, *SourceNode* and *TargetNode* shall represent the same entity in the real 
 |InverseName|\-|
 |Symmetric|TRUE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of NonHierarchicalReferences defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Base Info RepresentsSameEntityAs|
   
 
@@ -322,7 +350,7 @@ Both, *SourceNode* and *TargetNode* shall represent the same entity in the real 
 
 *RepresentsSameHardwareAs* is formally defined in [Table 8](/§\_Ref74312103) .  
 
- **Table 8\- RepresentsSameHardwareAs ** Definition**   
+Table 8 - RepresentsSameHardwareAs Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -330,9 +358,13 @@ Both, *SourceNode* and *TargetNode* shall represent the same entity in the real 
 |InverseName|\-|
 |Symmetric|TRUE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of *RepresentsSameEntityAs* defined in [4.8](/§\_Ref74311957)|
+  
 | **Conformance Units** |
+|---|
 |Base Info RepresentsSameHardwareAs|
   
 
@@ -358,7 +390,7 @@ Both, *SourceNode* and *TargetNode* shall represent the same functionality.
 
 *RepresentsSameFunctionalityAs* is formally defined in [Table 9](/§\_Ref74312135) .  
 
- **Table 9\- RepresentsSameFunctionalityAs Definition**   
+Table 9 - RepresentsSameFunctionalityAs Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -366,9 +398,13 @@ Both, *SourceNode* and *TargetNode* shall represent the same functionality.
 |InverseName|\-|
 |Symmetric|TRUE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of RepresentsSameEntityAs defined in [4.8](/§\_Ref74311963)|
+  
 | **Conformance Units** |
+|---|
 |Base Info RepresentsSameFunctionalityAs|
   
 
@@ -396,7 +432,7 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* or
 
 *IsHostedBy* is formally defined in [Table 10](/§\_Ref74312145) .  
 
- **Table 10\- IsHostedBy Definition**   
+Table 10 - IsHostedBy Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -404,9 +440,13 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* or
 |InverseName|Hosts|
 |Symmetric|FALSE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of Utilizes defined in [4.5](/§\_Ref74311975)|
+  
 | **Conformance Units** |
+|---|
 |Base Info IsHostedBy|
   
 
@@ -430,7 +470,7 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* re
 
 *HasPhysicalComponent* is formally defined in [Table 11](/§\_Ref65675424) .  
 
- **Table 11\- HasPhysicalComponent Definition**   
+Table 11 - HasPhysicalComponent Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -438,9 +478,13 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* re
 |InverseName|PhysicalComponentOf|
 |Symmetric|FALSE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of HasComponent defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Base Info HasPhysicalComponent|
   
 
@@ -464,7 +508,7 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* re
 
 *HasContainedComponent* is formally defined in [Table 12](/§\_Ref65675432) .  
 
- **Table 12\- HasContainedComponent Definition**   
+Table 12 - HasContainedComponent Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -472,9 +516,13 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* re
 |InverseName|ContainedComponentOf|
 |Symmetric|FALSE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of HasPhysicalComponent defined in [4.12](/§\_Ref74311996)|
+  
 | **Conformance Units** |
+|---|
 |Base Info HasContainedComponent|
   
 
@@ -498,7 +546,7 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* re
 
 *HasAttachedComponent* is formally defined in [Table 13](/§\_Ref74312156) .  
 
- **Table 13\- HasAttachedComponent Definition**   
+Table 13 - HasAttachedComponent Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -506,9 +554,13 @@ The *TargetNode* of *References* of this *ReferenceType* shall be an *Object* re
 |InverseName|AttachedComponentOf|
 |Symmetric|FALSE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of HasPhysicalComponent defined in [4.12](/§\_Ref74312007)|
+  
 | **Conformance Units** |
+|---|
 |Base Info HasAttachedComponent|
   
 
@@ -576,7 +628,7 @@ The *ReferenceDescriptionVariableType* is a subtype of the *BaseDataVariableType
 
 The *Reference* as defined in the *Value* shall be exposed in the OPC UA Server containing the *Variable* . The *IsForward* field in the *Value* indicates the browsable direction of the *Reference* . It is not required that the opposite direction is browsable.  The *VariableType* is formally defined in [Table 14](/§\_Ref134949602) .  
 
- **Table 14\- ReferenceDescriptionVariableType Definition**   
+Table 14 - ReferenceDescriptionVariableType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -584,10 +636,14 @@ The *Reference* as defined in the *Value* shall be exposed in the OPC UA Server 
 |IsAbstract|FALSE|
 |ValueRank|−1 (−1 = Scalar)|
 |DataType|ReferenceDescriptionDataType|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of the BaseDataVariableType defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|ReferenceRefinement|ReferenceListEntryDataType[]|PropertyType|O|
+  
 | **Conformance Units** |
+|---|
 |Base Info ReferenceDescription|
   
 
@@ -609,7 +665,7 @@ The *TargetNode* of this *ReferenceType* shall be a *Variable* of *VariableType*
 
 The *HasReferenceDescription* is formally defined in [Table 15](/§\_Ref80773101) .  
 
- **Table 15\- HasReferenceDescription Definition**   
+Table 15 - HasReferenceDescription Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -617,9 +673,13 @@ The *HasReferenceDescription* is formally defined in [Table 15](/§\_Ref80773101
 |InverseName|ReferenceDescriptionOf|
 |Symmetric|FALSE|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of HasChild defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Base Info ReferenceDescription|
   
 
@@ -631,7 +691,7 @@ The *HasReferenceDescription* is formally defined in [Table 15](/§\_Ref80773101
 
 This structure contains the description of a *Reference* . The structure is defined in [Table 16](/§\_Ref80773123) .  
 
- **Table 16\- ReferenceDescriptionDataType Structure**   
+Table 16 - ReferenceDescriptionDataType Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -646,15 +706,19 @@ This structure contains the description of a *Reference* . The structure is defi
 
 Its representation in the *AddressSpace* is defined in [Table 17](/§\_Ref80773139) .  
 
- **Table 17\- ReferenceDescriptionDataType Definition**   
+Table 17 - ReferenceDescriptionDataType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ReferenceDescriptionDataType|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of Structure defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Base Info ReferenceDescription|
   
 
@@ -666,7 +730,7 @@ This structure contains the description of a *Reference* without *SourceNode* . 
 
   
 
- **Table 18\- ReferenceListEntryDataType Structure**   
+Table 18 - ReferenceListEntryDataType Structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -680,15 +744,19 @@ This structure contains the description of a *Reference* without *SourceNode* . 
 
 Its representation in the *AddressSpace* is defined in [Table 19](/§\_Ref46498488) .  
 
- **Table 19\- ReferenceListEntryDataType Definition**   
+Table 19 - ReferenceListEntryDataType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|ReferenceListEntryDataType|
 |IsAbstract|FALSE|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **Other** |
+|---|---|---|---|---|---|
 |Subtype of Structure defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Base Info ReferenceDescription|
   
 

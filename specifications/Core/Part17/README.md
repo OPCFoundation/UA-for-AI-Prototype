@@ -106,15 +106,19 @@ An overview of this object model is provided in Clause [5](/§\_Ref24885546) . [
 
 Instances of the *AliasNameType* *ObjectType* provide alternate names for *Nodes* . The *AliasNameType* is formally defined in [Table 1](/§\_Ref96249224) .  
 
- **Table 1\- AliasNameType Definition**   
+Table 1 - AliasNameType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AliasNameType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the BaseObjectType defined in [OPC 10000-5](/§UAPart5)|
+  
 | **ConformanceUnits** |
+|---|
 |AliasName Base|
   
 
@@ -134,19 +138,23 @@ The *AliasName* *Object's* *BrowseName* shall not be modified once it is defined
 
 The *AliasNameCategoryType* is a subtype of FolderType and is formally defined in [Table 2](/§\_Ref19038245) .  
 
- **Table 2\- AliasNameCategoryType Definition**   
+Table 2 - AliasNameCategoryType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AliasNameCategoryType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *FolderType* from [OPC 10000-5](/§UAPart5)|
 |Organizes|Object|\<Alias\>||AliasNameType|OptionalPlaceholder|
 |Organizes|Object|\<SubAliasNameCategories\>||AliasNameCategoryType|OptionalPlaceholder|
 |HasComponent|Method|FindAlias|Defined in [6.3.2](/§\_Ref19038345)|Mandatory|
 |HasProperty|Variable|LastChange|VersionTime|PropertyType|Optional|
+  
 | **ConformanceUnits** |
+|---|
 |AliasName Base|
   
 
@@ -190,7 +198,7 @@ FindAlias(
 
 );  
 
- **Table 3\- FindAlias Method Arguments**   
+Table 3 - FindAlias Method Arguments  
 
 | **Argument** | **Description** |
 |---|---|
@@ -203,7 +211,7 @@ FindAlias(
 
 *Method* result codes are defined in ****   
 
- **Table 4\- FindAlias Method Error Codes**   
+Table 4 - FindAlias Method Error Codes  
 
 | **Result Code** | **Description** |
 |---|---|
@@ -216,12 +224,14 @@ FindAlias(
 
 The *Method* is formally defined in [Table 5](/§\_Ref18985657) .  
 
- **Table 5\- FindAlias Method AddressSpace definition**   
+Table 5 - FindAlias Method AddressSpace definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|FindAlias|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |HasProperty|Variable|InputArguments|Argument[]|PropertyType|Mandatory|
 |HasProperty|Variable|OutputArguments|Argument[]|PropertyType|Mandatory|
   
@@ -242,7 +252,7 @@ The following *DataTypes* are defined for the *AliasNames* model.
 
 This *DataType* defines a structure that ** can ** contain an array of *ExpandedNodeId* for a single *AliasName* . Its elements are defined in [Table 6](/§\_Ref19038546) . It will always have at least one entry in the *ReferencedNodes* array.  
 
- **Table 6\- AliasNameDataType DataType structure**   
+Table 6 - AliasNameDataType DataType structure  
 
 | **Name** | **Type** | **Description** |
 |---|---|---|
@@ -255,14 +265,20 @@ This *DataType* defines a structure that ** can ** contain an array of *Expanded
 
 Its representation in the *AddressSpace* is defined in [Table 7](/§\_Ref194391093) .  
 
- **Table 7\- AliasNameDataType Definition**   
+Table 7 - AliasNameDataType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
+  
 | **BrowseName** |AliasNameDataType|
+|---|---|
+  
 | **References** | **Node Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Modelling Rule** |
+|---|---|---|---|---|---|
 |Subtype of the *Structure* defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |AliasName Base|
   
 
@@ -286,7 +302,7 @@ The *TargetNode* of this *ReferenceType* can be of any *NodeClass.*
 
 [Figure 2](/§\_Ref18992396) provides an illustration of how this *ReferenceType* is used. It is defined in [Table 8](/§\_Ref16854066) .  
 
- **Table 8\- AliasFor Definition**   
+Table 8 - AliasFor Definition  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -294,9 +310,13 @@ The *TargetNode* of this *ReferenceType* can be of any *NodeClass.*
 |InverseName|HasAlias|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of NonHierarchicalReferences ReferenceType defined in [OPC 10000-5](/§UAPart5)|
+  
 | **ConformanceUnits** |
+|---|
 |AliasName Base|
   
 
@@ -312,17 +332,21 @@ The following standard *Objects* are defined for maintaining the hierarchical st
 
 The *Aliases Node* is formally defined in [Table 9](/§\_Ref20220998) .  
 
- **Table 9\- Aliases definition**   
+Table 9 - Aliases definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Aliases|
 |||
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** |
+|---|---|---|---|---|
 |OrganizedBy by the Objects Folder defined in [OPC 10000-5](/§UAPart5)|
 |HasTypeDefinition|ObjectType|AliasNameCategoryType|Defined in [6.3](/§\_Ref19038894)|
 |HasProperty|Variable|LastChange|VersionTime|PropertyType|
+  
 | **ConformanceUnits** |
+|---|
 |AliasName Hierarchy|
   
 
@@ -336,15 +360,19 @@ The *LastChange* *Property* , which is optional in the *AliasNameCategoryType* ,
 
 *TagVariables* is an instance of *AliasNameCategoryType* . *TagVariables* shall restrict instances of *AliasNameType* to those that have an *AliasFor* *References* that point to *Variables.* The *TagVariables* instance is formally defined in [Table 10](/§\_Ref20118447) .  
 
- **Table 10\- TagVariables definition**   
+Table 10 - TagVariables definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|TagVariables|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** |
+|---|---|---|---|---|
 |OrganizedBy by the Aliases defined in [9.2](/§\_Ref19038039)|
 |HasTypeDefinition|ObjectType|AliasNameCategoryType|Defined in [6.3](/§\_Ref19038894)|
+  
 | **ConformanceUnits** |
+|---|
 |AliasName Category Tags|
   
 
@@ -356,15 +384,19 @@ This is the root folder for *AliasNameType* instances that contain an *AliasFor*
 
 *Topics* is an instance of *AliasNameCategoryType* . *Topics* shall restrict instances of *AliasNameType* to only have *AliasFor* *References* that point to *PublishedDataSetType* (or subtypes) instances (PublishedDataSetType is defined in [OPC 10000-14](/§UAPart14) ). The *Topics Node* instance is formally defined in [Table 11](/§\_Ref19039559) .  
 
- **Table 11\- Topics definition**   
+Table 11 - Topics definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Topics|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** |
+|---|---|---|---|---|
 |OrganizedBy by the Aliases defined in [9.2](/§\_Ref19038039)|
 |HasTypeDefinition|ObjectType|AliasNameCategoryType|Defined in [6.3](/§\_Ref19038894)|
+  
 | **ConformanceUnits** |
+|---|
 |AliasName Category Topics|
   
 

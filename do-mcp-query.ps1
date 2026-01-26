@@ -8,11 +8,31 @@
 # Usage:
 #   .\Invoke-McpQuery.ps1                                    # Interactive mode
 #   .\Invoke-McpQuery.ps1 -Question "What is a Session?"     # Single query
+#   .\Invoke-McpQuery.ps1 -InputFile queries.txt             # Interactive with query suggestions
 
 param(
     [string]$ProjectPath = ".\Opc.Ua.McpServer",
-    [string]$Question
+    [string]$Question,
+    [string]$InputFile
 )
+
+# Load queries from input file if provided
+$Queries = @()
+$QueryIndex = 0
+
+if ($InputFile -ne $null) {
+    if (-not (Test-Path $InputFile)) {
+        Write-Host "Input file not found: $InputFile" -ForegroundColor Red
+        exit 1
+    }
+    # Read queries from file (skip empty lines)
+    $Queries = Get-Content $InputFile | Where-Object { $_.Trim() -ne "" }
+    if ($Queries.Count -eq 0) {
+        Write-Host "No queries found in input file" -ForegroundColor Red
+        exit 1
+    }
+    Write-Host "Loaded $($Queries.Count) queries from $InputFile" -ForegroundColor Green
+}
 
 $ErrorActionPreference = "Stop"
 
@@ -99,8 +119,25 @@ try {
         if (-not $Question) {
             Write-Host "`n" -NoNewline
             Write-Host "Enter your question about OPC UA (or 'quit' to exit):" -ForegroundColor Cyan
-            Write-Host "> " -NoNewline -ForegroundColor White
-            $userInput = Read-Host
+
+            # Show default query from input file if available
+            if ($Queries.Count -gt 0) {
+                $defaultQuery = $Queries[$QueryIndex]
+                Write-Host "[Default: $defaultQuery]" -ForegroundColor Gray
+                Write-Host "> " -NoNewline -ForegroundColor White
+                $userInput = Read-Host
+
+                # Use default if user just pressed enter
+                if ([string]::IsNullOrWhiteSpace($userInput)) {
+                    $userInput = $defaultQuery
+                }
+
+                # Advance to next query (wrap around)
+                $QueryIndex = ($QueryIndex + 1) % $Queries.Count
+            } else {
+                Write-Host "> " -NoNewline -ForegroundColor White
+                $userInput = Read-Host
+            }
 
             if ($userInput -eq "quit" -or $userInput -eq "exit" -or $userInput -eq "q") {
                 break

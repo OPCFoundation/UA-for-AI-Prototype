@@ -74,7 +74,6 @@ namespace Opc.Ua.RagUtility
                 {
                     new
                     {
-                        // id = (int)(point?.Id ?? 0),
                         id = point?.Id.ToString() ?? "0",
                         vector = new Dictionary<string, float[]>
                         {

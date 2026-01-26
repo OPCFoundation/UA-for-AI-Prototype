@@ -74,7 +74,7 @@ Interpolation holding the last data point constant or interpolating the value ba
 
 Note 1 to entry: Consider the following Table 1 of raw and *Interpolated* / *Extrapolated* values:  
 
- **Table 1\- Interpolation examples**   
+Table 1 - Interpolation examples  
 
 | **Timestamp** | **Raw Value** | **Sloped Interpolation** | **Stepped Interpolation** |
 |---|---|---|---|
@@ -84,7 +84,9 @@ Note 1 to entry: Consider the following Table 1 of raw and *Interpolated* / *Ext
 |12:00:10|20|||
 |12:00:15||25|20|
 |12:00:20|30|||
+  
 ||| **SlopedExtrapolation** | **SteppedExtrapolation** |
+|---|---|---|---|
 |12:00:25||35|30|
 |12:00:27||37|30|
   
@@ -227,19 +229,23 @@ OPC UA *Servers* can support several different functionalities and capabilities.
 
 The *AggregateConfigurationType* defines the general characteristics of a *Node* that defines the *Aggregate* configuration of any *Variable* or *Property* . *AggregateConfiguration* *Object* represents the browse entry point for information on how the *Server* treats *Aggregate* specific functionality such as handling Uncertain data. It is formally defined in [Table 2](/§\_Ref233528274) .  
 
- **Table 2\- AggregateConfigurationType Definition**   
+Table 2 - AggregateConfigurationType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AggregateConfigurationType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseObjectType* defined in [OPC 10000-5](/§UAPart5)|
 |HasProperty|Variable|TreatUncertainAsBad|Boolean|PropertyType|Mandatory|
 |HasProperty|Variable|PercentDataBad|Byte|PropertyType|Mandatory|
 |HasProperty|Variable|PercentDataGood|Byte|PropertyType|Mandatory|
 |HasProperty|Variable|UseSlopedExtrapolation|Boolean|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Aggregate Master Configuration|
   
 
@@ -261,18 +267,18 @@ The *UseSlopedExtrapolation Variable* indicates how the *Server* interpolates da
 
 This *Object* is used as the browse entry point for information about the *Aggregates* supported by a *Server* . The content of this *Object* is already defined by its type definition. All *Instances* of the *FolderType* use the standard *BrowseName* of 'AggregateFunctions'. The *HasComponent* *Reference* is used to relate a *ServerCapabilities* *Object* and/or any *HistoryServerCapabilitiesType* *Object* to an *AggregateFunction* *Object* .  AggregateFunctions is formally defined in [Table 3](/§\_Ref389485703) .  
 
- **Table 3\- Aggregate Functions Definition**   
+Table 3 - Aggregate Functions Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AggregateFunctions|
-| **References** | **Node**   
-
- **Class** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
-|HasTypeDefinition|Object  
-
-Type|*FolderType*|Defined in [OPC 10000-5](/§UAPart5)|
+  
+| **References** | **Node** <br> **Class** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
+|HasTypeDefinition|Object<br>Type|*FolderType*|Defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Aggregates|
   
 
@@ -284,17 +290,19 @@ Each *ServerCapabilities* and *HistoryServerCapabilitiesType* *Object* shall ref
 
 This *ObjectType* defines an *Aggregate* supported by a UA *Server* . This *Object* is formally defined in [Table 4](/§\_Ref134948705) .  
 
- **Table 4\- AggregateFunctionType Definition**   
+Table 4 - AggregateFunctionType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|AggregateFunctionType|
 |IsAbstract|False|
-| **References** | **Node**   
-
- **Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Mod.Rule** |
+  
+| **References** | **Node** <br> **Class** | **BrowseName** | **DataType** | **TypeDefinition** | **Mod.Rule** |
+|---|---|---|---|---|---|
 |Subtype of the *BaseObjectType* defined in [OPC 10000-5](/§UAPart5)|
+  
 | **Conformance Units** |
+|---|
 |Historical Access Aggregates|
   
 
@@ -304,11 +312,13 @@ For the *AggregateFunctionType* , the *Description* *Attribute* (inherited from 
 
 [Table 5](/§\_Ref112552315) specifies the *BrowseName* and *Description* *Attributes* for the standard *Aggregate Objects* . The description is the localized "en" text. For other locales it shall be translated.  
 
- **Table 5\- Standard AggregateType Nodes**   
+Table 5 - Standard AggregateType Nodes  
 
 | **BrowseName** | **Description** |
 |---|---|
+  
 || **Interpolation Aggregate** |
+|---|---|
 |Interpolative|At the beginning of each interval, retrieve the calculated value from the data points on either side of the requested timestamp.|
 |Average|Retrieve the average value of the data over the interval.|
 |TimeAverage|Retrieve the time weighted average data over the interval using *Interpolated Bounding Values* .|
@@ -394,7 +404,7 @@ The *CreateMonitoredItems* *Service* allows specifying a filter for each *Monito
 
 ReadProcessedDetails structure is formally detailed in [OPC 10000-11](/§UAPart11) . [Table 6](/§\_Ref112552313) outlines the components of the ReadProcessedDetails structure for the purposes of discussion in this document.  
 
- **Table 6\- ReadProcessedDetails**   
+Table 6 - ReadProcessedDetails  
 
 | **Name** | **Description** |
 |---|---|
@@ -417,7 +427,7 @@ ReadProcessedDetails structure is formally detailed in [OPC 10000-11](/§UAPart1
 
 The *AggregateFilter* defines the *Aggregate* function that should be used to calculate the values to be returned. ** The *AggregateFilte* r is formally defined in [OPC 10000-4](/§UAPart4) . [Table 7](/§\_Ref165187582) outlines the components of the *AggregateFilter* structure for the purposes of discussion in this document.  
 
- **Table 7\- AggregateFilter structure**   
+Table 7 - AggregateFilter structure  
 
 | **Name** | **Description** |
 |---|---|
@@ -449,7 +459,7 @@ In OPC UA *Aggregates* the *StatusCode* is used to indicate the conditions under
 
 In the following, [Table 8](/§\_Ref128988066) contains codes with Bad severity indicating a failure; [Table 9](/§\_Ref128988101) contains codes with *Uncertain* severity indicating that the value has been retrieved under sub-normal conditions. It is important to note, that these are the codes that are specific for OPC UA *Aggregates* and that they supplement the codes that apply to all types of data; they are therefore defined in [OPC 10000-4](/§UAPart4) , [OPC 10000-8](/§UAPart8) and [OPC 10000-11](/§UAPart11) .  
 
- **Table 8\- Bad operation level result codes**   
+Table 8 - Bad operation level result codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -460,7 +470,7 @@ In the following, [Table 8](/§\_Ref128988066) contains codes with Bad severity 
 
   
 
- **Table 9\- Uncertain operation level result codes**   
+Table 9 - Uncertain operation level result codes  
 
 | **Symbolic Id** | **Description** |
 |---|---|
@@ -475,7 +485,7 @@ In the following, [Table 8](/§\_Ref128988066) contains codes with Bad severity 
 
 These bits are set only when obtaining *Aggregate* data. They indicate where the data value came from and provide information that affects how the client uses the data value. [Table 10](/§\_Ref128288255) lists the bit settings which indicate the data location (i.e. is the value stored in the underlying data repository, or is the value the result of data aggregation). ** These bits are mutually exclusive.  
 
- **Table 10\- Data location**   
+Table 10 - Data location  
 
 | **StatusCode** | **Description** |
 |---|---|
@@ -490,7 +500,7 @@ In the case where *Interpolated* data is requested, and there is an actual raw v
 
 [Table 11](/§\_Ref128288381) lists the bit settings which indicate additional important information about the data values returned.  
 
- **Table 11\- Additional information**   
+Table 11 - Additional information  
 
 | **StatusCode** | **Description** |
 |---|---|
@@ -549,21 +559,17 @@ The OPC *Server* shall use these three parameters to generate a sequence of time
 
 All *Aggregates* return a timestamp of the start of the ** interval unless otherwise noted for the particular *Aggregate* .  
 
- **Table 12\- History Aggregate interval information**   
+Table 12 - History Aggregate interval information  
 
 | **Start/End Time** | **Interval** | **Resulting intervals** |
 |---|---|---|
 |*Start* = *End*|*Int* = Anything|No intervals. ** Returns a Bad\_InvalidArgument *StatusCode* , regardless of whether there is data at the specified time or not.|
 |*Start* \< *End*|*Int* = 0 or *Int* ≥ *Range*|One interval, starting at *Start* and ending at *End* . ** Includes *Start* , excludes *End* , i.e., *[Start, End).*|
 |*Start* \< *End*|*Int ≠* 0 *, Int* \< *Range, Int* divides *Range* evenly.|*Range/Int* intervals. Intervals are *[Start, Start + Int), [Start + Int, Start + 2* x *Int),..., [End - Int, End).*|
-|*Start* \< *End*|*Int ≠* 0 *, Int* \< *Range, Int* does not divide *Range* evenly.|*Range/Int* intervals. Intervals are *[Start, Start + Int), [Start + Int, Start + 2* x *Int),..., [Start + (* *Range/Int* *\- 1)* x *Int, Start +* *Range/Int* x *Int), [Start +* *Range/Int* x *Int, End).*  
-
-In other words, the last interval contains the "rest" that remains in the range after taking away *Range/Int* intervals of size *Int* .|
+|*Start* \< *End*|*Int ≠* 0 *, Int* \< *Range, Int* does not divide *Range* evenly.|*Range/Int* intervals. Intervals are *[Start, Start + Int), [Start + Int, Start + 2* x *Int),..., [Start + (* *Range/Int* *\- 1)* x *Int, Start +* *Range/Int* x *Int), [Start +* *Range/Int* x *Int, End).*<br>In other words, the last interval contains the "rest" that remains in the range after taking away *Range/Int* intervals of size *Int* .|
 |*Start* \> *End*|*Int* = 0 or *Int* ≥ *Range*|One interval, starting at *Start* and ending at *End* . ** Includes *Start* , excludes *End* , i.e.,[ *Start* , *End* ). ** a|
 |*Start* \> *End*|*Int ≠* 0 *, Int* \< *Range, Int* divides *Range* evenly.|*Range/Int* intervals. Intervals are *[Start, Start- Int), [Start- Int, Start - 2* x *Int),..., [End + Int, End).* a|
-|*Start* \> *End*|*Int ≠* 0 *, Int* \< *Range, Int* does not divide *Range* evenly.|*Range/Int* intervals. Intervals are *[Start, Start - Int), [Start -Int,Start - 2* x *Int),...,* *[Start - (* *Range/Int* *\- 1)* x *Int , Start -* *Range/Int* x *Int), [Start -* *Range/Int* x *Int , End).*  
-
-In other words, the last interval contains the "rest" that remains in the range after taking away *Range/Int* intervals of size *Int* starting at Start. a|
+|*Start* \> *End*|*Int ≠* 0 *, Int* \< *Range, Int* does not divide *Range* evenly.|*Range/Int* intervals. Intervals are *[Start, Start - Int), [Start -Int,Start - 2* x *Int),...,* *[Start - (* *Range/Int* *\- 1)* x *Int , Start -* *Range/Int* x *Int), [Start -* *Range/Int* x *Int , End).*<br>In other words, the last interval contains the "rest" that remains in the range after taking away *Range/Int* intervals of size *Int* starting at Start. a|
 |a In this case time is running backwards on the intervals.|
   
 
@@ -577,19 +583,25 @@ Note that when determining *Aggregates* with *MonitoredItem* , the interval is s
 
 [Table 13](/§\_Ref270541636) outlines the valid *DataType* for each *Aggregate* . ** Some *Aggregates* are intended for numeric data types - i.e. integers or real/floating point numbers. Dates, strings, arrays, etc. are not supported. ** Other *Aggregates* are intended for digital data types - i.e. Boolean or enumerations. ** In addition some *Aggregates* may return results with a different DataType than those used to calculate the *Aggregate* . ** [Table 13](/§\_Ref270541636) also outlines the data type returned for each *Aggregate* .  
 
- **Table 13\- Standard History Aggregate Data Type information**   
+Table 13 - Standard History Aggregate Data Type information  
 
 | **BrowseName** | **Valid Data Type** | **Result ** Data Type** |
 |---|---|---|
+  
 || **Interpolation Aggregate** ||
+|---|---|---|
 |Interpolative|Numeric|Raw Data Type|
+  
 || **Data Averaging Aggregates** ||
+|---|---|---|
 |Average|Numeric|Double|
 |TimeAverage|Numeric|Double|
 |TimeAverage2|Numeric|Double|
 |Total|Numeric|Double|
 |Total2|Numeric|Double|
+  
 || **Data Variation Aggregates** ||
+|---|---|---|
 |Minimum|Numeric|Raw data type|
 |Maximum|Numeric|Raw data type|
 |MinimumActualTime|Numeric|Raw data type|
@@ -600,27 +612,35 @@ Note that when determining *Aggregates* with *MonitoredItem* , the interval is s
 |MinimumActualTime2|Numeric|Raw data type|
 |MaximumActualTime2|Numeric|Raw data type|
 |Range2|Numeric|Raw data type|
+  
 || **Counting Aggregates** ||
+|---|---|---|
 |AnnotationCount|All|Integer|
 |Count|All|Integer|
 |DurationInStateZero|Numeric or Boolean|Duration|
 |DurationInStateNonZero|Numeric or Boolean|Duration|
 |NumberOfTransitions|Numeric or Boolean|Integer|
+  
 || **Time Aggregates** ||
+|---|---|---|
 |Start|All|Raw data type|
 |End|All|Raw data type|
 |Delta|Numeric|Raw data type|
 |StartBound|All|Raw data type|
 |EndBound|All|Raw data type|
 |DeltaBounds|Numeric|Raw data type|
+  
 || **Data Quality Aggregates** ||
+|---|---|---|
 |DurationGood|All|Duration|
 |DurationBad|All|Duration|
 |PercentGood|All|Double|
 |PercentBad|All|Double|
 |WorstQuality|All|*StatusCode*|
 |WorstQuality2|All|*StatusCode*|
+  
 || **Statistical Aggregates** ||
+|---|---|---|
 |StandardDeviationSample|Numeric|Double|
 |VarianceSample|Numeric|Double|
 |StandardDeviationPopulation|Numeric|Double|
@@ -757,110 +777,28 @@ Description of [Table 14](/§\_Ref282496834) :
 
 * The last part of the table lists what behaviour is expected from the *Aggregate* for some common special cases. These behaviours require text descriptions so there is no list of valid selections.  
 
- **Table 14\- Aggregate table description**   
+Table 14 - Aggregate table description  
 
 | **Aggregate Characteristics** |
 |---|
-|Type|The type of *Aggregate* .  
-
-\<Interpolated | Calculated | Raw\>  
-
-  
-
-Interpolated: See definition for Interpolated.  
-
-Calculated: Computed from defined calculation.  
-
-Raw: Selects a raw value from within an interval.|
-|Data Type|The data type of the result.  
-
-\<Double | Int32 | Same as Source\>|
-|Use Bounds|How the *Aggregate* deals with bounds.  
-
-\<None | Interpolated | Simple\>  
-
-  
-
-None: Bounds do not apply to the *Aggregate* .  
-
-Interpolated: Uses Interpolated Bounds.  
-
-Simple: Uses Simple Bounds.|
-|Timestamp|What is the time stamp of the resulting *Aggregate* value:  
-
-\< *startTime* | *endTime* | Raw\>  
-
-  
-
-*startTime* : The time at the start of the interval.  
-
-*endTime* :  The time at the end of the interval.  
-
-Raw: The time associated with a value in the interval.|
+|Type|The type of *Aggregate* .<br>\<Interpolated | Calculated | Raw\><br><br>Interpolated: See definition for Interpolated.<br>Calculated: Computed from defined calculation.<br>Raw: Selects a raw value from within an interval.|
+|Data Type|The data type of the result.<br>\<Double | Int32 | Same as Source\>|
+|Use Bounds|How the *Aggregate* deals with bounds.<br>\<None | Interpolated | Simple\><br><br>None: Bounds do not apply to the *Aggregate* .<br>Interpolated: Uses Interpolated Bounds.<br>Simple: Uses Simple Bounds.|
+|Timestamp|What is the time stamp of the resulting *Aggregate* value:<br>\< *startTime* | *endTime* | Raw\><br><br>*startTime* : The time at the start of the interval.<br>*endTime* :  The time at the end of the interval.<br>Raw: The time associated with a value in the interval.|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|How the status code is calculated:  
-
-\<PercentValues | PercentTime | Custom\>  
-
-  
-
-PercentValues: Based on percentage of value counts.  
-
-PercentTime: Based on percentage of time interval.  
-
-Custom: Specific to the *Aggregate* (description included).|
-|Partial |For partial intervals does the *Aggregate* set this bit  
-
-\<Set Sometimes | Not Set\>  
-
-  
-
-It may also describe any special cases for setting this bit|
-|Calculated|Describes the usage of the calculated bit.  
-
-\<Set Always | Set Sometimes | Not Set\>  
-
-  
-
-Set Always: The bit is always set.  
-
-Set Sometimes: The bit is sometimes set (describes when).  
-
-Not Set: The bit is never set.|
-|Interpolated|Describes the usage of the interpolated bit.  
-
-\<Set Always | Set Sometimes | Not Set\>  
-
-  
-
-Set Always: The bit is always set.  
-
-Set Sometimes: The bit is sometimes set (describes when).  
-
-Not Set: The bit is never set.|
-|Raw|Describes the usage of the Raw bit.  
-
-\<Set Always | Set Sometimes | Not Set\>  
-
-  
-
-Set Always: The bit is always set.  
-
-Set Sometimes: The bit is sometimes set (describes when).  
-
-Not Set: The bit is never set.|
-|Multi Value|Describes the usage of the multi value bit.  
-
-\<Set Sometimes | Not Set\>  
-
-  
-
-Set Sometimes: The bit is used (see [OPC 10000-11](/§UAPart11) ).  
-
-Not Set: The bit is never set.|
+|---|
+|Calculation Method|How the status code is calculated:<br>\<PercentValues | PercentTime | Custom\><br><br>PercentValues: Based on percentage of value counts.<br>PercentTime: Based on percentage of time interval.<br>Custom: Specific to the *Aggregate* (description included).|
+|Partial |For partial intervals does the *Aggregate* set this bit<br>\<Set Sometimes | Not Set\><br><br>It may also describe any special cases for setting this bit|
+|Calculated|Describes the usage of the calculated bit.<br>\<Set Always | Set Sometimes | Not Set\><br><br>Set Always: The bit is always set.<br>Set Sometimes: The bit is sometimes set (describes when).<br>Not Set: The bit is never set.|
+|Interpolated|Describes the usage of the interpolated bit.<br>\<Set Always | Set Sometimes | Not Set\><br><br>Set Always: The bit is always set.<br>Set Sometimes: The bit is sometimes set (describes when).<br>Not Set: The bit is never set.|
+|Raw|Describes the usage of the Raw bit.<br>\<Set Always | Set Sometimes | Not Set\><br><br>Set Always: The bit is always set.<br>Set Sometimes: The bit is sometimes set (describes when).<br>Not Set: The bit is never set.|
+|Multi Value|Describes the usage of the multi value bit.<br>\<Set Sometimes | Not Set\><br><br>Set Sometimes: The bit is used (see [OPC 10000-11](/§UAPart11) ).<br>Not Set: The bit is never set.|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|If the entire interval is before the start of data.|
 |After End of Data|If the entire interval is after the end of data (as determined by the Historian).|
 |Start Bound  Not Found|If the starting bound is not found for the earliest interval and it is not partial, then what, if any, special processing should be done.|
@@ -877,7 +815,7 @@ The Interpolative *Aggregate* defined in [Table 15](/§\_Ref389486450) returns t
 
 When searching for Good values before or after the bounding value, the time period searched is *Server* specific, but the *Server* should search a time range which is at least the size of the *ProcessingInterval* .  
 
- **Table 15\- Interpolative Aggregate summary**   
+Table 15 - Interpolative Aggregate summary  
 
 | **Interpolated Aggregate Characteristics** |
 |---|
@@ -886,25 +824,21 @@ When searching for Good values before or after the bounding value, the time peri
 |Use Bounds|Interpolated|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Good if no Bad values skipped and Good values are used, Uncertain if Bad values skipped or if Uncertain values are used. If no starting value then *Bad* \_ *NoData* . See description of Interpolated Bounds (see [3.1.8](/§\_Ref364944818) ) for more details|
+|---|
+|Calculation Method|Custom<br>Good if no Bad values skipped and Good values are used, Uncertain if Bad values skipped or if Uncertain values are used. If no starting value then *Bad* \_ *NoData* . See description of Interpolated Bounds (see [3.1.8](/§\_Ref364944818) ) for more details|
 |Partial bit|Not Set|
 |Calculated bit|Not Set|
-|Interpolated bit|Set Sometimes  
-
-Always set except for when the Raw bit is set|
-|Raw bit|Set Sometimes  
-
-If a value exists with the exact time of interval Start|
+|Interpolated bit|Set Sometimes<br>Always set except for when the Raw bit is set|
+|Raw bit|Set Sometimes<br>If a value exists with the exact time of interval Start|
 |Multi Value bit|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Return *Bad\_NoData*|
-|After End of Data|Return extrapolated value (see [3.1.8](/§\_Ref364944818) ) (sloped or stepped according to settings)  
-
-Status code is *Uncertain\_DataSubNormal* .|
+|After End of Data|Return extrapolated value (see [3.1.8](/§\_Ref364944818) ) (sloped or stepped according to settings)<br>Status code is *Uncertain\_DataSubNormal* .|
 |Start Bound  Not Found|*Bad\_NoData* .|
 |End Bound  Not Found|*See "After End of Data"*|
 |Bound Bad|Does not return a Bad bound except as noted above|
@@ -917,7 +851,7 @@ Status code is *Uncertain\_DataSubNormal* .|
 
 The Average *Aggregate* defined in [Table 16](/§\_Ref389486477) adds up the values of all Good *Raw data* for each interval, and divides the sum by the number of Good values. If any non-Good values are ignored in the computation, the *Aggregate* *StatusCode* will be determined using the *StatusCode* Calculation (see [5.3](/§\_Ref364945480) ). This *Aggregate* is not time based so the PercentGood/PercentBad applies to the number of values in the interval.  
 
- **Table 16\- Average Aggregate summary**   
+Table 16 - Average Aggregate summary  
 
 | **Average Aggregate Characteristics** |
 |---|
@@ -926,7 +860,9 @@ The Average *Aggregate* defined in [Table 16](/§\_Ref389486477) adds up the val
 |Use Bounds|None|
 |Timestamp|StartTime|
 |||
+  
 | **StatusCode Calculations** |
+|---|
 |Calculation Method|PercentValues|
 |Partial |Not Set|
 |Calculated|Set Always|
@@ -934,7 +870,9 @@ The Average *Aggregate* defined in [Table 16](/§\_Ref389486477) adds up the val
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Bounds not used|
@@ -953,7 +891,7 @@ If one or more Bad Values exist in the interval then they are omitted from the c
 
 The time resolution used in this calculation is *Server* specific.  
 
- **Table 17\- TimeAverage Aggregate summary**   
+Table 17 - TimeAverage Aggregate summary  
 
 | **TimeAverage Aggregate Characteristics** |
 |---|
@@ -962,19 +900,19 @@ The time resolution used in this calculation is *Server* specific.
 |Use Bounds|Interpolated|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Good if no Bad values skipped and Good values are used, Uncertain if Bad values are skipped or if Uncertain values are used|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>Good if no Bad values skipped and Good values are used, Uncertain if Bad values are skipped or if Uncertain values are used|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Value extrapolated, Uncertain status|
 |No Start Bound|Calculate Partial Interval|
@@ -995,7 +933,7 @@ If any non-Good data exists in the interval, this data is omitted from the calcu
 
 The *Aggregate* *StatusCode* will be determined using the *StatusCode* Calculation (see [5.3](/§\_Ref364945198) ).  
 
- **Table 18\- TimeAverage2 Aggregate summary**   
+Table 18 - TimeAverage2 Aggregate summary  
 
 | **TimeAverage2 Aggregate Characteristics** |
 |---|
@@ -1004,17 +942,19 @@ The *Aggregate* *StatusCode* will be determined using the *StatusCode* Calculati
 |Use Bounds|Simple|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
+|---|
 |Calculation Method|PercentTime|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Bound is Bad\_NoData and treated as any other Bad value in the interval|
@@ -1039,7 +979,7 @@ The *Aggregate* *StatusCode* will be determined using the *StatusCode* Calculati
 
 Note that this calculation always uses a *SlopedInterpolation* between points; Total2 uses a *Stepped Attribute* or *SlopedInterpolation* depending on the value of the *Stepped Attribute* for the *Variable* .  
 
- **Table 19\- Total Aggregate summary**   
+Table 19 - Total Aggregate summary  
 
 | **Total Aggregate Characteristics** |
 |---|
@@ -1048,19 +988,19 @@ Note that this calculation always uses a *SlopedInterpolation* between points; T
 |Use Bounds|Interpolated|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Good if no Bad values are skipped and Good values are used, Uncertain if Bad values are skipped or if Uncertain values are used|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>Good if no Bad values are skipped and Good values are used, Uncertain if Bad values are skipped or if Uncertain values are used|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Value extrapolated, Uncertain status|
 |No Start Bound|Calculate Partial Interval|
@@ -1085,7 +1025,7 @@ The resulting units would be normalized to seconds, i.e. [TimeAverage2 ****
 
 The *Aggregate* *StatusCode* will be determined using the *StatusCode* Calculation (see [5.3](/§\_Ref364945219) ).  
 
- **Table 20\- Total2 Aggregate summary**   
+Table 20 - Total2 Aggregate summary  
 
 | **Total2 Aggregate Characteristics** |
 |---|
@@ -1094,17 +1034,19 @@ The *Aggregate* *StatusCode* will be determined using the *StatusCode* Calculati
 |Use Bounds|Simple|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
+|---|
 |Calculation Method|PercentTime|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Value for Bound is Bad\_NoData and is treated like any other Bad quality value in the calculation (ignored)|
@@ -1123,7 +1065,7 @@ Unless otherwise indicated, *StatusCodes* are Good, Calculated. If the minimum v
 
 The timestamp of the *Aggregate* will always be the start of the interval for every *ProcessingInterval* .  
 
- **Table 21\- Minimum Aggregate summary**   
+Table 21 - Minimum Aggregate summary  
 
 | **Minimum Aggregate Characteristics** |
 |---|
@@ -1132,25 +1074,19 @@ The timestamp of the *Aggregate* will always be the start of the interval for ev
 |Use Bounds|None|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-If no Bad values then the Status is Good. If Bad values exist then the Status is *Uncertain\_SubNormal.* If an Uncertain value is less than the minimum Good value the Status is *Uncertain\_SubNormal* .|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
-|Calculated|Set Sometimes  
-
-If the Minimum value is not on the StartTime of the interval or if the Status was set to *Uncertain\_SubNormal* because of non-Good values in the interval|
+|---|
+|Calculation Method|Custom<br>If no Bad values then the Status is Good. If Bad values exist then the Status is *Uncertain\_SubNormal.* If an Uncertain value is less than the minimum Good value the Status is *Uncertain\_SubNormal* .|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
+|Calculated|Set Sometimes<br>If the Minimum value is not on the StartTime of the interval or if the Status was set to *Uncertain\_SubNormal* because of non-Good values in the interval|
 |Interpolated|Not Set|
-|Raw|Set Sometimes  
-
-If Minimum value is on the StartTime of the interval|
-|Multi Value|Set Sometimes  
-
-If multiple Good values exist with the Minimum value|
+|Raw|Set Sometimes<br>If Minimum value is on the StartTime of the interval|
+|Multi Value|Set Sometimes<br>If multiple Good values exist with the Minimum value|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Not Applicable|
@@ -1169,7 +1105,7 @@ Unless otherwise indicated, *StatusCodes* are Good, Calculated. If the maximum v
 
 The timestamp of the *Aggregate* will always be the start of the interval for every *ProcessingInterval* .  
 
- **Table 22\- Maximum Aggregate summary**   
+Table 22 - Maximum Aggregate summary  
 
 | **Maximum Aggregate Characteristics** |
 |---|
@@ -1178,25 +1114,19 @@ The timestamp of the *Aggregate* will always be the start of the interval for ev
 |Use Bounds|None|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-If no Bad values then the Status is Good. If Bad values exist then the Status is *Uncertain\_SubNormal.* If an Uncertain value is greater than the maximum Good value the Status is *Uncertain\_SubNormal*|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
-|Calculated|Set Sometimes  
-
-If the Maximum value is not on the *startTime* of the interval or if the Status was set to *Uncertain\_SubNormal* because of non-Good values in the interval|
+|---|
+|Calculation Method|Custom<br>If no Bad values then the Status is Good. If Bad values exist then the Status is *Uncertain\_SubNormal.* If an Uncertain value is greater than the maximum Good value the Status is *Uncertain\_SubNormal*|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
+|Calculated|Set Sometimes<br>If the Maximum value is not on the *startTime* of the interval or if the Status was set to *Uncertain\_SubNormal* because of non-Good values in the interval|
 |Interpolated|Not Set|
-|Raw|Set Sometimes  
-
-If Maximum value is on the *startTime* of the interval|
-|Multi Value|Set Sometimes  
-
-If multiple Good values exist with the Maximum value|
+|Raw|Set Sometimes<br>If Maximum value is on the *startTime* of the interval|
+|Multi Value|Set Sometimes<br>If multiple Good values exist with the Maximum value|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Not Applicable|
@@ -1211,7 +1141,7 @@ If multiple Good values exist with the Maximum value|
 
 The MinimumActualTime *Aggregate* defined in [Table 23](/§\_Ref389486807) retrieves the minimum Good raw value within the interval, and returns that value with the timestamp at which that value occurs. Note that if the same minimum exists at more than one timestamp, the oldest one is retrieved and the *Aggregate Bits are* set to MultipleValues. **  
 
- **Table 23\- MinimumActualTime Aggregate summary**   
+Table 23 - MinimumActualTime Aggregate summary  
 
 | **MinimumActualTime Aggregate Characteristics** |
 |---|
@@ -1220,25 +1150,19 @@ The MinimumActualTime *Aggregate* defined in [Table 23](/§\_Ref389486807) retri
 |Use Bounds|None|
 |Timestamp|Time of Minimum|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-If no Bad values then the Status is Good. If Bad values exist then the Status is *Uncertain\_SubNormal.* If an Uncertain value is less than the minimum Good value the Status is *Uncertain\_SubNormal*|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
-|Calculated|Set Sometimes  
-
-If the Status was set to *Uncertain\_SubNormal* because of non-Good values in the interval|
+|---|
+|Calculation Method|Custom<br>If no Bad values then the Status is Good. If Bad values exist then the Status is *Uncertain\_SubNormal.* If an Uncertain value is less than the minimum Good value the Status is *Uncertain\_SubNormal*|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
+|Calculated|Set Sometimes<br>If the Status was set to *Uncertain\_SubNormal* because of non-Good values in the interval|
 |Interpolated|Not Set|
-|Raw|Set Sometimes  
-
-If a Good minimum value is returned|
-|Multi Value|Set Sometimes  
-
-If multiple Good values exist with the Minimum value|
+|Raw|Set Sometimes<br>If a Good minimum value is returned|
+|Multi Value|Set Sometimes<br>If multiple Good values exist with the Minimum value|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Not Applicable|
@@ -1253,7 +1177,7 @@ If multiple Good values exist with the Minimum value|
 
 The MaximumActualTime *Aggregate* defined in [Table 24](/§\_Ref389486852) is the same as the MinimumActualTime *Aggregate* , except that the value is the maximum raw value within the interval. Note that if the same maximum exists at more than one timestamp, the oldest one is retrieved and the *Aggregate Bits are* set to MultipleValues.  
 
- **Table 24\- MaximumActualTime Aggregate summary**   
+Table 24 - MaximumActualTime Aggregate summary  
 
 | **MaximumActualTime Aggregate Characteristics** |
 |---|
@@ -1262,25 +1186,19 @@ The MaximumActualTime *Aggregate* defined in [Table 24](/§\_Ref389486852) is th
 |Use Bounds|None|
 |Timestamp|Time of Maximum|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-If no Bad values then the Status is Good. If Bad values exist then the Status is *Uncertain\_SubNormal.* If an Uncertain value is greater than the maximum Good value the Status is *Uncertain\_SubNormal*|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
-|Calculated|Set Sometimes  
-
-If the Status was set to *Uncertain\_SubNormal* because of non-Good values in the interval|
+|---|
+|Calculation Method|Custom<br>If no Bad values then the Status is Good. If Bad values exist then the Status is *Uncertain\_SubNormal.* If an Uncertain value is greater than the maximum Good value the Status is *Uncertain\_SubNormal*|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
+|Calculated|Set Sometimes<br>If the Status was set to *Uncertain\_SubNormal* because of non-Good values in the interval|
 |Interpolated|Not Set|
-|Raw|Set Sometimes  
-
-If a Good maximum value is returned|
-|Multi Value|Set Sometimes  
-
-If multiple Good values exist with the maximum value|
+|Raw|Set Sometimes<br>If a Good maximum value is returned|
+|Multi Value|Set Sometimes<br>If multiple Good values exist with the maximum value|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Not Applicable|
@@ -1295,7 +1213,7 @@ If multiple Good values exist with the maximum value|
 
 The Range *Aggregate* defined in [Table 25](/§\_Ref389486885) finds the difference between the maximum and minimum Good raw values in the interval. If only one *Good* value exists in the interval, the range is zero. Note that the range is always zero or positive. If non-Good values are ignored when finding the minimum or maximum values or if Bad values exist then the status is *Uncertain\_DataSubNormal.*  
 
- **Table 25\- Range Aggregate summary**   
+Table 25 - Range Aggregate summary  
 
 | **Range Aggregate Characteristics** |
 |---|
@@ -1304,19 +1222,19 @@ The Range *Aggregate* defined in [Table 25](/§\_Ref389486885) finds the differe
 |Use Bounds|None|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-If no Bad values then the Status is Good. If Bad values exist then the Status is *Uncertain\_SubNormal.* If an Uncertain value is greater than the maximum or less than the minimum Good value the Status is *Uncertain\_SubNormal*|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>If no Bad values then the Status is Good. If Bad values exist then the Status is *Uncertain\_SubNormal.* If an Uncertain value is greater than the maximum or less than the minimum Good value the Status is *Uncertain\_SubNormal*|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Not Applicable|
@@ -1335,7 +1253,7 @@ If *TreatUncertainAsBad* is false and an Uncertain raw value is the minimum then
 
 If sloped interpolation is used and the End bound is the minimum value then End bound is used as the Minimum with the timestamp set to the *startTime* of the interval. The End bound is ignored in all other cases.  
 
- **Table 26\- Minimum2 Aggregate summary**   
+Table 26 - Minimum2 Aggregate summary  
 
 | **Minimum2 Aggregate Characteristics** |
 |---|
@@ -1344,23 +1262,19 @@ If sloped interpolation is used and the End bound is the minimum value then End 
 |Use Bounds|Simple|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
+|---|
 |Calculation Method|PercentTime|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set SometimesSet unless the StartBound is the Minimum|
-|Interpolated|Set Sometimes  
-
-If an Interpolated bound is the Minimum|
-|Raw|Set Sometimes  
-
-If a raw value is the Minimum.|
-|Multi Value|Set Sometimes  
-
-If more than one Good values exist with the same|
+|Interpolated|Set Sometimes<br>If an Interpolated bound is the Minimum|
+|Raw|Set Sometimes<br>If a raw value is the Minimum.|
+|Multi Value|Set Sometimes<br>If more than one Good values exist with the same|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Treat the beginning value as Bad\_NoData and compute the *Aggregate*|
@@ -1379,7 +1293,7 @@ If *TreatUncertainAsBad* is false and an Uncertain raw value is the maximum then
 
 If sloped interpolation is used and the End bound is the maximum value then End bound is used as the maximum with the timestamp set to the *startTime* of the interval. The End bound is ignored in all other cases.  
 
- **Table 27\- Maximum2 Aggregate summary**   
+Table 27 - Maximum2 Aggregate summary  
 
 | **Maximum2 Aggregate Characteristics** |
 |---|
@@ -1388,25 +1302,19 @@ If sloped interpolation is used and the End bound is the maximum value then End 
 |Use Bounds|Simple|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
+|---|
 |Calculation Method|PercentTime|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
-|Calculated|Set Sometimes  
-
-Set unless the StartBound is the Maximum|
-|Interpolated|Set Sometimes  
-
-If an Interpolated bound is the Maximum|
-|Raw|Set Sometimes  
-
-If a raw value is the Maximum.|
-|Multi Value|Set Sometimes  
-
-If more than one Good values exist with the same|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
+|Calculated|Set Sometimes<br>Set unless the StartBound is the Maximum|
+|Interpolated|Set Sometimes<br>If an Interpolated bound is the Maximum|
+|Raw|Set Sometimes<br>If a raw value is the Maximum.|
+|Multi Value|Set Sometimes<br>If more than one Good values exist with the same|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Treat the beginning value as Bad\_NoData and compute the *Aggregate*|
@@ -1425,7 +1333,7 @@ If *TreatUncertainAsBad* is false and an Uncertain raw value is the minimum then
 
 If sloped interpolation is used and the End bound is the minimum value then End bound is used as the minimum with the timestamp set to the *EffectiveEndTime* of the interval. The End bound is ignored in all other cases.  
 
- **Table 28\- MinimumActualTime2 Aggregate summary**   
+Table 28 - MinimumActualTime2 Aggregate summary  
 
 | **MinumumActualTime2 Aggregate Characteristics** |
 |---|
@@ -1434,23 +1342,19 @@ If sloped interpolation is used and the End bound is the minimum value then End 
 |Use Bounds|Simple|
 |Timestamp|Time of minimum|
 ||
+  
 | **StatusCode Calculations** |
+|---|
 |Calculation Method|PercentTime|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Not Set|
-|Interpolated|Set Sometimes  
-
-If an Interpolated bound is the Minimum|
-|Raw|Set Sometimes  
-
-If a raw value is the Minimum|
-|Multi Value|Set Sometimes  
-
-If more than one Good values exist with the same value|
+|Interpolated|Set Sometimes<br>If an Interpolated bound is the Minimum|
+|Raw|Set Sometimes<br>If a raw value is the Minimum|
+|Multi Value|Set Sometimes<br>If more than one Good values exist with the same value|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Treat the beginning value as Bad\_NoData and compute the *Aggregate*|
@@ -1469,7 +1373,7 @@ If *TreatUncertainAsBad* is false and an Uncertain raw value is the maximum then
 
 If sloped interpolation is used and the End bound is the maximum value then End bound is used as the maximum with the timestamp set to the EffectiveEndTime of the interval. The End bound is ignored in all other cases.  
 
- **Table 29\- MaximumActualTime2 Aggregate summary**   
+Table 29 - MaximumActualTime2 Aggregate summary  
 
 | **MaximumActualTime2 Aggregate Characteristics** |
 |---|
@@ -1478,23 +1382,19 @@ If sloped interpolation is used and the End bound is the maximum value then End 
 |Use Bounds|Simple|
 |Timestamp|Time of maximum|
 ||
+  
 | **StatusCode Calculations** |
+|---|
 |Calculation Method|PercentTime|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Not Set|
-|Interpolated|Set Sometimes  
-
-If an Interpolated bound is the Maximum|
-|Raw|Set Sometimes  
-
-If a raw value is the Maximum|
-|Multi Value|Set Sometimes  
-
-If more than one value is equal to the Maximum|
+|Interpolated|Set Sometimes<br>If an Interpolated bound is the Maximum|
+|Raw|Set Sometimes<br>If a raw value is the Maximum|
+|Multi Value|Set Sometimes<br>If more than one value is equal to the Maximum|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Treat the beginning value as Bad\_NoData and compute the *Aggregate*|
@@ -1509,7 +1409,7 @@ If more than one value is equal to the Maximum|
 
 The Range2 *Aggregate* defined in [Table 30](/§\_Ref389487001) finds the difference between the maximum and minimum values in the interval as returned by the Minimum2 and Maximum2 *Aggregates* . Note that the range is always zero or positive.  
 
- **Table 30\- Range2 Aggregate summary**   
+Table 30 - Range2 Aggregate summary  
 
 | **Range2 Aggregate Characteristics** |
 |---|
@@ -1518,19 +1418,19 @@ The Range2 *Aggregate* defined in [Table 30](/§\_Ref389487001) finds the differ
 |Use Bounds|Simple (used in Minimum2 and Maximum2 calculations)|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-If Minimum2 or Maximum2 are Bad then the status is Bad\_NoData. If Minimum2 or Maximum2 are Uncertain then the status is *Uncertain\_DataSubNormal* . Good otherwise|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>If Minimum2 or Maximum2 are Bad then the status is Bad\_NoData. If Minimum2 or Maximum2 are Uncertain then the status is *Uncertain\_DataSubNormal* . Good otherwise|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Handled by Minimum2 and Maximum2|
@@ -1547,7 +1447,7 @@ The AnnotationCount *Aggregate* defined in [Table 31](/§\_Ref389487039) returns
 
 The *StatusCodes* are Good, Calculated.  
 
- **Table 31\- AnnotationCount Aggregate summary**   
+Table 31 - AnnotationCount Aggregate summary  
 
 | **AnnotationCount Aggregate Characteristics** |
 |---|
@@ -1556,19 +1456,19 @@ The *StatusCodes* are Good, Calculated.
 |Use Bounds|None|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Good unless the interval is before the start of data or after the end of data|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>Good unless the interval is before the start of data or after the end of data|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Does not apply|
@@ -1585,7 +1485,7 @@ The Count *Aggregate* defined in [Table 32](/§\_Ref389487070) retrieves a count
 
 Unless otherwise indicated, *StatusCodes* are Good, Calculated.  
 
- **Table 32\- Count Aggregate summary**   
+Table 32 - Count Aggregate summary  
 
 | **Count Aggregate Characteristics** |
 |---|
@@ -1594,17 +1494,19 @@ Unless otherwise indicated, *StatusCodes* are Good, Calculated.
 |Use Bounds|None|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
+|---|
 |Calculation Method|PercentValues|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Does not apply|
@@ -1619,7 +1521,7 @@ If an interval is not a complete interval|
 
 The DurationInStateZero *Aggregate* defined in [Table 33](/§\_Ref389487122) returns the time *Duration* during the interval that the *Variable* was in the zero state. The *Simple Bounding Values* for the interval are used to determine initial value (start time \< end time) or ending value (if start time \> end time). ** If one or more raw values are non-Good, they are not included in the *Duration* , and the *Aggregate* *StatusCode* is determined using the *StatusCode* Calculation (see [5.3](/§\_Ref364945480) ) for time based *Aggregates* . *Duration* is in milliseconds. ** Unless otherwise indicated, *StatusCodes* are Good, Calculated.  
 
- **Table 33\- DurationInStateZero Aggregate summary**   
+Table 33 - DurationInStateZero Aggregate summary  
 
 | **DurationInStateZero Aggregate Characteristics** |
 |---|
@@ -1628,17 +1530,19 @@ The DurationInStateZero *Aggregate* defined in [Table 33](/§\_Ref389487122) ret
 |Use Bounds|Simple|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
+|---|
 |Calculation Method|PercentTime|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Treat the beginning value as Bad\_NoData and compute the *Aggregate*|
@@ -1655,7 +1559,7 @@ The DurationInStateNonZero *Aggregate* defined in [Table 34](/§\_Ref389487141) 
 
 *Duration* is in milliseconds. ** Unless otherwise indicated, *StatusCodes* are Good, Calculated.  
 
- **Table 34\- DurationInStateNonZero Aggregate summary**   
+Table 34 - DurationInStateNonZero Aggregate summary  
 
 | **DurationInStateNonZero Aggregate Characteristics** |
 |---|
@@ -1664,17 +1568,19 @@ The DurationInStateNonZero *Aggregate* defined in [Table 34](/§\_Ref389487141) 
 |Use Bounds|Simple|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
+|---|
 |Calculation Method|PercentTime|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Treat the beginning value as Bad\_NoData and compute the *Aggregate*|
@@ -1693,7 +1599,7 @@ The earliest transition shall be calculated by comparing the earliest non-Bad va
 
 Unless otherwise indicated, *StatusCodes* are Good, Calculated.  
 
- **Table 35\- NumberOfTransitions Aggregate summary**   
+Table 35 - NumberOfTransitions Aggregate summary  
 
 | **NumberOfTransitions Aggregate Characteristics** |
 |---|
@@ -1702,18 +1608,20 @@ Unless otherwise indicated, *StatusCodes* are Good, Calculated.
 |Use Bounds|Custom, a non-Bad value prior to the interval is used|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
+|---|
 |Calculation Method|PercentValues|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Treat the beginning value as Bad\_NoData and compute the *Aggregate*|
@@ -1728,7 +1636,7 @@ If an interval is not a complete interval|
 
 The Start *Aggregate* defined in [Table 36](/§\_Ref389487525) retrieves the earliest raw value within the interval, and returns that value and status with the timestamp at which that value occurs. If no values are in the interval then the *StatusCode* is *Bad\_NoData* .  
 
- **Table 36\- Start Aggregate summary**   
+Table 36 - Start Aggregate summary  
 
 | **Start Aggregate Characteristics** |
 |---|
@@ -1737,19 +1645,19 @@ The Start *Aggregate* defined in [Table 36](/§\_Ref389487525) retrieves the ear
 |Use Bounds|None|
 |Timestamp|Time of Raw Value|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-The raw value status is returned|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>The raw value status is returned|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Not Set|
 |Interpolated|Not Set|
 |Raw|Always|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Does not apply|
@@ -1764,7 +1672,7 @@ If an interval is not a complete interval|
 
 The End *Aggregate* defined in [Table 37](/§\_Ref389487540) retrieves the latest raw value within the interval, and returns that value and status with the timestamp at which that value occurs. If no values are in the interval then the *StatusCode* is *Bad\_NoData* .  
 
- **Table 37\- End Aggregate summary**   
+Table 37 - End Aggregate summary  
 
 | **End Aggregate Characteristics** |
 |---|
@@ -1773,19 +1681,19 @@ The End *Aggregate* defined in [Table 37](/§\_Ref389487540) retrieves the lates
 |Use Bounds|None|
 |Timestamp|Time of Raw Value|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-The raw value status is returned|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>The raw value status is returned|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Not Set|
 |Interpolated|Not Set|
 |Raw|Always|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Does not apply|
@@ -1800,7 +1708,7 @@ If an interval is not a complete interval|
 
 The Delta *Aggregate* defined in [Table 38](/§\_Ref389487554) retrieves the difference between the earliest and latest Good raw values in ** the interval *.* The *Aggregate* is negative if the latest value is less than the earliest value. The status is *Uncertain\_DataSubNormal* if non-Good values are skipped while looking for the first or last values. The status is *Good* otherwise. The status is *Bad\_NoData* if no Good raw values exist.  
 
- **Table 38\- Delta Aggregate summary**   
+Table 38 - Delta Aggregate summary  
 
 | **Delta Aggregate Characteristics** |
 |---|
@@ -1809,21 +1717,19 @@ The Delta *Aggregate* defined in [Table 38](/§\_Ref389487554) retrieves the dif
 |Use Bounds|None|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-*Uncertain\_DataSubNormal* if non-Good values are skipped while looking for the first or last values|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
-|Calculated|Set Always  
-
-|
+|---|
+|Calculation Method|Custom<br>*Uncertain\_DataSubNormal* if non-Good values are skipped while looking for the first or last values|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
+|Calculated|Set Always<br>|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Does not apply|
@@ -1838,7 +1744,7 @@ If an interval is not a complete interval|
 
 The StartBound *Aggregate* defined in [Table 39](/§\_Ref389487576) returns the value and status at the *StartTime* for the interval by calculating the *Simple Bounding Values* for the interval (see [3.1.9](/§\_Ref364944831) ).  
 
- **Table 39\- StartBound Aggregate summary**   
+Table 39 - StartBound Aggregate summary  
 
 | **StartBound Aggregate Characteristics** |
 |---|
@@ -1847,23 +1753,19 @@ The StartBound *Aggregate* defined in [Table 39](/§\_Ref389487576) returns the 
 |Use Bounds|Simple|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-The status of the start bound.|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>The status of the start bound.|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Not Set|
-|Interpolated|Set Sometimes  
-
-If the bound is interpolated|
-|Raw|Set Sometimes  
-
-If a value exists at the start time|
+|Interpolated|Set Sometimes<br>If the bound is interpolated|
+|Raw|Set Sometimes<br>If a value exists at the start time|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Bad\_NoData|
@@ -1880,7 +1782,7 @@ The EndBound *Aggregate* defined in [Table 40](/§\_Ref389487593) returns the va
 
 The timestamp returned is always the start of the interval and Calculated bit is set.  
 
- **Table 40\- EndBound Aggregate summary**   
+Table 40 - EndBound Aggregate summary  
 
 | **EndBound Aggregate Characteristics** |
 |---|
@@ -1889,19 +1791,19 @@ The timestamp returned is always the start of the interval and Calculated bit is
 |Use Bounds|Simple|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-The status of the end bound.|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>The status of the end bound.|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Does not apply|
@@ -1916,7 +1818,7 @@ If an interval is not a complete interval|
 
 The DeltaBounds *Aggregate* defined in [Table 41](/§\_Ref389487615) returns the difference between the *StartBound* and the *EndBound* *Aggregates* with the exception that both the start and end shall be Good. If the end value is less than the start value, the result will be negative. If the end value is the same as the start value the result will be zero. If the end value is greater than the start value, the result will be positive. If one or both values are Bad the return status will be *Bad\_NoData* . If one or both values are Uncertain the status will be *Uncertain\_DataSubNormal* .  
 
- **Table 41\- DeltaBounds Aggregate summary**   
+Table 41 - DeltaBounds Aggregate summary  
 
 | **DeltaBounds Aggregate Characteristics** |
 |---|
@@ -1925,23 +1827,19 @@ The DeltaBounds *Aggregate* defined in [Table 41](/§\_Ref389487615) returns the
 |Use Bounds|Simple|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Good if both bounds are Good  
-
-*Uncertain\_DataSubNormal* if either bound is uncertain  
-
-Bad\_NoData if either bound is Bad|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>Good if both bounds are Good<br>*Uncertain\_DataSubNormal* if either bound is uncertain<br>Bad\_NoData if either bound is Bad|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|Bad\_NoData|
@@ -1960,7 +1858,7 @@ The status of the first region is determined by finding the first data point at 
 
 Each *Aggregate* is returned with timestamp of the start of the interval. *StatusCodes* are Good, Calculated.  
 
- **Table 42\- DurationGood Aggregate summary**   
+Table 42 - DurationGood Aggregate summary  
 
 | **DurationGood Aggregate Characteristics** |
 |---|
@@ -1969,19 +1867,19 @@ Each *Aggregate* is returned with timestamp of the start of the interval. *Statu
 |Use Bounds|Uses status of bounding value|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-*StatusCode* is always *Good* , *Calculated*|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>*StatusCode* is always *Good* , *Calculated*|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|No special handing required|
@@ -2000,7 +1898,7 @@ The status of the first region is determined by finding the first data point at 
 
 Each *Aggregate* is returned with timestamp of the start of the interval. *StatusCodes* are Good, Calculated.  
 
- **Table 43\- DurationBad Aggregate summary**   
+Table 43 - DurationBad Aggregate summary  
 
 | **DurationBad Aggregate Characteristics** |
 |---|
@@ -2009,19 +1907,19 @@ Each *Aggregate* is returned with timestamp of the start of the interval. *Statu
 |Use Bounds|Uses status of bounding value|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-*StatusCode* is always *Good, Calculated*|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>*StatusCode* is always *Good, Calculated*|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|No special handing required|
@@ -2046,7 +1944,7 @@ DurationGood is the result from the DurationGood *Aggregate* , calculated using 
 
 If the last interval is a partial interval then the duration of the partial interval is used in the calculation. Each *Aggregate* is returned with timestamp of the start of the interval. *StatusCodes* are Good, Calculated.  
 
- **Table 44\- PercentGood Aggregate summary**   
+Table 44 - PercentGood Aggregate summary  
 
 | **PercentGood Aggregate Characteristics** |
 |---|
@@ -2055,19 +1953,19 @@ If the last interval is a partial interval then the duration of the partial inte
 |Use Bounds|Simple (used in DurationGood calculation)|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Always Good|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>Always Good|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|No special handing required|
@@ -2092,7 +1990,7 @@ DurationBad is the result from the DurationBad *Aggregate* , calculated using th
 
 If the last interval is a partial interval then the duration of the partial interval is used in the calculation. Each *Aggregate* is returned with timestamp of the start of the interval. *StatusCodes* are Good, Calculated.  
 
- **Table 45\- PercentBad Aggregate summary**   
+Table 45 - PercentBad Aggregate summary  
 
 | **PercentBad Aggregate Characteristics** |
 |---|
@@ -2101,19 +1999,19 @@ If the last interval is a partial interval then the duration of the partial inte
 |Use Bounds|Simple (used in DurationBad calculation)|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Always Good.|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>Always Good.|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|No special handing required|
@@ -2134,7 +2032,7 @@ This *Aggregate* returns the worst *StatusCode* as the value of the *Aggregate* 
 
 The timestamp is always the start of the interval. The *StatusCodes* are Good, Calculated.  
 
- **Table 46\- WorstQuality Aggregate summary**   
+Table 46 - WorstQuality Aggregate summary  
 
 | **WorstQuality Aggregate Characteristics** |
 |---|
@@ -2143,19 +2041,19 @@ The timestamp is always the start of the interval. The *StatusCodes* are Good, C
 |Use Bounds|None|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Always Good|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>Always Good|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Used|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|No special handing required|
@@ -2178,7 +2076,7 @@ This *Aggregate* returns the worst *StatusCode* as the value of the *Aggregate* 
 
 The timestamp is always the start of the interval. The *StatusCodes* are Good, Calculated.  
 
- **Table 47\- WorstQuality2 Aggregate summary**   
+Table 47 - WorstQuality2 Aggregate summary  
 
 | **WorstQuality2 Aggregate Characteristics** |
 |---|
@@ -2187,19 +2085,19 @@ The timestamp is always the start of the interval. The *StatusCodes* are Good, C
 |Use Bounds|Simple|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Always Good|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>Always Good|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Used|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|No special handing required|
@@ -2226,7 +2124,7 @@ All interval *Aggregates* return timestamp of the start of the interval. Unless 
 
 This calculation is for a sample population where the calculation is done on a subset of the full set  of data. Use *StandardDeviationPopulation* to calculate the standard deviation of a full set of data (see [5.4.3.39](/§\_Ref389488047) ). An example would be when the underlying data is sampled from the data source versus stored on an exception basis.  
 
- **Table 48\- StandardDeviationSample Aggregate summary**   
+Table 48 - StandardDeviationSample Aggregate summary  
 
 | **StandardDeviationSample Aggregate Characteristics** |
 |---|
@@ -2235,26 +2133,28 @@ This calculation is for a sample population where the calculation is done on a s
 |Use Bounds|None|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Always Good|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>Always Good|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|No special handing required|
 |No End Bound|No special handing required|
 |Bound Bad|No special handing required|
 |Bound Uncertain|No special handing required|
+  
 | **Conformance Units** |
+|---|
 |Aggregates StandardDeviationSample|
   
 
@@ -2266,7 +2166,7 @@ The VarianceSample *Aggregate* defined in [Table 49](/§\_Ref389488178) retrieve
 
 This calculation is for a sample population where the calculation is done on a subset of the full population. Use *VariancePopulation* to calculate the variance of a full set of data ( [5.4.3.40](/§\_Ref318147103) ).  
 
- **Table 49\- VarianceSample Aggregate summary**   
+Table 49 - VarianceSample Aggregate summary  
 
 | **VarianceSample Aggregate Characteristics** |
 |---|
@@ -2275,19 +2175,19 @@ This calculation is for a sample population where the calculation is done on a s
 |Use Bounds|None|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Always Good|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>Always Good|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|No special handing required|
@@ -2314,7 +2214,7 @@ All interval *Aggregates* return timestamp of the start of the interval. Unless 
 
 This calculation is for a full population where the calculation is done on the full set of data. Use *StandardDeviationSample* to calculate the standard deviation of a subset of the full population ( [5.4.3.37](/§\_Ref318147126) ). An example would be when the underlying data is collected on an exception basis versus sampled from the data source.  
 
- **Table 50\- StandardDeviationPopulation Aggregate summary**   
+Table 50 - StandardDeviationPopulation Aggregate summary  
 
 | **StandardDeviationPopulation Aggregate Characteristics** |
 |---|
@@ -2323,19 +2223,19 @@ This calculation is for a full population where the calculation is done on the f
 |Use Bounds|None|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Always Good|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>Always Good|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|No special handing required|
@@ -2352,7 +2252,7 @@ The VariancePopulation *Aggregate* defined in [Table 51](/§\_Ref389488374) retr
 
 This calculation is for a full population where the calculation is done on the full set of data. Use *VarianceSample* to calculate the variance of a subset of the full population ( [5.4.3.38](/§\_Ref318147154) ).  
 
- **Table 51\- VariancePopulation Aggregate summary**   
+Table 51 - VariancePopulation Aggregate summary  
 
 | **VariancePopulation Aggregate Characteristics** |
 |---|
@@ -2361,19 +2261,19 @@ This calculation is for a full population where the calculation is done on the f
 |Use Bounds|None|
 |Timestamp|StartTime|
 ||
+  
 | **StatusCode Calculations** |
-|Calculation Method|Custom  
-
-Always Good|
-|Partial |Set Sometimes  
-
-If an interval is not a complete interval|
+|---|
+|Calculation Method|Custom<br>Always Good|
+|Partial |Set Sometimes<br>If an interval is not a complete interval|
 |Calculated|Set Always|
 |Interpolated|Not Set|
 |Raw|Not Set|
 |Multi Value|Not Set|
 ||
+  
 | **StatusCode Common Special Cases** |
+|---|
 |Before Start of Data|Bad\_NoData|
 |After End of Data|Bad\_NoData|
 |No Start Bound|No special handing required|

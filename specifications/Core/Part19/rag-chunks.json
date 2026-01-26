@@ -2,232 +2,307 @@
   "Title": "Part 19 - Dictionary Reference",
   "Chunks": [
     {
-      "Id": "2cec51ab-2e5a-4eaa-a754-6b97b9c84130",
+      "Id": "809d2c23-ff0d-4982-855d-c744944321f7",
       "Header": "Document: Part 19 - Dictionary Reference\n---\n",
       "Content": "1 Scope"
     },
     {
-      "Id": "8dac74df-e7ad-4a06-ab91-81fd71286719",
+      "Id": "1862948f-85bf-4d08-82bf-de9c6e1222ea",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 1 Scope\n---\n",
       "Content": "This specification defines an Information Model of the OPC Unified Architecture. The Information Model describes the basic infrastructure to reference from an OPC UA Information Model to external dictionaries like IEC Common Data Dictionary or ECLASS."
     },
     {
-      "Id": "33ed6039-7495-4ab5-b559-764096933cbe",
+      "Id": "c6b2e8ba-f5f1-4e74-a949-02a697f090ca",
       "Header": "Document: Part 19 - Dictionary Reference\n---\n",
       "Content": "2 Normative references"
     },
     {
-      "Id": "633471c3-6b1f-49d5-9e14-f4407bdb40c7",
+      "Id": "a00dee05-36ce-4976-b3e5-e816656e217f",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 2 Normative references\n---\n",
       "Content": "The following referenced documents are indispensable for the application of this specification. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments and errata) applies.\nOPC 10000-1, OPC Unified Architecture - Part 1: Overview and Concepts\n[http://www.opcfoundation.org/UA/Part1/](http://www.opcfoundation.org/UA/Part1/)\nOPC 10000-3, OPC Unified Architecture - Part 3: Address Space Model\n[http://www.opcfoundation.org/UA/Part3/](http://www.opcfoundation.org/UA/Part3/)\nOPC 10000-4, OPC Unified Architecture - Part 4: Services\n[http://www.opcfoundation.org/UA/Part4/](http://www.opcfoundation.org/UA/Part4/)\nOPC 10000-5, OPC Unified Architecture - Part 5: Information Model\n[http://www.opcfoundation.org/UA/Part5/](http://www.opcfoundation.org/UA/Part5/)\nOPC 10000-8, OPC Unified Architecture - Part 8: Data Access\n[http://www.opcfoundation.org/UA/Part8/](http://www.opcfoundation.org/UA/Part8/)\nOPC 10000-100, OPC Unified Architecture - Part 8: Data Access\n[http://www.opcfoundation.org/UA/Part100/](http://www.opcfoundation.org/UA/Part100/)\nISO/IEC 11179-6, Information technology - Metadata registries (MDR) - Part 6: Registration"
     },
     {
-      "Id": "16f69fac-9b16-41ea-ab7a-243ebbbba92b",
+      "Id": "5b8ebaa1-22ee-41c3-b427-d2ebe397fc04",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 2 Normative references\n---\n",
       "Content": "[https://www.iso.org/standard/60342.html](https://www.iso.org/standard/60342.html) https://www.iso.org/standard/60342.html\nISO 29002-5, Information automation systems and integration - Exchange of characteristic data - Part 5: Identification scheme\nhttps://www.iso.org/standard/50773.html\n\u0022 https://www.iso.org/standard/50773.html\nISO/IEC 6523, Information technology - Structure for the identification of organizations and organization parts\nhttps://www.iso.org/standard/25773.html\n\u0022 https://www.iso.org/standard/25773.html"
     },
     {
-      "Id": "475d0de8-76df-4155-acd3-e9ec97b3f4d8",
+      "Id": "0095a128-8783-47fd-864b-1ed2749ac878",
       "Header": "Document: Part 19 - Dictionary Reference\n---\n",
       "Content": "3 Terms, definitions, abbreviated terms, and conventions"
     },
     {
-      "Id": "a14b1392-e146-4e7e-b10e-cbc13558c796",
+      "Id": "51498544-aab9-4cc6-9613-7d8806ba0266",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 3 Terms, definitions, abbreviated terms, and conventions\n---\n",
       "Content": "3.1 Terms and definitions"
     },
     {
-      "Id": "56ae28d9-d278-43bf-adaa-5a9e5abe8284",
+      "Id": "8c8ec7e4-d43f-4bcf-9fd4-85dbafbdce89",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 3.1 Terms and definitions\n---\n",
       "Content": "For the purposes of this document, the terms and definitions given in[OPC 10000-1](/\u00A7UAPart1),[OPC 10000-3](/\u00A7UAPart3), and[OPC 10000-5](/\u00A7UAPart5) apply.\nAll used terms are italicized in the specification."
     },
     {
-      "Id": "cc4c25ae-ac5d-4f9d-9ae2-5550b2ff6d87",
+      "Id": "265c6622-9c64-4ab6-9166-ca598a2bcdd6",
       "Header": "Document: Part 19 - Dictionary Reference\n---\n",
       "Content": "4 Dictionary Reference Information Model overview"
     },
     {
-      "Id": "c4e54ede-1e4f-4ee1-8297-f98642b73b48",
+      "Id": "e00d65ae-c7ce-4615-9ddd-7eb43d6c4821",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 4 Dictionary Reference Information Model overview\n---\n",
       "Content": "4.1 General"
     },
     {
-      "Id": "c62424e0-dc0f-4672-8efa-efee79d5a6ce",
+      "Id": "30d711a0-c310-469a-9dc8-87ef86e6b009",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 4.1 General\n---\n",
       "Content": "This document describes the basic infrastructure an OPC UA Information Model may use to reference external dictionaries like IEC Common Data Dictionary or ECLASS. It defines ObjectTypes, VariableTypes and a ReferenceType and explains how they should be used.\nThe ObjectTypes are used to represent an external dictionary in an OPC UA AddressSpace. The ReferenceType is used to reference from Nodes in the AddressSpace to the dictionary entries. Such dictionary entries can be seen as external classification or external semantic information.\nThe type system of OPC UA already provides means to express the semantic of an OPC UA Object. As an example,[OPC 10000-100](/\u00A7UAPart100) defines the DeviceType ObjectType expressing that instances of this ObjectType represent devices. Subtypes of the DeviceType are used to add vendor specific semantic. However, the classification and additional semantic of the device in terms of an external data dictionary is not specified further. This document provides means to represent that an Object is for example a differential pressure transmitter in the context of an IEC Common Data Dictionary. This allows clients to automatically retrieve and identify such devices.\nThis document is an integral part of this standard, that is, the types defined in this document shall be used as defined. However, it is not required but strongly recommended that a Server use the types defined in this document to refer to external dictionaries. The defined types may be subtyped to refine their behaviour.\nWhen a Server references external dictionaries using the types defined in this document, it refers from OPC UA Nodes to dictionary entries. The Server may optionally also provide the hierarchy and content of the external dictionary. Resource consumption needs to be considered, especially in scenarios where the OPC UA Server is part of the firmware of a device."
     },
     {
-      "Id": "9bf1baf6-2143-4aed-a091-a0236b562b72",
+      "Id": "0061942f-eba4-4849-a06c-cb3c2bd99ab3",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 4 Dictionary Reference Information Model overview\n---\n",
       "Content": "4.2 Overview"
     },
     {
-      "Id": "f89cb0ae-2c0d-4076-997b-01b3e69c6c65",
+      "Id": "56652e0e-bec6-4a79-9f66-d93fce7f5bc2",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 4.2 Overview\n---\n",
       "Content": "The types and instances defined in this document are illustrated in[Figure 1](/\u00A7_Ref114466674). The DictionaryEntryType is an abstract base type for dictionary entries. The IrdiDictionaryEntryType and the UriDictionaryEntryType provide concrete types that can be used to represent dictionary entries. The HasDictionaryEntry ReferenceType is used to refer an OPC UA Node to a dictionary entry. The DictionaryFolderType and the Dictionaries Object provide an optional capability to expose the hierarchy of a referenced dictionary."
     },
     {
-      "Id": "f3e649fa-4a9f-49b4-b78e-180564d14cbd",
+      "Id": "fa3c2119-c941-4993-894f-c65282854da6",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 4.2 Overview\nCaption: Figure 1 - The dictionary reference types\n---\n",
       "Content": "[image005.png](images/image005.png)"
     },
     {
-      "Id": "438d5a9a-f393-4c75-b66e-a9f1b0970f09",
+      "Id": "710d897c-4f0e-4984-8004-be11294a4261",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 4.2 Overview\n---\n",
       "Content": "Figure 1 - The dictionary reference types"
     },
     {
-      "Id": "d3b5e5ff-cf61-444d-8fb8-2282e75850c0",
+      "Id": "7186e1f6-77b2-40f7-b202-4bafff1f37c6",
       "Header": "Document: Part 19 - Dictionary Reference\n---\n",
       "Content": "5 OPC UA ObjectTypes"
     },
     {
-      "Id": "9510f45e-dfcb-4496-951f-1df8c8e47ff7",
+      "Id": "cbb8df74-d274-4ff9-9b83-953f56ad96b7",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 5 OPC UA ObjectTypes\n---\n",
       "Content": "5.1 DictionaryEntryType"
     },
     {
-      "Id": "7084777b-16a7-4e65-9a0d-11c7f1028b0a",
+      "Id": "2098014f-44e6-41f8-a362-e138997b1d26",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.1 DictionaryEntryType\n---\n",
-      "Content": "This abstract ObjectType defines the minimum information needed to identify the data dictionary entry for a respective standard (e.g. IEC Common Data Dictionary). It is formally defined in[Table 1](/\u00A7_Ref33176019).\nConcrete dictionary entry types shall inherit from the abstract DictionaryEntryType defining additional Properties and Objects as necessary and specified by the standard body (e.g. further definitions, versioning information etc.).\nAn instance of such a concrete dictionary entry ObjectType represents an entry in an external data dictionary.\nThe isNamespaceSubset Property of the NamespaceMetadataType Object that represents a namespace of a DictionaryEntryType shall be set to TRUE. A Server shall not include duplicates of the same DictionaryEntryType. A Server encountering duplicates should use the most recent version of the DictionaryEntryType.\nTable 1- DictionaryEntryType definition\nAttribute\nValue\nBrowseName\nDictionaryEntryType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType / TypeDefinition\nModellingRule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5).\nHasComponent\nObject\n\u003CDictionaryEntryName\u003E\nDictionaryEntryType\nOptionalPlaceholder\nConformance Units\nAddress Space Dictionary Entries\n\nInstances of the DictionaryEntryType can be nested in order to create hierarchies of dictionary entries."
+      "Content": "This abstract ObjectType defines the minimum information needed to identify the data dictionary entry for a respective standard (e.g. IEC Common Data Dictionary). It is formally defined in[Table 1](/\u00A7_Ref33176019).\nConcrete dictionary entry types shall inherit from the abstract DictionaryEntryType defining additional Properties and Objects as necessary and specified by the standard body (e.g. further definitions, versioning information etc.).\nAn instance of such a concrete dictionary entry ObjectType represents an entry in an external data dictionary.\nThe isNamespaceSubset Property of the NamespaceMetadataType Object that represents a namespace of a DictionaryEntryType shall be set to TRUE. A Server shall not include duplicates of the same DictionaryEntryType. A Server encountering duplicates should use the most recent version of the DictionaryEntryType.\nTable 1 - DictionaryEntryType definition"
     },
     {
-      "Id": "ee439cac-d76d-447d-aace-a4a869577805",
+      "Id": "da623e5a-6742-43e9-9d28-9bd514c18636",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.1 DictionaryEntryType\nCaption: Table 1 - DictionaryEntryType definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nDictionaryEntryType\nIsAbstract\nTrue\nReferences\nNodeClass\nBrowseName\nDataType / TypeDefinition\nModellingRule\nSubtype of the BaseObjectType defined in[OPC 10000-5](/\u00A7UAPart5).\nHasComponent\nObject\n\u003CDictionaryEntryName\u003E\nDictionaryEntryType\nOptionalPlaceholder\nConformance Units\nAddress Space Dictionary Entries"
+    },
+    {
+      "Id": "c500dc22-292b-4e41-b60c-0e8054dca6a6",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.1 DictionaryEntryType\n---\n",
+      "Content": "Instances of the DictionaryEntryType can be nested in order to create hierarchies of dictionary entries."
+    },
+    {
+      "Id": "e292b359-5ae0-4445-b5aa-f0b9efdd3e3f",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 5 OPC UA ObjectTypes\n---\n",
       "Content": "5.2 DictionaryFolderType"
     },
     {
-      "Id": "53313e85-b3f1-4d5e-8a4f-49548ae704fd",
+      "Id": "fa24ceaf-e372-432f-85cd-6194c43c1322",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.2 DictionaryFolderType\n---\n",
-      "Content": "This ObjectType provides means to structure dictionary entry Objects. Multiple Objects of the DictionaryFolderType can be nested in order to create hierarchies. The DictionaryFolderType is formally defined in[Table 2](/\u00A7_Ref33176108).\nTable 2- DictionaryFolderType definition\nAttribute\nValue\nBrowseName\nDictionaryFolderType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType / TypeDefinition\nModellingRule\nSubtype of the FolderType defined in[OPC 10000-5](/\u00A7UAPart5).\nHasComponent\nObject\n\u003CDictionaryFolderName\u003E\nDictionaryFolderType\nOptionalPlaceholder\nHasComponent\nObject\n\u003CDictionaryEntryName\u003E\nDictionaryEntryType\nOptionalPlaceholder\nConformance Units\nAddress Space Dictionary Entries"
+      "Content": "This ObjectType provides means to structure dictionary entry Objects. Multiple Objects of the DictionaryFolderType can be nested in order to create hierarchies. The DictionaryFolderType is formally defined in[Table 2](/\u00A7_Ref33176108).\nTable 2 - DictionaryFolderType definition"
     },
     {
-      "Id": "5c7639a9-6db7-48b2-af0d-d70797d5bab9",
+      "Id": "02aac387-0436-47e1-bf07-bd27e53011e4",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.2 DictionaryFolderType\nCaption: Table 2 - DictionaryFolderType definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nDictionaryFolderType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType / TypeDefinition\nModellingRule\nSubtype of the FolderType defined in[OPC 10000-5](/\u00A7UAPart5).\nHasComponent\nObject\n\u003CDictionaryFolderName\u003E\nDictionaryFolderType\nOptionalPlaceholder\nHasComponent\nObject\n\u003CDictionaryEntryName\u003E\nDictionaryEntryType\nOptionalPlaceholder\nConformance Units\nAddress Space Dictionary Entries"
+    },
+    {
+      "Id": "f633544d-dc73-44ef-b247-bc26cc88dff1",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.2 DictionaryFolderType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "4140a8e0-99bb-482a-9569-7ed910219222",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 5 OPC UA ObjectTypes\n---\n",
       "Content": "5.3 IRDI ISO/IEC 11179-6 conformant DictionaryEntryType"
     },
     {
-      "Id": "fc73aa93-3ea5-41f0-af73-9567851bf9f9",
+      "Id": "4fadc466-ec34-42a1-a369-3f1a2a330db6",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.3 IRDI ISO/IEC 11179-6 conformant DictionaryEntryType\n---\n",
       "Content": "The IrdiDictionaryEntryType defined in[Table 3](/\u00A7_Ref33177329) is used to represent dictionary entries that use standardized semantic identifiers that conform with International Registration Data Identifiers (IRDI) defined in[ISO/IEC 11179-6](/\u00A7IEEE60559).\nStandardized semantic identifiers are locale independent strings typically specified in international standards like IEC CDD (Common Data Dictionary) (IEC 61987). In order to avoid conflict with various name spaces in these identifiers, the registration authority identifier part of the string used shall be based on[ISO 29002-5](/\u00A7ISO29002).\n[Figure 2](/\u00A7_Ref33176481) shows the general structure and syntax defined by[ISO/IEC 11179-6](/\u00A7IEC11179),[ISO 29002-5](/\u00A7ISO29002) and[ISO/IEC 6523](/\u00A7ISOIEC6523)."
     },
     {
-      "Id": "179c4ae2-6e49-4b3a-b9a1-150a70ed39f7",
+      "Id": "d9ee881a-7f60-4245-977c-c485766898bd",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.3 IRDI ISO/IEC 11179-6 conformant DictionaryEntryType\nCaption: Figure 2 - IRDI overview\n---\n",
       "Content": "[image006.png](images/image006.png)"
     },
     {
-      "Id": "ec76cc03-1db9-4c56-bd8c-29d05b4f60c2",
+      "Id": "2b4d2e24-1670-4312-ba0a-819d0294ba4a",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.3 IRDI ISO/IEC 11179-6 conformant DictionaryEntryType\n---\n",
-      "Content": "Figure 2 - IRDI overview\nExamples for IRDI strings defined by standards using the IRDI format\nIEC CDD 0112/2//a/61360_4#AAE867#001 Proximity switch, Output current\nISO 5598 0112-1-a-18582#KAA802#s Pneumatic value\nECLASS 0173/1///#02-8AD792#s Inductive distance sensor, Design of analog output\nTable 3- IrdiDictionaryEntryType Definition\nAttribute\nValue\nBrowseName\nIrdiDictionaryEntryType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType / TypeDefinition\nModellingRule\nSubtype of the DictionaryEntryType defined in OPC 10000-5.\nConformance Units\nAddress Space Dictionary IRDI\n\nThe identifier in the respective external dictionary shall be a unique string. This identifier is used for the NodeId and the BrowseName Attributes of instances of the DictionaryEntryType. The IdentifierType of the NodeId shall be STRING_1 with the identifier from the external dictionary as the value.\nThe namespace \u0022http://opcfoundation.org/UA/Dictionary/IRDI\u0022 shall be used for instance of the IrdiDictionaryEntryType. Subtypes may define different namespaces.\nThe identifier shall be immutable; meaning that it shall not be reassigned to a different dictionary entry within the scope of the namespace in future versions. Data dictionaries may be publicly defined by standard bodies such as IEC or proprietary (e.g. vendor-specific dictionaries)."
+      "Content": "Figure 2 - IRDI overview\nExamples for IRDI strings defined by standards using the IRDI format\nIEC CDD 0112/2//a/61360_4#AAE867#001 Proximity switch, Output current\nISO 5598 0112-1-a-18582#KAA802#s Pneumatic value\nECLASS 0173/1///#02-8AD792#s Inductive distance sensor, Design of analog output\nTable 3 - IrdiDictionaryEntryType Definition"
     },
     {
-      "Id": "508a15a6-b6e9-4074-b60e-a5708244fd2f",
+      "Id": "54b400e1-dea9-42a2-bdf2-d4721a5ae34a",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.3 IRDI ISO/IEC 11179-6 conformant DictionaryEntryType\nCaption: Table 3 - IrdiDictionaryEntryType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nIrdiDictionaryEntryType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType / TypeDefinition\nModellingRule\nSubtype of the DictionaryEntryType defined in OPC 10000-5.\nConformance Units\nAddress Space Dictionary IRDI"
+    },
+    {
+      "Id": "c89cf106-7ddd-4590-a62b-430c868d187b",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.3 IRDI ISO/IEC 11179-6 conformant DictionaryEntryType\n---\n",
+      "Content": "The identifier in the respective external dictionary shall be a unique string. This identifier is used for the NodeId and the BrowseName Attributes of instances of the DictionaryEntryType. The IdentifierType of the NodeId shall be STRING_1 with the identifier from the external dictionary as the value.\nThe namespace \u0022http://opcfoundation.org/UA/Dictionary/IRDI\u0022 shall be used for instance of the IrdiDictionaryEntryType. Subtypes may define different namespaces.\nThe identifier shall be immutable; meaning that it shall not be reassigned to a different dictionary entry within the scope of the namespace in future versions. Data dictionaries may be publicly defined by standard bodies such as IEC or proprietary (e.g. vendor-specific dictionaries)."
+    },
+    {
+      "Id": "b8bb1e92-5d6d-463f-a630-e641014810aa",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 5 OPC UA ObjectTypes\n---\n",
       "Content": "5.4 URI based dictionary entry type"
     },
     {
-      "Id": "90f58954-6a7b-4b5a-bc12-274f3b51ae74",
+      "Id": "60d7b101-b145-41b0-874e-cd4436e61158",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.4 URI based dictionary entry type\n---\n",
-      "Content": "The UriDictionaryEntryType defined in[Table 4](/\u00A7_Ref33176627) is used to represent dictionary entries that use URIs as unique identifiers.\nTable 4- UriDictionaryEntryType Definition\nAttribute\nValue\nBrowseName\nUriDictionaryEntryType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType / TypeDefinition\nModellingRule\nSubtype of the DictionaryEntryType defined in[5.1](/\u00A7_Ref33178320).\nConformance Units\nAddress Space Dictionary URI\n\nThe identifier in the respective external dictionary shall be a unique URI string. This identifier is used for the NodeId and the BrowseName Attributes of instances of the DictionaryEntryType. The IdentifierType of the NodeId shall be STRING_1 with the identifier from the external dictionary as the value.\nThe namespace \u0022http://opcfoundation.org/UA/Dictionary/URI\u0022 shall be used for instance of the UriDictionaryEntryType. Subtypes may define different namespaces.\nThe identifier shall be immutable; meaning that it shall not be reassigned to a different dictionary entry within the scope of the namespace in future versions. Data dictionaries may be publicly defined by standard bodies such as IEC or proprietary (e.g. vendor-specific dictionaries)."
+      "Content": "The UriDictionaryEntryType defined in[Table 4](/\u00A7_Ref33176627) is used to represent dictionary entries that use URIs as unique identifiers.\nTable 4 - UriDictionaryEntryType Definition"
     },
     {
-      "Id": "e388aedc-1cbc-49c2-b3a9-485aeb2f339e",
+      "Id": "d4eea0d7-4251-49d1-b1e9-a7b6daf06bf2",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.4 URI based dictionary entry type\nCaption: Table 4 - UriDictionaryEntryType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nUriDictionaryEntryType\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nDataType / TypeDefinition\nModellingRule\nSubtype of the DictionaryEntryType defined in[5.1](/\u00A7_Ref33178320).\nConformance Units\nAddress Space Dictionary URI"
+    },
+    {
+      "Id": "cd95c01b-ae85-4e7f-905e-113760a7d3a9",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 5.4 URI based dictionary entry type\n---\n",
+      "Content": "The identifier in the respective external dictionary shall be a unique URI string. This identifier is used for the NodeId and the BrowseName Attributes of instances of the DictionaryEntryType. The IdentifierType of the NodeId shall be STRING_1 with the identifier from the external dictionary as the value.\nThe namespace \u0022http://opcfoundation.org/UA/Dictionary/URI\u0022 shall be used for instance of the UriDictionaryEntryType. Subtypes may define different namespaces.\nThe identifier shall be immutable; meaning that it shall not be reassigned to a different dictionary entry within the scope of the namespace in future versions. Data dictionaries may be publicly defined by standard bodies such as IEC or proprietary (e.g. vendor-specific dictionaries)."
+    },
+    {
+      "Id": "fdf637d1-1af5-4f75-8e2c-8bacbf7e7d51",
       "Header": "Document: Part 19 - Dictionary Reference\n---\n",
       "Content": "6 OPC UA ReferenceTypes"
     },
     {
-      "Id": "9824a899-47fb-44c0-906f-4d292fcb89b1",
+      "Id": "5cfa1437-744f-49e1-8c96-acf5a4738b64",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 6 OPC UA ReferenceTypes\n---\n",
       "Content": "6.1 HasDictionaryEntry ReferenceType"
     },
     {
-      "Id": "2e894624-80a2-4a2d-9339-9dcf7f0a8b86",
+      "Id": "038e977d-9112-49c0-a74c-399ae21e7bb4",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 6.1 HasDictionaryEntry ReferenceType\n---\n",
-      "Content": "The HasDictionaryEntry ReferenceType is a concrete ReferenceType and can be used directly. It is a subtype of NonHierarchicalReferences.\nThe Reference to the dictionary entry for any Node is provided by HasDictionaryEntry.\nThe SourceNode of this ReferenceType can be any Node. The TargetNode of this ReferenceType shall be an Object of DictionaryEntryType or one of its subtypes.\nEach Node can be the SourceNode of multiple HasDictionaryEntry References pointing to multiple dictionary entry Objects.\nThe HasDictionaryEntry ReferenceType is specified in[Table 5](/\u00A7_Ref33176251).\nTable 5- HasDictionaryEntry ReferenceType\nAttributes\nValue\nBrowseName\nHasDictionaryEntry\nInverseName\nDictionaryEntryOf\nSymmetric\nFalse\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of the NonHierarchicalReferences ReferenceType defined in[OPC 10000-3](/\u00A7UAPart3)\nConformance Units\nAddress Space Dictionary Entries"
+      "Content": "The HasDictionaryEntry ReferenceType is a concrete ReferenceType and can be used directly. It is a subtype of NonHierarchicalReferences.\nThe Reference to the dictionary entry for any Node is provided by HasDictionaryEntry.\nThe SourceNode of this ReferenceType can be any Node. The TargetNode of this ReferenceType shall be an Object of DictionaryEntryType or one of its subtypes.\nEach Node can be the SourceNode of multiple HasDictionaryEntry References pointing to multiple dictionary entry Objects.\nThe HasDictionaryEntry ReferenceType is specified in[Table 5](/\u00A7_Ref33176251).\nTable 5 - HasDictionaryEntry ReferenceType"
     },
     {
-      "Id": "d03cd2fd-70c2-4741-9cf5-17a06fe7355c",
+      "Id": "8ec90de2-e537-4b00-b22a-c43f0ab9253c",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 6.1 HasDictionaryEntry ReferenceType\nCaption: Table 5 - HasDictionaryEntry ReferenceType\n---\n",
+      "Content": "Attributes\nValue\nBrowseName\nHasDictionaryEntry\nInverseName\nDictionaryEntryOf\nSymmetric\nFalse\nIsAbstract\nFalse\nReferences\nNodeClass\nBrowseName\nComment\nSubtype of the NonHierarchicalReferences ReferenceType defined in[OPC 10000-3](/\u00A7UAPart3)\nConformance Units\nAddress Space Dictionary Entries"
+    },
+    {
+      "Id": "343c3015-48a4-4c19-94c2-a385dee874a2",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 6.1 HasDictionaryEntry ReferenceType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "4e9802a6-9306-4952-b883-cbb89205d4e7",
       "Header": "Document: Part 19 - Dictionary Reference\n---\n",
       "Content": "7 OPC UA VariableTypes"
     },
     {
-      "Id": "2734c442-5b6d-4e8e-bf90-dcd36c442829",
+      "Id": "7e3559d1-4a36-4bd0-ab67-398030b263ac",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 7 OPC UA VariableTypes\n---\n",
       "Content": "7.1 MultiStateDictionaryEntryDiscreteBaseType VariableType"
     },
     {
-      "Id": "802272cf-668b-463c-879a-a4ce410943f6",
+      "Id": "fc01f63a-5762-45ef-91a6-e142001fa0f4",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 7.1 MultiStateDictionaryEntryDiscreteBaseType VariableType\n---\n",
-      "Content": "The MultiStateDictionaryEntryDiscreteBaseType VariableType is a subtype of the MultiStateValueDiscreteType. It provides dictionary entries for each of the possible states as well as the current state of the MultiStateValueDiscreteType. It is formally defined in[Table 6](/\u00A7_Ref17727931).\nTable 6- MultiStateDictionaryEntryDiscreteBaseType Definition\nAttribute\nValue\nBrowseName\nMultiStateDictionaryEntryDiscreteBaseType\nIsAbstract\nFalse\nValueRank\nScalar\nDataType\nNumber\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the MultiStateValueDiscreteType defined in[OPC 10000-8](/\u00A7UAPart8)\nHasProperty\nVariable\nEnumDictionaryEntries\nNodeId[][]\nPropertyType\nMandatory\nHasProperty\nVariable\nValueAsDictionaryEntries\nNodeId[]\nPropertyType\nOptional\nConformance Units\nData Access MultiStateDictionaryEntryDBT\nData Access ValueAsDictionaryEntries Property\n\nThe normal approach of associating DictionaryEntryType Nodes with HasDictionaryEntry References cannot be used with a MultiStateValueDiscreteType VariableType due to the EnumValues Property being an Array, making this Type necessary. References can however be used for other VariableTypes. For example, the TwoStateDiscreteType can use HasDictionaryEntry References with SourceNode being the TrueState and FalseState Properties and TargetNode being the DictionaryEntry Nodes.\nEnumDictionaryEntries is a two-dimensional array of NodeIds. The first dimension is used to list all possible dictionary entry values for the related variable in a specific dictionary (e.g. CDD or ECLASS). The second dimension is used to reference this dictionary. The size of the first array dimension shall be the same size as the EnumValues Property"
+      "Content": "The MultiStateDictionaryEntryDiscreteBaseType VariableType is a subtype of the MultiStateValueDiscreteType. It provides dictionary entries for each of the possible states as well as the current state of the MultiStateValueDiscreteType. It is formally defined in[Table 6](/\u00A7_Ref17727931).\nTable 6 - MultiStateDictionaryEntryDiscreteBaseType Definition"
     },
     {
-      "Id": "9073fe40-e06c-43ff-a30b-18f8a15b6c7e",
-      "Header": "Document: Part 19 - Dictionary Reference\nSection: 7.1 MultiStateDictionaryEntryDiscreteBaseType VariableType\n---\n",
-      "Content": "EnumValues Property.\nValueAsDictionaryEntries provides a list of all dictionary entry values in the different dictionaries related to the current value of the variable. The order of the array entries shall be in the same order used by the EnumDictionaryEntries Property.\nIf an instance of this type is writeable and the optional ValueAsDictionaryEntries Property is implemented, it shall be writeable as well. Clients writing to the ValueAsDictionaryEntries Property shall use one of the DictionaryEntryType NodeIds defined by the EnumDictionaryEntries Property. This will have the same result as writing the value attribute, but the client does not require knowledge of the values.\nThe NodeIds represent the dictionary entries and can be generated with dictionary knowledge."
+      "Id": "27ad6568-77cd-46f1-87da-4c8a802e6322",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 7.1 MultiStateDictionaryEntryDiscreteBaseType VariableType\nCaption: Table 6 - MultiStateDictionaryEntryDiscreteBaseType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nMultiStateDictionaryEntryDiscreteBaseType\nIsAbstract\nFalse\nValueRank\nScalar\nDataType\nNumber\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the MultiStateValueDiscreteType defined in[OPC 10000-8](/\u00A7UAPart8)\nHasProperty\nVariable\nEnumDictionaryEntries\nNodeId[][]\nPropertyType\nMandatory\nHasProperty\nVariable\nValueAsDictionaryEntries\nNodeId[]\nPropertyType\nOptional\nConformance Units\nData Access MultiStateDictionaryEntryDBT\nData Access ValueAsDictionaryEntries Property"
     },
     {
-      "Id": "0cdae621-90a1-49ea-bff2-b34e6664498d",
+      "Id": "b3a06eb1-74c8-4a69-8a1a-bb72270ce041",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 7.1 MultiStateDictionaryEntryDiscreteBaseType VariableType\n---\n",
+      "Content": "The normal approach of associating DictionaryEntryType Nodes with HasDictionaryEntry References cannot be used with a MultiStateValueDiscreteType VariableType due to the EnumValues Property being an Array, making this Type necessary. References can however be used for other VariableTypes. For example, the TwoStateDiscreteType can use HasDictionaryEntry References with SourceNode being the TrueState and FalseState Properties and TargetNode being the DictionaryEntry Nodes.\nEnumDictionaryEntries is a two-dimensional array of NodeIds. The first dimension is used to list all possible dictionary entry values for the related variable in a specific dictionary (e.g. CDD or ECLASS). The second dimension is used to reference this dictionary. The size of the first array dimension shall be the same size as the EnumValues Property.\nValueAsDictionaryEntries provides a list of all dictionary entry values in the different dictionaries related to the current value of the variable. The order of the array entries shall be in the same order used by the EnumDictionaryEntries Property.\nIf an instance of this type is writeable and the optional ValueAsDictionaryEntries Property is implemented, it shall be writeable as well. Clients writing to the ValueAsDictionaryEntries Property shall use one of the DictionaryEntryType NodeIds defined by the EnumDictionaryEntries Property. This will have the same result as writing the value attribute, but the client does not require knowledge of the values.\nThe NodeIds represent the dictionary entries and can be generated with dictionary knowledge."
+    },
+    {
+      "Id": "e6ee59b8-f715-4160-81fe-fc5853f93398",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 7 OPC UA VariableTypes\n---\n",
       "Content": "7.2 MultiStateDictionaryEntryDiscreteType VariableType"
     },
     {
-      "Id": "708f66ff-7c38-4fb6-81e2-2c52aab1f396",
+      "Id": "c322539a-c409-42f9-b263-e9d5dc448bbc",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 7.2 MultiStateDictionaryEntryDiscreteType VariableType\n---\n",
-      "Content": "The MultiStateDictionaryEntryDiscreteType VariableType is a subtype of the MultiStateDictionaryEntryDiscreteBaseType. It requires the ValueAsDictionaryEntries Property. It is formally defined in[Table 7](/\u00A7_Ref17728026).\nTable 7- MultiStateDictionaryEntryDiscreteType Definition\nAttribute\nValue\nBrowseName\nMultiStateDictionaryEntryDiscreteType\nIsAbstract\nFalse\nValueRank\nScalar\nDataType\nNumber\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the MultiStateDictionaryEntryDiscreteBaseType defined in[7.1](/\u00A7_Ref17728243)\nHasProperty\nVariable\nValueAsDictionaryEntries\nNodeId[]\nPropertyType\nMandatory\nConformance Units\nData Access MultiStateDictionaryEntryDBT"
+      "Content": "The MultiStateDictionaryEntryDiscreteType VariableType is a subtype of the MultiStateDictionaryEntryDiscreteBaseType. It requires the ValueAsDictionaryEntries Property. It is formally defined in[Table 7](/\u00A7_Ref17728026).\nTable 7 - MultiStateDictionaryEntryDiscreteType Definition"
     },
     {
-      "Id": "13907d52-00db-43bb-a199-75f4337985ca",
+      "Id": "85eece5a-856d-4f19-9346-ab83164f9329",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 7.2 MultiStateDictionaryEntryDiscreteType VariableType\nCaption: Table 7 - MultiStateDictionaryEntryDiscreteType Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nMultiStateDictionaryEntryDiscreteType\nIsAbstract\nFalse\nValueRank\nScalar\nDataType\nNumber\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nSubtype of the MultiStateDictionaryEntryDiscreteBaseType defined in[7.1](/\u00A7_Ref17728243)\nHasProperty\nVariable\nValueAsDictionaryEntries\nNodeId[]\nPropertyType\nMandatory\nConformance Units\nData Access MultiStateDictionaryEntryDBT"
+    },
+    {
+      "Id": "bb2ae4e9-14f7-4463-ab0d-baf5a10ca024",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 7.2 MultiStateDictionaryEntryDiscreteType VariableType\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "e326fd70-df8b-4c7d-91da-18744db7f3d8",
       "Header": "Document: Part 19 - Dictionary Reference\n---\n",
       "Content": "8 OPC UA Objects"
     },
     {
-      "Id": "2d0e471b-9d88-4be1-b945-d7a4c77a77c3",
+      "Id": "51452d77-94bb-4186-8580-a3db077b65d1",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 8 OPC UA Objects\n---\n",
       "Content": "8.1 Dictionaries Object"
     },
     {
-      "Id": "6867b265-96f1-4476-872d-53639848e84c",
+      "Id": "c75e4eef-5ce4-45af-b596-3970f3713003",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 8.1 Dictionaries Object\n---\n",
-      "Content": "The Dictionaries Object is used as the browse entry point for dictionaries referenced in the Server. The Object is optional and can be used to expose the hierarchy of the referenced dictionaries or dictionary entries referenced by other Nodes.\nThe Dictionaries Object is a component of the Server Object defined in[OPC 10000-5](/\u00A7UAPart5). The Dictionaries Object references DictionaryEntryType and DictionaryFolderType Object Nodes. It is formally defined in[Table 8](/\u00A7_Ref33175732).\nTable 8- Dictionaries Definition\nAttribute\nValue\nBrowseName\nDictionaries\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nComponentOf of the Server Object defined in OPC 10000-5.\nHasTypeDefinition\nObjectType\nDictionaryFolderType\n\n\n\nConformance Units\nAddress Space Dictionary Entries"
+      "Content": "The Dictionaries Object is used as the browse entry point for dictionaries referenced in the Server. The Object is optional and can be used to expose the hierarchy of the referenced dictionaries or dictionary entries referenced by other Nodes.\nThe Dictionaries Object is a component of the Server Object defined in[OPC 10000-5](/\u00A7UAPart5). The Dictionaries Object references DictionaryEntryType and DictionaryFolderType Object Nodes. It is formally defined in[Table 8](/\u00A7_Ref33175732).\nTable 8 - Dictionaries Definition"
     },
     {
-      "Id": "62ddf39a-7d3a-4156-9a4a-9a9a7bde628b",
+      "Id": "eca36496-9ba7-44c1-a40e-03e0b57262d0",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 8.1 Dictionaries Object\nCaption: Table 8 - Dictionaries Definition\n---\n",
+      "Content": "Attribute\nValue\nBrowseName\nDictionaries\nReferences\nNodeClass\nBrowseName\nDataType\nTypeDefinition\nModellingRule\nComponentOf of the Server Object defined in OPC 10000-5.\nHasTypeDefinition\nObjectType\nDictionaryFolderType\n\n\n\nConformance Units\nAddress Space Dictionary Entries"
+    },
+    {
+      "Id": "04f52576-ccb4-4e45-a87b-927e267baa28",
+      "Header": "Document: Part 19 - Dictionary Reference\nSection: 8.1 Dictionaries Object\n---\n",
+      "Content": ""
+    },
+    {
+      "Id": "d7bc5386-377b-4720-8479-73f07ed86a77",
       "Header": "Document: Part 19 - Dictionary Reference\n---\n",
       "Content": "9 Examples (Informative)"
     },
     {
-      "Id": "6dea78ff-8e65-45ce-943d-55757eb98639",
+      "Id": "0745ae82-1cc1-4511-8d18-64112d95f9df",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 9 Examples (Informative)\n---\n",
       "Content": "The example in[Figure 3](/\u00A7_Ref33177066) shows how OPC UA Properties of the DeviceType defined in[OPC 10000-100](/\u00A7UAPart100) refer dictionary entries in the IEC 61987 Common Data Dictionary."
     },
     {
-      "Id": "31c164c8-4586-4c84-bebd-c673812b706f",
+      "Id": "142a2b3d-55b3-4b7e-a6e6-68e8dde82d10",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 9 Examples (Informative)\nCaption: Figure 3 - DeviceType Property example\n---\n",
       "Content": "[image007.png](images/image007.png)"
     },
     {
-      "Id": "ef5adcea-2b08-4636-8b4e-aeb0f8f03b1d",
+      "Id": "c0ad925c-a4ec-46c1-862f-4f44d0df9aa4",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 9 Examples (Informative)\n---\n",
       "Content": "Figure 3 - DeviceType Property example\nThe example in[Figure 4](/\u00A7_Ref33177134) shows how OPC UA Objects could refer to classes in the IEC 61987 Common Data Dictionary and OPC UA Properties to properties in the data dictionary.\nIn this example, the weight property is referenced from two OPC UA Properties and the different semantic is provided by the referenced classes Transmitter housing or Transmitter body of the parent OPC UA Objects."
     },
     {
-      "Id": "73f65b62-d8f2-40ac-96a0-2c9d3f998a4f",
+      "Id": "b18be285-bb6b-401c-a002-ba4c97b705c4",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 9 Examples (Informative)\nCaption: Figure 4 - Example with references to classes and properties\n---\n",
       "Content": "[image008.png](images/image008.png)"
     },
     {
-      "Id": "ef2fc17e-16b8-490c-9dc4-1cbc6a40b1c0",
+      "Id": "a55dfadf-c023-4669-84b9-655d043a867b",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 9 Examples (Informative)\n---\n",
       "Content": "Figure 4 - Example with references to classes and properties\nThe example in[Figure 5](/\u00A7_Ref33177166) shows how a server can expose the hierarchy of two dictionaries below the optional Dictionaries Object."
     },
     {
-      "Id": "264ee00d-9a72-4756-b5df-99bcff8fec4f",
+      "Id": "d47e54da-000f-4f46-8c24-6972b02c57af",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 9 Examples (Informative)\nCaption: Figure 5 - Example with two dictionaries\n---\n",
       "Content": "[image009.png](images/image009.png)"
     },
     {
-      "Id": "c1fd3167-0eac-481d-8d39-d90426f37350",
+      "Id": "c67e9301-3540-4c3f-8696-08432193efb0",
       "Header": "Document: Part 19 - Dictionary Reference\nSection: 9 Examples (Informative)\n---\n",
       "Content": "Figure 5 - Example with two dictionaries\n__________________"
     }

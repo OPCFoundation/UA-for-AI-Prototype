@@ -90,16 +90,20 @@ An instance of such a concrete dictionary entry *ObjectType* represents an entry
 
 The *isNamespaceSubset* *Property* of the *NamespaceMetadataType* *Object* that represents a namespace of a *DictionaryEntryType* shall be set to TRUE. A Server shall not include duplicates of the same *DictionaryEntryType* . A *Server* encountering duplicates should use the most recent version of the *DictionaryEntryType* .  
 
- **Table 1\- DictionaryEntryType definition**   
+Table 1 - DictionaryEntryType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|DictionaryEntryType|
 |IsAbstract|True|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType / TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|
 |Subtype of the BaseObjectType defined in [OPC 10000-5](/§UAPart5) .|
 |HasComponent|Object|\<DictionaryEntryName\>|DictionaryEntryType|OptionalPlaceholder|
+  
 | **Conformance Units** |
+|---|
 |Address Space Dictionary Entries|
   
 
@@ -111,17 +115,21 @@ Instances of the *DictionaryEntryType* can be nested in order to create hierarch
 
 This *ObjectType* provides means to structure dictionary entry *Objects* . Multiple *Objects* of the *DictionaryFolderType* can be nested in order to create hierarchies. The *DictionaryFolderType* is formally defined in [Table 2](/§\_Ref33176108) .  
 
- **Table 2\- DictionaryFolderType definition**   
+Table 2 - DictionaryFolderType definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|DictionaryFolderType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType / TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|
 |Subtype of the FolderType defined in [OPC 10000-5](/§UAPart5) .|
 |HasComponent|Object|\<DictionaryFolderName\>|DictionaryFolderType|OptionalPlaceholder|
 |HasComponent|Object|\<DictionaryEntryName\>|DictionaryEntryType|OptionalPlaceholder|
+  
 | **Conformance Units** |
+|---|
 |Address Space Dictionary Entries|
   
 
@@ -147,15 +155,19 @@ ISO 5598 0112-1-a-18582\#KAA802\#s Pneumatic value
 
 ECLASS  0173/1///\#02-8AD792\#s  Inductive distance sensor, Design of analog output  
 
- **Table 3\- IrdiDictionaryEntryType Definition**   
+Table 3 - IrdiDictionaryEntryType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|IrdiDictionaryEntryType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType / TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|
 |Subtype of the DictionaryEntryType defined in OPC 10000-5.|
+  
 | **Conformance Units** |
+|---|
 |Address Space Dictionary IRDI|
   
 
@@ -171,15 +183,19 @@ The identifier shall be immutable; meaning that it shall not be reassigned to a 
 
 The *UriDictionaryEntryType* defined in [Table 4](/§\_Ref33176627) is used to represent dictionary entries that use URIs as unique identifiers.  
 
- **Table 4\- UriDictionaryEntryType Definition**   
+Table 4 - UriDictionaryEntryType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|UriDictionaryEntryType|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType / TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|
 |Subtype of the DictionaryEntryType defined in [5.1](/§\_Ref33178320) .|
+  
 | **Conformance Units** |
+|---|
 |Address Space Dictionary URI|
   
 
@@ -205,7 +221,7 @@ Each *Node* can be the *SourceNode* of multiple *HasDictionaryEntry References* 
 
 The *HasDictionaryEntry ReferenceType* is specified in [Table 5](/§\_Ref33176251) .  
 
- **Table 5\- HasDictionaryEntry ReferenceType**   
+Table 5 - HasDictionaryEntry ReferenceType  
 
 | **Attributes** | **Value** |
 |---|---|
@@ -213,9 +229,13 @@ The *HasDictionaryEntry ReferenceType* is specified in [Table 5](/§\_Ref3317625
 |InverseName|DictionaryEntryOf|
 |Symmetric|False|
 |IsAbstract|False|
+  
 | **References** | **NodeClass** | **BrowseName** | **Comment** |
+|---|---|---|---|
 |Subtype of the *NonHierarchicalReferences ReferenceType* defined in [OPC 10000-3](/§UAPart3)|
+  
 | **Conformance Units** |
+|---|
 |Address Space Dictionary Entries|
   
 
@@ -233,7 +253,7 @@ The *HasDictionaryEntry ReferenceType* is specified in [Table 5](/§\_Ref3317625
 
 The *MultiStateDictionaryEntryDiscreteBaseType* *VariableType* is a subtype of the *MultiStateValueDiscreteType* . It provides dictionary entries for each of the possible states as well as the current state of the *MultiStateValueDiscreteType* . It is formally defined in [Table 6](/§\_Ref17727931) .  
 
- **Table 6\- MultiStateDictionaryEntryDiscreteBaseType Definition**   
+Table 6 - MultiStateDictionaryEntryDiscreteBaseType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -241,11 +261,15 @@ The *MultiStateDictionaryEntryDiscreteBaseType* *VariableType* is a subtype of t
 |IsAbstract|False|
 |ValueRank|Scalar|
 |DataType|Number|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the MultiStateValueDiscreteType defined in [OPC 10000-8](/§UAPart8)|
 |HasProperty|Variable|EnumDictionaryEntries|NodeId[][]|PropertyType|Mandatory|
 |HasProperty|Variable|ValueAsDictionaryEntries|NodeId[]|PropertyType|Optional|
+  
 | **Conformance Units** |
+|---|
 |Data Access MultiStateDictionaryEntryDBT|
 |Data Access ValueAsDictionaryEntries Property|
   
@@ -266,7 +290,7 @@ The *NodeIds* represent the dictionary entries and can be generated with diction
 
 The *MultiStateDictionaryEntryDiscreteType* *VariableType* is a subtype of the *MultiStateDictionaryEntryDiscreteBaseType* . It requires the *ValueAsDictionaryEntries* *Property* . It is formally defined in [Table 7](/§\_Ref17728026) .  
 
- **Table 7\- MultiStateDictionaryEntryDiscreteType Definition**   
+Table 7 - MultiStateDictionaryEntryDiscreteType Definition  
 
 | **Attribute** | **Value** |
 |---|---|
@@ -274,10 +298,14 @@ The *MultiStateDictionaryEntryDiscreteType* *VariableType* is a subtype of the *
 |IsAbstract|False|
 |ValueRank|Scalar|
 |DataType|Number|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |Subtype of the MultiStateDictionaryEntryDiscreteBaseType defined in [7.1](/§\_Ref17728243)|
 |HasProperty|Variable|ValueAsDictionaryEntries|NodeId[]|PropertyType|Mandatory|
+  
 | **Conformance Units** |
+|---|
 |Data Access MultiStateDictionaryEntryDBT|
   
 
@@ -291,15 +319,19 @@ The *Dictionaries* Object is used as the browse entry point for dictionaries ref
 
 The *Dictionaries* *Object* is a component of the *Server* *Object* defined in [OPC 10000-5](/§UAPart5) . The *Dictionaries* *Object* references *DictionaryEntryType* and *DictionaryFolderType* *Object Nodes* . It is formally defined in [Table 8](/§\_Ref33175732) .  
 
- **Table 8\- Dictionaries Definition**   
+Table 8 - Dictionaries Definition  
 
 | **Attribute** | **Value** |
 |---|---|
 |BrowseName|Dictionaries|
+  
 | **References** | **NodeClass** | **BrowseName** | **DataType** | **TypeDefinition** | **ModellingRule** |
+|---|---|---|---|---|---|
 |ComponentOf of the Server Object defined in OPC 10000-5.|
 |HasTypeDefinition|ObjectType|DictionaryFolderType||||
+  
 | **Conformance Units** |
+|---|
 |Address Space Dictionary Entries|
   
 
