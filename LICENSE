@@ -1,8 +1,7 @@
-Private License
+All files in the specifications folder:
 
-Copyright (c) 2025 OPC Foundation
+[OPC Foundation Specifications Agreement](./LICENSES/LicenseRef-OPC-Specification-1.15.txt)
 
-All rights reserved.
-Temporary retrictive notice.
-Private experimental use only, no distribution.
-License will be updated with something more user friendly later.
+All other files:
+
+[OPC Foundation MIT License](./LICENSES/LicenseRef-OPC-MIT.txt)
