@@ -378,6 +378,30 @@ namespace Opc.Ua.RagUtility
             caption = sb.ToString().Trim();
         }
 
+        /// <summary>
+        /// Parses the license block from an XML specification file.
+        /// </summary>
+        public static Document ParseLicense(string xmlPath)
+        {
+            XDocument doc = XDocument.Load(xmlPath);
+            var root = doc.Elements(XName.Get($"{{{UaDocumentNamespace}}}UADocument"));
+            var license = root.Elements(XName.Get($"{{{UaDocumentNamespace}}}License"));
+            var licenseParas = license.Elements(XName.Get($"{{{UaDocumentNamespace}}}Paragraphs"));
+            var paragraphs = licenseParas.Elements(XName.Get($"{{{UaDocumentNamespace}}}Paragraph"));
+
+            Document document = new Document()
+            {
+                Title = "LICENSE",
+                Images = new(),
+                Links = new(),
+                Paragraphs = new()
+            };
+
+            ParseParagraphs(document, paragraphs);
+
+            return document;
+        }
+
         public static Document Parse(string xmlPath)
         {
             XDocument doc = XDocument.Load(xmlPath);
@@ -407,6 +431,14 @@ namespace Opc.Ua.RagUtility
                 }
             }
 
+            ParseParagraphs(document, paragraphs);
+            CollectTables(document);
+
+            return document;
+        }
+
+        private static void ParseParagraphs(Document document, IEnumerable<XElement> paragraphs)
+        {
             var enumerator = paragraphs.GetEnumerator();
             Paragraph section = null;
             Dictionary<string, Paragraph> sectionMap = new();
@@ -446,10 +478,6 @@ namespace Opc.Ua.RagUtility
 
                 ProcessParagraph(document, section, paragraph);
             }
-
-            CollectTables(document);
-
-            return document;
         }
 
         private static void CollectTables(Document document)

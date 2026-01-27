@@ -98,6 +98,9 @@ static class Program
                 var document = DocumentImporter.Parse(input);
                 await MarkdownExporter.SaveAsMarkdown(document, output);
 
+                var license = DocumentImporter.ParseLicense(input);
+                await MarkdownExporter.SaveAsMarkdown(license, output, "LICENSE.md");
+
                 Console.WriteLine($"Converted XML from {input} to Markdown at {output}");
             }
             catch (Exception e)

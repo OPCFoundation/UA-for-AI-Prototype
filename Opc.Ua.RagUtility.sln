@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		do-mcp-query.ps1 = do-mcp-query.ps1
 		do-rag-operation.ps1 = do-rag-operation.ps1
+		general-queries.txt = general-queries.txt
 		README.md = README.md
 		start-qdrant.ps1 = start-qdrant.ps1
 	EndProjectSection

@@ -105,9 +105,9 @@ namespace Opc.Ua.RagUtility
         }
 
 
-        public static async Task SaveAsMarkdown(Document document, string directory)
+        public static async Task SaveAsMarkdown(Document document, string directory, string filename = "README.md")
         {
-            using var writer = new StreamWriter(Path.Combine(directory, "README.md"));
+            using var writer = new StreamWriter(Path.Combine(directory, filename));
 
             string documentTitle = document.Title;
             List<string> words = new();

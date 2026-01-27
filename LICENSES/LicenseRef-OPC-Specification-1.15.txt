@@ -1,0 +1,53 @@
+OPC Foundation Specifications Agreement
+
+Version 1.15, February 16, 2024, OPC Foundation
+
+By downloading the Specification, you agree to be bound by the terms and conditions set forth in the OPC Foundation (also referred to as "OPCF") Website Terms of Use ("Terms") and this Agreement.
+
+This OPC Foundation Specifications Agreement is an agreement between an Authorized Licensee (also referred to as "You" or "Your") and the OPC Foundation and its members regarding Your download and use of OPC Foundation Specifications (the "Agreement"). "Specification" means the OPC Foundation specifications, documents and related materials which are made available subject to the Terms and this Agreement. Subject to the Terms and the Agreement and your compliance therewith, OPCF hereby grants you a limited, non-exclusive, revocable, non-assignable, non-transferable, non-sub licensable license to use the OPCF Specifications documentation.
+
+A. Copyright
+
+An "Authorized Licensee" or "You" means an individual or entity who obtains a Specification from the OPCF Foundation website (https://www.opcfoundation.org) in accordance with the process for accessing and downloading the Specification, including but not limited to accepting the Terms and this Agreement.
+
+Upon download of a Specification, which constitutes acceptance of this Agreement, OPCF grants Authorized Licensees a worldwide, non-exclusive, royalty-free, license under copyright to download, reproduce, and perform for internal purposes the applicable Specification(s) solely to the extent reasonably necessary to implement such Specification in Authorized Licensees' products.
+
+Any unauthorized use of the Specifications may violate copyright laws, trademark laws, and communications regulations and statutes, and other proprietary rights and is considered a breach of this Agreement.
+
+The Specifications contain information that is protected by copyright, with all rights reserved. No part of the work covered by the copyright herein may be reproduced or used in any form or by any means—graphic, electronic, or mechanical, including photocopying, recording, taping, or information storage and retrieval systems—without permission of the copyright owner. You (whether you are an OPC Foundation member or non-member) are prohibited from copying and redistributing the Specifications. All copies of the Specifications must be obtained on an individual basis, directly from the OPC Foundation Website https://www.opcfoundation.org.
+
+B. Patents
+
+You understand and agree that Your use, compliance with, or adoption of, the Specifications may require use of an invention or an implementation covered by patent rights. OPC Foundation shall not be responsible for identifying patents for which a license may be required for use of any of the Specification or for conducting legal inquiries into the legal validity or scope of those patents that are brought to its attention. The OPC Foundation's Intellectual Property Rights Policy sets forth the applicable patent license terms that apply to the Specifications.
+
+C. Warranty and Liability Disclaimers
+
+THE SPECIFICATIONS ARE LICENSED "AS-IS." YOU BEAR THE RISK OF USING THE SPECIFICATIONS. OPCF MAKES NO WARRANTY OF ANY KIND, EXPRESSED OR IMPLIED, WITH REGARD TO THE SPECIFICATIONS, INCLUDING BUT NOT LIMITED TO ANY WARRANTY OF TITLE OR OWNERSHIP, WARRANTY OF NON-INFRINGEMENT, IMPLIED WARRANTY OF MERCHANTABILITY, OR WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE OR USE. YOU MAY HAVE ADDITIONAL CONSUMER RIGHTS UNDER YOUR LOCAL APPLICABLE LAWS THAT THIS AGREEMENT CANNOT CHANGE. TO THE EXTENT PERMITTED UNDER YOUR LOCAL LAWS, THE OPCF EXCLUDES THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+
+IN NO EVENT SHALL THE OPCF BE LIABLE FOR ERRORS CONTAINED IN THE SPECIFICATIONS OR FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, RELIANCE OR COVER DAMAGES, INCLUDING LOSS OF PROFITS, REVENUE, DATA, OR USE, INCURRED YOU, BY ANY USER OR ANY THIRD PARTY IN CONNECTION WITH THE FURNISHING, PERFORMANCE, OR USE OF THE SPECIFICATIONS, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE USING THE SPECIFICATIONS IS BORNE BY YOU AND/OR THE USER.
+
+D. Restricted Rights Legend
+
+The Specifications are provided with Restricted Rights. Use, duplication or disclosure by the U.S. government is subject to restrictions as set forth in (a) this Agreement pursuant to DFARs 227.7202-3(a); (b) subparagraph (c)(1)(i) of the Rights in Technical Data and Computer Software clause at DFARs 252.227-7013; or (c) the Commercial Computer Software Restricted Rights clause at FAR 52.227-19 subdivision (c)(1) and (2), as applicable. The Contractor/Manufacturer is the OPC Foundation, 16101 N. 82nd Street, Suite 3B, Scottsdale, AZ, 85260-1830.
+
+E. Compliance and Certification
+
+The OPC Foundation is the sole entity that may perform Specification certification testing. This Agreement does not grant any right to use OPC Foundation certification marks, trademarks or other indications that suggest or imply compliance or conformance with the Specifications. OPCF shall at all times be the sole entity that may authorize developers, suppliers and sellers of hardware and software to use certification marks, trademarks or other special designations to indicate compliance with these materials. Products developed using the Specifications may claim compliance or conformance with the Specifications if and only if the software satisfactorily meets the certification requirements set forth under the OPC Foundation Certification Program. Products that do not meet these requirements may claim only that the product was based on the Specifications and must not claim compliance or conformance with the Specifications.
+
+F. Term and Amendment
+
+The license rights granted in this Agreement will continue until and unless terminated by the OPCF. OPCF may terminate this Agreement upon notice if you breach the terms of this Agreement or the Terms. OPC Foundation may amend this Agreement at any time in its sole discretion, which will take effect ninety (90) calendar days from the date that OPC Foundation posts notice of such changes on its website. Any use of the Specifications after such ninety (90) day notice period will constitute Your acceptance of the new terms and revised Agreement. If You do not accept the revised Agreement, You must return all copies of the Specification(s) to the OPCF and cease all use within the ninety (90) day notice period.
+
+G. Trademarks
+
+Most computer and software brand names have trademarks or registered trademarks. The individual trademarks have not been listed here. "OPC Foundation", the OPC Foundation logo, the "OPC UA" logo, and other OPC Foundation logos and titles are registered trademarks or service marks of the OPC Foundation. All other products, company names or other marks appearing on these sites are the trademarks of their respective owners. Nothing contained in these sites should be construed as granting, by implication, estoppel, or otherwise, any license or right to use any trademark displayed on these sites without prior written permission of OPC Foundation or other trademark owners.
+
+H. Severability
+
+If any provision of this Agreement is held to be void, invalid, unenforceable or illegal by a court, the validity and enforceability of the other provisions shall not be affected thereby.
+
+I. Complete Agreement
+
+The Terms and this Agreement represent the entire understanding between You and OPCF related to the use of the Specifications and will prevail over any prior or contemporaneous, conflicting or additional, communications. To the extent there is a conflict between the Terms and this Agreement, the provisions of this Agreement shall govern.
+
+Online Version: https://opcfoundation.org/license/specifications/1.15/
