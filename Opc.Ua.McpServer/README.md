@@ -19,7 +19,7 @@ What is a Session in OPC UA?
 ## Prerequisites
 
 - [Ollama](https://ollama.com/) running locally with required models
-- [Qdrant](https://qdrant.tech/) vector database populated with OPC UA specifications
+- [PostgreSQL](https://www.postgresql.org/) with [pgvector](https://github.com/pgvector/pgvector) extension populated with OPC UA specification embeddings
 
 ### Required Ollama Models
 
@@ -31,16 +31,16 @@ ollama pull gpt-oss:120b-cloud
 
 ## Configuration
 
-The server is configured via environment variables:
+The server reads defaults from `appsettings.json` and allows overrides via environment variables:
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `OLLAMA_URL` | `http://localhost:11434` | Ollama server URL |
-| `QDRANT_URL` | `http://localhost:6333` | Qdrant server URL |
-| `QDRANT_COLLECTION` | `opcua-specifications` | Qdrant collection name |
-| `EMBEDDING_MODEL` | `mxbai-embed-large` | Ollama embedding model |
-| `QUERY_MODEL` | `llama3` | Ollama LLM model for answering |
-| `TIMEOUT_SECONDS` | `300` | HTTP timeout in seconds |
+| Variable | appsettings.json Key | Default | Description |
+|----------|---------------------|---------|-------------|
+| `OLLAMA_URL` | `Ollama:Url` | `http://localhost:11434` | Ollama server URL |
+| `PGSQL_CONNECTION_STRING` | `VectorDb:ConnectionString` | `` | PostgreSQL connection string |
+| `VECTORDB_COLLECTION` | `VectorDb:Collection` | `opcua_specifications` | Vector database collection name |
+| `EMBEDDING_MODEL` | `Models:Embedding` | `mxbai-embed-large` | Ollama embedding model |
+| `QUERY_MODEL` | `Models:Query` | `gpt-oss:120b-cloud` | Ollama LLM model for answering |
+| `TIMEOUT_SECONDS` | `Timeout` | `300` | HTTP timeout in seconds |
 
 llama3 is the default offline model but its answers are underwhelming; use gpt-oss:120b-cloud or gpt-oss:120b for better results if you have the resources.
 
@@ -58,8 +58,7 @@ dotnet build
 Before using the MCP server with Claude, ensure the backend services are running:
 
 ```powershell
-# Terminal 1: Start Qdrant (from the repository root)
-.\start-qdrant.ps1
+# Terminal 1: Start PostgreSQL (ensure pgvector extension is enabled)
 
 # Terminal 2: Start Ollama
 ollama serve
@@ -81,9 +80,9 @@ Create or edit `.claude/settings.json` in the repository root:
       "args": ["run", "--project", "Opc.Ua.McpServer", "--configuration", "Release"],
       "env": {
         "OLLAMA_URL": "http://localhost:11434",
-        "QDRANT_URL": "http://localhost:6333",
-        "QDRANT_COLLECTION": "opcua-specifications",
-        "QUERY_MODEL": "llama3"
+        "PGSQL_CONNECTION_STRING": "Host=localhost;Database=opcua;Username=postgres;Password=yourpassword",
+        "VECTORDB_COLLECTION": "opcua_specifications",
+        "QUERY_MODEL": "gpt-oss:120b-cloud"
       }
     }
   }
@@ -104,9 +103,9 @@ Edit your user settings file:
       "args": ["run", "--project", "D:\\path\\to\\Opc.Ua.McpServer", "--configuration", "Release"],
       "env": {
         "OLLAMA_URL": "http://localhost:11434",
-        "QDRANT_URL": "http://localhost:6333",
-        "QDRANT_COLLECTION": "opcua-specifications",
-        "QUERY_MODEL": "llama3"
+        "PGSQL_CONNECTION_STRING": "Host=localhost;Database=opcua;Username=postgres;Password=yourpassword",
+        "VECTORDB_COLLECTION": "opcua_specifications",
+        "QUERY_MODEL": "gpt-oss:120b-cloud"
       }
     }
   }
@@ -143,15 +142,16 @@ Claude will use the `specificationQuery` tool to search the OPC UA specification
 │  MCP Tools                                                  │
 │  └── specificationQuery  - RAG-based Q&A                    │
 ├─────────────────────────────────────────────────────────────┤
-│  Services                                                   │
+│  Opc.Ua.RagCore (shared library)                            │
 │  ├── OllamaClient        - Embeddings & LLM generation      │
-│  └── QdrantClient        - Vector search                    │
+│  ├── PgSqlClient         - PostgreSQL/pgvector search        │
+│  └── IVectorDbClient     - Vector DB abstraction             │
 └─────────────────────────────────────────────────────────────┘
          │                              │
          ▼                              ▼
 ┌─────────────────┐          ┌─────────────────┐
-│     Ollama      │          │     Qdrant      │
-│  (AI Models)    │          │  (Vector DB)    │
+│     Ollama      │          │   PostgreSQL    │
+│  (AI Models)    │          │  (pgvector)     │
 └─────────────────┘          └─────────────────┘
 ```
 
@@ -169,19 +169,21 @@ Claude will use the `specificationQuery` tool to search the OPC UA specification
 2. Check the required models are installed: `ollama list`
 3. Pull missing models: `ollama pull llama3`
 
-### "Cannot connect to Qdrant" Error
+### "Cannot connect to the vector database" Error
 
-1. Verify Qdrant is running: `curl http://localhost:6333/collections`
-2. Check the collection exists: `curl http://localhost:6333/collections/opcua-specifications`
-3. If missing, run the embedding process using `do-rag-operation.ps1 -Operation embed`
+1. Verify PostgreSQL is running and accessible
+2. Check the connection string is correctly configured via `PGSQL_CONNECTION_STRING` or `appsettings.json`
+3. Ensure the pgvector extension is enabled: `CREATE EXTENSION IF NOT EXISTS vector;`
+4. If the collection is missing, run the embedding process using `do-rag-operation.ps1 -Operation embed`
 
 ### No Results Found
 
-1. Ensure the Qdrant collection is populated with embeddings
+1. Ensure the PostgreSQL database is populated with embeddings
 2. Try a simpler query to verify the pipeline works
-3. Check the `QDRANT_COLLECTION` environment variable matches your collection name
+3. Check the `VECTORDB_COLLECTION` environment variable matches your collection name
 
 ## Dependencies
 
 - [ModelContextProtocol](https://www.nuget.org/packages/ModelContextProtocol) - MCP SDK for .NET
 - [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) - .NET hosting infrastructure
+- [Opc.Ua.RagCore](../Opc.Ua.RagCore/) - Shared RAG components (OllamaClient, PgSqlClient, IVectorDbClient)

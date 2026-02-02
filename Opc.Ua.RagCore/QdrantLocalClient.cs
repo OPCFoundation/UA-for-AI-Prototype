@@ -1,9 +1,9 @@
-﻿using System.Net.Http.Json;
+using System.Net.Http.Json;
 using System.Text.Json;
 
-namespace Opc.Ua.RagUtility
+namespace Opc.Ua.RagCore
 {
-    public class QdrantLocalClient : IDisposable
+    public class QdrantLocalClient : IVectorDbClient
     {
         private readonly HttpClient m_http;
         private bool m_disposed;
@@ -17,7 +17,6 @@ namespace Opc.Ua.RagUtility
 
         public void Dispose()
         {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
@@ -66,7 +65,15 @@ namespace Opc.Ua.RagUtility
             //response.EnsureSuccessStatusCode();
         }
 
-        public async Task UpsertAsync(string collection, QdrantPoint point)
+        public async Task BeginLoadDocumentAsync(string collectionName, string documentId)
+        {
+        }
+
+        public async Task EndLoadDocumentAsync(string collectionName, string documentId)
+        {
+        }
+
+        public async Task UpsertAsync(string collection, string documentId, string chunkId, float[] vector, string content)
         {
             var body = new
             {
@@ -74,12 +81,12 @@ namespace Opc.Ua.RagUtility
                 {
                     new
                     {
-                        id = point?.Id.ToString() ?? "0",
+                        id = chunkId ?? "0",
                         vector = new Dictionary<string, float[]>
                         {
-                            { "default", point.Vector }   // MUST use vector name
+                            { "default", vector }   // MUST use vector name
                         },
-                        payload = point.Payload
+                        payload = new Dictionary<string, object> { { "content", content } }
                     }
                 }
             };
@@ -88,7 +95,7 @@ namespace Opc.Ua.RagUtility
             var text = await response.Content.ReadAsStringAsync();
             response.EnsureSuccessStatusCode();
 
-            response = await m_http.GetAsync($"/collections/{collection}/points/{point?.Id}");
+            response = await m_http.GetAsync($"/collections/{collection}/points/{chunkId}");
             text = await response.Content.ReadAsStringAsync();
             response.EnsureSuccessStatusCode();
         }
@@ -107,10 +114,10 @@ namespace Opc.Ua.RagUtility
             };
 
             var response = await m_http.PostAsJsonAsync($"/collections/{collection}/points/search", body);
-            var text = await response.Content.ReadAsStringAsync(); 
+            var text = await response.Content.ReadAsStringAsync();
             response.EnsureSuccessStatusCode();
 
-            var json = JsonSerializer.Deserialize<QdrantSearchResult>(text, new JsonSerializerOptions() 
+            var json = JsonSerializer.Deserialize<QdrantSearchResult>(text, new JsonSerializerOptions()
             {
                 PropertyNameCaseInsensitive = true
             });

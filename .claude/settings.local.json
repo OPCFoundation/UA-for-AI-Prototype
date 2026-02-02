@@ -18,7 +18,17 @@
       "Bash(taskkill //F //PID 16088)",
       "Bash(xargs:*)",
       "Bash(base64:*)",
-      "Bash(node -e:*)"
+      "Bash(node -e:*)",
+      "Bash(findstr:*)",
+      "Bash(ls -la \"D:\\\\Work\\\\OPC\\\\UA-for-AI-Prototype\\\\Opc.Ua.McpServer\"\" | grep -v \"^d\" | grep -v \"^total \")",
+      "Bash(ls:*)",
+      "Bash(del \"D:\\\\Work\\\\OPC\\\\UA-for-AI-Prototype\\\\Opc.Ua.RagUtility\\\\IVectorDbClient.cs\")",
+      "Bash(del \"D:\\\\Work\\\\OPC\\\\UA-for-AI-Prototype\\\\Opc.Ua.RagUtility\\\\PgSqlClient.cs\")",
+      "Bash(del \"D:\\\\Work\\\\OPC\\\\UA-for-AI-Prototype\\\\Opc.Ua.RagUtility\\\\QdrantLocalClient.cs\")",
+      "Bash(del \"D:\\\\Work\\\\OPC\\\\UA-for-AI-Prototype\\\\Opc.Ua.RagUtility\\\\QdrantClientModels.cs\")",
+      "Bash(del \"D:\\\\Work\\\\OPC\\\\UA-for-AI-Prototype\\\\Opc.Ua.RagUtility\\\\OllamaClient.cs\")",
+      "Bash(del \"D:\\\\Work\\\\OPC\\\\UA-for-AI-Prototype\\\\Opc.Ua.RagUtility\\\\RagService.cs\")",
+      "Bash(del \"D:\\\\Work\\\\OPC\\\\UA-for-AI-Prototype\\\\Opc.Ua.RagUtility\\\\appsettings.json\")"
     ]
   }
 }

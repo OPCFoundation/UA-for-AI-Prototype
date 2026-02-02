@@ -9,8 +9,8 @@ param(
     [string]$SpecificationsPath = ".\specifications",
     [string]$ProjectPath = ".\Opc.Ua.RagUtility",
     [string]$OllamaUrl = "http://localhost:11434",
-    [string]$QdrantUrl = "http://localhost:6333",
-    [string]$CollectionName = "opcua-specifications",
+    [string]$VectorDbType = "pgsql",
+    [string]$CollectionName = "opcua_specifications",
     [int]$Tokens = 400,  # Default token count for RAG chunks
     [string]$Filter,  # Filter to select only directories containing this string
     [switch]$WhatIf
@@ -38,7 +38,7 @@ if ($Operation -eq "embed" -or $Operation -eq "images") {
     Write-Host "Ollama URL: $OllamaUrl" -ForegroundColor Cyan
 }
 if ($Operation -eq "embed") {
-    Write-Host "Qdrant URL: $QdrantUrl" -ForegroundColor Cyan
+    Write-Host "Vector DB Type: $VectorDbType" -ForegroundColor Cyan
     Write-Host "Collection Name: $CollectionName" -ForegroundColor Cyan
 }
 if ($Filter) {
@@ -116,9 +116,9 @@ foreach ($inputFile in $inputFiles) {
             $successMessage = "Generated rag-chunks.json"
         }
         "embed" {
-            $outputPath = "Qdrant: $CollectionName"
-            $commandArgs = @("embed", "-i", $inputPath, "-a", $OllamaUrl, "--db", $QdrantUrl, "-n", $CollectionName)
-            $successMessage = "Embedded to Qdrant collection"
+            $outputPath = "VectorDb: $CollectionName"
+            $commandArgs = @("embed", "-i", $inputPath, "-a", $OllamaUrl, "-vt", $VectorDbType, "-n", $CollectionName)
+            $successMessage = "Embedded to VectorDb collection"
         }
     }
 

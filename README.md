@@ -42,14 +42,18 @@ Contains the official OPC UA specification source files and pre-generated inputs
 | Part 25 | Object Serilizations | [View](specifications/Core/Part25/README.md) |
 | Part 26 | LogObject | [View](specifications/Core/Part26/README.md) |
 
-### Vector Database (`db/`)
+### Vector Database
 
-A pre-populated [Qdrant](https://qdrant.tech/) vector database containing embeddings of the OPC UA specifications. This enables semantic search and retrieval-augmented generation (RAG) queries against the specification content.
+A [PostgreSQL](https://www.postgresql.org/) database with the [pgvector](https://github.com/pgvector/pgvector) extension containing embeddings of the OPC UA specifications. This enables semantic search and retrieval-augmented generation (RAG) queries against the specification content.
 
-To start the database:
-```powershell
-.\start-qdrant.ps1
-```
+### RAG Core Library (`Opc.Ua.RagCore/`)
+
+A shared .NET class library containing reusable components for vector database access and AI integration. Used by both the RAG Utility and MCP Server projects.
+
+Features:
+- Vector database abstraction (`IVectorDbClient`) with PostgreSQL/pgvector implementation
+- Ollama client for embeddings and LLM generation
+- RAG service orchestration
 
 ### RAG Utility (`Opc.Ua.RagUtility/`)
 
@@ -109,12 +113,12 @@ ollama pull llama3
 ollama pull gpt-oss:120b-cloud
 ```
 
-### Qdrant
+### PostgreSQL with pgvector
 
-[Qdrant](https://qdrant.tech/) vector database is required for semantic search. The `db/` directory contains a pre-populated database, or you can run Qdrant via Docker:
+[PostgreSQL](https://www.postgresql.org/) with the [pgvector](https://github.com/pgvector/pgvector) extension is required for semantic search. Install PostgreSQL and enable the pgvector extension:
 
-```bash
-docker run -p 6333:6333 -v ./db:/qdrant/storage qdrant/qdrant
+```sql
+CREATE EXTENSION IF NOT EXISTS vector;
 ```
 
 ### .NET SDK
@@ -123,11 +127,8 @@ docker run -p 6333:6333 -v ./db:/qdrant/storage qdrant/qdrant
 
 ## Quick Start
 
-1. Install prerequisites (Ollama, Qdrant, .NET SDK)
-2. Start Qdrant with the pre-populated database:
-   ```powershell
-   .\start-qdrant.ps1
-   ```
+1. Install prerequisites (Ollama, PostgreSQL with pgvector, .NET SDK)
+2. Start PostgreSQL and ensure the pgvector extension is enabled
 3. Start Ollama:
    ```bash
    ollama serve
@@ -148,4 +149,5 @@ See [LICENSE](LICENSE) for license information.
 - [OPC Foundation](https://opcfoundation.org/)
 - [OPC UA Specifications](https://opcfoundation.org/developer-tools/specifications-unified-architecture)
 - [Ollama](https://ollama.com/)
-- [Qdrant](https://qdrant.tech/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [pgvector](https://github.com/pgvector/pgvector)

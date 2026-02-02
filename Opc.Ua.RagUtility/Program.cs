@@ -1,11 +1,21 @@
 ﻿using System.CommandLine;
 using System.Text.Json;
+using Microsoft.Extensions.Configuration;
+using Opc.Ua.RagCore;
 using Opc.Ua.RagUtility;
 
 static class Program
 {
+    static IConfiguration s_config;
+
     static async Task<int> Main(string[] args)
     {
+        s_config = new ConfigurationBuilder()
+            .SetBasePath(AppContext.BaseDirectory)
+            .AddJsonFile("appsettings.json", optional: true)
+            .AddUserSecrets(typeof(Program).Assembly, optional: true)
+            .Build();
+
         var rootCommand = new RootCommand("Provides a suite of utility functions which help with Retrieval-Augmented Generation (RAG) for OPC UA specifications.");
         rootCommand.Subcommands.Add(GenerateMarkdown());
         rootCommand.Subcommands.Add(DescribeImages());
@@ -35,15 +45,15 @@ static class Program
         //    //"--images", @"D:\Work\OPC\OPC-UA-for-AI\specifications\Core\Part5\image-descriptions.json"
         //]);
 
-        var result = rootCommand.Parse([
-            "embed",
-            "--input", @"D:\Work\OPC\UA-for-AI-Prototype\specifications\Core\Part9\rag-chunks.json"
-        ]);
-
         //var result = rootCommand.Parse([
-        //    "prompt",
-        //    "--input", @"D:\Work\OPC\UA-for-AI-Prototype\sample-queries.json"
+        //    "embed",
+        //    "--input", @"D:\Work\OPC\UA-for-AI-Prototype\specifications\Core\Part4\rag-chunks.json"
         //]);
+
+        var result = rootCommand.Parse([
+            "prompt",
+            "--input", @"D:\Work\OPC\UA-for-AI-Prototype\sample-queries.json"
+        ]);
 #else
         var result = rootCommand.Parse(args);
 #endif
@@ -135,23 +145,26 @@ static class Program
             }
         });
 
+        var ollamaUrlDefault = s_config["Ollama:Url"] ?? "http://localhost:11434";
         var ollamaUrlOption = GetUrlOption(
             "The base URL for the Ollama agent.",
-            "http://localhost:11434",
+            ollamaUrlDefault,
             "--agent", ["-a"]);
 
+        var imageDescriptionModelDefault = s_config["Models:ImageDescription"] ?? "llava";
         var imageDescriptionModelOption = new Option<string>("--model", ["-m"])
         {
             Required = false,
-            Description = "The model to use to describe images (default: llava).",
-            DefaultValueFactory = (result) => "llava"
+            Description = $"The model to use to describe images (default: {imageDescriptionModelDefault}).",
+            DefaultValueFactory = (result) => imageDescriptionModelDefault
         };
 
+        var timeoutDefault = int.TryParse(s_config["Timeout"], out var t) ? t : 300;
         var timeoutOption = new Option<int>("--timeout", ["-t"])
         {
             Required = false,
             Description = "The HTTP timeout in seconds (must be long enough to handle resouce intensive AI queries).",
-            DefaultValueFactory = (result) => 300
+            DefaultValueFactory = (result) => timeoutDefault
         };
 
         var outputOption = new Option<string>("--output", ["-o"])
@@ -351,7 +364,7 @@ static class Program
     {
         var command = new Command(
             "embed",
-            "Embeds an OPC UA specification using an Ollama model and stores the result in Qdrant DB."
+            "Embeds an OPC UA specification using an Ollama model and stores the result in a vector database."
         );
 
         var inputOption = new Option<string>("--input", ["-i"])
@@ -369,35 +382,50 @@ static class Program
             }
         });
 
+        var embedOllamaUrlDefault = s_config["Ollama:Url"] ?? "http://localhost:11434";
         var ollamaUrlOption = GetUrlOption(
             "The base URL for the Ollama agent.",
-            "http://localhost:11434",
+            embedOllamaUrlDefault,
             "--agent", ["-a"]);
 
+        var embedModelDefault = s_config["Models:Embedding"] ?? "mxbai-embed-large";
         var embeddingModelOption = new Option<string>("--embed", ["-em"])
         {
             Required = false,
-            Description = "The model to use to embedded the chunks (default: mxbai-embed-large).",
-            DefaultValueFactory = (result) => "mxbai-embed-large"
+            Description = $"The model to use to embedded the chunks (default: {embedModelDefault}).",
+            DefaultValueFactory = (result) => embedModelDefault
         };
 
-        Option<string> qdrantUrlOption = GetUrlOption(
-            "The base URL for the Quadrant DB.",
-            "http://localhost:6333",
-            "--db", ["-d"]);
+        var embedDbDefault = s_config["VectorDb:ConnectionString"] ?? "http://localhost:6333";
+        Option<string> vectorDbUrlOption = new Option<string>("--db", ["-d"])
+        {
+            Required = false,
+            Description = "The Vector DB connection string (a simple URL for Qdrant),",
+            DefaultValueFactory = (result) => embedDbDefault
+        };
 
+        var embedVectorDbTypeDefault = s_config["VectorDb:Type"] ?? "pgsql";
+        var vectorDbTypeOption = new Option<string>("--vectordb-type", ["-vt"])
+        {
+            Required = false,
+            Description = "The type of vector database to use (qdrant or pgsql).",
+            DefaultValueFactory = (result) => embedVectorDbTypeDefault
+        };
+
+        var embedTimeoutDefault = int.TryParse(s_config["Timeout"], out var et) ? et : 300;
         var timeoutOption = new Option<int>("--timeout", ["-t"])
         {
             Required = false,
             Description = "The HTTP timeout in seconds (must be long enough to handle resouce intensive AI queries).",
-            DefaultValueFactory = (result) => 300
+            DefaultValueFactory = (result) => embedTimeoutDefault
         };
 
+        var embedCollectionDefault = s_config["VectorDb:Collection"] ?? "opcua-specifications";
         var collectionNameOption = new Option<string>("--collection", ["-n"])
         {
             Required = false,
-            Description = "The name of the vector collection in the Qdrant database.",
-            DefaultValueFactory = (result) => "opcua-specifications"
+            Description = "The name of the vector collection in the vector database.",
+            DefaultValueFactory = (result) => embedCollectionDefault
         };
 
         var deletedExistingOption = new Option<bool>("--delete", ["-d"])
@@ -410,7 +438,8 @@ static class Program
         command.Options.Add(inputOption);
         command.Options.Add(ollamaUrlOption);
         command.Options.Add(embeddingModelOption);
-        command.Options.Add(qdrantUrlOption);
+        command.Options.Add(vectorDbUrlOption);
+        command.Options.Add(vectorDbTypeOption);
         command.Options.Add(timeoutOption);
         command.Options.Add(collectionNameOption);
         command.Options.Add(deletedExistingOption);
@@ -422,7 +451,8 @@ static class Program
                 var input = result.GetValue(inputOption);
                 var ollamaUrl = result.GetValue(ollamaUrlOption);
                 var embeddingModel = result.GetValue(embeddingModelOption);
-                var qdrantUrl = result.GetValue(qdrantUrlOption);
+                var vectorDbUrl = result.GetValue(vectorDbUrlOption);
+                var vectorDbType = result.GetValue(vectorDbTypeOption);
                 var timeout = result.GetValue(timeoutOption);
                 var collectionName = result.GetValue(collectionNameOption);
 
@@ -430,19 +460,27 @@ static class Program
                 var document = await JsonSerializer.DeserializeAsync<DocumentRagChunks>(istrm).ConfigureAwait(false);
 
                 var ollama = new OllamaClient(new Uri(ollamaUrl), new TimeSpan(0, timeout, 0));
-                var qdrant = new QdrantLocalClient(new Uri(qdrantUrl), new TimeSpan(0, timeout, 0));
+
+                IVectorDbClient vectorDb = vectorDbType?.ToLowerInvariant() switch
+                {
+                    "pgsql" => new PgSqlClient(vectorDbUrl),
+                    _ => new QdrantLocalClient(new Uri(vectorDbUrl), new TimeSpan(0, timeout, 0))
+                };
 
                 using var rag = new RagService(
-                    ollama, 
-                    qdrant, 
+                    ollama,
+                    vectorDb,
                     collectionName,
                     embeddingModel);
 
                 int count = 0;
 
+                await rag.BeginLoadDocumentAsync(document.Title);
+
                 foreach (var chunk in document.Chunks)
                 {
                     await rag.IndexDocumentAsync(
+                        document.Title,
                         chunk.Id,
                         chunk.Header + chunk.Content).ConfigureAwait(false);
 
@@ -451,6 +489,8 @@ static class Program
                         Console.WriteLine($"Embedded {count-1}/{document.Chunks.Count} chunks.");
                     }
                 }
+
+                await rag.EndLoadDocumentAsync(document.Title);
             }
             catch (Exception e)
             {
@@ -484,49 +524,73 @@ static class Program
             }
         });
 
+        var promptOllamaUrlDefault = s_config["Ollama:Url"] ?? "http://localhost:11434";
         var ollamaUrlOption = GetUrlOption(
             "The base URL for the Ollama agent.",
-            "http://localhost:11434",
+            promptOllamaUrlDefault,
             "--agent", ["-a"]);
 
+        var promptEmbedModelDefault = s_config["Models:Embedding"] ?? "mxbai-embed-large";
         var embeddingModelOption = new Option<string>("--model", ["-m"])
         {
             Required = false,
-            Description = "The model to use to embedded the chunks (default: mxbai-embed-large).",
-            DefaultValueFactory = (result) => "mxbai-embed-large"
+            Description = $"The model to use to embedded the chunks (default: {promptEmbedModelDefault}).",
+            DefaultValueFactory = (result) => promptEmbedModelDefault
         };
 
+        var promptQueryModelDefault = s_config["Models:Query"] ?? "gpt-oss:120b-cloud";
         var queryModelOption = new Option<string>("--query", ["-qm"])
         {
             Required = false,
-            Description = "The model to use to answer queries (default: gpt-oss:120b-cloud).",
-            DefaultValueFactory = (result) => "gpt-oss:120b-cloud"
+            Description = $"The model to use to answer queries (default: {promptQueryModelDefault}).",
+            DefaultValueFactory = (result) => promptQueryModelDefault
         };
 
-        Option<string> qdrantUrlOption = GetUrlOption(
-            "The base URL for the Quadrant DB.",
-            "http://localhost:6333",
+        var promptDbUrlDefault = s_config["VectorDb:Url"] ?? "http://localhost:6333";
+        Option<string> vectorDbUrlOption = GetUrlOption(
+            "The Vector DB URL (used with Qdrant).",
+            promptDbUrlDefault,
             "--db", ["-d"]);
 
+        var promptVectorDbTypeDefault = s_config["VectorDb:Type"] ?? "pgsql";
+        var vectorDbTypeOption = new Option<string>("--vectordb-type", ["-vt"])
+        {
+            Required = false,
+            Description = "The type of vector database to use (qdrant or pgsql).",
+            DefaultValueFactory = (result) => promptVectorDbTypeDefault
+        };
+
+        var promptConnectionStringDefault = s_config["VectorDb:ConnectionString"] ?? Environment.GetEnvironmentVariable("PGSQL_CONNECTION_STRING") ?? "";
+        var connectionStringOption = new Option<string>("--connection-string", ["-cs"])
+        {
+            Required = false,
+            Description = "The PostgreSQL connection string (used with pgsql).",
+            DefaultValueFactory = (result) => promptConnectionStringDefault
+        };
+
+        var promptTimeoutDefault = int.TryParse(s_config["Timeout"], out var pt) ? pt : 300;
         var timeoutOption = new Option<int>("--timeout", ["-t"])
         {
             Required = false,
             Description = "The HTTP timeout in seconds (must be long enough to handle resouce intensive AI queries).",
-            DefaultValueFactory = (result) => 300
+            DefaultValueFactory = (result) => promptTimeoutDefault
         };
 
+        var promptCollectionDefault = s_config["VectorDb:Collection"] ?? "opcua-specifications";
         var collectionNameOption = new Option<string>("--collection", ["-n"])
         {
             Required = false,
-            Description = "The name of the vector collection in the Qdrant database.",
-            DefaultValueFactory = (result) => "opcua-specifications"
+            Description = "The name of the vector collection in the vector database.",
+            DefaultValueFactory = (result) => promptCollectionDefault
         };
 
         command.Options.Add(inputOption);
         command.Options.Add(ollamaUrlOption);
         command.Options.Add(embeddingModelOption);
         command.Options.Add(queryModelOption);
-        command.Options.Add(qdrantUrlOption);
+        command.Options.Add(vectorDbUrlOption);
+        command.Options.Add(vectorDbTypeOption);
+        command.Options.Add(connectionStringOption);
         command.Options.Add(timeoutOption);
         command.Options.Add(collectionNameOption);
 
@@ -538,7 +602,9 @@ static class Program
                 var ollamaUrl = result.GetValue(ollamaUrlOption);
                 var embeddingModel = result.GetValue(embeddingModelOption);
                 var queryModel = result.GetValue(queryModelOption);
-                var qdrantUrl = result.GetValue(qdrantUrlOption);
+                var vectorDbUrl = result.GetValue(vectorDbUrlOption);
+                var vectorDbType = result.GetValue(vectorDbTypeOption);
+                var connectionString = result.GetValue(connectionStringOption);
                 var timeout = result.GetValue(timeoutOption);
                 var collectionName = result.GetValue(collectionNameOption);
 
@@ -547,11 +613,16 @@ static class Program
                 istrm.Close();
 
                 var ollama = new OllamaClient(new Uri(ollamaUrl), new TimeSpan(0, timeout, 0));
-                var qdrant = new QdrantLocalClient(new Uri(qdrantUrl), new TimeSpan(0, timeout, 0));
+
+                IVectorDbClient vectorDb = vectorDbType?.ToLowerInvariant() switch
+                {
+                    "pgsql" => new PgSqlClient(connectionString),
+                    _ => new QdrantLocalClient(new Uri(vectorDbUrl), new TimeSpan(0, timeout, 0))
+                };
 
                 using var rag = new RagService(
-                    ollama, 
-                    qdrant, 
+                    ollama,
+                    vectorDb,
                     collectionName,
                     embeddingModel,
                     queryModel);

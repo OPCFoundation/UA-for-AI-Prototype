@@ -1,6 +1,6 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
-namespace Opc.Ua.RagUtility
+namespace Opc.Ua.RagCore
 {
     public class QdrantPoint
     {

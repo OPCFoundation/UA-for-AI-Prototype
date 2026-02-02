@@ -1,23 +1,23 @@
-﻿namespace Opc.Ua.RagUtility
+namespace Opc.Ua.RagCore
 {
     public class RagService : IDisposable
     {
         private readonly OllamaClient m_ollama;
-        private readonly QdrantLocalClient m_qdrant;
+        private readonly IVectorDbClient m_vectorDb;
         private readonly string m_collectionName;
         private readonly string m_embeddingModel;
         private readonly string m_queryModel;
         private bool m_disposed;
 
         public RagService(
-            OllamaClient ollama, 
-            QdrantLocalClient qdrant, 
+            OllamaClient ollama,
+            IVectorDbClient vectorDb,
             string collectionName,
             string embeddingModel,
             string queryModel = null)
         {
             m_ollama = ollama;
-            m_qdrant = qdrant;
+            m_vectorDb = vectorDb;
             m_collectionName = collectionName;
             m_embeddingModel = embeddingModel;
             m_queryModel = queryModel;
@@ -41,9 +41,9 @@
                         m_ollama.Dispose();
                     }
 
-                    if (m_qdrant != null)
+                    if (m_vectorDb != null)
                     {
-                        m_qdrant.Dispose();
+                        m_vectorDb.Dispose();
                     }
                 }
 
@@ -51,11 +51,59 @@
             }
         }
 
-        public async Task IndexDocumentAsync(object id, string content)
+        public async Task BeginLoadDocumentAsync(string documentId)
+        {
+            await m_vectorDb.EnsureCollectionAsync(m_collectionName, GetVectorSize());
+            await m_vectorDb.BeginLoadDocumentAsync(m_collectionName, documentId);
+        }
+
+        private int GetVectorSize()
+        {
+            int vectorSize;
+            switch (m_embeddingModel)
+            {
+                case "all-minilm":
+                {
+                    vectorSize = 384;
+                    break;
+                }
+                case "embeddinggemma":
+                {
+                    vectorSize = 256;
+                    break;
+                }
+                case "nomic-embed-text":
+                {
+                    vectorSize = 768;
+                    break;
+                }
+
+                default:
+                case "mxbai-embed-large":
+                case "bge-m3":
+                case "bge-large":
+                case "snowflake-arctic-embed":
+                case "snowflake-arctic-embed2":
+                case "qwen3-embedding":
+                {
+                    vectorSize = 1024;
+                    break;
+                }
+            }
+
+            return vectorSize;
+        }
+
+        public async Task EndLoadDocumentAsync(string documentId)
+        {
+            await m_vectorDb.EndLoadDocumentAsync(m_collectionName, documentId);
+        }
+
+        public async Task IndexDocumentAsync(string documentId, string chunkId, string content)
         {
             try
             {
-                await EmbedAndStoreAsync(id.ToString(), content);
+                await EmbedAndStoreAsync(documentId, chunkId, content);
             }
             catch (EmbeddingServerException ex) when (ex.StatusCode == 500)
             {
@@ -65,7 +113,7 @@
 
                 if (terminatorIndex < 0)
                 {
-                    throw new InvalidOperationException($"Chunk {id} failed with HTTP 500 and cannot be split: no header terminator found.");
+                    throw new InvalidOperationException($"Chunk {documentId}:{chunkId} failed with HTTP 500 and cannot be split: no header terminator found.");
                 }
 
                 var header = content.Substring(0, terminatorIndex + headerTerminator.Length);
@@ -83,7 +131,7 @@
 
                 string secondId;
 
-                if (Guid.TryParse(id.ToString(), out Guid guid))
+                if (Guid.TryParse(chunkId, out Guid guid))
                 {
                     var bytes = guid.ToByteArray();
 
@@ -101,31 +149,21 @@
 
                 try
                 {
-                    await EmbedAndStoreAsync(id.ToString(), firstContent);
-                    await EmbedAndStoreAsync(secondId, secondContent);
-                    Console.WriteLine($"WARNING: Chunk {id} was split into two chunks ({id} and {secondId}).");
+                    await EmbedAndStoreAsync(documentId, chunkId, firstContent);
+                    await EmbedAndStoreAsync(documentId, secondId, secondContent);
+                    Console.WriteLine($"WARNING: Chunk {chunkId} was split into two chunks ({chunkId} and {secondId}).");
                 }
                 catch (EmbeddingServerException)
                 {
-                    throw new InvalidOperationException($"Chunk {id} failed embedding after split. Original error: {ex.Message}");
+                    throw new InvalidOperationException($"Chunk {chunkId} failed embedding after split. Original error: {ex.Message}");
                 }
             }
         }
 
-        private async Task EmbedAndStoreAsync(string id, string content)
+        private async Task EmbedAndStoreAsync(string documentId, string chunkId, string content)
         {
             var vector = await m_ollama.EmbedAsync(content, m_embeddingModel);
-
-            // Ensure collection exists
-            await m_qdrant.EnsureCollectionAsync(m_collectionName, vector.Length);
-
-            // Upsert
-            await m_qdrant.UpsertAsync(m_collectionName, new QdrantPoint
-            {
-                Id = id,
-                Vector = vector,
-                Payload = new() { { "content", content } }
-            });
+            await m_vectorDb.UpsertAsync(m_collectionName, documentId, chunkId, vector, content);
         }
 
         public async Task<string> AskAsync(string question)
@@ -133,8 +171,8 @@
             // Embed query
             var embedding = await m_ollama.EmbedAsync(question, m_embeddingModel);
 
-            // Search Qdrant
-            var docs = await m_qdrant.SearchAsync(m_collectionName, embedding, topK: 5);
+            // Search vector DB
+            var docs = await m_vectorDb.SearchAsync(m_collectionName, embedding, topK: 5);
 
             var context = string.Join("\n\n", docs);
             var prompt = $"Use the following context to answer the question:\n\n{context}\n\nQuestion: {question}";

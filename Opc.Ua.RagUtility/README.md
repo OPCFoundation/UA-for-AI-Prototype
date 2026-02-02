@@ -16,21 +16,21 @@ OPC.Ua.RagUtility is part of the OPC Foundation's AI for IIoT initiative. It ena
 - **XML to Markdown Conversion** - Parse OPC UA specification XML and export as readable markdown with images
 - **AI-Powered Image Description** - Generate text descriptions of specification diagrams using vision models
 - **Token-Aware Document Chunking** - Split documents into optimal segments for vector embeddings
-- **Vector Embedding** - Generate and store embeddings in Qdrant vector database
+- **Vector Embedding** - Generate and store embeddings in PostgreSQL with pgvector
 - **RAG Query Answering** - Answer questions using semantic search + LLM generation
 
 ## Prerequisites
 
 - [.NET 10.0 SDK](https://dotnet.microsoft.com/download)
 - [Ollama](https://ollama.ai/) - Local AI model server
-- [Qdrant](https://qdrant.tech/) - Vector database
+- [PostgreSQL](https://www.postgresql.org/) with [pgvector](https://github.com/pgvector/pgvector) - Vector database
 
 ### Required Ollama Models
 
 Pull these models before using the tool:
 
 ```bash
-# Embedding model (384-dimensional vectors)
+# Embedding model (1024-dimensional vectors)
 ollama pull mxbai-embed-large
 
 # Vision model for image descriptions
@@ -61,7 +61,7 @@ dotnet run -- --help
 The tool provides five commands that form a processing pipeline:
 
 ```
-XML Input → markdown → describe-images → generate-chunks → embed → prompt
+XML Input -> markdown -> describe-images -> generate-chunks -> embed -> prompt
 ```
 
 ### 1. Convert XML to Markdown
@@ -144,7 +144,7 @@ dotnet run -- generate-chunks -i ./specs/Part4.xml -t 400 -m ./output/Part4-imag
 
 ### 4. Embed and Index Chunks
 
-Generate vector embeddings and store them in Qdrant for semantic search.
+Generate vector embeddings and store them in the vector database for semantic search.
 
 ```bash
 dotnet run -- embed --input <chunks_json>
@@ -156,13 +156,14 @@ dotnet run -- embed --input <chunks_json>
 | `--input` | `-i` | | RAG chunks JSON file (required) |
 | `--agent` | `-a` | `http://localhost:11434` | Ollama server URL |
 | `--embed` | `-em` | `mxbai-embed-large` | Embedding model name |
-| `--db` | `-d` | `http://localhost:6333` | Qdrant server URL |
+| `--db` | `-d` | | Vector DB connection string |
+| `--vectordb-type` | `-vt` | `pgsql` | Vector database type (pgsql or qdrant) |
 | `--timeout` | `-t` | `300` | HTTP timeout in seconds |
-| `--collection` | `-n` | `opcua-specifications` | Qdrant collection name |
+| `--collection` | `-n` | `opcua_specifications` | Collection name |
 
 **Example:**
 ```bash
-dotnet run -- embed -i ./output/Part4-chunks.json -n opcua-part4
+dotnet run -- embed -i ./output/Part4-chunks.json -n opcua_specifications
 ```
 
 ---
@@ -182,9 +183,11 @@ dotnet run -- prompt --input <queries_json>
 | `--agent` | `-a` | `http://localhost:11434` | Ollama server URL |
 | `--model` | `-m` | `mxbai-embed-large` | Embedding model for queries |
 | `--query` | `-qm` | `gpt-oss:120b-cloud` | LLM model for answers |
-| `--db` | `-d` | `http://localhost:6333` | Qdrant server URL |
+| `--db` | `-d` | | Vector DB URL (for Qdrant) |
+| `--vectordb-type` | `-vt` | `pgsql` | Vector database type (pgsql or qdrant) |
+| `--connection-string` | `-cs` | | PostgreSQL connection string |
 | `--timeout` | `-t` | `300` | HTTP timeout in seconds |
-| `--collection` | `-n` | `opcua-specifications` | Qdrant collection name |
+| `--collection` | `-n` | `opcua_specifications` | Collection name |
 
 **Query JSON Format:**
 ```json
@@ -198,7 +201,7 @@ dotnet run -- prompt --input <queries_json>
 
 **Example:**
 ```bash
-dotnet run -- prompt -i ./queries.json -qm llama3 -n opcua-part4
+dotnet run -- prompt -i ./queries.json -qm llama3 -n opcua_specifications
 ```
 
 ## Complete Workflow Example
@@ -210,8 +213,7 @@ Process a specification from XML to queryable knowledge base:
 # Terminal 1: Start Ollama
 ollama serve
 
-# Terminal 2: Start Qdrant (using Docker)
-docker run -p 6333:6333 qdrant/qdrant
+# Terminal 2: Ensure PostgreSQL is running with pgvector extension
 
 # 2. Process the specification
 # Convert to markdown (optional, for human review)
@@ -224,10 +226,10 @@ dotnet run -- describe-images -i ./specs/Part4-Services.xml -o ./output/Part4-im
 dotnet run -- generate-chunks -i ./specs/Part4-Services.xml -m ./output/Part4-images.json -o ./output/Part4-chunks.json
 
 # Index in vector database
-dotnet run -- embed -i ./output/Part4-chunks.json -n opcua-part4
+dotnet run -- embed -i ./output/Part4-chunks.json -n opcua_specifications
 
 # 3. Query the knowledge base
-dotnet run -- prompt -i ./my-queries.json -qm llama3 -n opcua-part4
+dotnet run -- prompt -i ./my-queries.json -qm llama3 -n opcua_specifications
 ```
 
 ## Architecture
@@ -246,16 +248,17 @@ dotnet run -- prompt -i ./my-queries.json -qm llama3 -n opcua-part4
 │  ├── DataSlicer.cs        - Token-aware chunking                │
 │  └── MarkdownExporter.cs  - Markdown generation                 │
 ├─────────────────────────────────────────────────────────────────┤
-│  AI Integration                                                 │
+│  Opc.Ua.RagCore (shared library)                                │
 │  ├── OllamaClient.cs      - Embedding, generation, vision       │
 │  ├── RagService.cs        - RAG workflow orchestration          │
-│  └── QdrantLocalClient.cs - Vector storage & search             │
+│  ├── PgSqlClient.cs       - PostgreSQL/pgvector storage          │
+│  └── IVectorDbClient.cs   - Vector DB abstraction               │
 └─────────────────────────────────────────────────────────────────┘
          │                              │
          ▼                              ▼
 ┌─────────────────┐          ┌─────────────────┐
-│     Ollama      │          │     Qdrant      │
-│  (AI Models)    │          │  (Vector DB)    │
+│     Ollama      │          │   PostgreSQL    │
+│  (AI Models)    │          │  (pgvector)     │
 │                 │          │                 │
 │ - mxbai-embed   │          │ - Collections   │
 │ - llava         │          │ - Cosine search │
@@ -265,18 +268,20 @@ dotnet run -- prompt -i ./my-queries.json -qm llama3 -n opcua-part4
 
 ## Configuration
 
+Configuration is loaded from `appsettings.json` (provided by the Opc.Ua.RagCore library) and can be overridden via command-line options.
+
 ### Default Service URLs
 
 | Service | Default URL |
 |---------|-------------|
 | Ollama | `http://localhost:11434` |
-| Qdrant | `http://localhost:6333` |
+| PostgreSQL | Via connection string |
 
 ### Recommended Models
 
 | Purpose | Model | Notes |
 |---------|-------|-------|
-| Embeddings | `mxbai-embed-large` | 384-dimensional vectors |
+| Embeddings | `mxbai-embed-large` | 1024-dimensional vectors |
 | Vision | `llava` | Image description |
 | Query LLM | `llama3` | Or any chat-capable model |
 
@@ -301,14 +306,14 @@ curl http://localhost:11434/api/tags
 ollama list
 ```
 
-### Qdrant Connection Failed
+### PostgreSQL Connection Failed
 
 ```bash
-# Verify Qdrant is running
-curl http://localhost:6333/collections
+# Verify PostgreSQL is running and accessible
+psql -h localhost -U postgres -c "SELECT 1;"
 
-# Check collection exists
-curl http://localhost:6333/collections/opcua-specifications
+# Check pgvector extension is enabled
+psql -h localhost -U postgres -d opcua -c "SELECT * FROM pg_extension WHERE extname = 'vector';"
 ```
 
 ### Timeout Errors
@@ -327,14 +332,16 @@ Process specifications individually rather than batching. Each command processes
 
 - **Microsoft.ML.Tokenizers** (v2.0.0) - GPT-4 tokenizer for accurate token counting
 - **Microsoft.ML.Tokenizers.Data.Cl100kBase** (v2.0.0) - Token encoding data
-- **System.CommandLine** (v2.0.1) - CLI argument parsing
+- **System.CommandLine** (v2.0.2) - CLI argument parsing
+- **Opc.Ua.RagCore** - Shared RAG components (OllamaClient, PgSqlClient, RagService)
 
 ## References
 
 - [OPC Foundation](https://opcfoundation.org/)
 - [OPC UA Specifications](https://opcfoundation.org/developer-tools/specifications-unified-architecture)
 - [Ollama Documentation](https://ollama.ai/)
-- [Qdrant Documentation](https://qdrant.tech/documentation/)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [pgvector Documentation](https://github.com/pgvector/pgvector)
 
 ## License
 

@@ -1,0 +1,13 @@
+{
+  "Title": "OPC UA Specification Summary Queries",
+  "Queries": [
+    {
+      "Prompt": "What is BrowseDirection?",
+      "Response": "BrowseDirection is an enumeration that specifies the direction of References to follow. It has the following possible values:\n\n- **FORWARD (0)** \u2013 Select only forward References.  \n- **INVERSE (1)** \u2013 Select only inverse References.  \n- **BOTH (2)** \u2013 Select forward and inverse References.  \n- **INVALID (3)** \u2013 No value specified."
+    },
+    {
+      "Prompt": "Describe the subscription model?",
+      "Response": "A Subscription is an endpoint in the Server that publishes Notifications to Clients. Clients control the rate at which publishing occurs by sending Publish Messages."
+    }
+  ]
+}

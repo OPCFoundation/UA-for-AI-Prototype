@@ -1,8 +1,7 @@
-﻿
 using System.Net.Http.Json;
 using System.Text.Json;
 
-namespace Opc.Ua.RagUtility
+namespace Opc.Ua.RagCore
 {
     public class EmbeddingServerException : Exception
     {
@@ -33,7 +32,6 @@ namespace Opc.Ua.RagUtility
 
         public void Dispose()
         {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
@@ -73,9 +71,9 @@ namespace Opc.Ua.RagUtility
             return result.Embedding;
         }
 
-        public async Task<string> GenerateAsync(string prompt, string model = "gpt-oss:120b-cloud")
+        public async Task<string> GenerateAsync(string prompt, string model = "gpt-oss:120b-cloud", string systemPrompt = null)
         {
-            var system =
+            var system = systemPrompt ??
                 @"You are an assistant that answers ONLY using the provided context.
                 If the answer is not fully contained in the context, say:
                 'I don't know based on the provided data.'
@@ -92,7 +90,6 @@ namespace Opc.Ua.RagUtility
                 stream = false
             });
 
-            var text = await response.Content.ReadAsStringAsync();
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadFromJsonAsync<JsonElement>();
             return json.GetProperty("response").GetString();
@@ -100,9 +97,9 @@ namespace Opc.Ua.RagUtility
 
         public async Task<string> DescribeImageAsync(
             string document,
-            string section, 
-            string caption, 
-            string image, 
+            string section,
+            string caption,
+            string image,
             string model = "llava")
         {
             string prompt = $"Describe this figure from the document {document}. " +
@@ -119,7 +116,6 @@ namespace Opc.Ua.RagUtility
                 images = new[] { image }
             });
 
-            var text = await response.Content.ReadAsStringAsync();
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadFromJsonAsync<JsonElement>();
             return json.GetProperty("response").GetString();

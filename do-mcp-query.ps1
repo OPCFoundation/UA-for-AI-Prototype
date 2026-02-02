@@ -3,12 +3,11 @@
 #
 # Prerequisites:
 #   - Ollama running (ollama serve) with mxbai-embed-large and llama3 models
-#   - Qdrant running (.\start-qdrant.ps1) with opcua-specifications collection populated
 #
 # Usage:
-#   .\Invoke-McpQuery.ps1                                    # Interactive mode
-#   .\Invoke-McpQuery.ps1 -Question "What is a Session?"     # Single query
-#   .\Invoke-McpQuery.ps1 -InputFile queries.txt             # Interactive with query suggestions
+#   .\do-mcp-query.ps1                                    # Interactive mode
+#   .\do-mcp-query.ps1 -Question "What is a Session?"     # Single query
+#   .\do-mcp-query.ps1 -InputFile queries.txt             # Interactive with query suggestions
 
 param(
     [string]$ProjectPath = ".\Opc.Ua.McpServer",
