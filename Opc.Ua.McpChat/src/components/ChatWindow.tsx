@@ -28,6 +28,7 @@ export function ChatWindow({ messages, loading }: ChatWindowProps) {
             <li>How to represent a finite state machine?</li>
             <li>What is a global discovery server and why is it used?</li>
           </ul>
+          <p>This prototype does <b>NOT</b> remember context from previous questions.</p>
         </div>
       )}
       {messages.map((msg, idx) => (
