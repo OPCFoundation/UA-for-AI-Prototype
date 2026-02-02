@@ -30,6 +30,7 @@ Contains the official OPC UA specification source files and pre-generated inputs
 | Part 12 | Discovery and Global Services | [View](specifications/GDS/v105/README.md) |
 | Part 13 | Aggregates | [View](specifications/Core/Part13/README.md) |
 | Part 14 | PubSub | [View](specifications/Core/Part14/README.md) |
+| Part 15 | Safety | [View](specifications/Safety/v105/README.md) |
 | Part 16 | State Machines | [View](specifications/Core/Part16/README.md) |
 | Part 17 | Alias Names | [View](specifications/Core/Part17/README.md) |
 | Part 18 | Role-Based Security | [View](specifications/Core/Part18/README.md) |
@@ -41,6 +42,9 @@ Contains the official OPC UA specification source files and pre-generated inputs
 | Part 24 | Scheduler | [View](specifications/Scheduler/v105/README.md) |
 | Part 25 | Object Serilizations | [View](specifications/Core/Part25/README.md) |
 | Part 26 | LogObject | [View](specifications/Core/Part26/README.md) |
+| DI | Devices | [View](specifications/DI/v105/README.md) |
+| IA | Industrial Automation | [View](specifications/IA/v102/README.md) |
+| Model-Best | UA Modeling Best Practices | [View](specifications/Model-Best/v103/README.md) |
 
 ### Vector Database
 
