@@ -170,6 +170,12 @@ Server=localhost;Database=opcua-rag-vectors;Port=5433;User Id=<YOUR-USER>;Passwo
 
 **Important:** The RagUtility automatically creates the required database tables on first run, so the configured database user must have sufficient privileges to create tables and extensions (i.e. admin/superuser rights on the database).
 
+A backup of a PGSQL database with vectors preloaded is available in [OPC Foundation Teams](https://opcfoundation.sharepoint.com/:f:/s/wg.AI/IgD8b3wdQlEyR41H78qRfhhtAeKyVrRRUk25BtkayNPMP6c?e=Iovppo). If this is not accessible the database needs to be populated with the following command:
+
+```
+.\do-rag-operation.ps1 -Operation embed
+```
+
 ## Quick Start
 
 1. Install prerequisites (Ollama, PostgreSQL with pgvector, .NET SDK)
