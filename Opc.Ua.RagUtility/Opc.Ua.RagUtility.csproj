@@ -21,4 +21,10 @@
     <ProjectReference Include="..\Opc.Ua.RagCore\Opc.Ua.RagCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

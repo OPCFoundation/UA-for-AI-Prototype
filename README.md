@@ -73,10 +73,16 @@ An MCP (Model Context Protocol) server that exposes OPC UA specification knowled
 Tools:
 - `specificationQuery` - Answer questions about OPC UA specifications using RAG
 
+### MCP Web API (`Opc.Ua.McpWebApi/`)
+
+An ASP.NET Core REST API that exposes the same OPC UA specification RAG query functionality as the MCP Server, but over HTTP. This allows any HTTP client (web browsers, curl, custom applications) to query the specifications without requiring the MCP protocol.
+
+Endpoint:
+- `POST /api/specification/query` - Submit a question and receive a RAG-generated answer
+
 ### Demo Code
 
-- `HMI25-demo.py` - Demo code from Hannovermesse 2025, shown at the OPC Foundation Cloud conference
-- `run-publisher.sh` / `run-subscriber.sh` - Shell scripts for running OPC UA PubSub components
+- `do-rag-operation.ps1` - PowerShell to run the RAG utility.
 - `do-mcp-query.ps1` - PowerShell MCP client for querying specifications interactively
 
 The 'general-queries.txt' contains a set of default queries for do-mcp-query.ps1.
@@ -84,6 +90,15 @@ The 'general-queries.txt' contains a set of default queries for do-mcp-query.ps1
 ```
 .\do-mcp-query.ps1 -InputFile general-queries.txt
 ```
+
+To query using the Web API instead of the stdio-based MCP Server, use the `-Url` option:
+
+```
+.\do-mcp-query.ps1 -Url https://localhost:49322
+```
+
+Note the 
+
 Notes when building queries:
 * Extremely general queries (i.e. what is Part 8) don't work well;
 * The AI can be pendantic (i.e. asking for components of a type will return only targets of HasComponent);
@@ -120,6 +135,8 @@ ollama pull gpt-oss:120b-cloud
 ```sql
 CREATE EXTENSION IF NOT EXISTS vector;
 ```
+
+**Note:** The pgvector extension is not included with standard PostgreSQL installations and may need to be manually built and installed. Pre-built packages are available for some platforms, but if your platform is not covered you will need to compile the extension from source. See the [pgvector installation instructions](https://github.com/pgvector/pgvector#installation) for details.
 
 ### .NET SDK
 

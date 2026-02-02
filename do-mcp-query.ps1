@@ -5,21 +5,23 @@
 #   - Ollama running (ollama serve) with mxbai-embed-large and llama3 models
 #
 # Usage:
-#   .\do-mcp-query.ps1                                    # Interactive mode
-#   .\do-mcp-query.ps1 -Question "What is a Session?"     # Single query
-#   .\do-mcp-query.ps1 -InputFile queries.txt             # Interactive with query suggestions
+#   .\do-mcp-query.ps1                                    # Interactive mode (stdio)
+#   .\do-mcp-query.ps1 -Question "What is a Session?"     # Single query (stdio)
+#   .\do-mcp-query.ps1 -InputFile queries.txt             # Interactive with query suggestions (stdio)
+#   .\do-mcp-query.ps1 -Url http://localhost:5000          # Interactive mode (HTTP)
 
 param(
     [string]$ProjectPath = ".\Opc.Ua.McpServer",
     [string]$Question,
-    [string]$InputFile
+    [string]$InputFile,
+    [string]$Url
 )
 
 # Load queries from input file if provided
 $Queries = @()
 $QueryIndex = 0
 
-if ($InputFile -ne $null) {
+if ($InputFile -ne "") {
     if (-not (Test-Path $InputFile)) {
         Write-Host "Input file not found: $InputFile" -ForegroundColor Red
         exit 1
@@ -35,32 +37,58 @@ if ($InputFile -ne $null) {
 
 $ErrorActionPreference = "Stop"
 
-# Resolve project path
-$ProjectPath = Resolve-Path $ProjectPath
+$useHttp = $Url -ne ""
 
-# Build the project first
-Write-Host "Building Opc.Ua.McpServer..." -ForegroundColor Yellow
-dotnet build $ProjectPath --configuration Release --verbosity quiet 2>$null
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "Failed to build Opc.Ua.McpServer" -ForegroundColor Red
-    exit 1
+# --- HTTP mode functions ---
+
+function Send-HttpQuery {
+    param([string]$BaseUrl, [string]$QuestionText)
+
+    $uri = "$($BaseUrl.TrimEnd('/'))/api/specification/query"
+    $body = @{ question = $QuestionText } | ConvertTo-Json -Compress
+
+    $response = Invoke-WebRequest -Uri $uri -Method Post -Body $body -ContentType "application/json" -UseBasicParsing
+    $json = $response.Content | ConvertFrom-Json
+
+    if ($json.error) {
+        return @{ Error = $json.error }
+    }
+
+    return @{ Answer = $json.answer }
 }
-Write-Host "Build successful.`n" -ForegroundColor Green
 
-# Start the MCP server process
-$psi = New-Object System.Diagnostics.ProcessStartInfo
-$psi.FileName = "dotnet"
-$psi.Arguments = "run --project `"$ProjectPath`" --configuration Release --no-build"
-$psi.UseShellExecute = $false
-$psi.RedirectStandardInput = $true
-$psi.RedirectStandardOutput = $true
-$psi.RedirectStandardError = $true
-$psi.CreateNoWindow = $true
-$psi.WorkingDirectory = (Get-Location).Path
+# --- Stdio mode setup ---
 
-$process = New-Object System.Diagnostics.Process
-$process.StartInfo = $psi
-$process.Start() | Out-Null
+$process = $null
+
+if (-not $useHttp) {
+    # Resolve project path
+    $ProjectPath = Resolve-Path $ProjectPath
+
+    # Build the project first
+    Write-Host "Building Opc.Ua.McpServer..." -ForegroundColor Yellow
+    dotnet build $ProjectPath --configuration Release --verbosity quiet 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Failed to build Opc.Ua.McpServer" -ForegroundColor Red
+        exit 1
+    }
+    Write-Host "Build successful.`n" -ForegroundColor Green
+
+    # Start the MCP server process
+    $psi = New-Object System.Diagnostics.ProcessStartInfo
+    $psi.FileName = "dotnet"
+    $psi.Arguments = "run --project `"$ProjectPath`" --configuration Release --no-build"
+    $psi.UseShellExecute = $false
+    $psi.RedirectStandardInput = $true
+    $psi.RedirectStandardOutput = $true
+    $psi.RedirectStandardError = $true
+    $psi.CreateNoWindow = $true
+    $psi.WorkingDirectory = (Get-Location).Path
+
+    $process = New-Object System.Diagnostics.Process
+    $process.StartInfo = $psi
+    $process.Start() | Out-Null
+}
 
 # Helper function to send JSON-RPC message
 function Send-McpMessage {
@@ -80,37 +108,41 @@ function Read-McpResponse {
 }
 
 try {
-    # Step 1: Initialize
-    Write-Host "Connecting to MCP server..." -ForegroundColor Cyan
+    if ($useHttp) {
+        Write-Host "Using HTTP mode: $Url" -ForegroundColor Cyan
+    } else {
+        # Step 1: Initialize
+        Write-Host "Connecting to MCP server..." -ForegroundColor Cyan
 
-    $initRequest = @{
-        jsonrpc = "2.0"
-        id = 1
-        method = "initialize"
-        params = @{
-            protocolVersion = "2024-11-05"
-            capabilities = @{}
-            clientInfo = @{
-                name = "PowerShell MCP Client"
-                version = "1.0"
+        $initRequest = @{
+            jsonrpc = "2.0"
+            id = 1
+            method = "initialize"
+            params = @{
+                protocolVersion = "2024-11-05"
+                capabilities = @{}
+                clientInfo = @{
+                    name = "PowerShell MCP Client"
+                    version = "1.0"
+                }
             }
         }
-    }
-    Send-McpMessage $initRequest
-    $initResponse = Read-McpResponse
+        Send-McpMessage $initRequest
+        $initResponse = Read-McpResponse
 
-    if ($initResponse.error) {
-        throw "Initialize failed: $($initResponse.error.message)"
-    }
+        if ($initResponse.error) {
+            throw "Initialize failed: $($initResponse.error.message)"
+        }
 
-    Write-Host "Connected to: $($initResponse.result.serverInfo.name) v$($initResponse.result.serverInfo.version)" -ForegroundColor Green
+        Write-Host "Connected to: $($initResponse.result.serverInfo.name) v$($initResponse.result.serverInfo.version)" -ForegroundColor Green
 
-    # Step 2: Send initialized notification
-    $initializedNotification = @{
-        jsonrpc = "2.0"
-        method = "notifications/initialized"
+        # Step 2: Send initialized notification
+        $initializedNotification = @{
+            jsonrpc = "2.0"
+            method = "notifications/initialized"
+        }
+        Send-McpMessage $initializedNotification
     }
-    Send-McpMessage $initializedNotification
 
     # Interactive loop
     while ($true) {
@@ -149,36 +181,49 @@ try {
             $Question = $userInput
         }
 
-        # Build the tool call
-        $toolName = "specificationQuery"
-        $toolArgs = @{ question = $Question }
         Write-Host "`nQuerying specification: $Question" -ForegroundColor Yellow
-
         Write-Host "Waiting for response (this may take a moment)..." -ForegroundColor Gray
 
-        # Step 3: Call the tool
-        $callRequest = @{
-            jsonrpc = "2.0"
-            id = 2
-            method = "tools/call"
-            params = @{
-                name = $toolName
-                arguments = $toolArgs
-            }
-        }
-        Send-McpMessage $callRequest
-        $callResponse = Read-McpResponse
+        if ($useHttp) {
+            # HTTP mode
+            try {
+                $result = Send-HttpQuery -BaseUrl $Url -QuestionText $Question
 
-        if ($callResponse.error) {
-            Write-Host "`nError: $($callResponse.error.message)" -ForegroundColor Red
+                if ($result.Error) {
+                    Write-Host "`nError: $($result.Error)" -ForegroundColor Red
+                } else {
+                    Write-Host "`n=== Response ===" -ForegroundColor Green
+                    Write-Host $result.Answer -ForegroundColor White
+                    Write-Host "================" -ForegroundColor Green
+                }
+            } catch {
+                Write-Host "`nError: $($_.Exception.Message)" -ForegroundColor Red
+            }
         } else {
-            Write-Host "`n=== Response ===" -ForegroundColor Green
-            foreach ($content in $callResponse.result.content) {
-                if ($content.type -eq "text") {
-                    Write-Host $content.text -ForegroundColor White
+            # Stdio MCP mode
+            $callRequest = @{
+                jsonrpc = "2.0"
+                id = 2
+                method = "tools/call"
+                params = @{
+                    name = "specificationQuery"
+                    arguments = @{ question = $Question }
                 }
             }
-            Write-Host "================" -ForegroundColor Green
+            Send-McpMessage $callRequest
+            $callResponse = Read-McpResponse
+
+            if ($callResponse.error) {
+                Write-Host "`nError: $($callResponse.error.message)" -ForegroundColor Red
+            } else {
+                Write-Host "`n=== Response ===" -ForegroundColor Green
+                foreach ($content in $callResponse.result.content) {
+                    if ($content.type -eq "text") {
+                        Write-Host $content.text -ForegroundColor White
+                    }
+                }
+                Write-Host "================" -ForegroundColor Green
+            }
         }
 
         # Reset for next iteration if running interactively
@@ -191,14 +236,16 @@ try {
 
 } finally {
     # Clean up
-    Write-Host "`nClosing connection..." -ForegroundColor Gray
-    if (-not $process.HasExited) {
-        $process.StandardInput.Close()
-        $process.WaitForExit(5000)
+    if (-not $useHttp -and $process -ne $null) {
+        Write-Host "`nClosing connection..." -ForegroundColor Gray
         if (-not $process.HasExited) {
-            $process.Kill()
+            $process.StandardInput.Close()
+            $process.WaitForExit(5000)
+            if (-not $process.HasExited) {
+                $process.Kill()
+            }
         }
+        $process.Dispose()
     }
-    $process.Dispose()
     Write-Host "Done." -ForegroundColor Green
 }
