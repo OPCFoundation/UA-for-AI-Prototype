@@ -80,8 +80,19 @@ An ASP.NET Core REST API that exposes the same OPC UA specification RAG query fu
 Endpoint:
 - `POST /api/specification/query` - Submit a question and receive a RAG-generated answer
 
+### Chat UI (`Opc.Ua.McpChat/`)
+
+An Electron desktop application that provides a chat interface for querying OPC UA specifications. It connects to the MCP Server via stdio and lets users ask questions in natural language, with responses rendered as formatted Markdown.
+
+To launch the Chat UI:
+
+```
+.\start-chat-ui.ps1
+```
+
 ### Demo Code
 
+- `start-chat-ui.ps1` - Launch the Chat UI (installs npm dependencies on first run)
 - `do-rag-operation.ps1` - PowerShell to run the RAG utility.
 - `do-mcp-query.ps1` - PowerShell MCP client for querying specifications interactively
 
