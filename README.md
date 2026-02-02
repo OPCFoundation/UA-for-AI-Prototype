@@ -153,15 +153,33 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 [.NET 10.0 SDK](https://dotnet.microsoft.com/download) is required to build and run the RAG utility.
 
+### Database Configuration
+
+Before running the RagUtility, McpServer, or McpWebApi applications, you must configure the PostgreSQL connection string in each project's `appsettings.json` file. The default connection string assumes a local PostgreSQL installation but requires a valid username and password to be set.
+
+Update the `ConnectionString` value in the `VectorDb` section of each file:
+
+- `Opc.Ua.RagUtility/appsettings.json`
+- `Opc.Ua.McpServer/appsettings.json`
+- `Opc.Ua.McpWebApi/appsettings.json`
+
+Example connection string:
+```
+Server=localhost;Database=opcua-rag-vectors;Port=5433;User Id=<YOUR-USER>;Password=<YOUR-PASSWORD>;Ssl Mode=Prefer;Trust Server Certificate=true;
+```
+
+**Important:** The RagUtility automatically creates the required database tables on first run, so the configured database user must have sufficient privileges to create tables and extensions (i.e. admin/superuser rights on the database).
+
 ## Quick Start
 
 1. Install prerequisites (Ollama, PostgreSQL with pgvector, .NET SDK)
 2. Start PostgreSQL and ensure the pgvector extension is enabled
-3. Start Ollama:
+3. Configure the database connection string in each project's `appsettings.json` (see [Database Configuration](#database-configuration))
+4. Start Ollama:
    ```bash
    ollama serve
    ```
-4. Query the specifications using the RAG utility (see [Opc.Ua.RagUtility README](Opc.Ua.RagUtility/README.md))
+5. Query the specifications using the RAG utility (see [Opc.Ua.RagUtility README](Opc.Ua.RagUtility/README.md))
 
 ## Additional Documentation
 
