@@ -2,6 +2,17 @@
 
 This repository contains demo code and resources from the OPC UA for AI working group of the OPC Foundation. It provides tools and pre-processed data for building AI-powered applications that leverage OPC UA specifications.
 
+** This repository was a prototype. The release is now available online [here](https://reference.opcfoundation.org/) **
+
+The MCP server is available [here](https://reference.opcfoundation.org/mcp) and provides the following tools:
+*	search_text: Full-text search within a single OPC UA specification.
+*	search_nodes: Search for a definition based on a NodeId or BrowseName.
+*	search_cu: Search for a definition based on a Conformance Unit name.
+*	search_terms: Search for defined/italicized terms across OPC UA specifications.
+
+The raw files are in the member only repo [here](https://github.com/OPCF-Members/OPCF-Specifications).
+Should be public by the end of Jun 2026.
+
 ## Repository Contents
 
 ### Specifications (`specifications/`)
