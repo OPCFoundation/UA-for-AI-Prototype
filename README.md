@@ -2,7 +2,7 @@
 
 This repository contains demo code and resources from the OPC UA for AI working group of the OPC Foundation. It provides tools and pre-processed data for building AI-powered applications that leverage OPC UA specifications.
 
-** This repository was a prototype. The release is now available online [here](https://reference.opcfoundation.org/) **
+**This repository was a prototype. The release is now available online [here](https://reference.opcfoundation.org/)**
 
 The MCP server is available [here](https://reference.opcfoundation.org/mcp) and provides the following tools:
 *	search_text: Full-text search within a single OPC UA specification.
